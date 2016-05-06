@@ -1,0 +1,53 @@
+{
+    "name": "nfephp-org/sped-esocial",
+    "type": "library",
+    "description": "e-Social library",
+    "homepage": "https://github.com/nfephp-org/sped-esocial",
+    "keywords": ["Sped", "e-Financeira"],
+    "license": ["LGPLv3+", "GPLv3+", "MIT"],
+    "authors": [
+        {
+            "name": "Roberto L. Machado",
+            "email": "linux.rlm@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Rodrigo Traleski",
+            "email": "rodrigo@actuary.com.br",
+            "role": "Developer"
+        },
+        {
+            "name": "Ademilson Santana da Silva",
+            "email": "ademilsonssilva1@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~5.5|~7.0",
+        "nfephp-org/sped-common" : "^4.1"
+    },
+    "require-dev": {
+	"phpunit/phpunit": "4.*",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+          "NFePHP\\eSocial\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NFePHP\\eSocial\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtMonit/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtMonit/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtMonit">
+          <xs:annotation>
+            <xs:documentation>Evento Monitoramento da Saúde do Trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeEveTrab">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Evento</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideVinculo" type="TIdeVinculoEstag">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Trabalhador e do Vínculo</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="aso">
+                <xs:annotation>
+                  <xs:documentation>Detalhamento das informações do ASO</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="dtAso">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Data do ASO</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:date">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="tpAso">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Tipo de Atestado de Saúde Ocupacional emitido, conforme opções abaixo:
+                          1 - periódico, conforme planejamento do PCMSO;
+                          2 - de retorno ao trabalho;
+                          3 - de mudança de função;
+                          4 - de monitoração pontual, não enquadrado nos casos anteriores;</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="resAso">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Resultado do ASO, conforme opções abaixo:
+                          1 - Apto;
+                          2 - Inapto;
+                          </xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="exame" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation>Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO.   O não preenchimento siginifica a não realização de exames complementares.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtExm">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Data do exame realizado.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="procRealizado">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do procedimento médico terapêutico ou diagnóstico constante da Tabela de Terminologia Unificada em Saúde Suplementar (TUSS)</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:integer">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="monitBiolog" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Informações da Monitoração Biológica, a qual deve ser efetuada para os trabalhadores cujas atividades envolvem os riscos discriminados no Quadro I da NR-07 do MTE.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="resultMonit" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation>Resultado da Monitoração Biológica</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="codAgntQuim">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Código do agente químico ao qual o trabalhador está exposto conforme tabela 7.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:length value="2"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="matBiolog">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Material Biológico:
+                                      1 - Urina;
+                                      2 - Sangue;</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="codAnalise">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Código da análise efetuada, conforme tabela 7</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="3"/>
+                                      <xs:maxLength value="4"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="interprExm">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Preencher com o código, de acordo com quadro I da NR07, a saber:
+                                      1 - EE;
+                                      2 - SC;
+                                      3 - SC+</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="ordExame">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Ordem do Exame:
+                                      1 - Referencial; 
+                                      2 - Sequencial.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="dtIniMonit">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Data de início da monitoração</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:date">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="dtFimMonit" minOccurs="0">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Data final da monitoração</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:date">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="indResult" minOccurs="0">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Indicação dos Resultados:
+                                      1 - Normal; 
+                                      2 - Alterado; 
+                                      3 - Estável; 
+                                      4 - Agravamento.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="respMonit">
+                            <xs:annotation>
+                              <xs:documentation>Registro onde são prestadas as informações sobre o profissional responsável pela monitoração biológica em atendimento aos requisitos das NR-07 e NR-09 do MTE.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="nisResp">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>NIS do responsável pela monitoração</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:length value="11"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="nrConsClasse">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Número de inscrição do médico ou enfermeiro do trabalho</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1"/>
+                                      <xs:maxLength value="8"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="ufConsClasse" minOccurs="0">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Preencher com a sigla da UF de expedição do CRM/CRE.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:length value="2"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ideServSaude">
+                      <xs:annotation>
+                        <xs:documentation>Serviço de Saúde responsável</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="codCNES" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código da unidade de atendimento médico no Cadastro Nacional de Estabelecimento de Saúde.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="7"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="frmCtt">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Indicar forma de contato, descrevendo telefone, e-mail, endereço ou qualquer outra forma de contato.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:whiteSpace value="preserve"/>
+                                <xs:minLength value="5"/>
+                                <xs:maxLength value="100"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="email" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Endereço eletrônico</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="60"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="medico" type="TMedico">
+                            <xs:annotation>
+                              <xs:documentation>Médico responsável</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeEveTrab">
+    <xs:annotation>
+      <xs:documentation>Identificação do evento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indRetif">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de Retificação:
+            1 - Original
+            2 - Retificador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrRecibo" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TIdeVinculoEstag">
+    <xs:annotation>
+      <xs:documentation>Informacoes do Vínculo trabalhista e estagiário</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cpfTrab">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>CPF do trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+            <xs:pattern value="[0-9]{11}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nisTrab" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição do Segurado (NIS)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="matricula" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Matricula do trabalhador na Empresa</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TMedico">
+    <xs:sequence>
+      <xs:element name="nmMed">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Nome do médico encarregado do exame médico.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+            <xs:maxLength value="60"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="crm" type="TCrm">
+        <xs:annotation>
+          <xs:documentation>CRM</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TCrm">
+    <xs:annotation>
+      <xs:documentation>Informações da Inscrição no CRM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrCRM">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>CRM do Médico</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ufCRM">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Unidade da federação do médico responsável pelo exame médico.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
