@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtTabEstab/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtTabEstab/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtTabEstab">
+          <xs:annotation>
+            <xs:documentation>Evento tabela de estabelecimentos e obras de construção civil</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeCadastro">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Evento</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="infoEstab">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice>
+                      <xs:element name="inclusao" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Inclusão de novas informações</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ideEstab" type="TIdeEstab">
+                              <xs:annotation>
+                                <xs:documentation>Informações de identificação do estabelecimento ou obra e validade das informações que estão sendo incluídas</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="dadosEstab" type="TDadosEstab">
+                              <xs:annotation>
+                                <xs:documentation>Detalhamento das informações do estabelecimento ou obra que está sendo incluído </xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="alteracao" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Alteração de informações já existentes</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ideEstab" type="TIdeEstab">
+                              <xs:annotation>
+                                <xs:documentation>Grupo de informações de identificação do estabelecimento ou obra e período de validade do registro cujas informações serão alteradas pelos dados constantes neste evento.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="dadosEstab" type="TDadosEstab">
+                              <xs:annotation>
+                                <xs:documentation>Informações do estabelecimento ou obra de construção civil.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="novaValidade" type="TPeriodoValidade" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="exclusao" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Exclusão de informações</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ideEstab" type="TIdeEstab">
+                              <xs:annotation>
+                                <xs:documentation>Grupo de informações que identifica a obra ou o estabelecimento que será excluído.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeCadastro">
+    <xs:annotation>
+      <xs:documentation>Identificação de evento de cadastro/tabelas</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TIdeEstab">
+    <xs:annotation>
+      <xs:documentation>Identificação do estabelecimento e validade das informações</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="iniValid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Início da validade (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fimValid" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Período final da validade, no formato (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDadosEstab">
+    <xs:annotation>
+      <xs:documentation>Detalhamento das informações do estabelecimento/obra </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cnaePrep">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código do CNAE</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:integer">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="aliqGilrat">
+        <xs:annotation>
+          <xs:documentation>Informações de Apuração da alíquota Gilrat do Estabelecimento</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="aliqRat">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Alíquota da contribuição adicional pelo grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, antes do ajuste pelo FAP.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:nonNegativeInteger">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="fap" minOccurs="0">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Fator Acidentário de Prevenção</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="5"/>
+                  <xs:fractionDigits value="4"/>
+                  <xs:minInclusive value="0.0"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="aliqRatAjust" minOccurs="0">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Alíquota do RAT após ajuste pelo FAP</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="5"/>
+                  <xs:fractionDigits value="4"/>
+                  <xs:minInclusive value="0"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="procAdmJudRat" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="tpProc">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Tipo de Processo:
+                        1 - Administrativo
+                        2 - Judicial</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:byte">
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="nrProc">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Número do Processo</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="20"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="procAdmJudFap" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="tpProc">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Tipo de Processo:
+                        1 - Administrativo
+                        2 - Judicial</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:byte">
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="nrProc">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Número do Processo</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="20"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="infoCaepf" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tpCaepf">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Tipo de CAEPF</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:byte">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="infoObra" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Registro preenchido exclusivamente por empresa construtora enquadrada nos  Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.   </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="indSubstPatrObra">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil:
+                  1 - Contribuição Patronal Substituída;
+                  2 - Contribuição Patronal Não Substituída.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:byte">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TPeriodoValidade">
+    <xs:sequence>
+      <xs:element name="iniValid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Início da validade (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fimValid" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Período final da validade, no formato (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,959 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtRemun/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtRemun/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtRemun">
+          <xs:annotation>
+            <xs:documentation>Evento remuneração de trabalhadores vinculados a Regime Geral de Previdência Social</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeEveFopag">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do evento</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideTrabalhador">
+                <xs:annotation>
+                  <xs:documentation>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="cpfTrab">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>CPF do trabalhador</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:length value="11"/>
+                          <xs:pattern value="[0-9]{11}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nisTrab" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Número de Inscrição do Segurado (NIS)</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:length value="11"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="qtdDepSF">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Qtde de dependentes para fins de Salário-Família</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:nonNegativeInteger">
+                          <xs:totalDigits value="2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="qtdDepIRRF">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Qtde de dependentes para fins de dedução do IRRF.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:nonNegativeInteger">
+                          <xs:totalDigits value="2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="infoMV" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades nos quais já tenha ocorrido desconto de contribuição previdenciária.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="indMV">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Indicador de desconto da contribuição previdenciária do trabalhador, de acordo com as seguintes opções:
+                                1 - Contribuição descontada pelo empregador declarante;
+                                2 - Contribuição descontada por outra(s) empresa(s) sobre valor inferior ao limite máximo do salário de contribuição;
+                                3 - Contribuição sobre o limite máximo de salário de contribuição já descontada em outra(s) empresa(s);</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:byte">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="remunOutrEmpr" type="TRemunOutrasEmpresas" maxOccurs="10">
+                            <xs:annotation>
+                              <xs:documentation>Registro que complementa as informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s), detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição.   As informações prestadas são necessárias para a conferência da contribuição descontada do segurado. </xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="infoComplem" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Registro preenchido exclusivamente quando o evento de remuneração referir-se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de "trabalhador sem vínculo". No caso das categorias em que o envio do evento TSV é opcional, o preenchimento do grupo somente é exigido se não houver evento TSV Início correspondente (cpf + categoria). As informações complementares são necessárias para correta identificação do trabalhador (Nome, data de nascimento, etc).</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="nmTrab">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Nome do Trabalhador</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="2"/>
+                                <xs:maxLength value="60"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="dtNascto">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Data de Nascimento</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="codCBO">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Classificação Brasileira de Ocupação</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="6"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="natAtividade" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Natureza da atividade, conforme opções abaixo:
+                                1 - Trabalho Urbano
+                                2 - Trabalho Rural</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:byte">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="qtdDiasTrab" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Informação prestada exclusivamente pelo Segurado Especial em caso de contratação de Contribuinte Individual, indicando a quantidade de dias trabalhados pelo mesmo.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:byte">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="procJudTrab" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation>Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência de contribuição previdenciária e/ou Imposto de Renda</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="tpTrib">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Tributo/Contribuição abrangida pela decisão.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:byte">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="nrProcJud">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Identificação do Número do Processo Judicial</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="20"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="infoPerApur" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Remuneração no período de apuração</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="recPgtos" maxOccurs="24">
+                      <xs:annotation>
+                        <xs:documentation>Registro que identifica cada um dos demonstrativos de pagamento (contracheques/holerites) a serem efetuados ao trabalhador.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ideRecPgto">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Identificador atribuído pela empresa para o demonstrativo de pagamento (contracheque/holerite) conforme definido em S-1200.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:positiveInteger">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vrRec">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Valor do demonstrativo de pagamento a ser efetuado ao trabalhador.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:decimal">
+                                <xs:totalDigits value="14"/>
+                                <xs:fractionDigits value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ideEstabLot" maxOccurs="24">
+                            <xs:annotation>
+                              <xs:documentation>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (própria) no CNO, ou o número do CAEPF (no caso de pessoa física obrigada a inscrição no cadastro de atividades econômicas da pessoa física).  No caso específico do trabalhador doméstico, o estabelecimento deve ser o próprio CPF do empregador.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="tpInsc">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="nrInsc">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Número de Inscrição</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1"/>
+                                      <xs:maxLength value="15"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="codLotacao">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Código da Lotação</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1"/>
+                                      <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="remunPerApur" maxOccurs="8">
+                                  <xs:annotation>
+                                    <xs:documentation>Registro onde são prestadas as informações relativas a remuneração do trabalhador na lotação e estabelecimento identificados no registro superior.   O preenchimento ou não de alguns campos do registro é definido de acordo com a categoria do trabalhador (ex: matrícula é exigida para "empregados" e "agentes públicos").</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="matricula" minOccurs="0">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Matricula do trabalhador na Empresa</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:string">
+                                            <xs:whiteSpace value="preserve"/>
+                                            <xs:minLength value="1"/>
+                                            <xs:maxLength value="30"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="codCateg">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Código da Categoria do Trabalhador</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:integer">
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="indSimples" minOccurs="0">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Indicador de Contribuição Substituída.</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:byte">
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="itensRemun" type="TItemRemuneracao" maxOccurs="200">
+                                        <xs:annotation>
+                                          <xs:documentation>Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="infoSaudeColet" minOccurs="0">
+                                        <xs:annotation>
+                                          <xs:documentation>Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher este grupo de informações se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219].
+Não preencher nos demais casos.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="detOper" maxOccurs="99">
+                                              <xs:annotation>
+                                                <xs:documentation>Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="cnpjOper">
+                                                    <xs:simpleType>
+                                                      <xs:annotation>
+                                                        <xs:documentation>CNPJ de Operadora do Plano de Saúde</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:length value="14"/>
+                                                        <xs:pattern value="[0-9]{14}"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="regANS">
+                                                    <xs:simpleType>
+                                                      <xs:annotation>
+                                                        <xs:documentation>Registro da operadora na Agência Nacional de Saúde.</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:length value="6"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="vrPgTit">
+                                                    <xs:simpleType>
+                                                      <xs:annotation>
+                                                        <xs:documentation>Valor pago pelo Titular</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:restriction base="xs:decimal">
+                                                        <xs:totalDigits value="14"/>
+                                                        <xs:fractionDigits value="2"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="detPlano" minOccurs="0" maxOccurs="99">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Informações do dependente do plano privado de saúde.</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="cpfDep" minOccurs="0">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Número de Inscrição no CPF</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:length value="11"/>
+                                                              <xs:pattern value="[0-9]{11}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="dtNasctoDep">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Data de nascimento do dependente</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:date">
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="nmDep">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Nome do Dependente</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:minLength value="2"/>
+                                                              <xs:maxLength value="60"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="relDep">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Relação de Dependência:
+                                                              1 - Cônjuge;
+                                                              2 - Companheiro(a);
+                                                              14 - Pai/Mãe;
+                                                              17 - Filho(a);
+                                                              18 - Enteado(a);
+                                                              29 - Agregado/Outros.</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:byte">
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="vlrPgDep">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Valor pago relativo ao dependente</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:decimal">
+                                                              <xs:totalDigits value="14"/>
+                                                              <xs:fractionDigits value="2"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="infoAgNocivo" minOccurs="0">
+                                        <xs:annotation>
+                                          <xs:documentation>Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a EMPREGADO, SERVIDOR PÚBLICO, AVULSO, ou na categoria de Cooperado filiado a cooperativa de produção [738], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.   No caso de cooperado filiado à cooperativa de trabalho [731,734], a informação deve ser prestada quando a atividade exercida no tomador, ou no local por ele indicado, permita a concessão de aposentadoria especial.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="grauExp">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Grau de exposição a agentes nocivos, conforme tabela 2</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:byte">
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="pensaoAlim" minOccurs="0" maxOccurs="99">
+                                        <xs:annotation>
+                                          <xs:documentation>Informações sobre beneficiários de pensão alimentícia. Só preencher este grupo de informações se houver {codRubr} em {itensRemun}, cujo {codIncIRRF} indicado em S-1010 seja igual a [51, 52, 53, 54, 55].
+Não preencher nos demais casos.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="cpfBenef">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>CPF do beneficiário</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="11"/>
+                                                  <xs:pattern value="[0-9]{11}"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="dtNasctoBenef" minOccurs="0">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Data de Nascimento do Beneficiário</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:date">
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nmBenefic">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Nome do Beneficiário</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="2"/>
+                                                  <xs:maxLength value="80"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="vlrPensao">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Valor da pensão alimentícia</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:decimal">
+                                                  <xs:totalDigits value="14"/>
+                                                  <xs:fractionDigits value="2"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="infoPerAnt" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Remuneração em Períodos Anteriores (Acordo/Convenção/CCP/Dissídio)</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ideADC" maxOccurs="8">
+                      <xs:annotation>
+                        <xs:documentation>Identificação do Acordo, Convenção, Comissão de Conciliação Prévia, Dissídio ou Conversão da licença saúde em acidente de trabalho.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtAcConv">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Preencher com a data da assinatura do acordo, convenção ou da sentença normativa</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="tpAcConv">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Tipo de Acordo:
+                                A - Acordo Coletivo de Trabalho;
+                                B - Comissão de Conciliação Prévia - CCP;
+                                C - Convenção Coletiva de Trabalho;
+                                D - Sentença Normativa - Dissídio;
+                                E - Conversão Licença Saúde em Acidente de Trabalho.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="recPgtos" maxOccurs="24">
+                            <xs:annotation>
+                              <xs:documentation>Registro que identifica cada um dos demonstrativos de pagamento (contracheques/holerites) a serem efetuados ao trabalhador.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ideRecPgto">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Identificador atribuído pela empresa para o demonstrativo de pagamento (contracheque/holerite) conforme definido em S-1200.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:positiveInteger">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="vrRec">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Valor do demonstrativo de pagamento a ser efetuado ao trabalhador.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:decimal">
+                                      <xs:totalDigits value="14"/>
+                                      <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="idePeriodo" maxOccurs="180">
+                                  <xs:annotation>
+                                    <xs:documentation>Identificação do período ao qual se referem as diferenças de remuneração.</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="perRef">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Período de referência do pagamento.</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:string">
+                                            <xs:minLength value="4"/>
+                                            <xs:maxLength value="7"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="ideEstabLot" maxOccurs="24">
+                                        <xs:annotation>
+                                          <xs:documentation>O registro identifica o estabelecimento e lotação ao qual se referem as diferenças de remuneração do mês identificado no registro superior.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="tpInsc">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:byte">
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="nrInsc">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Número de Inscrição</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="1"/>
+                                                  <xs:maxLength value="15"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="codLotacao">
+                                              <xs:simpleType>
+                                                <xs:annotation>
+                                                  <xs:documentation>Código da Lotação</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="1"/>
+                                                  <xs:maxLength value="30"/>
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                            </xs:element>
+                                            <xs:element name="remunPerAnt" maxOccurs="8">
+                                              <xs:annotation>
+                                                <xs:documentation>Registro que totaliza a remuneração relativa ao dissídio, convenção, ou acordo coletivo de cada segurado empregado na lotação, estabelecimento e período identificados nos registros superiores.</xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="matricula" minOccurs="0">
+                                                    <xs:simpleType>
+                                                      <xs:annotation>
+                                                        <xs:documentation>Matricula do trabalhador na Empresa</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:restriction base="xs:string">
+                                                        <xs:whiteSpace value="preserve"/>
+                                                        <xs:minLength value="1"/>
+                                                        <xs:maxLength value="30"/>
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="codCateg">
+                                                    <xs:simpleType>
+                                                      <xs:annotation>
+                                                        <xs:documentation>Código da Categoria do Trabalhador</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:restriction base="xs:integer">
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="indSimples" minOccurs="0">
+                                                    <xs:simpleType>
+                                                      <xs:annotation>
+                                                        <xs:documentation>Indicador de Contribuição Substituída.</xs:documentation>
+                                                      </xs:annotation>
+                                                      <xs:restriction base="xs:byte">
+                                                      </xs:restriction>
+                                                    </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="itensRemun" type="TItemRemuneracao" maxOccurs="200">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="infoAgNocivo" minOccurs="0">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a EMPREGADO ou AVULSO,  permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="grauExp">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Grau de exposição a agentes nocivos, conforme tabela 2</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:byte">
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="pensaoAlim" minOccurs="0" maxOccurs="99">
+                                                    <xs:annotation>
+                                                      <xs:documentation>Informações sobre beneficiários de pensão alimentícia. Só preencher este grupo de informações se houver {codRubr} em {itensRemun}, cujo {codIncIRRF} indicado em S-1010 seja igual a [51, 52, 53, 54, 55].
+Não preencher nos demais casos.</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:complexType>
+                                                      <xs:sequence>
+                                                        <xs:element name="cpfBenef">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>CPF do beneficiário</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:length value="11"/>
+                                                              <xs:pattern value="[0-9]{11}"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="dtNasctoBenef" minOccurs="0">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Data de Nascimento do Beneficiário</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:date">
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="nmBenefic">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Nome do Beneficiário</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:string">
+                                                              <xs:minLength value="2"/>
+                                                              <xs:maxLength value="80"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                        <xs:element name="vlrPensao">
+                                                          <xs:simpleType>
+                                                            <xs:annotation>
+                                                              <xs:documentation>Valor da pensão alimentícia</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:decimal">
+                                                              <xs:totalDigits value="14"/>
+                                                              <xs:fractionDigits value="2"/>
+                                                            </xs:restriction>
+                                                          </xs:simpleType>
+                                                        </xs:element>
+                                                      </xs:sequence>
+                                                    </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeEveFopag">
+    <xs:annotation>
+      <xs:documentation>Identificação do evento periódico</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indRetif">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de Retificação:
+            1 - Original
+            2 - Retificador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrRecibo" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="indApuracao">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de período de apuração:
+            1 - Mensal;
+            2 - Anual (13° salário).</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="perApur">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Período ao qual se referem as informações.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="4"/>
+            <xs:maxLength value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TRemunOutrasEmpresas">
+    <xs:annotation>
+      <xs:documentation>Registro que complementa as informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual.   As informações prestadas são necessárias para a conferência da contribuição descontada do segurado. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="vlrRemunOE">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Valor da remuneração recebida pelo trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="14"/>
+            <xs:fractionDigits value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TItemRemuneracao">
+    <xs:annotation>
+      <xs:documentation>Informações dos Itens (rubricas) da remuneração</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="codRubr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código da Rubrica</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ideTabRubr" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Preencher com o identificador da tabela de rubricas.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="qtdRubr" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Qtde de referência para apuração da rubrica.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="6"/>
+            <xs:fractionDigits value="2"/>
+            <xs:minInclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="vrUnit" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Valor Unitário </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="14"/>
+            <xs:fractionDigits value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="vrRubr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Valor total da rubrica</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="14"/>
+            <xs:fractionDigits value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

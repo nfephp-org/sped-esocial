@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtIrrfBenef/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtIrrfBenef/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:annotation>
+      <xs:documentation>eSocial</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtIrrfBenef">
+          <xs:annotation>
+            <xs:documentation>Imposto de Renda Retido do Trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento">
+                <xs:annotation>
+                  <xs:documentation>Identificação do evento de retorno</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nrRecArqBase" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Número do recibo do arquivo de origem.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="40"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="perApur">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Período ao qual se referem as informações.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="4"/>
+                          <xs:maxLength value="7"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideTrabalhador">
+                <xs:annotation>
+                  <xs:documentation>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="cpfTrab">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>CPF do trabalhador</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:length value="11"/>
+                          <xs:pattern value="[0-9]{11}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="infoIrrf">
+                <xs:annotation>
+                  <xs:documentation>Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo.
+Origem S-1200, S-1202, S-2299, S-2399.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="basesIrrf" maxOccurs="50">
+                      <xs:annotation>
+                        <xs:documentation>Bases, deduções, isenções e retenções do IRRF</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="codCateg">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código da Categoria do Trabalhador</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:integer">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="tpValor">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Tipo de valor que influi na apuração da contribuição devida.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:byte">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="valor">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Valor da base de cálculo, dedução ou desconto da contribuição social devida à Previdência Social ou a Outras Entidades e Fundos, conforme definido no campo {tpBase}.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:decimal">
+                                <xs:totalDigits value="14"/>
+                                <xs:fractionDigits value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="irrf" maxOccurs="20">
+                      <xs:annotation>
+                        <xs:documentation>Informações relativas ao Imposto de Renda Retido na Fonte</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="tpCR">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código de Receita - CR.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:positiveInteger">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="vrIrrfDesc">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Valor efetivamente descontado do trabalhador relativo ao IRRF.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:decimal">
+                                <xs:totalDigits value="14"/>
+                                <xs:fractionDigits value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

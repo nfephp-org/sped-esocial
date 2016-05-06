@@ -1,0 +1,1866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtAdmissao/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtAdmissao/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtAdmissao">
+          <xs:annotation>
+            <xs:documentation>Evento Admissão</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeEveTrab">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Evento</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="trabalhador">
+                <xs:annotation>
+                  <xs:documentation>Informações Pessoais do Trabalhador</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="cpfTrab">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>CPF do trabalhador</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:length value="11"/>
+                          <xs:pattern value="[0-9]{11}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nisTrab">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Número de Inscrição do Segurado (NIS)</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:length value="11"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nmTrab">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Nome do Trabalhador</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="2"/>
+                          <xs:maxLength value="60"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="sexo">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Sexo do Trabalhador:
+                          M - Masculino;
+                          F - Feminino.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:length value="1"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="racaCor">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Raça e cor do trabalhador, conforme opções abaixo:
+                          1 - Branca;
+                          2 - Negra;
+                          3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça);
+                          4 - Amarela (de origem japonesa, chinesa, coreana etc);
+                          5 - Indígena;
+                          6 - Não informado.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="estCiv" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Estado civil do trabalhador, conforme opções abaixo:
+                          1 - Solteiro;
+                          2 - Casado;
+                          3 - Divorciado;
+                          4 - Separado;
+                          5 - Viúvo.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="grauInstr">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Grau de instrução do trabalhador, conforme opções abaixo:
+                          01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou;
+                          02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular;
+                          03 - 5º ano completo do Ensino Fundamental;
+                          04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série);
+                          05 - Ensino Fundamental Completo;
+                          06 - Ensino Médio incompleto;
+                          07 - Ensino Médio completo;
+                          08 - Educação Superior incompleta;
+                          09 - Educação Superior completa;
+                          10 - Pós-Graduação completa;
+                          11 - Mestrado completo;
+                          12 - Doutorado completo.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="2"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="indPriEmpr">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Primeiro Emprego:
+                          S - Sim;
+                          N - Não.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="S"/>
+                          <xs:enumeration value="N"/>
+                          <xs:length value="1"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nascimento">
+                      <xs:annotation>
+                        <xs:documentation>Grupo de informações do nascimento do trabalhador</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtNascto">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Data de Nascimento</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="codMunic" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do Município</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:integer">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="uf" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Sigla da UF</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="paisNascto">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do País de Nascimento</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="3"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="paisNac">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do país de nacionalidade do trabalhador.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="3"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="nmMae" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Nome da mãe do trabalhador</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="2"/>
+                                <xs:maxLength value="60"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="nmPai" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Nome do pai do trabalhador</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="2"/>
+                                <xs:maxLength value="60"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="documentos" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Informações dos documentos pessoais do trabalhador</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CTPS" type="TCtps" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações da Carteira de Trabalho e Previdência Social</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="RIC" type="TRic" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações do Registro de Identificação Civil</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="RG" type="TRg" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações do Registro Geral (RG)</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="RNE" type="TRne" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações do Registro Nacional de Estrangeiro</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="OC" type="TOc" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações do número de registro em Órgão de Classe (OC)</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CNH" type="TCnh" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações da Carteira Nacional de Habilitação (CNH)</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="endereco">
+                      <xs:annotation>
+                        <xs:documentation>Grupo de informações do endereço do Trabalhador</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:choice>
+                            <xs:element name="brasil" type="TEnderecoBrasil" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Preenchimento obrigatório para trabalhador residente no Brasil.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="exterior" type="TEnderecoExterior" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Preenchido em caso de trabalhador residente no exterior.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:choice>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="trabEstrangeiro" type="TTrabEstrang" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Grupo de informações do Trabalhador Estrangeiro</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="infoDeficiencia" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="defFisica">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Deficiência Física:
+                                S - Sim;
+                                N - Não.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="defVisual">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Deficiência visual:
+                                S - Sim;
+                                N - Não;</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="defAuditiva">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Deficiência auditiva:
+                                S - Sim;
+                                N - Não;</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="defMental">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Deficiência Mental:
+                                S - Sim;
+                                N - Não;</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="defIntelectual">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Deficiência Intelectual:
+                                S - Sim;
+                                N - Não.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="reabReadap">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar). Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu Programa de Reabilitação Profissional no INSS, recebendo certificado, sendo proporcionado os meios indicados para participar do mercado de trabalho. Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica:
+                                S - Sim;
+                                N - Não.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="observacao" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Observação</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="80"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dependente" type="TDependente" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation>Informações dos dependentes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="aposentadoria">
+                      <xs:annotation>
+                        <xs:documentation>Informação de aposentadoria do trabalhador</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="trabAposent">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Informar se o trabalhador já recebe o benefício previdenciário da aposentadoria por tempo de contribuição ou por idade.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="contato" type="TContato" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Informações de Contato</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="vinculo">
+                <xs:annotation>
+                  <xs:documentation>Grupo de informações do vínculo</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="matricula">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Matricula do trabalhador na Empresa</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:whiteSpace value="preserve"/>
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="30"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="tpRegTrab">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Tipo de regime trabalhista
+                          1 - CLT - Consolidação das Leis de Trabalho
+                          2 - RJP - Regime Jurídico Próprio</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="tpRegPrev">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Tipo de regime previdenciário conforme opções abaixo:
+                          1 - RGPS - Regime Geral da Previdência Social;
+                          2 - RPPS - Regime Próprio de Previdência Social no Brasil;
+                          3 - RPPE - Regime Próprio de Previdência Social no Exterior.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrRecInfPrelim" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Número do recibo do evento S-2190 - Admissão de Trabalhador - Registro Preliminar, caso o mesmo tenha sido enviado.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="40"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="infoRegimeTrab">
+                      <xs:annotation>
+                        <xs:documentation>Informações do regime trabalhista</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:choice>
+                            <xs:element name="infoCeletista" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Informações de Trabalhador Celetista</xs:documentation>
+                              </xs:annotation>
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="dtAdm">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Data de admissão do trabalhador</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:date">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="tpAdmissao">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Tipo de admissão do trabalhador, conforme opções abaixo:
+                                        1 - Admissão;
+                                        2 - Transferência de empresa do mesmo grupo econômico;
+                                        3 - Transferência de empresa consorciada ou de consórcio;
+                                        4 - Transferência por motivo de sucessão, incorporação, cisão ou fusão.</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="indAdmissao">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Indicativo de Admissão:
+                                        1 - Normal;
+                                        2 - Decorrente de Ação Fiscal;
+                                        3 - Decorrente de Decisão Judicial.</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="tpRegJor">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Identifica o regime de jornada do empregado:
+                                        1 - Submetidos a Horário de Trabalho (Cap. II da CLT);
+                                        2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT;
+                                        3 - Funções especificadas no Inciso II do Art. 62 da CLT.</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="natAtividade">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Natureza da atividade, conforme opções abaixo:
+                                        1 - Trabalho Urbano
+                                        2 - Trabalho Rural</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="dtBase" minOccurs="0">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Mês relativo à data base da categoria profissional do trabalhador.</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="cnpjSindCategProf">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Preencher com o CNPJ do sindicato representativo da categoria (Preponderante ou Diferenciada).</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="14"/>
+                                        <xs:pattern value="[0-9]{14}"/>
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="FGTS" type="TFgts">
+                                    <xs:annotation>
+                                      <xs:documentation>Informações do Fundo de Garantia por Tempo de Serviço</xs:documentation>
+                                    </xs:annotation>
+                                  </xs:element>
+                                  <xs:element name="trabTemporario" minOccurs="0">
+                                    <xs:annotation>
+                                      <xs:documentation>Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="mtvContrat">
+                                          <xs:simpleType>
+                                            <xs:annotation>
+                                              <xs:documentation>Motivo da contratação de trabalhador temporário:
+                                              1 - Necessidade transitória de substituição de seu pessoal regular;
+                                              2 - Acréscimo extraordinário de serviços.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:restriction base="xs:byte">
+                                            </xs:restriction>
+                                          </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="ideTomadorServ">
+                                          <xs:annotation>
+                                            <xs:documentation>Identifica a empresa contratante para a qual o trabalhador temporário será alocado.</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element name="tpInsc">
+                                                <xs:simpleType>
+                                                  <xs:annotation>
+                                                    <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:restriction base="xs:byte">
+                                                  </xs:restriction>
+                                                </xs:simpleType>
+                                              </xs:element>
+                                              <xs:element name="nrInsc">
+                                                <xs:simpleType>
+                                                  <xs:annotation>
+                                                    <xs:documentation>Número de Inscrição</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:restriction base="xs:string">
+                                                    <xs:minLength value="1"/>
+                                                    <xs:maxLength value="15"/>
+                                                  </xs:restriction>
+                                                </xs:simpleType>
+                                              </xs:element>
+                                            </xs:sequence>
+                                          </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ideTrabSubstituido" minOccurs="0" maxOccurs="9">
+                                          <xs:annotation>
+                                            <xs:documentation>Identificação do trabalhador substituído.  O preenchimento é obrigatório se o {mtvContrat} for igual a [1].</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element name="cpfTrabSubst">
+                                                <xs:simpleType>
+                                                  <xs:annotation>
+                                                    <xs:documentation>Cpf do trabalhador substituído.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:restriction base="xs:string">
+                                                    <xs:length value="11"/>
+                                                    <xs:pattern value="[0-9]{11}"/>
+                                                  </xs:restriction>
+                                                </xs:simpleType>
+                                              </xs:element>
+                                              <xs:element name="matricTrabSubst">
+                                                <xs:simpleType>
+                                                  <xs:annotation>
+                                                    <xs:documentation>Matrícula do trabalhador que está sendo substituído</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:restriction base="xs:string">
+                                                    <xs:minLength value="1"/>
+                                                    <xs:maxLength value="30"/>
+                                                  </xs:restriction>
+                                                </xs:simpleType>
+                                              </xs:element>
+                                            </xs:sequence>
+                                          </xs:complexType>
+                                        </xs:element>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="infoEstatutario" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Informações de Trabalhador Estatutário</xs:documentation>
+                              </xs:annotation>
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="indProvim">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Preencher de acordo com as opções: 
+                                        1 - Normal;
+                                        2 - Decorrente de Decisão Judicial;
+                                        3 - Tomou posse mas não entrou exercício.</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="tpProv">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Preencher com o tipo de provimento.</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:byte">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="dtNomeacao">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Preencher com a data da nomeação do servidor</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:date">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="dtPosse">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Data da posse do servidor</xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:date">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="dtExercicio">
+                                    <xs:simpleType>
+                                      <xs:annotation>
+                                        <xs:documentation>Data da entrada em exercício pelo servidor. </xs:documentation>
+                                      </xs:annotation>
+                                      <xs:restriction base="xs:date">
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:choice>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="infoContrato" type="TDadosContrato">
+                      <xs:annotation>
+                        <xs:documentation>Informações do Contrato de Trabalho</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="sucessaoVinc" type="TSucVinculo" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Grupo de informações da sucessão de vínculo trabalhista</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="infoASO">
+                      <xs:annotation>
+                        <xs:documentation>Informações sobre o ASO Admissional</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtAsoAdm">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Data do Atestado de Saúde Ocupacional - ASO Admissional</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="nrCRM">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>CRM do Médico</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:whiteSpace value="preserve"/>
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="8"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ufCRM">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Unidade da federação do médico responsável pelo exame médico.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeEveTrab">
+    <xs:annotation>
+      <xs:documentation>Identificação do evento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indRetif">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de Retificação:
+            1 - Original
+            2 - Retificador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrRecibo" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TCtps">
+    <xs:annotation>
+      <xs:documentation>Carteira de Trabalho e Previdência Social</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrCtps">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número da carteira de trabalho e Previdência Social do trabalhador - CTPS.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="serieCtps">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de série da CTPS.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ufCtps">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>UF da expedição da CTPS.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TRic">
+    <xs:annotation>
+      <xs:documentation>Registro de Identificação Civil</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrRic">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do RIC</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="14"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="orgaoEmissor">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Órgão emissor do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtExped" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data da expedição do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TRg">
+    <xs:annotation>
+      <xs:documentation>Registro Geral</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrRg">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do RG</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="14"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="orgaoEmissor">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Órgão emissor do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtExped" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data da expedição do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TRne">
+    <xs:annotation>
+      <xs:documentation>Registro Nacional de Estrangeiros</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrRne">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número RNE</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="14"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="orgaoEmissor">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Órgão emissor do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtExped" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data da expedição do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TOc">
+    <xs:annotation>
+      <xs:documentation>Órgão de Classe</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrOc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição no Órgão de Classe</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="14"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="orgaoEmissor">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Órgão emissor do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtExped" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data da expedição do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtValid" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data de validade do documento.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TCnh">
+    <xs:annotation>
+      <xs:documentation>Cartera Nacional de Habilitação</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrRegCnh">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do Registro da Carteira Nacional de Habilitação - CNH</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="12"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtExped" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data da expedição do documento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ufCnh">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Estado da Federação emissor da CNH</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtValid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data de validade do documento.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtPriHab" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data da primeira habilitação</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="categoriaCnh">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Categoria da CNH</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEnderecoBrasil">
+    <xs:annotation>
+      <xs:documentation>Informações do Endereço no Brasil</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpLograd">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Logradouro</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dscLograd">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Descrição do logradouro</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="80"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrLograd">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do logradouro.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="complemento" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Complemento do logradouro.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="bairro" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Nome do bairro/distrito.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="60"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cep">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de Endereçamento Postal - CEP.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:integer">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codMunic">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código do Município</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:integer">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="uf">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Sigla da UF</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEnderecoExterior">
+    <xs:annotation>
+      <xs:documentation>Informações do Endereço no Exterior</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="paisResid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código do País</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dscLograd">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Descrição do logradouro</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="80"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrLograd">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do logradouro.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="complemento" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Complemento do logradouro.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="bairro" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Nome do bairro/distrito.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="60"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nmCid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Nome da Cidade</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codPostal" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de Endereçamento Postal</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:maxLength value="10"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TTrabEstrang">
+    <xs:annotation>
+      <xs:documentation>Informações do Trabalhador Estrangeiro</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dtChegada">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data de chegada do trabalhador ao Brasil, em caso de estrangeiro.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="classTrabEstrang">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Classificação da condição do trabalhador estrangeiro no Brasil:
+            1 - Visto permanente;
+            2 - Visto temporário;
+            3 - Asilado;
+            4 - Refugiado;
+            5 - Solicitante de Refúgio;
+            6 - Residente em país fronteiriço ao Brasil;
+            7 - Deficiente físico e com mais de 51 anos;
+            8 - Com residência provisória e anistiado, em situação irregular;
+            9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros;
+            10 - Beneficiado pelo acordo entre países do Mercosul;
+            11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil;
+            12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="casadoBr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Casado com brasileiro(a): 
+            S - Sim;
+            N - Não.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="filhosBr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicar se o trabalhador estrangeiro tem filhos brasileiros:
+            S - Sim;
+            N - Não.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDependente">
+    <xs:sequence>
+      <xs:element name="tpDep">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de dependente conforme opções abaixo:
+            01 - Cônjuge;
+            02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos;
+            03 - Filho(a) ou enteado(a) até 21 (vinte e um) anos;
+            04 - Filho(a) ou enteado(a) universitário(a) ou cursando escola técnica de 2º grau, até 24 (vinte e quatro) anos;
+            05 - Filho(a) ou enteado(a) em qualquer idade, quando incapacitado física e/ou mentalmente para o trabalho;
+            06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial, até 21 (vinte e um) anos;
+            07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, com idade até 24 anos, se ainda estiver cursando estabelecimento de nível superior ou escola técnica de 2º grau, desde que tenha detido sua guarda judicial até os 21 anos;
+            08 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial, em qualquer idade, quando incapacitado física e/ou mentalmente para o trabalho;
+            09 - Pais, avós e bisavós;
+            10 - Menor pobre, até 21 (vinte e um) anos, que crie e eduque e do qual detenha a guarda judicial;
+            11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador;
+            12 - Ex-cônjuge que Receba Pensão de Alimentos.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nmDep">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Nome do Dependente</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+            <xs:maxLength value="60"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtNascto">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data de Nascimento</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cpfDep" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição no CPF</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+            <xs:pattern value="[0-9]{11}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="depIRRF">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Dependente para fins de IRRF:
+            S - Sim
+            N - Não</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="depSF">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Dependente para fins de Salário-Família
+            S - Sim
+            N - Não</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TContato">
+    <xs:annotation>
+      <xs:documentation>Informações de Contato</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fonePrinc" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de telefone do trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="13"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="foneAlternat" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de telefone alternativo do trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="13"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="emailPrinc" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Endereço eletrônico.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="60"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="emailAlternat" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Endereço eletrônico alternativo.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="60"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TFgts">
+    <xs:annotation>
+      <xs:documentation>Informações do FGTS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="opcFGTS">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Opção pelo FGTS:
+            1 - Optante;
+            2 - Não Optante.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:integer">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtOpcFGTS" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data de Opção pelo FGTS</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDadosContrato">
+    <xs:annotation>
+      <xs:documentation>Informações do Contrato de Trabalho</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="codCargo" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código do Cargo</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codFuncao" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código da Função</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codCateg">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código da Categoria do Trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:integer">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="remuneracao" type="TRemun">
+        <xs:annotation>
+          <xs:documentation>Informações da remuneração e periodicidade de pagamento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="duracao">
+        <xs:annotation>
+          <xs:documentation>Duração do Contrato de Trabalho</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tpContr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Tipo de contrato de trabalho conforme opções abaixo:
+                  1 - Prazo indeterminado;
+                  2 - Prazo determinado.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:byte">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="dtTerm" minOccurs="0">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Data do Término</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:date">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="localTrabalho">
+        <xs:annotation>
+          <xs:documentation>Informações do local de trabalho</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="localTrabGeral" type="TLocalTrab" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="localTrabDom" type="TEnderecoBrasil" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Registro preenchido exclusivamente em caso de trabalhador doméstico, indicando o endereço onde o trabalhador exerce suas atividades.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="horContratual" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Informações do Horário Contratual do Trabalhador.   O preenchimento é obrigatório se {tpRegJor} = [1].</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="qtdHrsSem">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Quantidade média de horas relativas à jornada semanal do trabalhador</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:nonNegativeInteger">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="tpJornada">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Tipo da Jornada:
+                  1 - Jornada Semanal (segunda a domingo) com apenas um horário padrão por dia da semana e folga fixa;
+                  2 - Demais tipos de jornada (escala, turno de revezamento, permutas, horários rotativos, etc.);</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:byte">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="dscTpJorn" minOccurs="0">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Descrição do tipo de jornada.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="preserve"/>
+                  <xs:maxLength value="100"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="horario" type="THorario" maxOccurs="99">
+              <xs:annotation>
+                <xs:documentation>Informações diárias do horário contratual</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="filiacaoSindical" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Filiação Sindical do Trabalhador</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cnpjSindTrab">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>CNPJ do Sindicato</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:length value="14"/>
+                  <xs:pattern value="[0-9]{14}"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="alvaraJudicial" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Informações do alvará judicial, preenchimento obrigatório em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nrProcJud">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Identificação do Número do Processo Judicial</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TRemun">
+    <xs:annotation>
+      <xs:documentation>Remuneração e periodicidade de pagamento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="vrSalFx">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Salário fixo do trabalhador, correspondente à parte fixa da remuneração.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="14"/>
+            <xs:fractionDigits value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="undSalFixo">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo:
+            1 - Por Hora
+            2 - Por Dia
+            3 - Por Semana
+            4 - Por Quinzena
+            5 - Por Mês
+            6 - Por Tarefa
+            7 - Não aplicável - salário exclusivamente variável</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dscSalVar" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Descrição do salário variável e como este é calculado.  ex: Comissões pagas no percentual de 10% sobre as vendas.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:maxLength value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TLocalTrab">
+    <xs:annotation>
+      <xs:documentation>Informações do Local de Trabalho</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="descComp" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Descrição complementar</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="80"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="THorario">
+    <xs:annotation>
+      <xs:documentation>Informações de Horário Contratual</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dia">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indica o dia do horário:
+            1 - Segunda-Feira;
+            2 - Terça-Feira;
+            3 - Quarta-Feira;
+            4 - Quinta-Feira;
+            5 - Sexta-Feira;
+            6 - Sábado;
+            7 - Domingo;
+            8 - Dia variável</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codHorContrat">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código do Horário Contratual</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TSucVinculo">
+    <xs:annotation>
+      <xs:documentation>Informações da sucessão de vínculo trabalhista</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cnpjEmpregAnt">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>CNPJ do empregador anterior</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="14"/>
+            <xs:pattern value="[0-9]{14}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="matricAnt">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Matrícula do trabalhador no empregador anterior.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dtIniVinculo">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Data de Início do Vínculo</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:date">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="observacao" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Observação</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="80"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

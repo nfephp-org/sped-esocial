@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtReintegr/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtReintegr/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtReintegr">
+          <xs:annotation>
+            <xs:documentation>Evento Reintegração</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeEveTrab">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Evento</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideVinculo" type="TIdeVinculoNisObrig">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Trabalhador e do Vínculo</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="infoReintegr">
+                <xs:annotation>
+                  <xs:documentation>Reintegração</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="tpReint">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Tipo de Reintegração:
+                          1 - Reintegração por Decisão Judicial;
+                          2 - Reintegração por Anistia Legal;
+                          3 - Reversão de Servidor Público;
+                          4 - Recondução de Servidor Público;
+                          5 - Reinclusão de Militar;
+                          9 - Outros.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrProcJud" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Identificação do Número do Processo Judicial</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="20"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nrLeiAnistia" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Preencher com uma das opções relativas a Leis de Anistia:
+                          1 - LEI 6.683/1979;
+                          2 - LEI 8.632/1993;
+                          3 - LEI 8.878/1994;
+                          4 - LEI 10.559/2002;
+                          5 - LEI 10.790/2003;
+                          6 - LEI 11.282/2006.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:byte">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="dtEfetRetorno">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Data do efetivo retorno</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:date">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="dtEfeito" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Data do efeito da reintegração</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:date">
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="indPagtoJuizo">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Indicar se as remunerações e correspondentes contribuições do período compreendido entre o desligamento e a reintegração foram pagas em juízo:
+                          S- Sim;
+                          N - Não.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="S"/>
+                          <xs:enumeration value="N"/>
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="1"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeEveTrab">
+    <xs:annotation>
+      <xs:documentation>Identificação do evento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indRetif">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de Retificação:
+            1 - Original
+            2 - Retificador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrRecibo" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TIdeVinculoNisObrig">
+    <xs:annotation>
+      <xs:documentation>Informações do Vínculo</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cpfTrab">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>CPF do trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+            <xs:pattern value="[0-9]{11}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nisTrab">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição do Segurado (NIS)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="matricula">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Matricula do trabalhador na Empresa</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

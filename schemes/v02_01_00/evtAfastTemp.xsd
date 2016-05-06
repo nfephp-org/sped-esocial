@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtAfastTemp/v02_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtAfastTemp/v02_01_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtAfastTemp">
+          <xs:annotation>
+            <xs:documentation>Evento Afastamento Temporário</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeEveTrab">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Evento</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Informações de identificação do empregador</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ideVinculo" type="TIdeVinculoEstag">
+                <xs:annotation>
+                  <xs:documentation>Informações de Identificação do Trabalhador e do Vínculo</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="infoAfastamento">
+                <xs:annotation>
+                  <xs:documentation>Informações do Evento</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="iniAfastamento" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Informações do Afastamento Temporário - Início</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtIniAfast">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Data de início do afastamento</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="codMotAfast">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do motivo de afastamento temporário, conforme tabela 18</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="tpAcidTransito" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Tipo de Acidente de Trânsito:
+                                1 - Atropelamento
+                                2 - Colisão
+                                3 - Outros</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:byte">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="observacao" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Observação</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="80"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="infoAtestado" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações complementares do evento de Afastamento Temporário, relativas ao atestado médico, obrigatórias apenas no caso de afastamento por motivo igual a [01,02].</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="codCID" minOccurs="0">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Código na Tabela CID</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:whiteSpace value="preserve"/>
+                                      <xs:length value="5"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="qtdDiasAfast" minOccurs="0">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Quantidade de dias de afastamento concedidos pelo médico</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:positiveInteger">
+                                      <xs:totalDigits value="3"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="emitente">
+                                  <xs:annotation>
+                                    <xs:documentation>Médico/Dentista que emitiu o atestado</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="nmEmit">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Nome do médico/dentista que emitiu o atestado</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:string">
+                                            <xs:minLength value="2"/>
+                                            <xs:maxLength value="60"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="ideOC">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Órgão de classe:
+                                            1 - Conselho Regional de Medicina (CRM);
+                                            2 - Conselho Regional de Odontologia (CRO).</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:byte">
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="nrOc">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Número de Inscrição no Órgão de Classe</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:string">
+                                            <xs:whiteSpace value="preserve"/>
+                                            <xs:minLength value="1"/>
+                                            <xs:maxLength value="14"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                      <xs:element name="ufOC" minOccurs="0">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Sigla da UF do órgão de classe</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:string">
+                                            <xs:length value="2"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="infoCessao" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Registro preenchido nos casos de afastamento por cessão do trabalhador.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cnpjCess">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>CNPJ do Cessionário</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:length value="14"/>
+                                      <xs:pattern value="[0-9]{14}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="infOnus">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Ônus da Cessão:
+                                      1 - Ônus do Cedente;
+                                      2 - Ônus do Cessionário;
+                                      3 - Ônus do Cedente e Cessionário;</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="infoMandSind" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Informações Complementares - afastamento para exercício de mandato sindical</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cnpjSind">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>CNPJ do Sindicato</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:string">
+                                      <xs:length value="14"/>
+                                      <xs:pattern value="[0-9]{14}"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="infOnusRemun">
+                                  <xs:simpleType>
+                                    <xs:annotation>
+                                      <xs:documentation>Ônus da Remuneração:
+                                      1 - Apenas do Empregador; 
+                                      2 - Apenas do Sindicato;
+                                      3 - Parte do Empregador, sendo a diferença e/ou complementação salarial paga pelo Sindicato.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:restriction base="xs:byte">
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="altAfastamento" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Registro preenchido exclusivamente em caso de alteração de motivo de afastamento, sendo obrigatória, para a aceitação de evento com estas informações, a existência de evento com o respectivo início do afastamento.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtAltMot">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Data da alteração do motivo do afastamento</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="codMotAnt">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Motivo anterior do afastamento, conforme tabela 18.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="codMotAfast">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do motivo de afastamento temporário, conforme tabela 18</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="indEfRetroativo">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Efeito Retroativo:
+                                S - Sim;
+                                N - Não;</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="S"/>
+                                <xs:enumeration value="N"/>
+                                <xs:length value="1"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="fimAfastamento" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Informações do Término do Afastamento</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dtTermAfast">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Preencher com a data do término do afastamento do trabalhador.</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:date">
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="codMotAfast">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Código do motivo de afastamento temporário, conforme tabela 18</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="2"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="observacao" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Observação</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="80"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeEveTrab">
+    <xs:annotation>
+      <xs:documentation>Identificação do evento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indRetif">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de Retificação:
+            1 - Original
+            2 - Retificador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrRecibo" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TIdeVinculoEstag">
+    <xs:annotation>
+      <xs:documentation>Informacoes do Vínculo trabalhista e estagiário</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cpfTrab">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>CPF do trabalhador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+            <xs:pattern value="[0-9]{11}"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nisTrab" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição do Segurado (NIS)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="matricula" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Matricula do trabalhador na Empresa</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
