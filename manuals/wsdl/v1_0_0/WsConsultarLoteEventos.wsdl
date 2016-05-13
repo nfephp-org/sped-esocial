@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ServicoConsultarLoteEventos"
+	targetNamespace="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+	xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+	xmlns:tns="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:i0="http://tempuri.org/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified"
+			targetNamespace="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="ConsultarLoteEventos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="idLoteEvento" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:any minOccurs="0" processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConsultarLoteEventosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ConsultarLoteEventosResult"
+							nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:any minOccurs="0" processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		
+	</wsdl:types>
+	<wsdl:message
+		name="ServicoConsultarLoteEventos_ConsultarLoteEventos_InputMessage">
+		<wsdl:part name="parameters" element="tns:ConsultarLoteEventos" />
+	</wsdl:message>
+	<wsdl:message
+		name="ServicoConsultarLoteEventos_ConsultarLoteEventos_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ConsultarLoteEventosResponse" />
+	</wsdl:message>
+	<wsdl:portType name="ServicoConsultarLoteEventos">
+		<wsdl:operation name="ConsultarLoteEventos">
+			<wsdl:input
+				wsaw:Action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
+				message="tns:ServicoConsultarLoteEventos_ConsultarLoteEventos_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0/ServicoConsultarLoteEventos/ConsultarLoteEventosResponse"
+				message="tns:ServicoConsultarLoteEventos_ConsultarLoteEventos_OutputMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_ServicoConsultarLoteEventos"
+		type="tns:ServicoConsultarLoteEventos">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ConsultarLoteEventos">
+			<soap:operation
+				soapAction="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ServicoConsultarLoteEventos">
+		<wsdl:port name="BasicHttpBinding_ServicoConsultarLoteEventos"
+			binding="tns:BasicHttpBinding_ServicoConsultarLoteEventos">
+			<soap:address
+				location="" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

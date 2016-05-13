@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtTabRubrica/v02_00_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtTabRubrica/v02_00_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="evtTabRubrica">
+          <xs:annotation>
+            <xs:documentation>Evento destinado a incluir, alterar ou excluir informações da tabela de rubricas</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEvento" type="TIdeCadastro">
+              </xs:element>
+              <xs:element name="ideEmpregador" type="TEmpregador">
+              </xs:element>
+              <xs:element name="infoRubrica">
+                <xs:annotation>
+                  <xs:documentation>Identificação da operação (inclusão, alteração ou exclusão) e das informações da rubrica.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice>
+                      <xs:element name="inclusao">
+                        <xs:annotation>
+                          <xs:documentation>Inclusão de novas informações</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ideRubrica" type="TIdeRubrica">
+                              <xs:annotation>
+                                <xs:documentation>Informações de identificação da rubrica e validade das informações que estão sendo incluídas</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="dadosRubrica" type="TDadosRubrica">
+                              <xs:annotation>
+                                <xs:documentation>Detalhamento das informações da rubrica que está sendo incluída</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="alteracao">
+                        <xs:annotation>
+                          <xs:documentation>Alteração de informações já existentes</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ideRubrica" type="TIdeRubrica">
+                              <xs:annotation>
+                                <xs:documentation>Grupo de informações de identificação da rubrica, apresentando código e período de validade da rubrica cujas informações serão alteradas pelos dados constantes neste evento.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="dadosRubrica" type="TDadosRubrica">
+                              <xs:annotation>
+                                <xs:documentation>Informações da rubrica</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="novaValidade" type="TPeriodoValidade" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Informação preenchida exclusivamente em caso de alteração do período de validade das informações da rubrica identificada em {ideRubrica}, apresentando o novo período de validade.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="exclusao">
+                        <xs:annotation>
+                          <xs:documentation>Exclusão de informações</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ideRubrica" type="TIdeRubrica">
+                              <xs:annotation>
+                                <xs:documentation>Grupo de informações que identifica a rubrica que será excluída.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:ID" use="required"/>
+            <xs:attribute name="versao" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeCadastro">
+    <xs:annotation>
+      <xs:documentation>Identificação de evento de cadastro/tabelas</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpAmb">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Identificação do ambiente:
+            1 - Produção;
+            2 - Pré-produção - dados reais;
+            3 - Pré-produção - dados fictícios.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="procEmi">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Processo de emissão do evento:
+            1- Emissão com aplicativo do empregador</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verProc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TEmpregador">
+    <xs:sequence>
+      <xs:element name="tpInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="nrInsc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Número de Inscrição</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TIdeRubrica">
+    <xs:annotation>
+      <xs:documentation>Informações de identificação da rubrica (código) e período de validade</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="codRubr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código da Rubrica</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ideTabRubr" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Preencher com o identificador da tabela de rubricas.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="iniValid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Início da validade (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fimValid" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Período final da validade, no formato (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDadosRubrica">
+    <xs:annotation>
+      <xs:documentation>Detalhamento da rubrica</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dscRubr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Descrição (nome) da rubrica no sistema de folha de pagamento.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="natRubr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de Classificação da Rubrica.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:positiveInteger">
+            <xs:totalDigits value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tpRubr">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Tipo de rubrica:
+            1 - Vencimento;
+            2 - Desconto;
+            3 - Informativa;
+            4 - Informativa dedutora.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:byte">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codIncCP">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de incidência tributária da rubrica para a Previdência Social:
+            00 - Não é Base de Cálculo ;
+            11 - Base de Cálculo (BC) do Salário de Contribuição (SC) Mensal;
+            12 - Base de Cálculo da Contrib. Prev. sobre 13o Salário;
+            21 - Base de Cálculo da Contrib. Prev. Sal. Maternidade;
+            22 - Base de Cálculo da Contrib. Prev. Sal. Maternidade - 13o Salário;
+            23 - Base de Cálculo da Contrib. Prev. Auxilio Doença - Regime Próprio de Previdência Social;
+            24 - Base de Cálculo da Contrib. Prev. Auxilio Doença - 13o Salário Doença - Regime Próprio de Previdência Social;
+            31 - Contribuição Descontada do Segurado - Remuneração Mensal;
+            32 - Contribuição Descontada do Segurado - 13o Salário;
+            34 - Contribuição Descontada do Segurado - SEST + SENAT;
+            51 - Salário-Família;
+            61 - Complemento de salário-mínimo - Regime Próprio de Previdência Social;
+            91 - Incid. suspensa em decorrência de decisão judicial ou consulta interna RFB (BC SC Mensal);
+            92 - Incid. suspensa em decorrência de decisão judicial ou consulta interna RFB (BC 13o Salário);
+            93 - Incid. suspensa em decorrência de decisão judicial ou consulta interna RFB (BC Sal. Maternidade);
+            94 - Incid. suspensa em decorrência de decisão judicial ou consulta interna RFB (BC Sal. Maternidade 13o Salário).</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codIncIRRF">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de incidência tributária da rubrica para o IRRF:
+            00 - Não é Base de Cálculo (BC);
+            
+            BASES DE CÁLCULO:
+            11 - Base de cálculo do IRRF - Remuneração Mensal;
+            12 - Base de cálculo do IRRF - 13o Salário;
+            13 - Base de cálculo do IRRF - Férias;
+            14 - Base de cálculo do IRRF - PLR;
+            15 - Base de cálculo do IRRF - Rendimentos Recebidos Acumuladamente - RRA;
+            
+            VALOR DO DESCONTO DO IRRF:
+            31 - Valor do IRRF - Remuneração Mensal;
+            32 - Valor do IRRF - 13o Salário;
+            33 - Valor do IRRF - Férias;
+            34 - Valor do IRRF - PLR;
+            35 - Valor do IRRF - RRA;
+            
+            DEDUÇÕES DA BASE DO IRRF:
+            41 - Previdência Social Oficial - Remuneração Mensal;
+            42 - Previdência Social Oficial - 13° salário;
+            43 - Previdência Social Oficial - Férias;
+            44 - Previdência Social Oficial - RRA;
+            46 - Previdência Privada - salário mensal;
+            47 - Previdência Privada - 13° salário;
+            51 - Pensão Alimentícia - Remuneração Mensal;
+            52 - Pensão Alimentícia - 13° salário;
+            53 - Pensão Alimentícia - Férias;
+            54 - Pensão Alimentícia - RRA;
+            56 - Dependente - Remuneração Mensal;
+            57 - Dependente - 13° salário;
+            58 - Dependente - Férias;
+            61 - Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal;
+            62 - Fundo de Aposentadoria Programada Individual - FAPI - 13° salário;
+            63 - Fundação de Previdência Complementar do Servidor Público Federal - Funpresp - Remuneração Mensal;
+            64 - Fundação de Previdência Complementar do Servidor Público Federal - Funpresp - 13° salário;
+            
+            ISENÇÕES DO IRRF:
+            71 - Parcela Isenta 65 anos - Remuneração Mensal;
+            72 - Parcela Isenta 65 anos - 13° salário;
+            73 - Diária e Ajuda de Custo;
+            74 - Indenização e rescisão de contrato, inclusive a título de PDV;
+            75 - Abono pecuniário;
+            76 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal;
+            77 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário;
+            78 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis;
+            79 - Outros (o nome da rubrica deve ser claro para identificação);
+            
+            81 - Depósito Judicial;
+            82 - Compensação Judicial do ano calendário;
+            83 - Compensação Judicial de anos anteriores;
+            
+            INCIDÊNCIA SUSPENSA:
+            91 - Incidência suspensa em decorrência de decisão judicial ou Consulta Interna RFB (BC IRRF Remuneração Mensal);
+            92 - Incidência suspensa em decorrência de decisão judicial ou Consulta Interna RFB (BC IRRF 13o Salário);
+            93 - Incidência suspensa em decorrência de decisão judicial ou Consulta Interna RFB (BC IRRF Férias);
+            94 - Incidência suspensa em decorrência de decisão judicial ou Consulta Interna RFB (BC IRRF PLR);
+            95 - Incidência suspensa em decorrência de decisão judicial ou Consulta Interna RFB (BC IRRF RRA).</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codIncFGTS">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de incidência tributária da rubrica para o FGTS:
+            00 - Não é Base de Cálculo do FGTS;
+            11 - Base de Cálculo do FGTS;
+            91 - Incidência suspensa em decorrência de decisão judicial</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codIncSIND">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Código de incidência tributária da rubrica para a Contribuição Sindical Laboral:
+            00 - Não é base de cálculo;
+            11 - Base de cálculo;
+            31 - Valor da contribuição sindical laboral descontada;
+            91 - Incidência suspensa em decorrência de decisão judicial</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="repDSR">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de repercussão no DSR: "S" ou "N"</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="rep13">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de repercussão no 13º Salário: "S" ou "N"</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="repFerias">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de repercussão nas Férias: "S" ou "N"</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="repResc">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de repercussão na Rescisão: "S" ou "N"</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="N"/>
+            <xs:length value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fatorRubr" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Fator utilizado na apuração da rubrica.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="5"/>
+            <xs:fractionDigits value="2"/>
+            <xs:minInclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="observacao" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Observação</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="80"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ideProcessoCP" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nrProc">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Número do Processo</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="extDecisao">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Extensão da Decisão/Sentença:
+                  1 - Contribuição Previdenciária Patronal;
+                  2 - Contribuição Previdenciária Patronal + Descontada dos Segurados;</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:byte">
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ideProcessoIRRF" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nrProc">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Número do Processo</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ideProcessoFGTS" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nrProc">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Número do Processo</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ideProcessoSIND" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nrProc">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>Número do Processo</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TPeriodoValidade">
+    <xs:sequence>
+      <xs:element name="iniValid">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Início da validade (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fimValid" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Período final da validade, no formato (AAAA-MM)</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:length value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
