@@ -3,7 +3,7 @@
     "type": "library",
     "description": "e-Social library",
     "homepage": "https://github.com/nfephp-org/sped-esocial",
-    "keywords": ["Sped", "e-Financeira"],
+    "keywords": ["Sped", "eSocial", "Folha", "Empregados"],
     "license": ["LGPLv3+", "GPLv3+", "MIT"],
     "authors": [
         {
