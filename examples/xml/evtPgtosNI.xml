@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtPgtosNI/v02_01_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtPgtosNI/v02_01_00 ../../schemes/v02_01_00/evtPgtosNI.xsd ">
+  <evtPgtosNI Id="idvalue0">
+    <ideEvento>
+      <indRetif>0</indRetif>
+      <indApuracao>0</indApuracao>
+      <perApur>perApur</perApur>
+      <tpAmb>0</tpAmb>
+      <procEmi>0</procEmi>
+      <verProc>verProc</verProc>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>0</tpInsc>
+      <nrInsc>nrInsc</nrInsc>
+    </ideEmpregador>
+    <infoPgto>
+      <dtPgto>2001-01-01</dtPgto>
+      <perRef>perRef</perRef>
+      <vlrLiq>0.0</vlrLiq>
+      <vlrReaj>0.0</vlrReaj>
+      <vlrIRRF>0.0</vlrIRRF>
+    </infoPgto>
+  </evtPgtosNI>
+  <ds:Signature Id="idvalue1">
+    <ds:SignedInfo Id="idvalue2">
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <ds:Reference Id="idvalue3" Type="http://tempuri.org" URI="http://tempuri.org">
+        <ds:Transforms>
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+        </ds:Transforms>
+        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <ds:DigestValue>MA==</ds:DigestValue>
+      </ds:Reference>
+    </ds:SignedInfo>
+    <ds:SignatureValue Id="idvalue4">MA==</ds:SignatureValue>
+    <ds:KeyInfo Id="idvalue5">
+      <ds:X509Data>
+        <ds:X509Certificate>MA==</ds:X509Certificate>
+      </ds:X509Data>
+    </ds:KeyInfo>
+  </ds:Signature>
+</eSocial>
