@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="823fb207-05dc-4b78-8b44-413e0dc7f478" activeEnvironment="Default" name="eSocial_Enviar" resourceRoot="${projectDir}" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="93e2d4a0-018d-40ab-8ccc-f3dabccf0df0" wsaVersion="NONE" name="WsEnviarLoteEventos" type="wsdl" bindingName="{http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0}WsEnviarLoteEventos" soapVersion="1_1" anonymous="optional" definition="WsEnviarLoteEventos-v1_1_0.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/var/www/sped/sped-esocial/manuals/wsdl/v1_0_1/WsEnviarLoteEventos-v1_1_0.wsdl"><con:part><con:url>file:/var/www/sped/sped-esocial/manuals/wsdl/v1_0_1/WsEnviarLoteEventos-v1_1_0.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ServicoEnviarLoteEventos" targetNamespace="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:i0="http://www.esocial.gov.br/servicos/empregador/enviarloteeventos/v1_1_0" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <wsp:Policy wsu:Id="WsEnviarLoteEventos_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="true"/>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict/>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="EnviarLoteEventos">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="loteEventos">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:any/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EnviarLoteEventosResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="EnviarLoteEventosResult">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:any/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ServicoEnviarLoteEventos_EnviarLoteEventos_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarLoteEventos"/>
+  </wsdl:message>
+  <wsdl:message name="ServicoEnviarLoteEventos_EnviarLoteEventos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarLoteEventosResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ServicoEnviarLoteEventos">
+    <wsdl:operation name="EnviarLoteEventos">
+      <wsdl:input wsaw:Action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos" message="tns:ServicoEnviarLoteEventos_EnviarLoteEventos_InputMessage"/>
+      <wsdl:output wsaw:Action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventosResponse" message="tns:ServicoEnviarLoteEventos_EnviarLoteEventos_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsEnviarLoteEventos" type="tns:ServicoEnviarLoteEventos">
+    <wsp:PolicyReference URI="#WsEnviarLoteEventos_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EnviarLoteEventos">
+      <soap:operation soapAction="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicoEnviarLoteEventos">
+    <wsdl:port name="WsEnviarLoteEventos" binding="tns:WsEnviarLoteEventos">
+      <soap:address location="https://mgdesrvv0168/Servicos/Empregador/EnviarLoteEventos/WsEnviarLoteEventos.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://mgdesrvv0168/Servicos/Empregador/EnviarLoteEventos/WsEnviarLoteEventos.svc</con:endpoint></con:endpoints><con:operation id="081745c9-37f6-4bd7-8ab2-ca49cc96c90c" isOneWay="false" action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos" name="EnviarLoteEventos" bindingOperationName="EnviarLoteEventos" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3335f0e8-ff63-40ac-91e7-9f5fcded2a79" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://mgdesrvv0168/Servicos/Empregador/EnviarLoteEventos/WsEnviarLoteEventos.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:EnviarLoteEventos>
+         <!--Optional:-->
+         <v1:loteEventos>
+            <!--You may enter ANY elements at this point-->
+         </v1:loteEventos>
+      </v1:EnviarLoteEventos>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="214e0e7e-4d90-4233-8d02-715948f3c448" name="WsEnviarLoteEventos TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="12eeba81-9ea4-4b59-bc00-d827bd491c5a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="EnviarLoteEventos TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="6ab3c267-2262-40dd-a226-5e64303f1a9f" name="EnviarLoteEventos"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WsEnviarLoteEventos</con:interface><con:operation>EnviarLoteEventos</con:operation><con:request name="EnviarLoteEventos" id="5f61274a-cf59-4d01-8e6a-83f1bdd961e0"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://mgdesrvv0168/Servicos/Empregador/EnviarLoteEventos/WsEnviarLoteEventos.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:EnviarLoteEventos>
+         <!--Optional:-->
+         <v1:loteEventos>
+            <!--You may enter ANY elements at this point-->
+         </v1:loteEventos>
+      </v1:EnviarLoteEventos>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
