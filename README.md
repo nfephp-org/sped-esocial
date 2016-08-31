@@ -72,15 +72,13 @@ Ao final desse período, começará a obrigatoriedade para grandes empresas;
 O Grupo de Trabalho e o Comitê Gestor estudarão condições diferenciadas para micro e pequenas empresas, dentre as quais, o MEI;
 Se forem obedecidas estas regras o novo sistema só  deverá entrar em vigor no início de 2017.
 
-### *Resolução publicada no DOU do dia 25/6 estabelece cronograma de adesão dos empregadores ao eSocial*
+### *RESOLUÇÃO Nº 2, DE 30 DE AGOSTO DE 2016 estabelece cronograma de adesão dos empregadores ao eSocial*
 
-*As empresas brasileiras com faturamento superior a R$ 78 milhões, no ano de 2014, passarão a utilizar o Sistema de Escrituração Digital das Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial), obrigatoriamente, a partir da competência setembro de 2016, para prestar informações relativas aos trabalhadores, como cadastramento, vínculos, contribuições previdenciárias, folha de pagamento e etc.*
+**Art. 2º O início da obrigatoriedade de utilização do eSocial dar-se-á:**
 
-*O cronograma que fixa as datas de obrigatoriedade para utilização do eSocial foi publicado no Diário Oficial da União (DOU), na quinta-feira (25), por meio da Resolução nº 1 do Comitê Diretivo do eSocial.*
+**I - em 1º de janeiro de 2018, para os empregadores e contribuintes com faturamento no ano de 2016 acima de R$ 78.000.000,00 (setenta e oito milhões de reais); e*
 
-*Assinada pelos secretários-executivos da Fazenda, Tarcísio de Godoy; da Previdência Social, Marcelo Freitas; do Trabalho e Emprego, Francisco Ibiapina; e da Secretaria da Micro e Pequena Empresa, José Constantino, a normativa fixa prazo diferente para a obrigatoriedade de prestar informações relativas ao ambiente de trabalho. Neste caso, as empresas serão obrigadas a utilizar o eSocial para transmitir informações sobre monitoramento da saúde do trabalhador e condições do ambiente de trabalho, bem como comunicação de acidente de trabalho, somente a partir da competência janeiro de 2017.*
-
-*A resolução estabelece ainda que a partir da competência janeiro de 2017, os demais empregadores, inclusive microempresas e empresas de pequeno porte, como o empreendedor individual com empregado, o empregador doméstico, o pequeno produtor rural, o contribuinte individual equiparado à empresa e o segurado especial que possua trabalhadores que lhes prestem serviços - deverão enviar as informações sobre os seus empregados por meio do novo sistema. Já os eventos relativos ao ambiente de trabalho devem ser enviados pelos demais entes utilizando o eSocial a partir da competência julho de 2017.*
+**II - em 1º de julho de 2018, para os demais empregadores e contribuintes.**
 
 ## Contribuindo
 Este é um projeto totalmente *OpenSource*, para usa-lo e modifica-lo você não paga absolutamente nada. Porém para continuarmos a mante-lo é necessário qua alguma contribuição seja feita, seja auxiliando na codificação, na documentação ou na realização de testes e identificação de falhas e BUGs.
