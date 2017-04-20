@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtCS/v02_02_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtCS/v02_02_01 ../schemes/evtCS.xsd ">
+  <evtCS Id="idvalue0">
+    <ideEvento>
+      <indApuracao>0</indApuracao>
+      <perApur>perApur</perApur>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>0</tpInsc>
+      <nrInsc>nrInsc</nrInsc>
+    </ideEmpregador>
+    <infoCS>
+      <indExistInfo>0</indExistInfo>
+      <infoContrib>
+        <classTrib>classTrib</classTrib>
+      </infoContrib>
+      <ideEstab>
+        <tpInsc>0</tpInsc>
+        <nrInsc>nrInsc</nrInsc>
+      </ideEstab>
+    </infoCS>
+  </evtCS>
+  <Signature/>
+</eSocial>
