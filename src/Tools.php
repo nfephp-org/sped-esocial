@@ -7,7 +7,7 @@ namespace NFePHP\eSocial;
  *
  * @category  NFePHP
  * @package   NFePHP\eSocial\Tools
- * @copyright Copyright (c) 2016
+ * @copyright Copyright (c) 2017
  * @license   https://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
  * @license   https://www.gnu.org/licenses/gpl-3.0.txt GPLv3
  * @license   https://opensource.org/licenses/mit-license.php MIT
@@ -15,9 +15,9 @@ namespace NFePHP\eSocial;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Base;
+use NFePHP\eSocial;
 
-class Tools extends Base
+class Tools
 {
     
 }

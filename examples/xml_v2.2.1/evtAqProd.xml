@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAqProd/v02_02_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtAqProd/v02_02_01 ../schemes/evtAqProd.xsd ">
+  <evtAqProd Id="idvalue0">
+    <ideEvento>
+      <indRetif>0</indRetif>
+      <indApuracao>0</indApuracao>
+      <perApur>perApur</perApur>
+      <tpAmb>0</tpAmb>
+      <procEmi>0</procEmi>
+      <verProc>verProc</verProc>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>0</tpInsc>
+      <nrInsc>nrInsc</nrInsc>
+    </ideEmpregador>
+    <infoAquisProd>
+      <ideEstabAdquir>
+        <tpInscAdq>0</tpInscAdq>
+        <nrInscAdq>nrInscAdq</nrInscAdq>
+        <tpAquis>
+          <indAquis>0</indAquis>
+          <vlrTotAquis>0.0</vlrTotAquis>
+          <ideProdutor>
+            <tpInscProd>0</tpInscProd>
+            <nrInscProd>nrInscProd</nrInscProd>
+            <vlrBruto>0.0</vlrBruto>
+            <vrCPDescPR>0.0</vrCPDescPR>
+            <vrRatDescPR>0.0</vrRatDescPR>
+            <vrSenarDesc>0.0</vrSenarDesc>
+          </ideProdutor>
+        </tpAquis>
+      </ideEstabAdquir>
+    </infoAquisProd>
+  </evtAqProd>
+  <Signature/>
+</eSocial>

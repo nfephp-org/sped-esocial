@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtReabreEvPer/v02_02_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtReabreEvPer/v02_02_01 ../schemes/evtReabreEvPer.xsd ">
+  <evtReabreEvPer Id="idvalue0">
+    <ideEvento>
+      <indApuracao>0</indApuracao>
+      <perApur>perApur</perApur>
+      <tpAmb>0</tpAmb>
+      <procEmi>0</procEmi>
+      <verProc>verProc</verProc>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>0</tpInsc>
+      <nrInsc>nrInsc</nrInsc>
+    </ideEmpregador>
+  </evtReabreEvPer>
+  <Signature/>
+</eSocial>

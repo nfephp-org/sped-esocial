@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtBasesTrab/v02_02_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtBasesTrab/v02_02_01 ../schemes/evtBasesTrab.xsd ">
+  <evtBasesTrab Id="idvalue0">
+    <ideEvento>
+      <indApuracao>0</indApuracao>
+      <perApur>perApur</perApur>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>0</tpInsc>
+      <nrInsc>nrInsc</nrInsc>
+    </ideEmpregador>
+    <ideTrabalhador>
+      <cpfTrab>cpfTrab</cpfTrab>
+    </ideTrabalhador>
+    <infoCpCalc>
+      <tpCR>0</tpCR>
+      <vrCpSeg>0.0</vrCpSeg>
+      <vrDescSeg>0.0</vrDescSeg>
+    </infoCpCalc>
+    <infoCp>
+      <ideEstabLot>
+        <tpInsc>0</tpInsc>
+        <nrInsc>nrInsc</nrInsc>
+        <codLotacao>codLotacao</codLotacao>
+        <infoCategIncid>
+          <codCateg>0</codCateg>
+        </infoCategIncid>
+      </ideEstabLot>
+    </infoCp>
+  </evtBasesTrab>
+  <Signature/>
+</eSocial>
