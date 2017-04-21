@@ -7,4 +7,6 @@ interface FactoryInterface
     public function toNode();
     
     public function __toString();
+    
+    public function toArray();
 }

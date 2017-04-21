@@ -4,32 +4,44 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\eSocial\Factories\Factory;
 use NFePHP\eSocial\Factories\FactoryInterface;
+use NFePHP\eSocial\Factories\EvtId;
 use stdClass;
 
 class EvtAdmPrelim extends Factory implements FactoryInterface
 {
     const EVT_NAME = 'evtAdmPrelim';
+    const EVT_CODE = 'S-1000';
+  
+    public $sequencial; //sequencial do evento
+    public $cpfTrab; //string Length value="11" "\d{11}"
+    public $dtNascto; //date
+    public $dtAdm; //date
+    
+    protected $parameters = [
+        'cpfTrab' => [
+            'type'     => 'string',
+            'regex'    => '\d{11}',
+            'format'   => '11',
+            'required' => true,
+            'force'    => true
+        ],
+    ];
 
-    public $id;
-    public $tpAmb;
-    public $procEmi;
-    public $verProc;
-    
-    public $tpInsc;
-    public $nrInsc;
-    public $cpfTrab;
-    public $dtNascto;
-    public $dtAdm;
-    
-    public function __construct(stdClass $std)
+    public function __construct($config, stdClass $std)
     {
-        parent::__construct($std);
+        parent::__construct($config, $std);
     }
-    
 
     public function toNode()
     {
+        $evtid = EvtId::build(
+            $this->doctype,
+            $this->docnum,
+            $this->date,
+            $this->sequencial
+        );
         
+ 
 /*    
 <?xml version="1.0" encoding="UTF-8"?>
 <eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAdmPrelim/v02_02_01" 
