@@ -15,7 +15,7 @@ $evt = Event::evtTSVAltContr($configJson, $std);
 ```
 
 Onde:
-- $std são inseridos os dados referentes ao evento.
-- $configJson contêm as informações básicas da empresa.
+- $std nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
+- $configJson contêm as informações básicas da empresa [Config](Config.md).
 
 A classe pode retornar: string XML, string JSON ou array com os dados
