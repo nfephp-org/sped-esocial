@@ -8,7 +8,7 @@
 ## Modo de USO
 
 ```php
-use NFePHPSocial\Event;
+use NFePHP\eSocial\Event;
 
 $std = new \stdClass();$evt = Event::evtDeslig($configJson, $std);
 ```
