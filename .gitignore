@@ -1,12 +1,11 @@
 .project
 .idea
 limpaTAB.php
+manuals
 local
 vendor
 nbproject
-build
 composer.lock
-docs
-/certs/*.pem
-/certs/*.pfx
-config.json
+*.pem
+*.pfx
+
