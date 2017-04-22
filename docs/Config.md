@@ -1,6 +1,6 @@
 # CONFIG
 
-A strign de configuração básica 
+A string de configuração básica, essa variável irá passar as infrmações básicas as classes responsáveis por construir cada evento do eSocial. 
 
 ```php
 $arrconfig = [
