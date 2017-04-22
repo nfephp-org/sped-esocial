@@ -7,25 +7,25 @@ use DateTime;
 class EvtId
 {
     /**
-     * Build Id of eSocial event
-     * @param int $tipo
-     * @param string $docnum
+     * Build Id for eSocial event
+     * @param int $tpInsc
+     * @param string $nrInsc
      * @param DateTime $data
-     * @param int $seq
+     * @param int $sequential
      * @return string
      */
     public static function build(
-        $doctype,
-        $docnum,
+        $tpInsc,
+        $nrInsc,
         DateTime $date,
         $sequential = 1
     ) {
-        if (empty($seq)) {
+        if (empty($sequential)) {
             $seq = 1;
         }
         return "ID"
-            . $doctype
-            . str_pad($docnum, 14, '0', STR_PAD_RIGHT)
+            . $tpInsc
+            . str_pad($nrInsc, 14, '0', STR_PAD_RIGHT)
             . $date->format('YmdHis')
             . str_pad($sequential, 5, '0', STR_PAD_LEFT);
     }

@@ -1,10 +1,19 @@
 # e-Social
-**API PHP para a integração de aplicativo com o projeto SPED eFinanceira da Receita Federal do Brasil**
+**API PHP para a integração de aplicativo com o projeto [SPED eSocial](http://www.esocial.gov.br/) do Ministério do Trabalho, Receita Federal e Caixa Econmica Federal**
 
-*sped-esocial* é um framework que permite a integração de um aplicativo, com o serviço do projeto SPED da RFB denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
+*sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
 # Em desenvolvimento Não tente usar !!!
 
+## CRONOGRAMA
+
+**Liberação da fase de Testes: 01/07/2017**
+
+Obrigatoriedade:
+
+- **Empresas com faturamento > R$ 78 milhões em 2016 : inicio 01/01/2018**
+- **Demais empresas : inicio 01/07/2018**
+- **Empresas do SIMPLES : a definir**
 
 ## CONCEITO DO e-SOCIAL
 

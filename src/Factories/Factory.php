@@ -6,6 +6,7 @@ use NFePHP\Common\DOMImproved as Dom;
 use stdClass;
 use DOMDocument;
 use DOMElement;
+use DateTime;
 
 class Factory
 {
@@ -27,6 +28,8 @@ class Factory
      * @var array
      */
     protected $parameters = [];
+    protected $caller;
+    
     
     public $tpInsc; //byte "\d"
     public $nrInsc; //string "\d{8,15}"    public $company;
@@ -35,8 +38,11 @@ class Factory
     public $procEmi = 1; //byte "\d" 1- App empregador; 2 - App governo
     public $verProc; //string minLength value="1" maxLength value="20"
     public $layout = '2.2.1';
-       
-    public function __construct($config, stdClass $std)
+    public $layoutStr = '';
+    
+    public $scheme="";
+
+    public function __construct($config, stdClass $std, $caller)
     {
         //se properties from config
         $stdConf = json_decode($config);
@@ -47,19 +53,26 @@ class Factory
         $this->tpAmb = $stdConf->tpAmb;
         $this->verProc = $stdConf->verProc;
         $this->layout = $stdConf->layout;
-        
+        $this->layoutStr = $this->strLayoutVer($stdConf->layout);
+        $this->caller = $caller;
         //set properties from inputs
         if (!empty($std)) {
             $std = $this->standardizeParams($this->parameters, $std);
             $this->std = $std;
-            $this->loadProperties();
+            $this->loadProperties($caller);
         }
+        $this->scheme = realpath(
+            __DIR__ 
+            . "/../../schemes/$this->layoutStr/" 
+            . $caller::EVT_NAME
+            . ".xsd"    
+        );
         $this->init();
     }
     
-    protected function strLayoutVer()
+    protected function strLayoutVer($layout)
     {
-        $fils = explode('.', $this->layout);
+        $fils = explode('.', $layout);
         $c = 0;
         $str = 'v';
         foreach ($fils as $fil) {
@@ -77,14 +90,11 @@ class Factory
         if (empty($this->node)) {
             $this->toNode();
         }
-        return $this->toJson($this->node);
+        return $this->dom->saveXML();
     }
     
     public function toArray()
     {
-        if (empty($this->node)) {
-            $this->toNode();
-        }
         return json_decode($this->toJson($this->node), true);
     }
     
@@ -93,8 +103,11 @@ class Factory
      * @param DOMElement $node
      * @return string
      */
-    protected function toJson(\DOMElement $node)
+    public function toJson()
     {
+        if (empty($this->node)) {
+            $this->toNode();
+        }
         $newdoc = new DOMDocument();
         $cloned = $node->cloneNode(true);
         $newdoc->appendChild($newdoc->importNode($cloned, true));
@@ -112,15 +125,22 @@ class Factory
             $this->dom = new Dom('1.0', 'UTF-8');
             $this->dom->preserveWhiteSpace = false;
             $this->dom->formatOutput = false;
+            $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                . "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/" 
+                . $this->caller::EVT_NAME
+                . "/$this->layoutStr\" "
+                . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+                . "</eSocial>";
+            $this->dom->loadXML($xml);
         }
     }
     
     /**
      * Load all properties from $this->std, from __construct method
      */
-    protected function loadProperties()
+    protected function loadProperties($caller)
     {
-        $properties = array_keys(get_object_vars($this));
+        $properties = array_keys(get_object_vars($caller));
         foreach ($properties as $key) {
             $q = strtolower($key);
             if (isset($this->std->$q)) {
