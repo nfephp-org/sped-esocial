@@ -15,11 +15,11 @@ Se forem obedecidas estas regras o novo sistema só  deverá entrar em vigor no 
 
 ### *[RESOLUÇÃO Nº 2, DE 30 DE AGOSTO DE 2016](http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=77006&visao=anotado) estabelece cronograma de adesão dos empregadores ao eSocial*
 
-**Art. 2º O início da obrigatoriedade de utilização do eSocial dar-se-á:**
+*Art. 2º O início da obrigatoriedade de utilização do eSocial dar-se-á:*
 
-**I - em 1º de janeiro de 2018, para os empregadores e contribuintes com faturamento no ano de 2016 acima de R$ 78.000.000,00 (setenta e oito milhões de reais); e*
+*I - em 1º de janeiro de 2018, para os empregadores e contribuintes com faturamento no ano de 2016 acima de R$ 78.000.000,00 (setenta e oito milhões de reais); e*
 
-**II - em 1º de julho de 2018, para os demais empregadores e contribuintes.**
+*II - em 1º de julho de 2018, para os demais empregadores e contribuintes.*
 
 
 **Liberação da fase de Testes: 01/07/2017**
