@@ -23,7 +23,8 @@ Se forem obedecidas estas regras o novo sistema só  deverá entrar em vigor no 
 
 
 **Liberação da fase de Testes: 01/07/2017**
-**Empresas do SIMPLES : a definir**
+
+**Empresas do SIMPLES NACIONAL : a definir**
 
 [CAIXA Nº 761 DE 12/04/2017](https://www.legisweb.com.br/legislacao/?id=342289)
 
