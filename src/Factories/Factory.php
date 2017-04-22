@@ -62,10 +62,10 @@ class Factory
             $this->loadProperties($caller);
         }
         $this->scheme = realpath(
-            __DIR__ 
-            . "/../../schemes/$this->layoutStr/" 
+            __DIR__
+            . "/../../schemes/$this->layoutStr/"
             . $caller::EVT_NAME
-            . ".xsd"    
+            . ".xsd"
         );
         $this->init();
     }
@@ -126,7 +126,7 @@ class Factory
             $this->dom->preserveWhiteSpace = false;
             $this->dom->formatOutput = false;
             $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-                . "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/" 
+                . "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/"
                 . $this->caller::EVT_NAME
                 . "/$this->layoutStr\" "
                 . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"

@@ -80,6 +80,6 @@ class Event
         if (empty($className)) {
             throw new InvalidArgumentException('Event name not found.');
         }
-        return new $className($arguments[0],$arguments[1]);
+        return new $className($arguments[0], $arguments[1]);
     }
 }
