@@ -10,7 +10,8 @@
 ```php
 use NFePHP\eSocial\Event;
 
-$std = new \stdClass();$evt = Event::evtTabCarreira($configJson, $std);
+$std = new \stdClass();
+$evt = Event::evtTabCarreira($configJson, $std);
 ```
 
 Onde:
