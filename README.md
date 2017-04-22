@@ -9,7 +9,7 @@
 
 **Liberação da fase de Testes: 01/07/2017**
 
-Obrigatoriedade:
+### Obrigatoriedade:
 
 - **Empresas com faturamento > R$ 78 milhões em 2016 : inicio 01/01/2018**
 - **Demais empresas : inicio 01/07/2018**
