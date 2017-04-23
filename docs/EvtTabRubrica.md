@@ -54,8 +54,7 @@ a. Integram a remuneração para fins de cálculos dos valores devidos à Previd
 | VI | Bonificações; |
 | VII | Comissões; |
 | VIII | Décimo terceiro salário; |
-| IX | Diárias para viagem, pelo seu valor total, quando excederem a cinqüenta por cento da |
- remuneração mensal do empregado; |
+| IX | Diárias para viagem, pelo seu valor total, quando excederem a cinqüenta por cento da remuneração mensal do empregado; |
 | X | Etapas (marítimos); |
 | XI | Férias normais gozadas na vigência do contrato de trabalho (inclusive um terço constitucional); |
 | XII | Gorjetas (espontâneas ou compulsórias); |
