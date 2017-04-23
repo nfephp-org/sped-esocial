@@ -30,6 +30,10 @@
 6. Os órgãos públicos, prestarão as respectivas informações do número SIAFI no grupo [infoOP], complementando a informação do ente federativo no grupo [InfoEnte].
 
 
+## Parâmetros
+O stdClass deve ser carregado com os seguintes parâmetros:
+
+
 ## Modo de USO
 
 ```php
