@@ -1,14 +1,13 @@
 # EvtInfoEmpregador
 
-## Evento: evtInfoEmpregador
+## Evento
+ *evtInfoEmpregador*
 
-## Alias:
+## Alias
  *S-1000 - Informações do Empregador/Contribuinte/Órgão Público*
 
 
 ## Detalhamento
-
-
 **Conceito do evento:** Evento onde são fornecidas pelo empregador/contribuinte/órgão público as informações cadastrais, alíquotas e demais dados necessários ao preenchimento e validação dos demais eventos do eSocial, inclusive para apuração das contribuições previdenciárias devidas ao RGPS e do FGTS. Este é o primeiro evento que deve ser transmitido pelo empregador/contribuinte/órgão público. Não pode ser enviado qualquer outro evento antes deste.
 
 **Quem está obrigado:** O empregador/contribuinte/órgão público, no início da utilização do eSocial e toda vez que ocorra alguma alteração nas informações relacionadas aos campos envolvidos nesse evento.

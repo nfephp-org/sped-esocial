@@ -1,14 +1,13 @@
 # EvtTabFuncao
 
-## Evento: evtTabFuncao
+## Evento
+ *evtTabFuncao*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

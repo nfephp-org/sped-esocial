@@ -1,14 +1,13 @@
 # EvtCdBenPrRP
 
-## Evento: evtCdBenPrRP
+## Evento
+ *evtCdBenPrRP*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

@@ -1,14 +1,13 @@
 # EvtContrSindPatr
 
-## Evento: evtContrSindPatr
+## Evento
+ *evtContrSindPatr*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

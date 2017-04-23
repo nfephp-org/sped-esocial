@@ -1,14 +1,13 @@
 # EvtPgtos
 
-## Evento: evtPgtos
+## Evento
+ *evtPgtos*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

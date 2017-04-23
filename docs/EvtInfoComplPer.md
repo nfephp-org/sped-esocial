@@ -1,14 +1,13 @@
 # EvtInfoComplPer
 
-## Evento: evtInfoComplPer
+## Evento
+ *evtInfoComplPer*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

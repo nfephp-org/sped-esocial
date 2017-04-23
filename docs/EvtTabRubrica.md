@@ -1,14 +1,13 @@
 # EvtTabRubrica
 
-## Evento: evtTabRubrica
+## Evento
+ *evtTabRubrica*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

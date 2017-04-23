@@ -1,14 +1,13 @@
 # EvtReintegr
 
-## Evento: evtReintegr
+## Evento
+ *evtReintegr*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

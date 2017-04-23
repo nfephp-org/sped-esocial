@@ -1,14 +1,13 @@
 # EvtAltContratual
 
-## Evento: evtAltContratual
+## Evento
+ *evtAltContratual*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

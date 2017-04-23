@@ -1,14 +1,13 @@
 # EvtAdmPrelim
 
-## Evento: evtAdmPrelim
+## Evento
+ *evtAdmPrelim*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

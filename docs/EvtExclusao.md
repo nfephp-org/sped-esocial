@@ -1,14 +1,13 @@
 # EvtExclusao
 
-## Evento: evtExclusao
+## Evento
+ *evtExclusao*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

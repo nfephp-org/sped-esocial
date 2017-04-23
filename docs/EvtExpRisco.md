@@ -1,14 +1,13 @@
 # EvtExpRisco
 
-## Evento: evtExpRisco
+## Evento
+ *evtExpRisco*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

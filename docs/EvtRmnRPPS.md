@@ -1,14 +1,13 @@
 # EvtRmnRPPS
 
-## Evento: evtRmnRPPS
+## Evento
+ *evtRmnRPPS*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

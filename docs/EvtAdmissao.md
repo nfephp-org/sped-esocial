@@ -1,14 +1,13 @@
 # EvtAdmissao
 
-## Evento: evtAdmissao
+## Evento
+ *evtAdmissao*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 

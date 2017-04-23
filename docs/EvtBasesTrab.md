@@ -1,14 +1,13 @@
 # EvtBasesTrab
 
-## Evento: evtBasesTrab
+## Evento
+ *evtBasesTrab*
 
-## Alias:
+## Alias
  **
 
 
 ## Detalhamento
-
-
 
 
 
