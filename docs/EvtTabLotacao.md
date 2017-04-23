@@ -4,7 +4,7 @@
  *evtTabLotacao*
 
 ## Alias
- **
+ *S-1020 - Tabela de Lotações Tributárias*
 
 
 ## Detalhamento

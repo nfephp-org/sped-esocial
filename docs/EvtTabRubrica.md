@@ -4,7 +4,7 @@
  *evtTabRubrica*
 
 ## Alias
- **
+ *S-1010 - Tabela de Rubricas*
 
 
 ## Detalhamento
