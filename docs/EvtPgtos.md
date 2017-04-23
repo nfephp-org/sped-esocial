@@ -23,7 +23,7 @@ use NFePHP\eSocial\Event;
 
 try {
     $std = new \stdClass();
-     $evt = Event::evtPgtos($configJson, $std);
+    $evt = Event::evtPgtos($configJson, $std);
 } catch (\Exception $e) {
     //aqui você trata as exceptions
 }

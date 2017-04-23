@@ -33,7 +33,7 @@ use NFePHP\eSocial\Event;
 
 try {
     $std = new \stdClass();
-     $evt = Event::evtTabEstab($configJson, $std);
+    $evt = Event::evtTabEstab($configJson, $std);
 } catch (\Exception $e) {
     //aqui você trata as exceptions
 }
