@@ -32,6 +32,7 @@
 
 ## Parâmetros
 O stdClass deve ser carregado com os seguintes parâmetros:
+
 | Propriedade | Tipo | Ocorrência | Tamanho | Dec | Descrição |
 | :---  | :---: | :---: | :---: | :---: | :--- |
 | iniValid | C | 1-1 | 7 | - | Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM. |

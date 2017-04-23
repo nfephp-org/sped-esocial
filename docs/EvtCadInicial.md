@@ -15,6 +15,7 @@
 O stdClass deve ser carregado com os seguintes parâmetros:
 
 
+
 ## Modo de USO
 
 ```php
