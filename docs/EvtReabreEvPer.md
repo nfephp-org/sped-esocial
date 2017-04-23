@@ -8,6 +8,9 @@
 ## Detalhamento
 
 
+
+
+
 ## Modo de USO
 
 ```php
