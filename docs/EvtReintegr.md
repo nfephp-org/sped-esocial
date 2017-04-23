@@ -25,7 +25,8 @@ try {
     $std = new \stdClass();
      $evt = Event::evtReintegr($configJson, $std);
 } catch (\Exception $e) {
-    //aqui você trata as exceptions}
+    //aqui você trata as exceptions
+}
 ```
 
 Onde:
