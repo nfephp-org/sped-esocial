@@ -30,8 +30,11 @@ O stdClass deve ser carregado com os seguintes parâmetros:
 ```php
 use NFePHP\eSocial\Event;
 
-$std = new \stdClass();
-$evt = Event::evtTabRubrica($configJson, $std);
+try {
+    $std = new \stdClass();
+     $evt = Event::evtTabRubrica($configJson, $std);
+} catch (\Exception $e) {
+    //aqui você trata as exceptions}
 ```
 
 Onde:
