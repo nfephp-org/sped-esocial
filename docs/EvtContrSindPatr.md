@@ -2,7 +2,8 @@
 
 ## Evento: evtContrSindPatr
 
-## Alias: 
+## Alias:
+ **
 
 
 ## Detalhamento

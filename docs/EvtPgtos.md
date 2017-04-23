@@ -2,7 +2,8 @@
 
 ## Evento: evtPgtos
 
-## Alias: 
+## Alias:
+ **
 
 
 ## Detalhamento

@@ -2,7 +2,8 @@
 
 ## Evento: evtRmnRPPS
 
-## Alias: 
+## Alias:
+ **
 
 
 ## Detalhamento
