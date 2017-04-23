@@ -2,7 +2,7 @@
 
 ## Evento: evtInfoEmpregador
 
-## Alias: 
+## Alias: S-1000 - Informações do Empregador/Contribuinte/Órgão Público
 
 
 ## Detalhamento
