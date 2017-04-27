@@ -4,7 +4,7 @@
  *evtCAT*
 
 ## Alias
- **
+ *S-2210 - Comunicação de Acidente de Trabalho*
 
 
 ## Detalhamento

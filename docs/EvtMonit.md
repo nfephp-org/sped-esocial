@@ -4,7 +4,7 @@
  *evtMonit*
 
 ## Alias
- **
+ *S-2220 - Monitoramento da Saúde do Trabalhador*
 
 
 ## Detalhamento

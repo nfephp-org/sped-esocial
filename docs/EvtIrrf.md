@@ -4,7 +4,7 @@
  *evtIrrf*
 
 ## Alias
- **
+ *S-5012 - Informações do IRRF consolidadas por contribuinte*
 
 
 ## Detalhamento

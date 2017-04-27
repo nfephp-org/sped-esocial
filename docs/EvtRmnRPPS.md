@@ -4,7 +4,7 @@
  *evtRmnRPPS*
 
 ## Alias
- **
+ *S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social*
 
 
 ## Detalhamento

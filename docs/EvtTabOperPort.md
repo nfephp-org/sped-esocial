@@ -4,7 +4,7 @@
  *evtTabOperPort*
 
 ## Alias
- **
+ *S-1080 - Tabela de Operadores Portuários*
 
 
 ## Detalhamento

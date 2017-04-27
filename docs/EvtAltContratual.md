@@ -4,7 +4,7 @@
  *evtAltContratual*
 
 ## Alias
- **
+ *S-2206 - Alteração de Contrato de Trabalho*
 
 
 ## Detalhamento

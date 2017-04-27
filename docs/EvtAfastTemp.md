@@ -4,7 +4,7 @@
  *evtAfastTemp*
 
 ## Alias
- **
+ *S-2230 - Afastamento Temporário*
 
 
 ## Detalhamento

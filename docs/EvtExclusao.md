@@ -4,7 +4,7 @@
  *evtExclusao*
 
 ## Alias
- **
+ *S-3000 - Exclusão de eventos*
 
 
 ## Detalhamento

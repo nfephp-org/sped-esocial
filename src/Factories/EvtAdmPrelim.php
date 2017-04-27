@@ -2,38 +2,76 @@
 
 namespace NFePHP\eSocial\Factories;
 
+/**
+ * Class eSocial EvtAdmPrelim Event S-2190 constructor
+ *
+ * @category  NFePHP
+ * @package   NFePHP\eSocial
+ * @copyright NFePHP Copyright (c) 2017
+ * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
+ * @license   https://opensource.org/licenses/MIT MIT
+ * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
+ * @author    Roberto L. Machado <linux.rlm at gmail dot com>
+ * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
+ */
+
 use NFePHP\eSocial\Factories\Factory;
 use NFePHP\eSocial\Factories\FactoryInterface;
 use NFePHP\eSocial\Factories\EvtId;
+use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtAdmPrelim extends Factory implements FactoryInterface
 {
-    const EVT_NAME = 'evtAdmPrelim';
-    const EVT_CODE = 'S-2190';
-  
-    public $sequencial; //sequencial do evento
-    public $cpfTrab; //string Length value="11" "\d{11}"
-    public $dtNascto; //date
-    public $dtAdm; //date
-    
+    /**
+     * @var int
+     */
+    public $sequencial;
+    /**
+     * @var string
+     */
+    public $cpfTrab;
+    /**
+     * @var \DateTime
+     */
+    public $dtNascto;
+    /**
+     * @var \DateTime
+     */
+    public $dtAdm;
+
+    /**
+     * @var string
+     */
+    protected $evtName = 'evtAdmPrelim';
+    /**
+     * @var string
+     */
+    protected $evtAlias = 'S-2190';
+    /**
+     * Parameters patterns
+     * @var array
+     */
     protected $parameters = [];
 
-    /* '        'cpfTrab' => [
-            'type'     => 'string',
-            'regex'    => '\d{11}',
-            'format'   => '11',
-            'required' => true,
-            'force'    => true
-        ],
-    ];*/
-
-    public function __construct($config, stdClass $std)
-    {
-        parent::__construct($config, $std, $this);
+    /**
+     * Constructor
+     * @param type $config
+     * @param stdClass $std
+     * @param Certificate $certificate
+     */
+    public function __construct(
+        $config,
+        stdClass $std,
+        Certificate $certificate
+    ) {
+        parent::__construct($config, $std, $certificate);
     }
-
-    public function toNode()
+    
+    /**
+     * Node constructor
+     */
+    protected function toNode()
     {
         $evtid = EvtId::build(
             $this->tpInsc,
@@ -67,7 +105,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
             true
         );
         $evtAdmPrelim->appendChild($ideEvento);
-        
     
         $ideEmpregador = $this->dom->createElement("ideEmpregador");
         $this->dom->addChild(
@@ -83,7 +120,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
             true
         );
         $evtAdmPrelim->appendChild($ideEmpregador);
-        
         
         $infoRegPrelim = $this->dom->createElement("infoRegPrelim");
         $this->dom->addChild(
@@ -106,32 +142,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
         );
         $evtAdmPrelim->appendChild($infoRegPrelim);
         $eSocial->appendChild($evtAdmPrelim);
-        $this->node = $eSocial;
-        return $this->node;
-/*    
-<?xml version="1.0" encoding="UTF-8"?>
-<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAdmPrelim/v02_02_01" 
- * xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- * xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtAdmPrelim/v02_02_01 
- * ../schemes/evtAdmPrelim.xsd ">
-  <evtAdmPrelim Id="idvalue0">
-    <ideEvento>
-      <tpAmb>0</tpAmb>
-      <procEmi>0</procEmi>
-      <verProc>verProc</verProc>
-    </ideEvento>
-    <ideEmpregador>
-      <tpInsc>0</tpInsc>
-      <nrInsc>nrInsc</nrInsc>
-    </ideEmpregador>
-    <infoRegPrelim>
-      <cpfTrab>cpfTrab</cpfTrab>
-      <dtNascto>2001-01-01</dtNascto>
-      <dtAdm>2001-01-01</dtAdm>
-    </infoRegPrelim>
-  </evtAdmPrelim>
-  <Signature/>
-</eSocial>
-*/
+        $this->sign($eSocial);
     }
 }

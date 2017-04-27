@@ -4,7 +4,7 @@
  *evtAdmPrelim*
 
 ## Alias
- **
+ *S-2190 - Admissão de Trabalhador - Registro Preliminar*
 
 
 ## Detalhamento

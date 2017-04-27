@@ -4,7 +4,7 @@
  *evtTSVTermino*
 
 ## Alias
- **
+ *S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término*
 
 
 ## Detalhamento

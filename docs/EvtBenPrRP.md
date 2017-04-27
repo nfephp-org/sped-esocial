@@ -4,7 +4,7 @@
  *evtBenPrRP*
 
 ## Alias
- **
+ *S-1207 - Benefícios previdenciários - RPPS*
 
 
 ## Detalhamento

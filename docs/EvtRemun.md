@@ -4,7 +4,7 @@
  *evtRemun*
 
 ## Alias
- **
+ *S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social*
 
 
 ## Detalhamento

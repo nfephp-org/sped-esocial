@@ -4,7 +4,7 @@
  *evtIrrfBenef*
 
 ## Alias
- **
+ *S-5002 - Imposto de Renda Retido na Fonte*
 
 
 ## Detalhamento

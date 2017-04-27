@@ -4,7 +4,7 @@
  *evtTabCargo*
 
 ## Alias
- **
+ *S-1030 - Tabela de Cargos/Empregos Públicos*
 
 
 ## Detalhamento

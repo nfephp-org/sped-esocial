@@ -4,7 +4,7 @@
  *evtContratAvNP*
 
 ## Alias
- **
+ *S-1270 - Contratação de Trabalhadores Avulsos Não Portuários*
 
 
 ## Detalhamento

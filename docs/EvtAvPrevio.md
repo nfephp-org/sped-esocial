@@ -4,7 +4,7 @@
  *evtAvPrevio*
 
 ## Alias
- **
+ *S-2250 - Aviso Prévio*
 
 
 ## Detalhamento

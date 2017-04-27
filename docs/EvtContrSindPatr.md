@@ -4,7 +4,7 @@
  *evtContrSindPatr*
 
 ## Alias
- **
+ *S-1300 - Contribuição Sindical Patronal*
 
 
 ## Detalhamento

@@ -4,7 +4,7 @@
  *evtTabProcesso*
 
 ## Alias
- **
+ *S-1070 - Tabela de Processos Administrativos/Judiciais*
 
 
 ## Detalhamento

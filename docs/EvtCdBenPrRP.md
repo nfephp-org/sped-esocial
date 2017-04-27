@@ -4,7 +4,7 @@
  *evtCdBenPrRP*
 
 ## Alias
- **
+ *S-2400 - Cadastro de Benefícios Previdenciários - RPPS*
 
 
 ## Detalhamento

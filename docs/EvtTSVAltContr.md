@@ -4,7 +4,7 @@
  *evtTSVAltContr*
 
 ## Alias
- **
+ *S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual*
 
 
 ## Detalhamento

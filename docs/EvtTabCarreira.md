@@ -4,7 +4,7 @@
  *evtTabCarreira*
 
 ## Alias
- **
+ *S-1035 - Tabela de Carreiras Públicas*
 
 
 ## Detalhamento

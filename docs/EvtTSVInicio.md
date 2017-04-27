@@ -4,7 +4,7 @@
  *evtTSVInicio*
 
 ## Alias
- **
+ *S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início*
 
 
 ## Detalhamento

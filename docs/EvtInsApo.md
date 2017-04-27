@@ -4,7 +4,7 @@
  *evtInsApo*
 
 ## Alias
- **
+ *S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial*
 
 
 ## Detalhamento

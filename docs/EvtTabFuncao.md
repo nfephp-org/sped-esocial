@@ -4,7 +4,7 @@
  *evtTabFuncao*
 
 ## Alias
- **
+ *S-1040 - Tabela de Funções/Cargos em Comissão*
 
 
 ## Detalhamento

@@ -4,7 +4,7 @@
  *evtExpRisco*
 
 ## Alias
- **
+ *S-2240 - Condições Ambientais do Trabalho - Fatores de Risco*
 
 
 ## Detalhamento

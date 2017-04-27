@@ -4,7 +4,7 @@
  *evtFechaEvPer*
 
 ## Alias
- **
+ *S-1299 - Fechamento dos Eventos Periódicos*
 
 
 ## Detalhamento

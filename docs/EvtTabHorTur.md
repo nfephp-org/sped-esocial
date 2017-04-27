@@ -4,7 +4,7 @@
  *evtTabHorTur*
 
 ## Alias
- **
+ *S-1050 - Tabela de Horários/Turnos de Trabalho*
 
 
 ## Detalhamento

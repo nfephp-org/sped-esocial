@@ -4,7 +4,7 @@
  *evtTabAmbiente*
 
 ## Alias
- **
+ *S-1060 - Tabela de Ambientes de Trabalho*
 
 
 ## Detalhamento

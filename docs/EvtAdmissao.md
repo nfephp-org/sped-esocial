@@ -4,7 +4,7 @@
  *evtAdmissao*
 
 ## Alias
- **
+ *S-2200 - Admissão / Ingresso de Trabalhador*
 
 
 ## Detalhamento

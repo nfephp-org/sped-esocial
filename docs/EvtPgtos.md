@@ -4,7 +4,7 @@
  *evtPgtos*
 
 ## Alias
- **
+ *S-1210 - Pagamentos de Rendimentos do Trabalho*
 
 
 ## Detalhamento

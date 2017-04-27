@@ -4,7 +4,7 @@
  *evtDeslig*
 
 ## Alias
- **
+ *S-2299 - Desligamento*
 
 
 ## Detalhamento

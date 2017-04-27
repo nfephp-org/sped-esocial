@@ -4,7 +4,7 @@
  *evtCS*
 
 ## Alias
- **
+ *S-5011 - Informações das contribuições sociais consolidadas por contribuinte*
 
 
 ## Detalhamento

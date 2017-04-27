@@ -4,7 +4,7 @@
  *evtAltCadastral*
 
 ## Alias
- **
+ *S-2205 - Alteração de Dados Cadastrais do Trabalhador*
 
 
 ## Detalhamento

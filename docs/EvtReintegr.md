@@ -4,7 +4,7 @@
  *evtReintegr*
 
 ## Alias
- **
+ *S-2298 - Reintegração*
 
 
 ## Detalhamento

@@ -2,46 +2,115 @@
 
 namespace NFePHP\eSocial\Factories;
 
+/**
+ * Class eSocial EvtAfastTemp Event S-2230 constructor
+ *
+ * @category  NFePHP
+ * @package   NFePHPSocial
+ * @copyright NFePHP Copyright (c) 2017
+ * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
+ * @license   https://opensource.org/licenses/MIT MIT
+ * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
+ * @author    Roberto L. Machado <linux.rlm at gmail dot com>
+ * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
+ */
+
 use NFePHP\eSocial\Factories\Factory;
 use NFePHP\eSocial\Factories\FactoryInterface;
+use NFePHP\eSocial\Factories\EvtId;
+use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtAfastTemp extends Factory implements FactoryInterface
 {
-    const EVT_NAME = 'evtAfastTemp';
+    /**
+     * @var int
+     */
+    public $sequencial;
 
-    public function __construct(stdClass $std)
-    {
-        parent::__construct($std);
+    /**
+     * @var string
+     */
+    protected $evtName = 'evtAfastTemp';
+    /**
+     * @var string
+     */
+    protected $evtAlias = 'S-2230';
+    /**
+     * Parameters patterns
+     * @var array
+     */
+    protected $parameters = [];
+
+    /**
+     * Constructor
+     * @param string $config
+     * @param stdClass $std
+     * @param Certificate $certificate
+     */
+    public function __construct(
+        $config,
+        stdClass $std,
+        Certificate $certificate
+    ) {
+        parent::__construct($config, $std, $certificate);
     }
     
-
-    public function toNode()
+    /**
+     * Node constructor
+     */
+    protected function toNode()
     {
-/*
-<?xml version="1.0" encoding="UTF-8"?>
-<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAfastTemp/v02_02_01" 
- * xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- * xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtAfastTemp/v02_02_01 
- * ../schemes/evtAfastTemp.xsd ">
-  <evtAfastTemp Id="idvalue0">
-    <ideEvento>
-      <indRetif>0</indRetif>
-      <tpAmb>0</tpAmb>
-      <procEmi>0</procEmi>
-      <verProc>verProc</verProc>
-    </ideEvento>
-    <ideEmpregador>
-      <tpInsc>0</tpInsc>
-      <nrInsc>nrInsc</nrInsc>
-    </ideEmpregador>
-    <ideVinculo>
-      <cpfTrab>cpfTrab</cpfTrab>
-    </ideVinculo>
-    <infoAfastamento/>
-  </evtAfastTemp>
-  <Signature/>
-</eSocial>
- */
+        $evtid = EvtId::build(
+            $this->tpInsc,
+            $this->nrInsc,
+            $this->date,
+            $this->sequencial
+        );
+        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $evtAfastTemp = $this->dom->createElement("evtAfastTemp");
+        $att = $this->dom->createAttribute('Id');
+        $att->value = $evtid;
+        $evtAfastTemp->appendChild($att);
+        
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            rue
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            rue
+        );        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $evtAdmPrelim->appendChild($ideEvento);
+    
+        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $this->dom->addChild(
+            $ideEmpregador,
+            "tpInsc",
+            $this->tpInsc,
+            true
+        );
+        $this->dom->addChild(
+            $ideEmpregador,
+            "nrInsc",
+            $this->nrInsc,
+            true
+        );
+        $evtAdmPrelim->appendChild($ideEmpregador);
+        
+
+
+        $eSocial->appendChild($evtAdmPrelim);
+        $this->sign($eSocial);
     }
 }

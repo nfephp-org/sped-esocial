@@ -4,7 +4,7 @@
  *evtInfoComplPer*
 
 ## Alias
- **
+ *S-1280 - Informações Complementares aos Eventos Periódicos*
 
 
 ## Detalhamento

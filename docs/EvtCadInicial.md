@@ -4,7 +4,7 @@
  *evtCadInicial*
 
 ## Alias
- **
+ *S-2100 - Cadastramento Inicial do Vínculo*
 
 
 ## Detalhamento

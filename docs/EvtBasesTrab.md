@@ -4,7 +4,7 @@
  *evtBasesTrab*
 
 ## Alias
- **
+ *S-5001 - Informações das contribuições sociais por trabalhador*
 
 
 ## Detalhamento

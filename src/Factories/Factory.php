@@ -3,6 +3,10 @@
 namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\DOMImproved as Dom;
+use NFePHP\Common\Certificate;
+use NFePHP\Common\Signer;
+use NFePHP\Common\Strings;
+use NFePHP\Common\Validator;
 use stdClass;
 use DOMDocument;
 use DOMElement;
@@ -10,7 +14,13 @@ use DateTime;
 
 class Factory
 {
+    /**
+     * @var string
+     */
     protected $xmlns = "http://www.esocial.gov.br/schema/evt/";
+    /**
+     * @var string
+     */
     protected $xsi = "http://www.w3.org/2001/XMLSchema-instance";
     /**
      * @var Dom
@@ -21,30 +31,72 @@ class Factory
      */
     protected $std;
     /**
-     * @var DOMElement
+     * @var string
      */
     protected $node;
     /**
      * @var array
      */
     protected $parameters = [];
-    protected $caller;
+    /**
+     * @var string
+     */
+    protected $evtName = '';
+    /**
+     * @var string
+     */
+    protected $evtAlias = '';
+    /**
+     * @var Certificate
+     */
+    protected $certificate;
     
-    
-    public $tpInsc; //byte "\d"
-    public $nrInsc; //string "\d{8,15}"    public $company;
+    /**
+     * @var int
+     */
+    public $tpInsc;
+    /**
+     * @var string
+     */
+    public $nrInsc;
+    /**
+     * @var type
+     */
     public $date;
-    public $tpAmb; //byte "\d"
-    public $procEmi = 1; //byte "\d" 1- App empregador; 2 - App governo
-    public $verProc; //string minLength value="1" maxLength value="20"
+    /**
+     * @var int
+     */
+    public $tpAmb = 3;
+    /**
+     * @var int
+     */
+    public $procEmi = 1;
+    /**
+     * @var string
+     */
+    public $verProc = '';
+    /**
+     * @var string
+     */
     public $layout = '2.2.1';
+    /**
+     * @var string
+     */
     public $layoutStr = '';
-    
-    public $scheme="";
+    /**
+     * @var string
+     */
+    public $scheme = '';
 
-    public function __construct($config, stdClass $std, $caller)
+    /**
+     * Constructor
+     * @param string $config
+     * @param stdClass $std
+     * @param Certificate $certificate
+     */
+    public function __construct($config, stdClass $std, Certificate $certificate)
     {
-        //se properties from config
+        //set properties from config
         $stdConf = json_decode($config);
         $this->date = new DateTime();
         $this->tpInsc = $stdConf->tpInsc;
@@ -54,22 +106,70 @@ class Factory
         $this->verProc = $stdConf->verProc;
         $this->layout = $stdConf->layout;
         $this->layoutStr = $this->strLayoutVer($stdConf->layout);
-        $this->caller = $caller;
+        $this->certificate = $certificate;
         //set properties from inputs
         if (!empty($std)) {
             $std = $this->standardizeParams($this->parameters, $std);
             $this->std = $std;
-            $this->loadProperties($caller);
+            $this->loadProperties();
         }
         $this->scheme = realpath(
             __DIR__
             . "/../../schemes/$this->layoutStr/"
-            . $caller::EVT_NAME
+            . $this->evtName
             . ".xsd"
         );
         $this->init();
     }
     
+    /**
+     * Return xml of event
+     * @return string
+     */
+    public function __toString()
+    {
+        if (empty($this->node)) {
+            $this->toNode();
+        }
+        return $this->node;
+    }
+    
+    /**
+     * Convert xml of event to array
+     * @return array
+     */
+    public function toArray()
+    {
+        return json_decode($this->toJson(), true);
+    }
+    
+    /**
+     * Convert xml to json string
+     * @return string
+     */
+    public function toJson()
+    {
+        if (empty($this->node)) {
+            $this->toNode();
+        }
+        $xml = simplexml_load_string($this->node);
+        return json_encode($xml, JSON_PRETTY_PRINT);
+    }
+    
+    /**
+     * Convert xml to stdClass
+     * @return stdClass
+     */
+    public function toStd()
+    {
+        return json_decode($this->toJson());
+    }
+
+    /**
+     * Stringfy layout number
+     * @param type $layout
+     * @return string
+     */
     protected function strLayoutVer($layout)
     {
         $fils = explode('.', $layout);
@@ -80,42 +180,27 @@ class Factory
         }
         return substr($str, 0, -1);
     }
-
-    /**
-     * Return data from DOMElement in json string
-     * @return string
-     */
-    public function __toString()
-    {
-        if (empty($this->node)) {
-            $this->toNode();
-        }
-        return $this->dom->saveXML();
-    }
-    
-    public function toArray()
-    {
-        return json_decode($this->toJson($this->node), true);
-    }
     
     /**
-     * Convert DOMElement to json string
+     * Sign and validate XML with XSD, can throw Exception
      * @param DOMElement $node
-     * @return string
      */
-    public function toJson()
+    protected function sign(DOMElement $node)
     {
-        if (empty($this->node)) {
-            $this->toNode();
-        }
-        $newdoc = new DOMDocument();
-        $cloned = $node->cloneNode(true);
-        $newdoc->appendChild($newdoc->importNode($cloned, true));
-        $xml_string = $newdoc->saveXML();
-        $xml = simplexml_load_string($xml_string);
-        return json_encode($xml, JSON_PRETTY_PRINT);
+        $xml = $this->dom->saveXML($node);
+        $xml = Strings::clearXmlString($xml);
+        $this->node = Signer::sign(
+            $this->certificate,
+            $xml,
+            $this->evtName,
+            'Id',
+            OPENSSL_ALGO_SHA1,
+            [false,false,null,null]
+        );
+        $xsd = $this->scheme;
+        Validator::isValid($this->node, $xsd);
     }
-    
+
     /**
      * Initialize DOM
      */
@@ -126,10 +211,10 @@ class Factory
             $this->dom->preserveWhiteSpace = false;
             $this->dom->formatOutput = false;
             $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-                . "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/"
-                . $this->caller::EVT_NAME
+                . "<eSocial xmlns=\"$this->xmlns"
+                . $this->evtName
                 . "/$this->layoutStr\" "
-                . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+                . "xmlns:xsi=\"$this->xsi\">"
                 . "</eSocial>";
             $this->dom->loadXML($xml);
         }
@@ -138,9 +223,9 @@ class Factory
     /**
      * Load all properties from $this->std, from __construct method
      */
-    protected function loadProperties($caller)
+    protected function loadProperties()
     {
-        $properties = array_keys(get_object_vars($caller));
+        $properties = array_keys(get_object_vars($this));
         foreach ($properties as $key) {
             $q = strtolower($key);
             if (isset($this->std->$q)) {
@@ -149,7 +234,7 @@ class Factory
         }
     }
     
-        /**
+    /**
      * Standardize parameters
      * @param array $parameters
      * @param stdClass $dados
@@ -175,79 +260,6 @@ class Factory
         return self::propertiesToLower($dados);
     }
     
-    protected static function formatToTag($params, $value = null)
-    {
-        if ($value === null && $params['required'] == true) {
-            $value = self::createEmptyValue($params['type'], $params['format']);
-        } elseif ($value === null && $params['required'] == false) {
-            return $value;
-        }
-        switch ($params['type']) {
-            case 'string':
-                return self::stringTag($value, $params['format']);
-                break;
-            case 'integer':
-                return self::integerTag($value, $params['format']);
-                break;
-            case 'double':
-                return self::doubleTag($value, $params['format']);
-                break;
-            case 'object':
-                return self::objectTag($value);
-                break;
-            case 'DateTime':
-                return self::dataTag($value, $params['format']);
-                break;
-        }
-    }
-    
-    protected static function createEmptyValue($type, $format)
-    {
-        switch ($type) {
-            case 'string':
-                return '';
-                break;
-            case 'integer':
-                return 0;
-                break;
-            case 'double':
-                return 0;
-                break;
-            case 'DateTime':
-                return ;
-                break;
-        }
-    }
-
-    protected static function stringTag($value, $length)
-    {
-        return substr(trim($value), 0, $length);
-    }
-    
-    protected static function integerTag($value, $length)
-    {
-        return str_pad(
-            substr(preg_replace("/[^0-9\s]/", "", $value), 0, $length),
-            '0',
-            STR_PAD_LEFT
-        );
-    }
-
-    protected static function dataTag(DateTime $value, $format)
-    {
-        return $value->format($format);
-    }
-    
-    protected static function doubleTag($value, $format)
-    {
-        $f = explode('v', $format);
-        return number_format($value, $f[1], '.', '');
-    }
-    
-    protected static function objectTag($value)
-    {
-    }
-
     /**
      * Change properties names of stdClass to lower case
      * @param stdClass $dados

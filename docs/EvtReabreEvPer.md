@@ -4,7 +4,7 @@
  *evtReabreEvPer*
 
 ## Alias
- **
+ *S-1298 - Reabertura dos Eventos Periódicos*
 
 
 ## Detalhamento
