@@ -5,6 +5,31 @@
 
 # Em desenvolvimento Não tente usar !!!
 
+*Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
+
+[![Chat][ico-gitter]][link-gitter]
+
+
+[![Latest Stable Version][ico-stable]][link-packagist]
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![License][ico-license]][link-packagist]
+[![Total Downloads][ico-downloads]][link-downloads]
+
+[![Issues][ico-issues]][link-issues]
+[![Forks][ico-forks]][link-forks]
+[![Stars][ico-stars]][link-stars]
+
+Este pacote é aderente com os [PSR-1], [PSR-2] e [PSR-4]. Se você observar negligências de conformidade, por favor envie um patch via pull request.
+
+[PSR-1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+[PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+[PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
+
+Não deixe de se cadastrar no [grupo de discussão do NFePHP](http://groups.google.com/group/nfephp) para acompanhar o desenvolvimento e participar das discussões e tirar duvidas!
+
 ## CRONOGRAMA PREVISTO
 
 Após o fechamento do layout, o Grupo de Trabalho e o Comitê Gestor terão seis meses para trabalhar a proposta;
