@@ -10,7 +10,7 @@ class FactoryId
      * Build Id for eSocial event
      * @param int $tpInsc
      * @param string $nrInsc
-     * @param DateTime $data
+     * @param DateTime $date
      * @param int $sequential
      * @return string
      */
