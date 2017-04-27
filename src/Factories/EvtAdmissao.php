@@ -26,7 +26,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
     /**
      * @var int
      */
-    public $sequencial;
+    public $sequencial = 1;
 
     /**
      * @var string

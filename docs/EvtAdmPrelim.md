@@ -9,9 +9,23 @@
 
 ## Detalhamento
 
-**Conceito do evento:** Este evento é opcional, a ser utilizado quando não for possível enviar todas as informações do evento “S-2200 – Admissão de Trabalhador” até o final do dia imediatamente anterior ao do início da respectiva prestação do serviço. Para tanto, deve ser informado: CNPJ/CPF do empregador, CPF do trabalhador, data de nascimento e data de admissão do empregado. É imprescindível o envio posterior do evento “S-2200 - Admissão de Trabalhador” para complementar as informações da admissão e regularizar o registro do empregado. Quem está obrigado: este evento é opcional. Só deve ser utilizado pelo empregador que admitir um empregado em situação em que não disponha de todas as informações necessárias ao envio do evento “S-2200 – Admissão do Trabalhador”.
+**Conceito do evento:** Este evento é opcional, a ser utilizado quando não for 
+possível enviar todas as informações do evento “S-2200 – Admissão de Trabalhador” 
+até o final do dia imediatamente anterior ao do início da respectiva prestação 
+do serviço. Para tanto, deve ser informado: CNPJ/CPF do empregador, CPF do 
+trabalhador, data de nascimento e data de admissão do empregado. 
+É imprescindível o envio posterior do evento “S-2200 - Admissão de Trabalhador” 
+para complementar as informações da admissão e regularizar o registro do 
+empregado. 
 
-**Prazo de envio:** deve ser enviado até o final do dia imediatamente anterior ao do início da prestação do serviço pelo trabalhador admitido. No caso de admissão de empregado na data do início da obrigatoriedade do eSocial, o prazo de envio da informação de admissão é o próprio dia da admissão.
+**Quem está obrigado:** este evento é opcional. Só deve ser utilizado pelo 
+empregador que admitir um empregado em situação em que não disponha de todas as 
+informações necessárias ao envio do evento “S-2200 – Admissão do Trabalhador”.
+
+**Prazo de envio:** deve ser enviado até o final do dia imediatamente anterior 
+ao do início da prestação do serviço pelo trabalhador admitido. No caso de 
+admissão de empregado na data do início da obrigatoriedade do eSocial, o prazo 
+de envio da informação de admissão é o próprio dia da admissão.
 
 **Pré-requisitos:** envio do evento S-1000 - Informações do Empregador/Contribuinte/Órgão Público/Órgão Público.
 
