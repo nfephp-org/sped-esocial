@@ -9,32 +9,62 @@
 
 ## Detalhamento
 
+**Conceito do evento:** São as informações relativas ao cadastro dos benefícios 
+previdenciários pagos pelos entes federativos, diretamente ou por seus Regimes 
+Próprios de Previdência Social – RPPS, bem como as complementações de benefícios 
+do Regime Geral de Previdência Social - RGPS.
 
+**Quem está obrigado:** Todos os Órgãos Públicos que efetuam pagamento de benefícios previdenciários.
+
+**Prazo de envio:** O evento deve ser enviado antes do evento “S-1207 – Benefícios 
+Previdenciários – RPPS”.
+
+**Pré-requisitos:** O evento exige o cadastro completo das informações dos órgãos 
+públicos constantes no evento “S-1000 - Informações do Empregador/Contribuinte/Órgão Público”.
 
 ## Parâmetros
-O stdClass deve ser carregado com os seguintes parâmetros:
+**$std** nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
 
+- sequencial, numero sequencial do evento;
+- 
+- 
+- 
 
+**$configJson** contêm as informações básicas da empresa [Config](Config.md).
 
 ## Modo de USO
 
 ```php
 use NFePHP\eSocial\Event;
+use NFePHP\Common\Certificate;
+use stdClass;
+
+//constroi o json da configuração
+$config = [
+    'tpInsc' => 1,  //1-CNPJ, 2-CPF
+    'nrInsc' => '99999999999999', //numero do documento
+    'company' => 'Razao Social',
+    'tpAmb' => 3, //tipo de ambiente 1 - Produção;2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
+    'verProc' => '2_2_01', //Informar a versão do aplicativo emissor do evento.
+    'layout' => '2.2.1' //versão do layout
+];
+$configJson = json_encode($config);
 
 try {
+    //instancia Certificate::class com o 
+    //$content = conteudo do certificado PFX
+    //$password = senha de acesso ao certificado PFX
+    $certificate = Certificate::readPfx($content, $password);
+
     $std = new \stdClass();
-    $evt = Event::evtCdBenPrRP($configJson, $std);
+
+    $evt = Event::evtCdBenPrRP($configJson, $std, $certificate);
 } catch (\Exception $e) {
-    //aqui você trata as exceptions
+    //aqui você trata as possiveis exceptions
 }
 ```
 
-Onde:
-- $std nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
-- $configJson contêm as informações básicas da empresa [Config](Config.md).
-
 A classe pode retornar: string XML, string JSON ou array com os dados
-
 
 ## Exemplo de XML
 
