@@ -51,10 +51,10 @@ empregador/contribuinte/órgão público no eSocial.
 ## Parâmetros
 **$std** nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
 
-. sequencial, numero sequnecial do evento;
-. 
-. 
-. 
+- sequencial, numero sequencial do evento;
+- 
+- 
+- 
 
 **$configJson** contêm as informações básicas da empresa [Config](Config.md).
 
@@ -83,6 +83,7 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     $std = new \stdClass();
+
     $evt = Event::evtAdmissao($configJson, $std, $certificate);
 
 } catch (\Exception $e) {

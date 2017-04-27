@@ -35,10 +35,10 @@ constante no item 18 das informações adicionais.
 ## Parâmetros
 **$std** nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
 
-. sequencial, numero sequnecial do evento;
-. 
-. 
-. 
+- sequencial, numero sequencial do evento;
+- 
+- 
+- 
 
 **$configJson** contêm as informações básicas da empresa [Config](Config.md).
 
@@ -68,7 +68,8 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     $std = new \stdClass();
-    $evt = Event::evtAfastTemp($configJson, $std);
+
+    $evt = Event::evtAfastTemp($configJson, $std, $certificate);
 } catch (\Exception $e) {
     //aqui você trata as exceptions
 }

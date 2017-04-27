@@ -32,7 +32,7 @@ de envio da informação de admissão é o próprio dia da admissão.
 ## Parâmetros
 **$std** nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
 
-- sequencial, numero sequnecial do evento;
+- sequencial, numero sequencial do evento;
 - cpfTrab, CPF do trabalhador;
 - dtNascto, data de nascimento do trabalhador em um \DateTime;
 - dtAdm, data de admissão do trabalhador em um \DateTime;
