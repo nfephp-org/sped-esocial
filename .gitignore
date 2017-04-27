@@ -6,6 +6,4 @@ local
 vendor
 nbproject
 composer.lock
-*.pem
-*.pfx
 

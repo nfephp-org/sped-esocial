@@ -46,3 +46,10 @@ O e-Social foi estruturado em sua versão 2.2.01 com 44 eventos
 - [evtTabOperPort S-1080 - Tabela de Operadores Portuários](EvtTabOperPort.md)
 - [evtTabProcesso S-1070 - Tabela de Processos Administrativos/Judiciais](EvtTabProcesso.md)
 - [evtTabRubrica S-1010 - Tabela de Rubricas](EvtTabRubrica.md)
+
+
+## PADRONIZAÇÃO
+
+Para efeito de padronização na passagem dos parametros para as classes foram adotados alguns critérios:
+
+1. Quando a informação for uma data, deve ser inserido um objeto \DateTime do PHP   
