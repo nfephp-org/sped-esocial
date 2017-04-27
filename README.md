@@ -1,5 +1,5 @@
 # e-Social
-**API PHP para a integração de aplicativo com o projeto [SPED eSocial](http://www.esocial.gov.br/) do Ministério do Trabalho, Receita Federal e Caixa Econmica Federal**
+**API PHP para a integração de aplicativo com o projeto [SPED eSocial](http://www.esocial.gov.br/) do Ministério do Trabalho, Receita Federal e Caixa Economica Federal**
 
 *sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
@@ -32,11 +32,15 @@ Não deixe de se cadastrar no [grupo de discussão do NFePHP](http://groups.goog
 
 ## CRONOGRAMA PREVISTO
 
-Após o fechamento do layout, o Grupo de Trabalho e o Comitê Gestor terão seis meses para trabalhar a proposta;
+Após o fechamento do layout [vide 2.2.01](http://www.esocial.gov.br/Leiautes.aspx), o Grupo de Trabalho e o Comitê Gestor terão seis meses para trabalhar a proposta;
+
 Passada essa etapa, haverá mais seis meses para realização de testes;
+
 Ao final desse período, começará a obrigatoriedade para grandes empresas;
+
 O Grupo de Trabalho e o Comitê Gestor estudarão condições diferenciadas para micro e pequenas empresas, dentre as quais, o MEI;
-Se forem obedecidas estas regras o novo sistema só  deverá entrar em vigor no início de 2017.
+
+Se forem obedecidas estas regras o novo sistema só deverá entrar em vigor no início de 2018.
 
 ### *[RESOLUÇÃO Nº 2, DE 30 DE AGOSTO DE 2016](http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=77006&visao=anotado) estabelece cronograma de adesão dos empregadores ao eSocial*
 
