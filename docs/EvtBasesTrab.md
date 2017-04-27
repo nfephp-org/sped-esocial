@@ -9,11 +9,9 @@
 
 ## Detalhamento
 
-
+Os eventos totalizadores (S-5001/S-5002/S-5011/S-5012) são eventos de retorno ao contribuinte. Para maiores esclarecimentos sobre estes eventos, verificar as orientações específicas para o evento S-4000 - Solicitação de Totalização de Eventos, Bases e Contribuições, no capítulo III.
 
 ## Parâmetros
-O stdClass deve ser carregado com os seguintes parâmetros:
-
 
 
 ## Modo de USO
@@ -29,12 +27,7 @@ try {
 }
 ```
 
-Onde:
-- $std nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
-- $configJson contêm as informações básicas da empresa [Config](Config.md).
-
 A classe pode retornar: string XML, string JSON ou array com os dados
-
 
 ## Exemplo de XML
 

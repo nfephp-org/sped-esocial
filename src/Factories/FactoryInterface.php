@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories;
 
 interface FactoryInterface
 {
-    public function toString();
+    public function toXML();
     
     public function toJson();
     

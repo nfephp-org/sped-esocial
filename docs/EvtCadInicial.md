@@ -9,32 +9,70 @@
 
 ## Detalhamento
 
+**Conceito do evento:** Este evento se refere ao arquivo que será enviado pela 
+empresa/órgão público no início da implantação do eSocial, com todos os vínculos 
+ativos, com seus dados cadastrais atualizados, servindo de base para construção 
+do "Registro de Eventos Trabalhistas" - RET, o qual será utilizado para validação 
+dos eventos de folha de pagamento e demais eventos enviados posteriormente.
+É o retrato dos vínculos empregatícios existentes na data da implantação do eSocial.
 
+**Quem está obrigado:** todo empregador/contribuinte/órgão público que já possua 
+vínculos trabalhistas ativos na data de implantação do eSocial, assim como as 
+empresas de trabalho temporário (Lei no 6.019/74), que possuam trabalhadores 
+temporários com contratos em vigor na data dessa implantação. Os vínculos não-ativos 
+na data de implantação (desligados antes da implantação do eSocial) não são objeto 
+deste Cadastramento Inicial.
+
+**Prazo de envio:** deverá ser transmitido antes do envio de qualquer evento 
+periódico ou não periódico relativos a esses vínculos e até o dia 7 (sete) do 
+mês subsequente ao do início de sua obrigatoriedade.
+
+**Pré-requisitos:** envio do evento “S-1000 - Informações do Empregador/Contribuinte/Órgão Público/Órgão Público e envio das tabelas do empregador/contribuinte/órgão público no eSocial.
 
 ## Parâmetros
-O stdClass deve ser carregado com os seguintes parâmetros:
+**$std** nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
 
+- sequencial, numero sequencial do evento;
+- 
+- 
+- 
+
+**$configJson** contêm as informações básicas da empresa [Config](Config.md).
 
 
 ## Modo de USO
 
 ```php
 use NFePHP\eSocial\Event;
+use NFePHP\Common\Certificate;
+use stdClass;
+
+//constroi o json da configuração
+$config = [
+    'tpInsc' => 1,  //1-CNPJ, 2-CPF
+    'nrInsc' => '99999999999999', //numero do documento
+    'company' => 'Razao Social',
+    'tpAmb' => 3, //tipo de ambiente 1 - Produção;2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
+    'verProc' => '2_2_01', //Informar a versão do aplicativo emissor do evento.
+    'layout' => '2.2.1' //versão do layout
+];
+$configJson = json_encode($config);
 
 try {
+    //instancia Certificate::class com o 
+    //$content = conteudo do certificado PFX
+    //$password = senha de acesso ao certificado PFX
+    $certificate = Certificate::readPfx($content, $password);
+
     $std = new \stdClass();
-    $evt = Event::evtCadInicial($configJson, $std);
+
+    $evt = Event::evtCadInicial($configJson, $std, $certificate);
 } catch (\Exception $e) {
-    //aqui você trata as exceptions
+    //aqui você trata as possiveis exceptions
 }
 ```
 
-Onde:
-- $std nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
-- $configJson contêm as informações básicas da empresa [Config](Config.md).
-
 A classe pode retornar: string XML, string JSON ou array com os dados
-
 
 ## Exemplo de XML
 

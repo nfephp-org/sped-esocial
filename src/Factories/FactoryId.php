@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories;
 
 use DateTime;
 
-class EvtId
+class FactoryId
 {
     /**
      * Build Id for eSocial event

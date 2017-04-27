@@ -17,7 +17,7 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\eSocial\Factories\Factory;
 use NFePHP\eSocial\Factories\FactoryInterface;
-use NFePHP\eSocial\Factories\EvtId;
+use NFePHP\eSocial\Factories\FactoryId;
 use NFePHP\Common\Certificate;
 use stdClass;
 
@@ -61,7 +61,7 @@ class EvtRemun extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = EvtId::build(
+        $evtid = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
@@ -78,20 +78,20 @@ class EvtRemun extends Factory implements FactoryInterface
             $ideEvento,
             "tpAmb",
             $this->tpAmb,
-            rue
+            true
         );
         $this->dom->addChild(
             $ideEvento,
             "procEmi",
             $this->procEmi,
-            rue
+            true
         );        $this->dom->addChild(
             $ideEvento,
             "verProc",
             $this->verProc,
             true
         );
-        $evtAdmPrelim->appendChild($ideEvento);
+        $evtRemun->appendChild($ideEvento);
     
         $ideEmpregador = $this->dom->createElement("ideEmpregador");
         $this->dom->addChild(
@@ -106,11 +106,11 @@ class EvtRemun extends Factory implements FactoryInterface
             $this->nrInsc,
             true
         );
-        $evtAdmPrelim->appendChild($ideEmpregador);
+        $evtRemun->appendChild($ideEmpregador);
         
 
 
-        $eSocial->appendChild($evtAdmPrelim);
+        $eSocial->appendChild($evtRemun);
         $this->sign($eSocial);
     }
 }

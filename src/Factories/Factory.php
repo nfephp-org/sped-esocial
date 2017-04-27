@@ -126,7 +126,7 @@ class Factory
      * Return xml of event
      * @return string
      */
-    public function toString()
+    public function toXML()
     {
         if (empty($this->node)) {
             $this->toNode();
@@ -152,8 +152,18 @@ class Factory
         if (empty($this->node)) {
             $this->toNode();
         }
-        $xml = simplexml_load_string($this->node);
-        return json_encode($xml, JSON_PRETTY_PRINT);
+        $dom = new \DOMDocument();
+        $dom->loadXML($this->node);
+        //a assinatura só faz sentido no XML, os demais formatos
+        //não devem conter dados da assinatura
+        $node = Signer::removeSignature($dom);
+        $sxml = simplexml_load_string($node->saveXML());
+       
+        return str_replace(
+            '@attributes',
+            'attributes',
+            json_encode($sxml, JSON_PRETTY_PRINT)
+        );
     }
     
     /**
