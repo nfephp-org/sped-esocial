@@ -126,7 +126,7 @@ class Factory
      * Return xml of event
      * @return string
      */
-    public function __toString()
+    public function toString()
     {
         if (empty($this->node)) {
             $this->toNode();
