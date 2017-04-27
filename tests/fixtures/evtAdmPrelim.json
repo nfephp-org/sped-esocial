@@ -1,0 +1,21 @@
+{
+    "evtAdmPrelim": {
+        "attributes": {
+            "Id": "ID1999999999999992017042711123000001"
+        },
+        "ideEvento": {
+            "tpAmb": "3",
+            "procEmi": "1",
+            "verProc": "2_2_01"
+        },
+        "ideEmpregador": {
+            "tpInsc": "1",
+            "nrInsc": "99999999999999"
+        },
+        "infoRegPrelim": {
+            "cpfTrab": "00232133417",
+            "dtNascto": "1961-02-12",
+            "dtAdm": "2017-04-12"
+        }
+    }
+}

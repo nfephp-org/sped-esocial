@@ -94,8 +94,11 @@ class Factory
      * @param stdClass $std
      * @param Certificate $certificate
      */
-    public function __construct($config, stdClass $std, Certificate $certificate)
-    {
+    public function __construct(
+        $config,
+        stdClass $std,
+        Certificate $certificate = null
+    ) {
         //set properties from config
         $stdConf = json_decode($config);
         $this->date = new DateTime();
@@ -199,16 +202,19 @@ class Factory
     {
         $xml = $this->dom->saveXML($node);
         $xml = Strings::clearXmlString($xml);
-        $this->node = Signer::sign(
-            $this->certificate,
-            $xml,
-            $this->evtName,
-            'Id',
-            OPENSSL_ALGO_SHA1,
-            [false,false,null,null]
-        );
-        $xsd = $this->scheme;
-        Validator::isValid($this->node, $xsd);
+        if (!empty($this->certificate)) {
+            $xml = Signer::sign(
+                $this->certificate,
+                $xml,
+                $this->evtName,
+                'Id',
+                OPENSSL_ALGO_SHA1,
+                [false,false,null,null]
+            );
+            $xsd = $this->scheme;
+            Validator::isValid($xml, $xsd);
+        }
+        $this->node = $xml;
     }
 
     /**

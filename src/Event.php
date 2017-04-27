@@ -142,7 +142,10 @@ class Event
             throw new InvalidArgumentException("Este evento [$name] não foi encontrado.");
         }
         $className = self::$available[$realname];
-        return new $className($arguments[0], $arguments[1], $arguments[2]);
+        if (count($arguments) > 2) {
+            return new $className($arguments[0], $arguments[1], $arguments[2]);
+        }
+        return new $className($arguments[0], $arguments[1]);
     }
     
     public static function createFromJson($json, $certificate)

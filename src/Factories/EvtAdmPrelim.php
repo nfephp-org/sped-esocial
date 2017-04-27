@@ -56,14 +56,15 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
 
     /**
      * Constructor
-     * @param type $config
+     * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
+     * @param string date
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null
     ) {
         parent::__construct($config, $std, $certificate);
     }
