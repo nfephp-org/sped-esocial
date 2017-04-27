@@ -12,7 +12,7 @@ use DOMDocument;
 use DOMElement;
 use DateTime;
 
-class Factory
+abstract class Factory
 {
     /**
      * @var string
@@ -60,7 +60,11 @@ class Factory
      */
     public $nrInsc;
     /**
-     * @var type
+     * @var string
+     */
+    public $company;
+    /**
+     * @var DateTime
      */
     public $date;
     /**
@@ -125,6 +129,8 @@ class Factory
         $this->init();
     }
     
+    abstract protected function toNode();
+
     /**
      * Return xml of event
      * @return string
@@ -259,6 +265,8 @@ class Factory
     protected static function standardizeParams($parameters, stdClass $dados)
     {
         $properties = get_object_vars($dados);
+        $value = null;
+        $keyList = [];
         foreach ($properties as $key => $value) {
             $keyList[strtoupper($key)] = gettype($value);
         }
@@ -268,7 +276,7 @@ class Factory
                 //ela deve ser criada pois todos os parametros devem
                 //ser definidos
                 $dados->{$key} = $value;
-            } elseif ($keyList[strtoupper($key)] !== 'object' && strpos($type, ':') > 0) {
+            } elseif ($keyList[strtoupper($key)] !== 'object') {
                 //nesse caso a propriedade existe mas não é a classe exigida
                 $dados->{$key} = $value;
             }
