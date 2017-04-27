@@ -1,9 +1,32 @@
 # e-Social
-**API PHP para a integração de aplicativo com o projeto SPED eFinanceira da Receita Federal do Brasil**
+**API PHP para a integração de aplicativo com o projeto [SPED eSocial](http://www.esocial.gov.br/) do Ministério do Trabalho, Receita Federal e Caixa Econmica Federal**
 
-*sped-esocial* é um framework que permite a integração de um aplicativo, com o serviço do projeto SPED da RFB denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
+*sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
 # Em desenvolvimento Não tente usar !!!
+
+## CRONOGRAMA PREVISTO
+
+Após o fechamento do layout, o Grupo de Trabalho e o Comitê Gestor terão seis meses para trabalhar a proposta;
+Passada essa etapa, haverá mais seis meses para realização de testes;
+Ao final desse período, começará a obrigatoriedade para grandes empresas;
+O Grupo de Trabalho e o Comitê Gestor estudarão condições diferenciadas para micro e pequenas empresas, dentre as quais, o MEI;
+Se forem obedecidas estas regras o novo sistema só  deverá entrar em vigor no início de 2017.
+
+### *[RESOLUÇÃO Nº 2, DE 30 DE AGOSTO DE 2016](http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=77006&visao=anotado) estabelece cronograma de adesão dos empregadores ao eSocial*
+
+*Art. 2º O início da obrigatoriedade de utilização do eSocial dar-se-á:*
+
+*I - em 1º de janeiro de 2018, para os empregadores e contribuintes com faturamento no ano de 2016 acima de R$ 78.000.000,00 (setenta e oito milhões de reais); e*
+
+*II - em 1º de julho de 2018, para os demais empregadores e contribuintes.*
+
+
+**Liberação da fase de Testes: 01/07/2017**
+
+**Empresas do SIMPLES NACIONAL : a definir**
+
+[CAIXA Nº 761 DE 12/04/2017](https://www.legisweb.com.br/legislacao/?id=342289)
 
 
 ## CONCEITO DO e-SOCIAL
@@ -63,22 +86,6 @@ as organizações permanecem obrigadas a submeter os empregados aos exames previ
 - Demissional: Obrigatoriamente desde que o último exame médico ocupacional tenha sido realizado há mais de 135 dias para as empresas de grau de risco 1 e 2 ou 90 dias para as empresas de grau de risco 3 e 4;
 
 Em todos os tipos de exame ocupacional, será obrigatório o registro no eSocial, através do evento atestado de saúde ocupacional S-2280, com o detalhamento do médico responsável, número do registro (CRM), exames realizados etc.
-
-## CRONOGRAMA PREVISTO
-
-Após o fechamento do layout, o Grupo de Trabalho e o Comitê Gestor terão seis meses para trabalhar a proposta;
-Passada essa etapa, haverá mais seis meses para realização de testes;
-Ao final desse período, começará a obrigatoriedade para grandes empresas;
-O Grupo de Trabalho e o Comitê Gestor estudarão condições diferenciadas para micro e pequenas empresas, dentre as quais, o MEI;
-Se forem obedecidas estas regras o novo sistema só  deverá entrar em vigor no início de 2017.
-
-### *RESOLUÇÃO Nº 2, DE 30 DE AGOSTO DE 2016 estabelece cronograma de adesão dos empregadores ao eSocial*
-
-**Art. 2º O início da obrigatoriedade de utilização do eSocial dar-se-á:**
-
-**I - em 1º de janeiro de 2018, para os empregadores e contribuintes com faturamento no ano de 2016 acima de R$ 78.000.000,00 (setenta e oito milhões de reais); e*
-
-**II - em 1º de julho de 2018, para os demais empregadores e contribuintes.**
 
 ## Contribuindo
 Este é um projeto totalmente *OpenSource*, para usa-lo e modifica-lo você não paga absolutamente nada. Porém para continuarmos a mante-lo é necessário qua alguma contribuição seja feita, seja auxiliando na codificação, na documentação ou na realização de testes e identificação de falhas e BUGs.

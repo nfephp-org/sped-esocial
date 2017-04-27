@@ -6,79 +6,142 @@ namespace NFePHP\eSocial;
  * Class eSocial Event constructor
  *
  * @category  NFePHP
- * @package   NFePHP\eSocial\Event
- * @copyright NFePHP Copyright (c) 2008 - 2017
+ * @package   NFePHP\eSocial
+ * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
- * @link      http://github.com/nfephp-org/sped-nfe for the canonical source repository
+ * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 class Event
 {
+    /**
+     * Relationship between the name of the event and its respective class
+     * @var array
+     */
     private static $available = [
-        'evtAdmissao' => Factories\EvtAdmissao::class,
-        'evtCS' => Factories\EvtCS::class,
-        'evtRmnRPPS' => Factories\EvtRmnRPPS::class,
-        'evtAdmPrelim' => Factories\EvtAdmPrelim::class,
-        'evtDeslig' => Factories\EvtDeslig::class,
-        'evtTabAmbiente' => Factories\EvtTabAmbiente::class,
-        'evtAfastTemp' => Factories\EvtAfastTemp::class,
-        'evtExclusao' => Factories\EvtExclusao::class,
-        'evtTabCargo' => Factories\EvtTabCargo::class,
-        'evtAltCadastral' => Factories\EvtAltCadastral::class,
-        'evtExpRisco' => Factories\EvtExpRisco::class,
-        'evtTabCarreira' => Factories\EvtTabCarreira::class,
-        'evtAltContratual' => Factories\EvtAltContratual::class,
-        'evtFechaEvPer' => Factories\EvtFechaEvPer::class,
-        'evtTabEstab' => Factories\EvtTabEstab::class,
-        'evtAqProd' => Factories\EvtAqProd::class,
-        'evtInfoComplPer' => Factories\EvtInfoComplPer::class,
-        'evtTabFuncao' => Factories\EvtTabFuncao::class,
-        'evtAvPrevio' => Factories\EvtAvPrevio::class,
-        'evtInfoEmpregador' => Factories\EvtInfoEmpregador::class,
-        'evtTabHorTur' => Factories\EvtTabHorTur::class,
-        'evtBasesTrab' => Factories\EvtBasesTrab::class,
-        'evtInsApo' => Factories\EvtInsApo::class,
-        'evtTabLotacao' => Factories\EvtTabLotacao::class,
-        'evtBenPrRP' => Factories\EvtBenPrRP::class,
-        'evtIrrfBenef' => Factories\EvtIrrfBenef::class,
-        'evtTabOperPort' => Factories\EvtTabOperPort::class,
-        'evtCadInicial' => Factories\EvtCadInicial::class,
-        'evtIrrf' => Factories\EvtIrrf::class,
-        'evtTabProcesso' => Factories\EvtTabProcesso::class,
-        'evtCAT' => Factories\EvtCAT::class,
-        'evtMonit' => Factories\EvtMonit::class,
-        'evtTabRubrica' => Factories\EvtTabRubrica::class,
-        'evtCdBenPrRP' => Factories\EvtCdBenPrRP::class,
-        'evtPgtos' => Factories\EvtPgtos::class,
-        'evtTSVAltContr' => Factories\EvtTSVAltContr::class,
-        'evtComProd' => Factories\EvtComProd::class,
-        'evtReabreEvPer' => Factories\EvtReabreEvPer::class,
-        'evtTSVInicio' => Factories\EvtTSVInicio::class,
-        'evtContratAvNP' => Factories\EvtContratAvNP::class,
-        'evtReintegr' => Factories\EvtReintegr::class,
-        'evtTSVTermino' => Factories\EvtTSVTermino::class,
-        'evtContrSindPatr' => Factories\EvtContrSindPatr::class,
-        'evtRemun' => Factories\EvtRemun::class
+        'evtadmissao' => Factories\EvtAdmissao::class,
+        'evtcs' => Factories\EvtCS::class,
+        'evtrmnrpps' => Factories\EvtRmnRPPS::class,
+        'evtadmprelim' => Factories\EvtAdmPrelim::class,
+        'evtdeslig' => Factories\EvtDeslig::class,
+        'evttabambiente' => Factories\EvtTabAmbiente::class,
+        'evtafasttemp' => Factories\EvtAfastTemp::class,
+        'evtexclusao' => Factories\EvtExclusao::class,
+        'evttabcargo' => Factories\EvtTabCargo::class,
+        'evtaltcadastral' => Factories\EvtAltCadastral::class,
+        'evtexprisco' => Factories\EvtExpRisco::class,
+        'evttabcarreira' => Factories\EvtTabCarreira::class,
+        'evtaltcontratual' => Factories\EvtAltContratual::class,
+        'evtfechaevper' => Factories\EvtFechaEvPer::class,
+        'evttabestab' => Factories\EvtTabEstab::class,
+        'evtaqprod' => Factories\EvtAqProd::class,
+        'evtinfocomplper' => Factories\EvtInfoComplPer::class,
+        'evttabfuncao' => Factories\EvtTabFuncao::class,
+        'evtavprevio' => Factories\EvtAvPrevio::class,
+        'evtinfoempregador' => Factories\EvtInfoEmpregador::class,
+        'evttabhortur' => Factories\EvtTabHorTur::class,
+        'evtbasestrab' => Factories\EvtBasesTrab::class,
+        'evtinsapo' => Factories\EvtInsApo::class,
+        'evttablotacao' => Factories\EvtTabLotacao::class,
+        'evtbenprrp' => Factories\EvtBenPrRP::class,
+        'evtirrfbenef' => Factories\EvtIrrfBenef::class,
+        'evttaboperport' => Factories\EvtTabOperPort::class,
+        'evtcadinicial' => Factories\EvtCadInicial::class,
+        'evtirrf' => Factories\EvtIrrf::class,
+        'evttabprocesso' => Factories\EvtTabProcesso::class,
+        'evtcat' => Factories\EvtCAT::class,
+        'evtmonit' => Factories\EvtMonit::class,
+        'evttabrubrica' => Factories\EvtTabRubrica::class,
+        'evtcdbenprrp' => Factories\EvtCdBenPrRP::class,
+        'evtpgtos' => Factories\EvtPgtos::class,
+        'evttsvaltcontr' => Factories\EvtTSVAltContr::class,
+        'evtcomprod' => Factories\EvtComProd::class,
+        'evtreabreevper' => Factories\EvtReabreEvPer::class,
+        'evttsvinicio' => Factories\EvtTSVInicio::class,
+        'evtcontratavnp' => Factories\EvtContratAvNP::class,
+        'evtreintegr' => Factories\EvtReintegr::class,
+        'evttsvtermino' => Factories\EvtTSVTermino::class,
+        'evtcontrsindpatr' => Factories\EvtContrSindPatr::class,
+        'evtremun' => Factories\EvtRemun::class
+    ];
+    
+    /**
+     * Relationship between the code of the event and its respective name
+     * @var array
+     */
+    private static $aliases = [
+        's2200' => 'evtadmissao',
+        's5011' => 'evtcs',
+        's1202' => 'evtrmnrpps',
+        's2190' => 'evtadmprelim',
+        's2299' => 'evtdeslig',
+        's1060' => 'evttabambiente',
+        's2230' => 'evtafasttemp',
+        's3000' => 'evtexclusao',
+        's1030' => 'evttabcargo',
+        's2205' => 'evtaltcadastral',
+        's2240' => 'evtexprisco',
+        's1035' => 'evttabcarreira',
+        's2206' => 'evtaltcontratual',
+        's1299' => 'evtfechaevper',
+        's1005' => 'evttabestab',
+        's1250' => 'evtaqprod',
+        's1280' => 'evtinfocomplper',
+        's1040' => 'evttabfuncao',
+        's2250' => 'evtavprevio',
+        's1000' => 'evtinfoempregador',
+        's1050' => 'evttabhortur',
+        's5001' => 'evtbasestrab',
+        's2241' => 'evtinsapo',
+        's1020' => 'evttablotacao',
+        's1207' => 'evtbenprrp',
+        's5002' => 'evtirrfbenef',
+        's1080' => 'evttaboperport',
+        's2100' => 'evtcadinicial',
+        's5012' => 'evtirrf',
+        's1070' => 'evttabprocesso',
+        's2210' => 'evtcat',
+        's2220' => 'evtmonit',
+        's1010' => 'evttabrubrica',
+        's2400' => 'evtcdbenprrp',
+        's1210' => 'evtpgtos',
+        's2306' => 'evttsvaltcontr',
+        's1260' => 'evtcomprod',
+        's1298' => 'evtreabreevper',
+        's2300' => 'evttsvinicio',
+        's1270' => 'evtcontratavnp',
+        's2298' => 'evtreintegr',
+        's2399' => 'evttsvtermino',
+        's1300' => 'evtcontrsindpatr',
+        's1200' => 'evtremun'
     ];
     
     /**
      * Call classes to build XML eSocial Event
-     * @param type $name
-     * @param type $arguments
+     * @param string $name
+     * @param array $arguments [config, std, certificate]
      * @return \NFePHP\eSocial\Factories\className
      * @throws InvalidArgumentException
      */
     public static function __callStatic($name, $arguments)
     {
-        $className = self::$available[strtolower($name)];
-        if (empty($className)) {
-            throw new InvalidArgumentException('Event name not found.');
+        $name = str_replace('-', '', strtolower($name));
+        $realname = $name;
+        if (substr($name, 0, 1) == 's') {
+            if (!array_key_exists($name, self::$aliases)) {
+                throw new InvalidArgumentException("Este evento [$name] não foi encontrado.");
+            }
+            $realname = self::$aliases[$name];
         }
-        return new $className($arguments[0]);
+        if (!array_key_exists($realname, self::$available)) {
+            throw new InvalidArgumentException("Este evento [$name] não foi encontrado.");
+        }
+        $className = self::$available[$realname];
+        return new $className($arguments[0], $arguments[1], $arguments[2]);
     }
 }
