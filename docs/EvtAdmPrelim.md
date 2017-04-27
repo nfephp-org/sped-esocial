@@ -9,34 +9,63 @@
 
 ## Detalhamento
 
+**Conceito do evento:** Este evento é opcional, a ser utilizado quando não for possível enviar todas as informações do evento “S-2200 – Admissão de Trabalhador” até o final do dia imediatamente anterior ao do início da respectiva prestação do serviço. Para tanto, deve ser informado: CNPJ/CPF do empregador, CPF do trabalhador, data de nascimento e data de admissão do empregado. É imprescindível o envio posterior do evento “S-2200 - Admissão de Trabalhador” para complementar as informações da admissão e regularizar o registro do empregado. Quem está obrigado: este evento é opcional. Só deve ser utilizado pelo empregador que admitir um empregado em situação em que não disponha de todas as informações necessárias ao envio do evento “S-2200 – Admissão do Trabalhador”.
 
+**Prazo de envio:** deve ser enviado até o final do dia imediatamente anterior ao do início da prestação do serviço pelo trabalhador admitido. No caso de admissão de empregado na data do início da obrigatoriedade do eSocial, o prazo de envio da informação de admissão é o próprio dia da admissão.
+
+**Pré-requisitos:** envio do evento S-1000 - Informações do Empregador/Contribuinte/Órgão Público/Órgão Público.
 
 ## Parâmetros
-O stdClass deve ser carregado com os seguintes parâmetros:
+**$std** nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
 
+. sequencial, numero sequnecial do evento;
+. cpfTrab, CPF do trabalhador;
+. dtNascto, data de nascimento do trabalhador em um \DateTime;
+. dtAdm, data de admissão do trabalhador em um \DateTime;
 
+**$configJson** contêm as informações básicas da empresa [Config](Config.md).
 
 ## Modo de USO
 
 ```php
 use NFePHP\eSocial\Event;
+use NFePHP\Common\Certificate;
+use stdClass;
+
+//constroi o json da configuração
+$config = [
+    'tpInsc' => 1,  //1-CNPJ, 2-CPF
+    'nrInsc' => '99999999999999', //numero do documento
+    'company' => 'Razao Social',
+    'tpAmb' => 3, //tipo de ambiente 1 - Produção;2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
+    'verProc' => '2_2_01', //Informar a versão do aplicativo emissor do evento.
+    'layout' => '2.2.1' //versão do layout
+];
+$configJson = json_encode($config);
+
 
 try {
+    //instancia Certificate::class com o 
+    //$content = conteudo do certificado PFX
+    //$password = senha de acesso ao certificado PFX
+    $certificate = Certificate::readPfx($content, $password);
+
     $std = new \stdClass();
-    $evt = Event::evtAdmPrelim($configJson, $std);
+    $std->sequencial = 1;
+    $std->cpfTrab = '00232133417';
+    $std->dtNascto = new \DateTime('1961-02-12');
+    $std->dtAdm = new \DateTime('2017-04-12');
+
+    $xml = Event::evtAdmPrelim($configJson, $std, $certificate)->toXML();
+
 } catch (\Exception $e) {
-    //aqui você trata as exceptions
+    //aqui você trata as possiveis exceptions
 }
 ```
 
-Onde:
-- $std nesta variavel são inseridos os dados referentes ao evento, usando a mesma nomenclatura estabelecida no XSD ou descrita no manual.
-- $configJson contêm as informações básicas da empresa [Config](Config.md).
-
 A classe pode retornar: string XML, string JSON ou array com os dados
 
-
-## Exemplo de XML
+## Exemplo do XML
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

@@ -17,7 +17,7 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\eSocial\Factories\Factory;
 use NFePHP\eSocial\Factories\FactoryInterface;
-use NFePHP\eSocial\Factories\EvtId;
+use NFePHP\eSocial\Factories\FactoryId;
 use NFePHP\Common\Certificate;
 use stdClass;
 
@@ -73,7 +73,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = EvtId::build(
+        $evtid = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,

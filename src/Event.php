@@ -144,4 +144,12 @@ class Event
         $className = self::$available[$realname];
         return new $className($arguments[0], $arguments[1], $arguments[2]);
     }
+    
+    public static function createFromJson($json, $certificate)
+    {
+    }
+    
+    public static function createFromArray($array, $certificate)
+    {
+    }
 }
