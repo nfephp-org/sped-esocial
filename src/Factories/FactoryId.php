@@ -21,7 +21,7 @@ class FactoryId
         $sequential = 1
     ) {
         if (empty($sequential)) {
-            $seq = 1;
+            $sequential = 1;
         }
         return "ID"
             . $tpInsc
