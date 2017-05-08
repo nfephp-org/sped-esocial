@@ -24,7 +24,10 @@
     ],
     "require": {
         "php" : "~5.6|~7.0",
-        "nfephp-org/sped-common" : "v5.0.x-dev"
+        "nfephp-org/sped-common" : "^5.0",
+        "league/json-guard": "dev-master",
+        "goetas-webservices/xsd-reader": "^0.2.6",
+        "league/json-reference": "^1.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.8",
@@ -50,5 +53,5 @@
             "dev-master": "1.0-dev"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

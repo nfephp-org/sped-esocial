@@ -33,6 +33,14 @@ abstract class Factory
     /**
      * @var string
      */
+    protected $xml;
+    /**
+     * @var DOMNode
+     */
+    protected $eSocial;
+    /**
+     * @var DOMElement
+     */
     protected $node;
     /**
      * @var array
@@ -114,12 +122,12 @@ abstract class Factory
         $this->layout = $stdConf->layout;
         $this->layoutStr = $this->strLayoutVer($stdConf->layout);
         $this->certificate = $certificate;
-        //set properties from inputs
-        if (!empty($std)) {
-            $std = $this->standardizeParams($this->parameters, $std);
-            $this->std = $std;
-            $this->loadProperties();
+        if (empty($std)) {
+            throw new \InvalidArgumentException(
+                'Você deve passar os parametros num stdClass'
+            );
         }
+        $this->std = $this->propertiesToLower($std);
         $this->scheme = realpath(
             __DIR__
             . "/../../schemes/$this->layoutStr/"
@@ -137,10 +145,10 @@ abstract class Factory
      */
     public function toXML()
     {
-        if (empty($this->node)) {
+        if (empty($this->xml)) {
             $this->toNode();
         }
-        return $this->node;
+        return $this->xml;
     }
     
     /**
@@ -158,11 +166,11 @@ abstract class Factory
      */
     public function toJson()
     {
-        if (empty($this->node)) {
+        if (empty($this->xml)) {
             $this->toNode();
         }
         $dom = new \DOMDocument();
-        $dom->loadXML($this->node);
+        $dom->loadXML($this->xml);
         //a assinatura só faz sentido no XML, os demais formatos
         //não devem conter dados da assinatura
         $node = Signer::removeSignature($dom);
@@ -192,7 +200,6 @@ abstract class Factory
     protected function strLayoutVer($layout)
     {
         $fils = explode('.', $layout);
-        $c = 0;
         $str = 'v';
         foreach ($fils as $fil) {
             $str .= str_pad($fil, 2, '0', STR_PAD_LEFT). '_';
@@ -202,11 +209,10 @@ abstract class Factory
     
     /**
      * Sign and validate XML with XSD, can throw Exception
-     * @param DOMElement $node
      */
-    protected function sign(DOMElement $node)
+    protected function sign()
     {
-        $xml = $this->dom->saveXML($node);
+        $xml = $this->dom->saveXML($this->eSocial);
         $xml = Strings::clearXmlString($xml);
         if (!empty($this->certificate)) {
             $xml = Signer::sign(
@@ -220,7 +226,7 @@ abstract class Factory
             $xsd = $this->scheme;
             Validator::isValid($xml, $xsd);
         }
-        $this->node = $xml;
+        $this->xml = $xml;
     }
 
     /**
@@ -239,50 +245,35 @@ abstract class Factory
                 . "xmlns:xsi=\"$this->xsi\">"
                 . "</eSocial>";
             $this->dom->loadXML($xml);
+            $this->eSocial = $this->dom->getElementsByTagName('eSocial')->item(0);
+            $evtid = FactoryId::build(
+                $this->tpInsc,
+                $this->nrInsc,
+                $this->date,
+                $this->std->sequencial
+            );
+            $this->node = $this->dom->createElement($this->evtName);
+            $att = $this->dom->createAttribute('Id');
+            $att->value = $evtid;
+            $this->node->appendChild($att);
+            
+            $ideEmpregador = $this->dom->createElement("ideEmpregador");
+            $this->dom->addChild(
+                $ideEmpregador,
+                "tpInsc",
+                $this->tpInsc,
+                true
+            );
+            $this->dom->addChild(
+                $ideEmpregador,
+                "nrInsc",
+                $this->nrInsc,
+                true
+            );
+            $this->node->appendChild($ideEmpregador);
         }
     }
     
-    /**
-     * Load all properties from $this->std, from __construct method
-     */
-    protected function loadProperties()
-    {
-        $properties = array_keys(get_object_vars($this));
-        foreach ($properties as $key) {
-            $q = strtolower($key);
-            if (isset($this->std->$q)) {
-                $this->$key = $this->std->$q;
-            }
-        }
-    }
-    
-    /**
-     * Standardize parameters
-     * @param array $parameters
-     * @param stdClass $dados
-     * @return stdClass
-     */
-    protected static function standardizeParams($parameters, stdClass $dados)
-    {
-        $properties = get_object_vars($dados);
-        $value = null;
-        $keyList = [];
-        foreach ($properties as $key => $value) {
-            $keyList[strtoupper($key)] = gettype($value);
-        }
-        foreach ($parameters as $key => $data) {
-            if (!key_exists(strtoupper($key), $keyList)) {
-                //nesse caso a classe não contêm a propriedade então
-                //ela deve ser criada pois todos os parametros devem
-                //ser definidos
-                $dados->{$key} = $value;
-            } elseif ($keyList[strtoupper($key)] !== 'object') {
-                //nesse caso a propriedade existe mas não é a classe exigida
-                $dados->{$key} = $value;
-            }
-        }
-        return self::propertiesToLower($dados);
-    }
     
     /**
      * Change properties names of stdClass to lower case
@@ -294,8 +285,11 @@ abstract class Factory
         $properties = get_object_vars($dados);
         $clone = new stdClass();
         foreach ($properties as $key => $value) {
+            if ($value instanceOf stdClass) {
+                $value = propertiesToLower($value);
+            }
             $nk = strtolower($key);
-             $clone->{$nk} = $value;
+            $clone->{$nk} = $value;
         }
         return $clone;
     }
