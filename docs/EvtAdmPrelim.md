@@ -52,11 +52,10 @@ $config = [
     'nrInsc' => '99999999999999', //numero do documento
     'company' => 'Razao Social',
     'tpAmb' => 3, //tipo de ambiente 1 - Produção;2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_2_01', //Informar a versão do aplicativo emissor do evento.
-    'layout' => '2.2.1' //versão do layout
+    'verProc' => '2_2_02', //Informar a versão do aplicativo emissor do evento.
+    'layout' => '2.2.2' //versão do layout
 ];
 $configJson = json_encode($config);
-
 
 try {
     //instancia Certificate::class com o 
@@ -67,8 +66,8 @@ try {
     $std = new \stdClass();
     $std->sequencial = 1;
     $std->cpfTrab = '00232133417';
-    $std->dtNascto = new \DateTime('1961-02-12');
-    $std->dtAdm = new \DateTime('2017-04-12');
+    $std->dtNascto = '1961-02-12';
+    $std->dtAdm = '2017-04-12';
 
     $xml = Event::evtAdmPrelim($configJson, $std, $certificate)->toXML();
 
@@ -83,12 +82,12 @@ A classe pode retornar: string XML, string JSON ou array com os dados
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAdmPrelim/v02_02_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAdmPrelim/v02_02_02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <evtAdmPrelim Id="ID1999999999999992017042711185900001">
         <ideEvento>
             <tpAmb>3</tpAmb>
             <procEmi>1</procEmi>
-            <verProc>2_2_01</verProc>
+            <verProc>2_2_02</verProc>
         </ideEvento>
         <ideEmpregador>
             <tpInsc>1</tpInsc>

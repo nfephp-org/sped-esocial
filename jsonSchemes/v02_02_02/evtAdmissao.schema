@@ -1,0 +1,788 @@
+{
+    "title": "evtAdmissao",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string", "null"],
+            "minLength": 1,
+            "maxLength": 40
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "minLength": 11,
+            "maxLength": 11
+        },
+        "nistrab": {
+            "required": false,
+            "type": ["string", "null"],
+            "minLength": 11,
+            "maxLength": 11
+        },
+        "nmtrab": {
+            "required": true,
+            "type": "string",
+            "maxLength": 70
+        },
+        "sexo": {
+            "required": true,
+            "type": "string",
+            "pattern": "F|M"
+        },    
+        "racacor": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6
+        },
+        "estciv": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+        },
+        "grauinstr" : {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+        },
+        "indpriempr": {
+            "required": true,
+            "type": "string",
+            "pattern": "S|N"
+        },
+        "nmsoc": {
+            "required": false,
+            "type": ["string", "null"],
+            "maxLength": 70
+        },
+        "nascimento": {
+            "type": "object",
+            "properties": {
+                "dtnascto": {
+                    "required": true,
+                    "format": "date"
+                },
+                "codmunic": {
+                    "required": false,
+                    "type": "integer",
+                    "minLength": 7,
+                    "maxLength": 7
+                },
+                "uf": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "paisnascto": {
+                    "required": true,
+                    "type": "integer",
+                    "minLength": 4,
+                    "maxLength": 4
+                },
+                "paisnac": {
+                    "required": true,
+                    "type": "integer",
+                    "minLength": 4,
+                    "maxLength": 4
+                },
+                "nmmae": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "maxLength": 70
+                },
+                "nmpai": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "maxLength": 70
+                }
+            }
+        },
+        "documentos": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "ctps": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "nrctps": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 11
+                        },
+                        "seriectps": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 5
+                        },
+                        "ufctps": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 2
+                       }
+                    }
+                },
+                "ric": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "nrric": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 14
+                        },
+                        "orgaoemissor": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 20
+                        },
+                        "dtexped": {
+                            "required": false,
+                            "format": "date"
+                        }
+                    }
+                },
+                "rg": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "nrrg": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 14
+                        },
+                        "orgaoemissor": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 20
+                        },
+                        "dtexped": {
+                            "required": false,
+                            "format": "date"
+                        }
+                    }
+                },
+                "rne": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "nrrne": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 14
+                        },
+                        "orgaoemissor": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 20
+                        },
+                        "dtexped": {
+                            "required": false,
+                            "format": "date"
+                        }
+                    }
+                },
+                "oc": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "nroc": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 14
+                        },
+                        "orgaoemissor": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 20
+                        },
+                        "dtexped": {
+                            "required": false,
+                            "format": "date"
+                        },
+                        "dtvalid": {
+                            "required": false,
+                            "format": "date"
+                        }
+                    }
+                },
+                "cnh": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "nrregcnh": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 12
+                        },
+                        "dtrxped": {
+                            "required": false,
+                            "format": "date"
+                        },
+                        "ufcnh": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 2
+                        },
+                        "dtvalid": {
+                            "required": false,
+                            "format": "date"
+                        },
+                        "dtprihab": {
+                            "required": false,
+                            "format": "date"
+                        },
+                        "categoriacnh": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 2
+                        }
+                    }
+                }
+            }
+        },
+        "endereco": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "brasil": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "tplograd": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 4
+                        },
+                        "dsclograd": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 80
+                        },
+                        "nrlograd": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 10
+                        },
+                        "complemento": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "minLength": 1,
+                            "maxLength": 30
+                        },
+                        "bairro": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "minLength": 1,
+                            "maxLength": 60
+                        },
+                        "cep": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 8,
+                            "maxLength": 8
+                        },
+                        "codmunic": {
+                            "required": true,
+                            "type": "integer",
+                            "minLength": 7,
+                            "maxLength": 7
+                        },
+                        "uf": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 2
+                        }
+                    }
+                },
+                "exterior":{
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "paisresid": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 3
+                        },
+                        "dsclograd": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 80
+                        },
+                        "nrlograd": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 10
+                        },
+                        "complemento": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "minLength": 1,
+                            "maxLength": 30
+                        },
+                        "bairro": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "minLength": 1,
+                            "maxLength": 60
+                        },
+                        "nmcid": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 50
+                        },
+                        "codpostal": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "minLength": 1,
+                            "maxLength": 12
+                        }
+                    }
+                }    
+            }
+        },
+        "trabestrangeiro": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dtchegada": {
+                    "required": true,
+                    "format": "date"
+                },
+                "classtrabestrang": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                },
+                "casadobr": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "filhosbr": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                }
+            }
+        },
+        "infodeficiencia": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "deffisica": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defvisual": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defauditiva": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defmental": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defintelectual": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "reabreadap": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "infocota": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "minLength": 1,
+                    "maxLength": 250
+                }
+            }    
+        },
+        "dependente": {
+            "required": false,
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tpdep": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 99
+                    },
+                    "nmdep": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 70
+                    },
+                    "dtnascto": {
+                        "required": true,
+                        "format": "date"
+                    },
+                    "cpfdep": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 11,
+                        "maxLength": 11
+                    },
+                    "depirrf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "depsf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "depplan": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "inctrab": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    }
+                }
+            }
+        },
+        "aposentadoria": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "trabaposent": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                }
+            }
+        },
+        "contato": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "foneprinc": {
+                    "required": false,
+                    "type": "string",
+                    "minLength": 8,
+                    "maxLength": 13
+                },
+                "fonealternat": {
+                    "required": false,
+                    "type": "string",
+                    "minLength": 8,
+                    "maxLength": 13
+                },
+                "emailprinc": {
+                    "required": false,
+                    "format": "email"
+                },
+                "emailalternat": {
+                    "required": false,
+                    "format": "email"
+                }
+            }
+        },
+        "vinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "matricula": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 30
+                },
+                "tpregtrab": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "tpregprev": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
+                },
+                "nrrecinfprelim": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 1,
+                    "maxLength": 40
+                },
+                "inforegimetrab": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "infoceletista": {
+                            "required": false,
+                            "type": "object",
+                            "properties": {
+                                "dtadm": {
+                                    "required": true,
+                                    "format": "date"
+                                },
+                                "tpadmissao": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 4
+                                },
+                                "indadmissao": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 3
+                                },
+                                "tpregjor": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 3
+                                },
+                                "natatividade": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 2
+                                },
+                                "dtbase": {
+                                    "required": false,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 12
+                                },
+                                "cnpjsindcategprof": {
+                                    "required": true,
+                                    "type": "string",
+                                    "minLength": 14,
+                                    "maxLength": 14
+                                },
+                                "fgts": {
+                                    "required": true,
+                                    "type": "object",
+                                    "properties": {
+                                        "opcfgts": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "dtopcfgts": {
+                                            "required": false,
+                                            "format": "date"
+                                        }
+                                    }    
+                                },
+                                "trabTemporario": {
+                                    "required": false,
+                                    "type": "object",
+                                    "properties": {
+                                        "hipleg": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "justcontr": {
+                                            "required": true,
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 999
+                                        },
+                                        "tpinclcontr": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 3
+                                        },
+                                        "idetomadorserv": {
+                                            "required": true,
+                                            "type": "object",
+                                            "properties": {
+                                                "tpinsc": {
+                                                    "required": true,
+                                                    "type": "integer",
+                                                    "minimum": 1,
+                                                    "maximum": 2
+                                                },
+                                                "nrinsc": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "minLength": 11,
+                                                    "maxLength": 15
+                                                },
+                                                "ideestabvinc": {
+                                                    "required": false,
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "tpinsc": {
+                                                            "required": true,
+                                                            "type": "integer",
+                                                            "minimum": 1,
+                                                            "maximum": 2
+                                                        },
+                                                        "nrinsc": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "minLength": 11,
+                                                            "maxLength": 15
+                                                        }
+                                                    }    
+                                                }
+                                            }
+                                        },
+                                        "idetrabsubstituido": {
+                                            "required": false,
+                                            "type": "array",
+                                            "minItems": 0,
+                                            "maxItems": 9,
+                                            "items": {
+                                                "required": false,
+                                                "type": "object",
+                                                "properties": {
+                                                    "cpftrabsubst": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "minLength": 11,
+                                                        "maxLength": 11
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "aprend": {
+                                    "required": false,
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "minLength": 11,
+                                            "maxLength": 15
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "infoestatutario": {
+                            "required": false,
+                            "type": "object",
+                            "properties": {
+                                "indprovim": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 3
+                                },
+                                "tpprov": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 99
+                                },
+                                "dtnomeacao": {
+                                    "required": true,
+                                    "format": "date"
+                                },
+                                "dtposse": {
+                                    "required": true,
+                                    "format": "date"
+                                },
+                                "dtexercicio": {
+                                    "required": true,
+                                    "format": "date"
+                                },
+                                "tpplanrp": {
+                                    "required": false,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 2
+                                },
+                                "infodecjud": {
+                                    "required": false,
+                                    "type": "object",
+                                    "properties": {
+                                        "nrprocjud": {
+                                            "required": true,
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 20
+                                        }
+                                    }    
+                                }                            
+                            }
+                        }
+                    }
+                },
+                "infocontrato": {
+                }
+            }
+        }
+    }
+}

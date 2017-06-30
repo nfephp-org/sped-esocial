@@ -147,12 +147,4 @@ class Event
         }
         return new $className($arguments[0], $arguments[1]);
     }
-    
-    public static function createFromJson($json, $certificate)
-    {
-    }
-    
-    public static function createFromArray($array, $certificate)
-    {
-    }
 }

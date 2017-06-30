@@ -31,9 +31,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-2190';
-    
-    protected $parameters = [];
-
 
     /**
      * Constructor
@@ -58,6 +55,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         
         //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,

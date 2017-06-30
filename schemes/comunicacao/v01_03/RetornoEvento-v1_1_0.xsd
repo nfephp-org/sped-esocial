@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0.0"
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:esocial="http://www.esocial.gov.br/schema/evt/retornoEvento/v1_1_0"
+           targetNamespace="http://www.esocial.gov.br/schema/evt/retornoEvento/v1_1_0"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../xmldsig/xmldsig-core-schema.xsd"/>
+  <xs:element name="eSocial">
+    <xs:annotation>
+      <xs:documentation>Elemento raiz do eSocial.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="retornoEvento">
+          <xs:annotation>
+            <xs:documentation>Define a estrutura do retorno do processamento do evento.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ideEmpregador" type="esocial:TIdeEmpregador">
+                <xs:annotation>
+                  <xs:documentation>Identificação do empregador.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="recepcao" type="esocial:TDadosRecepcao">
+                <xs:annotation>
+                  <xs:documentation>Dados de recepção do evento.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="processamento" type="esocial:TDadosProcessamentoEvento">
+                <xs:annotation>
+                  <xs:documentation>Dados de processamento do evento.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="recibo" type="esocial:TDadosRecibo" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Dados do recibo do evento.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" use="required" type="xs:ID">
+              <xs:annotation>
+                <xs:documentation>Identificação única do evento. É mesma identificação do evento, gerada pelo empregador.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>      
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TIdeEmpregador">
+    <xs:annotation>
+      <xs:documentation>Define a identificação do empregador.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpInsc" type="xs:int"/>
+      <xs:element name="nrInsc" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="15" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDadosRecepcao">
+    <xs:annotation>
+      <xs:documentation>Define os dados de recepção do evento.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tpAmb" type="xs:unsignedByte">
+        <xs:annotation>
+          <xs:documentation>
+            Identificação do ambiente que recebeu o arquivo.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dhRecepcao" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Data hora recepção.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="versaoAppRecepcao">
+        <xs:annotation>
+          <xs:documentation>Versão do aplicativo de recepção.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="protocoloEnvioLote" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Código de retorno do lote.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDadosProcessamentoEvento">
+    <xs:annotation>
+      <xs:documentation>Define os dados de processamento dos eventos</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cdResposta" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            Código de resposta da recepção do evento.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descResposta">
+        <xs:annotation>
+          <xs:documentation>Contém a descrição correspondente ao código de resposta.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="2048" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="versaoAppProcessamento" >
+        <xs:annotation>
+          <xs:documentation>Contém a versão do aplicativo de processamento de eventos.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="dhProcessamento" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Contém a data e horário do processamento do eventos</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ocorrencias" type="esocial:TOcorrencias" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Contém as ocorrências encontradas durante a validação do evento.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TOcorrencias">
+    <xs:annotation>
+      <xs:documentation>Define uma ocorrência encontrada no processamento do evento.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ocorrencia" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tipo" type="xs:unsignedByte">
+              <xs:annotation>
+                <xs:documentation>Contém o tipo da ocorrência.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="codigo" type="xs:int">
+              <xs:annotation>
+                <xs:documentation>Código da ocorrência</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="descricao" >
+              <xs:annotation>
+                <xs:documentation>Descrição da ocorrência</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="2048" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="localizacao" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Contém a localização do erro no evento.</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="2048" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TDadosRecibo">
+    <xs:annotation>
+      <xs:documentation>Define os dados do recibo do evento.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nrRecibo">
+        <xs:annotation>
+          <xs:documentation>Número do recibo do evento</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="hash" >
+        <xs:annotation>
+          <xs:documentation>Hash do arquivo recebido.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
