@@ -178,6 +178,12 @@ class Tools extends ToolsBase
         return $this->lastResponse;
     }
     
+    /**
+     * Send request to webservice
+     * @param string $request
+     * @param array $parameters
+     * @return string
+     */
     protected function sendRequest($request, $parameters)
     {
         if (empty($this->soap)) {
