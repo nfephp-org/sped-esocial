@@ -1,6 +1,6 @@
 # Eventos
 
-O e-Social foi estruturado em sua versão 2.2.01 com 44 eventos
+O e-Social foi estruturado em sua versão 2.2.02 com 44 eventos
 
 1. [evtAdmPrelim S-2190 - Admissão de Trabalhador - Registro Preliminar](EvtAdmPrelim.md)
 2. [evtAdmissao S-2200 - Admissão / Ingresso de Trabalhador](EvtAdmissao.md)
@@ -51,4 +51,72 @@ O e-Social foi estruturado em sua versão 2.2.01 com 44 eventos
 
 Para efeito de padronização na passagem dos parametros para as classes foram adotados alguns critérios:
 
-1. Quando a informação for uma data, deve ser inserido um objeto \DateTime do PHP   
+## GRUPOS
+
+Os eventos estão subdivididos em grupos 
+
+1. Eventos iniciais e de tabelas 
+2. Eventos Não periódicos 
+3. Eventos periódicos
+
+### EVENTOS INICIAIS grupo [1]
+
+> Identificam o contribuinte e contêm dados básicos de classificação fiscal e estrutura administrativa. É o primeiro evento a ser transmitido ao eSocial. Também compõe os eventos iniciais o cadastramento inicial dos vínculos, que deve ser informado após terem sido transmitidos os eventos de tabelas do empregador. 
+> 
+> Já os Eventos de Tabelas são eventos permanentes utilizados por outras partes do eSocial. É recomendável transmiti-las logo após o envio do evento de Informações do Empregador. 
+
+- S-1000 Informações do Empregador
+- S-1010 Tabela de Rubricas
+- S-1020 Tabela de Lotações
+- S-1030 Tabela de Cargos
+- S-1040 Tabela de Funções
+- S-1050 Tabela de Horários/Turnos de Trabalho
+- S-1060 Tabela de Estabelecimentos e Obras
+- S-1070 Tabela de Processos
+- S-1080 Tabela de Operadores Portuários
+- S-2100 Cadastramento Inicial do Vínculo
+
+### EVENTOS NÃO PERIÓDICOS grupo [2]
+
+> São os fatos jurídicos firmados entre empregador/tomador e trabalhadores que não têm uma data prefixada para ocorrer. Vão depender dos acontecimentos na vida da empresa e do trabalhador, tais como contratação, afastamentos, demissões, dentre outros. Esses fatos influenciam na concessão de direitos e no cumprimento de deveres trabalhistas, previdenciários e fiscais. 
+
+- S-2190 Admissão de Trabalhador - Registro Preliminar
+- S-2200 Admissão de Trabalhador
+- S-2220 Alteração de Dados Cadastrais do Trabalhador
+- S-2240 Alteração de Contrato de Trabalho
+- S-2260 Comunicação de Acidente de Trabalho
+- S-2280 Atestado de Saúde Ocupacional
+- S-2320 Afastamento Temporário
+- S-2325 Alteração de Motivo de Afastamento
+- S-2330 Retorno de Afastamento Temporário
+- S-2340 Estabilidade – Início
+- S-2345 Estabilidade – Término
+- S-2360 Condição Diferenciada de Trabalho - Início
+- S-2365 Condição Diferenciada de Trabalho - Término
+- S-2400 Aviso Prévio
+- S-2405 Cancelamento de Aviso Prévio
+- S-2600 Trabalhador Sem Vínculo de Emprego - Início
+- S-2620 Trabalhador Sem Vínculo de Emprego - Alt. Contratual
+- S-2680 Trabalhador Sem Vínculo de Emprego – Término
+- S-2800 Desligamento
+- S-2820 Reintegração
+
+### EVENTOS PERIÓDICOS grupo [3]
+
+> São os eventos que têm periodicidade previamente definida para sua ocorrência. Seu prazo de transmissão é até o dia 07 do mês seguinte, antecipando o vencimento para o dia útil imediatamente anterior em caso de não haver expediente bancário (à exceção do evento de espetáculo desportivo). São compostos por informações de folha de pagamento, apuração de outros fatos geradores de contribuições previdenciárias e retenção do imposto sobre a renda em pagamentos feitos pelo próprio contribuinte.
+
+- S-1100 Eventos Periódicos – Abertura
+- S-1200 Eventos Periódicos – Remuneração do Trabalhador
+- S-1300 Eventos Periódicos – Pagamentos Diversos
+- S-1310 Eventos Periódicos - Serviços Tomados mediante Cessão de Mão de Obra
+- S-1320 Eventos Periódicos - Serviços Prestados mediante Cessão de Mão de Obra
+- S-1330 Eventos Periódicos - Serviços Tomados de Cooperativa de Trabalho
+- S-1340 Eventos Periódicos - Serv. Prestados pela Cooperativa de Trabalho
+- S-1350 Eventos Periódicos - Aquisição de Produção
+- S-1360 Eventos Periódicos - Comercialização da Produção
+- S-1370 Eventos Periódicos - Recursos Recebidos ou Repassados p/ Assoc. Desportiva que mantenha Equipe de Futebol Profiss.
+- S-1380 Eventos Periódicos – Informações Complementares - Desoneração
+- S-1390 Eventos Periódicos – Receita de Atividades Concomitantes
+- S-1399 Eventos Periódicos - Fechamento
+- S-1400 Eventos Periódicos – Bases, Retenção, Deduções e Contribuições
+- S-1800 Eventos Periódicos – Espetáculo Desportivo

@@ -1,12 +1,15 @@
 <?php
 
-namespace NFePHP\eSocial\Factories;
+namespace NFePHP\eSocial\Common;
 
+use NFePHP\eSocial\Common\ParamsStandardize;
 use NFePHP\Common\DOMImproved as Dom;
 use NFePHP\Common\Certificate;
 use NFePHP\Common\Signer;
 use NFePHP\Common\Strings;
 use NFePHP\Common\Validator;
+use JsonSchema\Validator as JsonValid;
+use JsonSchema\SchemaStorage;
 use stdClass;
 use DOMDocument;
 use DOMElement;
@@ -70,7 +73,7 @@ abstract class Factory
     /**
      * @var string
      */
-    public $company;
+    public $nmRazao;
     /**
      * @var DateTime
      */
@@ -90,7 +93,7 @@ abstract class Factory
     /**
      * @var string
      */
-    public $layout = '2.2.1';
+    public $layout = '2.2.2';
     /**
      * @var string
      */
@@ -98,7 +101,15 @@ abstract class Factory
     /**
      * @var string
      */
-    public $scheme = '';
+    public $schema = '';
+    /**
+     * @var string
+     */
+    public $jsonschema = '';
+    /**
+     * @var string
+     */
+    public $evtid = '';
 
     /**
      * Constructor
@@ -114,31 +125,82 @@ abstract class Factory
         //set properties from config
         $stdConf = json_decode($config);
         $this->date = new DateTime();
-        $this->tpInsc = $stdConf->tpInsc;
-        $this->nrInsc = $stdConf->nrInsc;
-        $this->company = $stdConf->company;
         $this->tpAmb = $stdConf->tpAmb;
         $this->verProc = $stdConf->verProc;
-        $this->layout = $stdConf->layout;
-        $this->layoutStr = $this->strLayoutVer($stdConf->layout);
+        $this->layout = $stdConf->eventoVersion;
+        $this->tpInsc = $stdConf->empregador->tpInsc;
+        $this->nrInsc = $stdConf->empregador->nrInsc;
+        $this->nmRazao = $stdConf->empregador->nmRazao;
+        $this->layoutStr = $this->strLayoutVer($this->layout);
         $this->certificate = $certificate;
-        if (empty($std)) {
+        if (empty($std) || !is_object($std)) {
             throw new \InvalidArgumentException(
-                'Você deve passar os parametros num stdClass'
+                'Você deve passar os parâmetros num stdClass.'
             );
         }
-        $this->std = $this->propertiesToLower($std);
-        $this->scheme = realpath(
+        $this->jsonschema = realpath(
+            __DIR__
+            . "/../../jsonSchemes/$this->layoutStr/"
+            . $this->evtName
+            . ".schema"
+        );
+        $this->schema = realpath(
             __DIR__
             . "/../../schemes/$this->layoutStr/"
             . $this->evtName
             . ".xsd"
         );
+        //convert all data fields to lower case
+        $this->std = $this->propertiesToLower($std);
+        //validate input data with schema
+        $this->validInputData($this->std);
+        //Adding forgotten or unnecessary fields.
+        //This is done for standardization purposes.
+        //Fields with no value will not be included by the builder.
+        $this->std = $this->standardizeProperties($this->std);
         $this->init();
     }
     
     abstract protected function toNode();
-
+    
+    public function alias()
+    {
+        return $this->evtAlias;
+    }
+    
+    public function getCertificate()
+    {
+        return $this->certificate;
+    }
+    
+    public function setCertificate(Certificate $certificate)
+    {
+        $this->certificate = $certificate;
+    }
+    
+    /**
+     * Validation json data from json Schema
+     * @param stdClass $data
+     * @return boolean
+     * @throws \RuntimeException
+     */
+    protected function validInputData($data)
+    {
+        if (!is_file($this->jsonschema)) {
+            return true;
+        }
+        $validator = new JsonValid();
+        $validator->check($data, (object)['$ref' => 'file://' . $this->jsonschema]);
+        if (!$validator->isValid()) {
+            $msg = "JSON does not validate. Violations:\n";
+            foreach ($validator->getErrors() as $error) {
+                $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']);
+            }
+            throw new \RuntimeException($msg);
+        }
+        return true;
+    }
+    
     /**
      * Return xml of event
      * @return string
@@ -148,7 +210,7 @@ abstract class Factory
         if (empty($this->xml)) {
             $this->toNode();
         }
-        return $this->xml;
+        return $this->clearXml($this->xml);
     }
     
     /**
@@ -175,7 +237,6 @@ abstract class Factory
         //não devem conter dados da assinatura
         $node = Signer::removeSignature($dom);
         $sxml = simplexml_load_string($node->saveXML());
-       
         return str_replace(
             '@attributes',
             'attributes',
@@ -190,6 +251,20 @@ abstract class Factory
     public function toStd()
     {
         return json_decode($this->toJson());
+    }
+    
+    /**
+     * Remove XML declaration from XML string
+     * @param string $xml
+     * @return string
+     */
+    protected function clearXml($xml)
+    {
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $this->formatOutput = false;
+        $this->preserveWhiteSpace = false;
+        $dom->loadXML($xml);
+        return $dom->saveXML($dom->documentElement);
     }
 
     /**
@@ -218,13 +293,13 @@ abstract class Factory
             $xml = Signer::sign(
                 $this->certificate,
                 $xml,
-                $this->evtName,
-                'Id',
-                OPENSSL_ALGO_SHA1,
+                'eSocial',
+                '',
+                OPENSSL_ALGO_SHA256,
                 [false,false,null,null]
             );
-            $xsd = $this->scheme;
-            Validator::isValid($xml, $xsd);
+            //validation by XSD schema throw Exception if dont pass
+            Validator::isValid($xml, $this->schema);
         }
         $this->xml = $xml;
     }
@@ -246,7 +321,7 @@ abstract class Factory
                 . "</eSocial>";
             $this->dom->loadXML($xml);
             $this->eSocial = $this->dom->getElementsByTagName('eSocial')->item(0);
-            $evtid = FactoryId::build(
+            $this->evtid = FactoryId::build(
                 $this->tpInsc,
                 $this->nrInsc,
                 $this->date,
@@ -254,7 +329,7 @@ abstract class Factory
             );
             $this->node = $this->dom->createElement($this->evtName);
             $att = $this->dom->createAttribute('Id');
-            $att->value = $evtid;
+            $att->value = $this->evtid;
             $this->node->appendChild($att);
             
             $ideEmpregador = $this->dom->createElement("ideEmpregador");
@@ -274,23 +349,36 @@ abstract class Factory
         }
     }
     
-    
     /**
      * Change properties names of stdClass to lower case
-     * @param stdClass $dados
+     * @param stdClass $data
      * @return stdClass
      */
-    protected static function propertiesToLower(stdClass $dados)
+    protected static function propertiesToLower(stdClass $data)
     {
-        $properties = get_object_vars($dados);
+        $properties = get_object_vars($data);
         $clone = new stdClass();
         foreach ($properties as $key => $value) {
-            if ($value instanceOf stdClass) {
-                $value = propertiesToLower($value);
+            if ($value instanceof stdClass) {
+                $value = self::propertiesToLower($value);
             }
             $nk = strtolower($key);
             $clone->{$nk} = $value;
         }
         return $clone;
+    }
+    
+    /**
+     * Adjust missing properties form original data according schema
+     * @param stdClass $data
+     */
+    public function standardizeProperties(stdClass $data)
+    {
+        if (!is_file($this->jsonschema)) {
+            return $data;
+        }
+        $jsonSchemaObj = json_decode(file_get_contents($this->jsonschema));
+        $sc = new ParamsStandardize($jsonSchemaObj);
+        return $sc->stdData($data);
     }
 }

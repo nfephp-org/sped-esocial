@@ -15,9 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Factories\Factory;
-use NFePHP\eSocial\Factories\FactoryInterface;
-use NFePHP\eSocial\Factories\FactoryId;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryInterface;
+use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
 use stdClass;
 
@@ -31,9 +31,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-2190';
-    
-    protected $parameters = [];
-
 
     /**
      * Constructor
@@ -58,6 +55,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         
         //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
