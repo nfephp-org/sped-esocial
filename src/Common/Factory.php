@@ -1,7 +1,8 @@
 <?php
 
-namespace NFePHP\eSocial\Factories;
+namespace NFePHP\eSocial\Common;
 
+use NFePHP\eSocial\Common\ParamsStandardize;
 use NFePHP\Common\DOMImproved as Dom;
 use NFePHP\Common\Certificate;
 use NFePHP\Common\Signer;
@@ -72,7 +73,7 @@ abstract class Factory
     /**
      * @var string
      */
-    public $company;
+    public $nmRazao;
     /**
      * @var DateTime
      */
@@ -105,6 +106,10 @@ abstract class Factory
      * @var string
      */
     public $jsonschema = '';
+    /**
+     * @var string
+     */
+    public $evtid = '';
 
     /**
      * Constructor
@@ -120,13 +125,13 @@ abstract class Factory
         //set properties from config
         $stdConf = json_decode($config);
         $this->date = new DateTime();
-        $this->tpInsc = $stdConf->tpInsc;
-        $this->nrInsc = $stdConf->nrInsc;
-        $this->company = $stdConf->company;
         $this->tpAmb = $stdConf->tpAmb;
         $this->verProc = $stdConf->verProc;
-        $this->layout = $stdConf->layout;
-        $this->layoutStr = $this->strLayoutVer($stdConf->layout);
+        $this->layout = $stdConf->eventoVersion;
+        $this->tpInsc = $stdConf->empregador->tpInsc;
+        $this->nrInsc = $stdConf->empregador->nrInsc;
+        $this->nmRazao = $stdConf->empregador->nmRazao;
+        $this->layoutStr = $this->strLayoutVer($this->layout);
         $this->certificate = $certificate;
         if (empty($std) || !is_object($std)) {
             throw new \InvalidArgumentException(
@@ -288,13 +293,12 @@ abstract class Factory
             $xml = Signer::sign(
                 $this->certificate,
                 $xml,
-                $this->evtName,
-                'Id',
-                OPENSSL_ALGO_SHA1,
+                'eSocial',
+                '',
+                OPENSSL_ALGO_SHA256,
                 [false,false,null,null]
             );
-            //validation by XSD schema
-            //throw Exception if dont pass
+            //validation by XSD schema throw Exception if dont pass
             Validator::isValid($xml, $this->schema);
         }
         $this->xml = $xml;
@@ -317,7 +321,7 @@ abstract class Factory
                 . "</eSocial>";
             $this->dom->loadXML($xml);
             $this->eSocial = $this->dom->getElementsByTagName('eSocial')->item(0);
-            $evtid = FactoryId::build(
+            $this->evtid = FactoryId::build(
                 $this->tpInsc,
                 $this->nrInsc,
                 $this->date,
@@ -325,7 +329,7 @@ abstract class Factory
             );
             $this->node = $this->dom->createElement($this->evtName);
             $att = $this->dom->createAttribute('Id');
-            $att->value = $evtid;
+            $att->value = $this->evtid;
             $this->node->appendChild($att);
             
             $ideEmpregador = $this->dom->createElement("ideEmpregador");
@@ -374,7 +378,7 @@ abstract class Factory
             return $data;
         }
         $jsonSchemaObj = json_decode(file_get_contents($this->jsonschema));
-        $sc = new Standardize($jsonSchemaObj);
+        $sc = new ParamsStandardize($jsonSchemaObj);
         return $sc->stdData($data);
     }
 }

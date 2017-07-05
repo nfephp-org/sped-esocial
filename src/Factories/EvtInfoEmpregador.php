@@ -15,19 +15,14 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Factories\Factory;
-use NFePHP\eSocial\Factories\FactoryInterface;
-use NFePHP\eSocial\Factories\FactoryId;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryInterface;
+use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtInfoEmpregador extends Factory implements FactoryInterface
 {
-    /**
-     * @var int
-     */
-    public $sequencial;
-
     /**
      * @var string
      */
@@ -36,11 +31,6 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-1000';
-    /**
-     * Parameters patterns
-     * @var array
-     */
-    protected $parameters = [];
 
     /**
      * Constructor
@@ -51,7 +41,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null
     ) {
         parent::__construct($config, $std, $certificate);
     }
@@ -61,18 +51,10 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtInfoEmpregador = $this->dom->createElement("evtInfoEmpregador");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
-        $evtInfoEmpregador->appendChild($att);
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -85,32 +67,382 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             "procEmi",
             $this->procEmi,
             true
-        );        $this->dom->addChild(
+        );
+        $this->dom->addChild(
             $ideEvento,
             "verProc",
             $this->verProc,
             true
         );
-        $evtInfoEmpregador->appendChild($ideEvento);
-    
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtInfoEmpregador->appendChild($ideEmpregador);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
         
+        $infoEmpregador = $this->dom->createElement("infoEmpregador");
+        
+        //periodo
+        $idePeriodo = $this->dom->createElement("idePeriodo");
+        $this->dom->addChild(
+            $idePeriodo,
+            "iniValid",
+            $this->std->ideperiodo->inivalid,
+            true
+        );
+        $this->dom->addChild(
+            $idePeriodo,
+            "fimValid",
+            $this->std->ideperiodo->fimvalid,
+            false
+        );
+        
+        //infoCadastro
+        if (isset($this->std->infocadastro)) {
+            $cad = $this->std->infocadastro;
+            $infoCadastro = $this->dom->createElement("infoCadastro");
+            $this->dom->addChild(
+                $infoCadastro,
+                "nmRazao",
+                $cad->nmrazao,
+                true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "classTrib",
+                $cad->classtrib,
+                true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "natJurid",
+                $cad->natjurid,
+                false
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indCoop",
+                $cad->indcoop,
+                false
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indConstr",
+                $cad->indconstr,
+                false
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indDesFolha",
+                $cad->inddesfolha,
+                true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indOptRegEletron",
+                $cad->indoptregeletron,
+                true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "multTabRubricas",
+                $cad->multtabrubricas,
+                true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indEntEd",
+                $cad->indented,
+                false
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indEtt",
+                $cad->indett,
+                true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "nrRegEtt",
+                $cad->nrregett,
+                false
+            );
+        }
+        
+        if (isset($this->std->dadosisencao)) {
+            $cad = $this->std->dadosisencao;
+            $info = $this->dom->createElement("dadosIsencao");
+            $this->dom->addChild(
+                $info,
+                "ideMinLei",
+                $cad->ideminlei,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "nrCertif",
+                $cad->nrcertif,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "dtEmisCertif",
+                $cad->dtemiscertif,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "dtVencCertif",
+                $cad->dtcenccertif,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "nrProtRenov",
+                $cad->nrprotrenov,
+                false
+            );
+            $this->dom->addChild(
+                $info,
+                "dtProtRenov",
+                $cad->dtprotrenov,
+                false
+            );
+            $this->dom->addChild(
+                $info,
+                "dtDou",
+                $cad->dtdou,
+                false
+            );
+            $this->dom->addChild(
+                $info,
+                "pagDou",
+                $cad->pagdou,
+                true
+            );
+            $infoCadastro->appendChild($info);
+        }
+        
+        if (isset($this->std->contato)) {
+            $cad = $this->std->contato;
+            $info = $this->dom->createElement("contato");
+            $this->dom->addChild(
+                $info,
+                "nmCtt",
+                $cad->nmctt,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "cpfCtt",
+                $cad->cpfctt,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "foneFixo",
+                $cad->foneFixo,
+                false
+            );
+            $this->dom->addChild(
+                $info,
+                "foneCel",
+                $cad->fonecel,
+                false
+            );
+            $this->dom->addChild(
+                $info,
+                "email",
+                $cad->email,
+                false
+            );
+            $infoCadastro->appendChild($info);
+        }
+        
+        if (isset($this->std->infoop)) {
+            $cad = $this->std->infoop;
+            $info = $this->dom->createElement("infoOP");
+            $this->dom->addChild(
+                $info,
+                "nrSiafi",
+                $cad->nrsiafi,
+                true
+            );
+            $infoCadastro->appendChild($info);
+        }
+        
+        if (isset($this->std->infoefr)) {
+            $cad = $this->std->infoefr;
+            $info = $this->dom->createElement("infoEFR");
+            $this->dom->addChild(
+                $info,
+                "ideEFR",
+                $cad->ideefr,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "cnpjEFR",
+                $cad->cnpjefr,
+                false
+            );
+            $infoCadastro->appendChild($info);
+        }
+        
+        if (isset($this->std->infoente)) {
+            $cad = $this->std->infoente;
+            $info = $this->dom->createElement("infoEnte");
+            $this->dom->addChild(
+                $info,
+                "nmEnte",
+                $cad->nmente,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "uf",
+                $cad->uf,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "codMunic",
+                $cad->codmunic,
+                false
+            );
+            $this->dom->addChild(
+                $info,
+                "indRPPS",
+                $cad->indrpps,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "subteto",
+                $cad->subteto,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "vrSubteto",
+                number_format($cad->vrsubteto, 2, ".", ""),
+                true
+            );
+            $infoCadastro->appendChild($info);
+        }
+        
+        if (isset($this->std->infoorginternacional)) {
+            $cad = $this->std->infoorginternacional;
+            $info = $this->dom->createElement("infoorgInternacional");
+            $this->dom->addChild(
+                $info,
+                "indAcordoIsenMulta",
+                $cad->indacordoisenmulta,
+                true
+            );
+            $infoCadastro->appendChild($info);
+        }
+        
+        if (isset($this->std->softwarehouse)) {
+            foreach ($this->std->softwarehouse as $sh) {
+                $info = $this->dom->createElement("softwareHouse");
+                $this->dom->addChild(
+                    $info,
+                    "cnpjSoftHouse",
+                    $sh->cnpjsofthouse,
+                    true
+                );
+                $this->dom->addChild(
+                    $info,
+                    "nmRazao",
+                    $sh->nmrazao,
+                    true
+                );
+                $this->dom->addChild(
+                    $info,
+                    "nmCont",
+                    $sh->nmcont,
+                    true
+                );
+                $this->dom->addChild(
+                    $info,
+                    "telefone",
+                    $sh->telefone,
+                    true
+                );
+                $this->dom->addChild(
+                    $info,
+                    "email",
+                    $sh->email,
+                    false
+                );
+                $infoCadastro->appendChild($info);
+            }
+        }
+        
+        if (isset($this->std->situacaopj)) {
+            $infoComplementares = $this->dom->createElement("infoComplementares");
+            $sh = $this->std->situacaopj;
+            $info = $this->dom->createElement("situacaoPJ");
+            $this->dom->addChild(
+                $info,
+                "indSitPJ",
+                $sh->indsitpj,
+                true
+            );
+            $infoComplementares->appendChild($info);
+        } elseif (isset($this->std->situacaopf)) {
+            $infoComplementares = $this->dom->createElement("infoComplementares");
+            $sh = $this->std->situacaopf;
+            $info = $this->dom->createElement("situacaoPF");
+            $this->dom->addChild(
+                $info,
+                "indSitPF",
+                $sh->indsitpf,
+                true
+            );
+            $infoComplementares->appendChild($info);
+        }
+        
+        if (isset($this->std->novavalidade)) {
+            $sh = $this->std->novavalidade;
+            $novavalidade = $this->dom->createElement("novavalidade");
+            $this->dom->addChild(
+                $novavalidade,
+                "iniValid",
+                $sh->inivalid,
+                true
+            );
+            $this->dom->addChild(
+                $novavalidade,
+                "iniValid",
+                $sh->fimValid,
+                false
+            );
+        }
+        
+        
+        switch ($this->std->modo) {
+            case "INC":
+                $node = $this->dom->createElement("inclusao");
+                $node->appendChild($idePeriodo);
+                $infoCadastro->appendChild($infoComplementares);
+                $node->appendChild($infoCadastro);
+                break;
+            case "ALT":
+                $node = $this->dom->createElement("alteracao");
+                $node->appendChild($idePeriodo);
+                $infoCadastro->appendChild($infoComplementares);
+                $node->appendChild($infoCadastro);
+                $node->appendChild($novavalidade);
+                break;
+            case "EXC":
+                $node = $this->dom->createElement("exclusao");
+                $node->appendChild($idePeriodo);
+                break;
+        }
+        
+        $infoEmpregador->appendChild($node);
+        $this->node->appendChild($infoEmpregador);
 
-
-        $eSocial->appendChild($evtInfoEmpregador);
-        $this->sign($eSocial);
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }

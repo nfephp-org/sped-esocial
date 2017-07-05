@@ -1,6 +1,6 @@
 <?php
 
-namespace NFePHP\eSocial\Factories;
+namespace NFePHP\eSocial\Common;
 
 use NFePHP\Common\Certificate;
 

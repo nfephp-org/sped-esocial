@@ -17,17 +17,17 @@ namespace NFePHP\eSocial;
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Tools as ToolsBase;
 use NFePHP\eSocial\Factories\FactoryInterface;
-use NFePHP\Common\Soap\SoapCurl;
-use NFePHP\Common\Soap\SoapInterface;
+use NFePHP\eSocial\Common\Soap\SoapCurl;
+use NFePHP\eSocial\Common\Soap\SoapInterface;
+use NFePHP\Common\Validator;
 use RuntimeException;
+use InvalidArgumentException;
 
 class Tools extends ToolsBase
 {
-    /**
-     * @var string
-     */
-    protected $envelopeVersion = "1.1.0";
-
+    public $lastRequest;
+    public $lastResponse;
+    
     /**
      * @var NFePHP\Common\Soap\SoapInterface
      */
@@ -37,17 +37,13 @@ class Tools extends ToolsBase
         'xmlns:xsd' => "http://www.w3.org/2001/XMLSchema",
         'xmlns:soap' => "http://www.w3.org/2003/05/soap-envelope"
     ];
-    protected $tpAmb;
-    /**
-     * @var \SOAPHeader
-     */
     protected $objHeader;
     protected $xmlns;
     protected $uri;
     protected $action;
     protected $method;
     protected $parameters;
-    public $lastResponse;
+    
 
     public function __construct($config, Certificate $certificate = null)
     {
@@ -64,40 +60,44 @@ class Tools extends ToolsBase
     }
     
     /**
-     * Set envelope version and return it
-     * @param string $version
-     * @return string
-     */
-    public function setEnvelopeVersion($version = null)
-    {
-        if (!empty($version)) {
-            $this->envelopeVersion = $version;
-        }
-        return $this->envelopeVersion;
-    }
-    
-    /**
      * Event batch query
      * @param string $protocolo
      * @return string
      */
     public function consultarLoteEventos($protocolo)
     {
-        $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0";
-        $this->action = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos";
+        $operationVersion = 'v1_0_0';
+        $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
+            . "/envio/consulta/retornoProcessamento/$this->serviceStr";
+        $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
+            . "/eventos/envio/consulta/retornoProcessamento/$this->serviceStr"
+            . "/ServicoConsultarLoteEventos/ConsultarLoteEventos";
         $this->method = "ConsultarLoteEventos";
-        $this->uri = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc";
-        $request = "<ConsultarLoteEventos xmlns=\"$xmlns\">"
-            . "<consulta>"
-            . "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+        $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
+            . "/servicos/empregador/consultarloteeventos"
+            . "/WsConsultarLoteEventos.svc";
+        $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
+            . "/eventos/envio/consulta/retornoProcessamento/$operationVersion\" "
+            . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<consultaLoteEventos>"
             . "<protocoloEnvio>$protocolo</protocoloEnvio>"
             . "</consultaLoteEventos>"
-            . "</eSocial>"    
+            . "</eSocial>";
+        
+        //validar a requisição conforme o seu respectivo XSD
+        Validator::isValid($request, $this->path
+            . "schemes/comunicacao/$this->serviceStr/"
+            . "ConsultaLoteEventos-$operationVersion.xsd");
+        
+        $body = "<ConsultarLoteEventos xmlns=\"$xmlns\">"
+            . "<consulta>"
+            . $request
             . "</consulta>"
             . "</ConsultarLoteEventos>";
-        $parameters = ['' => $request];
-        $this->lastResponse = $this->sendRequest($request, $parameters); 
+        
+        $parameters = ['' => $body];
+        $this->lastRequest = $body;
+        $this->lastResponse = $this->sendRequest($body, $parameters);
         return $this->lastResponse;
     }
     
@@ -109,41 +109,72 @@ class Tools extends ToolsBase
      */
     public function enviarLoteEventos($grupo, $eventos = [])
     {
-        foreach($eventos as $evt) {
-            //verifica se o evento pertence ao grupo indicado
-            if (in_array($evt->alias, $this->grupos[$grupo])) {
-                
-            }
+        if (empty($eventos)) {
+            return '';
         }
-        
-        $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0";
+        $xml = "";
+        $nEvt = count($eventos);
+        if ($n > 50) {
+            throw new InvalidArgumentException(
+                "O numero máximo de eventos em um lote é 50, "
+                . "você está tentando enviar $nEvt eventos !"
+            );
+        }
+        foreach ($eventos as $evt) {
+            //verifica se o evento pertence ao grupo indicado
+            if (!in_array($evt->alias(), $this->grupos[$grupo])) {
+                throw new RuntimeException(
+                    'O evento '. $evt->alias() . ' não pertence a este grupo [ '
+                    . $this->eventGroup[$grupo] . ' ].'
+                );
+            }
+            $this->checkCertificate($evt);
+            $xml .= "<evento Id=\"$evt->evtid\">";
+            $xml .= $evt->toXML();
+            $xml .= "</evento>";
+        }
+        $operationVersion = 'v1_1_0';
+        $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
+            . "/envio/$this->serviceStr";
         $this->method = "EnviarLoteEventos";
-        $this->action = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos";
-        $this->uri = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
-        $request = "<EnviarLoteEventos xmlns=\"$xmlns\">"
-           . "<loteEventos>"
-           . "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote/eventos/envio/v1_1_0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
-           . "<envioLoteEventos grupo=\"$grupo\">"
-           . "<ideEmpregador>"
-           . "<tpInsc>0</tpInsc>"
-           . "<nrInsc>nrInsc</nrInsc>"
-           . "</ideEmpregador>"
-           . "<ideTransmissor>"
-           . "<tpInsc>0</tpInsc>"
-           . "<nrInsc>nrInsc</nrInsc>"
-           . "</ideTransmissor>"
-           . "<eventos>"
-           . "<evento Id=\"idvalue0\">"
-           . "$xml"
-           . "</evento>"
-           . "</eventos>"
-           . "</envioLoteEventos>"
-           . "</eSocial>"
-           . "</loteEventos>"
-           . "</EnviarLoteEventos>";
+        $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
+            . "/eventos/envio/$this->serviceStr/ServicoEnviarLoteEventos"
+            . "/EnviarLoteEventos";
+        $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
+            . "/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
+        $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
+            . "/eventos/envio/$this->serviceStr\" "
+            . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+            . "<envioLoteEventos grupo=\"$grupo\">"
+            . "<ideEmpregador>"
+            . "<tpInsc>$this->tpInsc</tpInsc>"
+            . "<nrInsc>$this->nrInsc</nrInsc>"
+            . "</ideEmpregador>"
+            . "<ideTransmissor>"
+            . "<tpInsc>$this->transmissortpInsc</tpInsc>"
+            . "<nrInsc>$this->transmissornrInsc</nrInsc>"
+            . "</ideTransmissor>"
+            . "<eventos>"
+            . "$xml"
+            . "</eventos>"
+            . "</envioLoteEventos>"
+            . "</eSocial>";
 
-        $parameters = ['' => $request];
-        $this->lastResponse = $this->sendRequest($request, $parameters); 
+        //validar a requisição conforme o seu respectivo XSD
+        Validator::isValid($request, $this->path
+            . "schemes/comunicacao/$this->serviceStr/"
+            . "EnvioLoteEventos-$this->serviceStr.xsd");
+        
+        $body = "<EnviarLoteEventos "
+            . "xmlns=\"$xmlns\">"
+            . "<loteEventos>"
+            . $request
+            . "</loteEventos>"
+            . "</EnviarLoteEventos>";
+        
+        $parameters = ['' => $body];
+        $this->lastRequest = $body;
+        $this->lastResponse = $this->sendRequest($body, $parameters);
         return $this->lastResponse;
     }
     

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.1">
 	<element name="Signature" type="ds:SignatureType"/>
 	<complexType name="SignatureType">
@@ -25,7 +25,7 @@
 			</element>
 			<element name="SignatureMethod">
 				<complexType>
-					<attribute name="Algorithm" type="anyURI" use="required" fixed="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+					<attribute name="Algorithm" type="anyURI" use="required" fixed="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
 				</complexType>
 			</element>
 			<element name="Reference" type="ds:ReferenceType"/>
@@ -43,7 +43,7 @@
 			</element>
 			<element name="DigestMethod">
 				<complexType>
-					<attribute name="Algorithm" type="anyURI" use="required" fixed="http://www.w3.org/2000/09/xmldsig#sha1"/>
+					<attribute name="Algorithm" type="anyURI" use="required" fixed="http://www.w3.org/2001/04/xmlenc#sha256"/>
 				</complexType>
 			</element>
 			<element name="DigestValue" type="ds:DigestValueType"/>
@@ -52,7 +52,7 @@
 		<attribute name="URI" use="required">
 			<simpleType>
 				<restriction base="anyURI">
-					<minLength value="2"/>
+					<minLength value="0"/>
 				</restriction>
 			</simpleType>
 		</attribute>
@@ -90,3 +90,4 @@
 		</restriction>
 	</simpleType>
 </schema>
+

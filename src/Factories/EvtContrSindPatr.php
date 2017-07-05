@@ -15,9 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Factories\Factory;
-use NFePHP\eSocial\Factories\FactoryInterface;
-use NFePHP\eSocial\Factories\FactoryId;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryInterface;
+use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
 use stdClass;
 

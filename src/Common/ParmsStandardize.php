@@ -1,6 +1,6 @@
 <?php
 
-namespace NFePHP\eSocial\Factories;
+namespace NFePHP\eSocial\Common;
 
 /**
  * Class of standardization of the data structure according to the scheme.
@@ -17,7 +17,7 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-class Standardize
+class ParamsStandardize
 {
     protected $schema;
     protected $keys;
@@ -88,6 +88,8 @@ class Standardize
         $ref = ''
     ) {
         if ($schema->type == 'object') {
+            $required = $schema->required;
+            $exist = true;
             foreach ($schema->properties as $name => $prop) {
                 if (in_array($name, $keys)) {
                     $ref = '';
@@ -109,16 +111,22 @@ class Standardize
                             $comm .= "$p->";
                             $orig .= "$p->";
                         }
+                        $exist = false;
+                        $test = "\$exist = (!empty(" . substr($orig, 0, strlen($orig)-2).")) ? true : false;";
+                        eval($test);
                     }
                     $orig .= $name;
                     $resp = null;
                     eval("\$resp = $orig;");
-                    if (!empty($resp)) {
+                    
+                    if (!empty($resp) || $resp === 0) {
                         $comm .= $name . '= $resp';
                     } else {
                         $comm .= "$name = null";
                     }
-                    eval("$comm;");
+                    if ($required || $exist) {
+                        eval("$comm;");
+                    }
                 }
             }
         }
