@@ -235,8 +235,8 @@ abstract class Factory
         $dom->loadXML($this->xml);
         //a assinatura só faz sentido no XML, os demais formatos
         //não devem conter dados da assinatura
-        $node = Signer::removeSignature($dom);
-        $sxml = simplexml_load_string($node->saveXML());
+        $node = Signer::removeSignature($dom->saveXML());
+        $sxml = simplexml_load_string($node);
         return str_replace(
             '@attributes',
             'attributes',
