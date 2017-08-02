@@ -39,13 +39,14 @@ class EvtAdmPrelimTest extends ESocialTestCase
         $std = new \stdClass();
         $std->sequencial = 1;
         $std->cpfTrab = '00232133417';
-        $std->dtNascto = new \DateTime('1961-02-12');
-        $std->dtAdm = new \DateTime('2017-04-12');
+        $std->dtNascto = '1961-02-12';
+        $std->dtAdm = '2017-04-12';
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
             $this->certificate
         );
+
         $actual = $evt->toXML();
         $dom1 = new \DOMDocument();
         $dom1->loadXML($actual);
@@ -65,15 +66,27 @@ class EvtAdmPrelimTest extends ESocialTestCase
         $std = new \stdClass();
         $std->sequencial = 1;
         $std->cpfTrab = '00232133417';
-        $std->dtNascto = new \DateTime('1961-02-12');
-        $std->dtAdm = new \DateTime('2017-04-12');
+        $std->dtNascto = '1961-02-12';
+        $std->dtAdm = '2017-04-12';
+
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
             $this->certificate
         );
-        $evt->date = new \DateTime('2017-04-27 11:12:30');
-        $actual = $evt->toJson();
+
+        $evtid = FactoryId::build(
+            '1',
+            '99999999999999',
+            new \DateTime('2017-04-27 11:12:30'),
+            $std->sequencial
+        );
+
+        $event = json_decode($evt->toJson(), true);
+        $event['evtAdmPrelim']['attributes']['Id'] = $evtid;
+
+        $actual = json_encode($event, JSON_PRETTY_PRINT);
+
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
         $this->assertEquals($expected, $actual);
     }
@@ -86,15 +99,22 @@ class EvtAdmPrelimTest extends ESocialTestCase
         $std = new \stdClass();
         $std->sequencial = 1;
         $std->cpfTrab = '00232133417';
-        $std->dtNascto = new \DateTime('1961-02-12');
-        $std->dtAdm = new \DateTime('2017-04-12');
+        $std->dtNascto = '1961-02-12';
+        $std->dtAdm = '2017-04-12';
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
             $this->certificate
         );
-        $evt->date = new \DateTime('2017-04-27 11:12:30');
+
         $actual = $evt->toArray();
+        $evtid = FactoryId::build(
+            '1',
+            '99999999999999',
+            new \DateTime('2017-04-27 11:12:30'),
+            $std->sequencial
+        );
+        $actual['evtAdmPrelim']['attributes']['Id'] = $evtid;
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
         $this->assertEquals(json_decode($expected, true), $actual);
     }
@@ -107,15 +127,22 @@ class EvtAdmPrelimTest extends ESocialTestCase
         $std = new \stdClass();
         $std->sequencial = 1;
         $std->cpfTrab = '00232133417';
-        $std->dtNascto = new \DateTime('1961-02-12');
-        $std->dtAdm = new \DateTime('2017-04-12');
+        $std->dtNascto = '1961-02-12';
+        $std->dtAdm = '2017-04-12';
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
             $this->certificate
         );
-        $evt->date = new \DateTime('2017-04-27 11:12:30');
+
         $actual = $evt->toStd();
+        $evtid = FactoryId::build(
+            '1',
+            '99999999999999',
+            new \DateTime('2017-04-27 11:12:30'),
+            $std->sequencial
+        );
+        $actual->evtAdmPrelim->attributes->Id = $evtid;
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
         $this->assertEquals(json_decode($expected), $actual);
     }
