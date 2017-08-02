@@ -114,7 +114,7 @@ class Tools extends ToolsBase
         }
         $xml = "";
         $nEvt = count($eventos);
-        if ($n > 50) {
+        if ($nEvt > 50) {
             throw new InvalidArgumentException(
                 "O numero máximo de eventos em um lote é 50, "
                 . "você está tentando enviar $nEvt eventos !"
