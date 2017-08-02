@@ -114,7 +114,7 @@ class Tools extends ToolsBase
         }
         $xml = "";
         $nEvt = count($eventos);
-        if ($n > 50) {
+        if ($nEvt > 50) {
             throw new InvalidArgumentException(
                 "O numero máximo de eventos em um lote é 50, "
                 . "você está tentando enviar $nEvt eventos !"
@@ -209,7 +209,7 @@ class Tools extends ToolsBase
      * @param FactoryInterface $evento
      * @throws RuntimeException
      */
-    protected function checkCertificate(FactoryInterface $evento)
+    protected function checkCertificate(\NFePHP\eSocial\Common\FactoryInterface $evento)
     {
         if (empty($this->certificate)) {
             //try to get certificate from event
