@@ -209,7 +209,7 @@ class Tools extends ToolsBase
      * @param FactoryInterface $evento
      * @throws RuntimeException
      */
-    protected function checkCertificate(FactoryInterface $evento)
+    protected function checkCertificate(\NFePHP\eSocial\Common\FactoryInterface $evento)
     {
         if (empty($this->certificate)) {
             //try to get certificate from event
