@@ -43,7 +43,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
         $config,
         stdClass $std,
         Certificate $certificate = null,
-        $date = ''    
+        $date = ''
     ) {
         parent::__construct($config, $std, $certificate, $date);
     }
