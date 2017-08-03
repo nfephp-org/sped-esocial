@@ -63,7 +63,7 @@ class EvtIrrf extends Factory implements FactoryInterface
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu        
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,

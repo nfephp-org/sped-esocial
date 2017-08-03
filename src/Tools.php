@@ -135,7 +135,6 @@ class Tools extends ToolsBase
                     . $this->eventGroup[$grupo] . ' ].'
                 );
             }
-            file_put_contents('/var/www/sped/sped-esocial/local/signed.xml', $evt->toXML());
             $this->checkCertificate($evt);
             $xml .= "<evento Id=\"$evt->evtid\">";
             $xml .= $evt->toXML();

@@ -66,9 +66,11 @@ Os eventos estão subdivididos em grupos
 > Já os Eventos de Tabelas são eventos permanentes utilizados por outras partes do eSocial. É recomendável transmiti-las logo após o envio do evento de Informações do Empregador. 
 
 - S-1000 Informações do Empregador
+- S-1005 Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos
 - S-1010 Tabela de Rubricas
 - S-1020 Tabela de Lotações
 - S-1030 Tabela de Cargos
+- S-1035 Tabela de Carreiras Públicas
 - S-1040 Tabela de Funções
 - S-1050 Tabela de Horários/Turnos de Trabalho
 - S-1060 Tabela de Estabelecimentos e Obras
@@ -105,9 +107,11 @@ Os eventos estão subdivididos em grupos
 
 > São os eventos que têm periodicidade previamente definida para sua ocorrência. Seu prazo de transmissão é até o dia 07 do mês seguinte, antecipando o vencimento para o dia útil imediatamente anterior em caso de não haver expediente bancário (à exceção do evento de espetáculo desportivo). São compostos por informações de folha de pagamento, apuração de outros fatos geradores de contribuições previdenciárias e retenção do imposto sobre a renda em pagamentos feitos pelo próprio contribuinte.
 
-- S-1100 Eventos Periódicos – Abertura
 - S-1200 Eventos Periódicos – Remuneração do Trabalhador
-- S-1300 Eventos Periódicos – Pagamentos Diversos
+- S-1202 Remuneração de servidor vinculado a Regime Próprio de Previd. Social
+- S-1207 Benefícios previdenciários - RPPS
+- S-1210 Pagamentos de Rendimentos do Trabalho
+- S-1300 Eventos Periódicos - Pagamentos Diversos
 - S-1310 Eventos Periódicos - Serviços Tomados mediante Cessão de Mão de Obra
 - S-1320 Eventos Periódicos - Serviços Prestados mediante Cessão de Mão de Obra
 - S-1330 Eventos Periódicos - Serviços Tomados de Cooperativa de Trabalho
@@ -115,8 +119,8 @@ Os eventos estão subdivididos em grupos
 - S-1350 Eventos Periódicos - Aquisição de Produção
 - S-1360 Eventos Periódicos - Comercialização da Produção
 - S-1370 Eventos Periódicos - Recursos Recebidos ou Repassados p/ Assoc. Desportiva que mantenha Equipe de Futebol Profiss.
-- S-1380 Eventos Periódicos – Informações Complementares - Desoneração
-- S-1390 Eventos Periódicos – Receita de Atividades Concomitantes
+- S-1380 Eventos Periódicos - Informações Complementares - Desoneração
+- S-1390 Eventos Periódicos - Receita de Atividades Concomitantes
 - S-1399 Eventos Periódicos - Fechamento
-- S-1400 Eventos Periódicos – Bases, Retenção, Deduções e Contribuições
-- S-1800 Eventos Periódicos – Espetáculo Desportivo
+- S-1400 Eventos Periódicos - Bases, Retenção, Deduções e Contribuições
+- S-1800 Eventos Periódicos - Espetáculo Desportivo
