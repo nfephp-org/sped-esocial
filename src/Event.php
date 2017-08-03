@@ -15,7 +15,7 @@ namespace NFePHP\eSocial;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use InvalidArgumentException;
+use NFePHP\eSocial\Exception\EventsException;
 
 class Event
 {
@@ -124,7 +124,7 @@ class Event
     /**
      * Call classes to build XML eSocial Event
      * @param string $name
-     * @param array $arguments [config, std, certificate]
+     * @param array $arguments [config, std, certificate, $date]
      * @return \NFePHP\eSocial\Factories\className
      * @throws InvalidArgumentException
      */
@@ -134,16 +134,27 @@ class Event
         $realname = $name;
         if (substr($name, 0, 1) == 's') {
             if (!array_key_exists($name, self::$aliases)) {
-                throw new InvalidArgumentException("Este evento [$name] não foi encontrado.");
+                //este evento não foi localizado
+                throw EventsException::wrongArgument(1000, $name);
             }
             $realname = self::$aliases[$name];
         }
         if (!array_key_exists($realname, self::$available)) {
-            throw new InvalidArgumentException("Este evento [$name] não foi encontrado.");
+            //este evento não foi localizado
+            throw EventsException::wrongArgument(1000, $name);
         }
         $className = self::$available[$realname];
-        if (count($arguments) > 2) {
+        if (empty($arguments[0])) {
+            throw EventsException::wrongArgument(1001);
+        }
+        if (empty($arguments[1])) {
+            throw EventsException::wrongArgument(1002, $name);
+        }
+        if (count($arguments) > 2 && count($arguments) < 4) {
             return new $className($arguments[0], $arguments[1], $arguments[2]);
+        }     
+        if (count($arguments) > 3) {
+            return new $className($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
         }
         return new $className($arguments[0], $arguments[1]);
     }

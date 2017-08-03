@@ -35,40 +35,22 @@ class SoapCurl extends SoapBase implements SoapInterface
     
     /**
      * Send soap message to url
-     * @param string $url
      * @param string $operation
+     * @param string $url
      * @param string $action
-     * @param int $soapver
+     * @param string $envelope
      * @param array $parameters
-     * @param array $namespaces
-     * @param string $request
-     * @param \SOAPHeader $soapheader
      * @return string
      * @throws \NFePHP\Common\Exception\SoapException
      */
     public function send(
+        $operation,
         $url,
-        $operation = '',
-        $action = '',
-        $soapver = SOAP_1_2,
-        $parameters = [],
-        $namespaces = [],
-        $request = '',
-        $soapheader = null
+        $action,
+        $envelope,
+        $parameters
     ) {
         $response = '';
-        $envelope = $this->makeEnvelopeSoap(
-            $request,
-            $namespaces,
-            $soapver,
-            $soapheader
-        );
-        $msgSize = strlen($envelope);
-        $parameters = [
-            "Content-Type: text/xml;charset=UTF-8",
-            "SOAPAction: \"$action\"",
-            "Content-length: $msgSize"
-        ];
         $this->requestHead = implode("\n", $parameters);
         $this->requestBody = $envelope;
         
@@ -95,9 +77,9 @@ class SoapCurl extends SoapBase implements SoapInterface
             if (!empty($this->temppass)) {
                 curl_setopt($oCurl, CURLOPT_KEYPASSWD, $this->temppass);
             }
-            curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
             if (! empty($envelope)) {
-                curl_setopt($oCurl, CURLOPT_POST, 1);
+                curl_setopt($oCurl, CURLOPT_POST, true);
                 curl_setopt($oCurl, CURLOPT_POSTFIELDS, $envelope);
                 curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parameters);
             }

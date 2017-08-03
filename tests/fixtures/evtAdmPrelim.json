@@ -1,12 +1,12 @@
 {
     "evtAdmPrelim": {
         "attributes": {
-            "Id": "ID1999999999999992017042711123000001"
+            "Id": "ID1999999999999992017080310370000001"
         },
         "ideEvento": {
-            "tpAmb": "3",
+            "tpAmb": "2",
             "procEmi": "1",
-            "verProc": "2_2_01"
+            "verProc": "2_3_00"
         },
         "ideEmpregador": {
             "tpInsc": "1",

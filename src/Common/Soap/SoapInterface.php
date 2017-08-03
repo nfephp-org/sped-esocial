@@ -65,23 +65,18 @@ interface SoapInterface
     
     /**
      * Send soap message
-     * @param string $url
      * @param string $operation
+     * @param string $url
      * @param string $action
-     * @param int $soapver
+     * @param string $envelope
      * @param array $parameters
-     * @param array $namespaces
-     * @param \SOAPHeader $soapheader
      * @param string $request
      */
     public function send(
+        $operation,
         $url,
-        $operation = '',
-        $action = '',
-        $soapver = SOAP_1_2,
-        $parameters = [],
-        $namespaces = [],
-        $request = '',
-        $soapheader = null
+        $action,
+        $envelope,
+        $parameters
     );
 }

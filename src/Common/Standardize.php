@@ -4,10 +4,10 @@ namespace NFePHP\eSocial\Common;
 
 /**
  * Class for identification of eletronic documents in xml
- * used for Sped NFe comunications
+ * used for Sped eSocial comunications
  *
  * @category  NFePHP
- * @package   NFePHP\NFe\Common\Standardize
+ * @package   NFePHP\eSocial\Common\Standardize
  * @copyright NFePHP Copyright (c) 2008 - 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -18,6 +18,7 @@ namespace NFePHP\eSocial\Common;
 
 use DOMDocument;
 use stdClass;
+use Symfony\Component\Yaml\Yaml;
 use InvalidArgumentException;
 use NFePHP\Common\Validator;
 
@@ -127,5 +128,19 @@ class Standardize
             $this->toStd($xml);
         }
         return json_decode($this->json, true);
+    }
+    
+    /**
+     * Returns YAML from XML
+     * @param string $xml
+     * @return string
+     */
+    public function toYaml($xml = null)
+    {
+        if (!empty($xml)) {
+            $this->toStd($xml);
+        }
+        $array = $this->toArray();
+        return Yaml::dump($array, 6, 4);
     }
 }

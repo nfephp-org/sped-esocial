@@ -116,15 +116,20 @@ abstract class Factory
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
+     * @param string $date
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null
+        Certificate $certificate = null,
+        $date = ''    
     ) {
         //set properties from config
         $stdConf = json_decode($config);
         $this->date = new DateTime();
+        if (!empty($date)) {
+            $this->date = new DateTime($date);
+        }
         $this->tpAmb = $stdConf->tpAmb;
         $this->verProc = $stdConf->verProc;
         $this->layout = $stdConf->eventoVersion;
@@ -231,12 +236,12 @@ abstract class Factory
         if (empty($this->xml)) {
             $this->toNode();
         }
-        $dom = new \DOMDocument();
-        $dom->loadXML($this->xml);
         //a assinatura só faz sentido no XML, os demais formatos
         //não devem conter dados da assinatura
-        $node = Signer::removeSignature($dom);
-        $sxml = simplexml_load_string($node->saveXML());
+        $xml = Signer::removeSignature($this->xml);
+        $dom = new \DOMDocument();
+        $dom->loadXML($xml);
+        $sxml = simplexml_load_string($dom->saveXML());
         return str_replace(
             '@attributes',
             'attributes',
@@ -296,7 +301,7 @@ abstract class Factory
                 'eSocial',
                 '',
                 OPENSSL_ALGO_SHA256,
-                [false,false,null,null]
+                [true,false,null,null]
             );
             //validation by XSD schema throw Exception if dont pass
             Validator::isValid($xml, $this->schema);

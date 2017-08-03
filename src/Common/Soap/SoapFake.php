@@ -33,29 +33,12 @@ class SoapFake extends SoapBase implements SoapInterface
     }
     
     public function send(
+        $operation,
         $url,
-        $operation = '',
-        $action = '',
-        $soapver = SOAP_1_2,
-        $parameters = [],
-        $namespaces = [],
-        $request = '',
-        $soapheader = null
+        $action,
+        $envelope,
+        $parameters
     ) {
-        $envelope = $this->makeEnvelopeSoap(
-            $request,
-            $namespaces,
-            $soapver,
-            $soapheader
-        );
-        $msgSize = strlen($envelope);
-        $parameters = [
-            "Content-Type: application/soap+xml;charset=utf-8;",
-            "Content-length: $msgSize"
-        ];
-        if (!empty($action)) {
-            $parameters[0] .= "action=$action";
-        }
         $requestHead = implode("\n", $parameters);
         $requestBody = $envelope;
         
@@ -63,10 +46,10 @@ class SoapFake extends SoapBase implements SoapInterface
             'url' => $url,
             'operation' => $operation,
             'action' => $action,
-            'soapver' => $soapver,
+            'soapver' => '1.1',
             'parameters' => $parameters,
             'header' => $requestHead,
-            'namespaces' => $namespaces,
+            'namespaces' => [],
             'body' => $requestBody
         ], JSON_PRETTY_PRINT);
     }
