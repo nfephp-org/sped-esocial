@@ -61,18 +61,9 @@ class EvtIrrf extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtIrrf = $this->dom->createElement("evtIrrf");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
-        $evtIrrf->appendChild($att);
-        
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu        
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -85,32 +76,27 @@ class EvtIrrf extends Factory implements FactoryInterface
             "procEmi",
             $this->procEmi,
             true
-        );        $this->dom->addChild(
+        );
+        $this->dom->addChild(
             $ideEvento,
             "verProc",
             $this->verProc,
             true
         );
-        $evtIrrf->appendChild($ideEvento);
-    
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ideEvento,
+            "perApur",
+            $this->std->perapur,
             true
         );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtIrrf->appendChild($ideEmpregador);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
         
-
-
+        //tag deste evento em particular
+        $infoRegPrelim = $this->dom->createElement("infoIRRF");
+        
+        
+        
         $eSocial->appendChild($evtIrrf);
-        $this->sign($eSocial);
+        //$this->sign($eSocial);
     }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtTabCarreira/v02_03_00" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.esocial.gov.br/schema/evt/evtTabCarreira/v02_03_00 ../evtTabCarreira.xsd ">
+  <evtTabCarreira Id="idvalue0">
+    <ideEvento>
+      <tpAmb>0</tpAmb>
+      <procEmi>0</procEmi>
+      <verProc>verProc</verProc>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>0</tpInsc>
+      <nrInsc>nrInsc</nrInsc>
+    </ideEmpregador>
+    <infoCarreira>
+      <inclusao>
+        <ideCarreira>
+          <codCarreira>codCarreira</codCarreira>
+          <iniValid>iniValid</iniValid>
+        </ideCarreira>
+        <dadosCarreira>
+          <dscCarreira>dscCarreira</dscCarreira>
+          <dtLeiCarr>2001-01-01</dtLeiCarr>
+          <sitCarr>0</sitCarr>
+        </dadosCarreira>
+      </inclusao>
+    </infoCarreira>
+  </evtTabCarreira>
+  <Signature Id="idvalue1">
+    <SignedInfo Id="idvalue2">
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+      <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+      <Reference Id="idvalue3" Type="http://tempuri.org" URI="http://tempuri.org">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+        <DigestValue>MA==</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue Id="idvalue4">MA==</SignatureValue>
+    <KeyInfo Id="idvalue5">
+      <X509Data>
+        <X509Certificate>MA==</X509Certificate>
+      </X509Data>
+    </KeyInfo>
+  </Signature>
+</eSocial>

@@ -6,7 +6,7 @@ require_once '../bootstrap.php';
 use JsonSchema\Validator;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Constraints\Factory;
-
+use JsonSchema\Constraints\Constraint;
 
 $jsonSchema = '{
     "title": "evtAdmPrelim",
@@ -58,7 +58,11 @@ $schemaStorage->addSchema('file://mySchema', $jsonSchemaObject);
 $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
-$jsonValidator->validate($jsonToValidateObject, $jsonSchemaObject);
+$jsonValidator->validate(
+    $jsonToValidateObject,
+    $jsonSchemaObject,
+    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+);
 
 if ($jsonValidator->isValid()) {
     echo "The supplied JSON validates against the schema.<br/>";
