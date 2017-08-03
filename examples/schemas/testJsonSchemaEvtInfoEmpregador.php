@@ -338,7 +338,7 @@ $jsonSchema = '{
     }
 }';
 
-
+file_put_contents("../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
 
 //campos OBRIGATORIOS
 $std = new \stdClass();
