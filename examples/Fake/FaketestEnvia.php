@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 use NFePHP\eSocial\Event;
 use NFePHP\Common\Certificate;
@@ -27,6 +27,7 @@ $config = [
 ];
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
+
 try {
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
@@ -38,18 +39,26 @@ try {
     //desativa a validação da validade do certificado 
     //estamos usando um certificado vencido nesse teste
     $soap->disableCertValidation(true);
-
+    
+    //cria o evento
+    $std = new \stdClass();
+    $std->sequencial = 1;
+    $std->cpfTrab = '00232133417';
+    $std->dtNascto = '1931-02-12';
+    $std->dtAdm = '2017-02-12';
+    $evento = Event::evtAdmPrelim($configJson, $std);
+    
     //instancia a classe responsável pela comunicação
     $tools = new Tools($configJson, $certificate);
     //carrega a classe responsável pelo envio SOAP
     //nesse caso um envio falso
     $tools->loadSoapClass($soap);
     
-    //executa a consulta
-    $response = $tools->consultarLoteEventos('1.2.201707.0000000000000007638');    
+    //executa o envio
+    $response = $tools->enviarLoteEventos($tools::EVT_NAO_PERIODICOS, [$evento]);
     
     //retorna os dados que serão usados na conexão para conferência
-    echo FakePretty::prettyPrint($response, 'fake_envConsulta');
+    echo FakePretty::prettyPrint($response, 'fake_envLoteEventos');
     
 } catch (\Exception $e) {
     echo $e->getMessage();
