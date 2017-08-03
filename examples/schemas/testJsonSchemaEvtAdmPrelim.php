@@ -1,12 +1,15 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 use JsonSchema\Validator;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Constraints\Factory;
 use JsonSchema\Constraints\Constraint;
+
+$evento = 'evtAdmPrelim';
+$version = '02_03_00';
 
 $jsonSchema = '{
     "title": "evtAdmPrelim",
@@ -36,6 +39,7 @@ $jsonSchema = '{
         }
     }
 }';
+
 
 $jsonToValidateObject = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
@@ -71,4 +75,7 @@ if ($jsonValidator->isValid()) {
     foreach ($jsonValidator->getErrors() as $error) {
         echo sprintf("[%s] %s<br/>", $error['property'], $error['message']);
     }
+    die;
 }
+//salva se sucesso
+file_put_contents("../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
