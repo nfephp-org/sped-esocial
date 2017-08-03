@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 use NFePHP\eSocial\Event;
 use NFePHP\Common\Certificate;
@@ -23,38 +23,6 @@ $config = [
     ]
 ];
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
-
-//schema de validação dos dados de entrada
-$json_schema = '{
-    "title": "evtAdmPrelim",
-    "type": "object",
-    "properties": {
-        "sequencial": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 99999
-        },
-        "cpftrab": {
-            "required": true,
-            "type": "string",
-            "maxLength": 11,
-            "minLength": 11
-        },
-        "dtnascto": {
-            "required": true,
-            "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-        },
-        "dtadm": {
-            "required": true,
-            "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-        }
-    }
-}';
-//depois de criar o schema funcional salvar na pasta
-//file_put_contents("../jsonSchemes/v02_03_00/evtAdmPrelim.schema", $json_schema);
 
 //carrega os dados do envento
 $std = new \stdClass();
