@@ -1,8 +1,8 @@
 <?php
-error_reporting(E_ALL);
-//error_reporting(E_ERROR);
+//error_reporting(E_ALL);
+error_reporting(E_ERROR);
 ini_set('display_errors', 'On');
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 use NFePHP\eSocial\Event;
 use NFePHP\Common\Certificate;
@@ -10,7 +10,6 @@ use JsonSchema\Validator;
 use NFePHP\eSocial\Tools;
 use NFePHP\eSocial\Common\FakePretty;
 use NFePHP\eSocial\Common\Soap\SoapFake;
-
 
 $config = [
     'tpAmb' => 2, //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.

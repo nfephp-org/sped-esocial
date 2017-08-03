@@ -67,24 +67,6 @@ class EvtIrrf extends Factory implements FactoryInterface
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
             "perApur",
             $this->std->perapur,
             true
@@ -92,11 +74,42 @@ class EvtIrrf extends Factory implements FactoryInterface
         $this->node->insertBefore($ideEvento, $ideEmpregador);
         
         //tag deste evento em particular
-        $infoRegPrelim = $this->dom->createElement("infoIRRF");
+        $infoIrrf = $this->dom->createElement("infoIRRF");
+        $this->dom->addChild(
+            $infoIrrf,
+            "nrRecArqBase",
+            !empty($this->std->infoirrf->nrrecarqbase) ? $this->std->infoirrf->nrrecarqbase : '',
+            false
+        );
+        $this->dom->addChild(
+            $infoIrrf,
+            "indExistInfo",
+            $this->std->infoirrf->indexistinfo,
+            true
+        );
         
+        if (isset($this->std->infocrcontrib)) {
+            foreach ($this->std->infocrcontrib as $infoc) {
+                $infocontrib = $this->dom->createElement("infoCRContrib");
+                $this->dom->addChild(
+                    $infocontrib,
+                    "tpCR",
+                    $infoc->tpcr,
+                    true
+                );
+                $this->dom->addChild(
+                    $infocontrib,
+                    "vrCR",
+                    $infoc->vrcr,
+                    true
+                );
+                $infoIrrf->appendChild($infocontrib);
+            }
+        }
+        $this->node->appendChild($infoIrrf);
         
-        
-        $eSocial->appendChild($evtIrrf);
-        //$this->sign($eSocial);
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }

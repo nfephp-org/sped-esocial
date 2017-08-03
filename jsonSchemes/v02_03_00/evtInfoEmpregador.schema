@@ -36,7 +36,7 @@
                 "nmrazao": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 115
+                    "maxLength": 100
                 },
                 "classtrib": {
                     "required": true,
@@ -71,11 +71,6 @@
                     "type": "integer",
                     "minimum": 0,
                     "maximum": 1
-                },
-                "multtabrubricas": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
                 },
                 "indented": {
                     "required": false,
@@ -207,7 +202,7 @@
                 "nmente": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 115
+                    "maxLength": 100
                 },
                 "uf": {
                     "required": true,
@@ -267,7 +262,7 @@
                     "nmrazao": {
                         "required": true,
                         "type": "string",
-                        "maxLength": 115
+                        "maxLength": 100
                     },
                     "nmcont": {
                         "required": true,
