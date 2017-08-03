@@ -88,7 +88,10 @@ class ParamsStandardize
         $ref = ''
     ) {
         if ($schema->type == 'object') {
-            $required = $schema->required;
+            $required = true;
+            if (isset($schema->required)) {
+                $required = $schema->required;
+            }
             $exist = true;
             foreach ($schema->properties as $name => $prop) {
                 if (in_array($name, $keys)) {

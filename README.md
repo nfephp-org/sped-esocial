@@ -119,11 +119,34 @@ Em todos os tipos de exame ocupacional, será obrigatório o registro no eSocial
 ## Contribuindo
 Este é um projeto totalmente *OpenSource*, para usa-lo e modifica-lo você não paga absolutamente nada. Porém para continuarmos a mante-lo é necessário qua alguma contribuição seja feita, seja auxiliando na codificação, na documentação ou na realização de testes e identificação de falhas e BUGs.
 
-## Instalação
-Via Composer
+**Este pacote esta listado no [Packgist](https://packagist.org/) foi desenvolvido para uso do [Composer](https://getcomposer.org/), portanto não será explicitada nenhuma alternativa de instalação.**
 
-``` bash
-$ composer require nfephp-org/sped-esocial
+*Durante a fase de desenvolvimento e testes este pacote deve ser instalado com:*
+```bash
+composer require nfephp-org/sped-esocial:dev-master
+```
+
+*Ou ainda alterando o composer.json do seu aplicativo inserindo:*
+```json
+"require": {
+    "nfephp-org/sped-esocial" : "dev-master"
+}
+```
+
+> NOTA: Ao utilizar este pacote ainda na fase de desenvolvimento não se esqueça de alterar o composer.json da sua aplicação para aceitar pacotes em desenvolvimento, alterando a propriedade "minimum-stability" de "stable" para "dev".
+> ```json
+> "minimum-stability": "dev"
+> ```
+
+*Após os stable realeases estarem disponíveis, pode ser instalado com:*
+```bash
+composer require nfephp-org/sped-esocial
+```
+Ou ainda alterando o composer.json do seu aplicativo inserindo:
+```json
+"require": {
+    "nfephp-org/sped-esocial" : "^1.0"
+}
 ```
 
 ## Forma de uso

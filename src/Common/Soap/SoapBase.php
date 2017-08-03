@@ -330,14 +330,11 @@ abstract class SoapBase implements SoapInterface
      * Send message to webservice
      */
     abstract public function send(
+        $operation,
         $url,
-        $operation = '',
-        $action = '',
-        $soapver = SOAP_1_2,
-        $parameters = [],
-        $namespaces = [],
-        $request = '',
-        $soapheader = null
+        $action,
+        $envelope,
+        $parameters
     );
     
     /**

@@ -89,7 +89,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         $this->dom->addChild(
             $idePeriodo,
             "fimValid",
-            $this->std->ideperiodo->fimvalid,
+            !empty($this->std->ideperiodo->fimvalid) ? $this->std->ideperiodo->fimvalid : '',
             false
         );
         
@@ -137,12 +137,6 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $infoCadastro,
                 "indOptRegEletron",
                 $cad->indoptregeletron,
-                true
-            );
-            $this->dom->addChild(
-                $infoCadastro,
-                "multTabRubricas",
-                $cad->multtabrubricas,
                 true
             );
             $this->dom->addChild(
@@ -237,7 +231,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "foneFixo",
-                $cad->foneFixo,
+                !empty($cad->foneFixo) ? $cad->foneFixo : '',
                 false
             );
             $this->dom->addChild(
