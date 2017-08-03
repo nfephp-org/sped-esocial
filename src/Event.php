@@ -152,7 +152,7 @@ class Event
         }
         if (count($arguments) > 2 && count($arguments) < 4) {
             return new $className($arguments[0], $arguments[1], $arguments[2]);
-        }     
+        }
         if (count($arguments) > 3) {
             return new $className($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
         }

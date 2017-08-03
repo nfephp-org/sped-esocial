@@ -122,7 +122,7 @@ abstract class Factory
         $config,
         stdClass $std,
         Certificate $certificate = null,
-        $date = ''    
+        $date = ''
     ) {
         //set properties from config
         $stdConf = json_decode($config);
