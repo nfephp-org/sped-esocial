@@ -26,21 +26,40 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
+$std->nrrecarqbase = 'ljdkdjdlkjdlkdjkdjdkjdkjdkdjk';
 $std->perapur = '2017-08';
+$std->cpftrab = '99999999999';
+$std->vrdeddep = 1234.56;
 
-$std->infoirrf = new \stdClass();
-$std->infoirrf->nrrecarqbase = '1234567-1234567-1234567';
-$std->infoirrf->indexistinfo = 1;
+$infoirrf[0] = new \stdClass();
+$infoirrf[0]->codcateg = 101;
+$infoirrf[0]->indresbr = 'N';        
 
-$infocrcontrib[0] = new \stdClass();
-$infocrcontrib[0]->tpcr = '056109';
-$infocrcontrib[0]->vrcr = 14527.00;
+$basesirrf[0] = new \stdClass();
+$basesirrf[0]->tpvalor = '00';
+$basesirrf[0]->valor = '1000';
+$infoirrf[0]->basesirrf = $basesirrf;
 
-$infocrcontrib[1] = new \stdClass();
-$infocrcontrib[1]->tpcr = '056101';
-$infocrcontrib[1]->vrcr = 1342.45;
+$irrf[0] = new \stdClass();
+$irrf[0]->tpcr = '056107';
+$irrf[0]->vrirrfdesc = 12345.23;
+$infoirrf[0]->irrf = $irrf;
 
-$std->infocrcontrib = $infocrcontrib;
+$idepgtoext = new \stdClass();
+$idepgtoext->codpais = '105';
+$idepgtoext->indnif = 1;
+$idepgtoext->nifbenef = 'lsklsslkslslsk';
+
+$idepgtoext->dsclograd = 'RUA';
+$idepgtoext->nrlograd = '123';
+$idepgtoext->complem = 'ddddd';
+$idepgtoext->bairro = 'eeee';
+$idepgtoext->nmcid = 'nnnnnn';
+$idepgtoext->codpostal = '123456789012';
+
+$infoirrf[0]->idepgtoext = $idepgtoext;
+
+$std->infoirrf = $infoirrf;
 
 try {
     
@@ -50,7 +69,7 @@ try {
     $certificate = Certificate::readPfx($content, $password);
     
     //cria o evento e retorna o XML assinado
-    $xml = Event::evtIrrf(
+    $xml = Event::evtIrrfBenef(
         $configJson,
         $std,
         $certificate,

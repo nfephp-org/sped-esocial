@@ -3,6 +3,7 @@
 namespace NFePHP\eSocial\Common;
 
 use NFePHP\Common\Certificate;
+use NFePHP\eSocial\Common\XsdSeeker;
 use DateTime;
 
 class Tools
@@ -56,6 +57,10 @@ class Tools
      */
     protected $serviceStr;
     /**
+     * @var array
+     */
+    protected $serviceXsd = [];
+    /**
      * @var Certificate
      */
     protected $certificate;
@@ -81,9 +86,11 @@ class Tools
     protected $grupos = [
         1 => [ //EVENTOS INICIAIS grupo [1]
             'S-1000',
+            'S-1005',
             'S-1010',
             'S-1020',
             'S-1030',
+            'S-1035',
             'S-1040',
             'S-1050',
             'S-1060',
@@ -94,44 +101,39 @@ class Tools
         2 => [ //EVENTOS NÃO PERIÓDICOS grupo [2]
             'S-2190',
             'S-2200',
+            'S-2205',
+            'S-2206',
+            'S-2210',
             'S-2220',
+            'S-2230',
             'S-2240',
-            'S-2260',
-            'S-2280',
-            'S-2320',
-            'S-2325',
-            'S-2330',
-            'S-2340',
-            'S-2345',
-            'S-2360',
-            'S-2365',
+            'S-2241',
+            'S-2250',
+            'S-2298',
+            'S-2299',
+            'S-2300',
+            'S-2306',
+            'S-2399',
             'S-2400',
-            'S-2405',
-            'S-2600',
-            'S-2620',
-            'S-2680',
-            'S-2800',
-            'S-2820'
+            'S-3000',
+            'S-4000',
+            'S-5001',
+            'S-5002',
+            'S-5011',
+            'S-5012'
         ],
         3 => [ //EVENTOS PERIÓDICOS grupo [3]
-            'S-1100',
             'S-1200',
             'S-1202',
             'S-1207',
             'S-1210',
-            'S-1300',
-            'S-1310',
-            'S-1320',
-            'S-1330',
-            'S-1340',
-            'S-1350',
-            'S-1360',
-            'S-1370',
-            'S-1380',
-            'S-1390',
-            'S-1399',
-            'S-1400',
-            'S-1800'
+            'S-1250',
+            'S-1260',
+            'S-1270',
+            'S-1280',
+            'S-1298',
+            'S-1299',
+            'S-1300'
         ]
     ];
 
@@ -165,6 +167,10 @@ class Tools
         $this->path = realpath(
             __DIR__ . '/../../'
         ).'/';
+        
+        $this->serviceXsd = XsdSeeker::seek(
+            $this->path . "schemes/comunicacao/$this->serviceStr/"
+        );
     }
     
     /**
