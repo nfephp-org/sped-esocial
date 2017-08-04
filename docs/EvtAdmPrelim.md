@@ -48,17 +48,24 @@ use stdClass;
 
 //constroi o json da configuração
 $config = [
-    'tpInsc' => 1,  //1-CNPJ, 2-CPF
-    'nrInsc' => '99999999999999', //numero do documento
-    'company' => 'Razao Social',
-    'tpAmb' => 3, //tipo de ambiente 1 - Produção;2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_2_02', //Informar a versão do aplicativo emissor do evento.
-    'layout' => '2.2.2' //versão do layout
+    'tpAmb' => 2, //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
+    'verProc' => '2_3_00', //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
+    'eventoVersion' => '2.3.0', //versão do layout do evento
+    'serviceVersion' => '1.1.0',//versão do webservice
+    'empregador' => [
+        'tpInsc' => 1,  //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999999999', //numero do documento
+        'nmRazao' => 'Razao Social'
+    ],    
+    'transmissor' => [
+        'tpInsc' => 1,  //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999999999' //numero do documento
+    ]
 ];
-$configJson = json_encode($config);
+$configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 try {
-    //instancia Certificate::class com o 
+    //instância Certificate::class com o 
     //$content = conteudo do certificado PFX
     //$password = senha de acesso ao certificado PFX
     $certificate = Certificate::readPfx($content, $password);
