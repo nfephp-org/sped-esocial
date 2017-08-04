@@ -162,7 +162,7 @@ abstract class Factory
         //Adding forgotten or unnecessary fields.
         //This is done for standardization purposes.
         //Fields with no value will not be included by the builder.
-        $this->std = $this->standardizeProperties($this->std);
+        //$this->std = $this->standardizeProperties($this->std);
         $this->init();
     }
     
