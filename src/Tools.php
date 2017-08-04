@@ -68,7 +68,7 @@ class Tools extends ToolsBase
      */
     public function consultarLoteEventos($protocolo)
     {
-        $operationVersion = 'v1_0_0';
+        $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
         $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
             . "/envio/consulta/retornoProcessamento/$this->serviceStr";
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
@@ -140,7 +140,7 @@ class Tools extends ToolsBase
             $xml .= $evt->toXML();
             $xml .= "</evento>";
         }
-        $operationVersion = 'v1_1_0';
+        $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
         $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
             . "/envio/$this->serviceStr";
         $this->method = "EnviarLoteEventos";
@@ -176,7 +176,7 @@ class Tools extends ToolsBase
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid($request, $this->path
             . "schemes/comunicacao/$this->serviceStr/"
-            . "EnvioLoteEventos-$this->serviceStr.xsd");
+            . "EnvioLoteEventos-$operationVersion.xsd");
         
         $body = "<v1:EnviarLoteEventos>"
             . "<v1:loteEventos>"
