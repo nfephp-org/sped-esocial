@@ -8,11 +8,11 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtAvPrevio';
+$evento = 'evtExclusao';
 $version = '02_03_00';
 
 $jsonSchema = '{
-    "title": "evtAvPrevio",
+    "title": "evtExclusao",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -21,86 +21,56 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 99999
         },
-        "indretif": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2
-        },
-        "nrrecibo": {
-            "required": false,
-            "type": "string",
-            "maxLength": 40
-        },
-        "idevinculo": {
+        "infoExclusao": {
             "required": true,
             "type": "object",
             "properties": {
-                "cpftrab": {
+                "tpEvento": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 6,
+                    "minLength": 5
+                },
+                "nrRecEvt": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 40,
+                    "minLength": 1
+                }
+            }
+        },
+        "ideFolhaPagto": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "indApuracao": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "perApur": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                }
+            }
+        },
+        "ideTrabalhador": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpfTrab": {
                     "required": true,
                     "type": "string",
                     "maxLength": 11,
                     "minLength": 11
                 },
-                "nistrab": {
-                    "required": true,
+                "nisTrab": {
+                    "required": false,
                     "type": "string",
                     "maxLength": 11,
                     "minLength": 11
-                },
-                "matricula": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 30
-                }
-            }
-        },
-        "infoavprevio": {
-            "required": true,
-            "type": "object",
-            "properties": {
-                "dtavprv": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "dtprevdeslig": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "tpavprevio": {
-                    "required": true,
-                    "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "(1|2|4|5){1}$"
-                },
-                "observacao": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 255
-                }
-            }
-        },
-        "cancavprevio": {
-            "required": false,
-            "type": "object",
-            "properties": {
-                "dtcancavprv": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "observacao": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 255
-                },
-                "mtvcancavprevio": {
-                    "required": true,
-                    "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "(1|2|3|9){1}$"
                 }
             }
         }
@@ -110,21 +80,24 @@ $jsonSchema = '{
 
 $jsonToValidateObject = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->indretif = 2;
 
-$idevinculo = new \stdClass();
-$idevinculo->cpftrab = '11111111111';
-$idevinculo->nistrab = '11111111111';
-$idevinculo->matricula = '11111111111';
+$infoExclusao = new \stdClass();
+$infoExclusao->tpEvento = 'S-2190';
+$infoExclusao->nrRecEvt = '1234567-1234567-1234567';
 
-$jsonToValidateObject->idevinculo = $idevinculo;
+$jsonToValidateObject->infoExclusao = $infoExclusao;
 
-$infoavprevio = new \stdClass();
-$infoavprevio->dtavprv = '2008-09-28';
-$infoavprevio->dtprevdeslig = '2014-09-18';
-$infoavprevio->tpavprevio = 2;
+$ideFolhaPagto = new \stdClass();
+$ideFolhaPagto->indApuracao = 1;
+$ideFolhaPagto->perApur = '2017-08';
 
-$jsonToValidateObject->infoavprevio = $infoavprevio;
+$jsonToValidateObject->ideFolhaPagto = $ideFolhaPagto;
+
+$ideTrabalhador = new \stdClass();
+$ideTrabalhador->cpfTrab = '11111111111';
+$ideTrabalhador->nisTrab = '11111111111';
+
+$jsonToValidateObject->ideTrabalhador = $ideTrabalhador;
 
 
 // Schema must be decoded before it can be used for validation
