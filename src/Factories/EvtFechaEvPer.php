@@ -120,7 +120,16 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
             true
         );
         $evtFechaEvPer->appendChild($ideEmpregador);
-        
+
+        $ideRespInf = $this->dom->createElement("ideRespInf");
+        $this->dom->addChild(
+            $ideRespInf,
+            "nmResp",
+            $this->tpInsc,
+            true
+        );
+        $evtFechaEvPer->appendChild($ideRespInf);
+
 
 
         $eSocial->appendChild($evtFechaEvPer);
