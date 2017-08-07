@@ -26,24 +26,8 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 //carrega os dados do envento
 $std = new \stdClass();
 $std->sequencial = 1;
-
-$infoexclusao = new \stdClass();
-$infoexclusao->tpevento = 'S-2190';
-$infoexclusao->nrrecEvt = '1234567-1234567-1234567';
-
-$std->infoexclusao = $infoexclusao;
-
-$idefolhapagto = new \stdClass();
-$idefolhapagto->indapuracao = 1;
-$idefolhapagto->perapur = '2017-08';
-
-$std->idefolhapagto = $idefolhapagto;
-
-$idetrabalhador = new \stdClass();
-$idetrabalhador->cpftrab = '11111111111';
-$idetrabalhador->nistrab = '11111111111';
-
-$std->idetrabalhador = $idetrabalhador;
+$std->indapuracao = 2;
+$std->perapur = '2017-08';
 
 try {
 
@@ -53,7 +37,7 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado
-    $xml = Event::evtExclusao(
+    $xml = Event::evtReabreEvPer(
         $configJson,
         $std,
         $certificate,
