@@ -76,6 +76,18 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
+            "indApuracao",
+            $this->std->indapuracao,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "perApur",
+            $this->std->perapur,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
             "tpAmb",
             $this->tpAmb,
             true
@@ -85,7 +97,8 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
             "procEmi",
             $this->procEmi,
             true
-        );        $this->dom->addChild(
+        );
+        $this->dom->addChild(
             $ideEvento,
             "verProc",
             $this->verProc,
