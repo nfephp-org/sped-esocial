@@ -21,17 +21,17 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 99999
         },
-        "infoExclusao": {
+        "infoexclusao": {
             "required": true,
             "type": "object",
             "properties": {
-                "tpEvento": {
+                "tpevento": {
                     "required": true,
                     "type": "string",
                     "maxLength": 6,
                     "minLength": 5
                 },
-                "nrRecEvt": {
+                "nrrecevt": {
                     "required": true,
                     "type": "string",
                     "maxLength": 40,
@@ -39,34 +39,34 @@ $jsonSchema = '{
                 }
             }
         },
-        "ideFolhaPagto": {
+        "idefolhapagto": {
             "required": true,
             "type": "object",
             "properties": {
-                "indApuracao": {
+                "indapuracao": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 2
                 },
-                "perApur": {
+                "perapur": {
                     "required": true,
                     "type": "string",
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
                 }
             }
         },
-        "ideTrabalhador": {
+        "idetrabalhador": {
             "required": true,
             "type": "object",
             "properties": {
-                "cpfTrab": {
+                "cpftrab": {
                     "required": true,
                     "type": "string",
                     "maxLength": 11,
                     "minLength": 11
                 },
-                "nisTrab": {
+                "nistrab": {
                     "required": false,
                     "type": "string",
                     "maxLength": 11,
@@ -81,23 +81,23 @@ $jsonSchema = '{
 $jsonToValidateObject = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
 
-$infoExclusao = new \stdClass();
-$infoExclusao->tpEvento = 'S-2190';
-$infoExclusao->nrRecEvt = '1234567-1234567-1234567';
+$infoexclusao = new \stdClass();
+$infoexclusao->tpevento = 'S-2190';
+$infoexclusao->nrrecevt = '1234567-1234567-1234567';
 
-$jsonToValidateObject->infoExclusao = $infoExclusao;
+$jsonToValidateObject->infoexclusao = $infoexclusao;
 
-$ideFolhaPagto = new \stdClass();
-$ideFolhaPagto->indApuracao = 1;
-$ideFolhaPagto->perApur = '2017-08';
+$idefolhapagto = new \stdClass();
+$idefolhapagto->indapuracao = 1;
+$idefolhapagto->perapur = '2017-08';
 
-$jsonToValidateObject->ideFolhaPagto = $ideFolhaPagto;
+$jsonToValidateObject->idefolhapagto = $idefolhapagto;
 
-$ideTrabalhador = new \stdClass();
-$ideTrabalhador->cpfTrab = '11111111111';
-$ideTrabalhador->nisTrab = '11111111111';
+$idetrabalhador = new \stdClass();
+$idetrabalhador->cpftrab = '11111111111';
+$idetrabalhador->nistrab = '11111111111';
 
-$jsonToValidateObject->ideTrabalhador = $ideTrabalhador;
+$jsonToValidateObject->idetrabalhador = $idetrabalhador;
 
 
 // Schema must be decoded before it can be used for validation

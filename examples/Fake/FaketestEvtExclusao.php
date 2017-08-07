@@ -27,23 +27,23 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1;
 
-$infoExclusao = new \stdClass();
-$infoExclusao->tpEvento = 'S-2190';
-$infoExclusao->nrRecEvt = '1234567-1234567-1234567';
+$infoexclusao = new \stdClass();
+$infoexclusao->tpevento = 'S-2190';
+$infoexclusao->nrrecEvt = '1234567-1234567-1234567';
 
-$std->infoExclusao = $infoExclusao;
+$std->infoexclusao = $infoexclusao;
 
-$ideFolhaPagto = new \stdClass();
-$ideFolhaPagto->indApuracao = 1;
-$ideFolhaPagto->perApur = '2017-08';
+$idefolhapagto = new \stdClass();
+$idefolhapagto->indApuracao = 1;
+$idefolhapagto->perApur = '2017-08';
 
-$std->ideFolhaPagto = $ideFolhaPagto;
+$std->idefolhapagto = $idefolhapagto;
 
-$ideTrabalhador = new \stdClass();
-$ideTrabalhador->cpfTrab = '11111111111';
-$ideTrabalhador->nisTrab = '11111111111';
+$idetrabalhador = new \stdClass();
+$idetrabalhador->cpftrab = '11111111111';
+$idetrabalhador->nistrab = '11111111111';
 
-$std->ideTrabalhador = $ideTrabalhador;
+$std->idetrabalhador = $idetrabalhador;
 
 try {
 
