@@ -26,21 +26,24 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 //carrega os dados do envento
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif = 2;
 
-$idevinculo = new \stdClass();
-$idevinculo->cpftrab = '11111111111';
-$idevinculo->nistrab = '11111111111';
-$idevinculo->matricula = '11111111111';
+$infoexclusao = new \stdClass();
+$infoexclusao->tpevento = 'S-2190';
+$infoexclusao->nrrecEvt = '1234567-1234567-1234567';
 
-$std->idevinculo = $idevinculo;
+$std->infoexclusao = $infoexclusao;
 
-$infoavprevio = new \stdClass();
-$infoavprevio->dtavprv = '2008-09-28';
-$infoavprevio->dtprevdeslig = '2014-09-18';
-$infoavprevio->tpAvprevio = 2;
+$idefolhapagto = new \stdClass();
+$idefolhapagto->indApuracao = 1;
+$idefolhapagto->perApur = '2017-08';
 
-$std->infoavprevio = $infoavprevio;
+$std->idefolhapagto = $idefolhapagto;
+
+$idetrabalhador = new \stdClass();
+$idetrabalhador->cpftrab = '11111111111';
+$idetrabalhador->nistrab = '11111111111';
+
+$std->idetrabalhador = $idetrabalhador;
 
 try {
 
@@ -50,7 +53,7 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado
-    $xml = Event::evtAvPrevio(
+    $xml = Event::evtExclusao(
         $configJson,
         $std,
         $certificate,

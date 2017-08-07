@@ -84,6 +84,12 @@ class EvtAvPrevio extends Factory implements FactoryInterface
         );
         $this->dom->addChild(
             $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
             "tpAmb",
             $this->tpAmb,
             true
@@ -160,9 +166,38 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             $this->std->infoavprevio->tpavprevio,
             true
         );
+        $this->dom->addChild(
+            $detAvPrevio,
+            "observacao",
+            !empty($this->std->observacao) ? $this->std->observacao : null,
+            false
+        );
 
         $infoAvPrevio->appendChild($detAvPrevio);
         $evtAvPrevio->appendChild($infoAvPrevio);
+
+        if (!empty($this->std->cancavprevio)) {
+            $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
+            $this->dom->addChild(
+                $cancAvPrevio,
+                "dtCancAvPrv",
+                $this->std->cancavprevio->dtCancAvPrv,
+                true
+            );
+            $this->dom->addChild(
+                $cancAvPrevio,
+                "observacao",
+                !empty($this->std->cancavprevio->observacao) ? $this->std->cancavprevio->observacao : null,
+                false
+            );
+            $this->dom->addChild(
+                $cancAvPrevio,
+                "mtvCancAvPrevio",
+                $this->std->cancavprevio->mtvcancavprevio,
+                true
+            );
+            $infoAvPrevio->appendChild($cancAvPrevio);
+        }
 
         $eSocial->appendChild($evtAvPrevio);
         $this->sign($eSocial);
