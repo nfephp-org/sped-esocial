@@ -34,8 +34,8 @@ $infoexclusao->nrrecEvt = '1234567-1234567-1234567';
 $std->infoexclusao = $infoexclusao;
 
 $idefolhapagto = new \stdClass();
-$idefolhapagto->indApuracao = 1;
-$idefolhapagto->perApur = '2017-08';
+$idefolhapagto->indapuracao = 1;
+$idefolhapagto->perapur = '2017-08';
 
 $std->idefolhapagto = $idefolhapagto;
 
