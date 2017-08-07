@@ -26,21 +26,21 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 //carrega os dados do envento
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indRetif = 2;
+$std->indretif = 2;
 
-$ideVinculo = new \stdClass();
-$ideVinculo->cpfTrab = '11111111111';
-$ideVinculo->nisTrab = '11111111111';
-$ideVinculo->matricula = '11111111111';
+$idevinculo = new \stdClass();
+$idevinculo->cpftrab = '11111111111';
+$idevinculo->nistrab = '11111111111';
+$idevinculo->matricula = '11111111111';
 
-$std->ideVinculo = $ideVinculo;
+$std->idevinculo = $idevinculo;
 
-$infoAvPrevio = new \stdClass();
-$infoAvPrevio->dtAvPrv = '2008-09-28';
-$infoAvPrevio->dtPrevDeslig = '2014-09-18';
-$infoAvPrevio->tpAvPrevio = '2';
+$infoavprevio = new \stdClass();
+$infoavprevio->dtavprv = '2008-09-28';
+$infoavprevio->dtprevdeslig = '2014-09-18';
+$infoavprevio->tpAvprevio = 2;
 
-$std->infoAvPrevio = $infoAvPrevio;
+$std->infoavprevio = $infoavprevio;
 
 try {
 
