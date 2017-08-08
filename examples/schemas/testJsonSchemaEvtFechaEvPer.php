@@ -8,11 +8,11 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtExclusao';
+$evento = 'evtFechaEvPer';
 $version = '02_03_00';
 
 $jsonSchema = '{
-    "title": "evtExclusao",
+    "title": "evtFechaEvPer",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -21,55 +21,82 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 99999
         },
-        "infoexclusao": {
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string"
+        },
+        "iderespinf": {
             "required": true,
             "type": "object",
             "properties": {
-                "tpevento": {
+                "nmresp": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 6,
-                    "minLength": 5
+                    "maxLength": 70
                 },
-                "nrrecevt": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 40,
-                    "minLength": 1
-                }
-            }
-        },
-        "idefolhapagto": {
-            "required": true,
-            "type": "object",
-            "properties": {
-                "indapuracao": {
-                    "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 2
-                },
-                "perapur": {
-                    "required": true,
-                    "type": "string"
-                }
-            }
-        },
-        "idetrabalhador": {
-            "required": true,
-            "type": "object",
-            "properties": {
-                "cpftrab": {
+                "cpfresp": {
                     "required": true,
                     "type": "string",
                     "maxLength": 11,
                     "minLength": 11
                 },
-                "nistrab": {
+                "telefone": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 13,
+                    "minLength": 10
+                },
+                "email": {
                     "required": false,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "maxLength": 60
+                }
+            }
+        },
+        "infofech": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "evtremun": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "evtpgtos": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "evtaqprod": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "evtcomprod": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "evtcontratavnp": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "evtinfocomplper": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "compsemmovto": {
+                    "required": false,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
                 }
             }
         }
@@ -79,24 +106,25 @@ $jsonSchema = '{
 
 $jsonToValidateObject = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
+$jsonToValidateObject->indapuracao = 1;
+$jsonToValidateObject->perapur = '2017-08';
 
-$infoexclusao = new \stdClass();
-$infoexclusao->tpevento = 'S-2190';
-$infoexclusao->nrrecevt = '1234567-1234567-1234567';
+$iderespinf = new \stdClass();
+$iderespinf->nmresp = 'JOAO';
+$iderespinf->cpfresp = '11111111111';
+$iderespinf->telefone = '1122223333';
 
-$jsonToValidateObject->infoexclusao = $infoexclusao;
+$jsonToValidateObject->iderespinf = $iderespinf;
 
-$idefolhapagto = new \stdClass();
-$idefolhapagto->indapuracao = 1;
-$idefolhapagto->perapur = '2017-08';
+$infofech = new \stdClass();
+$infofech->evtremun = 'N';
+$infofech->evtpgtos = 'N';
+$infofech->evtaqprod = 'N';
+$infofech->evtcomprod = 'N';
+$infofech->evtcontratavnp = 'N';
+$infofech->evtinfocomplper = 'N';
 
-$jsonToValidateObject->idefolhapagto = $idefolhapagto;
-
-$idetrabalhador = new \stdClass();
-$idetrabalhador->cpftrab = '11111111111';
-$idetrabalhador->nistrab = '11111111111';
-
-$jsonToValidateObject->idetrabalhador = $idetrabalhador;
+$jsonToValidateObject->infofech = $infofech;
 
 
 // Schema must be decoded before it can be used for validation
