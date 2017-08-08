@@ -46,6 +46,47 @@ $trabalhador->paisnac = '105';
 
 $std->trabalhador = $trabalhador;
 
+$endereco = new \stdClass();
+$brasil = new \stdClass();
+$brasil->tplograd = 'R';
+$brasil->dsclograd = 'Av. Paulista';
+$brasil->nrlograd = '1250';
+$brasil->bairro = 'Centro';
+$brasil->cep = '08533000';
+$brasil->codmunic = '3550308';
+$brasil->uf = 'SP';
+
+$endereco->brasil = $brasil;
+$std->endereco = $endereco;
+
+$vinculo = new \stdClass();
+$vinculo->matricula = '1020304050';
+$vinculo->tpregtrab = 1;
+$vinculo->tpregprev = 1;
+$vinculo->cadini = 'N';
+
+$celetista = new \stdClass();
+$celetista->dtadm = '2017-08-08';
+$celetista->tpadmissao = 1;
+$celetista->indadmissao = 1;
+$celetista->tpregjor = 1;
+$celetista->natatividade = 1;
+$celetista->cnpjsindcategprof = '77721644000101';
+$celetista->opcfgts = 1;
+
+$vinculo->celetista = $celetista;
+
+$contrato = new \stdClass();
+$contrato->codcateg = '101';
+$contrato->vrsalfx = 5000;
+$contrato->undsalfixo = 5;
+$contrato->tpcontr = 1;
+
+$vinculo->contrato  = $contrato;
+
+$std->vinculo = $vinculo;
+
+
 try {
 
     //carrega a classe responsavel por lidar com os certificados
