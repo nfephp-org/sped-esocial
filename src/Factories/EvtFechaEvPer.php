@@ -15,10 +15,10 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryId;
+use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
 class EvtFechaEvPer extends Factory implements FactoryInterface
@@ -38,14 +38,16 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
     protected $evtAlias = 'S-1299';
     /**
      * Parameters patterns
+     *
      * @var array
      */
     protected $parameters = [];
 
     /**
      * Constructor
-     * @param string $config
-     * @param stdClass $std
+     *
+     * @param string      $config
+     * @param stdClass    $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -55,7 +57,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -72,7 +74,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         $att = $this->dom->createAttribute('Id');
         $att->value = $evtid;
         $evtFechaEvPer->appendChild($att);
-        
+
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -105,7 +107,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
             true
         );
         $evtFechaEvPer->appendChild($ideEvento);
-    
+
         $ideEmpregador = $this->dom->createElement("ideEmpregador");
         $this->dom->addChild(
             $ideEmpregador,
@@ -125,11 +127,73 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideRespInf,
             "nmResp",
-            $this->tpInsc,
+            $this->std->iderespinf->nmresp,
             true
+        );
+        $this->dom->addChild(
+            $ideRespInf,
+            "cpfResp",
+            $this->std->iderespinf->cpfresp,
+            true
+        );
+        $this->dom->addChild(
+            $ideRespInf,
+            "telefone",
+            $this->std->iderespinf->telefone,
+            true
+        );
+        $this->dom->addChild(
+            $ideRespInf,
+            "email",
+            !empty($this->std->iderespinf->email) ? $this->std->iderespinf->email : null,
+            false
         );
         $evtFechaEvPer->appendChild($ideRespInf);
 
+        $infoFech = $this->dom->createElement("infoFech");
+        $this->dom->addChild(
+            $infoFech,
+            "evtRemun",
+            $this->std->infofech->evtremun,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
+            "evtPgtos",
+            $this->std->infofech->evtpgtos,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
+            "evtAqProd",
+            $this->std->infofech->evtaqprod,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
+            "evtComProd",
+            $this->std->infofech->evtcomprod,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
+            "evtContratAvNP",
+            $this->std->infofech->evtcontratavnp,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
+            "evtInfoComplPer",
+            $this->std->infofech->evtinfocomplper,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
+            "compSemMovto",
+            !empty($this->std->infofech->compsemmovto) ? $this->std->infofech->compsemmovto : null,
+            false
+        );
+        $evtFechaEvPer->appendChild($infoFech);
 
 
         $eSocial->appendChild($evtFechaEvPer);

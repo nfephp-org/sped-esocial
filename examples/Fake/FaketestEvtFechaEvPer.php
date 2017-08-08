@@ -29,6 +29,22 @@ $std->sequencial = 1;
 $std->indapuracao = 1;
 $std->perapur = '2017-08';
 
+$iderespinf = new \stdClass();
+$iderespinf->nmresp = 'JOAO';
+$iderespinf->cpfresp = '11111111111';
+$iderespinf->telefone = '1122223333';
+
+$std->iderespinf = $iderespinf;
+
+$infofech = new \stdClass();
+$infofech->evtremun = 'N';
+$infofech->evtpgtos = 'N';
+$infofech->evtaqprod = 'N';
+$infofech->evtcomprod = 'N';
+$infofech->evtcontratavnp = 'N';
+$infofech->evtinfocomplper = 'N';
+
+$std->infofech = $infofech;
 
 try {
 
