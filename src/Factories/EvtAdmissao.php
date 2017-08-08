@@ -15,10 +15,10 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryId;
+use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
 class EvtAdmissao extends Factory implements FactoryInterface
@@ -44,8 +44,9 @@ class EvtAdmissao extends Factory implements FactoryInterface
 
     /**
      * Constructor
-     * @param string $config
-     * @param stdClass $std
+     *
+     * @param string      $config
+     * @param stdClass    $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -55,27 +56,35 @@ class EvtAdmissao extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
     protected function toNode()
     {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+        $evtid = FactoryId::build(
+            $this->tpInsc,
+            $this->nrInsc,
+            $this->date,
+            $this->sequencial
+        );
+        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $evtAdmissao = $this->dom->createElement("evtAdmissao");
+        $att = $this->dom->createAttribute('Id');
+        $att->value = $evtid;
+        $evtAdmissao->appendChild($att);
+
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
-            $this->std->indRetif,
+            $this->std->indretif,
             true
         );
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            $this->std->nrRecibo,
+            !empty($this->std->nrRecibo) ? $this->std->nrRecibo : null,
             false
         );
         $this->dom->addChild(
@@ -96,64 +105,78 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
-        //tags deste evento em particular
-        
+        $evtAdmissao->appendChild($ideEvento);
+
+        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+
+        $this->dom->addChild(
+            $ideEmpregador,
+            "tpInsc",
+            $this->tpInsc,
+            true
+        );
+        $this->dom->addChild(
+            $ideEmpregador,
+            "nrInsc",
+            $this->nrInsc,
+            true
+        );
+        $evtAdmissao->appendChild($ideEmpregador);
+
         //trabalhador (obrigatório)
         $trabalhador = $this->dom->createElement("trabalhador");
         $this->dom->addChild(
             $trabalhador,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->trabalhador->cpftrab,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "nisTrab",
-            $this->std->nistrab,
+            $this->std->trabalhador->nistrab,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "nmTrab",
-            $this->std->nmtrab,
+            $this->std->trabalhador->nmtrab,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "sexo",
-            $this->std->sexo,
+            $this->std->trabalhador->sexo,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "racaCor",
-            $this->std->racacor,
+            $this->std->trabalhador->racacor,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "estCiv",
-            $this->std->estciv,
+            !empty($this->std->trabalhador->estciv) ? $this->std->trabalhador->estciv : null,
             false
         );
         $this->dom->addChild(
             $trabalhador,
             "grauInstr",
-            $this->std->grauinstr,
+            $this->std->trabalhador->grauinstr,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "indPriEmpr",
-            $this->std->indpriempr,
+            $this->std->trabalhador->indpriempr,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "nmSoc",
-            $this->std->nmsoc,
+            !empty($this->std->trabalhador->nmsoc) ? $this->std->trabalhador->nmsoc : null,
             false
         );
         //nascimento (obrigatorio)
@@ -161,48 +184,50 @@ class EvtAdmissao extends Factory implements FactoryInterface
         $this->dom->addChild(
             $nascimento,
             "dtNascto",
-            $this->std->dtnascto,
+            $this->std->trabalhador->dtnascto,
             true
         );
         $this->dom->addChild(
             $nascimento,
             "codMunic",
-            $this->std->codmunic,
+            !empty($this->std->trabalhador->codmunic) ? $this->std->trabalhador->codmunic : null,
             false
         );
         $this->dom->addChild(
             $nascimento,
             "uf",
-            $this->std->uf,
+            !empty($this->std->trabalhador->uf) ? $this->std->trabalhador->uf : null,
             false
         );
         $this->dom->addChild(
             $nascimento,
             "paisNascto",
-            $this->std->paisnascto,
+            $this->std->trabalhador->paisnascto,
             true
         );
         $this->dom->addChild(
             $nascimento,
             "paisNac",
-            $this->std->paisnac,
+            $this->std->trabalhador->paisnac,
             true
         );
         $this->dom->addChild(
             $nascimento,
             "nmMae",
-            $this->std->nmmae,
+            !empty($this->std->trabalhador->nmmae) ? $this->std->trabalhador->nmmae : null,
             false
         );
         $this->dom->addChild(
             $nascimento,
             "nmPai",
-            $this->std->nmpai,
+            !empty($this->std->trabalhador->nmpai) ? $this->std->trabalhador->nmpai : null,
             false
         );
         //encerra nascimento
         $trabalhador->appendChild($nascimento);
-        
+
+        $evtAdmissao->appendChild($trabalhador);
+
         /*
         //documentos (obrig)
         $documentos = $this->dom->createElement("documentos");
@@ -1141,7 +1166,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
         //finalização do xml
          * 
          */
-        $this->eSocial->appendChild($this->node);
-        $this->sign();
+
+        $eSocial->appendChild($evtAdmissao);
+        $this->sign($eSocial);
     }
 }
