@@ -70,9 +70,9 @@ class Tools extends ToolsBase
     {
         $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
         $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
-            . "/envio/consulta/retornoProcessamento/$this->serviceStr";
+            . "/envio/consulta/retornoProcessamento/$operationVersion";
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            . "/eventos/envio/consulta/retornoProcessamento/$this->serviceStr"
+            . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
             . "/ServicoConsultarLoteEventos/ConsultarLoteEventos";
         $this->method = "ConsultarLoteEventos";
         $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
@@ -81,7 +81,7 @@ class Tools extends ToolsBase
         $this->envelopeXmlns = [
             'xmlns:soapenv'=> "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'=> "http://www.esocial.gov.br/servicos/empregador/lote"
-                . "/eventos/envio/consulta/retornoProcessamento/$this->serviceStr"
+                . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
         ];
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
             . "/eventos/envio/consulta/retornoProcessamento/$operationVersion\" "
@@ -142,21 +142,21 @@ class Tools extends ToolsBase
         }
         $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
         $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
-            . "/envio/$this->serviceStr";
+            . "/envio/$operationVersion";
         $this->method = "EnviarLoteEventos";
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            . "/eventos/envio/$this->serviceStr/ServicoEnviarLoteEventos"
+            . "/eventos/envio/$operationVersion/ServicoEnviarLoteEventos"
             . "/EnviarLoteEventos";
         $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
             . "/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
         $this->envelopeXmlns = [
             'xmlns:soapenv'=> "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'=> "http://www.esocial.gov.br/servicos/empregador"
-                . "/lote/eventos/envio/$this->serviceStr"
+                . "/lote/eventos/envio/$operationVersion"
         ];
         
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
-            . "/eventos/envio/$this->serviceStr\" "
+            . "/eventos/envio/$operationVersion\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<envioLoteEventos grupo=\"$grupo\">"
             . "<ideEmpregador>"
