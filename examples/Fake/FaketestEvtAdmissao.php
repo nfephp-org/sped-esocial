@@ -134,6 +134,14 @@ $dependente[0]->depsf = 'N';
 $dependente[0]->inctrab = 'N';
 
 $std->dependente = $dependente;
+
+$contato = new \stdClass();
+$contato->foneprinc = '1144443333';
+$contato->fonealternat = '1122228888';
+$contato->emailprinc = 'email@email.com.br';
+$contato->emailalternat = 'emailalt@email.com.br';
+
+$std->contato = $contato;
 try {
 
     //carrega a classe responsavel por lidar com os certificados

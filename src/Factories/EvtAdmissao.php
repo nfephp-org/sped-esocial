@@ -656,30 +656,30 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $contato,
                 "fonePrinc",
-                $this->std->contato->foneprinc,
+                !empty($this->std->contato->foneprinc) ? $this->std->contato->foneprinc : null,
                 false
             );
             $this->dom->addChild(
                 $contato,
                 "foneAlternat",
-                $this->std->contato->fonealternat,
+                !empty($this->std->contato->fonealternat) ? $this->std->contato->fonealternat : null,
                 false
             );
             $this->dom->addChild(
                 $contato,
                 "emailPrinc",
-                $this->std->contato->emailprinc,
+                !empty($this->std->contato->emailprinc) ? $this->std->contato->emailprinc : null,
                 false
             );
             $this->dom->addChild(
                 $contato,
                 "emailAlternat",
-                $this->std->contato->emailalternat,
+                !empty($this->std->contato->emailalternat) ? $this->std->contato->emailalternat : null,
                 false
             );
             $trabalhador->appendChild($contato);
         }
-        
+
         //encerra trabalhador
         $evtAdmissao->appendChild($trabalhador);
 
@@ -777,151 +777,151 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 false
             );
             $celetista->appendChild($fgts);
-//
-//            if (isset($this->std->vinculo->celetista->trabtemporario)) {
-//                $trabTemporario = $this->dom->createElement("trabTemporario");
-//                $this->dom->addChild(
-//                    $trabTemporario,
-//                    "hipLeg",
-//                    $this->std->vinculo->celetista->trabtemporario->hipleg,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $trabTemporario,
-//                    "justContr",
-//                    $this->std->vinculo->celetista->trabtemporario->justcontr,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $trabTemporario,
-//                    "tpInclContr",
-//                    $this->std->vinculo->celetista->trabtemporario->tpinclcontr,
-//                    true
-//                );
-//                //identificação do tomador (obrigatório)
-//                $ideTomadorServ = $this->dom->createElement("ideTomadorServ");
-//                $this->dom->addChild(
-//                    $ideTomadorServ,
-//                    "tpInsc",
-//                    $this->std->vinculo->celetista->trabtemporario->tomador->tpinsc,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $ideTomadorServ,
-//                    "nrInsc",
-//                    $this->std->vinculo->celetista->trabtemporario->tomador->nrinsc,
-//                    true
-//                );
-//                $trabTemporario->appendChild($ideTomadorServ);
-//
-//                //identificaçã o estabelecimento (opcional)
-//                if (isset($this->std->vinculo->celetista->trabTemporario->estab)) {
-//                    $ideEstabVinc = $this->dom->createElement("ideEstabVinc");
-//                    $this->dom->addChild(
-//                        $ideEstabVinc,
-//                        "tpInsc",
-//                        $this->std->vinculo->celetista->trabtemporario->estabvinc->tpinsc,
-//                        true
-//                    );
-//                    $this->dom->addChild(
-//                        $ideEstabVinc,
-//                        "nrInsc",
-//                        $this->std->vinculo->celetista->trabtemporario->estabvinc->nrinsc,
-//                        true
-//                    );
-//                    $trabTemporario->appendChild($ideEstabVinc);
-//                }
-//
-//                //substituido (opcional) ARRAY
-//                if (isset($this->std->vinculo->celetista->trabTemporario->substituido)) {
-//                    foreach ($this->std->vinculo->celetista->trabTemporario->substituido as $subs) {
-//                        $ideTrabSubstituido = $this->dom->createElement("ideTrabSubstituido");
-//                        $this->dom->addChild(
-//                            $ideEstabVinc,
-//                            "cpfTrabSubst",
-//                            $subs->cpftrabsubst,
-//                            true
-//                        );
-//                        $trabTemporario->appendChild($ideTrabSubstituido);
-//                    }
-//                }
-//                //encerra trabTemporario
-//                $celetista->appendChild($trabTemporario);
-//            }
-//            //aprendiz (opcional)
-//            if (isset($this->std->vinculo->celetista->aprendiz)) {
-//                $aprendiz = $this->dom->createElement("aprend");
-//                $this->dom->addChild(
-//                    $aprendiz,
-//                    "tpInsc",
-//                    $this->std->vinculo->celetista->aprendiz->tpinsc,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $aprendiz,
-//                    "nrInsc",
-//                    $this->std->vinculo->celetista->aprendiz->nrinsc,
-//                    true
-//                );
-//                $celetista->appendChild($aprendiz);
-//            }
+
+            if (isset($this->std->vinculo->celetista->trabtemporario)) {
+                $trabTemporario = $this->dom->createElement("trabTemporario");
+                $this->dom->addChild(
+                    $trabTemporario,
+                    "hipLeg",
+                    $this->std->vinculo->celetista->trabtemporario->hipleg,
+                    true
+                );
+                $this->dom->addChild(
+                    $trabTemporario,
+                    "justContr",
+                    $this->std->vinculo->celetista->trabtemporario->justcontr,
+                    true
+                );
+                $this->dom->addChild(
+                    $trabTemporario,
+                    "tpInclContr",
+                    $this->std->vinculo->celetista->trabtemporario->tpinclcontr,
+                    true
+                );
+                //identificação do tomador (obrigatório)
+                $ideTomadorServ = $this->dom->createElement("ideTomadorServ");
+                $this->dom->addChild(
+                    $ideTomadorServ,
+                    "tpInsc",
+                    $this->std->vinculo->celetista->trabtemporario->tomador->tpinsc,
+                    true
+                );
+                $this->dom->addChild(
+                    $ideTomadorServ,
+                    "nrInsc",
+                    $this->std->vinculo->celetista->trabtemporario->tomador->nrinsc,
+                    true
+                );
+                $trabTemporario->appendChild($ideTomadorServ);
+
+                //identificaçã o estabelecimento (opcional)
+                if (isset($this->std->vinculo->celetista->trabTemporario->estab)) {
+                    $ideEstabVinc = $this->dom->createElement("ideEstabVinc");
+                    $this->dom->addChild(
+                        $ideEstabVinc,
+                        "tpInsc",
+                        $this->std->vinculo->celetista->trabtemporario->estabvinc->tpinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideEstabVinc,
+                        "nrInsc",
+                        $this->std->vinculo->celetista->trabtemporario->estabvinc->nrinsc,
+                        true
+                    );
+                    $trabTemporario->appendChild($ideEstabVinc);
+                }
+
+                //substituido (opcional) ARRAY
+                if (isset($this->std->vinculo->celetista->trabTemporario->substituido)) {
+                    foreach ($this->std->vinculo->celetista->trabTemporario->substituido as $subs) {
+                        $ideTrabSubstituido = $this->dom->createElement("ideTrabSubstituido");
+                        $this->dom->addChild(
+                            $ideEstabVinc,
+                            "cpfTrabSubst",
+                            $subs->cpftrabsubst,
+                            true
+                        );
+                        $trabTemporario->appendChild($ideTrabSubstituido);
+                    }
+                }
+                //encerra trabTemporario
+                $celetista->appendChild($trabTemporario);
+            }
+            //aprendiz (opcional)
+            if (isset($this->std->vinculo->celetista->aprendiz)) {
+                $aprendiz = $this->dom->createElement("aprend");
+                $this->dom->addChild(
+                    $aprendiz,
+                    "tpInsc",
+                    $this->std->vinculo->celetista->aprendiz->tpinsc,
+                    true
+                );
+                $this->dom->addChild(
+                    $aprendiz,
+                    "nrInsc",
+                    $this->std->vinculo->celetista->aprendiz->nrinsc,
+                    true
+                );
+                $celetista->appendChild($aprendiz);
+            }
             //encerra celetista
             $infoRegimeTrab->appendChild($celetista);
         }
         $vinculo->appendChild($infoRegimeTrab);
-//        if (isset($this->std->vinculo->estatutario)) {
-//            $estatutario = $this->dom->createElement("infoEstatutario");
-//            $this->dom->addChild(
-//                $estatutario,
-//                "indProvim",
-//                $this->std->vinculo->estatutario->indprovim,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $estatutario,
-//                "tpProv",
-//                $this->std->vinculo->estatutario->tpprov,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $estatutario,
-//                "dtNomeacao",
-//                $this->std->vinculo->estatutario->dtnomeacao,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $estatutario,
-//                "dtPosse",
-//                $this->std->vinculo->estatutario->dtposse,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $estatutario,
-//                "dtExercicio",
-//                $this->std->vinculo->estatutario->dtexercicio,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $estatutario,
-//                "tpPlanRP",
-//                $this->std->vinculo->estatutario->tpplanrp,
-//                false
-//            );
-//            //infoDecJud (opcional)
-//            if (isset($this->std->vinculo->estatutario->judicial)) {
-//                $infoDecJud = $this->dom->createElement("infoDecJud");
-//                $this->dom->addChild(
-//                    $infoDecJud,
-//                    "nrProcJud",
-//                    $this->std->vinculo->estatutario->nrprocjud,
-//                    true
-//                );
-//                $estatutario->appendChild($infoDecJud);
-//            }
-//            //encerra estatutario
-//            $infoRegimeTrab->appendChild($estatutario);
-//        }
-//
+        if (isset($this->std->vinculo->estatutario)) {
+            $estatutario = $this->dom->createElement("infoEstatutario");
+            $this->dom->addChild(
+                $estatutario,
+                "indProvim",
+                $this->std->vinculo->estatutario->indprovim,
+                true
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "tpProv",
+                $this->std->vinculo->estatutario->tpprov,
+                true
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "dtNomeacao",
+                $this->std->vinculo->estatutario->dtnomeacao,
+                true
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "dtPosse",
+                $this->std->vinculo->estatutario->dtposse,
+                true
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "dtExercicio",
+                $this->std->vinculo->estatutario->dtexercicio,
+                true
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "tpPlanRP",
+                !empty($this->std->vinculo->estatutario->tpplanrp) ? $this->std->vinculo->estatutario->tpplanrp : null,
+                false
+            );
+            //infoDecJud (opcional)
+            if (isset($this->std->vinculo->estatutario->judicial)) {
+                $infoDecJud = $this->dom->createElement("infoDecJud");
+                $this->dom->addChild(
+                    $infoDecJud,
+                    "nrProcJud",
+                    $this->std->vinculo->estatutario->nrprocjud,
+                    true
+                );
+                $estatutario->appendChild($infoDecJud);
+            }
+            //encerra estatutario
+            $infoRegimeTrab->appendChild($estatutario);
+        }
+
         //infoContrato (obrigatorio)
         $contrato = $this->dom->createElement("infoContrato");
         $this->dom->addChild(
@@ -990,217 +990,236 @@ class EvtAdmissao extends Factory implements FactoryInterface
             !empty($this->std->vinculo->contrato->dtterm) ? $this->std->vinculo->contrato->dtterm : null,
             false
         );
+        $this->dom->addChild(
+            $duracao,
+            "clauAsseg",
+            !empty($this->std->vinculo->contrato->clauasseg) ? $this->std->vinculo->contrato->clauasseg : null,
+            false
+        );
         $contrato->appendChild($duracao);
 //
         //localTrabalho (obrigatorio)
         $localTrabalho = $this->dom->createElement("localTrabalho");
-//        //localTrabGeral (opcional)
-//        if (isset($this->std->vinculo->contrato->local)) {
-//            $localgeral = $this->dom->createElement("localTrabGeral");
-//            $this->dom->addChild(
-//                $localgeral,
-//                "tpInsc",
-//                $this->std->vinculo->contrato->local->tpinsc,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localgeral,
-//                "nrInsc",
-//                $this->std->vinculo->contrato->local->nrinsc,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localgeral,
-//                "descComp",
-//                $this->std->vinculo->contrato->local->desccomp,
-//                false
-//            );
-//            $localTrabalho->appendChild($localgeral);
-//        }
-//        //localTrabDom (opcional)
-//        if (isset($this->std->vinculo->contrato->domestico)) {
-//            $localDomestico = $this->dom->createElement("localTrabDom");
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "tpLograd",
-//                $this->std->vinculo->contrato->domestico->tplograd,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "dscLograd",
-//                $this->std->vinculo->contrato->domestico->dsclograd,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "nrLograd",
-//                $this->std->vinculo->contrato->domestico->nrlograd,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "complemento",
-//                $this->std->vinculo->contrato->domestico->complemento,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "bairro",
-//                $this->std->vinculo->contrato->domestico->bairro,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "cep",
-//                $this->std->vinculo->contrato->domestico->cep,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "codMunic",
-//                $this->std->vinculo->contrato->domestico->codmunic,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $localDomestico,
-//                "uf",
-//                $this->std->vinculo->contrato->domestico->uf,
-//                true
-//            );
-//            $localTrabalho->appendChild($localDomestico);
-//        }
+        //localTrabGeral (opcional)
+        if (isset($this->std->vinculo->contrato->local)) {
+            $localgeral = $this->dom->createElement("localTrabGeral");
+            $this->dom->addChild(
+                $localgeral,
+                "tpInsc",
+                $this->std->vinculo->contrato->local->tpinsc,
+                true
+            );
+            $this->dom->addChild(
+                $localgeral,
+                "nrInsc",
+                $this->std->vinculo->contrato->local->nrinsc,
+                true
+            );
+            $this->dom->addChild(
+                $localgeral,
+                "descComp",
+                !empty($this->std->vinculo->contrato->local->desccomp) ? $this->std->vinculo->contrato->local->desccomp : null,
+                false
+            );
+            $localTrabalho->appendChild($localgeral);
+        }
+        //localTrabDom (opcional)
+        if (isset($this->std->vinculo->contrato->domestico)) {
+            $localDomestico = $this->dom->createElement("localTrabDom");
+            $this->dom->addChild(
+                $localDomestico,
+                "tpLograd",
+                $this->std->vinculo->contrato->domestico->tplograd,
+                true
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "dscLograd",
+                $this->std->vinculo->contrato->domestico->dsclograd,
+                true
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "nrLograd",
+                $this->std->vinculo->contrato->domestico->nrlograd,
+                true
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "complemento",
+                !empty($this->std->vinculo->contrato->domestico->complemento) ? $this->std->vinculo->contrato->domestico->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "bairro",
+                !empty($this->std->vinculo->contrato->domestico->bairro) ? $this->std->vinculo->contrato->domestico->bairro : null,
+                false
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "cep",
+                $this->std->vinculo->contrato->domestico->cep,
+                true
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "codMunic",
+                $this->std->vinculo->contrato->domestico->codmunic,
+                true
+            );
+            $this->dom->addChild(
+                $localDomestico,
+                "uf",
+                $this->std->vinculo->contrato->domestico->uf,
+                true
+            );
+            $localTrabalho->appendChild($localDomestico);
+        }
         $contrato->appendChild($localTrabalho);
-//
-//        //horContratual (opcional)
-//        if (isset($this->std->vinculo->contrato->horcontatual)) {
-//            $horContratual = $this->dom->createElement("horContratual");
-//            $this->dom->addChild(
-//                $horContratual,
-//                "qtdHrsSem",
-//                $this->std->vinculo->contrato->horcontratual->qtdhrssem,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $horContratual,
-//                "tpJornada",
-//                $this->std->vinculo->contrato->horcontratual->tpjornada,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $horContratual,
-//                "dscTpJorn",
-//                $this->std->vinculo->contrato->horcontratual->dsctpjorn,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $horContratual,
-//                "tmpParc",
-//                $this->std->vinculo->contrato->horcontratual->tmpparc,
-//                true
-//            );
-//            //horario (opcional) ARRAY
-//            if (isset($this->std->vinculo->contrato->horcontratual->horario)) {
-//                foreach ($this->std->vinculo->contrato->horcontratual->horario as $hr) {
-//                    $horario = $this->dom->createElement("horario");
-//                    $this->dom->addChild(
-//                        $horario,
-//                        "dia",
-//                        $hr->dia,
-//                        true
-//                    );
-//                    $this->dom->addChild(
-//                        $horario,
-//                        "codHorContrat",
-//                        $hr->codhorcontrat,
-//                        true
-//                    );
-//                    $horContratual->appendChild($horario);
-//                }
-//            }
-//            //encerra horContratual
-//            $contrato->appendChild($horContratual);
-//        }
-//
-//        //filiacaoSindical (opcional) ARRAY
-//        if (isset($this->std->vinculo->contrato->filiacaosindical)) {
-//            foreach ($this->std->vinculo->contrato->filiacaosindical as $sind) {
-//                $filiacaoSindical = $this->dom->createElement("filiacaoSindical");
-//                $this->dom->addChild(
-//                    $horario,
-//                    "cnpjSindTrab",
-//                    $sind->cnpjsindtrab,
-//                    true
-//                );
-//                $contrato->appendChild($filiacaoSindical);
-//            }
-//        }
-//        //alvaraJudicial (opcional)
-//        if (isset($this->std->vinculo->contrato->judicial)) {
-//            $alvaraJudicial = $this->dom->createElement("alvaraJudicial");
-//            $this->dom->addChild(
-//                $alvaraJudicial,
-//                "nrProcJud",
-//                $this->std->vinculo->contrato->judicial->nrprocjud,
-//                true
-//            );
-//            $contrato->appendChild($alvaraJudicial);
-//        }
-//        //encerra contrato
+
+        //horContratual (opcional)
+        if (isset($this->std->vinculo->contrato->horcontatual)) {
+            $horContratual = $this->dom->createElement("horContratual");
+            $this->dom->addChild(
+                $horContratual,
+                "qtdHrsSem",
+                $this->std->vinculo->contrato->horcontratual->qtdhrssem,
+                true
+            );
+            $this->dom->addChild(
+                $horContratual,
+                "tpJornada",
+                $this->std->vinculo->contrato->horcontratual->tpjornada,
+                true
+            );
+            $this->dom->addChild(
+                $horContratual,
+                "dscTpJorn",
+                !empty($this->std->vinculo->contrato->horcontratual->dsctpjorn) ? $this->std->vinculo->contrato->horcontratual->dsctpjorn : null,
+                false
+            );
+            $this->dom->addChild(
+                $horContratual,
+                "tmpParc",
+                $this->std->vinculo->contrato->horcontratual->tmpparc,
+                true
+            );
+            //horario (opcional) ARRAY
+            if (isset($this->std->vinculo->contrato->horcontratual->horario)) {
+                foreach ($this->std->vinculo->contrato->horcontratual->horario as $hr) {
+                    $horario = $this->dom->createElement("horario");
+                    $this->dom->addChild(
+                        $horario,
+                        "dia",
+                        $hr->dia,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $horario,
+                        "codHorContrat",
+                        $hr->codhorcontrat,
+                        true
+                    );
+                    $horContratual->appendChild($horario);
+                }
+            }
+            //encerra horContratual
+            $contrato->appendChild($horContratual);
+        }
+
+        //filiacaoSindical (opcional) ARRAY
+        if (isset($this->std->vinculo->contrato->filiacaosindical)) {
+            foreach ($this->std->vinculo->contrato->filiacaosindical as $sind) {
+                $filiacaoSindical = $this->dom->createElement("filiacaoSindical");
+                $this->dom->addChild(
+                    $horario,
+                    "cnpjSindTrab",
+                    $sind->cnpjsindtrab,
+                    true
+                );
+                $contrato->appendChild($filiacaoSindical);
+            }
+        }
+        //alvaraJudicial (opcional)
+        if (isset($this->std->vinculo->contrato->judicial)) {
+            $alvaraJudicial = $this->dom->createElement("alvaraJudicial");
+            $this->dom->addChild(
+                $alvaraJudicial,
+                "nrProcJud",
+                $this->std->vinculo->contrato->judicial->nrprocjud,
+                true
+            );
+            $contrato->appendChild($alvaraJudicial);
+        }
+        //encerra contrato
         $vinculo->appendChild($contrato);
-//
-//        //sucessaoVinc (opcional)
-//        if (isset($this->std->vinculo->sucessao)) {
-//            $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
-//            $this->dom->addChild(
-//                $sucessaoVinc,
-//                "cnpjEmpregAnt",
-//                $this->std->vinculo->sucessao->cnpjempregant,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $sucessaoVinc,
-//                "matricAnt",
-//                $this->std->vinculo->sucessao->matricant,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $sucessaoVinc,
-//                "dtIniVinculo",
-//                $this->std->vinculo->sucessao->dtinivinculo,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $sucessaoVinc,
-//                "observacao",
-//                $this->std->vinculo->sucessao->observacao,
-//                true
-//            );
-//            //afastamento (opcional)
-//            if (isset($this->std->vinculo->sucessao->afastamento)) {
-//                $afastamento = $this->dom->createElement("afastamento");
-//                $this->dom->addChild(
-//                    $afastamento,
-//                    "dtIniAfast",
-//                    $this->std->vinculo->sucessao->afastamento->dtiniafast,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $afastamento,
-//                    "codMotAfast",
-//                    $this->std->vinculo->sucessao->afastamento->codmotafast,
-//                    true
-//                );
-//                $sucessaoVinc->appendChild($afastamento);
-//            }
-//
-//            $vinculo->appendChild($sucessaoVinc);
-//        }
-//
-//        //encerra vinculo
-//        $this->node->appendChild($vinculo);
-//        //finalização do xml
-//
+
+        //sucessaoVinc (opcional)
+        if (isset($this->std->vinculo->sucessao)) {
+            $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
+            $this->dom->addChild(
+                $sucessaoVinc,
+                "cnpjEmpregAnt",
+                $this->std->vinculo->sucessao->cnpjempregant,
+                true
+            );
+            $this->dom->addChild(
+                $sucessaoVinc,
+                "matricAnt",
+                !empty($this->std->vinculo->sucessao->matricant) ? $this->std->vinculo->sucessao->matricant : null,
+                false
+            );
+            $this->dom->addChild(
+                $sucessaoVinc,
+                "dtIniVinculo",
+                $this->std->vinculo->sucessao->dtinivinculo,
+                true
+            );
+            $this->dom->addChild(
+                $sucessaoVinc,
+                "observacao",
+                !empty($this->std->vinculo->sucessao->observacao) ? $this->std->vinculo->sucessao->observacao : null,
+                false
+            );
+            $vinculo->appendChild($sucessaoVinc);
+        }
+        //afastamento (opcional)
+        if (isset($this->std->vinculo->afastamento)) {
+            $afastamento = $this->dom->createElement("afastamento");
+            $this->dom->addChild(
+                $afastamento,
+                "dtIniAfast",
+                $this->std->vinculo->afastamento->dtiniafast,
+                true
+            );
+            $this->dom->addChild(
+                $afastamento,
+                "codMotAfast",
+                $this->std->vinculo->afastamento->codmotafast,
+                true
+            );
+
+            $vinculo->appendChild($afastamento);
+        }
+
+        //desligamento (opcional)
+        if (isset($this->std->vinculo->desligamento)) {
+            $desligamento = $this->dom->createElement("desligamento");
+            $this->dom->addChild(
+                $afastamento,
+                "dtDeslig",
+                $this->std->vinculo->desligamento->dtdeslig,
+                true
+            );
+
+            $vinculo->appendChild($desligamento);
+        }
+
+        //encerra vinculo
+        $this->node->appendChild($vinculo);
+        //finalização do xml
+
         $evtAdmissao->appendChild($vinculo);
 
         $eSocial->appendChild($evtAdmissao);
