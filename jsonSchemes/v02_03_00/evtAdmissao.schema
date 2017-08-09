@@ -376,6 +376,52 @@
                     "pattern": "S|N"
                 }
             }
+        },
+        "deficiencia": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "deffisica": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defvisual": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defauditiva": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defmental": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defintelectual": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "reabreadap": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "infocota": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "observacao": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 255
+                }
+            }
         }
         
     }
