@@ -53,7 +53,7 @@ $brasil->dsclograd = 'Av. Paulista';
 $brasil->nrlograd = '1850';
 $brasil->bairro = 'Bela Vista';
 $brasil->cep = '01311200';
-$brasil->codmunic = '3550308';
+$brasil->codmunic = 3550308;
 $brasil->uf = 'SP';
 
 $endereco->brasil = $brasil;

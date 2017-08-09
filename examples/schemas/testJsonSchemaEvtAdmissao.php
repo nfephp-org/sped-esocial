@@ -318,6 +318,47 @@ $jsonSchema = '{
                             "maxLength": 2
                         }
                     }
+                },
+                "exterior": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "paisResid": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 3
+                        },
+                        "dsclograd": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 80
+                        },
+                        "nrlograd": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 10
+                        },
+                        "complemento": {
+                            "required": false,
+                            "type": "string",
+                            "maxLength": 30
+                        },
+                        "bairro": {
+                            "required": false,
+                            "type": "string",
+                            "maxLength": 60
+                        },
+                        "nmcid": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 50
+                        },
+                        "codpostal": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 12
+                        }
+                    }
                 }
             
             }
@@ -351,7 +392,7 @@ $brasil->dsclograd = 'Av. Paulista';
 $brasil->nrlograd = '1850';
 $brasil->bairro = 'Bela Vista';
 $brasil->cep = '01311200';
-$brasil->codmunic = '3550308';
+$brasil->codmunic = 3550308;
 $brasil->uf = 'SP';
 
 $endereco->brasil = $brasil;
