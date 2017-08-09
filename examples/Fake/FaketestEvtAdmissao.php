@@ -50,9 +50,9 @@ $endereco = new \stdClass();
 $brasil = new \stdClass();
 $brasil->tplograd = 'R';
 $brasil->dsclograd = 'Av. Paulista';
-$brasil->nrlograd = '1250';
-$brasil->bairro = 'Centro';
-$brasil->cep = '08533000';
+$brasil->nrlograd = '1850';
+$brasil->bairro = 'Bela Vista';
+$brasil->cep = '01311200';
 $brasil->codmunic = '3550308';
 $brasil->uf = 'SP';
 
