@@ -644,7 +644,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $aposentadoria,
                 "trabAposent",
-                $dep->trabaposent,
+                $this->std->aposentadoria->trabaposent,
                 true
             );
             $trabalhador->appendChild($aposentadoria);

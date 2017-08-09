@@ -435,6 +435,258 @@ $jsonSchema = '{
                     "maxLength": 255
                 }
             }
+        },
+        "dependente": {
+            "required": false,
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tpdep": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 2
+                    },
+                    "nmdep": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 70
+                    },
+                    "dtnascto": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    },
+                    "cpfdep": {
+                        "required": false,
+                        "type": "string",
+                        "maxLength": 11,
+                        "minLength": 11
+                    },
+                    "depirrf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "depsf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "inctrab": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    }
+                }
+            }
+        },
+        "aposentadoria": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "trabaposent": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                }
+            }
+        },
+        "contato": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "foneprinc": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 13
+                },
+                "fonealternat": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 13
+                },
+                "emailprinc": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 60
+                },
+                "emailalternat": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 60
+                }
+            }
+        },
+        "vinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "matricula": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 30
+                },
+                "tpregtrab": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-2]){1}$"
+                },
+                "tpregprev": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-3]){1}$"
+                },
+                "nrrecinfprelim": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 40
+                },
+                "cadini": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "celetista": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "dtadm": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "tpadmissao": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 1,
+                            "pattern": "([1-4]){1}$"
+                        },
+                        "indadmissao": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 1,
+                            "pattern": "([1-3]){1}$"
+                        },
+                        "tpregjor": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 1,
+                            "pattern": "([1-3]){1}$"
+                        },
+                        "natatividade": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 1,
+                            "pattern": "([1-2]){1}$"
+                        },
+                        "dtbase": {
+                            "required": false,
+                            "type": "integer",
+                            "minLength": 1,
+                            "pattern": "([1-12]){1}$"
+                        },
+                        "cnpjsindcategprof": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 14
+                        },
+                        "opcfgts": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 1,
+                            "pattern": "([1-2]){1}$"
+                        },
+                        "dtopcfgts": {
+                            "required": false,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "trabtemporario": {
+                            "required": false,
+                            "type": "object",
+                            "properties": {
+                                "hipleg": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "maxLength": 1,
+                                    "pattern": "([1-2]){1}$"
+                                },
+                                "justcontr": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 999
+                                },
+                                "tpinclcontr": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "maxLength": 1,
+                                    "pattern": "([1-3]){1}$"
+                                },
+                                "tomador": {
+                                    "required": true,
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "maxLength": 1,
+                                            "pattern": "([1-2]){1}$"
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "minLength": 8,
+                                            "maxLength": 15,
+                                            "pattern": "^[0-9]"
+                                        }
+                                    }
+                                },
+                                "estabvinc": {
+                                    "required": false,
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "maxLength": 1,
+                                            "pattern": "([1-2]){1}$"
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "minLength": 8,
+                                            "maxLength": 15,
+                                            "pattern": "^[0-9]"
+                                        }
+                                    }
+                                },
+                                "substituido": {
+                                    "required": false,
+                                    "type": "array",
+                                    "minItems": 0,
+                                    "maxItems": 9,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "cpftrabsubst": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 11,
+                                                "minLength": 11
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         
     }
