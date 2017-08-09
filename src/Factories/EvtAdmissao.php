@@ -1207,7 +1207,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
         if (isset($this->std->vinculo->desligamento)) {
             $desligamento = $this->dom->createElement("desligamento");
             $this->dom->addChild(
-                $afastamento,
+                $desligamento,
                 "dtDeslig",
                 $this->std->vinculo->desligamento->dtdeslig,
                 true
