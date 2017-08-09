@@ -84,7 +84,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->std->nrRecibo) ? $this->std->nrRecibo : null,
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -227,177 +227,180 @@ class EvtAdmissao extends Factory implements FactoryInterface
         $trabalhador->appendChild($nascimento);
 
 
-        //documentos (obrig)
-//        $documentos = $this->dom->createElement("documentos");
-//        //CTPS (Opc)
-//        if (isset($this->std->ctps)) {
-//            $ctps = $this->dom->createElement("CTPS");
-//            $this->dom->addChild(
-//                $ctps,
-//                "nrCtps",
-//                $this->std->ctps->nrctps,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $ctps,
-//                "serieCtps",
-//                $this->std->ctps->seriectps,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $ctps,
-//                "ufCtps",
-//                $this->std->ctps->ufctps,
-//                true
-//            );
-//            $documentos->appendChild($ctps);
-//        }
+//        documentos (obrig)
+        $documentos = $this->dom->createElement("documentos");
+        //CTPS (Opc)
+        if (isset($this->std->ctps)) {
+            $ctps = $this->dom->createElement("CTPS");
+            $this->dom->addChild(
+                $ctps,
+                "nrCtps",
+                $this->std->ctps->nrctps,
+                true
+            );
+            $this->dom->addChild(
+                $ctps,
+                "serieCtps",
+                $this->std->ctps->seriectps,
+                true
+            );
+            $this->dom->addChild(
+                $ctps,
+                "ufCtps",
+                $this->std->ctps->ufctps,
+                true
+            );
+            $documentos->appendChild($ctps);
+        }
 //        //RIC (Opc)
-//        if (isset($this->std->ric)) {
-//            $ric = $this->dom->createElement("RIC");
-//            $this->dom->addChild(
-//                $ctps,
-//                "nrRic",
-//                $this->std->ric->nrric,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $ric,
-//                "orgaoEmissor",
-//                $this->std->ric->orgaoemissor,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $ric,
-//                "dtExped",
-//                $this->std->ric->dtexped,
-//                true
-//            );
-//            $documentos->appendChild($ric);
-//        }
+        if (isset($this->std->ric)) {
+            $ric = $this->dom->createElement("RIC");
+            $this->dom->addChild(
+                $ric,
+                "nrRic",
+                $this->std->ric->nrric,
+                true
+            );
+            $this->dom->addChild(
+                $ric,
+                "orgaoEmissor",
+                $this->std->ric->orgaoemissor,
+                true
+            );
+            $this->dom->addChild(
+                $ric,
+                "dtExped",
+                !empty($this->std->ric->dtexped) ? $this->std->ric->dtexped : null,
+                false
+            );
+            $documentos->appendChild($ric);
+        }
 //        //RG
-//        if (isset($this->std->rg)) {
-//            $rg = $this->dom->createElement("RG");
-//            $this->dom->addChild(
-//                $rg,
-//                "nrRg",
-//                $this->std->rg->nrrg,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $rg,
-//                "orgaoEmissor",
-//                $this->std->rg->orgaoemissor,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $rg,
-//                "dtExped",
-//                $this->std->rg->dtexped,
-//                true
-//            );
-//            $documentos->appendChild($rg);
-//        }
+        if (isset($this->std->rg)) {
+            $rg = $this->dom->createElement("RG");
+            $this->dom->addChild(
+                $rg,
+                "nrRg",
+                $this->std->rg->nrrg,
+                true
+            );
+            $this->dom->addChild(
+                $rg,
+                "orgaoEmissor",
+                $this->std->rg->orgaoemissor,
+                true
+            );
+            $this->dom->addChild(
+                $rg,
+                "dtExped",
+                !empty($this->std->rg->dtexped) ? $this->std->rg->dtexped : null,
+                false
+            );
+            $documentos->appendChild($rg);
+        }
 //        //RNE (Opc)
-//        if (isset($this->std->rne)) {
-//            $rne = $this->dom->createElement("RNE");
-//            $this->dom->addChild(
-//                $rne,
-//                "nrRg",
-//                $this->std->rne->nrrg,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $rne,
-//                "orgaoEmissor",
-//                $this->std->rne->orgaoemissor,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $rne,
-//                "dtExped",
-//                $this->std->rne->dtexped,
-//                true
-//            );
-//            $documentos->appendChild($rne);
-//        }
+        if (isset($this->std->rne)) {
+            $rne = $this->dom->createElement("RNE");
+            $this->dom->addChild(
+                $rne,
+                "nrRne",
+                $this->std->rne->nrrne,
+                true
+            );
+            $this->dom->addChild(
+                $rne,
+                "orgaoEmissor",
+                $this->std->rne->orgaoemissor,
+                true
+            );
+            $this->dom->addChild(
+                $rne,
+                "dtExped",
+                !empty($this->std->rne->dtexped) ? $this->std->rne->dtexped : null,
+                false
+            );
+            $this->dom->addChild(
+                $rne,
+                "dtValid",
+                !empty($this->std->rne->dtvalid) ? $this->std->rne->dtvalid : null,
+                false
+            );
+            $documentos->appendChild($rne);
+        }
 //        //OC (Opc)
-//        if (isset($this->std->oc)) {
-//            $oc = $this->dom->createElement("OC");
-//            $this->dom->addChild(
-//                $oc,
-//                "nrOc",
-//                $this->std->oc->nroc,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $oc,
-//                "orgaoEmissor",
-//                $this->std->oc->orgaoemissor,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $oc,
-//                "dtExped",
-//                $this->std->oc->dtexped,
-//                true
-//            );
-//            if (!empty($this->std->oc->dtvalid)) {
-//                $this->dom->addChild(
-//                    $oc,
-//                    "dtValid",
-//                    $this->std->oc->dtvalid,
-//                    false
-//                );
-//            }
-//            $documentos->appendChild($oc);
-//        }
-//        //CNH (Ops)
-//        if (isset($this->std->cnh)) {
-//            $cnh = $this->dom->createElement("CNH");
-//            $this->dom->addChild(
-//                $cnh,
-//                "dtExped",
-//                $this->std->cnh->nrregcnh,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $cnh,
-//                "dtExped",
-//                $this->std->cnh->dtExped,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $cnh,
-//                "ufCnh",
-//                $this->std->cnh->ufcnh,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $cnh,
-//                "dtValid",
-//                $this->std->cnh->dtvalid,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $cnh,
-//                "dtPriHab",
-//                $this->std->cnh->dtprihab,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $cnh,
-//                "categoriaCnh",
-//                $this->std->cnh->categoriacnh,
-//                true
-//            );
-//            $documentos->appendChild($cnh);
-//        }
-//        //encerra documentos
-//        $trabalhador->appendChild($documentos);
+        if (isset($this->std->oc)) {
+            $oc = $this->dom->createElement("OC");
+            $this->dom->addChild(
+                $oc,
+                "nrOc",
+                $this->std->oc->nroc,
+                true
+            );
+            $this->dom->addChild(
+                $oc,
+                "orgaoEmissor",
+                $this->std->oc->orgaoemissor,
+                true
+            );
+            $this->dom->addChild(
+                $oc,
+                "dtExped",
+                !empty($this->std->oc->dtexped) ? $this->std->oc->dtexped : null,
+                false
+            );
 
+            $this->dom->addChild(
+                $oc,
+                "dtValid",
+                !empty($this->std->oc->dtvalid) ? $this->std->oc->dtvalid : null,
+                false
+            );
 
-//        $evtAdmissao->appendChild($trabalhador);
+            $documentos->appendChild($oc);
+        }
+        //CNH (Ops)
+        if (isset($this->std->cnh)) {
+            $cnh = $this->dom->createElement("CNH");
+            $this->dom->addChild(
+                $cnh,
+                "nrRegCnh",
+                $this->std->cnh->nrregcnh,
+                true
+            );
+            $this->dom->addChild(
+                $cnh,
+                "dtExped",
+                !empty($this->std->cnh->dtExped) ? $this->std->cnh->dtExped : null,
+                false
+            );
+            $this->dom->addChild(
+                $cnh,
+                "ufCnh",
+                $this->std->cnh->ufcnh,
+                true
+            );
+            $this->dom->addChild(
+                $cnh,
+                "dtValid",
+                $this->std->cnh->dtvalid,
+                true
+            );
+            $this->dom->addChild(
+                $cnh,
+                "dtPriHab",
+                !empty($this->std->cnh->dtprihab) ? $this->std->cnh->dtprihab : null,
+                false
+            );
+            $this->dom->addChild(
+                $cnh,
+                "categoriaCnh",
+                $this->std->cnh->categoriacnh,
+                true
+            );
+            $documentos->appendChild($cnh);
+        }
+        //encerra documentos
+        $trabalhador->appendChild($documentos);
 
 //        //Endereço (obrigatorio)
         $endereco = $this->dom->createElement("endereco");
@@ -452,211 +455,234 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 true
             );
             $endereco->appendChild($brasil);
-//        }
-//        if (isset($this->std->endereco->exterior)) {
-//            $exterior = $this->dom->createElement("exterior");
-//            $this->dom->addChild(
-//                $exterior,
-//                "paisResid",
-//                $this->std->endereco->exterior->paisresid,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $exterior,
-//                "dscLograd",
-//                $this->std->endereco->exterior->dsclograd,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $exterior,
-//                "nrLograd",
-//                $this->std->endereco->exterior->nrlograd,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $exterior,
-//                "paisResid",
-//                $this->std->endereco->exterior->complemento,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $exterior,
-//                "bairro",
-//                $this->std->endereco->exterior->bairro,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $exterior,
-//                "nmCid",
-//                $this->std->endereco->exterior->nmCid,
-//                true
-//            );
-//            $this->dom->addChild(
-//                $exterior,
-//                "codPostal",
-//                $this->std->endereco->exterior->codpostal,
-//                false
-//            );
-//            $endereco->appendChild($exterior);
         }
-        //encerra endereço
+        if (isset($this->std->endereco->exterior)) {
+            $exterior = $this->dom->createElement("exterior");
+            $this->dom->addChild(
+                $exterior,
+                "paisResid",
+                $this->std->endereco->exterior->paisresid,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "dscLograd",
+                $this->std->endereco->exterior->dsclograd,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "nrLograd",
+                $this->std->endereco->exterior->nrlograd,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "complemento",
+                !empty($this->std->endereco->exterior->complemento) ? $this->std->endereco->exterior->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $exterior,
+                "bairro",
+                !empty($this->std->endereco->exterior->bairro) ? $this->std->endereco->exterior->bairro : null,
+                false
+            );
+            $this->dom->addChild(
+                $exterior,
+                "nmCid",
+                $this->std->endereco->exterior->nmCid,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "codPostal",
+                !empty($this->std->endereco->exterior->codpostal) ? $this->std->endereco->exterior->codpostal : null,
+                false
+            );
+            $endereco->appendChild($exterior);
+        }
+//        encerra endereço
         $trabalhador->appendChild($endereco);
 
+        if (isset($this->std->trabestrangeiro)) {
+            $trabEstrangeiro = $this->dom->createElement("trabEstrangeiro");
+            $this->dom->addChild(
+                $trabEstrangeiro,
+                "dtChegada",
+                $this->std->trabestrangeiro->dtchegada,
+                true
+            );
+            $this->dom->addChild(
+                $trabEstrangeiro,
+                "classTrabEstrang",
+                $this->std->trabestrangeiro->classtrabestrang,
+                true
+            );
+            $this->dom->addChild(
+                $trabEstrangeiro,
+                "casadoBr",
+                $this->std->trabestrangeiro->casadobr,
+                true
+            );
+            $this->dom->addChild(
+                $trabEstrangeiro,
+                "filhosBr",
+                $this->std->trabestrangeiro->filhosbr,
+                true
+            );
+            $trabalhador->appendChild($trabEstrangeiro);
+        }
+
+        //deficiencia (opcional)
+        if (isset($this->std->deficiencia)) {
+            $deficiencia = $this->dom->createElement("infoDeficiencia");
+            $this->dom->addChild(
+                $deficiencia,
+                "defFisica",
+                $this->std->deficiencia->deffisica,
+                true
+            );
+            $this->dom->addChild(
+                $deficiencia,
+                "defVisual",
+                $this->std->deficiencia->defvisual,
+                true
+            );
+            $this->dom->addChild(
+                $deficiencia,
+                "defAuditiva",
+                $this->std->deficiencia->defauditiva,
+                true
+            );
+            $this->dom->addChild(
+                $deficiencia,
+                "defMental",
+                $this->std->deficiencia->defmental,
+                true
+            );
+            $this->dom->addChild(
+                $deficiencia,
+                "defIntelectual",
+                $this->std->deficiencia->defintelectual,
+                true
+            );
+            $this->dom->addChild(
+                $deficiencia,
+                "reabReadap",
+                $this->std->deficiencia->reabreadap,
+                true
+            );
+
+            $this->dom->addChild(
+                $deficiencia,
+                "infoCota",
+                $this->std->deficiencia->infocota,
+                true
+            );
+            $this->dom->addChild(
+                $deficiencia,
+                "observacao",
+                !empty($this->std->deficiencia->observacao) ? $this->std->deficiencia->observacao : null,
+                false
+            );
+            $trabalhador->appendChild($deficiencia);
+        }
+        //dependente (opcional) (ARRAY)
+        if (isset($this->std->dependente)) {
+            foreach ($this->std->dependente as $dep) {
+                $dependente = $this->dom->createElement("dependente");
+                $this->dom->addChild(
+                    $dependente,
+                    "tpDep",
+                    $dep->tpdep,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "nmDep",
+                    $dep->nmdep,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "dtNascto",
+                    $dep->dtnascto,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "cpfDep",
+                    !empty($dep->cpfdep) ? $dep->cpfdep : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "depIRRF",
+                    $dep->depirrf,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "depSF",
+                    $dep->depsf,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "incTrab",
+                    $dep->inctrab,
+                    true
+                );
+                $trabalhador->appendChild($dependente);
+            }
+        }
+
+        //aposentadoria (opcional)
+        if (isset($this->std->aposentadoria)) {
+            $aposentadoria = $this->dom->createElement("aposentadoria");
+            $this->dom->addChild(
+                $aposentadoria,
+                "trabAposent",
+                $dep->trabaposent,
+                true
+            );
+            $trabalhador->appendChild($aposentadoria);
+        }
+
+        //contato (opcional)
+        if (isset($this->std->contato)) {
+            $contato = $this->dom->createElement("contato");
+            $this->dom->addChild(
+                $contato,
+                "fonePrinc",
+                $this->std->contato->foneprinc,
+                false
+            );
+            $this->dom->addChild(
+                $contato,
+                "foneAlternat",
+                $this->std->contato->fonealternat,
+                false
+            );
+            $this->dom->addChild(
+                $contato,
+                "emailPrinc",
+                $this->std->contato->emailprinc,
+                false
+            );
+            $this->dom->addChild(
+                $contato,
+                "emailAlternat",
+                $this->std->contato->emailalternat,
+                false
+            );
+            $trabalhador->appendChild($contato);
+        }
+        
+        //encerra trabalhador
         $evtAdmissao->appendChild($trabalhador);
-//        //deficiencia (opcional)
-//        if (isset($this->std->deficiencia)) {
-//            $deficiencia = $this->dom->createElement("infoDeficiencia");
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "defFisica",
-//                $this->std->deficiencia->deffisica,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "defVisual",
-//                $this->std->deficiencia->defvisual,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "defAuditiva",
-//                $this->std->deficiencia->defauditiva,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "defMental",
-//                $this->std->deficiencia->defmental,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "defIntelectual",
-//                $this->std->deficiencia->defintelectual,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "reabReadap",
-//                $this->std->deficiencia->reabreadap,
-//                false
-//            );
-//
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "infoCota",
-//                $this->std->deficiencia->infocota,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $deficiencia,
-//                "observacao",
-//                $this->std->deficiencia->observacao,
-//                false
-//            );
-//            $trabalhador->appendChild($deficiencia);
-//        }
-//        //dependente (opcional) (ARRAY)
-//        if (isset($this->std->dependente)) {
-//            foreach ($this->std->dependente as $dep) {
-//                $dependente = $this->dom->createElement("dependente");
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "tpDep",
-//                    $dep->tpdep,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "nmDep",
-//                    $dep->nmdep,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "dtNascto",
-//                    $dep->dtnascto,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "cpfDep",
-//                    $dep->cpfdep,
-//                    false
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "depIRRF",
-//                    $dep->depirrf,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "depSF",
-//                    $dep->depsf,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "depPlan",
-//                    $dep->depplan,
-//                    true
-//                );
-//                $this->dom->addChild(
-//                    $dependente,
-//                    "incTrab",
-//                    $dep->inctrab,
-//                    true
-//                );
-//                $trabalhador->appendChild($dependente);
-//            }
-//        }
-//
-//        //aposentadoria (opcional)
-//        if (isset($this->std->aposentadoria)) {
-//            $aposentadoria = $this->dom->createElement("aposentadoria");
-//            $this->dom->addChild(
-//                $aposentadoria,
-//                "trabAposent",
-//                $dep->trabaposent,
-//                true
-//            );
-//            $trabalhador->appendChild($aposentadoria);
-//        }
-//
-//        //contato (opcional)
-//        if (isset($this->std->contato)) {
-//            $contato = $this->dom->createElement("contato");
-//            $this->dom->addChild(
-//                $contato,
-//                "fonePrinc",
-//                $this->std->contato->foneprinc,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $contato,
-//                "foneAlternat",
-//                $this->std->contato->fonealternat,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $contato,
-//                "emailPrinc",
-//                $this->std->contato->emailprinc,
-//                false
-//            );
-//            $this->dom->addChild(
-//                $contato,
-//                "emailAlternat",
-//                $this->std->contato->emailalternat,
-//                false
-//            );
-//            $trabalhador->appendChild($contato);
-//        }
-//        //encerra trabalhador
-//        $this->node->appendChild($trabalhador);
-//
+
         //vinculo (obrigatorio)
         $vinculo = $this->dom->createElement("vinculo");
         $this->dom->addChild(

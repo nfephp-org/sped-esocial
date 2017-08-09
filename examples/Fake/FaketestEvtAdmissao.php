@@ -86,7 +86,54 @@ $vinculo->contrato  = $contrato;
 
 $std->vinculo = $vinculo;
 
+$ctps = new \stdClass();
+$ctps->nrctps = '12012315';
+$ctps->seriectps = '500';
+$ctps->ufctps = 'SP';
 
+$std->ctps = $ctps;
+
+$ric = new \stdClass();
+$ric->nrric = '15150505';
+$ric->orgaoemissor = 'SSP';
+$ric->dtexped = '2015-01-01';
+
+$std->ric = $ric;
+
+$rg = new \stdClass();
+$rg->nrrg = '11111111';
+$rg->orgaoemissor = 'SSP';
+$rg->dtexped = '2015-01-01';
+
+$std->rg = $rg;
+
+$oc = new \stdClass();
+$oc->nroc = '12315861';
+$oc->orgaoemissor = 'SSP';
+$oc->dtexped = '2015-01-01';
+
+$std->oc = $oc;
+
+$cnh = new \stdClass();
+$cnh->nrregcnh = '1231531';
+$cnh->dtexped = '2015-01-01';
+$cnh->ufcnh = 'SP';
+$cnh->dtvalid = '2019-01-01';
+$cnh->dtprihab = '2015-01-01';
+$cnh->categoriacnh = 'AB';
+
+$std->cnh = $cnh;
+
+$dependente[0] = new \stdClass();
+$dependente[0]->tpdep = '01';
+$dependente[0]->nmdep = 'WATSON';
+$dependente[0]->dtnascto = '2015-01-01';
+$dependente[0]->cpfdep = '12345678985';
+$dependente[0]->depirrf = 'N';
+$dependente[0]->depsf = 'N';
+$dependente[0]->inctrab = 'N';
+
+$std->dependente = $dependente;
 try {
 
     //carrega a classe responsavel por lidar com os certificados
