@@ -913,7 +913,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoDecJud,
                     "nrProcJud",
-                    $this->std->vinculo->estatutario->nrprocjud,
+                    $this->std->vinculo->estatutario->judicial->nrprocjud,
                     true
                 );
                 $estatutario->appendChild($infoDecJud);
