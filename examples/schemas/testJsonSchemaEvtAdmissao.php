@@ -269,7 +269,7 @@ $jsonSchema = '{
                 }
             }
         },
-          "endereco": {
+        "endereco": {
             "required": true,
             "type": "object",
             "properties": {
@@ -362,7 +362,35 @@ $jsonSchema = '{
                 }
             
             }
+        },
+        "trabestrangeiro": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dtchegada": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "classtrabestrang": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 2,
+                    "pattern": "([1-12]){1}$"
+                },
+                "casadobr": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "filhosbr": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                }
+            }
         }
+        
     }
 }';
 
