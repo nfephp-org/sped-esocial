@@ -1,17 +1,4 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-require_once '../../bootstrap.php';
-
-use JsonSchema\Validator;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Constraints\Factory;
-use JsonSchema\Constraints\Constraint;
-
-$evento = 'evtTabEstab';
-$version = '02_03_00';
-
-$jsonSchema = '{
+{
     "title": "evtTabEstab",
     "type": "object",
     "properties": {
@@ -103,62 +90,4 @@ $jsonSchema = '{
             }
         }
     }
-}';
-
-
-$std = new \stdClass();
-$std->sequencial = 1;
-
-
-$std->inclusao = new \stdClass();
-$std->inclusao->tpinsc = 1;
-$std->inclusao->nrinsc = '123456789012345';
-$std->inclusao->inivalid = '2017-01';
-$std->inclusao->fimvalid = '2017-12'; //opcional
-
-
-
-/*
-$std->alteracao = new \stdClass();
-$std->alteracao->tpinsc = 1;
-$std->alteracao->nrinsc = '123456789012345';
-$std->alteracao->inivalid = '2017-01';
-$std->alteracao->fimvalid = '2017-12'; //opcional
-
-$std->exclusao = new \stdClass();
-$std->exclusao->tpinsc = 1;
-$std->exclusao->nrinsc = '123456789012345';
-$std->exclusao->inivalid = '2017-01';
-$std->exclusao->fimvalid = '2017-12'; //opcional
-*/
-// Schema must be decoded before it can be used for validation
-$jsonSchemaObject = json_decode($jsonSchema);
-
-// The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
-$schemaStorage = new SchemaStorage();
-
-// This does two things:
-// 1) Mutates $jsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
-// 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $jsonSchemaObject
-$schemaStorage->addSchema('file://mySchema', $jsonSchemaObject);
-
-// Provide $schemaStorage to the Validator so that references can be resolved during validation
-$jsonValidator = new Validator(new Factory($schemaStorage));
-
-// Do validation (use isValid() and getErrors() to check the result)
-$jsonValidator->validate(
-    $std,
-    $jsonSchemaObject
-);
-
-if ($jsonValidator->isValid()) {
-    echo "The supplied JSON validates against the schema.<br/>";
-} else {
-    echo "JSON does not validate. Violations:<br/>";
-    foreach ($jsonValidator->getErrors() as $error) {
-        echo sprintf("[%s] %s<br/>", $error['property'], $error['message']);
-    }
-    die;
 }
-//salva se sucesso
-file_put_contents("../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
