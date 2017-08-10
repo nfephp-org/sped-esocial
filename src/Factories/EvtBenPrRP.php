@@ -85,7 +85,8 @@ class EvtBenPrRP extends Factory implements FactoryInterface
             "procEmi",
             $this->procEmi,
             true
-        );        $this->dom->addChild(
+        );
+        $this->dom->addChild(
             $ideEvento,
             "verProc",
             $this->verProc,

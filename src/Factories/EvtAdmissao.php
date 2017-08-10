@@ -227,7 +227,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
         $trabalhador->appendChild($nascimento);
 
 
-//        documentos (obrig)
+        //        documentos (obrig)
         $documentos = $this->dom->createElement("documentos");
         //CTPS (Opc)
         if (isset($this->std->ctps)) {
@@ -252,7 +252,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($ctps);
         }
-//        //RIC (Opc)
+        //        //RIC (Opc)
         if (isset($this->std->ric)) {
             $ric = $this->dom->createElement("RIC");
             $this->dom->addChild(
@@ -275,7 +275,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($ric);
         }
-//        //RG
+        //        //RG
         if (isset($this->std->rg)) {
             $rg = $this->dom->createElement("RG");
             $this->dom->addChild(
@@ -298,7 +298,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($rg);
         }
-//        //RNE (Opc)
+        //        //RNE (Opc)
         if (isset($this->std->rne)) {
             $rne = $this->dom->createElement("RNE");
             $this->dom->addChild(
@@ -327,7 +327,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($rne);
         }
-//        //OC (Opc)
+        //        //OC (Opc)
         if (isset($this->std->oc)) {
             $oc = $this->dom->createElement("OC");
             $this->dom->addChild(
@@ -402,7 +402,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
         //encerra documentos
         $trabalhador->appendChild($documentos);
 
-//        //Endereço (obrigatorio)
+        //        //Endereço (obrigatorio)
         $endereco = $this->dom->createElement("endereco");
         if (isset($this->std->endereco->brasil)) {
             $brasil = $this->dom->createElement("brasil");
@@ -502,7 +502,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $endereco->appendChild($exterior);
         }
-//        encerra endereço
+        //        encerra endereço
         $trabalhador->appendChild($endereco);
 
         if (isset($this->std->trabestrangeiro)) {
@@ -997,7 +997,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             false
         );
         $contrato->appendChild($duracao);
-//
+        //
         //localTrabalho (obrigatorio)
         $localTrabalho = $this->dom->createElement("localTrabalho");
         //localTrabGeral (opcional)
