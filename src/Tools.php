@@ -90,7 +90,7 @@ class Tools extends ToolsBase
         ];
         
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
-            . "/eventos/envio/consulta/retornoProcessamento/$operationVersion\" "
+            . "/eventos/envio/consulta/retornoProcessamento/v1_0_0\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<consultaLoteEventos>"
             . "<protocoloEnvio>$protocolo</protocoloEnvio>"
