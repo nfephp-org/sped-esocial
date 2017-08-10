@@ -11,3 +11,4 @@ composer.lock
 .composer
 docker-compose.yml
 Caddyfile
+.php_cs.cache

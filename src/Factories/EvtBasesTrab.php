@@ -61,7 +61,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         //o idEvento pode variar de evento para evento
         //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
