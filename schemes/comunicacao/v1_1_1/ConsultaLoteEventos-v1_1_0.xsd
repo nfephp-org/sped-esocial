@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema version="1.0.0"
+<xs:schema version="1.1.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:esocial="http://www.esocial.gov.br/schema/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0"
-           targetNamespace="http://www.esocial.gov.br/schema/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0"
+           xmlns:esocial="http://www.esocial.gov.br/schema/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0"
+           targetNamespace="http://www.esocial.gov.br/schema/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0"
            elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:element name="eSocial">
     <xs:annotation>
@@ -36,7 +36,6 @@
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
-
           </xs:complexType>
         </xs:element>
       </xs:sequence>

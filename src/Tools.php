@@ -69,20 +69,26 @@ class Tools extends ToolsBase
     public function consultarLoteEventos($protocolo)
     {
         $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
+        
         $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
             . "/envio/consulta/retornoProcessamento/$operationVersion";
+        
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
             . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
             . "/ServicoConsultarLoteEventos/ConsultarLoteEventos";
+        
         $this->method = "ConsultarLoteEventos";
+        
         $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
             . "/servicos/empregador/consultarloteeventos"
             . "/WsConsultarLoteEventos.svc";
+        
         $this->envelopeXmlns = [
             'xmlns:soapenv'=> "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'=> "http://www.esocial.gov.br/servicos/empregador/lote"
                 . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
         ];
+        
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
             . "/eventos/envio/consulta/retornoProcessamento/$operationVersion\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
@@ -140,15 +146,21 @@ class Tools extends ToolsBase
             $xml .= $evt->toXML();
             $xml .= "</evento>";
         }
+        
         $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
+        
         $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
             . "/envio/$operationVersion";
+        
         $this->method = "EnviarLoteEventos";
+        
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            . "/eventos/envio/$operationVersion/ServicoEnviarLoteEventos"
+            . "/eventos/envio/v1_1_0/ServicoEnviarLoteEventos"
             . "/EnviarLoteEventos";
+        
         $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
             . "/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
+        
         $this->envelopeXmlns = [
             'xmlns:soapenv'=> "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'=> "http://www.esocial.gov.br/servicos/empregador"
