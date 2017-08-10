@@ -479,7 +479,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $exterior,
                 "complemento",
-                !empty($this->std->endereco->exterior->complemento) ? $this->std->endereco->exterior->complemento : null,
+                !empty($this->std->endereco->exterior->complemento) ?
+                    $this->std->endereco->exterior->complemento : null,
                 false
             );
             $this->dom->addChild(
@@ -1018,7 +1019,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $localgeral,
                 "descComp",
-                !empty($this->std->vinculo->contrato->local->desccomp) ? $this->std->vinculo->contrato->local->desccomp : null,
+                !empty($this->std->vinculo->contrato->local->desccomp) ?
+                    $this->std->vinculo->contrato->local->desccomp : null,
                 false
             );
             $localTrabalho->appendChild($localgeral);
@@ -1047,13 +1049,15 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $localDomestico,
                 "complemento",
-                !empty($this->std->vinculo->contrato->domestico->complemento) ? $this->std->vinculo->contrato->domestico->complemento : null,
+                !empty($this->std->vinculo->contrato->domestico->complemento) ?
+                    $this->std->vinculo->contrato->domestico->complemento : null,
                 false
             );
             $this->dom->addChild(
                 $localDomestico,
                 "bairro",
-                !empty($this->std->vinculo->contrato->domestico->bairro) ? $this->std->vinculo->contrato->domestico->bairro : null,
+                !empty($this->std->vinculo->contrato->domestico->bairro) ?
+                    $this->std->vinculo->contrato->domestico->bairro : null,
                 false
             );
             $this->dom->addChild(
@@ -1096,7 +1100,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $horContratual,
                 "dscTpJorn",
-                !empty($this->std->vinculo->contrato->horcontratual->dsctpjorn) ? $this->std->vinculo->contrato->horcontratual->dsctpjorn : null,
+                !empty($this->std->vinculo->contrato->horcontratual->dsctpjorn) ?
+                    $this->std->vinculo->contrato->horcontratual->dsctpjorn : null,
                 false
             );
             $this->dom->addChild(
