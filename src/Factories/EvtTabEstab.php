@@ -296,6 +296,24 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $dadosEstab->appendChild($infoTrab);
             $node->appendChild($dadosEstab);
         }
+        
+        if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
+            $newVal = $this->std->novavalidade;
+            $novaValidade = $this->dom->createElement("novaValidade");
+            $this->dom->addChild(
+                $ideRubrica,
+                "iniValid",
+                $newVal->inivalid,
+                true
+            );
+            $this->dom->addChild(
+                $ideRubrica,
+                "fimValid",
+                !empty($newVal->fimvalid) ? $newVal->fimvalid : null,
+                false
+            );
+            $node->appendChild($novaValidade);
+        }
         $infoEstab = $this->dom->createElement("infoEstab");
         $infoEstab->appendChild($node);
         //finalização do xml
