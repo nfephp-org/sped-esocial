@@ -15,10 +15,10 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryId;
+use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
 class EvtMonit extends Factory implements FactoryInterface
@@ -38,14 +38,16 @@ class EvtMonit extends Factory implements FactoryInterface
     protected $evtAlias = 'S-2220';
     /**
      * Parameters patterns
+     *
      * @var array
      */
     protected $parameters = [];
 
     /**
      * Constructor
-     * @param string $config
-     * @param stdClass $std
+     *
+     * @param string      $config
+     * @param stdClass    $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -55,7 +57,7 @@ class EvtMonit extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -67,13 +69,24 @@ class EvtMonit extends Factory implements FactoryInterface
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+
         $evtMonit = $this->dom->createElement("evtMonit");
+
         $att = $this->dom->createAttribute('Id');
+
         $att->value = $evtid;
+
         $evtMonit->appendChild($att);
-        
+
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -92,26 +105,169 @@ class EvtMonit extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtMonit->appendChild($ideEvento);
-    
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+
+        $ideVinculo = $this->dom->createElement("ideVinculo");
+
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ideVinculo,
+            "cpfTrab",
+            $this->std->idevinculo->cpftrab,
             true
         );
         $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
+            $ideVinculo,
+            "nisTrab",
+            $this->std->idevinculo->nistrab,
             true
         );
-        $evtMonit->appendChild($ideEmpregador);
-        
+        $this->dom->addChild(
+            $ideVinculo,
+            "matricula",
+            $this->std->idevinculo->matricula,
+            true
+        );
+
+        $this->node->appendChild($ideVinculo);
+
+        $aso = $this->dom->createElement("aso");
+
+        $this->dom->addChild(
+            $aso,
+            "dtAso",
+            $this->std->aso->dtaso,
+            true
+        );
+
+        $this->dom->addChild(
+            $aso,
+            "tpAso",
+            $this->std->aso->tpaso,
+            true
+        );
+
+        $this->dom->addChild(
+            $aso,
+            "resAso",
+            $this->std->aso->resaso,
+            true
+        );
 
 
-        $eSocial->appendChild($evtMonit);
-        $this->sign($eSocial);
+        $exame = $this->dom->createElement("exame");
+
+        $this->dom->addChild(
+            $exame,
+            "dtExm",
+            $this->std->exame->dtexm,
+            true
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "procRealizado",
+            !empty($this->std->exame->procrealizado) ? $this->std->exame->procrealizado : null,
+            false
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "obsProc",
+            !empty($this->std->exame->obsproc) ? $this->std->exame->obsproc : null,
+            false
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "interprExm",
+            $this->std->exame->interprexm,
+            true
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "ordExame",
+            $this->std->exame->ordexame,
+            true
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "dtIniMonit",
+            $this->std->exame->dtinimonit,
+            true
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "dtFimMonit",
+            !empty($this->std->exame->dtfimmonit) ? $this->std->exame->dtfimmonit : null,
+            false
+        );
+
+        $this->dom->addChild(
+            $exame,
+            "indResult",
+            !empty($this->std->exame->indresult) ? $this->std->exame->indresult : null,
+            false
+        );
+
+        $aso->appendChild($exame);
+
+        $respMonit = $this->dom->createElement("respMonit");
+
+        $this->dom->addChild(
+            $respMonit,
+            "nisResp",
+            $this->std->respmonit->nisresp,
+            true
+        );
+
+        $this->dom->addChild(
+            $respMonit,
+            "nrConsClasse",
+            $this->std->respmonit->nrconsclasse,
+            true
+        );
+
+        $this->dom->addChild(
+            $respMonit,
+            "ufConsClasse",
+            !empty($this->std->respmonit->ufconsclasse) ? $this->std->respmonit->ufconsclasse : null,
+            false
+        );
+
+        $exame->appendChild($respMonit);
+
+        $ideServSaude = $this->dom->createElement("ideServSaude");
+
+        $this->dom->addChild(
+            $ideServSaude,
+            "codCNES",
+            !empty($this->std->ideservsaude->codcnes) ? $this->std->ideservsaude->codcnes : null,
+            false
+        );
+
+        $this->dom->addChild(
+            $ideServSaude,
+            "frmCtt",
+            $this->std->ideservsaude->frmctt,
+            true
+        );
+
+        $this->dom->addChild(
+            $ideServSaude,
+            "email",
+            !empty($this->std->ideservsaude->email) ? $this->std->ideservsaude->email : null,
+            false
+        );
+
+        $aso->appendChild($ideServSaude);
+
+        $this->node->appendChild($aso);
+
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
