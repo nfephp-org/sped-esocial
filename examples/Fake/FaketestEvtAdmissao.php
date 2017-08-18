@@ -77,7 +77,7 @@ $celetista->opcfgts = 1;
 $vinculo->celetista = $celetista;
 
 $contrato = new \stdClass();
-$contrato->codcateg = '101';
+$contrato->codcateg = 101;
 $contrato->vrsalfx = 5000;
 $contrato->undsalfixo = 5;
 $contrato->tpcontr = 1;
