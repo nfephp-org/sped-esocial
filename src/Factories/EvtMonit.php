@@ -154,66 +154,69 @@ class EvtMonit extends Factory implements FactoryInterface
             true
         );
 
+        if (isset($this->std->exame)) {
+            foreach ($this->std->exame as $exam) {
+                $exame = $this->dom->createElement("exame");
 
-        $exame = $this->dom->createElement("exame");
+                $this->dom->addChild(
+                    $exame,
+                    "dtExm",
+                    $exam->dtexm,
+                    true
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "dtExm",
-            $this->std->exame->dtexm,
-            true
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "procRealizado",
+                    !empty($exam->procrealizado) ? $exam->procrealizado : null,
+                    false
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "procRealizado",
-            !empty($this->std->exame->procrealizado) ? $this->std->exame->procrealizado : null,
-            false
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "obsProc",
+                    !empty($exam->obsproc) ? $exam->obsproc : null,
+                    false
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "obsProc",
-            !empty($this->std->exame->obsproc) ? $this->std->exame->obsproc : null,
-            false
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "interprExm",
+                    $exam->interprexm,
+                    true
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "interprExm",
-            $this->std->exame->interprexm,
-            true
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "ordExame",
+                    $exam->ordexame,
+                    true
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "ordExame",
-            $this->std->exame->ordexame,
-            true
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "dtIniMonit",
+                    $exam->dtinimonit,
+                    true
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "dtIniMonit",
-            $this->std->exame->dtinimonit,
-            true
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "dtFimMonit",
+                    !empty($exam->dtfimmonit) ? $exam->dtfimmonit : null,
+                    false
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "dtFimMonit",
-            !empty($this->std->exame->dtfimmonit) ? $this->std->exame->dtfimmonit : null,
-            false
-        );
+                $this->dom->addChild(
+                    $exame,
+                    "indResult",
+                    !empty($exam->indresult) ? $exam->indresult : null,
+                    false
+                );
 
-        $this->dom->addChild(
-            $exame,
-            "indResult",
-            !empty($this->std->exame->indresult) ? $this->std->exame->indresult : null,
-            false
-        );
-
-        $aso->appendChild($exame);
+                $aso->appendChild($exame);
+            }
+        }
 
         $respMonit = $this->dom->createElement("respMonit");
 
@@ -264,6 +267,35 @@ class EvtMonit extends Factory implements FactoryInterface
         );
 
         $aso->appendChild($ideServSaude);
+
+        $medico = $this->dom->createElement("medico");
+
+        $this->dom->addChild(
+            $medico,
+            "nmMed",
+            $this->std->medico->nmmed,
+            true
+        );
+
+        $ideServSaude->appendChild($medico);
+
+        $crm = $this->dom->createElement("crm");
+
+        $this->dom->addChild(
+            $crm,
+            "nrCRM",
+            $this->std->medico->nrcrm,
+            true
+        );
+
+        $this->dom->addChild(
+            $crm,
+            "ufCRM",
+            $this->std->medico->ufcrm,
+            true
+        );
+
+        $medico->appendChild($crm);
 
         $this->node->appendChild($aso);
 

@@ -24,7 +24,8 @@ class SoapFake extends SoapBase implements SoapInterface
 {
     /**
      * Constructor
-     * @param Certificate $certificate
+     *
+     * @param Certificate     $certificate
      * @param LoggerInterface $logger
      */
     public function __construct(Certificate $certificate = null, LoggerInterface $logger = null)
@@ -42,7 +43,8 @@ class SoapFake extends SoapBase implements SoapInterface
         $requestHead = implode("\n", $parameters);
         $requestBody = $envelope;
         
-        return json_encode([
+        return json_encode(
+            [
             'url' => $url,
             'operation' => $operation,
             'action' => $action,
@@ -51,6 +53,8 @@ class SoapFake extends SoapBase implements SoapInterface
             'header' => $requestHead,
             'namespaces' => [],
             'body' => $requestBody
-        ], JSON_PRETTY_PRINT);
+            ],
+            JSON_PRETTY_PRINT
+        );
     }
 }

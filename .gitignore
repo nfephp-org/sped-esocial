@@ -12,3 +12,4 @@ composer.lock
 docker-compose.yml
 Caddyfile
 .php_cs.cache
+phpcbf.phar

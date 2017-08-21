@@ -30,7 +30,6 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->idevinculo = 1;
 
 $idevinculo = new \stdClass();
 $idevinculo->cpftrab = '11111111111';
@@ -46,15 +45,15 @@ $aso->resaso = 1;
 
 $std->aso = $aso;
 
-$exame = new \stdClass();
-$exame->dtexm = '2017-08-18';
-$exame->procrealizado = 10102019;
-$exame->obsproc = 'observação do exame';
-$exame->interprexm = 1;
-$exame->ordexame = 1;
-$exame->dtinimonit = '2017-08-18';
-$exame->dtfimmonit = '2018-08-18';
-$exame->indresult = 1;
+$exame[0] = new \stdClass();
+$exame[0]->dtexm = '2017-08-18';
+$exame[0]->procrealizado = 10102019;
+$exame[0]->obsproc = 'observação do exame';
+$exame[0]->interprexm = 1;
+$exame[0]->ordexame = 1;
+$exame[0]->dtinimonit = '2017-08-18';
+$exame[0]->dtfimmonit = '2018-08-18';
+$exame[0]->indresult = 1;
 
 $std->exame = $exame;
 
@@ -66,14 +65,20 @@ $std->respmonit = $respmonit;
 
 $ideservsaude = new \stdClass();
 $ideservsaude->codcnes = '1111111';
-$ideservsaude->frmctt = 'forma de contato';
+$ideservsaude->frmctt = 'CONTATO';
 $ideservsaude->email = 'teste@exemplo.com.br';
 
 $std->ideservsaude = $ideservsaude;
 
+$medico = new \stdClass();
+$medico->nmmed = 'NOME DO MEDICO';
+$medico->nrcrm = '12345678';
+$medico->ufcrm = 'SP';
+
+$std->medico = $medico;
+
 
 try {
-
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
     $password = 'associacao';
@@ -89,7 +94,6 @@ try {
 
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

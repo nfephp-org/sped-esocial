@@ -19,7 +19,7 @@ $config = [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999', //numero do documento
         'nmRazao' => 'Razao Social'
-    ],    
+    ],
     'transmissor' => [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
@@ -36,7 +36,7 @@ try {
     
     //usar a classe Fake para não tentar enviar apenas ver o resultado da chamada
     $soap = new SoapFake();
-    //desativa a validação da validade do certificado 
+    //desativa a validação da validade do certificado
     //estamos usando um certificado vencido nesse teste
     $soap->disableCertValidation(true);
     
@@ -59,7 +59,6 @@ try {
     
     //retorna os dados que serão usados na conexão para conferência
     echo FakePretty::prettyPrint($response, 'fake_envLoteEventos');
-    
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

@@ -24,6 +24,7 @@ class ParamsStandardize
     
     /**
      * Constructor
+     *
      * @param \stdClass $schema
      */
     public function __construct(\stdClass $schema)
@@ -34,7 +35,8 @@ class ParamsStandardize
     
     /**
      * Read all fields from data and put in standard structure
-     * @param \stdClass $data
+     *
+     * @param  \stdClass $data
      * @return \stdClass
      */
     public function stdData(\stdClass $data)
@@ -46,7 +48,8 @@ class ParamsStandardize
     
     /**
      * Read all primary keys fields from data
-     * @param \stdClass $schema
+     *
+     * @param  \stdClass $schema
      * @return array
      */
     protected function getKeys(\stdClass $schema)
@@ -62,9 +65,10 @@ class ParamsStandardize
     
     /**
      * Recover primary fields
-     * @param \stdClass $obj
-     * @param string $prop
-     * @param \stdClass $default
+     *
+     * @param  \stdClass $obj
+     * @param  string    $prop
+     * @param  \stdClass $default
      * @return \stdClass
      */
     protected function get(\stdClass $obj, $prop, \stdClass $default = null)
@@ -74,11 +78,12 @@ class ParamsStandardize
     
     /**
      * Build standard structure from schema and load data fields, if exists
+     *
      * @param \stdClass $schema
      * @param \stdClass $data
      * @param \stdClass $clone
-     * @param array $keys
-     * @param string $ref
+     * @param array     $keys
+     * @param string    $ref
      */
     protected function getProperties(
         \stdClass $schema,

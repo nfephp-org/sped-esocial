@@ -178,7 +178,7 @@ $std->vrdeddep = '1234.56';
 
 $infoirrf[0] = new \stdClass();
 $infoirrf[0]->codcateg = '101';
-$infoirrf[0]->indresbr = 'N';        
+$infoirrf[0]->indresbr = 'N';
 
 $basesirrf[0] = new \stdClass();
 $basesirrf[0]->tpvalor = '00';
