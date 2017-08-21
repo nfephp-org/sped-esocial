@@ -1,0 +1,127 @@
+{
+    "title": "evtAfastTemp",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "idevinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 11,
+                    "minLength": 11
+                },
+                "nistrab": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 11,
+                    "minLength": 11
+                },
+                "matricula": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 30
+                },
+                "codcateg": {
+                    "required": false,
+                    "type": "integer",
+                    "maxLength": 3
+                }
+            }
+        },
+        "iniafastamento": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "dtiniafast": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "codmotafast": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 2
+                },
+                "infomesmomtv": {
+                    "required": false,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "tpacidtransito": {
+                    "required": false,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-3]){1}$"
+                },
+                "observacao": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 255
+                },
+                "infoatestado": {
+                    "required": false,
+                    "type": "array",
+                    "minItems": 0,
+                    "maxItems": 9,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "codcid": {
+                                "required": false,
+                                "type": "string",
+                                "maxLength": 4
+                            },
+                            "qtddiasafast": {
+                                "required": true,
+                                "type": "integer",
+                                "maxLength": 3
+                            },
+                            "emitente": {
+                                "required": false,
+                                "type": "object",
+                                "properties": {
+                                    "nmemit": {
+                                        "required": true,
+                                        "type": "string",
+                                        "maxLength": 70
+                                    },
+                                    "ideoc": {
+                                        "required": false,
+                                        "type": "integer",
+                                        "maxLength": 1,
+                                        "pattern": "([1-3]){1}$"
+                                    },
+                                    "nroc": {
+                                        "required": true,
+                                        "type": "string",
+                                        "maxLength": 14,
+                                        "minLength": 14
+                                    },
+                                    "ufoc": {
+                                        "required": false,
+                                        "type": "string",
+                                        "maxLength": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
