@@ -38,14 +38,16 @@ class EvtAqProd extends Factory implements FactoryInterface
     protected $evtAlias = 'S-1250';
     /**
      * Parameters patterns
+     *
      * @var array
      */
     protected $parameters = [];
 
     /**
      * Constructor
-     * @param string $config
-     * @param stdClass $std
+     *
+     * @param string      $config
+     * @param stdClass    $std
      * @param Certificate $certificate
      */
     public function __construct(

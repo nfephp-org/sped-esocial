@@ -19,7 +19,7 @@ $config = [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999', //numero do documento
         'nmRazao' => 'Razao Social'
-    ],    
+    ],
     'transmissor' => [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
@@ -32,10 +32,10 @@ try {
     $content = file_get_contents('expired_certificate.pfx');
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
-    
+
     //usar a classe Fake para não tentar enviar apenas ver o resultado da chamada
     $soap = new SoapFake();
-    //desativa a validação da validade do certificado 
+    //desativa a validação da validade do certificado
     //estamos usando um certificado vencido nesse teste
     $soap->disableCertValidation(true);
 
@@ -44,13 +44,12 @@ try {
     //carrega a classe responsável pelo envio SOAP
     //nesse caso um envio falso
     $tools->loadSoapClass($soap);
-    
+
     //executa a consulta
-    $response = $tools->consultarLoteEventos('1.2.201707.0000000000000007638');    
-    
+    $response = $tools->consultarLoteEventos('1.2.201707.0000000000000007638');
+
     //retorna os dados que serão usados na conexão para conferência
     echo FakePretty::prettyPrint($response, 'fake_envConsulta');
-    
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

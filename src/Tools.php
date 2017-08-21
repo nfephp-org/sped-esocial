@@ -54,6 +54,7 @@ class Tools extends ToolsBase
     
     /**
      * SOAP communication dependency injection
+     *
      * @param SoapInterface $soap
      */
     public function loadSoapClass(SoapInterface $soap)
@@ -63,7 +64,8 @@ class Tools extends ToolsBase
     
     /**
      * Event batch query
-     * @param string $protocolo
+     *
+     * @param  string $protocolo
      * @return string
      */
     public function consultarLoteEventos($protocolo)
@@ -99,9 +101,12 @@ class Tools extends ToolsBase
         
         
         //validar a requisição conforme o seu respectivo XSD
-        Validator::isValid($request, $this->path
+        Validator::isValid(
+            $request,
+            $this->path
             . "schemes/comunicacao/$this->serviceStr/"
-            . "ConsultaLoteEventos-$operationVersion.xsd");
+            . "ConsultaLoteEventos-$operationVersion.xsd"
+        );
         
         $body = "<v1:ConsultarLoteEventos>"
             . "<v1:consulta>"
@@ -116,8 +121,9 @@ class Tools extends ToolsBase
     
     /**
      * Send batch of events
-     * @param integer $grupo
-     * @param array $eventos
+     *
+     * @param  integer $grupo
+     * @param  array   $eventos
      * @return string
      */
     public function enviarLoteEventos($grupo, $eventos = [])
@@ -186,9 +192,12 @@ class Tools extends ToolsBase
             . "</eSocial>";
 
         //validar a requisição conforme o seu respectivo XSD
-        Validator::isValid($request, $this->path
+        Validator::isValid(
+            $request,
+            $this->path
             . "schemes/comunicacao/$this->serviceStr/"
-            . "EnvioLoteEventos-$operationVersion.xsd");
+            . "EnvioLoteEventos-$operationVersion.xsd"
+        );
         
         $body = "<v1:EnviarLoteEventos>"
             . "<v1:loteEventos>"
@@ -203,7 +212,8 @@ class Tools extends ToolsBase
     
     /**
      * Send request to webservice
-     * @param string $request
+     *
+     * @param  string $request
      * @return string
      */
     protected function sendRequest($request)
@@ -244,7 +254,8 @@ class Tools extends ToolsBase
     /**
      * Verify the availability of a digital certificate.
      * If available, place it where it is needed
-     * @param FactoryInterface $evento
+     *
+     * @param  FactoryInterface $evento
      * @throws RuntimeException
      */
     protected function checkCertificate(FactoryInterface $evento)

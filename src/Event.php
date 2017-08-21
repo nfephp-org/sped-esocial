@@ -21,6 +21,7 @@ class Event
 {
     /**
      * Relationship between the name of the event and its respective class
+     *
      * @var array
      */
     private static $available = [
@@ -72,6 +73,7 @@ class Event
     
     /**
      * Relationship between the code of the event and its respective name
+     *
      * @var array
      */
     private static $aliases = [
@@ -123,8 +125,9 @@ class Event
     
     /**
      * Call classes to build XML eSocial Event
-     * @param string $name
-     * @param array $arguments [config, std, certificate, $date]
+     *
+     * @param  string $name
+     * @param  array  $arguments [config, std, certificate, $date]
      * @return \NFePHP\eSocial\Factories\className
      * @throws InvalidArgumentException
      */

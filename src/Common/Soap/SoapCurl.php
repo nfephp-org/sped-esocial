@@ -25,7 +25,8 @@ class SoapCurl extends SoapBase implements SoapInterface
 {
     /**
      * Constructor
-     * @param Certificate $certificate
+     *
+     * @param Certificate     $certificate
      * @param LoggerInterface $logger
      */
     public function __construct(Certificate $certificate = null, LoggerInterface $logger = null)
@@ -35,11 +36,12 @@ class SoapCurl extends SoapBase implements SoapInterface
     
     /**
      * Send soap message to url
-     * @param string $operation
-     * @param string $url
-     * @param string $action
-     * @param string $envelope
-     * @param array $parameters
+     *
+     * @param  string $operation
+     * @param  string $url
+     * @param  string $action
+     * @param  string $envelope
+     * @param  array  $parameters
      * @return string
      * @throws \NFePHP\Common\Exception\SoapException
      */
@@ -116,7 +118,8 @@ class SoapCurl extends SoapBase implements SoapInterface
     
     /**
      * Recover WSDL form given URL
-     * @param string $url
+     *
+     * @param  string $url
      * @return string
      */
     public function wsdl($url)
@@ -152,6 +155,7 @@ class SoapCurl extends SoapBase implements SoapInterface
     
     /**
      * Set proxy into cURL parameters
+     *
      * @param resource $oCurl
      */
     private function setCurlProxy(&$oCurl)
@@ -169,7 +173,8 @@ class SoapCurl extends SoapBase implements SoapInterface
     
     /**
      * Extract faultstring form response if exists
-     * @param string $body
+     *
+     * @param  string $body
      * @return string
      */
     private function getFaultString($body)

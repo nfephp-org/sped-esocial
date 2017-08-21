@@ -139,7 +139,8 @@ class Tools
 
     /**
      * Constructor
-     * @param string $config
+     *
+     * @param string      $config
      * @param Certificate $certificate
      */
     public function __construct(
@@ -175,7 +176,8 @@ class Tools
     
     /**
      * Stringfy layout number
-     * @param type $layout
+     *
+     * @param  type $layout
      * @return string
      */
     protected function stringfyVersions($version, $length = 2)

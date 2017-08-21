@@ -38,26 +38,30 @@ interface SoapInterface
     
     /**
      * Set logger class
+     *
      * @param LoggerInterface $logger
      */
     public function loadLogger(LoggerInterface $logger);
     
     /**
      * Set timeout for connection
+     *
      * @param int $timesecs
      */
     public function timeout($timesecs);
     
     /**
      * Set security protocol for soap communications
+     *
      * @param int $protocol
      */
     public function protocol($protocol = self::SSL_DEFAULT);
     
     /**
      * Set proxy parameters
+     *
      * @param string $ip
-     * @param int $port
+     * @param int    $port
      * @param string $user
      * @param string $password
      */
@@ -65,11 +69,12 @@ interface SoapInterface
     
     /**
      * Send soap message
+     *
      * @param string $operation
      * @param string $url
      * @param string $action
      * @param string $envelope
-     * @param array $parameters
+     * @param array  $parameters
      * @param string $request
      */
     public function send(

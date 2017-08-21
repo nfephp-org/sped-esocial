@@ -16,7 +16,7 @@ $config = [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999', //numero do documento
         'nmRazao' => 'Razao Social'
-    ],    
+    ],
     'transmissor' => [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
@@ -54,7 +54,6 @@ $std->novavalidade->inivalid = '2017-12';
 //$std->novavalidade->fimvalid = '2018-12';
 
 try {
-    
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
     $password = 'associacao';
@@ -70,7 +69,6 @@ try {
     
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
-    
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

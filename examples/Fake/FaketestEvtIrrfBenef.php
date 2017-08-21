@@ -16,7 +16,7 @@ $config = [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999', //numero do documento
         'nmRazao' => 'Razao Social'
-    ],    
+    ],
     'transmissor' => [
         'tpInsc' => 1,  //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
@@ -33,7 +33,7 @@ $std->vrdeddep = 1234.56;
 
 $infoirrf[0] = new \stdClass();
 $infoirrf[0]->codcateg = 101;
-$infoirrf[0]->indresbr = 'N';        
+$infoirrf[0]->indresbr = 'N';
 
 $basesirrf[0] = new \stdClass();
 $basesirrf[0]->tpvalor = '00';
@@ -62,7 +62,6 @@ $infoirrf[0]->idepgtoext = $idepgtoext;
 $std->infoirrf = $infoirrf;
 
 try {
-    
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
     $password = 'associacao';
@@ -78,7 +77,6 @@ try {
     
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
-    
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

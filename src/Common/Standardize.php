@@ -47,7 +47,8 @@ class Standardize
     
     /**
      * Identify node and extract from XML for convertion type
-     * @param string $xml
+     *
+     * @param  string $xml
      * @return string identificated node name
      * @throws InvalidArgumentException
      */
@@ -78,6 +79,7 @@ class Standardize
     
     /**
      * Returns extract node from XML
+     *
      * @return string
      */
     public function __toString()
@@ -87,7 +89,8 @@ class Standardize
     
     /**
      * Returns stdClass converted from xml
-     * @param string $xml
+     *
+     * @param  string $xml
      * @return stdClass
      */
     public function toStd($xml = null)
@@ -106,7 +109,8 @@ class Standardize
     
     /**
      * Retruns JSON string form XML
-     * @param string $xml
+     *
+     * @param  string $xml
      * @return string
      */
     public function toJson($xml = null)
@@ -119,7 +123,8 @@ class Standardize
     
     /**
      * Returns array from XML
-     * @param string $xml
+     *
+     * @param  string $xml
      * @return array
      */
     public function toArray($xml = null)
@@ -132,7 +137,8 @@ class Standardize
     
     /**
      * Returns YAML from XML
-     * @param string $xml
+     *
+     * @param  string $xml
      * @return string
      */
     public function toYaml($xml = null)

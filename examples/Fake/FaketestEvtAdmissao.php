@@ -77,7 +77,7 @@ $celetista->opcfgts = 1;
 $vinculo->celetista = $celetista;
 
 $contrato = new \stdClass();
-$contrato->codcateg = '101';
+$contrato->codcateg = 101;
 $contrato->vrsalfx = 5000;
 $contrato->undsalfixo = 5;
 $contrato->tpcontr = 1;
@@ -143,7 +143,6 @@ $contato->emailalternat = 'emailalt@email.com.br';
 
 $std->contato = $contato;
 try {
-
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
     $password = 'associacao';
@@ -160,7 +159,6 @@ try {
 
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

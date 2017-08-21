@@ -149,7 +149,8 @@ abstract class SoapBase implements SoapInterface
 
     /**
      * Constructor
-     * @param Certificate $certificate
+     *
+     * @param Certificate     $certificate
      * @param LoggerInterface $logger
      */
     public function __construct(
@@ -163,7 +164,8 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Check if certificate is valid
-     * @param Certificate $certificate
+     *
+     * @param  Certificate $certificate
      * @return Certificate
      * @throws RuntimeException
      */
@@ -193,6 +195,7 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Disables the security checking of host and peer certificates
+     *
      * @param bool $flag
      */
     public function disableSecurity($flag = false)
@@ -203,7 +206,8 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * ONlY for tests
-     * @param bool $flag
+     *
+     * @param  bool $flag
      * @return bool
      */
     public function disableCertValidation($flag = true)
@@ -214,6 +218,7 @@ abstract class SoapBase implements SoapInterface
 
     /**
      * Load path to CA and enable to use on SOAP
+     *
      * @param string $capath
      */
     public function loadCA($capath)
@@ -226,7 +231,8 @@ abstract class SoapBase implements SoapInterface
     /**
      * Set option to encript private key before save in filesystem
      * for an additional layer of protection
-     * @param bool $encript
+     *
+     * @param  bool $encript
      * @return bool
      */
     public function setEncriptPrivateKey($encript = true)
@@ -236,6 +242,7 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set another temporayfolder for saving certificates for SOAP utilization
+     *
      * @param string $folderRealPath
      */
     public function setTemporaryFolder($folderRealPath)
@@ -246,6 +253,7 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set Local folder for flysystem
+     *
      * @param string $folder
      */
     protected function setLocalFolder($folder = '')
@@ -256,7 +264,8 @@ abstract class SoapBase implements SoapInterface
 
     /**
      * Set debug mode, this mode will save soap envelopes in temporary directory
-     * @param bool $value
+     *
+     * @param  bool $value
      * @return bool
      */
     public function setDebugMode($value = false)
@@ -266,6 +275,7 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set certificate class for SSL comunications
+     *
      * @param Certificate $certificate
      */
     public function loadCertificate(Certificate $certificate)
@@ -275,6 +285,7 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set logger class
+     *
      * @param LoggerInterface $logger
      */
     public function loadLogger(LoggerInterface $logger)
@@ -284,6 +295,7 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set timeout for communication
+     *
      * @param int $timesecs
      */
     public function timeout($timesecs)
@@ -293,7 +305,8 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set security protocol
-     * @param int $protocol
+     *
+     * @param  int $protocol
      * @return type Description
      */
     public function protocol($protocol = self::SSL_DEFAULT)
@@ -303,7 +316,8 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set prefixes
-     * @param string $prefixes
+     *
+     * @param  string $prefixes
      * @return string
      */
     public function setSoapPrefix($prefixes)
@@ -313,8 +327,9 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Set proxy parameters
+     *
      * @param string $ip
-     * @param int $port
+     * @param int    $port
      * @param string $user
      * @param string $password
      */
@@ -339,9 +354,10 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Mount soap envelope
-     * @param string $request
-     * @param array $namespaces
-     * @param \SOAPHeader $header
+     *
+     * @param  string      $request
+     * @param  array       $namespaces
+     * @param  \SOAPHeader $header
      * @return string
      */
     protected function makeEnvelopeSoap(
@@ -460,9 +476,10 @@ abstract class SoapBase implements SoapInterface
     
     /**
      * Save request envelope and response for debug reasons
-     * @param string $operation
-     * @param string $request
-     * @param string $response
+     *
+     * @param  string $operation
+     * @param  string $request
+     * @param  string $response
      * @return void
      */
     public function saveDebugFiles($operation, $request, $response)

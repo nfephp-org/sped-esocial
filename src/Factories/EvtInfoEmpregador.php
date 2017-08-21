@@ -34,8 +34,9 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
 
     /**
      * Constructor
-     * @param string $config
-     * @param stdClass $std
+     *
+     * @param string      $config
+     * @param stdClass    $std
      * @param Certificate $certificate
      */
     public function __construct(

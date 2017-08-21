@@ -30,7 +30,6 @@ $std->indapuracao = 2;
 $std->perapur = '2017-08';
 
 try {
-
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
     $password = 'associacao';
@@ -47,7 +46,6 @@ try {
 
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
