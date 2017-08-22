@@ -31,10 +31,12 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtIrrfBenef';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-5002';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -69,7 +71,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecArqBase",
-            !empty($this->std->nrrecarqbase) ? $this->std->nrrecarqbase : null,
+            ! empty($this->std->nrrecarqbase) ? $this->std->nrrecarqbase : null,
             false
         );
         $this->dom->addChild(
@@ -89,7 +91,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
         );
         $this->node->appendChild($ideTrabalhador);
 
-        if (!empty($this->std->vrdeddep)) {
+        if (! empty($this->std->vrdeddep)) {
             $infoDep = $this->dom->createElement("infoDep");
             $this->dom->addChild(
                 $infoDep,
@@ -105,7 +107,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoIrrf,
                 "codCateg",
-                !empty($nIrrf->codcateg) ? $nIrrf->codcateg : null,
+                ! empty($nIrrf->codcateg) ? $nIrrf->codcateg : null,
                 false
             );
             $this->dom->addChild(
@@ -151,7 +153,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
 
             if (isset($nIrrf->idepgtoext)) {
                 $idePgtoExt = $this->dom->createElement("idePgtoExt");
-                $idePais = $this->dom->createElement("idePais");
+                $idePais    = $this->dom->createElement("idePais");
                 $this->dom->addChild(
                     $idePais,
                     "codPais",
@@ -167,7 +169,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $idePais,
                     "nifBenef",
-                    !empty($nIrrf->idepgtoext->nifbenef) ? $nIrrf->idepgtoext->nifbenef : null,
+                    ! empty($nIrrf->idepgtoext->nifbenef) ? $nIrrf->idepgtoext->nifbenef : null,
                     false
                 );
                 $idePgtoExt->appendChild($idePais);
@@ -182,19 +184,19 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $endExt,
                     "nrLograd",
-                    !empty($nIrrf->idepgtoext->nrlograd) ? $nIrrf->idepgtoext->nrlograd : null,
+                    ! empty($nIrrf->idepgtoext->nrlograd) ? $nIrrf->idepgtoext->nrlograd : null,
                     false
                 );
                 $this->dom->addChild(
                     $endExt,
                     "complem",
-                    !empty($nIrrf->idepgtoext->complem) ? $nIrrf->idepgtoext->complem : null,
+                    ! empty($nIrrf->idepgtoext->complem) ? $nIrrf->idepgtoext->complem : null,
                     false
                 );
                 $this->dom->addChild(
                     $endExt,
                     "bairro",
-                    !empty($nIrrf->idepgtoext->bairro) ? $nIrrf->idepgtoext->bairro : null,
+                    ! empty($nIrrf->idepgtoext->bairro) ? $nIrrf->idepgtoext->bairro : null,
                     false
                 );
                 $this->dom->addChild(
@@ -206,7 +208,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $endExt,
                     "codPostal",
-                    !empty($nIrrf->idepgtoext->codpostal) ? $nIrrf->idepgtoext->codpostal : null,
+                    ! empty($nIrrf->idepgtoext->codpostal) ? $nIrrf->idepgtoext->codpostal : null,
                     false
                 );
                 $idePgtoExt->appendChild($endExt);

@@ -22,10 +22,11 @@ class SoapCode
 {
     public static function info($code)
     {
-        $codes = (array)json_decode(file_get_contents(__DIR__ . '/httpcodes.json'), true);
+        $codes = (array) json_decode(file_get_contents(__DIR__.'/httpcodes.json'), true);
         if (array_key_exists($code, $codes)) {
             return $codes[$code];
         }
+
         return ['level' => 'Desconhecido', 'description' => 'Desconhecido', 'means' => 'Desconhecido'];
     }
 }

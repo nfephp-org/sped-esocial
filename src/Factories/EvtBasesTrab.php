@@ -31,10 +31,12 @@ class EvtBasesTrab extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtBasesTrab';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-5001';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtBasesTrab extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -69,7 +71,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecArqBase",
-            !empty($this->std->nrrecarqbase) ? $this->std->nrrecarqbase : null,
+            ! empty($this->std->nrrecarqbase) ? $this->std->nrrecarqbase : null,
             false
         );
         $this->dom->addChild(
@@ -164,7 +166,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoCategIncid,
                     "matricula",
-                    !empty($infocat->matricula) ? $infocat->matricula : null,
+                    ! empty($infocat->matricula) ? $infocat->matricula : null,
                     false
                 );
                 $this->dom->addChild(
@@ -176,7 +178,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoCategIncid,
                     "indSimples",
-                    !empty($infocat->indsimples) ? $infocat->indsimples : null,
+                    ! empty($infocat->indsimples) ? $infocat->indsimples : null,
                     false
                 );
                 foreach ($infocat->infobasecs as $infobase) {

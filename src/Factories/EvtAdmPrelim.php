@@ -26,6 +26,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtAdmPrelim';
+
     /**
      * @var string
      */
@@ -34,8 +35,8 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      * @param             string date
      */

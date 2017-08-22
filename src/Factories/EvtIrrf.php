@@ -31,10 +31,12 @@ class EvtIrrf extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtIrrf';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-5012';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtIrrf extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -79,7 +81,7 @@ class EvtIrrf extends Factory implements FactoryInterface
         $this->dom->addChild(
             $infoIrrf,
             "nrRecArqBase",
-            !empty($this->std->infoirrf->nrrecarqbase) ? $this->std->infoirrf->nrrecarqbase : '',
+            ! empty($this->std->infoirrf->nrrecarqbase) ? $this->std->infoirrf->nrrecarqbase : '',
             false
         );
         $this->dom->addChild(

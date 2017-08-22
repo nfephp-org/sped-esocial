@@ -68,7 +68,7 @@ class Event
         'evtreintegr'       => Factories\EvtReintegr::class,
         'evttsvtermino'     => Factories\EvtTSVTermino::class,
         'evtcontrsindpatr'  => Factories\EvtContrSindPatr::class,
-        'evtremun'          => Factories\EvtRemun::class
+        'evtremun'          => Factories\EvtRemun::class,
     ];
 
     /**
@@ -120,30 +120,30 @@ class Event
         's2298' => 'evtreintegr',
         's2399' => 'evttsvtermino',
         's1300' => 'evtcontrsindpatr',
-        's1200' => 'evtremun'
+        's1200' => 'evtremun',
     ];
 
     /**
      * Call classes to build XML eSocial Event
      *
      * @param  string $name
-     * @param  array  $arguments [config, std, certificate, $date]
+     * @param  array $arguments [config, std, certificate, $date]
      *
      * @return \NFePHP\eSocial\Factories\className
      * @throws InvalidArgumentException
      */
     public static function __callStatic($name, $arguments)
     {
-        $name = str_replace('-', '', strtolower($name));
+        $name     = str_replace('-', '', strtolower($name));
         $realname = $name;
         if (substr($name, 0, 1) == 's') {
-            if (!array_key_exists($name, self::$aliases)) {
+            if (! array_key_exists($name, self::$aliases)) {
                 //este evento não foi localizado
                 throw EventsException::wrongArgument(1000, $name);
             }
             $realname = self::$aliases[$name];
         }
-        if (!array_key_exists($realname, self::$available)) {
+        if (! array_key_exists($realname, self::$available)) {
             //este evento não foi localizado
             throw EventsException::wrongArgument(1000, $name);
         }
@@ -160,6 +160,7 @@ class Event
         if (count($arguments) > 3) {
             return new $className($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
         }
+
         return new $className($arguments[0], $arguments[1]);
     }
 }

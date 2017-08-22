@@ -7,7 +7,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtTabProcesso';
+$evento  = 'evtTabProcesso';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -141,32 +141,30 @@ $jsonSchema = '{
     }
 }';
 
-
-$std = new \stdClass();
+$std             = new \stdClass();
 $std->sequencial = 1;
-$std->tpproc = 1;
-$std->nrproc = 'alksldkdjkj';
-$std->inivalid = '2017-01';
-$std->fimvalid = '2017-12';
-$std->modo = 'INC';
+$std->tpproc     = 1;
+$std->nrproc     = 'alksldkdjkj';
+$std->inivalid   = '2017-01';
+$std->fimvalid   = '2017-12';
+$std->modo       = 'INC';
 
-$std->dadosproc = new \stdClass();
+$std->dadosproc             = new \stdClass();
 $std->dadosproc->indautoria = 1;
 $std->dadosproc->indmatproc = 99;
 
-$std->dadosproc->dadosprocjud = new \stdClass();
-$std->dadosproc->dadosprocjud->ufvara = 'SP';
+$std->dadosproc->dadosprocjud           = new \stdClass();
+$std->dadosproc->dadosprocjud->ufvara   = 'SP';
 $std->dadosproc->dadosprocjud->codmunic = '3550308';
-$std->dadosproc->dadosprocjud->idvara = '234';
+$std->dadosproc->dadosprocjud->idvara   = '234';
 
-$std->dadosproc->infosusp[0] = new \stdClass();
-$std->dadosproc->infosusp[0]->codsusp = '12345678901234';
-$std->dadosproc->infosusp[0]->indsusp = '00';
-$std->dadosproc->infosusp[0]->dtdecisao = '2017-07-22';
+$std->dadosproc->infosusp[0]              = new \stdClass();
+$std->dadosproc->infosusp[0]->codsusp     = '12345678901234';
+$std->dadosproc->infosusp[0]->indsusp     = '00';
+$std->dadosproc->infosusp[0]->dtdecisao   = '2017-07-22';
 $std->dadosproc->infosusp[0]->inddeposito = 'N';
 
-
-$std->novavalidade = new \stdClass();
+$std->novavalidade           = new \stdClass();
 $std->novavalidade->inivalid = '2017-12';
 //$std->novavalidade->fimvalid = '2018-12';
 

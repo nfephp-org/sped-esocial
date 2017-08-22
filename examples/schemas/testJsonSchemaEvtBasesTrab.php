@@ -7,7 +7,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtBasesTrab';
+$evento  = 'evtBasesTrab';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -211,52 +211,51 @@ if (empty($jsonSchemaObject)) {
     die;
 }
 
-$std = new \stdClass();
-$std->sequencial = 1;
+$std               = new \stdClass();
+$std->sequencial   = 1;
 $std->nrrecarqbase = 'kjskjsksjksjksjksjksjskjsksksjskj';
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
-$std->cpftrab = '99999999999';
+$std->indapuracao  = 1;
+$std->perapur      = '2017-08';
+$std->cpftrab      = '99999999999';
 
-$procjudtrab[0] = new \stdClass();
+$procjudtrab[0]            = new \stdClass();
 $procjudtrab[0]->nrprocjud = '282828282';
-$procjudtrab[0]->codsusp = '73737337';
-$std->procjudtrab = $procjudtrab;
+$procjudtrab[0]->codsusp   = '73737337';
+$std->procjudtrab          = $procjudtrab;
 
-$infocpcalc[0] = new \stdClass();
-$infocpcalc[0]->tpcr = '108204';
-$infocpcalc[0]->vrcpseg = 100.23;
+$infocpcalc[0]            = new \stdClass();
+$infocpcalc[0]->tpcr      = '108204';
+$infocpcalc[0]->vrcpseg   = 100.23;
 $infocpcalc[0]->vrdescseg = 10;
-$std->infocpcalc = $infocpcalc;
+$std->infocpcalc          = $infocpcalc;
 
-$ideestablot[0] = new \stdClass();
-$ideestablot[0]->tpinsc = 1;
-$ideestablot[0]->nrinsc = '12345678';
+$ideestablot[0]             = new \stdClass();
+$ideestablot[0]->tpinsc     = 1;
+$ideestablot[0]->nrinsc     = '12345678';
 $ideestablot[0]->codlotacao = '12323455666677';
 
-$infoCategIncid[0] = new \stdClass();
-$infoCategIncid[0]->matricula = 'aaaaaaaaaa';
-$infoCategIncid[0]->codcateg = 105;
+$infoCategIncid[0]             = new \stdClass();
+$infoCategIncid[0]->matricula  = 'aaaaaaaaaa';
+$infoCategIncid[0]->codcateg   = 105;
 $infoCategIncid[0]->indsimples = 1;
 
-$infoBaseCS[0] = new \stdClass();
-$infoBaseCS[0]->ind13 = 1;
+$infoBaseCS[0]          = new \stdClass();
+$infoBaseCS[0]->ind13   = 1;
 $infoBaseCS[0]->tpvalor = 12;
-$infoBaseCS[0]->valor = 1000.02;
+$infoBaseCS[0]->valor   = 1000.02;
 
 $infoCategIncid[0]->infobasecs = $infoBaseCS;
 
-$calcterc[0] = new \stdClass();
-$calcterc[0]->tpcr = '121802';
+$calcterc[0]              = new \stdClass();
+$calcterc[0]->tpcr        = '121802';
 $calcterc[0]->vrcssegterc = 500;
-$calcterc[0]->vrdescterc = 111.09;
+$calcterc[0]->vrdescterc  = 111.09;
 
 $infoCategIncid[0]->calcterc = $calcterc;
 
 $ideestablot[0]->infocategincid = $infoCategIncid;
 
 $std->ideestablot = $ideestablot;
-
 
 // The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
 $schemaStorage = new SchemaStorage();

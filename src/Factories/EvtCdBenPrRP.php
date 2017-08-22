@@ -32,10 +32,12 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtCdBenPrRP';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2400';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid        = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial      = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtCdBenPrRP = $this->dom->createElement("evtCdBenPrRP");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att          = $this->dom->createAttribute('Id');
+        $att->value   = $evtid;
         $evtCdBenPrRP->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -110,7 +112,6 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
             true
         );
         $evtCdBenPrRP->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtCdBenPrRP);
         $this->sign($eSocial);

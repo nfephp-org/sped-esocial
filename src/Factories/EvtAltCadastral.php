@@ -32,10 +32,12 @@ class EvtAltCadastral extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtAltCadastral';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2205';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtAltCadastral extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid           = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial         = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtAltCadastral = $this->dom->createElement("evtAltCadastral");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att             = $this->dom->createAttribute('Id');
+        $att->value      = $evtid;
         $evtAltCadastral->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -110,7 +112,6 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             true
         );
         $evtAltCadastral->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtAltCadastral);
         $this->sign($eSocial);

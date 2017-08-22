@@ -32,10 +32,12 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtReabreEvPer';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1298';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid          = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial        = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtReabreEvPer = $this->dom->createElement("evtReabreEvPer");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att            = $this->dom->createAttribute('Id');
+        $att->value     = $evtid;
         $evtReabreEvPer->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -122,7 +124,6 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
             true
         );
         $evtReabreEvPer->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtReabreEvPer);
         $this->sign($eSocial);

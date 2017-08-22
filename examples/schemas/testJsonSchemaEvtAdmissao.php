@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtAdmissao';
+$evento  = 'evtAdmissao';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -1025,118 +1025,117 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->indretif = 1;
+$jsonToValidateObject->indretif   = 1;
 
-$trabalhador = new \stdClass();
-$trabalhador->cpftrab = '11111111111';
-$trabalhador->nistrab = '11111111111';
-$trabalhador->nmtrab = 'JOSE DA SILVA';
-$trabalhador->sexo = 'M';
-$trabalhador->racacor = 5;
-$trabalhador->grauinstr = '07';
+$trabalhador             = new \stdClass();
+$trabalhador->cpftrab    = '11111111111';
+$trabalhador->nistrab    = '11111111111';
+$trabalhador->nmtrab     = 'JOSE DA SILVA';
+$trabalhador->sexo       = 'M';
+$trabalhador->racacor    = 5;
+$trabalhador->grauinstr  = '07';
 $trabalhador->indpriempr = 'N';
-$trabalhador->dtnascto = '1980-01-01';
+$trabalhador->dtnascto   = '1980-01-01';
 $trabalhador->paisnascto = '105'; // 105 = Brasil
-$trabalhador->paisnac = '105';
+$trabalhador->paisnac    = '105';
 
 $jsonToValidateObject->trabalhador = $trabalhador;
 
-$endereco = new \stdClass();
-$brasil = new \stdClass();
-$brasil->tplograd = 'R';
+$endereco          = new \stdClass();
+$brasil            = new \stdClass();
+$brasil->tplograd  = 'R';
 $brasil->dsclograd = 'Av. Paulista';
-$brasil->nrlograd = '1850';
-$brasil->bairro = 'Bela Vista';
-$brasil->cep = '01311200';
-$brasil->codmunic = 3550308;
-$brasil->uf = 'SP';
+$brasil->nrlograd  = '1850';
+$brasil->bairro    = 'Bela Vista';
+$brasil->cep       = '01311200';
+$brasil->codmunic  = 3550308;
+$brasil->uf        = 'SP';
 
-$endereco->brasil = $brasil;
+$endereco->brasil               = $brasil;
 $jsonToValidateObject->endereco = $endereco;
 
-$vinculo = new \stdClass();
+$vinculo            = new \stdClass();
 $vinculo->matricula = '1020304050';
 $vinculo->tpregtrab = 1;
 $vinculo->tpregprev = 1;
-$vinculo->cadini = 'N';
+$vinculo->cadini    = 'N';
 
-$celetista = new \stdClass();
-$celetista->dtadm = '2017-08-08';
-$celetista->tpadmissao = 1;
-$celetista->indadmissao = 1;
-$celetista->tpregjor = 1;
-$celetista->natatividade = 1;
+$celetista                    = new \stdClass();
+$celetista->dtadm             = '2017-08-08';
+$celetista->tpadmissao        = 1;
+$celetista->indadmissao       = 1;
+$celetista->tpregjor          = 1;
+$celetista->natatividade      = 1;
 $celetista->cnpjsindcategprof = '77721644000101';
-$celetista->opcfgts = 1;
+$celetista->opcfgts           = 1;
 
 $vinculo->celetista = $celetista;
 
-$contrato = new \stdClass();
-$contrato->codcateg = '101';
-$contrato->vrsalfx = 5000;
+$contrato             = new \stdClass();
+$contrato->codcateg   = '101';
+$contrato->vrsalfx    = 5000;
 $contrato->undsalfixo = 5;
-$contrato->tpcontr = 1;
+$contrato->tpcontr    = 1;
 
 $vinculo->contrato = $contrato;
 
 $jsonToValidateObject->vinculo = $vinculo;
 
-$ctps = new \stdClass();
-$ctps->nrctps = '12012315';
+$ctps            = new \stdClass();
+$ctps->nrctps    = '12012315';
 $ctps->seriectps = '500';
-$ctps->ufctps = 'SP';
+$ctps->ufctps    = 'SP';
 
 $jsonToValidateObject->ctps = $ctps;
 
-$ric = new \stdClass();
-$ric->nrric = '15150505';
+$ric               = new \stdClass();
+$ric->nrric        = '15150505';
 $ric->orgaoemissor = 'SSP';
-$ric->dtexped = '2015-01-01';
+$ric->dtexped      = '2015-01-01';
 
 $jsonToValidateObject->ric = $ric;
 
-$rg = new \stdClass();
-$rg->nrrg = '11111111';
+$rg               = new \stdClass();
+$rg->nrrg         = '11111111';
 $rg->orgaoemissor = 'SSP';
-$rg->dtexped = '2015-01-01';
+$rg->dtexped      = '2015-01-01';
 
 $jsonToValidateObject->rg = $rg;
 
-$oc = new \stdClass();
-$oc->nroc = '12315861';
+$oc               = new \stdClass();
+$oc->nroc         = '12315861';
 $oc->orgaoemissor = 'SSP';
-$oc->dtexped = '2015-01-01';
+$oc->dtexped      = '2015-01-01';
 
 $jsonToValidateObject->oc = $oc;
 
-$cnh = new \stdClass();
-$cnh->nrregcnh = '1231531';
-$cnh->dtexped = '2015-01-01';
-$cnh->ufcnh = 'SP';
-$cnh->dtvalid = '2019-01-01';
-$cnh->dtprihab = '2015-01-01';
+$cnh               = new \stdClass();
+$cnh->nrregcnh     = '1231531';
+$cnh->dtexped      = '2015-01-01';
+$cnh->ufcnh        = 'SP';
+$cnh->dtvalid      = '2019-01-01';
+$cnh->dtprihab     = '2015-01-01';
 $cnh->categoriacnh = 'AB';
 
 $jsonToValidateObject->cnh = $cnh;
 
-$dependente[0] = new \stdClass();
-$dependente[0]->tpdep = '01';
-$dependente[0]->nmdep = 'WATSON';
+$dependente[0]           = new \stdClass();
+$dependente[0]->tpdep    = '01';
+$dependente[0]->nmdep    = 'WATSON';
 $dependente[0]->dtnascto = '2015-01-01';
-$dependente[0]->cpfdep = '12345678985';
-$dependente[0]->depirrf = 'N';
-$dependente[0]->depsf = 'N';
-$dependente[0]->inctrab = 'N';
+$dependente[0]->cpfdep   = '12345678985';
+$dependente[0]->depirrf  = 'N';
+$dependente[0]->depsf    = 'N';
+$dependente[0]->inctrab  = 'N';
 
 $jsonToValidateObject->dependente = $dependente;
 
-$contato = new \stdClass();
-$contato->foneprinc = '1144443333';
-$contato->fonealternat = '1122228888';
-$contato->emailprinc = 'email@email.com.br';
+$contato                = new \stdClass();
+$contato->foneprinc     = '1144443333';
+$contato->fonealternat  = '1122228888';
+$contato->emailprinc    = 'email@email.com.br';
 $contato->emailalternat = 'emailalt@email.com.br';
 
 $jsonToValidateObject->contato = $contato;

@@ -31,10 +31,12 @@ class EvtTabRubrica extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtTabRubrica';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1010';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtTabRubrica extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -111,7 +113,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideRubrica,
             "fimValid",
-            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
         //seleção do modo
@@ -124,7 +126,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
         }
         $node->appendChild($ideRubrica);
 
-        if (!empty($this->std->dadosrubrica)) {
+        if (! empty($this->std->dadosrubrica)) {
             $dadosRubrica = $this->dom->createElement("dadosRubrica");
             $this->dom->addChild(
                 $dadosRubrica,
@@ -195,13 +197,13 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $dadosRubrica,
                 "observacao",
-                !empty($this->std->dadosrubrica->observacao)
+                ! empty($this->std->dadosrubrica->observacao)
                     ? $this->std->dadosrubrica->observacao
                     : null,
                 false
             );
 
-            if (!empty($this->std->dadosrubrica->ideprocessocp)) {
+            if (! empty($this->std->dadosrubrica->ideprocessocp)) {
                 foreach ($this->std->dadosrubrica->ideprocessocp as $cp) {
                     $ideProcessoCP = $this->dom->createElement("ideProcessoCP");
                     $this->dom->addChild(
@@ -232,7 +234,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                 }
             }
 
-            if (!empty($this->std->dadosrubrica->ideprocessoirrf)) {
+            if (! empty($this->std->dadosrubrica->ideprocessoirrf)) {
                 foreach ($this->std->dadosrubrica->ideprocessoirrf as $irrf) {
                     $ideProcessoIRRF = $this->dom->createElement("ideProcessoIRRF");
                     $this->dom->addChild(
@@ -250,7 +252,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                     $dadosRubrica->appendChild($ideProcessoIRRF);
                 }
             }
-            if (!empty($this->std->dadosrubrica->ideprocessofgts)) {
+            if (! empty($this->std->dadosrubrica->ideprocessofgts)) {
                 foreach ($this->std->dadosrubrica->ideprocessofgts as $fgts) {
                     $ideProcessoFGTS = $this->dom->createElement("ideProcessoFGTS");
                     $this->dom->addChild(
@@ -268,7 +270,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                     $dadosRubrica->appendChild($ideProcessoFGTS);
                 }
             }
-            if (!empty($this->std->dadosrubrica->ideprocessosind)) {
+            if (! empty($this->std->dadosrubrica->ideprocessosind)) {
                 foreach ($this->std->dadosrubrica->ideprocessosind as $sind) {
                     $ideProcessoSIND = $this->dom->createElement("ideProcessoSIND");
                     $this->dom->addChild(
@@ -288,8 +290,8 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             }
             $node->appendChild($dadosRubrica);
         }
-        if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
-            $newVal = $this->std->novavalidade;
+        if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
+            $newVal       = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
                 $ideRubrica,
@@ -300,7 +302,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $ideRubrica,
                 "fimValid",
-                !empty($newVal->fimvalid) ? $newVal->fimvalid : null,
+                ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false
             );
             $node->appendChild($novaValidade);

@@ -31,10 +31,12 @@ class EvtTabEstab extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtTabEstab';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1005';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtTabEstab extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -112,7 +114,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEstab,
             "fimValid",
-            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
 
@@ -125,7 +127,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
         }
         $node->appendChild($ideEstab);
 
-        if (!empty($this->std->dadosestab)) {
+        if (! empty($this->std->dadosestab)) {
             $dadosEstab = $this->dom->createElement("dadosEstab");
             $this->dom->addChild(
                 $dadosEstab,
@@ -140,7 +142,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $this->std->dadosestab->aliqgilrat->aliqrat,
                 true
             );
-            $fap = !empty($this->std->dadosestab->aliqgilrat->fap) ? $this->std->dadosestab->aliqgilrat->fap : null;
+            $fap = ! empty($this->std->dadosestab->aliqgilrat->fap) ? $this->std->dadosestab->aliqgilrat->fap : null;
             if ($fap) {
                 $fap = number_format($fap, 4, '.', '');
             }
@@ -150,7 +152,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $fap,
                 false
             );
-            $aliqrata = !empty($this->std->dadosestab->aliqgilrat->aliqratajust)
+            $aliqrata = ! empty($this->std->dadosestab->aliqgilrat->aliqratajust)
                 ? $this->std->dadosestab->aliqgilrat->aliqratajust
                 : null;
             if ($aliqrata) {
@@ -162,7 +164,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $aliqrata,
                 false
             );
-            if (!empty($this->std->dadosestab->aliqgilrat->procadmjudrat)) {
+            if (! empty($this->std->dadosestab->aliqgilrat->procadmjudrat)) {
                 $procAdmJudRat = $this->dom->createElement("procAdmJudRat");
                 $this->dom->addChild(
                     $procAdmJudRat,
@@ -184,7 +186,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 );
                 $aliqGilrat->appendChild($procAdmJudRat);
             }
-            if (!empty($this->std->dadosestab->aliqgilrat->procadmjudfap)) {
+            if (! empty($this->std->dadosestab->aliqgilrat->procadmjudfap)) {
                 $procAdmJudFap = $this->dom->createElement("procAdmJudFap");
                 $this->dom->addChild(
                     $procAdmJudFap,
@@ -208,7 +210,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             }
             $dadosEstab->appendChild($aliqGilrat);
 
-            if (!empty($this->std->dadosestab->infocaepf)) {
+            if (! empty($this->std->dadosestab->infocaepf)) {
                 $infoCaepf = $this->dom->createElement("infoCaepf");
                 $this->dom->addChild(
                     $infoCaepf,
@@ -219,7 +221,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $dadosEstab->appendChild($infoCaepf);
             }
 
-            if (!empty($this->std->dadosestab->infoobra)) {
+            if (! empty($this->std->dadosestab->infoobra)) {
                 $infoObra = $this->dom->createElement("infoObra");
                 $this->dom->addChild(
                     $infoObra,
@@ -248,7 +250,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoApr,
                 "nrProcJud",
-                !empty($this->std->dadosestab->infotrab->infoapr->nrprocjud)
+                ! empty($this->std->dadosestab->infotrab->infoapr->nrprocjud)
                     ? $this->std->dadosestab->infotrab->infoapr->nrprocjud
                     : null,
                 false
@@ -256,13 +258,13 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoApr,
                 "contEntEd",
-                !empty($this->std->dadosestab->infotrab->infoapr->contented)
+                ! empty($this->std->dadosestab->infotrab->infoapr->contented)
                     ? $this->std->dadosestab->infotrab->infoapr->contented
                     : null,
                 false
             );
 
-            if (!empty($this->std->dadosestab->infotrab->infoapr->infoenteduc)) {
+            if (! empty($this->std->dadosestab->infotrab->infoapr->infoenteduc)) {
                 foreach ($this->std->dadosestab->infotrab->infoapr->infoenteduc as $edu) {
                     $infoEntEduc = $this->dom->createElement("infoEntEduc");
                     $this->dom->addChild(
@@ -276,7 +278,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             }
 
             $infoTrab->appendChild($infoApr);
-            if (!empty($this->std->dadosestab->infotrab->infopdc)) {
+            if (! empty($this->std->dadosestab->infotrab->infopdc)) {
                 $infoPCD = $this->dom->createElement("infoPCD");
                 $this->dom->addChild(
                     $infoPCD,
@@ -287,7 +289,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoPCD,
                     "nrProcJud",
-                    !empty($this->std->dadosestab->infotrab->infopdc->nrprocjud)
+                    ! empty($this->std->dadosestab->infotrab->infopdc->nrprocjud)
                         ? $this->std->dadosestab->infotrab->infopdc->nrprocjud
                         : null,
                     false
@@ -298,8 +300,8 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $node->appendChild($dadosEstab);
         }
 
-        if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
-            $newVal = $this->std->novavalidade;
+        if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
+            $newVal       = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
                 $ideRubrica,
@@ -310,7 +312,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $ideRubrica,
                 "fimValid",
-                !empty($newVal->fimvalid) ? $newVal->fimvalid : null,
+                ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false
             );
             $node->appendChild($novaValidade);

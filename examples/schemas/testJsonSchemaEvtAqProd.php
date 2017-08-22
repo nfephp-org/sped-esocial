@@ -205,7 +205,6 @@ $jsonSchema = '{
     }
 }';
 
-
 $jsonToValidateObject              = new \stdClass();
 $jsonToValidateObject->sequencial  = 1;
 $jsonToValidateObject->indretif    = 1;

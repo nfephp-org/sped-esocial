@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtAvPrevio';
+$evento  = 'evtAvPrevio';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -107,25 +107,23 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->indretif = 2;
+$jsonToValidateObject->indretif   = 2;
 
-$idevinculo = new \stdClass();
-$idevinculo->cpftrab = '11111111111';
-$idevinculo->nistrab = '11111111111';
+$idevinculo            = new \stdClass();
+$idevinculo->cpftrab   = '11111111111';
+$idevinculo->nistrab   = '11111111111';
 $idevinculo->matricula = '11111111111';
 
 $jsonToValidateObject->idevinculo = $idevinculo;
 
-$infoavprevio = new \stdClass();
-$infoavprevio->dtavprv = '2008-09-28';
+$infoavprevio               = new \stdClass();
+$infoavprevio->dtavprv      = '2008-09-28';
 $infoavprevio->dtprevdeslig = '2014-09-18';
-$infoavprevio->tpavprevio = 2;
+$infoavprevio->tpavprevio   = 2;
 
 $jsonToValidateObject->infoavprevio = $infoavprevio;
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

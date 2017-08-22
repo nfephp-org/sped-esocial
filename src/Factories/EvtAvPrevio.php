@@ -32,10 +32,12 @@ class EvtAvPrevio extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtAvPrevio';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2250';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtAvPrevio extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtAvPrevio extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid       = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtAvPrevio = $this->dom->createElement("evtAvPrevio");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att         = $this->dom->createAttribute('Id');
+        $att->value  = $evtid;
         $evtAvPrevio->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -85,7 +87,7 @@ class EvtAvPrevio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -169,14 +171,14 @@ class EvtAvPrevio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $detAvPrevio,
             "observacao",
-            !empty($this->std->observacao) ? $this->std->observacao : null,
+            ! empty($this->std->observacao) ? $this->std->observacao : null,
             false
         );
 
         $infoAvPrevio->appendChild($detAvPrevio);
         $evtAvPrevio->appendChild($infoAvPrevio);
 
-        if (!empty($this->std->cancavprevio)) {
+        if (! empty($this->std->cancavprevio)) {
             $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
             $this->dom->addChild(
                 $cancAvPrevio,
@@ -187,7 +189,7 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $cancAvPrevio,
                 "observacao",
-                !empty($this->std->cancavprevio->observacao) ? $this->std->cancavprevio->observacao : null,
+                ! empty($this->std->cancavprevio->observacao) ? $this->std->cancavprevio->observacao : null,
                 false
             );
             $this->dom->addChild(

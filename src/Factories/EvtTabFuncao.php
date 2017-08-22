@@ -32,10 +32,12 @@ class EvtTabFuncao extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtTabFuncao';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1040';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtTabFuncao extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtTabFuncao extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid        = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial      = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtTabFuncao = $this->dom->createElement("evtTabFuncao");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att          = $this->dom->createAttribute('Id');
+        $att->value   = $evtid;
         $evtTabFuncao->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -110,7 +112,6 @@ class EvtTabFuncao extends Factory implements FactoryInterface
             true
         );
         $evtTabFuncao->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtTabFuncao);
         $this->sign($eSocial);

@@ -32,10 +32,12 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtInfoComplPer';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1280';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid           = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial         = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtInfoComplPer = $this->dom->createElement("evtInfoComplPer");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att             = $this->dom->createAttribute('Id');
+        $att->value      = $evtid;
         $evtInfoComplPer->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -110,7 +112,6 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
             true
         );
         $evtInfoComplPer->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtInfoComplPer);
         $this->sign($eSocial);

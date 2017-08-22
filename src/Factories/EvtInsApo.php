@@ -32,10 +32,12 @@ class EvtInsApo extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtInsApo';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2241';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtInsApo extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,15 +65,15 @@ class EvtInsApo extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid      = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtInsApo = $this->dom->createElement("evtInsApo");
-        $att = $this->dom->createAttribute('Id');
+        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $evtInsApo  = $this->dom->createElement("evtInsApo");
+        $att        = $this->dom->createAttribute('Id');
         $att->value = $evtid;
         $evtInsApo->appendChild($att);
 
@@ -110,7 +112,6 @@ class EvtInsApo extends Factory implements FactoryInterface
             true
         );
         $evtInsApo->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtInsApo);
         $this->sign($eSocial);

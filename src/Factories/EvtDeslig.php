@@ -32,10 +32,12 @@ class EvtDeslig extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtDeslig';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2299';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtDeslig extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,15 +65,15 @@ class EvtDeslig extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid      = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtDeslig = $this->dom->createElement("evtDeslig");
-        $att = $this->dom->createAttribute('Id');
+        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $evtDeslig  = $this->dom->createElement("evtDeslig");
+        $att        = $this->dom->createAttribute('Id');
         $att->value = $evtid;
         $evtDeslig->appendChild($att);
 
@@ -110,7 +112,6 @@ class EvtDeslig extends Factory implements FactoryInterface
             true
         );
         $evtDeslig->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtDeslig);
         $this->sign($eSocial);

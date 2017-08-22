@@ -32,10 +32,12 @@ class EvtExclusao extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtExclusao';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-3000';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtExclusao extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtExclusao extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid       = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtExclusao = $this->dom->createElement("evtExclusao");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att         = $this->dom->createAttribute('Id');
+        $att->value  = $evtid;
         $evtExclusao->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -124,7 +126,7 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->std->infoexclusao->nrrecevt,
             true
         );
-        if (!empty($this->std->idetrabalhador)) {
+        if (! empty($this->std->idetrabalhador)) {
             $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
             $this->dom->addChild(
                 $ideTrabalhador,
@@ -135,12 +137,11 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $ideTrabalhador,
                 "nisTrab",
-                !empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
+                ! empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
                 false
             );
             $infoExclusao->appendChild($ideTrabalhador);
         }
-
 
         $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
         $this->dom->addChild(

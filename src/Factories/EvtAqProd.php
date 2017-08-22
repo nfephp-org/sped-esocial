@@ -32,10 +32,12 @@ class EvtAqProd extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtAqProd';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1250';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtAqProd extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -91,7 +93,7 @@ class EvtAqProd extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -208,13 +210,12 @@ class EvtAqProd extends Factory implements FactoryInterface
                     );
 
                     foreach ($ideprod->nfs as $prodnfs) {
-
                         $nfs = $this->dom->createElement("nfs");
 
                         $this->dom->addChild(
                             $nfs,
                             "serie",
-                            !empty($prodnfs->serie) ? $prodnfs->serie : null,
+                            ! empty($prodnfs->serie) ? $prodnfs->serie : null,
                             false
                         );
 
@@ -261,11 +262,9 @@ class EvtAqProd extends Factory implements FactoryInterface
                         );
 
                         $ideProdutor->appendChild($nfs);
-
                     }
 
                     foreach ($ideprod->infoprocjud as $prodprocjud) {
-
                         $infoProcJud = $this->dom->createElement("infoProcJud");
 
                         $this->dom->addChild(
@@ -304,7 +303,6 @@ class EvtAqProd extends Factory implements FactoryInterface
                         );
 
                         $ideProdutor->appendChild($infoProcJud);
-
                     }
 
                     $tpAquis->appendChild($ideProdutor);
@@ -316,7 +314,6 @@ class EvtAqProd extends Factory implements FactoryInterface
 
         $infoAquisProd->appendChild($ideEstabAdquir);
         $this->node->appendChild($infoAquisProd);
-
 
         $this->eSocial->appendChild($this->node);
         $this->sign();

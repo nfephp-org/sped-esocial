@@ -32,10 +32,12 @@ class EvtCadInicial extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtCadInicial';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2100';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtCadInicial extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtCadInicial extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid         = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial       = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtCadInicial = $this->dom->createElement("evtCadInicial");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att           = $this->dom->createAttribute('Id');
+        $att->value    = $evtid;
         $evtCadInicial->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -110,7 +112,6 @@ class EvtCadInicial extends Factory implements FactoryInterface
             true
         );
         $evtCadInicial->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtCadInicial);
         $this->sign($eSocial);

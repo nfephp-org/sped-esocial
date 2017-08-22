@@ -31,10 +31,12 @@ class EvtTabProcesso extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtTabProcesso';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1070';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtTabProcesso extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -112,7 +114,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "fimValid",
-            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
         //seleção do modo
@@ -129,7 +131,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
         $this->dom->addChild(
             $dados,
             "indAutoria",
-            !empty($this->std->dadosproc->indautoria)
+            ! empty($this->std->dadosproc->indautoria)
                 ? $this->std->dadosproc->indautoria
                 : null,
             false
@@ -140,7 +142,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             $this->std->dadosproc->indmatproc,
             true
         );
-        if (!empty($this->std->dadosproc->dadosprocjud)) {
+        if (! empty($this->std->dadosproc->dadosprocjud)) {
             $dadosProcJud = $this->dom->createElement("dadosProcJud");
             $this->dom->addChild(
                 $dadosProcJud,
@@ -162,7 +164,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             );
             $dados->appendChild($dadosProcJud);
         }
-        if (!empty($this->std->dadosproc->infosusp)) {
+        if (! empty($this->std->dadosproc->infosusp)) {
             foreach ($this->std->dadosproc->infosusp as $susp) {
                 $infoSusp = $this->dom->createElement("infoSusp");
                 $this->dom->addChild(
@@ -194,8 +196,8 @@ class EvtTabProcesso extends Factory implements FactoryInterface
         }
         $node->appendChild($dados);
 
-        if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
-            $newVal = $this->std->novavalidade;
+        if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
+            $newVal       = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
                 $ideRubrica,
@@ -206,7 +208,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $ideRubrica,
                 "fimValid",
-                !empty($newVal->fimvalid) ? $newVal->fimvalid : null,
+                ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false
             );
             $node->appendChild($novaValidade);

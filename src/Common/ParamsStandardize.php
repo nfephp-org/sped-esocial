@@ -20,6 +20,7 @@ namespace NFePHP\eSocial\Common;
 class ParamsStandardize
 {
     protected $schema;
+
     protected $keys;
 
     /**
@@ -30,7 +31,7 @@ class ParamsStandardize
     public function __construct(\stdClass $schema)
     {
         $this->schema = $schema;
-        $this->keys = $this->getKeys($schema);
+        $this->keys   = $this->getKeys($schema);
     }
 
     /**
@@ -43,7 +44,7 @@ class ParamsStandardize
     protected function getKeys(\stdClass $schema)
     {
         return array_keys(
-            (array)$this->get(
+            (array) $this->get(
                 $schema,
                 'properties',
                 new \stdClass()
@@ -55,7 +56,7 @@ class ParamsStandardize
      * Recover primary fields
      *
      * @param  \stdClass $obj
-     * @param  string    $prop
+     * @param  string $prop
      * @param  \stdClass $default
      *
      * @return \stdClass
@@ -76,6 +77,7 @@ class ParamsStandardize
     {
         $clone = new \stdClass();
         $this->getProperties($this->schema, $data, $clone, $this->keys, '');
+
         return $clone;
     }
 
@@ -85,8 +87,8 @@ class ParamsStandardize
      * @param \stdClass $schema
      * @param \stdClass $data
      * @param \stdClass $clone
-     * @param array     $keys
-     * @param string    $ref
+     * @param array $keys
+     * @param string $ref
      */
     protected function getProperties(
         \stdClass $schema,
@@ -106,7 +108,7 @@ class ParamsStandardize
                     $ref = '';
                 }
                 if ($prop->type == 'object') {
-                    if (!empty($ref)) {
+                    if (! empty($ref)) {
                         $ref .= ":$name";
                     } else {
                         $ref = $name;
@@ -115,23 +117,23 @@ class ParamsStandardize
                 } else {
                     $comm = "\$clone->";
                     $orig = "\$data->";
-                    if (!empty($ref)) {
+                    if (! empty($ref)) {
                         $part = explode(':', $ref);
-                        $num = count($part);
+                        $num  = count($part);
                         foreach ($part as $p) {
                             $comm .= "$p->";
                             $orig .= "$p->";
                         }
                         $exist = false;
-                        $test = "\$exist = (!empty(" . substr($orig, 0, strlen($orig) - 2) . ")) ? true : false;";
+                        $test  = "\$exist = (!empty(".substr($orig, 0, strlen($orig) - 2).")) ? true : false;";
                         eval($test);
                     }
                     $orig .= $name;
                     $resp = null;
                     eval("\$resp = $orig;");
 
-                    if (!empty($resp) || $resp === 0) {
-                        $comm .= $name . '= $resp';
+                    if (! empty($resp) || $resp === 0) {
+                        $comm .= $name.'= $resp';
                     } else {
                         $comm .= "$name = null";
                     }
