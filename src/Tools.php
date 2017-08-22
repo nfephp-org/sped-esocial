@@ -72,9 +72,6 @@ class Tools extends ToolsBase
     {
         $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
 
-        $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
-            . "/envio/consulta/retornoProcessamento/$operationVersion";
-
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
             . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
             . "/ServicoConsultarLoteEventos/ConsultarLoteEventos";
@@ -196,10 +193,7 @@ class Tools extends ToolsBase
         }
 
         $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
-
-        $xmlns = "http://www.esocial.gov.br/servicos/empregador/lote/eventos"
-            . "/envio/$operationVersion";
-
+        
         $this->method = "EnviarLoteEventos";
 
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
