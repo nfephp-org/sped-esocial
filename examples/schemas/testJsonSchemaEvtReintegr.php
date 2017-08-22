@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtReintegr';
+$evento  = 'evtReintegr';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -83,21 +83,19 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
-$jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->indretif = 1;
-$jsonToValidateObject->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
-$jsonToValidateObject->cpftrab = '99999999999';
-$jsonToValidateObject->nistrab = '11111111111';
-$jsonToValidateObject->matricula = '123456788-56478ABC';
-$jsonToValidateObject->tpreint = 1;
-$jsonToValidateObject->nrprocjud = '192929-0220';
-$jsonToValidateObject->nrleianistia = null;
+$jsonToValidateObject                = new \stdClass();
+$jsonToValidateObject->sequencial    = 1;
+$jsonToValidateObject->indretif      = 1;
+$jsonToValidateObject->nrrecibo      = 'ABJBAJBJAJBAÇÇAAKJ';
+$jsonToValidateObject->cpftrab       = '99999999999';
+$jsonToValidateObject->nistrab       = '11111111111';
+$jsonToValidateObject->matricula     = '123456788-56478ABC';
+$jsonToValidateObject->tpreint       = 1;
+$jsonToValidateObject->nrprocjud     = '192929-0220';
+$jsonToValidateObject->nrleianistia  = null;
 $jsonToValidateObject->dtefetretorno = '2017-08-22';
-$jsonToValidateObject->dtefeito = '2017-08-13';
+$jsonToValidateObject->dtefeito      = '2017-08-13';
 $jsonToValidateObject->indpagtojuizo = 'N';
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtAdmPrelim';
+$evento  = 'evtAdmPrelim';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -40,12 +40,11 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->cpftrab = '00232133417';
-$jsonToValidateObject->dtnascto = '1931-02-12';
-$jsonToValidateObject->dtadm = '2017-02-12';
+$jsonToValidateObject->cpftrab    = '00232133417';
+$jsonToValidateObject->dtnascto   = '1931-02-12';
+$jsonToValidateObject->dtadm      = '2017-02-12';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

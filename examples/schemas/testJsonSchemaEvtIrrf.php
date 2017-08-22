@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtIrrf';
+$evento  = 'evtIrrf';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -70,25 +70,23 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->perapur = '2017-08';
+$jsonToValidateObject->perapur    = '2017-08';
 
-$jsonToValidateObject->infoirrf = new \stdClass();
+$jsonToValidateObject->infoirrf               = new \stdClass();
 $jsonToValidateObject->infoirrf->nrrecarqbase = '1234567-1234567-1234567';
 $jsonToValidateObject->infoirrf->indexistinfo = 1;
 
-$infocrcontrib[0] = new \stdClass();
+$infocrcontrib[0]       = new \stdClass();
 $infocrcontrib[0]->tpcr = '056109';
 $infocrcontrib[0]->vrcr = 14527.00;
 
-$infocrcontrib[1] = new \stdClass();
+$infocrcontrib[1]       = new \stdClass();
 $infocrcontrib[1]->tpcr = '056101';
 $infocrcontrib[1]->vrcr = 1342.45;
 
 $jsonToValidateObject->infocrcontrib = $infocrcontrib;
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

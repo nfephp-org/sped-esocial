@@ -19,12 +19,13 @@ class EventsException extends \InvalidArgumentException implements ExceptionInte
         1002 => "Não foram passados os dados do evento.",
         1003 => "",
         1004 => "",
-        1005 => ""
+        1005 => "",
     ];
 
     public static function wrongArgument($code, $msg = '')
     {
         $msg = self::replaceMsg(self::$list[$code], $msg);
+
         return new static($msg);
     }
 

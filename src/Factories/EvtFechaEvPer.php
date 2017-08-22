@@ -32,10 +32,12 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtFechaEvPer';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-1299';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid         = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial       = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtFechaEvPer = $this->dom->createElement("evtFechaEvPer");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att           = $this->dom->createAttribute('Id');
+        $att->value    = $evtid;
         $evtFechaEvPer->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -145,7 +147,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideRespInf,
             "email",
-            !empty($this->std->iderespinf->email) ? $this->std->iderespinf->email : null,
+            ! empty($this->std->iderespinf->email) ? $this->std->iderespinf->email : null,
             false
         );
         $evtFechaEvPer->appendChild($ideRespInf);
@@ -190,11 +192,10 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         $this->dom->addChild(
             $infoFech,
             "compSemMovto",
-            !empty($this->std->infofech->compsemmovto) ? $this->std->infofech->compsemmovto : null,
+            ! empty($this->std->infofech->compsemmovto) ? $this->std->infofech->compsemmovto : null,
             false
         );
         $evtFechaEvPer->appendChild($infoFech);
-
 
         $eSocial->appendChild($evtFechaEvPer);
         $this->sign($eSocial);

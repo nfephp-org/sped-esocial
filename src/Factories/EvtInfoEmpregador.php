@@ -26,6 +26,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtInfoEmpregador';
+
     /**
      * @var string
      */
@@ -34,8 +35,8 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -89,13 +90,13 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         $this->dom->addChild(
             $idePeriodo,
             "fimValid",
-            !empty($this->std->ideperiodo->fimvalid) ? $this->std->ideperiodo->fimvalid : '',
+            ! empty($this->std->ideperiodo->fimvalid) ? $this->std->ideperiodo->fimvalid : '',
             false
         );
 
         //infoCadastro
         if (isset($this->std->infocadastro)) {
-            $cad = $this->std->infocadastro;
+            $cad          = $this->std->infocadastro;
             $infoCadastro = $this->dom->createElement("infoCadastro");
             $this->dom->addChild(
                 $infoCadastro,
@@ -160,7 +161,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->dadosisencao)) {
-            $cad = $this->std->dadosisencao;
+            $cad  = $this->std->dadosisencao;
             $info = $this->dom->createElement("dadosIsencao");
             $this->dom->addChild(
                 $info,
@@ -214,7 +215,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->contato)) {
-            $cad = $this->std->contato;
+            $cad  = $this->std->contato;
             $info = $this->dom->createElement("contato");
             $this->dom->addChild(
                 $info,
@@ -231,7 +232,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "foneFixo",
-                !empty($cad->foneFixo) ? $cad->foneFixo : '',
+                ! empty($cad->foneFixo) ? $cad->foneFixo : '',
                 false
             );
             $this->dom->addChild(
@@ -250,7 +251,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->infoop)) {
-            $cad = $this->std->infoop;
+            $cad  = $this->std->infoop;
             $info = $this->dom->createElement("infoOP");
             $this->dom->addChild(
                 $info,
@@ -262,7 +263,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->infoefr)) {
-            $cad = $this->std->infoefr;
+            $cad  = $this->std->infoefr;
             $info = $this->dom->createElement("infoEFR");
             $this->dom->addChild(
                 $info,
@@ -280,7 +281,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->infoente)) {
-            $cad = $this->std->infoente;
+            $cad  = $this->std->infoente;
             $info = $this->dom->createElement("infoEnte");
             $this->dom->addChild(
                 $info,
@@ -322,7 +323,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->infoorginternacional)) {
-            $cad = $this->std->infoorginternacional;
+            $cad  = $this->std->infoorginternacional;
             $info = $this->dom->createElement("infoorgInternacional");
             $this->dom->addChild(
                 $info,
@@ -372,8 +373,8 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
 
         if (isset($this->std->situacaopj)) {
             $infoComplementares = $this->dom->createElement("infoComplementares");
-            $sh = $this->std->situacaopj;
-            $info = $this->dom->createElement("situacaoPJ");
+            $sh                 = $this->std->situacaopj;
+            $info               = $this->dom->createElement("situacaoPJ");
             $this->dom->addChild(
                 $info,
                 "indSitPJ",
@@ -383,8 +384,8 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $infoComplementares->appendChild($info);
         } elseif (isset($this->std->situacaopf)) {
             $infoComplementares = $this->dom->createElement("infoComplementares");
-            $sh = $this->std->situacaopf;
-            $info = $this->dom->createElement("situacaoPF");
+            $sh                 = $this->std->situacaopf;
+            $info               = $this->dom->createElement("situacaoPF");
             $this->dom->addChild(
                 $info,
                 "indSitPF",
@@ -395,7 +396,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->novavalidade)) {
-            $sh = $this->std->novavalidade;
+            $sh           = $this->std->novavalidade;
             $novavalidade = $this->dom->createElement("novavalidade");
             $this->dom->addChild(
                 $novavalidade,
@@ -410,7 +411,6 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 false
             );
         }
-
 
         switch ($this->std->modo) {
             case "INC":

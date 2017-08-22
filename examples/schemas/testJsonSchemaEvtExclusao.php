@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtExclusao';
+$evento  = 'evtExclusao';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -76,28 +76,26 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
 
-$infoexclusao = new \stdClass();
+$infoexclusao           = new \stdClass();
 $infoexclusao->tpevento = 'S-2190';
 $infoexclusao->nrrecevt = '1234567-1234567-1234567';
 
 $jsonToValidateObject->infoexclusao = $infoexclusao;
 
-$idefolhapagto = new \stdClass();
+$idefolhapagto              = new \stdClass();
 $idefolhapagto->indapuracao = 1;
-$idefolhapagto->perapur = '2017-08';
+$idefolhapagto->perapur     = '2017-08';
 
 $jsonToValidateObject->idefolhapagto = $idefolhapagto;
 
-$idetrabalhador = new \stdClass();
+$idetrabalhador          = new \stdClass();
 $idetrabalhador->cpftrab = '11111111111';
 $idetrabalhador->nistrab = '11111111111';
 
 $jsonToValidateObject->idetrabalhador = $idetrabalhador;
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

@@ -32,10 +32,12 @@ class EvtMonit extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtMonit';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2220';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtMonit extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -168,14 +170,14 @@ class EvtMonit extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $exame,
                     "procRealizado",
-                    !empty($exam->procrealizado) ? $exam->procrealizado : null,
+                    ! empty($exam->procrealizado) ? $exam->procrealizado : null,
                     false
                 );
 
                 $this->dom->addChild(
                     $exame,
                     "obsProc",
-                    !empty($exam->obsproc) ? $exam->obsproc : null,
+                    ! empty($exam->obsproc) ? $exam->obsproc : null,
                     false
                 );
 
@@ -203,14 +205,14 @@ class EvtMonit extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $exame,
                     "dtFimMonit",
-                    !empty($exam->dtfimmonit) ? $exam->dtfimmonit : null,
+                    ! empty($exam->dtfimmonit) ? $exam->dtfimmonit : null,
                     false
                 );
 
                 $this->dom->addChild(
                     $exame,
                     "indResult",
-                    !empty($exam->indresult) ? $exam->indresult : null,
+                    ! empty($exam->indresult) ? $exam->indresult : null,
                     false
                 );
 
@@ -237,7 +239,7 @@ class EvtMonit extends Factory implements FactoryInterface
         $this->dom->addChild(
             $respMonit,
             "ufConsClasse",
-            !empty($this->std->respmonit->ufconsclasse) ? $this->std->respmonit->ufconsclasse : null,
+            ! empty($this->std->respmonit->ufconsclasse) ? $this->std->respmonit->ufconsclasse : null,
             false
         );
 
@@ -248,7 +250,7 @@ class EvtMonit extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideServSaude,
             "codCNES",
-            !empty($this->std->ideservsaude->codcnes) ? $this->std->ideservsaude->codcnes : null,
+            ! empty($this->std->ideservsaude->codcnes) ? $this->std->ideservsaude->codcnes : null,
             false
         );
 
@@ -262,7 +264,7 @@ class EvtMonit extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideServSaude,
             "email",
-            !empty($this->std->ideservsaude->email) ? $this->std->ideservsaude->email : null,
+            ! empty($this->std->ideservsaude->email) ? $this->std->ideservsaude->email : null,
             false
         );
 

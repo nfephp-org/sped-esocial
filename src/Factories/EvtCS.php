@@ -32,10 +32,12 @@ class EvtCS extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtCS';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-5011';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtCS extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,15 +65,15 @@ class EvtCS extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid      = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtCS = $this->dom->createElement("evtCS");
-        $att = $this->dom->createAttribute('Id');
+        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $evtCS      = $this->dom->createElement("evtCS");
+        $att        = $this->dom->createAttribute('Id');
         $att->value = $evtid;
         $evtCS->appendChild($att);
 
@@ -110,7 +112,6 @@ class EvtCS extends Factory implements FactoryInterface
             true
         );
         $evtCS->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtCS);
         $this->sign($eSocial);

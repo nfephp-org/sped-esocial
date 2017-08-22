@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtInfoEmpregador';
+$evento  = 'evtInfoEmpregador';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -341,28 +341,27 @@ $jsonSchema = '{
 file_put_contents("../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
 
 //campos OBRIGATORIOS
-$std = new \stdClass();
+$std             = new \stdClass();
 $std->sequencial = 1; //numero sequencial
-$std->modo = 'INC'; //INC inclusão, ALT alteração EXC exclusão
+$std->modo       = 'INC'; //INC inclusão, ALT alteração EXC exclusão
 
-$std->ideperiodo = new \stdClass();
+$std->ideperiodo           = new \stdClass();
 $std->ideperiodo->inivalid = '2017-01'; //aaaa-mm do inicio da validade
 //$std->ideperiodo->fimvalid = '2017-07'; //yyyy-mm do fim da validade
 
-
 //campo OPCIONAL
 //usar em Inclusão ou alteração apenas
-$std->infocadastro = new \stdClass();
-$std->infocadastro->nmrazao = 'Fake Ind. e Com. Ltda'; //Razão Social
-$std->infocadastro->classtrib = '01'; // classificação tributária do contribuinte, conforme tabela 8
-$std->infocadastro->natjurid = '2062'; //código da Natureza Jurídica do Contribuinte, conforme tabela 21
-$std->infocadastro->indcoop = 0;//Indicativo de Cooperativa: 0 - Não é cooperativa; 1 - Cooperativa de Trabalho; 2 - Cooperativa de Produção; 3 - Outras Cooperativas.
-$std->infocadastro->indconstr = 0;//Indicativo de Construtora: 0 - Não é Construtora; 1 - Empresa Construtora.
-$std->infocadastro->inddesfolha = 0; //Indicativo de Desoneração da Folha: 0 - Não Aplicável; 1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.
+$std->infocadastro                   = new \stdClass();
+$std->infocadastro->nmrazao          = 'Fake Ind. e Com. Ltda'; //Razão Social
+$std->infocadastro->classtrib        = '01'; // classificação tributária do contribuinte, conforme tabela 8
+$std->infocadastro->natjurid         = '2062'; //código da Natureza Jurídica do Contribuinte, conforme tabela 21
+$std->infocadastro->indcoop          = 0;//Indicativo de Cooperativa: 0 - Não é cooperativa; 1 - Cooperativa de Trabalho; 2 - Cooperativa de Produção; 3 - Outras Cooperativas.
+$std->infocadastro->indconstr        = 0;//Indicativo de Construtora: 0 - Não é Construtora; 1 - Empresa Construtora.
+$std->infocadastro->inddesfolha      = 0; //Indicativo de Desoneração da Folha: 0 - Não Aplicável; 1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.
 $std->infocadastro->indoptregeletron = 0; //registro eletrônico de empregados: 0 - Não optou pelo registro eletrônico de empregados; 1 - Optou pelo registro eletrônico de empregados
-$std->infocadastro->indented = 'N';//realiza a contratação de aprendiz por entidade N - Não é entidade educativa sem fins lucrativos; S - É entidade educativa sem fins lucrativos
-$std->infocadastro->indett = 'N';//Indicativo de Empresa de Trabalho Temporário N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário.
-$std->infocadastro->nrregett = null;//Número do registro da Empresa de Trabalho Temporário
+$std->infocadastro->indented         = 'N';//realiza a contratação de aprendiz por entidade N - Não é entidade educativa sem fins lucrativos; S - É entidade educativa sem fins lucrativos
+$std->infocadastro->indett           = 'N';//Indicativo de Empresa de Trabalho Temporário N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário.
+$std->infocadastro->nrregett         = null;//Número do registro da Empresa de Trabalho Temporário
 
 //campo OPCIONAL
 //Informações Complementares - Empresas Isentas - Dados da Isenção
@@ -379,13 +378,12 @@ $std->infocadastro->nrregett = null;//Número do registro da Empresa de Trabalho
 
 //campo OPCIONAL / OBRIGATORIO somente de declarar infocadastro
 //Informações de contato
-$std->contato = new \stdClass();
-$std->contato->nmctt = 'Fulano de Tal';// Pessoa responsável por ser o contato do empregador com os órgãos gestores do eSocial
-$std->contato->cpfctt = '99999999999';//CPF do contato
+$std->contato           = new \stdClass();
+$std->contato->nmctt    = 'Fulano de Tal';// Pessoa responsável por ser o contato do empregador com os órgãos gestores do eSocial
+$std->contato->cpfctt   = '99999999999';//CPF do contato
 $std->contato->fonefixo = '1155555555';//número do telefone, com DDD
-$std->contato->fonecel = '11944444444';//celular, com DDD
-$std->contato->email = 'fulano@mail.com';//Endereço eletrônico
-
+$std->contato->fonecel  = '11944444444';//celular, com DDD
+$std->contato->email    = 'fulano@mail.com';//Endereço eletrônico
 
 //campo OPCIONAL
 //Informações relativas a Órgãos Públicos
@@ -408,7 +406,6 @@ $std->contato->email = 'fulano@mail.com';//Endereço eletrônico
 //$std->infoente->subteto = 9;//1 - Executivo; 2 - Judiciário; 3 - Legislativo; 9 - Todos os poderes.
 //$std->infoente->vrsubteto = 10584.50;//valor do subteto do Ente Federativo
 
-
 //campo OPCIONAL
 //Informações exclusivas de organismos internacionais e outras instituições extraterritoriais
 //$std->infoorginternacional = new \stdClass();
@@ -417,20 +414,18 @@ $std->contato->email = 'fulano@mail.com';//Endereço eletrônico
 //campo OPCIONAL
 //Informações relativas ao desenvolvedor do software que gerou o arquivo xml.
 //Array com até 99 ocorrências
-$std->softwarehouse[0] = new \stdClass();
+$std->softwarehouse[0]                = new \stdClass();
 $std->softwarehouse[0]->cnpjsofthouse = '00000000000000';//CNPJ da empresa desenvolvedora do software
-$std->softwarehouse[0]->nmrazao = 'Soft dot Com Ltd';//Informar a razão social, no caso de pessoa jurídica ou órgão público.
-$std->softwarehouse[0]->nmcont = 'Fulano da Tal';//Nome do contato na empresa
-$std->softwarehouse[0]->telefone = "1157777777";
-$std->softwarehouse[0]->email = "fulano@mail.com";
-
+$std->softwarehouse[0]->nmrazao       = 'Soft dot Com Ltd';//Informar a razão social, no caso de pessoa jurídica ou órgão público.
+$std->softwarehouse[0]->nmcont        = 'Fulano da Tal';//Nome do contato na empresa
+$std->softwarehouse[0]->telefone      = "1157777777";
+$std->softwarehouse[0]->email         = "fulano@mail.com";
 
 //campo OPCIONAL
 //Informações Complementares - Pessoa Jurídica
 //Se houver PJ não pode haver PF
-$std->situacaopj = new \stdClass();
+$std->situacaopj           = new \stdClass();
 $std->situacaopj->indsitpj = 0;//0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação.
-
 
 //campo OPCIONAL
 //Informações Complementares - Pessoa Física
@@ -444,7 +439,6 @@ $std->situacaopj->indsitpj = 0;//0 - Situação Normal; 1 - Extinção; 2 - Fus�
 //$std->novavalidade = new \stdClass();
 //$std->novavalidade->inivalid = '2017-06';//mês e ano de início da validade das informações prestadas no evento,
 //$std->novavalidade->fimvalid = null;//mês e ano de término da validade das informações, se houve
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

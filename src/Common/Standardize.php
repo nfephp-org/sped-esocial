@@ -27,16 +27,18 @@ class Standardize
      * @var string
      */
     public $node = '';
+
     /**
      * @var string
      */
     public $json = '';
+
     /**
      * @var array
      */
     public $rootTagList = [
         '',
-        ''
+        '',
     ];
 
     public function __construct($xml = null)
@@ -53,15 +55,16 @@ class Standardize
      */
     public function toStd($xml = null)
     {
-        if (!empty($xml)) {
+        if (! empty($xml)) {
             $this->whichIs($xml);
         }
-        $sxml = simplexml_load_string($this->node);
+        $sxml       = simplexml_load_string($this->node);
         $this->json = str_replace(
             '@attributes',
             'attributes',
             json_encode($sxml, JSON_PRETTY_PRINT)
         );
+
         return json_decode($this->json);
     }
 
@@ -75,21 +78,22 @@ class Standardize
      */
     public function whichIs($xml)
     {
-        if (!Validator::isXML($xml)) {
+        if (! Validator::isXML($xml)) {
             throw new InvalidArgumentException(
                 "O argumento passado não é um XML válido."
             );
         }
-        $dom = new \DOMDocument('1.0', 'UTF-8');
+        $dom                     = new \DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = false;
+        $dom->formatOutput       = false;
         $dom->loadXML($xml);
         foreach ($this->rootTagList as $key) {
-            $node = !empty($dom->getElementsByTagName($key)->item(0))
+            $node = ! empty($dom->getElementsByTagName($key)->item(0))
                 ? $dom->getElementsByTagName($key)->item(0)
                 : '';
-            if (!empty($node)) {
+            if (! empty($node)) {
                 $this->node = $dom->saveXML($node);
+
                 return $key;
             }
         }
@@ -117,9 +121,10 @@ class Standardize
      */
     public function toJson($xml = null)
     {
-        if (!empty($xml)) {
+        if (! empty($xml)) {
             $this->toStd($xml);
         }
+
         return $this->json;
     }
 
@@ -132,10 +137,11 @@ class Standardize
      */
     public function toYaml($xml = null)
     {
-        if (!empty($xml)) {
+        if (! empty($xml)) {
             $this->toStd($xml);
         }
         $array = $this->toArray();
+
         return Yaml::dump($array, 6, 4);
     }
 
@@ -148,9 +154,10 @@ class Standardize
      */
     public function toArray($xml = null)
     {
-        if (!empty($xml)) {
+        if (! empty($xml)) {
             $this->toStd($xml);
         }
+
         return json_decode($this->json, true);
     }
 }

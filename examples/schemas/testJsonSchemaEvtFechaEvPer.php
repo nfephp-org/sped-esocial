@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtFechaEvPer';
+$evento  = 'evtFechaEvPer';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -103,29 +103,27 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
-$jsonToValidateObject->sequencial = 1;
+$jsonToValidateObject              = new \stdClass();
+$jsonToValidateObject->sequencial  = 1;
 $jsonToValidateObject->indapuracao = 1;
-$jsonToValidateObject->perapur = '2017-08';
+$jsonToValidateObject->perapur     = '2017-08';
 
-$iderespinf = new \stdClass();
-$iderespinf->nmresp = 'JOAO';
-$iderespinf->cpfresp = '11111111111';
+$iderespinf           = new \stdClass();
+$iderespinf->nmresp   = 'JOAO';
+$iderespinf->cpfresp  = '11111111111';
 $iderespinf->telefone = '1122223333';
 
 $jsonToValidateObject->iderespinf = $iderespinf;
 
-$infofech = new \stdClass();
-$infofech->evtremun = 'N';
-$infofech->evtpgtos = 'N';
-$infofech->evtaqprod = 'N';
-$infofech->evtcomprod = 'N';
-$infofech->evtcontratavnp = 'N';
+$infofech                  = new \stdClass();
+$infofech->evtremun        = 'N';
+$infofech->evtpgtos        = 'N';
+$infofech->evtaqprod       = 'N';
+$infofech->evtcomprod      = 'N';
+$infofech->evtcontratavnp  = 'N';
 $infofech->evtinfocomplper = 'N';
 
 $jsonToValidateObject->infofech = $infofech;
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

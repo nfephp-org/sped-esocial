@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtMonit';
+$evento  = 'evtMonit';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -194,51 +194,50 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->indretif = 1;
+$jsonToValidateObject->indretif   = 1;
 
-$idevinculo = new \stdClass();
-$idevinculo->cpftrab = '11111111111';
-$idevinculo->nistrab = '11111111111';
+$idevinculo            = new \stdClass();
+$idevinculo->cpftrab   = '11111111111';
+$idevinculo->nistrab   = '11111111111';
 $idevinculo->matricula = '11111111111';
 
 $jsonToValidateObject->idevinculo = $idevinculo;
 
-$aso = new \stdClass();
-$aso->dtaso = '2017-08-18';
-$aso->tpaso = 0;
+$aso         = new \stdClass();
+$aso->dtaso  = '2017-08-18';
+$aso->tpaso  = 0;
 $aso->resaso = 1;
 
 $jsonToValidateObject->aso = $aso;
 
-$exame[0] = new \stdClass();
-$exame[0]->dtexm = '2017-08-18';
+$exame[0]                = new \stdClass();
+$exame[0]->dtexm         = '2017-08-18';
 $exame[0]->procrealizado = 10102019;
-$exame[0]->obsproc = 'observação do exame';
-$exame[0]->interprexm = 1;
-$exame[0]->ordexame = 1;
-$exame[0]->dtinimonit = '2017-08-18';
-$exame[0]->dtfimmonit = '2018-08-18';
-$exame[0]->indresult = 1;
+$exame[0]->obsproc       = 'observação do exame';
+$exame[0]->interprexm    = 1;
+$exame[0]->ordexame      = 1;
+$exame[0]->dtinimonit    = '2017-08-18';
+$exame[0]->dtfimmonit    = '2018-08-18';
+$exame[0]->indresult     = 1;
 
 $jsonToValidateObject->exame = $exame;
 
-$respmonit = new \stdClass();
-$respmonit->nisresp = '11111111111';
+$respmonit               = new \stdClass();
+$respmonit->nisresp      = '11111111111';
 $respmonit->nrconsclasse = '11111111';
 
 $jsonToValidateObject->respmonit = $respmonit;
 
-$ideservsaude = new \stdClass();
+$ideservsaude          = new \stdClass();
 $ideservsaude->codcnes = '1111111';
-$ideservsaude->frmctt = 'CONTATO';
-$ideservsaude->email = 'teste@exemplo.com.br';
+$ideservsaude->frmctt  = 'CONTATO';
+$ideservsaude->email   = 'teste@exemplo.com.br';
 
 $jsonToValidateObject->ideservsaude = $ideservsaude;
 
-$medico = new \stdClass();
+$medico        = new \stdClass();
 $medico->nmmed = 'NOME DO MEDICO';
 $medico->nrcrm = '12345678';
 $medico->ufcrm = 'SP';

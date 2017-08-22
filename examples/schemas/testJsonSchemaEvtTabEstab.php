@@ -7,7 +7,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtTabEstab';
+$evento  = 'evtTabEstab';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -238,49 +238,47 @@ $jsonSchema = '{
     }
 }';
 
-
-$std = new \stdClass();
+$std             = new \stdClass();
 $std->sequencial = 1;
-$std->tpinsc = 1;
-$std->nrinsc = '123456789012345';
-$std->inivalid = '2017-01';
-$std->fimvalid = '2017-12'; //opcional
-$std->modo = 'INC';
+$std->tpinsc     = 1;
+$std->nrinsc     = '123456789012345';
+$std->inivalid   = '2017-01';
+$std->fimvalid   = '2017-12'; //opcional
+$std->modo       = 'INC';
 
-$std->dadosestab = new \stdClass();
-$std->dadosestab->cnaeprep = 26213;
-$std->dadosestab->aliqgilrat = new \stdClass();
-$std->dadosestab->aliqgilrat->aliqrat = 1;
-$std->dadosestab->aliqgilrat->fap = 0.5000;//Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.
-$std->dadosestab->aliqgilrat->aliqratajust = 1 * 0.5000;
-$std->dadosestab->aliqgilrat->procadmjudrat = new \stdClass();
-$std->dadosestab->aliqgilrat->procadmjudrat->tpproc = 1;
-$std->dadosestab->aliqgilrat->procadmjudrat->nrproc = '123568kjdkdjkdjkdj';
-$std->dadosestab->aliqgilrat->procadmjudrat->codsusp = '14524578901';
-$std->dadosestab->aliqgilrat->procadmjudfap = new \stdClass();
-$std->dadosestab->aliqgilrat->procadmjudfap->tpproc = 1;
-$std->dadosestab->aliqgilrat->procadmjudfap->nrproc = 'kdjkdkdjdkjdkj';
-$std->dadosestab->aliqgilrat->procadmjudfap->codsusp = '123445';
-$std->dadosestab->infocaepf = new \stdClass();
-$std->dadosestab->infocaepf->tpcaepf = 1;
-$std->dadosestab->infoobra = new \stdClass();
-$std->dadosestab->infoobra->indsubstpatrobra = 1;
-$std->dadosestab->infotrab = new \stdClass();
-$std->dadosestab->infotrab->regpt = 0;
-$std->dadosestab->infotrab->infoapr = new \stdClass();
-$std->dadosestab->infotrab->infoapr->contapr = 0;
-$std->dadosestab->infotrab->infoapr->nrprocjud = 'dkjdkjdkdjkdj';
-$std->dadosestab->infotrab->infoapr->contented = 'S';
-$std->dadosestab->infotrab->infoapr->infoenteduc[0] = new \stdClass();
+$std->dadosestab                                            = new \stdClass();
+$std->dadosestab->cnaeprep                                  = 26213;
+$std->dadosestab->aliqgilrat                                = new \stdClass();
+$std->dadosestab->aliqgilrat->aliqrat                       = 1;
+$std->dadosestab->aliqgilrat->fap                           = 0.5000;//Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.
+$std->dadosestab->aliqgilrat->aliqratajust                  = 1 * 0.5000;
+$std->dadosestab->aliqgilrat->procadmjudrat                 = new \stdClass();
+$std->dadosestab->aliqgilrat->procadmjudrat->tpproc         = 1;
+$std->dadosestab->aliqgilrat->procadmjudrat->nrproc         = '123568kjdkdjkdjkdj';
+$std->dadosestab->aliqgilrat->procadmjudrat->codsusp        = '14524578901';
+$std->dadosestab->aliqgilrat->procadmjudfap                 = new \stdClass();
+$std->dadosestab->aliqgilrat->procadmjudfap->tpproc         = 1;
+$std->dadosestab->aliqgilrat->procadmjudfap->nrproc         = 'kdjkdkdjdkjdkj';
+$std->dadosestab->aliqgilrat->procadmjudfap->codsusp        = '123445';
+$std->dadosestab->infocaepf                                 = new \stdClass();
+$std->dadosestab->infocaepf->tpcaepf                        = 1;
+$std->dadosestab->infoobra                                  = new \stdClass();
+$std->dadosestab->infoobra->indsubstpatrobra                = 1;
+$std->dadosestab->infotrab                                  = new \stdClass();
+$std->dadosestab->infotrab->regpt                           = 0;
+$std->dadosestab->infotrab->infoapr                         = new \stdClass();
+$std->dadosestab->infotrab->infoapr->contapr                = 0;
+$std->dadosestab->infotrab->infoapr->nrprocjud              = 'dkjdkjdkdjkdj';
+$std->dadosestab->infotrab->infoapr->contented              = 'S';
+$std->dadosestab->infotrab->infoapr->infoenteduc[0]         = new \stdClass();
 $std->dadosestab->infotrab->infoapr->infoenteduc[0]->nrinsc = '12345678901234';
-$std->dadosestab->infotrab->infopdc = new \stdClass();
-$std->dadosestab->infotrab->infopdc->contpdc = 0;
-$std->dadosestab->infotrab->infopdc->nrprocjud = 'kjdkjdkdjkdj';
+$std->dadosestab->infotrab->infopdc                         = new \stdClass();
+$std->dadosestab->infotrab->infopdc->contpdc                = 0;
+$std->dadosestab->infotrab->infopdc->nrprocjud              = 'kjdkjdkdjkdj';
 
-$std->novavalidade = new \stdClass();
+$std->novavalidade           = new \stdClass();
 $std->novavalidade->inivalid = '2017-12';
 //$std->novavalidade->fimvalid = '2018-12';
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

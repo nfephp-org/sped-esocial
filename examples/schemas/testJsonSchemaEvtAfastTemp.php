@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtAfastTemp';
+$evento  = 'evtAfastTemp';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -214,31 +214,30 @@ $jsonSchema = '{
     }
 }';
 
-
-$jsonToValidateObject = new \stdClass();
+$jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
-$jsonToValidateObject->indretif = 1;
+$jsonToValidateObject->indretif   = 1;
 
-$idevinculo = new \stdClass();
-$idevinculo->cpftrab = '11111111111';
-$idevinculo->nistrab = '11111111111';
+$idevinculo            = new \stdClass();
+$idevinculo->cpftrab   = '11111111111';
+$idevinculo->nistrab   = '11111111111';
 $idevinculo->matricula = '11111111111';
 
 $jsonToValidateObject->idevinculo = $idevinculo;
 
-$iniafastamento = new \stdClass();
-$iniafastamento->dtiniafast = '2017-08-21';
+$iniafastamento              = new \stdClass();
+$iniafastamento->dtiniafast  = '2017-08-21';
 $iniafastamento->codmotafast = '01';
 
-$infoatestado[0] = new \stdClass();
-$infoatestado[0]->codcid = '0101';
+$infoatestado[0]               = new \stdClass();
+$infoatestado[0]->codcid       = '0101';
 $infoatestado[0]->qtddiasafast = 120;
 
-$emitente = new \stdClass();
+$emitente         = new \stdClass();
 $emitente->nmemit = 'NOME DO EMITENTE';
-$emitente->ideoc = 1;
-$emitente->nroc = '11111111111111';
-$emitente->ufoc = 'SP';
+$emitente->ideoc  = 1;
+$emitente->nroc   = '11111111111111';
+$emitente->ufoc   = 'SP';
 
 $infoatestado[0]->emitente = $emitente;
 
@@ -246,25 +245,25 @@ $iniafastamento->infoatestado = $infoatestado;
 
 $jsonToValidateObject->iniafastamento = $iniafastamento;
 
-$infocessao = new \stdClass();
+$infocessao           = new \stdClass();
 $infocessao->cnpjcess = '11111111111111';
-$infocessao->infonus = 1;
+$infocessao->infonus  = 1;
 
 $jsonToValidateObject->infocessao = $infocessao;
 
-$infomandsind = new \stdClass();
-$infomandsind->cnpjsind = '11111111111111';
+$infomandsind               = new \stdClass();
+$infomandsind->cnpjsind     = '11111111111111';
 $infomandsind->infonusremun = 1;
 
 $jsonToValidateObject->infomandsind = $infomandsind;
 
-$inforetif = new \stdClass();
+$inforetif            = new \stdClass();
 $inforetif->origretif = 1;
-$inforetif->tpproc = 1;
+$inforetif->tpproc    = 1;
 
 $jsonToValidateObject->inforetif = $inforetif;
 
-$fimafastamento = new \stdClass();
+$fimafastamento              = new \stdClass();
 $fimafastamento->dttermafast = '2017-08-21';
 $fimafastamento->codmotafast = '01';
 

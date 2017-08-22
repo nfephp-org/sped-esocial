@@ -26,25 +26,33 @@ use RuntimeException;
 class Tools extends ToolsBase
 {
     public $lastRequest;
+
     public $lastResponse;
 
     /**
      * @var NFePHP\Common\Soap\SoapInterface
      */
     protected $soap;
-    protected $soapnamespaces = [
-        'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-        'xmlns:xsd' => "http://www.w3.org/2001/XMLSchema",
-        'xmlns:soap' => "http://www.w3.org/2003/05/soap-envelope"
-    ];
-    protected $objHeader;
-    protected $xmlns;
-    protected $uri;
-    protected $action;
-    protected $method;
-    protected $parameters;
-    protected $envelopeXmlns;
 
+    protected $soapnamespaces = [
+        'xmlns:xsi'  => "http://www.w3.org/2001/XMLSchema-instance",
+        'xmlns:xsd'  => "http://www.w3.org/2001/XMLSchema",
+        'xmlns:soap' => "http://www.w3.org/2003/05/soap-envelope",
+    ];
+
+    protected $objHeader;
+
+    protected $xmlns;
+
+    protected $uri;
+
+    protected $action;
+
+    protected $method;
+
+    protected $parameters;
+
+    protected $envelopeXmlns;
 
     public function __construct($config, Certificate $certificate = null)
     {
@@ -73,46 +81,46 @@ class Tools extends ToolsBase
         $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
 
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
-            . "/ServicoConsultarLoteEventos/ConsultarLoteEventos";
+            ."/eventos/envio/consulta/retornoProcessamento/$operationVersion"
+            ."/ServicoConsultarLoteEventos/ConsultarLoteEventos";
 
         $this->method = "ConsultarLoteEventos";
 
         $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
-            . "/servicos/empregador/consultarloteeventos"
-            . "/WsConsultarLoteEventos.svc";
+            ."/servicos/empregador/consultarloteeventos"
+            ."/WsConsultarLoteEventos.svc";
 
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
-            'xmlns:v1' => "http://www.esocial.gov.br/servicos/empregador/lote"
-                . "/eventos/envio/consulta/retornoProcessamento/$operationVersion"
+            'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/lote"
+                ."/eventos/envio/consulta/retornoProcessamento/$operationVersion",
         ];
 
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
-            . "/eventos/envio/consulta/retornoProcessamento/v1_0_0\" "
-            . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
-            . "<consultaLoteEventos>"
-            . "<protocoloEnvio>$protocolo</protocoloEnvio>"
-            . "</consultaLoteEventos>"
-            . "</eSocial>";
-
+            ."/eventos/envio/consulta/retornoProcessamento/v1_0_0\" "
+            ."xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+            ."<consultaLoteEventos>"
+            ."<protocoloEnvio>$protocolo</protocoloEnvio>"
+            ."</consultaLoteEventos>"
+            ."</eSocial>";
 
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
             $this->path
-            . "schemes/comunicacao/$this->serviceStr/"
-            . "ConsultaLoteEventos-$operationVersion.xsd"
+            ."schemes/comunicacao/$this->serviceStr/"
+            ."ConsultaLoteEventos-$operationVersion.xsd"
         );
 
         $body = "<v1:ConsultarLoteEventos>"
-            . "<v1:consulta>"
-            . $request
-            . "</v1:consulta>"
-            . "</v1:ConsultarLoteEventos>";
+            ."<v1:consulta>"
+            .$request
+            ."</v1:consulta>"
+            ."</v1:ConsultarLoteEventos>";
 
-        $this->lastRequest = $body;
+        $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
+
         return $this->lastResponse;
     }
 
@@ -134,21 +142,21 @@ class Tools extends ToolsBase
             $envelope .= "$key = \"$xmlns\" ";
         }
         $envelope .= ">"
-            . "<soapenv:Header/>"
-            . "<soapenv:Body>"
-            . $request
-            . "</soapenv:Body>"
-            . "</soapenv:Envelope>";
+            ."<soapenv:Header/>"
+            ."<soapenv:Body>"
+            .$request
+            ."</soapenv:Body>"
+            ."</soapenv:Envelope>";
 
-        $msgSize = strlen($envelope);
+        $msgSize    = strlen($envelope);
         $parameters = [
             "Content-Type: text/xml;charset=UTF-8",
             "SOAPAction: \"$this->action\"",
-            "Content-length: $msgSize"
+            "Content-length: $msgSize",
         ];
 
         //return $envelope;
-        return (string)$this->soap->send(
+        return (string) $this->soap->send(
             $this->method,
             $this->uri,
             $this->action,
@@ -161,7 +169,7 @@ class Tools extends ToolsBase
      * Send batch of events
      *
      * @param  integer $grupo
-     * @param  array   $eventos
+     * @param  array $eventos
      *
      * @return string
      */
@@ -170,20 +178,20 @@ class Tools extends ToolsBase
         if (empty($eventos)) {
             return '';
         }
-        $xml = "";
+        $xml  = "";
         $nEvt = count($eventos);
         if ($nEvt > 50) {
             throw new InvalidArgumentException(
                 "O numero máximo de eventos em um lote é 50, "
-                . "você está tentando enviar $nEvt eventos !"
+                ."você está tentando enviar $nEvt eventos !"
             );
         }
         foreach ($eventos as $evt) {
             //verifica se o evento pertence ao grupo indicado
-            if (!in_array($evt->alias(), $this->grupos[$grupo])) {
+            if (! in_array($evt->alias(), $this->grupos[$grupo])) {
                 throw new RuntimeException(
-                    'O evento ' . $evt->alias() . ' não pertence a este grupo [ '
-                    . $this->eventGroup[$grupo] . ' ].'
+                    'O evento '.$evt->alias().' não pertence a este grupo [ '
+                    .$this->eventGroup[$grupo].' ].'
                 );
             }
             $this->checkCertificate($evt);
@@ -193,56 +201,57 @@ class Tools extends ToolsBase
         }
 
         $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
-        
+
         $this->method = "EnviarLoteEventos";
 
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            . "/eventos/envio/v1_1_0/ServicoEnviarLoteEventos"
-            . "/EnviarLoteEventos";
+            ."/eventos/envio/v1_1_0/ServicoEnviarLoteEventos"
+            ."/EnviarLoteEventos";
 
         $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
-            . "/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
+            ."/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
 
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
-            'xmlns:v1' => "http://www.esocial.gov.br/servicos/empregador"
-                . "/lote/eventos/envio/$operationVersion"
+            'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador"
+                ."/lote/eventos/envio/$operationVersion",
         ];
 
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
-            . "/eventos/envio/$operationVersion\" "
-            . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
-            . "<envioLoteEventos grupo=\"$grupo\">"
-            . "<ideEmpregador>"
-            . "<tpInsc>$this->tpInsc</tpInsc>"
-            . "<nrInsc>$this->nrInsc</nrInsc>"
-            . "</ideEmpregador>"
-            . "<ideTransmissor>"
-            . "<tpInsc>$this->transmissortpInsc</tpInsc>"
-            . "<nrInsc>$this->transmissornrInsc</nrInsc>"
-            . "</ideTransmissor>"
-            . "<eventos>"
-            . "$xml"
-            . "</eventos>"
-            . "</envioLoteEventos>"
-            . "</eSocial>";
+            ."/eventos/envio/$operationVersion\" "
+            ."xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+            ."<envioLoteEventos grupo=\"$grupo\">"
+            ."<ideEmpregador>"
+            ."<tpInsc>$this->tpInsc</tpInsc>"
+            ."<nrInsc>$this->nrInsc</nrInsc>"
+            ."</ideEmpregador>"
+            ."<ideTransmissor>"
+            ."<tpInsc>$this->transmissortpInsc</tpInsc>"
+            ."<nrInsc>$this->transmissornrInsc</nrInsc>"
+            ."</ideTransmissor>"
+            ."<eventos>"
+            ."$xml"
+            ."</eventos>"
+            ."</envioLoteEventos>"
+            ."</eSocial>";
 
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
             $this->path
-            . "schemes/comunicacao/$this->serviceStr/"
-            . "EnvioLoteEventos-$operationVersion.xsd"
+            ."schemes/comunicacao/$this->serviceStr/"
+            ."EnvioLoteEventos-$operationVersion.xsd"
         );
 
         $body = "<v1:EnviarLoteEventos>"
-            . "<v1:loteEventos>"
-            . $request
-            . "</v1:loteEventos>"
-            . "</v1:EnviarLoteEventos>";
+            ."<v1:loteEventos>"
+            .$request
+            ."</v1:loteEventos>"
+            ."</v1:EnviarLoteEventos>";
 
-        $this->lastRequest = $body;
+        $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
+
         return $this->lastResponse;
     }
 

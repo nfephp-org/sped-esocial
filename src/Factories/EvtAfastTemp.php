@@ -32,10 +32,12 @@ class EvtAfastTemp extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtAfastTemp';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2230';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtAfastTemp extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -132,7 +134,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideVinculo,
             "codCateg",
-            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+            ! empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
             false
         );
         $this->node->appendChild($ideVinculo);
@@ -158,21 +160,21 @@ class EvtAfastTemp extends Factory implements FactoryInterface
         $this->dom->addChild(
             $iniAfastamento,
             "infoMesmoMtv",
-            !empty($this->std->iniafastamento->infomesmomtv) ? $this->std->iniafastamento->infomesmomtv : null,
+            ! empty($this->std->iniafastamento->infomesmomtv) ? $this->std->iniafastamento->infomesmomtv : null,
             false
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "tpAcidTransito",
-            !empty($this->std->iniafastamento->tpacidtransito) ? $this->std->iniafastamento->tpacidtransito : null,
+            ! empty($this->std->iniafastamento->tpacidtransito) ? $this->std->iniafastamento->tpacidtransito : null,
             false
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "observacao",
-            !empty($this->std->iniafastamento->observacao) ? $this->std->iniafastamento->observacao : null,
+            ! empty($this->std->iniafastamento->observacao) ? $this->std->iniafastamento->observacao : null,
             false
         );
 
@@ -183,7 +185,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoAtestado,
                     "codCID",
-                    !empty($info->codcid) ? $info->codcid : null,
+                    ! empty($info->codcid) ? $info->codcid : null,
                     false
                 );
 
@@ -221,7 +223,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
                     $this->dom->addChild(
                         $emitente,
                         "ufOC",
-                        !empty($info->emitente->ufoc) ? $info->emitente->ufoc : null,
+                        ! empty($info->emitente->ufoc) ? $info->emitente->ufoc : null,
                         false
                     );
 
@@ -232,7 +234,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
             }
         }
 
-        if (!empty($this->std->infocessao)) {
+        if (! empty($this->std->infocessao)) {
             $infoCessao = $this->dom->createElement("infoCessao");
 
             $this->dom->addChild(
@@ -252,7 +254,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
             $iniAfastamento->appendChild($infoCessao);
         }
 
-        if (!empty($this->std->infomandsind)) {
+        if (! empty($this->std->infomandsind)) {
             $infoMandSind = $this->dom->createElement("infoMandSind");
 
             $this->dom->addChild(
@@ -274,7 +276,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
 
         $infoAfastamento->appendChild($iniAfastamento);
 
-        if (!empty($this->std->inforetif)) {
+        if (! empty($this->std->inforetif)) {
             $infoRetif = $this->dom->createElement("infoRetif");
 
             $this->dom->addChild(
@@ -294,14 +296,14 @@ class EvtAfastTemp extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoRetif,
                 "nrProc",
-                !empty($this->std->inforetif->nrproc) ? $this->std->inforetif->nrproc : null,
+                ! empty($this->std->inforetif->nrproc) ? $this->std->inforetif->nrproc : null,
                 false
             );
 
             $infoAfastamento->appendChild($infoRetif);
         }
 
-        if (!empty($this->std->fimafastamento)) {
+        if (! empty($this->std->fimafastamento)) {
             $fimAfastamento = $this->dom->createElement("fimAfastamento");
 
             $this->dom->addChild(
@@ -317,7 +319,6 @@ class EvtAfastTemp extends Factory implements FactoryInterface
                 $this->std->fimafastamento->codmotafast,
                 true
             );
-
 
             $infoAfastamento->appendChild($fimAfastamento);
         }

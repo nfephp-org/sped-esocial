@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento = 'evtIrrfBenef';
+$evento  = 'evtIrrfBenef';
 $version = '02_03_00';
 
 $jsonSchema = '{
@@ -165,47 +165,45 @@ $jsonSchema = '{
     }
 }';
 
-
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
 
-$std = new \stdClass();
-$std->sequencial = 1;
+$std               = new \stdClass();
+$std->sequencial   = 1;
 $std->nrrecarqbase = 'ljdkdjdlkjdlkdjkdjdkjdkjdkdjk';
-$std->perapur = '2017-08';
-$std->cpftrab = '99999999999';
-$std->vrdeddep = '1234.56';
+$std->perapur      = '2017-08';
+$std->cpftrab      = '99999999999';
+$std->vrdeddep     = '1234.56';
 
-$infoirrf[0] = new \stdClass();
+$infoirrf[0]           = new \stdClass();
 $infoirrf[0]->codcateg = '101';
 $infoirrf[0]->indresbr = 'N';
 
-$basesirrf[0] = new \stdClass();
-$basesirrf[0]->tpvalor = '00';
-$basesirrf[0]->valor = '1000';
+$basesirrf[0]           = new \stdClass();
+$basesirrf[0]->tpvalor  = '00';
+$basesirrf[0]->valor    = '1000';
 $infoirrf[0]->basesirrf = $basesirrf;
 
-$irrf[0] = new \stdClass();
-$irrf[0]->tpcr = '056107';
+$irrf[0]             = new \stdClass();
+$irrf[0]->tpcr       = '056107';
 $irrf[0]->vrirrfdesc = 12345.23;
-$infoirrf[0]->irrf = $irrf;
+$infoirrf[0]->irrf   = $irrf;
 
-$idepgtoext = new \stdClass();
-$idepgtoext->codpais = '105';
-$idepgtoext->indnif = 1;
+$idepgtoext           = new \stdClass();
+$idepgtoext->codpais  = '105';
+$idepgtoext->indnif   = 1;
 $idepgtoext->nifbenef = 'lsklsslkslslsk';
 
 $idepgtoext->dsclograd = 'RUA';
-$idepgtoext->nrlograd = '123';
-$idepgtoext->complem = 'ddddd';
-$idepgtoext->bairro = 'eeee';
-$idepgtoext->nmcid = 'nnnnnn';
+$idepgtoext->nrlograd  = '123';
+$idepgtoext->complem   = 'ddddd';
+$idepgtoext->bairro    = 'eeee';
+$idepgtoext->nmcid     = 'nnnnnn';
 $idepgtoext->codpostal = '123456789012';
 
 $infoirrf[0]->idepgtoext = $idepgtoext;
 
 $std->infoirrf = $infoirrf;
-
 
 if (empty($jsonSchemaObject)) {
     echo "Erro no JSON SCHEMA";

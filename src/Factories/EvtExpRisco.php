@@ -32,10 +32,12 @@ class EvtExpRisco extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtExpRisco';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2240';
+
     /**
      * Parameters patterns
      *
@@ -46,8 +48,8 @@ class EvtExpRisco extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -63,16 +65,16 @@ class EvtExpRisco extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
+        $evtid       = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtExpRisco = $this->dom->createElement("evtExpRisco");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
+        $att         = $this->dom->createAttribute('Id');
+        $att->value  = $evtid;
         $evtExpRisco->appendChild($att);
 
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -110,7 +112,6 @@ class EvtExpRisco extends Factory implements FactoryInterface
             true
         );
         $evtExpRisco->appendChild($ideEmpregador);
-
 
         $eSocial->appendChild($evtExpRisco);
         $this->sign($eSocial);

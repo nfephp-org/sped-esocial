@@ -7,16 +7,16 @@ class FakePretty
     public static function prettyPrint($response, $save = '')
     {
         $std = json_decode($response);
-        if (!empty($save)) {
+        if (! empty($save)) {
             file_put_contents(
                 "/var/www/sped/sped-nfe/tests/fixtures/xml/$save.xml",
                 $std->body
             );
         }
 
-        $doc = new \DOMDocument('1.0', 'UTF-8');
+        $doc                     = new \DOMDocument('1.0', 'UTF-8');
         $doc->preserveWhiteSpace = false;
-        $doc->formatOutput = true;
+        $doc->formatOutput       = true;
         $doc->loadXML($std->body);
 
         $html = "<pre>";
@@ -42,7 +42,7 @@ class FakePretty
         $html .= $std->header;
         $html .= "<br>";
         $html .= '<h2>namespaces</h2>';
-        $an = json_decode(json_encode($std->namespaces), true);
+        $an   = json_decode(json_encode($std->namespaces), true);
         foreach ($an as $key => $nam) {
             $html .= "[$key] => $nam <br>";
         }
@@ -58,6 +58,7 @@ class FakePretty
             )
         );
         $html .= "</pre>";
+
         return $html;
     }
 }

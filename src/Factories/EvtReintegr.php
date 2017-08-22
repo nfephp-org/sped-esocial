@@ -31,10 +31,12 @@ class EvtReintegr extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtReintegr';
+
     /**
      * @var string
      */
     protected $evtAlias = 'S-2298';
+
     /**
      * Parameters patterns
      *
@@ -45,8 +47,8 @@ class EvtReintegr extends Factory implements FactoryInterface
     /**
      * Constructor
      *
-     * @param string      $config
-     * @param stdClass    $std
+     * @param string $config
+     * @param stdClass $std
      * @param Certificate $certificate
      */
     public function __construct(
@@ -75,7 +77,7 @@ class EvtReintegr extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -129,13 +131,13 @@ class EvtReintegr extends Factory implements FactoryInterface
         $this->dom->addChild(
             $infoReintegr,
             "nrProcJud",
-            !empty($this->std->nrprocjud) ? $this->std->nrprocjud : null,
+            ! empty($this->std->nrprocjud) ? $this->std->nrprocjud : null,
             false
         );
         $this->dom->addChild(
             $infoReintegr,
             "nrLeiAnistia",
-            !empty($this->std->nrleianistia) ? $this->std->nrleianistia : null,
+            ! empty($this->std->nrleianistia) ? $this->std->nrleianistia : null,
             false
         );
         $this->dom->addChild(
