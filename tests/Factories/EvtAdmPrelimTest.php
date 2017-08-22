@@ -25,10 +25,12 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'   
+            '2017-08-03 10:37:00'
         );
+
+        $this->assertInstanceOf('NFePHP\eSocial\Factories\EvtAdmPrelim', $evt);
     }
-    
+
     /**
      * @covers NFePHP\eSocial\Factories\Factory::toXML
      * @covers NFePHP\eSocial\Factories\Factory::sign
@@ -46,7 +48,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toXML();
         //file_put_contents($this->fixturesPath . 'evtAdmPrelim.xml', $actual);
@@ -59,7 +61,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
         $expectedElement = $dom2->getElementsByTagName('evtAdmPrelim')->item(0);
         $this->assertEqualXMLStructure($expectedElement, $actualElement);
     }
-    
+
     /**
      * @covers NFePHP\eSocial\Factories\Factory::toJson
      */
@@ -74,14 +76,14 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toJson();
         //file_put_contents($this->fixturesPath . 'evtAdmPrelim.json', $actual);
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
         $this->assertEquals($expected, $actual);
     }
-    
+
     /**
      * @covers NFePHP\eSocial\Factories\Factory::toArray
      */
@@ -96,7 +98,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toArray();
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
@@ -117,7 +119,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toStd();
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
