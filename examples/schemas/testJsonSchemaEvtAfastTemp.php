@@ -135,6 +135,81 @@ $jsonSchema = '{
                     }
                 }
             }
+        },
+        "infocessao": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "cnpjcess": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 14,
+                    "minLength": 14
+                },
+                "infonus": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-3]){1}$"
+                }
+            }
+        },
+        "infomandsind": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "cnpjsind": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 14,
+                    "minLength": 14
+                },
+                "infonusremun": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-3]){1}$"
+                }
+            }
+        },
+        "inforetif": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "origretif": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-3]){1}$"
+                },
+                "tpproc": {
+                    "required": true,
+                    "type": "integer",
+                    "maxLength": 1,
+                    "pattern": "([1-2]){1}$"
+                },
+                "nrproc": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 20
+                }
+            }
+        },
+        "fimafastamento": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dttermafast": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "codmotafast": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 2
+                }
+            }
         }
     }
 }';
