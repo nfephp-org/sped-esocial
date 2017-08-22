@@ -29,7 +29,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             '2017-08-03 10:37:00'
         );
 
-        $this->assertInstanceOf('NFePHP\eSocial\Factories\EvtAdmPrelim', $evt);
+        $this->assertInstanceOf(EvtAdmPrelim::class, $evt);
     }
 
     /**
