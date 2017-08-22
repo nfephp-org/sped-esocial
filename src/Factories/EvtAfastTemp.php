@@ -195,7 +195,6 @@ class EvtAfastTemp extends Factory implements FactoryInterface
                 );
 
                 if (isset($info->emitente)) {
-
                     $emitente = $this->dom->createElement("emitente");
 
                     $this->dom->addChild(

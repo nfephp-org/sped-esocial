@@ -165,8 +165,8 @@ class Tools
         $this->certificate = $certificate;
 
         $this->path = realpath(
-                __DIR__ . '/../../'
-            ) . '/';
+            __DIR__ . '/../../'
+        ) . '/';
 
         $this->serviceXsd = XsdSeeker::seek(
             $this->path . "schemes/comunicacao/$this->serviceStr/"
