@@ -3,10 +3,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../bootstrap.php';
 
-use JsonSchema\Validator;
-use JsonSchema\SchemaStorage;
 use JsonSchema\Constraints\Factory;
-use JsonSchema\Constraints\Constraint;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
 
 $evento = 'evtBasesTrab';
 $version = '02_03_00';
@@ -257,7 +256,6 @@ $infoCategIncid[0]->calcterc = $calcterc;
 $ideestablot[0]->infocategincid = $infoCategIncid;
 
 $std->ideestablot = $ideestablot;
-
 
 
 // The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.

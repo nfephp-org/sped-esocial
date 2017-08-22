@@ -13,7 +13,7 @@ class FakePretty
                 $std->body
             );
         }
-        
+
         $doc = new \DOMDocument('1.0', 'UTF-8');
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
@@ -50,7 +50,7 @@ class FakePretty
         $html .= '<h2>body</h2>';
         $html .= str_replace(
             ['<', '>'],
-            ['&lt;','&gt;'],
+            ['&lt;', '&gt;'],
             str_replace(
                 '<?xml version="1.0"?>',
                 '<?xml version="1.0" encoding="UTF-8"?>',

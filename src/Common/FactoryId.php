@@ -13,6 +13,7 @@ class FactoryId
      * @param  string   $nrInsc
      * @param  DateTime $date
      * @param  int      $sequential
+     *
      * @return string
      */
     public static function build(

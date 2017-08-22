@@ -11,7 +11,7 @@ class XsdSeeker
         'RetornoEvento' => ['version' => '', 'name' => ''],
         'RetornoProcessamentoLote' => ['version' => '', 'name' => '']
     ];
-    
+
     public static function seek($path)
     {
         $arr = scandir($path);
@@ -31,7 +31,7 @@ class XsdSeeker
         }
         return self::$list;
     }
-    
+
     public static function getVersion($filename)
     {
         $p = explode('-', $filename);

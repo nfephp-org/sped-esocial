@@ -3,10 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../bootstrap.php';
 
-use JsonSchema\Validator;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Constraints\Factory;
 use JsonSchema\Constraints\Constraint;
+use JsonSchema\Constraints\Factory;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
 
 $evento = 'evtIrrfBenef';
 $version = '02_03_00';
@@ -205,7 +205,6 @@ $idepgtoext->codpostal = '123456789012';
 $infoirrf[0]->idepgtoext = $idepgtoext;
 
 $std->infoirrf = $infoirrf;
-
 
 
 if (empty($jsonSchemaObject)) {

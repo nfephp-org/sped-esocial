@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtTabProcesso extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -86,10 +85,10 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         //tag deste evento em particular
         $info = $this->dom->createElement("infoProcesso");
-        
+
         //tag comum a todos os modos
         $ide = $this->dom->createElement("ideProcesso");
         $this->dom->addChild(
@@ -125,7 +124,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             $node = $this->dom->createElement("exclusao");
         }
         $node->appendChild($ide);
-        
+
         $dados = $this->dom->createElement("dadosProc");
         $this->dom->addChild(
             $dados,
@@ -194,7 +193,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             }
         }
         $node->appendChild($dados);
-        
+
         if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
             $newVal = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
@@ -212,7 +211,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             );
             $node->appendChild($novaValidade);
         }
-        
+
         $info->appendChild($node);
         //finalização do xml
         $this->node->appendChild($info);

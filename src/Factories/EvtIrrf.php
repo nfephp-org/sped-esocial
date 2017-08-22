@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtIrrf extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtIrrf extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -74,7 +73,7 @@ class EvtIrrf extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         //tag deste evento em particular
         $infoIrrf = $this->dom->createElement("infoIRRF");
         $this->dom->addChild(
@@ -89,7 +88,7 @@ class EvtIrrf extends Factory implements FactoryInterface
             $this->std->infoirrf->indexistinfo,
             true
         );
-        
+
         if (isset($this->std->infocrcontrib)) {
             foreach ($this->std->infocrcontrib as $infoc) {
                 $infocontrib = $this->dom->createElement("infoCRContrib");
@@ -109,7 +108,7 @@ class EvtIrrf extends Factory implements FactoryInterface
             }
         }
         $this->node->appendChild($infoIrrf);
-        
+
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         $this->sign();

@@ -70,7 +70,7 @@ class Event
         'evtcontrsindpatr' => Factories\EvtContrSindPatr::class,
         'evtremun' => Factories\EvtRemun::class
     ];
-    
+
     /**
      * Relationship between the code of the event and its respective name
      *
@@ -122,12 +122,13 @@ class Event
         's1300' => 'evtcontrsindpatr',
         's1200' => 'evtremun'
     ];
-    
+
     /**
      * Call classes to build XML eSocial Event
      *
      * @param  string $name
      * @param  array  $arguments [config, std, certificate, $date]
+     *
      * @return \NFePHP\eSocial\Factories\className
      * @throws InvalidArgumentException
      */

@@ -2,16 +2,15 @@
 
 namespace NFePHP\eSocial\Common;
 
-use NFePHP\Common\Certificate;
-use NFePHP\eSocial\Common\XsdSeeker;
 use DateTime;
+use NFePHP\Common\Certificate;
 
 class Tools
 {
     const EVT_INICIAIS = 1;
     const EVT_NAO_PERIODICOS = 2;
     const EVT_PERIODICOS = 3;
-    
+
     /**
      * @var string
      */
@@ -159,25 +158,26 @@ class Tools
         $this->nmRazao = $stdConf->empregador->nmRazao;
         $this->transmissortpInsc = $stdConf->transmissor->tpInsc;
         $this->transmissornrInsc = $stdConf->transmissor->nrInsc;
-        
+
         $this->layoutStr = $this->stringfyVersions($stdConf->eventoVersion);
         $this->serviceStr = $this->stringfyVersions($stdConf->serviceVersion, 1);
-        
+
         $this->certificate = $certificate;
-        
+
         $this->path = realpath(
-            __DIR__ . '/../../'
-        ).'/';
-        
+                __DIR__ . '/../../'
+            ) . '/';
+
         $this->serviceXsd = XsdSeeker::seek(
             $this->path . "schemes/comunicacao/$this->serviceStr/"
         );
     }
-    
+
     /**
      * Stringfy layout number
      *
      * @param  type $layout
+     *
      * @return string
      */
     protected function stringfyVersions($version, $length = 2)
@@ -185,7 +185,7 @@ class Tools
         $fils = explode('.', $version);
         $str = 'v';
         foreach ($fils as $fil) {
-            $str .= str_pad($fil, $length, '0', STR_PAD_LEFT). '_';
+            $str .= str_pad($fil, $length, '0', STR_PAD_LEFT) . '_';
         }
         return substr($str, 0, -1);
     }

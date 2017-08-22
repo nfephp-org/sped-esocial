@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtReintegr extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtReintegr extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -119,7 +118,7 @@ class EvtReintegr extends Factory implements FactoryInterface
             true
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $infoReintegr = $this->dom->createElement("infoReintegr");
         $this->dom->addChild(
             $infoReintegr,

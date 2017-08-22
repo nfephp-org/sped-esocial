@@ -15,10 +15,10 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
-use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\Common\Certificate;
+use NFePHP\eSocial\Common\Factory;
+use NFePHP\eSocial\Common\FactoryId;
+use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
 class EvtBenPrRP extends Factory implements FactoryInterface
@@ -57,7 +57,7 @@ class EvtBenPrRP extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -74,7 +74,7 @@ class EvtBenPrRP extends Factory implements FactoryInterface
         $att = $this->dom->createAttribute('Id');
         $att->value = $evtid;
         $evtBenPrRP->appendChild($att);
-        
+
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -95,7 +95,7 @@ class EvtBenPrRP extends Factory implements FactoryInterface
             true
         );
         $evtBenPrRP->appendChild($ideEvento);
-    
+
         $ideEmpregador = $this->dom->createElement("ideEmpregador");
         $this->dom->addChild(
             $ideEmpregador,
@@ -110,7 +110,6 @@ class EvtBenPrRP extends Factory implements FactoryInterface
             true
         );
         $evtBenPrRP->appendChild($ideEmpregador);
-        
 
 
         $eSocial->appendChild($evtBenPrRP);

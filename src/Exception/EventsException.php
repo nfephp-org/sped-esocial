@@ -1,4 +1,5 @@
 <?php
+
 namespace NFePHP\eSocial\Exception;
 
 /**
@@ -20,13 +21,13 @@ class EventsException extends \InvalidArgumentException implements ExceptionInte
         1004 => "",
         1005 => ""
     ];
-    
+
     public static function wrongArgument($code, $msg = '')
     {
         $msg = self::replaceMsg(self::$list[$code], $msg);
         return new static($msg);
     }
-    
+
     private static function replaceMsg($input, $msg)
     {
         return str_replace('{{msg}}', $msg, $input);

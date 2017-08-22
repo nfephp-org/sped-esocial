@@ -3,10 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../bootstrap.php';
 
-use JsonSchema\Validator;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Constraints\Factory;
 use JsonSchema\Constraints\Constraint;
+use JsonSchema\Constraints\Factory;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
 
 $evento = 'evtIrrf';
 $version = '02_03_00';
@@ -88,7 +88,6 @@ $infocrcontrib[1]->tpcr = '056101';
 $infocrcontrib[1]->vrcr = 1342.45;
 
 $jsonToValidateObject->infocrcontrib = $infocrcontrib;
-
 
 
 // Schema must be decoded before it can be used for validation

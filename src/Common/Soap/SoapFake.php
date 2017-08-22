@@ -14,9 +14,6 @@ namespace NFePHP\eSocial\Common\Soap;
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
  * @link      http://github.com/nfephp-org/sped-common for the canonical source repository
  */
-use NFePHP\eSocial\Common\Soap\SoapBase;
-use NFePHP\eSocial\Common\Soap\SoapInterface;
-use NFePHP\Common\Exception\SoapException;
 use NFePHP\Common\Certificate;
 use Psr\Log\LoggerInterface;
 
@@ -32,7 +29,7 @@ class SoapFake extends SoapBase implements SoapInterface
     {
         parent::__construct($certificate, $logger);
     }
-    
+
     public function send(
         $operation,
         $url,
@@ -42,17 +39,17 @@ class SoapFake extends SoapBase implements SoapInterface
     ) {
         $requestHead = implode("\n", $parameters);
         $requestBody = $envelope;
-        
+
         return json_encode(
             [
-            'url' => $url,
-            'operation' => $operation,
-            'action' => $action,
-            'soapver' => '1.1',
-            'parameters' => $parameters,
-            'header' => $requestHead,
-            'namespaces' => [],
-            'body' => $requestBody
+                'url' => $url,
+                'operation' => $operation,
+                'action' => $action,
+                'soapver' => '1.1',
+                'parameters' => $parameters,
+                'header' => $requestHead,
+                'namespaces' => [],
+                'body' => $requestBody
             ],
             JSON_PRETTY_PRINT
         );

@@ -82,7 +82,7 @@ $contrato->vrsalfx = 5000;
 $contrato->undsalfixo = 5;
 $contrato->tpcontr = 1;
 
-$vinculo->contrato  = $contrato;
+$vinculo->contrato = $contrato;
 
 $std->vinculo = $vinculo;
 

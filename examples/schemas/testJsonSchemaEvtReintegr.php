@@ -3,10 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../bootstrap.php';
 
-use JsonSchema\Validator;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Constraints\Factory;
 use JsonSchema\Constraints\Constraint;
+use JsonSchema\Constraints\Factory;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
 
 $evento = 'evtReintegr';
 $version = '02_03_00';
@@ -97,7 +97,6 @@ $jsonToValidateObject->nrleianistia = null;
 $jsonToValidateObject->dtefetretorno = '2017-08-22';
 $jsonToValidateObject->dtefeito = '2017-08-13';
 $jsonToValidateObject->indpagtojuizo = 'N';
-
 
 
 // Schema must be decoded before it can be used for validation
