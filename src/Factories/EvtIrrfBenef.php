@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtIrrfBenef extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -80,7 +79,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
         $this->dom->addChild(
             $ideTrabalhador,
@@ -89,7 +88,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
             true
         );
         $this->node->appendChild($ideTrabalhador);
-        
+
         if (!empty($this->std->vrdeddep)) {
             $infoDep = $this->dom->createElement("infoDep");
             $this->dom->addChild(
@@ -100,7 +99,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
             );
             $this->node->appendChild($infoDep);
         }
-        
+
         foreach ($this->std->infoirrf as $nIrrf) {
             $infoIrrf = $this->dom->createElement("infoIrrf");
             $this->dom->addChild(
@@ -115,7 +114,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                 $nIrrf->indresbr,
                 true
             );
-            
+
             foreach ($nIrrf->basesirrf as $base) {
                 $basesIrrf = $this->dom->createElement("basesIrrf");
                 $this->dom->addChild(
@@ -132,7 +131,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                 );
                 $infoIrrf->appendChild($basesIrrf);
             }
-            
+
             foreach ($nIrrf->irrf as $base) {
                 $irrf = $this->dom->createElement("irrf");
                 $this->dom->addChild(
@@ -149,7 +148,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                 );
                 $infoIrrf->appendChild($irrf);
             }
-            
+
             if (isset($nIrrf->idepgtoext)) {
                 $idePgtoExt = $this->dom->createElement("idePgtoExt");
                 $idePais = $this->dom->createElement("idePais");
@@ -172,7 +171,7 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
                     false
                 );
                 $idePgtoExt->appendChild($idePais);
-                
+
                 $endExt = $this->dom->createElement("endExt");
                 $this->dom->addChild(
                     $endExt,

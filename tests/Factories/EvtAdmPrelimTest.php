@@ -2,17 +2,18 @@
 
 namespace NFePHP\eSocial\Tests\Factories;
 
+use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Factories\EvtAdmPrelim;
 use NFePHP\eSocial\Tests\ESocialTestCase;
 
 class EvtAdmPrelimTest extends ESocialTestCase
 {
     /**
-     * @covers NFePHP\eSocial\Factories\Factory::__construct
-     * @covers NFePHP\eSocial\Factories\Factory::init
-     * @covers NFePHP\eSocial\Factories\Factory::strLayoutVer
-     * @covers NFePHP\eSocial\Factories\Factory::standardizeParams
-     * @covers NFePHP\eSocial\Factories\Factory::loadProperties
+     * @covers Factory::__construct
+     * @covers Factory::init
+     * @covers Factory::strLayoutVer
+     * @covers Factory::standardizeParams
+     * @covers Factory::loadProperties
      */
     public function testInstanciate()
     {
@@ -25,15 +26,17 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'   
+            '2017-08-03 10:37:00'
         );
+
+        $this->assertInstanceOf(EvtAdmPrelim::class, $evt);
     }
-    
+
     /**
-     * @covers NFePHP\eSocial\Factories\Factory::toXML
-     * @covers NFePHP\eSocial\Factories\Factory::sign
-     * @covers NFePHP\eSocial\Factories\EvtAdmPrelim::toNode
-     * @covers NFePHP\eSocial\Factories\FactoryId::build
+     * @covers Factory::toXML
+     * @covers Factory::sign
+     * @covers EvtAdmPrelim::toNode
+     * @covers FactoryId::build
      */
     public function testToXML()
     {
@@ -46,7 +49,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toXML();
         //file_put_contents($this->fixturesPath . 'evtAdmPrelim.xml', $actual);
@@ -59,9 +62,9 @@ class EvtAdmPrelimTest extends ESocialTestCase
         $expectedElement = $dom2->getElementsByTagName('evtAdmPrelim')->item(0);
         $this->assertEqualXMLStructure($expectedElement, $actualElement);
     }
-    
+
     /**
-     * @covers NFePHP\eSocial\Factories\Factory::toJson
+     * @covers Factory::toJson
      */
     public function testToJson()
     {
@@ -74,16 +77,16 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toJson();
         //file_put_contents($this->fixturesPath . 'evtAdmPrelim.json', $actual);
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
         $this->assertEquals($expected, $actual);
     }
-    
+
     /**
-     * @covers NFePHP\eSocial\Factories\Factory::toArray
+     * @covers Factory::toArray
      */
     public function testToArray()
     {
@@ -96,7 +99,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toArray();
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
@@ -104,7 +107,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
     }
 
     /**
-     * @covers NFePHP\eSocial\Factories\Factory::toStd
+     * @covers Factory::toStd
      */
     public function testToStd()
     {
@@ -117,7 +120,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
             $this->configJson,
             $std,
             $this->certificate,
-            '2017-08-03 10:37:00'  
+            '2017-08-03 10:37:00'
         );
         $actual = $evt->toStd();
         $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');

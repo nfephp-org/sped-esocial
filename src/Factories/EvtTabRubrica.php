@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtTabRubrica extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -86,7 +85,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         //tag deste evento em particular
         $infoRubrica = $this->dom->createElement("infoRubrica");
         //tag comum a todos os modos
@@ -124,7 +123,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             $node = $this->dom->createElement("exclusao");
         }
         $node->appendChild($ideRubrica);
-        
+
         if (!empty($this->std->dadosrubrica)) {
             $dadosRubrica = $this->dom->createElement("dadosRubrica");
             $this->dom->addChild(
@@ -201,7 +200,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                     : null,
                 false
             );
-            
+
             if (!empty($this->std->dadosrubrica->ideprocessocp)) {
                 foreach ($this->std->dadosrubrica->ideprocessocp as $cp) {
                     $ideProcessoCP = $this->dom->createElement("ideProcessoCP");
@@ -232,7 +231,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                     $dadosRubrica->appendChild($ideProcessoCP);
                 }
             }
-            
+
             if (!empty($this->std->dadosrubrica->ideprocessoirrf)) {
                 foreach ($this->std->dadosrubrica->ideprocessoirrf as $irrf) {
                     $ideProcessoIRRF = $this->dom->createElement("ideProcessoIRRF");
@@ -306,7 +305,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             );
             $node->appendChild($novaValidade);
         }
-        
+
         //finalização do xml
         $infoRubrica->appendChild($node);
         $this->node->appendChild($infoRubrica);

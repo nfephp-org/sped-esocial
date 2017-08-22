@@ -21,7 +21,7 @@ class ParamsStandardize
 {
     protected $schema;
     protected $keys;
-    
+
     /**
      * Constructor
      *
@@ -32,11 +32,44 @@ class ParamsStandardize
         $this->schema = $schema;
         $this->keys = $this->getKeys($schema);
     }
-    
+
+    /**
+     * Read all primary keys fields from data
+     *
+     * @param  \stdClass $schema
+     *
+     * @return array
+     */
+    protected function getKeys(\stdClass $schema)
+    {
+        return array_keys(
+            (array)$this->get(
+                $schema,
+                'properties',
+                new \stdClass()
+            )
+        );
+    }
+
+    /**
+     * Recover primary fields
+     *
+     * @param  \stdClass $obj
+     * @param  string    $prop
+     * @param  \stdClass $default
+     *
+     * @return \stdClass
+     */
+    protected function get(\stdClass $obj, $prop, \stdClass $default = null)
+    {
+        return isset($obj->{$prop}) ? $obj->{$prop} : $default;
+    }
+
     /**
      * Read all fields from data and put in standard structure
      *
      * @param  \stdClass $data
+     *
      * @return \stdClass
      */
     public function stdData(\stdClass $data)
@@ -45,37 +78,7 @@ class ParamsStandardize
         $this->getProperties($this->schema, $data, $clone, $this->keys, '');
         return $clone;
     }
-    
-    /**
-     * Read all primary keys fields from data
-     *
-     * @param  \stdClass $schema
-     * @return array
-     */
-    protected function getKeys(\stdClass $schema)
-    {
-        return array_keys(
-            (array) $this->get(
-                $schema,
-                'properties',
-                new \stdClass()
-            )
-        );
-    }
-    
-    /**
-     * Recover primary fields
-     *
-     * @param  \stdClass $obj
-     * @param  string    $prop
-     * @param  \stdClass $default
-     * @return \stdClass
-     */
-    protected function get(\stdClass $obj, $prop, \stdClass $default = null)
-    {
-        return isset($obj->{$prop}) ? $obj->{$prop} : $default;
-    }
-    
+
     /**
      * Build standard structure from schema and load data fields, if exists
      *
@@ -110,7 +113,7 @@ class ParamsStandardize
                     }
                     $this->getProperties($prop, $data, $clone, $keys, $ref);
                 } else {
-                    $comm =  "\$clone->";
+                    $comm = "\$clone->";
                     $orig = "\$data->";
                     if (!empty($ref)) {
                         $part = explode(':', $ref);
@@ -120,13 +123,13 @@ class ParamsStandardize
                             $orig .= "$p->";
                         }
                         $exist = false;
-                        $test = "\$exist = (!empty(" . substr($orig, 0, strlen($orig)-2).")) ? true : false;";
+                        $test = "\$exist = (!empty(" . substr($orig, 0, strlen($orig) - 2) . ")) ? true : false;";
                         eval($test);
                     }
                     $orig .= $name;
                     $resp = null;
                     eval("\$resp = $orig;");
-                    
+
                     if (!empty($resp) || $resp === 0) {
                         $comm .= $name . '= $resp';
                     } else {

@@ -16,11 +16,10 @@ namespace NFePHP\eSocial\Common;
  * @link      http://github.com/nfephp-org/sped-nfe for the canonical source repository
  */
 
-use DOMDocument;
-use stdClass;
-use Symfony\Component\Yaml\Yaml;
 use InvalidArgumentException;
 use NFePHP\Common\Validator;
+use stdClass;
+use Symfony\Component\Yaml\Yaml;
 
 class Standardize
 {
@@ -39,16 +38,38 @@ class Standardize
         '',
         ''
     ];
-    
+
     public function __construct($xml = null)
     {
         $this->toStd($xml);
     }
-    
+
+    /**
+     * Returns stdClass converted from xml
+     *
+     * @param  string $xml
+     *
+     * @return stdClass
+     */
+    public function toStd($xml = null)
+    {
+        if (!empty($xml)) {
+            $this->whichIs($xml);
+        }
+        $sxml = simplexml_load_string($this->node);
+        $this->json = str_replace(
+            '@attributes',
+            'attributes',
+            json_encode($sxml, JSON_PRETTY_PRINT)
+        );
+        return json_decode($this->json);
+    }
+
     /**
      * Identify node and extract from XML for convertion type
      *
      * @param  string $xml
+     *
      * @return string identificated node name
      * @throws InvalidArgumentException
      */
@@ -76,7 +97,7 @@ class Standardize
             "Este xml não pertence ao projeto eSocial."
         );
     }
-    
+
     /**
      * Returns extract node from XML
      *
@@ -86,31 +107,12 @@ class Standardize
     {
         return $this->node;
     }
-    
-    /**
-     * Returns stdClass converted from xml
-     *
-     * @param  string $xml
-     * @return stdClass
-     */
-    public function toStd($xml = null)
-    {
-        if (!empty($xml)) {
-            $this->whichIs($xml);
-        }
-        $sxml = simplexml_load_string($this->node);
-        $this->json = str_replace(
-            '@attributes',
-            'attributes',
-            json_encode($sxml, JSON_PRETTY_PRINT)
-        );
-        return json_decode($this->json);
-    }
-    
+
     /**
      * Retruns JSON string form XML
      *
      * @param  string $xml
+     *
      * @return string
      */
     public function toJson($xml = null)
@@ -120,25 +122,12 @@ class Standardize
         }
         return $this->json;
     }
-    
-    /**
-     * Returns array from XML
-     *
-     * @param  string $xml
-     * @return array
-     */
-    public function toArray($xml = null)
-    {
-        if (!empty($xml)) {
-            $this->toStd($xml);
-        }
-        return json_decode($this->json, true);
-    }
-    
+
     /**
      * Returns YAML from XML
      *
      * @param  string $xml
+     *
      * @return string
      */
     public function toYaml($xml = null)
@@ -148,5 +137,20 @@ class Standardize
         }
         $array = $this->toArray();
         return Yaml::dump($array, 6, 4);
+    }
+
+    /**
+     * Returns array from XML
+     *
+     * @param  string $xml
+     *
+     * @return array
+     */
+    public function toArray($xml = null)
+    {
+        if (!empty($xml)) {
+            $this->toStd($xml);
+        }
+        return json_decode($this->json, true);
     }
 }

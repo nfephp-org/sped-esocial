@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtInfoEmpregador extends Factory implements FactoryInterface
@@ -46,14 +45,14 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
     protected function toNode()
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        
+
         //o idEvento pode variar de evento para evento
         //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -76,9 +75,9 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $infoEmpregador = $this->dom->createElement("infoEmpregador");
-        
+
         //periodo
         $idePeriodo = $this->dom->createElement("idePeriodo");
         $this->dom->addChild(
@@ -93,7 +92,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             !empty($this->std->ideperiodo->fimvalid) ? $this->std->ideperiodo->fimvalid : '',
             false
         );
-        
+
         //infoCadastro
         if (isset($this->std->infocadastro)) {
             $cad = $this->std->infocadastro;
@@ -159,7 +158,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 false
             );
         }
-        
+
         if (isset($this->std->dadosisencao)) {
             $cad = $this->std->dadosisencao;
             $info = $this->dom->createElement("dadosIsencao");
@@ -213,7 +212,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        
+
         if (isset($this->std->contato)) {
             $cad = $this->std->contato;
             $info = $this->dom->createElement("contato");
@@ -249,7 +248,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        
+
         if (isset($this->std->infoop)) {
             $cad = $this->std->infoop;
             $info = $this->dom->createElement("infoOP");
@@ -261,7 +260,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        
+
         if (isset($this->std->infoefr)) {
             $cad = $this->std->infoefr;
             $info = $this->dom->createElement("infoEFR");
@@ -279,7 +278,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        
+
         if (isset($this->std->infoente)) {
             $cad = $this->std->infoente;
             $info = $this->dom->createElement("infoEnte");
@@ -321,7 +320,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        
+
         if (isset($this->std->infoorginternacional)) {
             $cad = $this->std->infoorginternacional;
             $info = $this->dom->createElement("infoorgInternacional");
@@ -333,7 +332,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        
+
         if (isset($this->std->softwarehouse)) {
             foreach ($this->std->softwarehouse as $sh) {
                 $info = $this->dom->createElement("softwareHouse");
@@ -370,7 +369,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $infoCadastro->appendChild($info);
             }
         }
-        
+
         if (isset($this->std->situacaopj)) {
             $infoComplementares = $this->dom->createElement("infoComplementares");
             $sh = $this->std->situacaopj;
@@ -394,7 +393,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoComplementares->appendChild($info);
         }
-        
+
         if (isset($this->std->novavalidade)) {
             $sh = $this->std->novavalidade;
             $novavalidade = $this->dom->createElement("novavalidade");
@@ -411,8 +410,8 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 false
             );
         }
-        
-        
+
+
         switch ($this->std->modo) {
             case "INC":
                 $node = $this->dom->createElement("inclusao");
@@ -432,7 +431,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $node->appendChild($idePeriodo);
                 break;
         }
-        
+
         $infoEmpregador->appendChild($node);
         $this->node->appendChild($infoEmpregador);
 

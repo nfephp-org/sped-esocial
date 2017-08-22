@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtTabEstab extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -86,10 +85,10 @@ class EvtTabEstab extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         //tag deste evento em particular
         $infoEstab = $this->dom->createElement("infoEstab");
-        
+
         //tag comum a todos os modos
         $ideEstab = $this->dom->createElement("ideEstab");
         $this->dom->addChild(
@@ -116,7 +115,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
-        
+
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
         } elseif ($this->std->modo == 'ALT') {
@@ -125,7 +124,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $node = $this->dom->createElement("exclusao");
         }
         $node->appendChild($ideEstab);
-        
+
         if (!empty($this->std->dadosestab)) {
             $dadosEstab = $this->dom->createElement("dadosEstab");
             $this->dom->addChild(
@@ -208,7 +207,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $aliqGilrat->appendChild($procAdmJudFap);
             }
             $dadosEstab->appendChild($aliqGilrat);
-            
+
             if (!empty($this->std->dadosestab->infocaepf)) {
                 $infoCaepf = $this->dom->createElement("infoCaepf");
                 $this->dom->addChild(
@@ -219,7 +218,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 );
                 $dadosEstab->appendChild($infoCaepf);
             }
-            
+
             if (!empty($this->std->dadosestab->infoobra)) {
                 $infoObra = $this->dom->createElement("infoObra");
                 $this->dom->addChild(
@@ -230,7 +229,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 );
                 $dadosEstab->appendChild($infoObra);
             }
-            
+
             $infoTrab = $this->dom->createElement("infoTrab");
             $this->dom->addChild(
                 $infoTrab,
@@ -238,7 +237,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                 $this->std->dadosestab->infotrab->regpt,
                 true
             );
-            
+
             $infoApr = $this->dom->createElement("infoApr");
             $this->dom->addChild(
                 $infoApr,
@@ -262,7 +261,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                     : null,
                 false
             );
-            
+
             if (!empty($this->std->dadosestab->infotrab->infoapr->infoenteduc)) {
                 foreach ($this->std->dadosestab->infotrab->infoapr->infoenteduc as $edu) {
                     $infoEntEduc = $this->dom->createElement("infoEntEduc");
@@ -275,7 +274,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
                     $infoApr->appendChild($infoEntEduc);
                 }
             }
-            
+
             $infoTrab->appendChild($infoApr);
             if (!empty($this->std->dadosestab->infotrab->infopdc)) {
                 $infoPCD = $this->dom->createElement("infoPCD");
@@ -298,7 +297,7 @@ class EvtTabEstab extends Factory implements FactoryInterface
             $dadosEstab->appendChild($infoTrab);
             $node->appendChild($dadosEstab);
         }
-        
+
         if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
             $newVal = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");

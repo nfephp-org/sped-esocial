@@ -15,10 +15,8 @@ namespace NFePHP\eSocial\Common\Soap;
  * @link      http://github.com/nfephp-org/sped-common for the canonical source repository
  */
 
-use NFePHP\eSocial\Common\Soap\SoapBase;
-use NFePHP\eSocial\Common\Soap\SoapInterface;
-use NFePHP\Common\Exception\SoapException;
 use NFePHP\Common\Certificate;
+use NFePHP\Common\Exception\SoapException;
 use Psr\Log\LoggerInterface;
 
 class SoapCurl extends SoapBase implements SoapInterface
@@ -33,7 +31,7 @@ class SoapCurl extends SoapBase implements SoapInterface
     {
         parent::__construct($certificate, $logger);
     }
-    
+
     /**
      * Send soap message to url
      *
@@ -42,6 +40,7 @@ class SoapCurl extends SoapBase implements SoapInterface
      * @param  string $action
      * @param  string $envelope
      * @param  array  $parameters
+     *
      * @return string
      * @throws \NFePHP\Common\Exception\SoapException
      */
@@ -55,7 +54,7 @@ class SoapCurl extends SoapBase implements SoapInterface
         $response = '';
         $this->requestHead = implode("\n", $parameters);
         $this->requestBody = $envelope;
-        
+
         try {
             $this->saveTemporarilyKeyFiles();
             $oCurl = curl_init();
@@ -80,7 +79,7 @@ class SoapCurl extends SoapBase implements SoapInterface
                 curl_setopt($oCurl, CURLOPT_KEYPASSWD, $this->temppass);
             }
             curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
-            if (! empty($envelope)) {
+            if (!empty($envelope)) {
                 curl_setopt($oCurl, CURLOPT_POST, true);
                 curl_setopt($oCurl, CURLOPT_POSTFIELDS, $envelope);
                 curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parameters);
@@ -115,11 +114,56 @@ class SoapCurl extends SoapBase implements SoapInterface
         }
         return $this->responseBody;
     }
-    
+
+    /**
+     * Set proxy into cURL parameters
+     *
+     * @param resource $oCurl
+     */
+    private function setCurlProxy(&$oCurl)
+    {
+        if ($this->proxyIP != '') {
+            curl_setopt($oCurl, CURLOPT_HTTPPROXYTUNNEL, 1);
+            curl_setopt($oCurl, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+            curl_setopt($oCurl, CURLOPT_PROXY, $this->proxyIP . ':' . $this->proxyPort);
+            if ($this->proxyUser != '') {
+                curl_setopt($oCurl, CURLOPT_PROXYUSERPWD, $this->proxyUser . ':' . $this->proxyPass);
+                curl_setopt($oCurl, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
+            }
+        }
+    }
+
+    /**
+     * Extract faultstring form response if exists
+     *
+     * @param  string $body
+     *
+     * @return string
+     */
+    private function getFaultString($body)
+    {
+        if (empty($body)) {
+            return '';
+        }
+        $dom = new \DOMDocument('1.0', 'UTF-8');
+        $dom->formatOutput = false;
+        $dom->preserveWhiteSpace = false;
+        $dom->loadXML($body);
+        $faultstring = '';
+        $nodefault = !empty($dom->getElementsByTagName('faultstring')->item(0))
+            ? $dom->getElementsByTagName('faultstring')->item(0)
+            : '';
+        if (!empty($nodefault)) {
+            $faultstring = $nodefault->nodeValue;
+        }
+        return htmlentities($faultstring, ENT_QUOTES, 'UTF-8');
+    }
+
     /**
      * Recover WSDL form given URL
      *
      * @param  string $url
+     *
      * @return string
      */
     public function wsdl($url)
@@ -151,48 +195,5 @@ class SoapCurl extends SoapBase implements SoapInterface
             return '';
         }
         return $response;
-    }
-    
-    /**
-     * Set proxy into cURL parameters
-     *
-     * @param resource $oCurl
-     */
-    private function setCurlProxy(&$oCurl)
-    {
-        if ($this->proxyIP != '') {
-            curl_setopt($oCurl, CURLOPT_HTTPPROXYTUNNEL, 1);
-            curl_setopt($oCurl, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-            curl_setopt($oCurl, CURLOPT_PROXY, $this->proxyIP.':'.$this->proxyPort);
-            if ($this->proxyUser != '') {
-                curl_setopt($oCurl, CURLOPT_PROXYUSERPWD, $this->proxyUser.':'.$this->proxyPass);
-                curl_setopt($oCurl, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
-            }
-        }
-    }
-    
-    /**
-     * Extract faultstring form response if exists
-     *
-     * @param  string $body
-     * @return string
-     */
-    private function getFaultString($body)
-    {
-        if (empty($body)) {
-            return '';
-        }
-        $dom = new \DOMDocument('1.0', 'UTF-8');
-        $dom->formatOutput = false;
-        $dom->preserveWhiteSpace = false;
-        $dom->loadXML($body);
-        $faultstring = '';
-        $nodefault = !empty($dom->getElementsByTagName('faultstring')->item(0))
-            ? $dom->getElementsByTagName('faultstring')->item(0)
-            : '';
-        if (!empty($nodefault)) {
-            $faultstring = $nodefault->nodeValue;
-        }
-        return htmlentities($faultstring, ENT_QUOTES, 'UTF-8');
     }
 }

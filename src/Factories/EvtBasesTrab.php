@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Factories;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\FactoryId;
-use NFePHP\Common\Certificate;
 use stdClass;
 
 class EvtBasesTrab extends Factory implements FactoryInterface
@@ -57,7 +56,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate);
     }
-    
+
     /**
      * Node constructor
      */
@@ -86,7 +85,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
         $this->dom->addChild(
             $ideTrabalhador,
@@ -113,7 +112,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
             }
         }
         $this->node->appendChild($ideTrabalhador);
-        
+
         if (isset($this->std->infocpcalc)) {
             foreach ($this->std->infocpcalc as $info) {
                 $infoCpCalc = $this->dom->createElement("infoCpCalc");
@@ -138,7 +137,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
                 $this->node->appendChild($infoCpCalc);
             }
         }
-        
+
         $infoCp = $this->dom->createElement("infoCp");
         foreach ($this->std->ideestablot as $ideest) {
             $ideEstabLot = $this->dom->createElement("ideEstabLot");
@@ -202,7 +201,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
                     );
                     $infoCategIncid->appendChild($infoBaseCS);
                 }
-                
+
                 if (isset($infocat->calcterc)) {
                     foreach ($infocat->calcterc as $cT) {
                         $calcTerc = $this->dom->createElement("calcTerc");

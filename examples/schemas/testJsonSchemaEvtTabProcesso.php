@@ -3,10 +3,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../bootstrap.php';
 
-use JsonSchema\Validator;
-use JsonSchema\SchemaStorage;
 use JsonSchema\Constraints\Factory;
-use JsonSchema\Constraints\Constraint;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
 
 $evento = 'evtTabProcesso';
 $version = '02_03_00';

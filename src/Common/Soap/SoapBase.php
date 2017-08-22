@@ -15,17 +15,43 @@ namespace NFePHP\eSocial\Common\Soap;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 use NFePHP\Common\Certificate;
-use NFePHP\eSocial\Common\Soap\SoapInterface;
-use NFePHP\Common\Exception\SoapException;
 use NFePHP\Common\Exception\RuntimeException;
 use NFePHP\Common\Strings;
-use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local;
 use Psr\Log\LoggerInterface;
 
 abstract class SoapBase implements SoapInterface
 {
+    /**
+     * @var string
+     */
+    public $responseHead;
+    /**
+     * @var string
+     */
+    public $responseBody;
+    /**
+     * @var string
+     */
+    public $requestHead;
+    /**
+     * @var string
+     */
+    public $requestBody;
+    /**
+     * @var string
+     */
+    public $soaperror;
+    /**
+     * @var array
+     */
+    public $soapinfo = [];
+    /**
+     * @var int
+     */
+    public $waitingTime = 45;
     /**
      * @var int
      */
@@ -118,34 +144,6 @@ abstract class SoapBase implements SoapInterface
      * @var bool
      */
     protected $debugmode = false;
-    /**
-     * @var string
-     */
-    public $responseHead;
-    /**
-     * @var string
-     */
-    public $responseBody;
-    /**
-     * @var string
-     */
-    public $requestHead;
-    /**
-     * @var string
-     */
-    public $requestBody;
-    /**
-     * @var string
-     */
-    public $soaperror;
-    /**
-     * @var array
-     */
-    public $soapinfo = [];
-    /**
-     * @var int
-     */
-    public $waitingTime = 45;
 
     /**
      * Constructor
@@ -161,11 +159,12 @@ abstract class SoapBase implements SoapInterface
         $this->certificate = $this->checkCertValidity($certificate);
         $this->setTemporaryFolder(sys_get_temp_dir() . '/sped/');
     }
-    
+
     /**
      * Check if certificate is valid
      *
      * @param  Certificate $certificate
+     *
      * @return Certificate
      * @throws RuntimeException
      */
@@ -183,7 +182,29 @@ abstract class SoapBase implements SoapInterface
         }
         return $certificate;
     }
-    
+
+    /**
+     * Set another temporayfolder for saving certificates for SOAP utilization
+     *
+     * @param string $folderRealPath
+     */
+    public function setTemporaryFolder($folderRealPath)
+    {
+        $this->tempdir = $folderRealPath;
+        $this->setLocalFolder($folderRealPath);
+    }
+
+    /**
+     * Set Local folder for flysystem
+     *
+     * @param string $folder
+     */
+    protected function setLocalFolder($folder = '')
+    {
+        $this->adapter = new Local($folder);
+        $this->filesystem = new Filesystem($this->adapter);
+    }
+
     /**
      * Destructor
      * Clean temporary files
@@ -192,7 +213,45 @@ abstract class SoapBase implements SoapInterface
     {
         $this->removeTemporarilyFiles();
     }
-    
+
+    /**
+     * Delete all files in folder
+     */
+    public function removeTemporarilyFiles()
+    {
+        $contents = $this->filesystem->listContents($this->certsdir, true);
+        //define um limite de $waitingTime min, ou seja qualquer arquivo criado a mais
+        //de $waitingTime min será removido
+        //NOTA: quando ocorre algum erro interno na execução do script, alguns
+        //arquivos temporários podem permanecer
+        //NOTA: O tempo default é de 45 minutos e pode ser alterado diretamente nas
+        //propriedades da classe, esse tempo entre 5 a 45 min é recomendável pois
+        //podem haver processos concorrentes para um mesmo usuário. Esses processos
+        //como o DFe podem ser mais longos, dependendo a forma que o aplicativo
+        //utilize a API. Outra solução para remover arquivos "perdidos" pode ser
+        //encontrada oportunamente.
+        $dt = new \DateTime();
+        $tint = new \DateInterval("PT" . $this->waitingTime . "M");
+        $tint->invert = true;
+        $tsLimit = $dt->add($tint)->getTimestamp();
+        foreach ($contents as $item) {
+            if ($item['type'] == 'file') {
+                if ($item['path'] == $this->prifile
+                    || $item['path'] == $this->pubfile
+                    || $item['path'] == $this->certfile
+                ) {
+                    $this->filesystem->delete($item['path']);
+                    continue;
+                }
+                $timestamp = $this->filesystem->getTimestamp($item['path']);
+                if ($timestamp < $tsLimit) {
+                    //remove arquivos criados a mais de 45 min
+                    $this->filesystem->delete($item['path']);
+                }
+            }
+        }
+    }
+
     /**
      * Disables the security checking of host and peer certificates
      *
@@ -203,11 +262,12 @@ abstract class SoapBase implements SoapInterface
         $this->disablesec = $flag;
         return $this->disablesec;
     }
-    
+
     /**
      * ONlY for tests
      *
      * @param  bool $flag
+     *
      * @return bool
      */
     public function disableCertValidation($flag = true)
@@ -227,52 +287,32 @@ abstract class SoapBase implements SoapInterface
             $this->casefaz = $capath;
         }
     }
-    
+
     /**
      * Set option to encript private key before save in filesystem
      * for an additional layer of protection
      *
      * @param  bool $encript
+     *
      * @return bool
      */
     public function setEncriptPrivateKey($encript = true)
     {
         return $this->encriptPrivateKey = $encript;
     }
-    
-    /**
-     * Set another temporayfolder for saving certificates for SOAP utilization
-     *
-     * @param string $folderRealPath
-     */
-    public function setTemporaryFolder($folderRealPath)
-    {
-        $this->tempdir = $folderRealPath;
-        $this->setLocalFolder($folderRealPath);
-    }
-    
-    /**
-     * Set Local folder for flysystem
-     *
-     * @param string $folder
-     */
-    protected function setLocalFolder($folder = '')
-    {
-        $this->adapter = new Local($folder);
-        $this->filesystem = new Filesystem($this->adapter);
-    }
 
     /**
      * Set debug mode, this mode will save soap envelopes in temporary directory
      *
      * @param  bool $value
+     *
      * @return bool
      */
     public function setDebugMode($value = false)
     {
         return $this->debugmode = $value;
     }
-    
+
     /**
      * Set certificate class for SSL comunications
      *
@@ -282,7 +322,7 @@ abstract class SoapBase implements SoapInterface
     {
         $this->certificate = $this->checkCertValidity($certificate);
     }
-    
+
     /**
      * Set logger class
      *
@@ -292,7 +332,7 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->logger = $logger;
     }
-    
+
     /**
      * Set timeout for communication
      *
@@ -302,29 +342,31 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->soaptimeout = $timesecs;
     }
-    
+
     /**
      * Set security protocol
      *
      * @param  int $protocol
+     *
      * @return type Description
      */
     public function protocol($protocol = self::SSL_DEFAULT)
     {
         return $this->soapprotocol = $protocol;
     }
-    
+
     /**
      * Set prefixes
      *
      * @param  string $prefixes
+     *
      * @return string
      */
     public function setSoapPrefix($prefixes)
     {
         return $this->prefixes = $prefixes;
     }
-    
+
     /**
      * Set proxy parameters
      *
@@ -340,7 +382,7 @@ abstract class SoapBase implements SoapInterface
         $this->proxyUser = $user;
         $this->proxyPass = $password;
     }
-    
+
     /**
      * Send message to webservice
      */
@@ -351,13 +393,94 @@ abstract class SoapBase implements SoapInterface
         $envelope,
         $parameters
     );
-    
+
+    /**
+     * Temporarily saves the certificate keys for use cURL or SoapClient
+     */
+    public function saveTemporarilyKeyFiles()
+    {
+        if (!is_object($this->certificate)) {
+            throw new RuntimeException(
+                'Certificate not found.'
+            );
+        }
+        $this->certsdir = $this->certificate->getCnpj() . '/certs/';
+        $this->prifile = $this->certsdir . Strings::randomString(10) . '.pem';
+        $this->pubfile = $this->certsdir . Strings::randomString(10) . '.pem';
+        $this->certfile = $this->certsdir . Strings::randomString(10) . '.pem';
+        $ret = true;
+        $private = $this->certificate->privateKey;
+        if ($this->encriptPrivateKey) {
+            //cria uma senha temporária ALEATÓRIA para salvar a chave primaria
+            //portanto mesmo que localizada e identificada não estará acessível
+            //pois sua senha não existe além do tempo de execução desta classe
+            $this->temppass = Strings::randomString(16);
+            //encripta a chave privada entes da gravação do filesystem
+            openssl_pkey_export(
+                $this->certificate->privateKey,
+                $private,
+                $this->temppass
+            );
+        }
+        $ret &= $this->filesystem->put(
+            $this->prifile,
+            $private
+        );
+        $ret &= $this->filesystem->put(
+            $this->pubfile,
+            $this->certificate->publicKey
+        );
+        $ret &= $this->filesystem->put(
+            $this->certfile,
+            $private . "{$this->certificate}"
+        );
+        if (!$ret) {
+            throw new RuntimeException(
+                'Unable to save temporary key files in folder.'
+            );
+        }
+    }
+
+    /**
+     * Save request envelope and response for debug reasons
+     *
+     * @param  string $operation
+     * @param  string $request
+     * @param  string $response
+     *
+     * @return void
+     */
+    public function saveDebugFiles($operation, $request, $response)
+    {
+        if (!$this->debugmode) {
+            return;
+        }
+        $this->debugdir = $this->certificate->getCnpj() . '/debug/';
+        $now = \DateTime::createFromFormat('U.u', microtime(true));
+        $time = substr($now->format("ymdHisu"), 0, 16);
+        try {
+            $this->filesystem->put(
+                $this->debugdir . $time . "_" . $operation . "_sol.txt",
+                $request
+            );
+            $this->filesystem->put(
+                $this->debugdir . $time . "_" . $operation . "_res.txt",
+                $response
+            );
+        } catch (Exception $e) {
+            throw new RuntimeException(
+                'Unable to create debug files.'
+            );
+        }
+    }
+
     /**
      * Mount soap envelope
      *
      * @param  string      $request
      * @param  array       $namespaces
      * @param  \SOAPHeader $header
+     *
      * @return string
      */
     protected function makeEnvelopeSoap(
@@ -387,122 +510,5 @@ abstract class SoapBase implements SoapInterface
         $envelope .= "<$prefix:Body>$request</$prefix:Body>"
             . "</$prefix:Envelope>";
         return $envelope;
-    }
-    
-    /**
-     * Temporarily saves the certificate keys for use cURL or SoapClient
-     */
-    public function saveTemporarilyKeyFiles()
-    {
-        if (!is_object($this->certificate)) {
-            throw new RuntimeException(
-                'Certificate not found.'
-            );
-        }
-        $this->certsdir = $this->certificate->getCnpj() . '/certs/';
-        $this->prifile = $this->certsdir. Strings::randomString(10).'.pem';
-        $this->pubfile = $this->certsdir . Strings::randomString(10).'.pem';
-        $this->certfile = $this->certsdir . Strings::randomString(10).'.pem';
-        $ret = true;
-        $private = $this->certificate->privateKey;
-        if ($this->encriptPrivateKey) {
-            //cria uma senha temporária ALEATÓRIA para salvar a chave primaria
-            //portanto mesmo que localizada e identificada não estará acessível
-            //pois sua senha não existe além do tempo de execução desta classe
-            $this->temppass = Strings::randomString(16);
-            //encripta a chave privada entes da gravação do filesystem
-            openssl_pkey_export(
-                $this->certificate->privateKey,
-                $private,
-                $this->temppass
-            );
-        }
-        $ret &= $this->filesystem->put(
-            $this->prifile,
-            $private
-        );
-        $ret &= $this->filesystem->put(
-            $this->pubfile,
-            $this->certificate->publicKey
-        );
-        $ret &= $this->filesystem->put(
-            $this->certfile,
-            $private."{$this->certificate}"
-        );
-        if (!$ret) {
-            throw new RuntimeException(
-                'Unable to save temporary key files in folder.'
-            );
-        }
-    }
-    
-    /**
-     * Delete all files in folder
-     */
-    public function removeTemporarilyFiles()
-    {
-        $contents = $this->filesystem->listContents($this->certsdir, true);
-        //define um limite de $waitingTime min, ou seja qualquer arquivo criado a mais
-        //de $waitingTime min será removido
-        //NOTA: quando ocorre algum erro interno na execução do script, alguns
-        //arquivos temporários podem permanecer
-        //NOTA: O tempo default é de 45 minutos e pode ser alterado diretamente nas
-        //propriedades da classe, esse tempo entre 5 a 45 min é recomendável pois
-        //podem haver processos concorrentes para um mesmo usuário. Esses processos
-        //como o DFe podem ser mais longos, dependendo a forma que o aplicativo
-        //utilize a API. Outra solução para remover arquivos "perdidos" pode ser
-        //encontrada oportunamente.
-        $dt = new \DateTime();
-        $tint = new \DateInterval("PT".$this->waitingTime."M");
-        $tint->invert = true;
-        $tsLimit = $dt->add($tint)->getTimestamp();
-        foreach ($contents as $item) {
-            if ($item['type'] == 'file') {
-                if ($item['path'] == $this->prifile
-                    || $item['path'] == $this->pubfile
-                    || $item['path'] == $this->certfile
-                ) {
-                    $this->filesystem->delete($item['path']);
-                    continue;
-                }
-                $timestamp = $this->filesystem->getTimestamp($item['path']);
-                if ($timestamp < $tsLimit) {
-                    //remove arquivos criados a mais de 45 min
-                    $this->filesystem->delete($item['path']);
-                }
-            }
-        }
-    }
-    
-    /**
-     * Save request envelope and response for debug reasons
-     *
-     * @param  string $operation
-     * @param  string $request
-     * @param  string $response
-     * @return void
-     */
-    public function saveDebugFiles($operation, $request, $response)
-    {
-        if (!$this->debugmode) {
-            return;
-        }
-        $this->debugdir = $this->certificate->getCnpj() . '/debug/';
-        $now = \DateTime::createFromFormat('U.u', microtime(true));
-        $time = substr($now->format("ymdHisu"), 0, 16);
-        try {
-            $this->filesystem->put(
-                $this->debugdir . $time . "_" . $operation . "_sol.txt",
-                $request
-            );
-            $this->filesystem->put(
-                $this->debugdir . $time . "_" . $operation . "_res.txt",
-                $response
-            );
-        } catch (Exception $e) {
-            throw new RuntimeException(
-                'Unable to create debug files.'
-            );
-        }
     }
 }
