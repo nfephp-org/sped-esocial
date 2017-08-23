@@ -166,7 +166,6 @@ class EvtBenPrRP extends Factory implements FactoryInterface
 
                 if (isset($dev->itens)) {
                     foreach ($dev->itens as $item) {
-
                         $itens = $this->dom->createElement("itens");
 
                         $this->dom->addChild(
@@ -191,7 +190,6 @@ class EvtBenPrRP extends Factory implements FactoryInterface
                         );
 
                         $dmDev->appendChild($itens);
-
                     }
                 }
 
