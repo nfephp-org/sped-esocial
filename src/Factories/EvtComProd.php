@@ -186,8 +186,8 @@ class EvtComProd extends Factory implements FactoryInterface
                         $this->dom->addChild(
                             $nfs,
                             "serie",
-                            $nf->serie,
-                            true
+                            !empty($nf->serie) ? $nf->serie : null,
+                            false
                         );
 
                         $this->dom->addChild(
@@ -238,12 +238,10 @@ class EvtComProd extends Factory implements FactoryInterface
 
                 $tpComerc->appendChild($ideAdquir);
             }
-
         }
 
         if (isset($this->std->infoprocjud)) {
             foreach ($this->std->infoprocjud as $procjud) {
-
                 $infoProcJud = $this->dom->createElement("infoProcJud");
 
                 $this->dom->addChild(
@@ -289,7 +287,6 @@ class EvtComProd extends Factory implements FactoryInterface
                 );
 
                 $tpComerc->appendChild($infoProcJud);
-
             }
         }
 
