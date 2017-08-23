@@ -53,7 +53,7 @@ O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos
                           <xs:documentation>Tipo de benefício previdenciário, conforme tabela 25</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:byte">
-                          <xs:pattern value="\d(1,2}"/>
+                          <xs:pattern value="\d{1,2}"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
