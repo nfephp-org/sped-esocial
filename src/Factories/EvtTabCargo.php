@@ -65,55 +65,5 @@ class EvtTabCargo extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid       = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtTabCargo = $this->dom->createElement("evtTabCargo");
-        $att         = $this->dom->createAttribute('Id');
-        $att->value  = $evtid;
-        $evtTabCargo->appendChild($att);
-
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $evtTabCargo->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtTabCargo->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtTabCargo);
-        $this->sign($eSocial);
     }
 }

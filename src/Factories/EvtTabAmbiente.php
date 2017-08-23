@@ -65,18 +65,9 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid          = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial        = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtTabAmbiente = $this->dom->createElement("evtTabAmbiente");
-        $att            = $this->dom->createAttribute('Id');
-        $att->value     = $evtid;
-        $evtTabAmbiente->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -96,24 +87,102 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtTabAmbiente->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
+        $ide = $this->dom->createElement("ideAmbiente");
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ide,
+            "codAmb",
+            $this->std->codamb,
             true
         );
         $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
+            $ide,
+            "iniValid",
+            $this->std->inivalid,
             true
         );
-        $evtTabAmbiente->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtTabAmbiente);
-        $this->sign($eSocial);
+        $this->dom->addChild(
+            $ide,
+            "fimValid",
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            false
+        );
+        
+        $info = $this->dom->createElement("infoAmbiente");
+        //seleção do modo
+        if ($this->std->modo == 'INC') {
+            $node = $this->dom->createElement("inclusao");
+        } elseif ($this->std->modo == 'ALT') {
+            $node = $this->dom->createElement("alteracao");
+        } else {
+            $node = $this->dom->createElement("exclusao");
+        }
+        $node->appendChild($ide);
+        
+        if (!empty($this->std->dadosambiente)) {
+            $da = $this->std->dadosambiente;
+            $dados = $this->dom->createElement("dadosAmbiente");
+            $this->dom->addChild(
+                $dados,
+                "dscAmb",
+                $da->dscamb,
+                true
+            );
+            $this->dom->addChild(
+                $dados,
+                "localAmb",
+                $da->localamb,
+                true
+            );
+            $this->dom->addChild(
+                $dados,
+                "tpInsc",
+                $da->tpinsc,
+                true
+            );
+            $this->dom->addChild(
+                $dados,
+                "nrInsc",
+                $da->nrinsc,
+                true
+            );
+            foreach ($this->std->dadosambiente->fatorrisco as $ftr) {
+                $fator = $this->dom->createElement("fatorRisco");
+                $this->dom->addChild(
+                    $fator,
+                    "codFatRis",
+                    $ftr->codfatris,
+                    true
+                );
+                $dados->appendChild($fator);
+            }
+            $node->appendChild($dados);
+        }
+        
+        if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
+            $nova = $this->dom->createElement("novaValidade");
+            $this->dom->addChild(
+                $nova,
+                "iniValid",
+                $this->std->novavalidade->inivalid,
+                true
+            );
+            $this->dom->addChild(
+                $nova,
+                "fimValid",
+                ! empty($this->std->novavalidade->fimvalid)
+                    ? $this->std->novavalidade->fimvalid
+                    : null,
+                false
+            );
+            $node->appendChild($nova);
+        }
+        
+        $info->appendChild($node);
+        $this->node->appendChild($info);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
