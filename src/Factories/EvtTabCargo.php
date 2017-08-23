@@ -65,6 +65,5 @@ class EvtTabCargo extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        
     }
 }

@@ -147,7 +147,7 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                 $da->nrinsc,
                 true
             );
-            foreach($this->std->dadosambiente->fatorrisco as $ftr) {
+            foreach ($this->std->dadosambiente->fatorrisco as $ftr) {
                 $fator = $this->dom->createElement("fatorRisco");
                 $this->dom->addChild(
                     $fator,

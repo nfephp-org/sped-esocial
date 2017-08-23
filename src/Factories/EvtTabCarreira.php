@@ -65,6 +65,5 @@ class EvtTabCarreira extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-       
     }
 }
