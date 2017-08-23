@@ -65,19 +65,48 @@ class EvtBenPrRP extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid      = FactoryId::build(
+        $evtid = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
+
         $evtBenPrRP = $this->dom->createElement("evtBenPrRP");
-        $att        = $this->dom->createAttribute('Id');
+
+        $att = $this->dom->createAttribute('Id');
+
         $att->value = $evtid;
+
         $evtBenPrRP->appendChild($att);
 
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "indApuracao",
+            $this->std->indapuracao,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "perApur",
+            $this->std->perapur,
+            true
+        );
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -96,24 +125,79 @@ class EvtBenPrRP extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtBenPrRP->appendChild($ideEvento);
 
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+
+        $ideBenef = $this->dom->createElement("ideBenef");
+
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ideBenef,
+            "cpfBenef",
+            $this->std->cpfbenef,
             true
         );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtBenPrRP->appendChild($ideEmpregador);
 
-        $eSocial->appendChild($evtBenPrRP);
-        $this->sign($eSocial);
+        $this->node->appendChild($ideBenef);
+
+        if (isset($this->std->dmdev)) {
+            foreach ($this->std->dmdev as $dev) {
+                $dmDev = $this->dom->createElement("dmDev");
+
+                $this->dom->addChild(
+                    $dmDev,
+                    "tpBenef",
+                    $dev->tpbenef,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $dmDev,
+                    "nrBenefic",
+                    $dev->nrbenefic,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $dmDev,
+                    "ideDmDev",
+                    $dev->idedmdev,
+                    true
+                );
+
+                if (isset($dev->itens)) {
+                    foreach ($dev->itens as $item) {
+                        $itens = $this->dom->createElement("itens");
+
+                        $this->dom->addChild(
+                            $itens,
+                            "codRubr",
+                            $item->codrubr,
+                            true
+                        );
+
+                        $this->dom->addChild(
+                            $itens,
+                            "ideTabRubr",
+                            $item->idetabrubr,
+                            true
+                        );
+
+                        $this->dom->addChild(
+                            $itens,
+                            "vrRubr",
+                            $item->vrrubr,
+                            true
+                        );
+
+                        $dmDev->appendChild($itens);
+                    }
+                }
+
+                $this->node->appendChild($dmDev);
+            }
+        }
+
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
