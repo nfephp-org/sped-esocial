@@ -65,18 +65,9 @@ class EvtTabOperPort extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid          = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial        = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtTabOperPort = $this->dom->createElement("evtTabOperPort");
-        $att            = $this->dom->createAttribute('Id');
-        $att->value     = $evtid;
-        $evtTabOperPort->appendChild($att);
-
+         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -96,24 +87,89 @@ class EvtTabOperPort extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtTabOperPort->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
+        $ide = $this->dom->createElement("ideOperPortuario");
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ide,
+            "cnpjOpPortuario",
+            $this->std->cnpjopportuario,
             true
         );
         $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
+            $ide,
+            "iniValid",
+            $this->std->inivalid,
             true
         );
-        $evtTabOperPort->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtTabOperPort);
-        $this->sign($eSocial);
+        $this->dom->addChild(
+            $ide,
+            "fimValid",
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            false
+        );
+        
+        if (!empty($this->std->dadosoperportuario)) {
+            $da = $this->std->dadosoperportuario;
+            $dados = $this->dom->createElement("dadosOperPortuario");
+            $this->dom->addChild(
+                $dados,
+                "aliqRat",
+                $da->aliqrat,
+                true
+            );
+            $this->dom->addChild(
+                $dados,
+                "fap",
+                $da->fap,
+                true
+            );
+            $this->dom->addChild(
+                $dados,
+                "aliqRatAjust",
+                $da->aliqratajust,
+                true
+            );
+        }
+        
+        if (!empty($this->std->novavalidade)) {
+            $nova = $this->dom->createElement("novaValidade");
+            $this->dom->addChild(
+                $nova,
+                "iniValid",
+                $this->std->novavalidade->inivalid,
+                true
+            );
+            $this->dom->addChild(
+                $nova,
+                "fimValid",
+                ! empty($this->std->novavalidade->fimvalid)
+                    ? $this->std->novavalidade->fimvalid
+                    : null,
+                false
+            );
+        }
+        
+        $info = $this->dom->createElement("infoOperPortuario");
+        //seleção do modo
+        if ($this->std->modo == 'INC') {
+            $node = $this->dom->createElement("inclusao");
+            $node->appendChild($ide);
+            $node->appendChild($dados);
+        } elseif ($this->std->modo == 'ALT') {
+            $node = $this->dom->createElement("alteracao");
+            $node->appendChild($ide);
+            $node->appendChild($dados);
+            $node->appendChild($nova);
+        } else {
+            $node = $this->dom->createElement("exclusao");
+            $node->appendChild($ide);
+        }
+        
+        $info->appendChild($node);
+        $this->node->appendChild($info);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
