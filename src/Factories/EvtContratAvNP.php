@@ -128,8 +128,8 @@ class EvtContratAvNP extends Factory implements FactoryInterface
 
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
-        if(isset($this->std->remunavnp)){
-            foreach ($this->std->remunavnp as $remun){
+        if (isset($this->std->remunavnp)) {
+            foreach ($this->std->remunavnp as $remun) {
                 $remunAvNP = $this->dom->createElement("remunAvNP");
 
                 $this->dom->addChild(
