@@ -7,11 +7,11 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-$evento  = 'evtTabFuncao';
+$evento  = 'evtTabCarreira';
 $version = '02_03_00';
 
 $jsonSchema = '{
-    "title": "evtTabFuncao",
+    "title": "evtTabCarreira",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -20,7 +20,7 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 99999
         },
-        "codfuncao": {
+        "codcarreira": {
             "required": true,
             "type": "string",
             "maxLength": 30,
@@ -41,22 +41,31 @@ $jsonSchema = '{
             "type": "string",
             "pattern": "INC|ALT|EXC"
         },
-        "dadosfuncao": {
+        "dadoscarreira": {
             "required": true,
             "type": "object",
             "properties": {
-                "dscfuncao": {
+                "dsccarreira": {
                     "required": true,
                     "type": "string",
                     "minLength": 8,
                     "maxLength": 100
                 },
-                "codcbo": {
+                "leicarr": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 12
+                },
+                "dtleicarr": {
                     "required": true,
                     "type": "string",
-                    "minLength": 6,
-                    "maxLength": 6,
-                    "pattern": "^[0-9]"
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "sitcarr": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
                 }
             }
         },
@@ -82,15 +91,16 @@ $jsonSchema = '{
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->codfuncao = 'assistente';
+$std->codcarreira = 'assistente';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
 $std->modo = 'INC';
 
-$std->dadosfuncao = new \stdClass();
-$std->dadosfuncao->dscfuncao = 'descricao da funcao';
-$std->dadosfuncao->codcbo = '123456';
-
+$std->dadoscarreira = new \stdClass();
+$std->dadoscarreira->dsccarreira = 'descricao da carreira';
+$std->dadoscarreira->leicarr = '123456';
+$std->dadoscarreira->dtleicarr = '2016-10-08';
+$std->dadoscarreira->sitcarr = 2;
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-01';
 $std->novavalidade->fimvalid = '2017-12';
