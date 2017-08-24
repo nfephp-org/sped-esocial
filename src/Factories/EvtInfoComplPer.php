@@ -129,7 +129,6 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         if (isset($this->std->infosubstpatr)) {
-
             $infoSubstPatr = $this->dom->createElement("infoSubstPatr");
 
             $this->dom->addChild(
@@ -147,12 +146,10 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
             );
 
             $this->node->appendChild($infoSubstPatr);
-
         }
 
         if (isset($this->std->infosubstpatropport)) {
             foreach ($this->std->infosubstpatropport as $info) {
-
                 $infoSubstPatrOpPort = $this->dom->createElement("infoSubstPatrOpPort");
 
                 $this->dom->addChild(
@@ -167,7 +164,6 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->infoativconcom)) {
-
             $infoAtivConcom = $this->dom->createElement("infoAtivConcom");
 
             $this->dom->addChild(
@@ -185,8 +181,6 @@ class EvtInfoComplPer extends Factory implements FactoryInterface
             );
 
             $this->node->appendChild($infoAtivConcom);
-
-
         }
 
         $this->eSocial->appendChild($this->node);
