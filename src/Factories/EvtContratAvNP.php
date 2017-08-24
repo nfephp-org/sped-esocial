@@ -71,13 +71,42 @@ class EvtContratAvNP extends Factory implements FactoryInterface
             $this->date,
             $this->sequencial
         );
-        $eSocial        = $this->dom->getElementsByTagName("eSocial")->item(0);
+
         $evtContratAvNP = $this->dom->createElement("evtContratAvNP");
+
         $att            = $this->dom->createAttribute('Id');
+
         $att->value     = $evtid;
+
         $evtContratAvNP->appendChild($att);
 
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "indApuracao",
+            $this->std->indapuracao,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "perApur",
+            $this->std->perapur,
+            true
+        );
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -96,24 +125,88 @@ class EvtContratAvNP extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtContratAvNP->appendChild($ideEvento);
 
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtContratAvNP->appendChild($ideEmpregador);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
 
-        $eSocial->appendChild($evtContratAvNP);
-        $this->sign($eSocial);
+        if(isset($this->std->remunavnp)){
+            foreach ($this->std->remunavnp as $remun){
+                $remunAvNP = $this->dom->createElement("remunAvNP");
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "tpInsc",
+                    $remun->tpinsc,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "nrInsc",
+                    $remun->nrinsc,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "codLotacao",
+                    $remun->codlotacao,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrBcCp00",
+                    $remun->vrbccp00,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrBcCp15",
+                    $remun->vrbccp15,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrBcCp20",
+                    $remun->vrbccp20,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrBcCp25",
+                    $remun->vrbccp25,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrBcCp13",
+                    $remun->vrbccp13,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrBcFgts",
+                    $remun->vrbcfgts,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $remunAvNP,
+                    "vrDescCP",
+                    $remun->vrdesccp,
+                    true
+                );
+
+                $this->node->appendChild($remunAvNP);
+            }
+        }
+
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
