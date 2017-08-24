@@ -130,7 +130,6 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
 
         if (isset($this->std->contribsind)) {
             foreach ($this->std->contribsind as $contrib) {
-
                 $contribSind = $this->dom->createElement("contribSind");
 
                 $this->dom->addChild(
@@ -155,7 +154,6 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
                 );
 
                 $this->node->appendChild($contribSind);
-
             }
         }
 
