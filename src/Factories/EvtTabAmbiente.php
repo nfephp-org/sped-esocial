@@ -109,17 +109,6 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
             false
         );
         
-        $info = $this->dom->createElement("infoAmbiente");
-        //seleção do modo
-        if ($this->std->modo == 'INC') {
-            $node = $this->dom->createElement("inclusao");
-        } elseif ($this->std->modo == 'ALT') {
-            $node = $this->dom->createElement("alteracao");
-        } else {
-            $node = $this->dom->createElement("exclusao");
-        }
-        $node->appendChild($ide);
-        
         if (!empty($this->std->dadosambiente)) {
             $da = $this->std->dadosambiente;
             $dados = $this->dom->createElement("dadosAmbiente");
@@ -157,10 +146,9 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                 );
                 $dados->appendChild($fator);
             }
-            $node->appendChild($dados);
         }
         
-        if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
+        if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
                 $nova,
@@ -176,7 +164,22 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                     : null,
                 false
             );
+        }
+        
+        $info = $this->dom->createElement("infoAmbiente");
+        //seleção do modo
+        if ($this->std->modo == 'INC') {
+            $node = $this->dom->createElement("inclusao");
+            $node->appendChild($ide);
+            $node->appendChild($dados);
+        } elseif ($this->std->modo == 'ALT') {
+            $node = $this->dom->createElement("alteracao");
+            $node->appendChild($ide);
+            $node->appendChild($dados);
             $node->appendChild($nova);
+        } else {
+            $node = $this->dom->createElement("exclusao");
+            $node->appendChild($ide);
         }
         
         $info->appendChild($node);
