@@ -69,6 +69,7 @@ class Event
         'evttsvtermino'     => Factories\EvtTSVTermino::class,
         'evtcontrsindpatr'  => Factories\EvtContrSindPatr::class,
         'evtremun'          => Factories\EvtRemun::class,
+        'evttotconting'     => Factories\EvtTotConting::class,
     ];
 
     /**
@@ -121,6 +122,7 @@ class Event
         's2399' => 'evttsvtermino',
         's1300' => 'evtcontrsindpatr',
         's1200' => 'evtremun',
+        's1295' => 'evttotconting'
     ];
 
     /**
