@@ -65,19 +65,30 @@ class EvtInsApo extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid      = FactoryId::build(
+        $evtid = FactoryId::build(
             $this->tpInsc,
             $this->nrInsc,
             $this->date,
             $this->sequencial
         );
-        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtInsApo  = $this->dom->createElement("evtInsApo");
-        $att        = $this->dom->createAttribute('Id');
+
+        $evtInsApo = $this->dom->createElement("evtInsApo");
+
+        $att = $this->dom->createAttribute('Id');
+
         $att->value = $evtid;
+
         $evtInsApo->appendChild($att);
 
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -96,24 +107,289 @@ class EvtInsApo extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtInsApo->appendChild($ideEvento);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
 
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $ideVinculo = $this->dom->createElement("ideVinculo");
+
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ideVinculo,
+            "cpfTrab",
+            $this->std->idevinculo->cpftrab,
             true
         );
         $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
+            $ideVinculo,
+            "nisTrab",
+            $this->std->idevinculo->nistrab,
             true
         );
-        $evtInsApo->appendChild($ideEmpregador);
+        $this->dom->addChild(
+            $ideVinculo,
+            "matricula",
+            $this->std->idevinculo->matricula,
+            true
+        );
 
-        $eSocial->appendChild($evtInsApo);
-        $this->sign($eSocial);
+        $this->node->appendChild($ideVinculo);
+
+        if (isset($this->std->insalperic)) {
+
+            $insalPeric = $this->dom->createElement("insalPeric");
+
+            if (isset($this->std->insalperic->iniinsalperic)) {
+
+                $iniInsalPeric = $this->dom->createElement("iniInsalPeric");
+
+                $this->dom->addChild(
+                    $iniInsalPeric,
+                    "dtIniCondicao",
+                    $this->std->insalperic->iniinsalperic->dtinicondicao,
+                    true
+                );
+
+                if (isset($this->std->insalperic->iniinsalperic->infoamb)) {
+                    foreach ($this->std->insalperic->iniinsalperic->infoamb as $amb) {
+                        $infoAmb = $this->dom->createElement("infoAmb");
+
+                        $this->dom->addChild(
+                            $infoAmb,
+                            "codAmb",
+                            $amb->codamb,
+                            true
+                        );
+
+                        if (isset($amb->fatrisco)) {
+                            foreach ($amb->fatrisco as $risco) {
+                                $fatRisco = $this->dom->createElement("fatRisco");
+
+                                $this->dom->addChild(
+                                    $fatRisco,
+                                    "codFatRis",
+                                    $risco->codfatris,
+                                    true
+                                );
+
+                                $infoAmb->appendChild($fatRisco);
+                            }
+                        }
+
+                        $iniInsalPeric->appendChild($infoAmb);
+
+                    }
+
+                }
+
+                $insalPeric->appendChild($iniInsalPeric);
+            }
+
+            if (isset($this->std->insalperic->altinsalperic)) {
+                $altInsalPeric = $this->dom->createElement("altInsalPeric");
+
+                $this->dom->addChild(
+                    $altInsalPeric,
+                    "dtAltCondicao",
+                    $this->std->insalperic->altinsalperic->dtaltcondicao,
+                    true
+                );
+
+                if (isset($this->std->insalperic->altinsalperic->infoamb)) {
+                    foreach ($this->std->insalperic->altinsalperic->infoamb as $amb) {
+
+                        $infoAmb = $this->dom->createElement("infoamb");
+
+                        $this->dom->addChild(
+                            $infoAmb,
+                            "codAmb",
+                            $amb->codamb,
+                            true
+                        );
+
+                        if (isset($amb->fatrisco)) {
+                            foreach ($amb->fatrisco as $risco) {
+                                $fatRisco = $this->dom->createElement("fatRisco");
+
+                                $this->dom->addChild(
+                                    $fatRisco,
+                                    "codFatRis",
+                                    $risco->codfatris,
+                                    true
+                                );
+
+                                $infoAmb->appendChild($fatRisco);
+                            }
+                        }
+
+                        $altInsalPeric->appendChild($infoAmb);
+                    }
+                }
+
+                $insalPeric->appendChild($altInsalPeric);
+            }
+
+            if (isset($this->std->insalperic->fiminsalperic)) {
+                $fimInsalPeric = $this->dom->createElement("fimInsalPeric");
+
+                $this->dom->addChild(
+                    $fimInsalPeric,
+                    "dtFimCondicao",
+                    $this->std->insalperic->fiminsalperic->dtfimcondicao,
+                    true
+                );
+
+                if (isset($this->std->insalperic->fiminsalperic->infoamb)) {
+                    foreach ($this->std->insalperic->fiminsalperic->infoamb as $amb) {
+
+                        $infoAmb = $this->dom->createElement("infoAmb");
+
+                        $this->dom->addChild(
+                            $infoAmb,
+                            "codAmb",
+                            $amb->codamb,
+                            true
+                        );
+
+
+                        $fimInsalPeric->appendChild($infoAmb);
+                    }
+                }
+
+                $insalPeric->appendChild($fimInsalPeric);
+            }
+
+
+            $this->node->appendChild($insalPeric);
+        }
+
+        if (isset($this->std->aposentesp)) {
+            $aposentEsp = $this->dom->createElement("aposentEsp");
+
+            if (isset($this->std->aposentesp->iniaposentesp)) {
+                $iniAposentEsp = $this->dom->createElement("iniAposentEsp");
+
+                $this->dom->addChild(
+                    $iniAposentEsp,
+                    "dtIniCondicao",
+                    $this->std->aposentesp->iniaposentesp->dtinicondicao,
+                    true
+                );
+
+                if (isset($this->std->aposentesp->iniaposentesp->infoamb)) {
+                    foreach ($this->std->aposentesp->iniaposentesp->infoamb as $amb) {
+
+                        $infoAmb = $this->dom->createElement("infoAmb");
+
+                        $this->dom->addChild(
+                            $infoAmb,
+                            "codAmb",
+                            $amb->codamb,
+                            true
+                        );
+
+                        if (isset($amb->fatrisco)) {
+                            foreach ($amb->fatrisco as $risco) {
+
+                                $fatRisco = $this->dom->createElement("fatRisco");
+
+                                $this->dom->addChild(
+                                    $fatRisco,
+                                    "codFatRis",
+                                    $risco->codfatris,
+                                    true
+                                );
+
+                                $infoAmb->appendChild($fatRisco);
+                            }
+                        }
+
+                        $iniAposentEsp->appendChild($infoAmb);
+
+                    }
+                }
+
+                $aposentEsp->appendChild($iniAposentEsp);
+            }
+
+            if (isset($this->std->aposentesp->altaposentesp)) {
+                $altAposentEsp = $this->dom->createElement("altAposentEsp");
+
+                $this->dom->addChild(
+                    $altAposentEsp,
+                    "dtAltCondicao",
+                    $this->std->aposentesp->altaposentesp->dtinicondicao,
+                    true
+                );
+
+                if (isset($this->std->aposentesp->altaposentesp->infoamb)) {
+                    foreach ($this->std->aposentesp->altaposentesp->infoamb as $amb) {
+
+                        $infoAmb = $this->dom->createElement("infoamb");
+
+                        $this->dom->addChild(
+                            $infoAmb,
+                            "codAmb",
+                            $amb->codamb,
+                            true
+                        );
+
+                        if (isset($amb->fatrisco)) {
+                            foreach ($amb->fatrisco as $risco) {
+
+                                $fatRisco = $this->dom->createElement("fatRisco");
+
+                                $this->dom->addChild(
+                                    $fatRisco,
+                                    "codFatRis",
+                                    $risco->codfatris,
+                                    true
+                                );
+
+                                $infoAmb->appendChild($fatRisco);
+                            }
+                        }
+
+                        $altAposentEsp->appendChild($infoAmb);
+
+                    }
+                }
+
+                $aposentEsp->appendChild($altAposentEsp);
+            }
+
+            if (isset($this->std->aposentesp->fimaposentesp)) {
+                $fimAposentEsp = $this->dom->createElement("fimAposentEsp");
+
+                $this->dom->addChild(
+                    $fimAposentEsp,
+                    "dtFimCondicao",
+                    $this->std->aposentesp->fimaposentesp->dtinicondicao,
+                    true
+                );
+
+                if (isset($this->std->aposentesp->fimaposentesp->infoamb)) {
+                    foreach ($this->std->aposentesp->fimaposentesp->infoamb as $amb) {
+
+                        $infoAmb = $this->dom->createElement("infoAmb");
+
+                        $this->dom->addChild(
+                            $infoAmb,
+                            "codAmb",
+                            $amb->codamb,
+                            true
+                        );
+
+
+                        $fimAposentEsp->appendChild($infoAmb);
+
+                    }
+                }
+
+                $aposentEsp->appendChild($fimAposentEsp);
+            }
+
+            $this->node->appendChild($aposentEsp);
+        }
+
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
