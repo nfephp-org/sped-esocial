@@ -269,21 +269,24 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $instEnsino,
                     "dscLograd",
-                    !empty($this->std->estagiario->instituicao->dsclograd) ? $this->std->estagiario->instituicao->dsclograd : null,
+                    !empty($this->std->estagiario->instituicao->dsclograd) ?
+                        $this->std->estagiario->instituicao->dsclograd : null,
                     false
                 );
 
                 $this->dom->addChild(
                     $instEnsino,
                     "nrLograd",
-                    !empty($this->std->estagiario->instituicao->nrlograd) ? $this->std->estagiario->instituicao->nrlograd : null,
+                    !empty($this->std->estagiario->instituicao->nrlograd) ?
+                        $this->std->estagiario->instituicao->nrlograd : null,
                     false
                 );
 
                 $this->dom->addChild(
                     $instEnsino,
                     "bairro",
-                    !empty($this->std->estagiario->instituicao->bairro) ? $this->std->estagiario->instituicao->bairro : null,
+                    !empty($this->std->estagiario->instituicao->bairro) ? $this->std->estagiario->instituicao->bairro :
+                        null,
                     false
                 );
 
@@ -297,7 +300,8 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $instEnsino,
                     "codMunic",
-                    !empty($this->std->estagiario->instituicao->codmunic) ? $this->std->estagiario->instituicao->codmunic : null,
+                    !empty($this->std->estagiario->instituicao->codmunic) ?
+                        $this->std->estagiario->instituicao->codmunic : null,
                     false
                 );
 
@@ -312,7 +316,6 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
             }
 
             if (isset($this->std->estagiario->ageintegracao)) {
-
                 $ageIntegracao = $this->dom->createElement("ageIntegracao");
 
                 $this->dom->addChild(
@@ -346,7 +349,8 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $ageIntegracao,
                     "bairro",
-                    !empty($this->std->estagiario->ageintegracao->bairro) ? $this->std->estagiario->ageintegracao->bairro : null,
+                    !empty($this->std->estagiario->ageintegracao->bairro) ?
+                        $this->std->estagiario->ageintegracao->bairro : null,
                     false
                 );
 
@@ -372,11 +376,9 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
                 );
 
                 $infoEstagiario->appendChild($ageIntegracao);
-
             }
 
             if (isset($this->std->estagiario->supervisor)) {
-
                 $supervisorEstagio = $this->dom->createElement("supervisorEstagio");
 
                 $this->dom->addChild(
@@ -395,12 +397,9 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
 
 
                 $infoEstagiario->appendChild($supervisorEstagio);
-
-
             }
 
             $infoComplementares->appendChild($infoEstagiario);
-
         }
 
         $this->node->appendChild($infoTSVAlteracao);
