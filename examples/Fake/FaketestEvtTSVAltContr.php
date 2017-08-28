@@ -58,6 +58,20 @@ $std->estagiario->instituicao                 = new \stdClass();
 $std->estagiario->instituicao->cnpjinstensino = '11111111111111';
 $std->estagiario->instituicao->nmrazao        = 'INSTITUICAO';
 
+$std->estagiario->ageintegracao                = new \stdClass();
+$std->estagiario->ageintegracao->cnpjagntinteg = '11111111111111';
+$std->estagiario->ageintegracao->nmrazao       = 'RAZAO';
+$std->estagiario->ageintegracao->dsclograd     = 'LOGRADOURO';
+$std->estagiario->ageintegracao->nrlograd      = 'S/N';
+$std->estagiario->ageintegracao->bairro        = 'BAIRRO';
+$std->estagiario->ageintegracao->cep           = '12345789';
+$std->estagiario->ageintegracao->codmunic      = 3550308;
+$std->estagiario->ageintegracao->uf            = 'SP';
+
+$std->estagiario->supervisor                = new \stdClass();
+$std->estagiario->supervisor->cpfsupervisor = '11111111111';
+$std->estagiario->supervisor->nmsuperv      = 'SUPERVISOR';
+
 try {
     //carrega a classe responsavel por lidar com os certificados
     $content     = file_get_contents('expired_certificate.pfx');

@@ -311,6 +311,94 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
                 $infoEstagiario->appendChild($instEnsino);
             }
 
+            if (isset($this->std->estagiario->ageintegracao)) {
+
+                $ageIntegracao = $this->dom->createElement("ageIntegracao");
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "cnpjAgntInteg",
+                    $this->std->estagiario->ageintegracao->cnpjagntinteg,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "nmRazao",
+                    $this->std->estagiario->ageintegracao->nmrazao,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "dscLograd",
+                    $this->std->estagiario->ageintegracao->dsclograd,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "nrLograd",
+                    $this->std->estagiario->ageintegracao->nrlograd,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "bairro",
+                    !empty($this->std->estagiario->ageintegracao->bairro) ? $this->std->estagiario->ageintegracao->bairro : null,
+                    false
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "cep",
+                    $this->std->estagiario->ageintegracao->cep,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "codMunic",
+                    $this->std->estagiario->ageintegracao->codmunic,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $ageIntegracao,
+                    "uf",
+                    $this->std->estagiario->ageintegracao->uf,
+                    true
+                );
+
+                $infoEstagiario->appendChild($ageIntegracao);
+
+            }
+
+            if (isset($this->std->estagiario->supervisor)) {
+
+                $supervisorEstagio = $this->dom->createElement("supervisorEstagio");
+
+                $this->dom->addChild(
+                    $supervisorEstagio,
+                    "cpfSupervisor",
+                    $this->std->estagiario->supervisor->cpfsupervisor,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $supervisorEstagio,
+                    "nmSuperv",
+                    $this->std->estagiario->supervisor->nmsuperv,
+                    true
+                );
+
+
+                $infoEstagiario->appendChild($supervisorEstagio);
+
+
+            }
+
             $infoComplementares->appendChild($infoEstagiario);
 
         }
