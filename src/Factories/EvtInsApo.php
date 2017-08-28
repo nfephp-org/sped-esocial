@@ -133,11 +133,9 @@ class EvtInsApo extends Factory implements FactoryInterface
         $this->node->appendChild($ideVinculo);
 
         if (isset($this->std->insalperic)) {
-
             $insalPeric = $this->dom->createElement("insalPeric");
 
             if (isset($this->std->insalperic->iniinsalperic)) {
-
                 $iniInsalPeric = $this->dom->createElement("iniInsalPeric");
 
                 $this->dom->addChild(
@@ -174,9 +172,7 @@ class EvtInsApo extends Factory implements FactoryInterface
                         }
 
                         $iniInsalPeric->appendChild($infoAmb);
-
                     }
-
                 }
 
                 $insalPeric->appendChild($iniInsalPeric);
@@ -194,7 +190,6 @@ class EvtInsApo extends Factory implements FactoryInterface
 
                 if (isset($this->std->insalperic->altinsalperic->infoamb)) {
                     foreach ($this->std->insalperic->altinsalperic->infoamb as $amb) {
-
                         $infoAmb = $this->dom->createElement("infoamb");
 
                         $this->dom->addChild(
@@ -238,7 +233,6 @@ class EvtInsApo extends Factory implements FactoryInterface
 
                 if (isset($this->std->insalperic->fiminsalperic->infoamb)) {
                     foreach ($this->std->insalperic->fiminsalperic->infoamb as $amb) {
-
                         $infoAmb = $this->dom->createElement("infoAmb");
 
                         $this->dom->addChild(
@@ -275,7 +269,6 @@ class EvtInsApo extends Factory implements FactoryInterface
 
                 if (isset($this->std->aposentesp->iniaposentesp->infoamb)) {
                     foreach ($this->std->aposentesp->iniaposentesp->infoamb as $amb) {
-
                         $infoAmb = $this->dom->createElement("infoAmb");
 
                         $this->dom->addChild(
@@ -287,7 +280,6 @@ class EvtInsApo extends Factory implements FactoryInterface
 
                         if (isset($amb->fatrisco)) {
                             foreach ($amb->fatrisco as $risco) {
-
                                 $fatRisco = $this->dom->createElement("fatRisco");
 
                                 $this->dom->addChild(
@@ -302,7 +294,6 @@ class EvtInsApo extends Factory implements FactoryInterface
                         }
 
                         $iniAposentEsp->appendChild($infoAmb);
-
                     }
                 }
 
@@ -315,13 +306,12 @@ class EvtInsApo extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $altAposentEsp,
                     "dtAltCondicao",
-                    $this->std->aposentesp->altaposentesp->dtinicondicao,
+                    $this->std->aposentesp->altaposentesp->dtaltcondicao,
                     true
                 );
 
                 if (isset($this->std->aposentesp->altaposentesp->infoamb)) {
                     foreach ($this->std->aposentesp->altaposentesp->infoamb as $amb) {
-
                         $infoAmb = $this->dom->createElement("infoamb");
 
                         $this->dom->addChild(
@@ -333,7 +323,6 @@ class EvtInsApo extends Factory implements FactoryInterface
 
                         if (isset($amb->fatrisco)) {
                             foreach ($amb->fatrisco as $risco) {
-
                                 $fatRisco = $this->dom->createElement("fatRisco");
 
                                 $this->dom->addChild(
@@ -348,7 +337,6 @@ class EvtInsApo extends Factory implements FactoryInterface
                         }
 
                         $altAposentEsp->appendChild($infoAmb);
-
                     }
                 }
 
@@ -361,13 +349,12 @@ class EvtInsApo extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $fimAposentEsp,
                     "dtFimCondicao",
-                    $this->std->aposentesp->fimaposentesp->dtinicondicao,
+                    $this->std->aposentesp->fimaposentesp->dtfimcondicao,
                     true
                 );
 
                 if (isset($this->std->aposentesp->fimaposentesp->infoamb)) {
                     foreach ($this->std->aposentesp->fimaposentesp->infoamb as $amb) {
-
                         $infoAmb = $this->dom->createElement("infoAmb");
 
                         $this->dom->addChild(
@@ -379,7 +366,6 @@ class EvtInsApo extends Factory implements FactoryInterface
 
 
                         $fimAposentEsp->appendChild($infoAmb);
-
                     }
                 }
 

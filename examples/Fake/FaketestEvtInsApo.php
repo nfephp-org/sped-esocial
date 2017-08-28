@@ -73,7 +73,7 @@ $std->aposentesp->iniaposentesp->infoamb[0]->fatrisco[0]            = new \stdCl
 $std->aposentesp->iniaposentesp->infoamb[0]->fatrisco[0]->codfatris = '9101';
 
 $std->aposentesp->altaposentesp = new \stdClass();
-$std->aposentesp->altaposentesp->dtinicondicao = '2017-08-28';
+$std->aposentesp->altaposentesp->dtaltcondicao = '2017-08-28';
 
 $std->aposentesp->altaposentesp->infoamb[0]         = new \stdClass();
 $std->aposentesp->altaposentesp->infoamb[0]->codamb = '123456';
@@ -82,7 +82,7 @@ $std->aposentesp->altaposentesp->infoamb[0]->fatrisco[0]            = new \stdCl
 $std->aposentesp->altaposentesp->infoamb[0]->fatrisco[0]->codfatris = '9101';
 
 $std->aposentesp->fimaposentesp = new \stdClass();
-$std->aposentesp->fimaposentesp->dtinicondicao = '2017-08-28';
+$std->aposentesp->fimaposentesp->dtfimcondicao = '2017-08-28';
 
 $std->aposentesp->fimaposentesp->infoamb[0]         = new \stdClass();
 $std->aposentesp->fimaposentesp->infoamb[0]->codamb = '123456';
