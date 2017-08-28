@@ -147,7 +147,7 @@ $jsonSchema = '{
                     "properties": {
                         "cnpjinstensino": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "maxLength": 14
                         },
                         "nmrazao": {
@@ -194,7 +194,7 @@ $jsonSchema = '{
                     "properties": {
                         "cnpjagntinteg": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "maxLength": 14
                         },
                         "nmrazao": {
