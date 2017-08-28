@@ -204,7 +204,6 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
         $endereco = $this->dom->createElement("endereco");
 
         if (isset($this->std->idebenef->dadosbenef->endereco->brasil)) {
-
             $brasil = $this->dom->createElement("brasil");
 
             $this->dom->addChild(
@@ -269,13 +268,12 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
         }
 
         if (isset($this->std->idebenef->dadosbenef->endereco->exterior)) {
-
             $exterior = $this->dom->createElement("exterior");
 
             $this->dom->addChild(
                 $exterior,
-                "tpLograd",
-                $this->std->idebenef->dadosbenef->endereco->exterior->tplograd,
+                "paisResid",
+                $this->std->idebenef->dadosbenef->endereco->exterior->paisresid,
                 true
             );
 
@@ -311,22 +309,15 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
 
             $this->dom->addChild(
                 $exterior,
-                "cep",
-                $this->std->idebenef->dadosbenef->endereco->exterior->cep,
+                "nmCid",
+                $this->std->idebenef->dadosbenef->endereco->exterior->nmcid,
                 true
             );
 
             $this->dom->addChild(
                 $exterior,
-                "codMunic",
-                $this->std->idebenef->dadosbenef->endereco->exterior->codmunic,
-                true
-            );
-
-            $this->dom->addChild(
-                $exterior,
-                "uf",
-                $this->std->idebenef->dadosbenef->endereco->exterior->uf,
+                "codPostal",
+                $this->std->idebenef->dadosbenef->endereco->exterior->codpostal,
                 true
             );
 

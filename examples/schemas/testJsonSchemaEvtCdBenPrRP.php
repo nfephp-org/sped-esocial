@@ -26,6 +26,298 @@ $jsonSchema = '{
             "type": "integer",
             "minimum": 1,
             "maximum": 2
+        },
+        "idebenef": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpfbenef": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 11,
+                    "minLength": 11
+                },
+                "nmbenefic": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 70
+                },
+                "dadosbenef": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "cpfbenef": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 11,
+                            "minLength": 11
+                        },
+                        "nmbenefic": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 70
+                        },
+                        "dadosnasc": {
+                            "required": true,
+                            "type": "object",
+                            "properties": {
+                                "dtnascto": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                },
+                                "codmunic": {
+                                    "required": false,
+                                    "type": "integer",
+                                    "maxLength": 7
+                                },
+                                "uf": {
+                                    "required": true,
+                                    "type": "string",
+                                    "length": 2
+                                },
+                                "paisnascto": {
+                                    "required": true,
+                                    "type": "string",
+                                    "length": 3
+                                },
+                                "paisnac": {
+                                    "required": true,
+                                    "type": "string",
+                                    "length": 3
+                                },
+                                "nmmae": {
+                                    "required": false,
+                                    "type": "string",
+                                    "maxLength": 70
+                                },
+                                "nmpai": {
+                                    "required": false,
+                                    "type": "string",
+                                    "maxLength": 70
+                                }
+                            }
+                        },
+                        "endereco": {
+                            "required": true,
+                            "type": "object",
+                            "properties": {
+                                "brasil": {
+                                    "required": false,
+                                    "type": "object",
+                                    "properties": {
+                                        "tplograd": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 4
+                                        },
+                                        "dsclograd": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 80
+                                        },
+                                        "nrlograd": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 10
+                                        },
+                                        "complemento": {
+                                            "required": false,
+                                            "type": "string",
+                                            "maxLength": 30
+                                        },
+                                        "bairro": {
+                                            "required": false,
+                                            "type": "string",
+                                            "maxLength": 60
+                                        },
+                                        "cep": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 8
+                                        },
+                                        "codmunic": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "maxLength": 7
+                                        },
+                                        "uf": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 2
+                                        }
+                                    }
+                                },
+                                "exterior": {
+                                    "required": false,
+                                    "type": "object",
+                                    "properties": {
+                                        "paisResid": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 3
+                                        },
+                                        "dsclograd": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 80
+                                        },
+                                        "nrlograd": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 10
+                                        },
+                                        "complemento": {
+                                            "required": false,
+                                            "type": "string",
+                                            "maxLength": 30
+                                        },
+                                        "bairro": {
+                                            "required": false,
+                                            "type": "string",
+                                            "maxLength": 60
+                                        },
+                                        "nmcid": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 50
+                                        },
+                                        "codpostal": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 12
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "infobeneficio": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "tpplanrp": {
+                     "required": true,
+                     "type": "integer",
+                     "maxLength": 1,
+                     "pattern": "([1-2]){1}$"
+                },
+                "inibeneficio": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "tpbenef": {
+                             "required": true,
+                             "type": "integer",
+                             "maxLength": 2
+                        },
+                        "nrbenefic": {
+                             "required": true,
+                             "type": "string",
+                             "maxLength": 20
+                        },
+                        "dtinibenef": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "vrbenef": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 14
+                        },
+                        "infopenmorte": {
+                            "required": true,
+                            "type": "object",
+                            "properties": {
+                                "idquota": {
+                                     "required": true,
+                                     "type": "string",
+                                     "maxLength": 30
+                                },
+                                "cpfinst": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 11,
+                                    "minLength": 11
+                                }
+                            }
+                        }
+                    }
+                },
+                "altbeneficio": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "tpbenef": {
+                             "required": true,
+                             "type": "integer",
+                             "maxLength": 2
+                        },
+                        "nrbenefic": {
+                             "required": true,
+                             "type": "string",
+                             "maxLength": 20
+                        },
+                        "dtinibenef": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "vrbenef": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 14
+                        },
+                        "infopenmorte": {
+                            "required": true,
+                            "type": "object",
+                            "properties": {
+                                "idquota": {
+                                     "required": true,
+                                     "type": "string",
+                                     "maxLength": 30
+                                },
+                                "cpfinst": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 11,
+                                    "minLength": 11
+                                }
+                            }
+                        }
+                    }
+                },
+                "fimbeneficio": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "tpbenef": {
+                             "required": true,
+                             "type": "integer",
+                             "maxLength": 2
+                        },
+                        "nrbenefic": {
+                             "required": true,
+                             "type": "string",
+                             "maxLength": 20
+                        },
+                        "dtfimbenef": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "mtvfim": {
+                            "required": true,
+                            "type": "integer",
+                            "maxLength": 2
+                        }
+                    }
+                }
+            }
         }
     }
 }';
@@ -34,51 +326,58 @@ $jsonToValidateObject             = new \stdClass();
 $jsonToValidateObject->sequencial = 1;
 $jsonToValidateObject->indretif   = 1;
 
-$idevinculo            = new \stdClass();
-$idevinculo->cpftrab   = '11111111111';
-$idevinculo->nistrab   = '11111111111';
-$idevinculo->matricula = '11111111111';
+$jsonToValidateObject->idebenef            = new \stdClass();
+$jsonToValidateObject->idebenef->cpfbenef  = '11111111111';
+$jsonToValidateObject->idebenef->nmbenefic = 'NOME';
 
-$jsonToValidateObject->idevinculo = $idevinculo;
+$jsonToValidateObject->idebenef->dadosbenef            = new \stdClass();
+$jsonToValidateObject->idebenef->dadosbenef->cpfbenef  = '11111111111';
+$jsonToValidateObject->idebenef->dadosbenef->nmbenefic = 'NOME';
 
-$aso         = new \stdClass();
-$aso->dtaso  = '2017-08-18';
-$aso->tpaso  = 0;
-$aso->resaso = 1;
+$jsonToValidateObject->idebenef->dadosbenef->dadosnasc             = new \stdClass();
+$jsonToValidateObject->idebenef->dadosbenef->dadosnasc->dtnascto   = '1987-01-01';
+$jsonToValidateObject->idebenef->dadosbenef->dadosnasc->codmunic   = 3550308;
+$jsonToValidateObject->idebenef->dadosbenef->dadosnasc->uf         = 'SP';
+$jsonToValidateObject->idebenef->dadosbenef->dadosnasc->paisnascto = '105';
+$jsonToValidateObject->idebenef->dadosbenef->dadosnasc->paisnac    = '105';
 
-$jsonToValidateObject->aso = $aso;
+$jsonToValidateObject->idebenef->dadosbenef->endereco                    = new \stdClass();
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil            = new \stdClass();
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil->tplograd  = 'R';
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil->dsclograd = 'DESCRICAO';
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil->nrlograd  = '123';
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil->cep       = '12345678';
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil->codmunic  = 3550308;
+$jsonToValidateObject->idebenef->dadosbenef->endereco->brasil->uf        = 'SP';
 
-$exame[0]                = new \stdClass();
-$exame[0]->dtexm         = '2017-08-18';
-$exame[0]->procrealizado = 10102019;
-$exame[0]->obsproc       = 'observação do exame';
-$exame[0]->interprexm    = 1;
-$exame[0]->ordexame      = 1;
-$exame[0]->dtiniCdBenPrRP    = '2017-08-18';
-$exame[0]->dtfimCdBenPrRP    = '2018-08-18';
-$exame[0]->indresult     = 1;
+$jsonToValidateObject->infobeneficio           = new \stdClass();
+$jsonToValidateObject->infobeneficio->tpplanrp = 1;
 
-$jsonToValidateObject->exame = $exame;
+$jsonToValidateObject->infobeneficio->inibeneficio             = new \stdClass();
+$jsonToValidateObject->infobeneficio->inibeneficio->tpbenef    = 1;
+$jsonToValidateObject->infobeneficio->inibeneficio->nrbenefic  = '123165050';
+$jsonToValidateObject->infobeneficio->inibeneficio->dtinibenef = '2017-08-28';
+$jsonToValidateObject->infobeneficio->inibeneficio->vrbenef    = 1500;
 
-$respCdBenPrRP               = new \stdClass();
-$respCdBenPrRP->nisresp      = '11111111111';
-$respCdBenPrRP->nrconsclasse = '11111111';
+$jsonToValidateObject->infobeneficio->inibeneficio->infopenmorte          = new \stdClass();
+$jsonToValidateObject->infobeneficio->inibeneficio->infopenmorte->idquota = '123131561';
+$jsonToValidateObject->infobeneficio->inibeneficio->infopenmorte->cpfinst = '11122233344';
 
-$jsonToValidateObject->respCdBenPrRP = $respCdBenPrRP;
+$jsonToValidateObject->infobeneficio->altbeneficio             = new \stdClass();
+$jsonToValidateObject->infobeneficio->altbeneficio->tpbenef    = 1;
+$jsonToValidateObject->infobeneficio->altbeneficio->nrbenefic  = '123165050';
+$jsonToValidateObject->infobeneficio->altbeneficio->dtinibenef = '2017-08-28';
+$jsonToValidateObject->infobeneficio->altbeneficio->vrbenef    = 1500;
 
-$ideservsaude          = new \stdClass();
-$ideservsaude->codcnes = '1111111';
-$ideservsaude->frmctt  = 'CONTATO';
-$ideservsaude->email   = 'teste@exemplo.com.br';
+$jsonToValidateObject->infobeneficio->altbeneficio->infopenmorte          = new \stdClass();
+$jsonToValidateObject->infobeneficio->altbeneficio->infopenmorte->idquota = '123131561';
+$jsonToValidateObject->infobeneficio->altbeneficio->infopenmorte->cpfinst = '11122233344';
 
-$jsonToValidateObject->ideservsaude = $ideservsaude;
-
-$medico        = new \stdClass();
-$medico->nmmed = 'NOME DO MEDICO';
-$medico->nrcrm = '12345678';
-$medico->ufcrm = 'SP';
-
-$jsonToValidateObject->medico = $medico;
+$jsonToValidateObject->infobeneficio->fimbeneficio             = new \stdClass();
+$jsonToValidateObject->infobeneficio->fimbeneficio->tpbenef    = 1;
+$jsonToValidateObject->infobeneficio->fimbeneficio->nrbenefic  = '123165050';
+$jsonToValidateObject->infobeneficio->fimbeneficio->dtfimbenef = '2017-08-28';
+$jsonToValidateObject->infobeneficio->fimbeneficio->mtvfim     = 3;
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
