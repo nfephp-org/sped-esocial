@@ -472,8 +472,29 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
 
                                                         $this->dom->addChild(
                                                             $itensRemun,
-                                                            "ideTabRubr",
-                                                            $itens->idetabrubr,
+                                                            "qtdRubr",
+                                                            !empty($itens->qtdrubr) ? $itens->qtdrubr : null,
+                                                            false
+                                                        );
+
+                                                        $this->dom->addChild(
+                                                            $itensRemun,
+                                                            "fatorRubr",
+                                                            !empty($itens->fatorrubr) ? $itens->fatorrubr : null,
+                                                            false
+                                                        );
+
+                                                        $this->dom->addChild(
+                                                            $itensRemun,
+                                                            "vrUnit",
+                                                            !empty($itens->vrunit) ? $itens->vrunit : null,
+                                                            false
+                                                        );
+
+                                                        $this->dom->addChild(
+                                                            $itensRemun,
+                                                            "vrRubr",
+                                                            $itens->vrrubr,
                                                             true
                                                         );
 

@@ -94,6 +94,10 @@ $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0
 $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]             = new \stdClass();
 $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->codrubr    = '1615615';
 $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->idetabrubr = '1615615';
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->qtdrubr    = 12345;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->fatorrubr  = 12345;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->vrunit     = 1500;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->vrrubr     = 1500;
 
 
 try {
