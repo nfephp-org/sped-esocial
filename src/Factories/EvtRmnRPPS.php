@@ -177,7 +177,6 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                 );
 
                 $ideTrabalhador->appendChild($procJudTrab);
-
             }
         }
 
@@ -200,7 +199,6 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
 
                     if (isset($dev->infoperapur->ideestab)) {
                         foreach ($dev->infoperapur->ideestab as $estab) {
-
                             $ideEstab = $this->dom->createElement("ideEstab");
 
                             $this->dom->addChild(
@@ -282,7 +280,6 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                                             );
 
                                             $remunPerApur->appendChild($itensRemun);
-
                                         }
                                     }
 
@@ -366,7 +363,6 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
 
                                     $ideEstab->appendChild($remunPerApur);
                                 }
-
                             }
 
                             $infoPerApur->appendChild($ideEstab);
@@ -377,11 +373,9 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                 }
 
                 if (isset($dev->infoperant)) {
-
                     $infoPerAnt = $this->dom->createElement("infoPerAnt");
 
                     foreach ($dev->infoperant->ideadc as $adc) {
-
                         $ideADC = $this->dom->createElement("ideADC");
 
                         $this->dom->addChild(
@@ -452,8 +446,8 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                                                     true
                                                 );
 
-                                                if(isset($perant->itensremun)){
-                                                    foreach ($perant->itensremun as $itens){
+                                                if (isset($perant->itensremun)) {
+                                                    foreach ($perant->itensremun as $itens) {
                                                         $itensRemun = $this->dom->createElement("itensRemun");
 
                                                         $this->dom->addChild(
@@ -515,7 +509,6 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                         }
 
                         $infoPerAnt->appendChild($ideADC);
-
                     }
 
                     $dmDev->appendChild($infoPerAnt);
