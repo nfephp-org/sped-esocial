@@ -395,7 +395,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
 
         if (isset($this->std->novavalidade)) {
             $sh = $this->std->novavalidade;
-            $novavalidade = $this->dom->createElement("novavalidade");
+            $novavalidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
                 $novavalidade,
                 "iniValid",
