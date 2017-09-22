@@ -83,8 +83,8 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado
-    $xml = Event::evtAqProd($configJson, $std, $certificate, '2017-08-03 10:37:00' //opcional data e hora
-    )->toXml();
+    $xml = Event::evtAqProd($configJson, $std, $certificate, '2017-08-03 10:37:00') //opcional data e hora
+    ->toXml();
 
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
