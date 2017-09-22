@@ -65,19 +65,22 @@ class EvtExpRisco extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid       = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtExpRisco = $this->dom->createElement("evtExpRisco");
-        $att         = $this->dom->createAttribute('Id');
-        $att->value  = $evtid;
-        $evtExpRisco->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -96,24 +99,68 @@ class EvtExpRisco extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtExpRisco->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
+        $ide = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
+            $ide,
+            "cpfTrab",
+            $this->std->cpftrab,
             true
         );
         $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
+            $ide,
+            "nisTrab",
+            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            false
+        );
+        $this->dom->addChild(
+            $ide,
+            "matricula",
+            !empty($this->std->matricula) ? $this->std->matricula : null,
+            false
+        );
+        $this->node->appendChild($ide);
+        
+        switch ($this->std->modo) {
+            case 'INI':
+                $noderisco = $this->dom->createElement("iniExpRisco");
+                $dtnode = 'dtIniCondicao';
+                break;
+            case 'ALT':
+                $noderisco = $this->dom->createElement("altExpRisco");
+                $dtnode = 'dtAltCondicao';
+                break;
+            case 'FIM':
+                $noderisco = $this->dom->createElement("fimExpRisco");
+                $dtnode = 'dtFimCondicao';
+                break;
+        }
+        $this->dom->addChild(
+            $noderisco,
+            $dtnode,
+            $this->std->dtcondicao,
             true
         );
-        $evtExpRisco->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtExpRisco);
-        $this->sign($eSocial);
+        if (!empty($this->std->codamb)) {
+            foreach($this->std->codamb as $cod) {
+                $infoAmb = $this->dom->createElement("infoAmb");
+                $this->dom->addChild(
+                    $infoAmb,
+                    'codAmb',
+                    $cod,
+                    true
+                );
+                $noderisco->appendChild($infoAmb);
+            }
+        }
+        
+        $info = $this->dom->createElement("infoExpRisco");
+        $info->appendChild($noderisco);
+        
+        $this->node->appendChild($info);
+        $this->eSocial->appendChild($this->node);
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->sign();
     }
 }
