@@ -65,55 +65,5 @@ class EvtPgtos extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid      = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtPgtos   = $this->dom->createElement("evtPgtos");
-        $att        = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
-        $evtPgtos->appendChild($att);
-
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $evtPgtos->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtPgtos->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtPgtos);
-        $this->sign($eSocial);
     }
 }
