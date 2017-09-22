@@ -143,7 +143,7 @@ class EvtExpRisco extends Factory implements FactoryInterface
             true
         );
         if (!empty($this->std->codamb)) {
-            foreach($this->std->codamb as $cod) {
+            foreach ($this->std->codamb as $cod) {
                 $infoAmb = $this->dom->createElement("infoAmb");
                 $this->dom->addChild(
                     $infoAmb,
