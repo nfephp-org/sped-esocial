@@ -172,4 +172,4 @@ if ($jsonValidator->isValid()) {
     die;
 }
 //salva se sucesso
-file_put_contents("../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
+file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
