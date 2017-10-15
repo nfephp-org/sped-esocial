@@ -148,7 +148,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                     $cad->multtabrubricas,
                     true
                 );
-            }    
+            }
             $this->dom->addChild(
                 $infoCadastro,
                 "indEntEd",
