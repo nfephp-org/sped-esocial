@@ -261,12 +261,12 @@ abstract class Factory
             $this->dom                     = new Dom('1.0', 'UTF-8');
             $this->dom->preserveWhiteSpace = false;
             $this->dom->formatOutput       = false;
-            $xml                           = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-                ."<eSocial xmlns=\"$this->xmlns"
-                .$this->evtName
-                ."/$this->layoutStr\" "
-                ."xmlns:xsi=\"$this->xsi\">"
-                ."</eSocial>";
+            $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                . "<eSocial xmlns=\"$this->xmlns"
+                . $this->evtName
+                . "/$this->layoutStr\">"
+                . "</eSocial>";
+            //."xmlns:xsi=\"$this->xsi\">"
             $this->dom->loadXML($xml);
             $this->eSocial = $this->dom->getElementsByTagName('eSocial')->item(0);
             $this->evtid   = FactoryId::build(
@@ -402,7 +402,7 @@ abstract class Factory
             return $data;
         }
         $jsonSchemaObj = json_decode(file_get_contents($this->jsonschema));
-        $sc            = new ParamsStandardize($jsonSchemaObj);
+        $sc = new ParamsStandardize($jsonSchemaObj);
 
         return $sc->stdData($data);
     }

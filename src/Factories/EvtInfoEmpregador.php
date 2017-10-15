@@ -140,6 +140,15 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $cad->indoptregeletron,
                 true
             );
+            //campo versão 2.2.02
+            if ($this->layout == '2.2.2') {
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "multTabRubricas",
+                    $cad->multtabrubricas,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $infoCadastro,
                 "indEntEd",
@@ -150,7 +159,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $infoCadastro,
                 "indEtt",
                 $cad->indett,
-                true
+                false
             );
             $this->dom->addChild(
                 $infoCadastro,
