@@ -37,8 +37,11 @@ class Standardize
      * @var array
      */
     public $rootTagList = [
-        '',
-        '',
+        'retornoEnvioLoteEventos', //extrai os dados no retorno do envio de enventos
+        'retornoProcessamentoLoteEventos', //extrai os dados no retorno da consulta com o protocolo
+        'envioLoteEventos', //extrai os dados no xml de envio do lote de eventos
+        'consultaLoteEventos', //extrai os dados no xml de solicitação de consulta do processamento do lote de enventos  
+        'eSocial' //extrai os dados dos eventos
     ];
 
     public function __construct($xml = null)

@@ -85,6 +85,11 @@ $jsonSchema = '{
                     "minimum": 0,
                     "maximum": 1
                 },
+                "multtabrubricas": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
                 "indented": {
                     "required": false,
                     "type": ["string","null"],
@@ -341,17 +346,17 @@ $jsonSchema = '{
 //file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
 
 //campos OBRIGATORIOS
-$std             = new \stdClass();
+$std = new \stdClass();
 $std->sequencial = 1; //numero sequencial
-$std->modo       = 'INC'; //INC inclusão, ALT alteração EXC exclusão
+$std->modo = 'INC'; //INC inclusão, ALT alteração EXC exclusão
 
-$std->ideperiodo           = new \stdClass();
+$std->ideperiodo = new \stdClass();
 $std->ideperiodo->inivalid = '2017-01'; //aaaa-mm do inicio da validade
 //$std->ideperiodo->fimvalid = '2017-07'; //yyyy-mm do fim da validade
 
 //campo OPCIONAL
 //usar em Inclusão ou alteração apenas
-$std->infocadastro                   = new \stdClass();
+$std->infocadastro = new \stdClass();
 $std->infocadastro->nmrazao          = 'Fake Ind. e Com. Ltda'; //Razão Social
 $std->infocadastro->classtrib        = '01'; // classificação tributária do contribuinte, conforme tabela 8
 $std->infocadastro->natjurid         = '2062'; //código da Natureza Jurídica do Contribuinte, conforme tabela 21
@@ -359,6 +364,7 @@ $std->infocadastro->indcoop          = 0;//Indicativo de Cooperativa: 0 - Não �
 $std->infocadastro->indconstr        = 0;//Indicativo de Construtora: 0 - Não é Construtora; 1 - Empresa Construtora.
 $std->infocadastro->inddesfolha      = 0; //Indicativo de Desoneração da Folha: 0 - Não Aplicável; 1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.
 $std->infocadastro->indoptregeletron = 0; //registro eletrônico de empregados: 0 - Não optou pelo registro eletrônico de empregados; 1 - Optou pelo registro eletrônico de empregados
+$std->infocadastro->multtabrubricas  = 'N';//Sim ou Não
 
 //não existe na versão 2.2.2
 //$std->infocadastro->indented         = 'N';//realiza a contratação de aprendiz por entidade N - Não é entidade educativa sem fins lucrativos; S - É entidade educativa sem fins lucrativos
