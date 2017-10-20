@@ -65,55 +65,13 @@ class EvtCAT extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid      = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtCAT     = $this->dom->createElement("evtCAT");
-        $att        = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
-        $evtCAT->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $evtCAT->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtCAT->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtCAT);
-        $this->sign($eSocial);
+        
+        $this->eSocial->appendChild($this->node);
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->sign();
     }
 }
