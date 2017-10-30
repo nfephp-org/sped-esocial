@@ -19,120 +19,93 @@ abstract class Factory
      * @var int
      */
     public $tpInsc;
-
     /**
      * @var string
      */
     public $nrInsc;
-
     /**
      * @var string
      */
     public $nmRazao;
-
     /**
      * @var DateTime
      */
     public $date;
-
     /**
      * @var int
      */
     public $tpAmb = 3;
-
     /**
      * @var int
      */
     public $procEmi = 1;
-
     /**
      * @var string
      */
     public $verProc = '';
-
     /**
      * @var string
      */
     public $layout = '2.2.2';
-
     /**
      * @var string
      */
     public $layoutStr = '';
-
     /**
      * @var string
      */
     public $schema = '';
-
     /**
      * @var string
      */
     public $jsonschema = '';
-
     /**
      * @var string
      */
     public $evtid = '';
-
     /**
      * @var string
      */
     protected $xmlns = "http://www.esocial.gov.br/schema/evt/";
-
-    /**
-     * @var string
-     */
-    protected $xsi = "http://www.w3.org/2001/XMLSchema-instance";
-
     /**
      * @var Dom
      */
     protected $dom;
-
     /**
      * @var stdClass
      */
     protected $std;
-
     /**
      * @var string
      */
     protected $xml;
-
     /**
      * @var DOMNode
      */
     protected $eSocial;
-
     /**
      * @var DOMElement
      */
     protected $node;
-
     /**
      * @var array
      */
     protected $parameters = [];
-
     /**
      * @var string
      */
     protected $evtName = '';
-
     /**
      * @var string
      */
     protected $evtAlias = '';
-
     /**
      * @var Certificate
      */
     protected $certificate;
-
+    
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -188,9 +161,7 @@ abstract class Factory
 
     /**
      * Stringfy layout number
-     *
      * @param type $layout
-     *
      * @return string
      */
     protected function strLayoutVer($layout)
@@ -200,15 +171,12 @@ abstract class Factory
         foreach ($fils as $fil) {
             $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
         }
-
         return substr($str, 0, -1);
     }
 
     /**
      * Change properties names of stdClass to lower case
-     *
      * @param stdClass $data
-     *
      * @return stdClass
      */
     protected static function propertiesToLower(stdClass $data)
@@ -222,15 +190,12 @@ abstract class Factory
             $nk           = strtolower($key);
             $clone->{$nk} = $value;
         }
-
         return $clone;
     }
 
     /**
      * Validation json data from json Schema
-     *
      * @param stdClass $data
-     *
      * @return boolean
      * @throws \RuntimeException
      */
@@ -266,7 +231,6 @@ abstract class Factory
                 . $this->evtName
                 . "/$this->layoutStr\">"
                 . "</eSocial>";
-            //."xmlns:xsi=\"$this->xsi\">"
             $this->dom->loadXML($xml);
             $this->eSocial = $this->dom->getElementsByTagName('eSocial')->item(0);
             $this->evtid   = FactoryId::build(
@@ -296,17 +260,29 @@ abstract class Factory
             $this->node->appendChild($ideEmpregador);
         }
     }
-
+    
+    /**
+     * Returns alias for event
+     * @return string
+     */
     public function alias()
     {
         return $this->evtAlias;
     }
 
+    /**
+     * Returns Certificate::class
+     * @return Certificate
+     */
     public function getCertificate()
     {
         return $this->certificate;
     }
-
+    
+    /**
+     * Set Certificate::class
+     * @param Certificate $certificate
+     */
     public function setCertificate(Certificate $certificate)
     {
         $this->certificate = $certificate;
@@ -314,7 +290,6 @@ abstract class Factory
 
     /**
      * Return xml of event
-     *
      * @return string
      */
     public function toXML()
@@ -322,7 +297,6 @@ abstract class Factory
         if (empty($this->xml)) {
             $this->toNode();
         }
-
         return $this->clearXml($this->xml);
     }
 
@@ -330,9 +304,7 @@ abstract class Factory
 
     /**
      * Remove XML declaration from XML string
-     *
      * @param string $xml
-     *
      * @return string
      */
     protected function clearXml($xml)
@@ -347,7 +319,6 @@ abstract class Factory
 
     /**
      * Convert xml of event to array
-     *
      * @return array
      */
     public function toArray()
@@ -357,7 +328,6 @@ abstract class Factory
 
     /**
      * Convert xml to json string
-     *
      * @return string
      */
     public function toJson()
@@ -371,7 +341,6 @@ abstract class Factory
         $dom = new \DOMDocument();
         $dom->loadXML($xml);
         $sxml = simplexml_load_string($dom->saveXML());
-
         return str_replace(
             '@attributes',
             'attributes',
@@ -381,7 +350,6 @@ abstract class Factory
 
     /**
      * Convert xml to stdClass
-     *
      * @return stdClass
      */
     public function toStd()
@@ -391,9 +359,7 @@ abstract class Factory
 
     /**
      * Adjust missing properties form original data according schema
-     *
      * @param \stdClass $data
-     *
      * @return \stdClass
      */
     public function standardizeProperties(stdClass $data)
