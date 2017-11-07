@@ -3,8 +3,9 @@
 namespace NFePHP\eSocial\Tests;
 
 use NFePHP\Common\Certificate;
+use PHPUnit\Framework\TestCase;
 
-class ESocialTestCase extends \PHPUnit_Framework_TestCase
+class ESocialTestCase extends TestCase
 {
     public $fixturesPath = '';
 
