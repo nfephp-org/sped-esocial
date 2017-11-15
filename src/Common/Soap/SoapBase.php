@@ -488,8 +488,8 @@ abstract class SoapBase implements SoapInterface
             return;
         }
         $this->debugdir = $this->certificate->getCnpj().'/debug/';
-        $now            = \DateTime::createFromFormat('U.u', microtime(true));
-        $time           = substr($now->format("ymdHisu"), 0, 16);
+        $now = \DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+        $time = substr($now->format("ymdHisu"), 0, 16);
         try {
             $this->filesystem->put(
                 $this->debugdir.$time."_".$operation."_sol.txt",
