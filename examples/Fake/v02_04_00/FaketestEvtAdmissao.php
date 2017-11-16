@@ -17,7 +17,7 @@ $config     = [
     //versão do webservice
     'empregador'     => [
         'tpInsc'  => 1,  //1-CNPJ, 2-CPF
-        'nrInsc'  => '99999999999999', //numero do documento
+        'nrInsc'  => '99999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
     'transmissor'    => [
