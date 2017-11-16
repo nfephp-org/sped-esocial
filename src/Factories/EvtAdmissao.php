@@ -24,11 +24,6 @@ use stdClass;
 class EvtAdmissao extends Factory implements FactoryInterface
 {
     /**
-     * @var int
-     */
-    public $sequencial = 1;
-
-    /**
      * @var string
      */
     protected $evtName = 'evtAdmissao';
@@ -63,18 +58,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid       = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtAdmissao = $this->dom->createElement("evtAdmissao");
-        $att         = $this->dom->createAttribute('Id');
-        $att->value  = $evtid;
-        $evtAdmissao->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -106,24 +90,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtAdmissao->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtAdmissao->appendChild($ideEmpregador);
-
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
         //trabalhador (obrigatório)
         $trabalhador = $this->dom->createElement("trabalhador");
         $this->dom->addChild(
@@ -224,10 +191,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
             ! empty($this->std->trabalhador->nmpai) ? $this->std->trabalhador->nmpai : null,
             false
         );
-        //encerra nascimento
         $trabalhador->appendChild($nascimento);
-
-        //        documentos (obrig)
+        // documentos (obrig)
         $documentos = $this->dom->createElement("documentos");
         //CTPS (Opc)
         if (isset($this->std->ctps)) {
@@ -252,7 +217,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($ctps);
         }
-        //        //RIC (Opc)
+        //RIC (Opc)
         if (isset($this->std->ric)) {
             $ric = $this->dom->createElement("RIC");
             $this->dom->addChild(
@@ -275,7 +240,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($ric);
         }
-        //        //RG
+        //RG
         if (isset($this->std->rg)) {
             $rg = $this->dom->createElement("RG");
             $this->dom->addChild(
@@ -298,7 +263,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($rg);
         }
-        //        //RNE (Opc)
+        //RNE (Opc)
         if (isset($this->std->rne)) {
             $rne = $this->dom->createElement("RNE");
             $this->dom->addChild(
@@ -327,7 +292,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($rne);
         }
-        //        //OC (Opc)
+        //OC (Opc)
         if (isset($this->std->oc)) {
             $oc = $this->dom->createElement("OC");
             $this->dom->addChild(
@@ -399,10 +364,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $documentos->appendChild($cnh);
         }
-        //encerra documentos
         $trabalhador->appendChild($documentos);
-
-        //        //Endereço (obrigatorio)
+        //Endereço (obrigatorio)
         $endereco = $this->dom->createElement("endereco");
         if (isset($this->std->endereco->brasil)) {
             $brasil = $this->dom->createElement("brasil");
@@ -503,9 +466,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $endereco->appendChild($exterior);
         }
-        //        encerra endereço
         $trabalhador->appendChild($endereco);
-
         if (isset($this->std->trabestrangeiro)) {
             $trabEstrangeiro = $this->dom->createElement("trabEstrangeiro");
             $this->dom->addChild(
@@ -534,7 +495,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $trabalhador->appendChild($trabEstrangeiro);
         }
-
         //deficiencia (opcional)
         if (isset($this->std->deficiencia)) {
             $deficiencia = $this->dom->createElement("infoDeficiencia");
@@ -638,7 +598,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 $trabalhador->appendChild($dependente);
             }
         }
-
         //aposentadoria (opcional)
         if (isset($this->std->aposentadoria)) {
             $aposentadoria = $this->dom->createElement("aposentadoria");
@@ -650,7 +609,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $trabalhador->appendChild($aposentadoria);
         }
-
         //contato (opcional)
         if (isset($this->std->contato)) {
             $contato = $this->dom->createElement("contato");
@@ -680,10 +638,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $trabalhador->appendChild($contato);
         }
-
         //encerra trabalhador
-        $evtAdmissao->appendChild($trabalhador);
-
+        $this->node->appendChild($trabalhador);
         //vinculo (obrigatorio)
         $vinculo = $this->dom->createElement("vinculo");
         $this->dom->addChild(
@@ -718,7 +674,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
         );
         //infoRegimeTrab (obrigatorio)
         $infoRegimeTrab = $this->dom->createElement("infoRegimeTrab");
-
         if (isset($this->std->vinculo->celetista)) {
             $celetista = $this->dom->createElement("infoCeletista");
             $this->dom->addChild(
@@ -778,7 +733,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 false
             );
             $celetista->appendChild($fgts);
-
             if (isset($this->std->vinculo->celetista->trabtemporario)) {
                 $trabTemporario = $this->dom->createElement("trabTemporario");
                 $this->dom->addChild(
@@ -922,7 +876,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             //encerra estatutario
             $infoRegimeTrab->appendChild($estatutario);
         }
-
         //infoContrato (obrigatorio)
         $contrato = $this->dom->createElement("infoContrato");
         $this->dom->addChild(
@@ -976,7 +929,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             false
         );
         $contrato->appendChild($remuneracao);
-
         //duracao (obrigatorio)
         $duracao = $this->dom->createElement("duracao");
         $this->dom->addChild(
@@ -998,7 +950,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             false
         );
         $contrato->appendChild($duracao);
-        //
         //localTrabalho (obrigatorio)
         $localTrabalho = $this->dom->createElement("localTrabalho");
         //localTrabGeral (opcional)
@@ -1081,7 +1032,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $localTrabalho->appendChild($localDomestico);
         }
         $contrato->appendChild($localTrabalho);
-
         //horContratual (opcional)
         if (isset($this->std->vinculo->contrato->horcontatual)) {
             $horContratual = $this->dom->createElement("horContratual");
@@ -1132,7 +1082,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
             //encerra horContratual
             $contrato->appendChild($horContratual);
         }
-
         //filiacaoSindical (opcional) ARRAY
         if (isset($this->std->vinculo->contrato->filiacaosindical)) {
             foreach ($this->std->vinculo->contrato->filiacaosindical as $sind) {
@@ -1159,7 +1108,6 @@ class EvtAdmissao extends Factory implements FactoryInterface
         }
         //encerra contrato
         $vinculo->appendChild($contrato);
-
         //sucessaoVinc (opcional)
         if (isset($this->std->vinculo->sucessao)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
@@ -1204,10 +1152,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 $this->std->vinculo->afastamento->codmotafast,
                 true
             );
-
             $vinculo->appendChild($afastamento);
         }
-
         //desligamento (opcional)
         if (isset($this->std->vinculo->desligamento)) {
             $desligamento = $this->dom->createElement("desligamento");
@@ -1217,17 +1163,14 @@ class EvtAdmissao extends Factory implements FactoryInterface
                 $this->std->vinculo->desligamento->dtdeslig,
                 true
             );
-
             $vinculo->appendChild($desligamento);
         }
-
         //encerra vinculo
         $this->node->appendChild($vinculo);
+
         //finalização do xml
-
-        $evtAdmissao->appendChild($vinculo);
-
-        $eSocial->appendChild($evtAdmissao);
-        $this->sign($eSocial);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);;
+        $this->sign();
     }
 }
