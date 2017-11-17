@@ -413,7 +413,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $this->dom->addChild(
                 $novavalidade,
-                "iniValid",
+                "fimValid",
                 $sh->fimValid,
                 false
             );
