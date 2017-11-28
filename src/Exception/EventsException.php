@@ -11,7 +11,7 @@ namespace NFePHP\eSocial\Exception;
  * @link       http://github.com/nfephp-org/sped-common for the canonical source repository
  */
 
-class EventsException extends \InvalidArgumentException implements ExceptionInterface
+class EventsException extends \InvalidArgumentException
 {
     public static $list = [
         1000 => "Este evento [{{msg}}] não foi encontrado.",
