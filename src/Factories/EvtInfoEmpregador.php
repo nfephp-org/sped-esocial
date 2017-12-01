@@ -193,7 +193,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "dtVencCertif",
-                $cad->dtcenccertif,
+                $cad->dtvenccertif,
                 true
             );
             $this->dom->addChild(
