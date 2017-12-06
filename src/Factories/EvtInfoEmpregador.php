@@ -161,12 +161,14 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $cad->indett,
                 false
             );
-            $this->dom->addChild(
-                $infoCadastro,
-                "nrRegEtt",
-                $cad->nrregett,
-                false
-            );
+            if ($cad->indett == 'S') {
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "nrRegEtt",
+                    $cad->nrregett,
+                   false
+                );
+            }
         }
 
         if (isset($this->std->dadosisencao) && !empty($infoCadastro)) {
@@ -277,12 +279,14 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                     $cad->ideefr,
                     true
                 );
-                $this->dom->addChild(
-                    $infoEFR,
-                    "cnpjEFR",
-                    $cad->cnpjefr,
-                    false
-                );
+                if ($cad->ideefr == 'N') {
+                    $this->dom->addChild(
+                        $infoEFR,
+                        "cnpjEFR",
+                        $cad->cnpjefr,
+                        false
+                    );
+                }
                 $infoOP->appendChild($infoEFR);
             }
             if (isset($this->std->infoente)) {
@@ -331,7 +335,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
 
         if (isset($this->std->infoorginternacional) && !empty($infoCadastro)) {
             $cad = $this->std->infoorginternacional;
-            $info = $this->dom->createElement("infoorgInternacional");
+            $info = $this->dom->createElement("infoOrgInternacional");
             $this->dom->addChild(
                 $info,
                 "indAcordoIsenMulta",
