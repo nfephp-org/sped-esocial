@@ -93,28 +93,29 @@ class EvtTabEstab extends Factory implements FactoryInterface
 
         //tag comum a todos os modos
         $ideEstab = $this->dom->createElement("ideEstab");
+        $stdIdeEstab = $this->std->ideestab;
         $this->dom->addChild(
             $ideEstab,
             "tpInsc",
-            $this->std->tpinsc,
+            $stdIdeEstab->tpinsc,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "nrInsc",
-            $this->std->nrinsc,
+            $stdIdeEstab->nrinsc,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "iniValid",
-            $this->std->inivalid,
+            $stdIdeEstab->inivalid,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($stdIdeEstab->fimvalid) ? $stdIdeEstab->fimvalid : null,
             false
         );
 
