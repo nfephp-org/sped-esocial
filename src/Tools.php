@@ -44,6 +44,8 @@ class Tools extends ToolsBase
 
     protected $xmlns;
 
+    protected $baseUri;
+
     protected $uri;
 
     protected $action;
@@ -57,6 +59,13 @@ class Tools extends ToolsBase
     public function __construct($config, Certificate $certificate = null)
     {
         parent::__construct($config, $certificate);
+
+        $this->baseUri = "https://webservices.producaorestrita.esocial.gov.br";
+
+        if (!empty($config->baseUri))) {
+            $this->baseUri = $config->baseUri;
+        }
+
     }
 
     /**
@@ -86,7 +95,7 @@ class Tools extends ToolsBase
 
         $this->method = "ConsultarLoteEventos";
 
-        $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
+        $this->uri = $this->baseUri
             ."/servicos/empregador/consultarloteeventos"
             ."/WsConsultarLoteEventos.svc";
 
@@ -208,7 +217,7 @@ class Tools extends ToolsBase
             ."/eventos/envio/v1_1_0/ServicoEnviarLoteEventos"
             ."/EnviarLoteEventos";
 
-        $this->uri = "https://webservices.producaorestrita.esocial.gov.br"
+        $this->uri = $this->baseUri
             ."/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
 
         $this->envelopeXmlns = [
