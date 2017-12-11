@@ -92,28 +92,29 @@ class EvtTabRubrica extends Factory implements FactoryInterface
         $infoRubrica = $this->dom->createElement("infoRubrica");
         //tag comum a todos os modos
         $ideRubrica = $this->dom->createElement("ideRubrica");
+        $stdIdeRubrica = $this->std->iderubrica;
         $this->dom->addChild(
             $ideRubrica,
             "codRubr",
-            $this->std->codrubr,
+            $stdIdeRubrica->codrubr,
             true
         );
         $this->dom->addChild(
             $ideRubrica,
             "ideTabRubr",
-            $this->std->idetabrubr,
+            $stdIdeRubrica->idetabrubr,
             true
         );
         $this->dom->addChild(
             $ideRubrica,
             "iniValid",
-            $this->std->inivalid,
+            $stdIdeRubrica->inivalid,
             true
         );
         $this->dom->addChild(
             $ideRubrica,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($stdIdeRubrica->fimvalid) ? $stdIdeRubrica->fimvalid : null,
             false
         );
         //seleção do modo
