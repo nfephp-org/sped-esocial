@@ -24,11 +24,6 @@ use stdClass;
 class EvtCAT extends Factory implements FactoryInterface
 {
     /**
-     * @var int
-     */
-    public $sequencial;
-
-    /**
      * @var string
      */
     protected $evtName = 'evtCAT';
