@@ -62,7 +62,7 @@ class Tools extends ToolsBase
 
         $this->baseUri = "https://webservices.producaorestrita.esocial.gov.br";
 
-        if (!empty($config->baseUri))) {
+        if (!empty($config->baseUri)) {
             $this->baseUri = $config->baseUri;
         }
 

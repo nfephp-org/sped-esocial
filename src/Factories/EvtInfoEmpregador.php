@@ -435,7 +435,9 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $node->appendChild($idePeriodo);
                 $infoCadastro->appendChild($infoComplementares);
                 $node->appendChild($infoCadastro);
-                $node->appendChild($novavalidade);
+                if (isset($novavalidade)) {
+                    $node->appendChild($novavalidade);
+                }
                 break;
             case "EXC":
                 $node = $this->dom->createElement("exclusao");
