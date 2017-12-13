@@ -217,6 +217,6 @@ class EvtIrrfBenef extends Factory implements FactoryInterface
             }
         }
         $this->eSocial->appendChild($this->node);
-        $this->sign($this->eSocial);
+        $this->sign();
     }
 }

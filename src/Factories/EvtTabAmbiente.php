@@ -108,7 +108,7 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
             ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
-        
+        $dados = null;
         if (!empty($this->std->dadosambiente)) {
             $da = $this->std->dadosambiente;
             $dados = $this->dom->createElement("dadosAmbiente");
@@ -147,7 +147,7 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                 $dados->appendChild($fator);
             }
         }
-        
+        $nova = null;
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -171,12 +171,18 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
             $node->appendChild($ide);
-            $node->appendChild($dados);
+            if (!empty($dados)) {
+                $node->appendChild($dados);
+            }
         } elseif ($this->std->modo == 'ALT') {
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
-            $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (!empty($dados)) {
+                $node->appendChild($dados);
+            }
+            if (!empty($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
