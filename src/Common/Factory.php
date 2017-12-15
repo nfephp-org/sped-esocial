@@ -187,9 +187,19 @@ abstract class Factory
             if ($value instanceof stdClass) {
                 $value = self::propertiesToLower($value);
             }
+
+            if (is_array($value)) {
+                foreach ($value as &$data) {
+                    if ($data instanceof stdClass) {
+                        $data = self::propertiesToLower($data);
+                    }
+                }
+            }
+
             $nk           = strtolower($key);
             $clone->{$nk} = $value;
         }
+
         return $clone;
     }
 
