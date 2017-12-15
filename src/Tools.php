@@ -30,7 +30,7 @@ class Tools extends ToolsBase
     public $lastResponse;
 
     /**
-     * @var NFePHP\Common\Soap\SoapInterface
+     * @var \NFePHP\Common\Soap\SoapInterface
      */
     protected $soap;
 

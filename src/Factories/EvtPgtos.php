@@ -630,6 +630,6 @@ class EvtPgtos extends Factory implements FactoryInterface
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign($this->eSocial);
+        $this->sign();
     }
 }

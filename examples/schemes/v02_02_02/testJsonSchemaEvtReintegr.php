@@ -114,8 +114,7 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
     $std,
-    $jsonSchemaObject,
-    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $jsonSchemaObject
 );
 
 if ($jsonValidator->isValid()) {

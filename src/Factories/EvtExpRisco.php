@@ -24,11 +24,6 @@ use stdClass;
 class EvtExpRisco extends Factory implements FactoryInterface
 {
     /**
-     * @var int
-     */
-    public $sequencial;
-
-    /**
      * @var string
      */
     protected $evtName = 'evtExpRisco';
@@ -142,25 +137,164 @@ class EvtExpRisco extends Factory implements FactoryInterface
             $this->std->dtcondicao,
             true
         );
-        if (!empty($this->std->codamb)) {
-            foreach ($this->std->codamb as $cod) {
+        if (!empty($this->std->infoamb)) {
+            foreach ($this->std->infoamb as $info) {
                 $infoAmb = $this->dom->createElement("infoAmb");
                 $this->dom->addChild(
                     $infoAmb,
                     'codAmb',
-                    $cod,
+                    $info->codamb,
                     true
                 );
+                $infoAtiv = $this->dom->createElement("infoAtiv");
+                $this->dom->addChild(
+                    $infoAtiv,
+                    'dscAtivDes',
+                    $info->dscativdes,
+                    true
+                );
+                $infoAmb->appendChild($infoAtiv);
+                foreach ($info->fatrisco as $fat) {
+                    $fatRisco = $this->dom->createElement("fatRisco");
+                    $this->dom->addChild(
+                        $fatRisco,
+                        'codFatRis',
+                        $fat->codfatris,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $fatRisco,
+                        'intConc',
+                        !empty($fat->intconc) ? $fat->intconc : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $fatRisco,
+                        'tecMedicao',
+                        !empty($fat->tecmedicao) ? $fat->tecmedicao : null,
+                        false
+                    );
+                    $epcEpi = $this->dom->createElement("epcEpi");
+                    $this->dom->addChild(
+                        $epcEpi,
+                        'utilizEPC',
+                        $fat->epcepi->utilizepc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $epcEpi,
+                        'utilizEPI',
+                        $fat->epcepi->utilizepi,
+                        true
+                    );
+                    foreach ($fat->epcepi->epc as $e) {
+                        $epc = $this->dom->createElement("epc");
+                        $this->dom->addChild(
+                            $epc,
+                            'dscEpc',
+                            $e->dscepc,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $epc,
+                            'eficEpc',
+                            !empty($e->eficepc) ? $e->eficepc : null,
+                            false
+                        );
+                        $epcEpi->appendChild($epc);
+                    }
+                    foreach ($fat->epcepi->epi as $e) {
+                        $epi = $this->dom->createElement("epi");
+                        $this->dom->addChild(
+                            $epi,
+                            'caEPI',
+                            !empty($e->caepi) ? $e->caepi : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $epi,
+                            'eficEpi',
+                            $e->eficepi,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $epi,
+                            'medProtecao',
+                            $e->medprotecao,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $epi,
+                            'condFuncto',
+                            $e->condfuncto,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $epi,
+                            'przValid',
+                            $e->przvalid,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $epi,
+                            'periodicTroca',
+                            $e->periodictroca,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $epi,
+                            'higienizacao',
+                            $e->higienizacao,
+                            true
+                        );
+                        $epcEpi->appendChild($epi);
+                    }
+                    $fatRisco->appendChild($epcEpi);
+                    $infoAmb->appendChild($fatRisco);
+                }
                 $noderisco->appendChild($infoAmb);
             }
         }
-        
         $info = $this->dom->createElement("infoExpRisco");
         $info->appendChild($noderisco);
         
+        foreach ($this->std->respreg as $e) {
+            $respReg = $this->dom->createElement("respReg");
+            $this->dom->addChild(
+                $respReg,
+                'dtIni',
+                $e->dtini,
+                true
+            );
+            $this->dom->addChild(
+                $respReg,
+                'dtFim',
+                !empty($e->dtfim) ? $e->dtfim : null,
+                false
+            );
+            $this->dom->addChild(
+                $respReg,
+                'nisResp',
+                $e->nisresp,
+                true
+            );
+            $this->dom->addChild(
+                $respReg,
+                'nrOc',
+                $e->nroc,
+                true
+            );
+            $this->dom->addChild(
+                $respReg,
+                'ufOC',
+                $e->ufoc,
+                false
+            );
+            $info->appendChild($respReg);
+        }
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
-        $this->xml = $this->dom->saveXML($this->eSocial);
-        //$this->sign();
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
