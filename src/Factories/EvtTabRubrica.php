@@ -238,12 +238,6 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                         $fgts->nrproc,
                         true
                     );
-                    $this->dom->addChild(
-                        $ideProcessoFGTS,
-                        "codSusp",
-                        $fgts->codsusp,
-                        true
-                    );
                     $dadosRubrica->appendChild($ideProcessoFGTS);
                 }
             }
@@ -254,12 +248,6 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                         $ideProcessoSIND,
                         "nrProc",
                         $sind->nrproc,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $ideProcessoSIND,
-                        "codSusp",
-                        $sind->codsusp,
                         true
                     );
                     $dadosRubrica->appendChild($ideProcessoSIND);
