@@ -72,19 +72,14 @@
                     "minimum": 0,
                     "maximum": 1
                 },
-                "multtabrubricas": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
                 "indented": {
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "S|N"
                 },
                 "indett": {
-                    "required": false,
-                    "type": ["string","null"],
+                    "required": true,
+                    "type": "string",
                     "pattern": "S|N"
                 },
                 "nrregett": {
