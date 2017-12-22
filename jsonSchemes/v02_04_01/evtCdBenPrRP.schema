@@ -33,17 +33,6 @@
                     "required": true,
                     "type": "object",
                     "properties": {
-                        "cpfbenef": {
-                            "required": true,
-                            "type": "string",
-                            "maxLength": 11,
-                            "minLength": 11
-                        },
-                        "nmbenefic": {
-                            "required": true,
-                            "type": "string",
-                            "maxLength": 70
-                        },
                         "dadosnasc": {
                             "required": true,
                             "type": "object",
