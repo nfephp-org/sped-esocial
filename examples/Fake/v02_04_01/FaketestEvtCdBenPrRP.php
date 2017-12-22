@@ -9,9 +9,9 @@ use NFePHP\eSocial\Event;
 $config     = [
     'tpAmb'          => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc'        => '2_4_00',
+    'verProc'        => '2_4_01',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion'  => '2.4.0',
+    'eventoVersion'  => '2.4.1',
     //versão do layout do evento
     'serviceVersion' => '1.1.1',
     //versão do webservice
@@ -27,18 +27,15 @@ $config     = [
 ];
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
-$std             = new \stdClass();
+$std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif   = 1;
+$std->indretif = 1;
 
-$std->idebenef            = new \stdClass();
-$std->idebenef->cpfbenef  = '11111111111';
+$std->idebenef = new \stdClass();
+$std->idebenef->cpfbenef = '11111111111';
 $std->idebenef->nmbenefic = 'NOME';
 
-$std->idebenef->dadosbenef            = new \stdClass();
-$std->idebenef->dadosbenef->cpfbenef  = '11111111111';
-$std->idebenef->dadosbenef->nmbenefic = 'NOME';
-
+$std->idebenef->dadosbenef = new \stdClass();
 $std->idebenef->dadosbenef->dadosnasc             = new \stdClass();
 $std->idebenef->dadosbenef->dadosnasc->dtnascto   = '1987-01-01';
 $std->idebenef->dadosbenef->dadosnasc->codmunic   = 3550308;

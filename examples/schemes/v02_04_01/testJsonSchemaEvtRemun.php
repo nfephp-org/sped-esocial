@@ -136,7 +136,7 @@ $jsonSchema = '{
                             "type": ["string","null"],
                             "maxLength": 30
                         },
-                        "dtinivinculo": {
+                        "dtadm": {
                             "required": true,
                             "type": "string",
                             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
@@ -555,7 +555,7 @@ $std->infocomplem->qtddiastrab = 6;
 $std->infocomplem->sucessaovinc = new \stdClass();
 $std->infocomplem->sucessaovinc->cnpjempregant = '12345678901234';
 $std->infocomplem->sucessaovinc->matricant = 'jkdjkjdkjdjkd';
-$std->infocomplem->sucessaovinc->dtinivinculo = '2017-06-07';
+$std->infocomplem->sucessaovinc->dtadm = '2017-06-07';
 $std->infocomplem->sucessaovinc->observacao = 'nao obrigatorio';
 
 $std->procjudtrab[0] = new \stdClass();

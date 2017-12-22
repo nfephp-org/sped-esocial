@@ -46,7 +46,10 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "phpcbf": "vendor/bin/phpcbf --standard=psr2 src/",
+        "phpcs": "vendor/bin/phpcs --standard=psr2 src/",
+        "phpstan": "vendor/bin/phpstan analyse src/ --level 7"
     },
     "extra": {
         "branch-alias": {

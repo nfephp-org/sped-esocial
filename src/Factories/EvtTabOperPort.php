@@ -27,27 +27,22 @@ class EvtTabOperPort extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTabOperPort';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1080';
-
     /**
      * Parameters patterns
-     *
      * @var array
      */
     protected $parameters = [];
-
+    
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -108,7 +103,7 @@ class EvtTabOperPort extends Factory implements FactoryInterface
             ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
-        
+        $dados = '';
         if (!empty($this->std->dadosoperportuario)) {
             $da = $this->std->dadosoperportuario;
             $dados = $this->dom->createElement("dadosOperPortuario");
@@ -131,7 +126,7 @@ class EvtTabOperPort extends Factory implements FactoryInterface
                 true
             );
         }
-        
+        $nova = '';
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -149,7 +144,6 @@ class EvtTabOperPort extends Factory implements FactoryInterface
                 false
             );
         }
-        
         $info = $this->dom->createElement("infoOperPortuario");
         //seleção do modo
         if ($this->std->modo == 'INC') {

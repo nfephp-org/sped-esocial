@@ -46,17 +46,6 @@ $jsonSchema = '{
                     "required": true,
                     "type": "object",
                     "properties": {
-                        "cpfbenef": {
-                            "required": true,
-                            "type": "string",
-                            "maxLength": 11,
-                            "minLength": 11
-                        },
-                        "nmbenefic": {
-                            "required": true,
-                            "type": "string",
-                            "maxLength": 70
-                        },
                         "dadosnasc": {
                             "required": true,
                             "type": "object",
@@ -322,38 +311,35 @@ $jsonSchema = '{
     }
 }';
 
-$std             = new \stdClass();
+$std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif   = 1;
+$std->indretif = 1;
 
-$std->idebenef            = new \stdClass();
-$std->idebenef->cpfbenef  = '11111111111';
+$std->idebenef = new \stdClass();
+$std->idebenef->cpfbenef = '11111111111';
 $std->idebenef->nmbenefic = 'NOME';
 
-$std->idebenef->dadosbenef            = new \stdClass();
-$std->idebenef->dadosbenef->cpfbenef  = '11111111111';
-$std->idebenef->dadosbenef->nmbenefic = 'NOME';
-
-$std->idebenef->dadosbenef->dadosnasc             = new \stdClass();
-$std->idebenef->dadosbenef->dadosnasc->dtnascto   = '1987-01-01';
-$std->idebenef->dadosbenef->dadosnasc->codmunic   = 3550308;
-$std->idebenef->dadosbenef->dadosnasc->uf         = 'SP';
+$std->idebenef->dadosbenef = new \stdClass();
+$std->idebenef->dadosbenef->dadosnasc = new \stdClass();
+$std->idebenef->dadosbenef->dadosnasc->dtnascto = '1987-01-01';
+$std->idebenef->dadosbenef->dadosnasc->codmunic = 3550308;
+$std->idebenef->dadosbenef->dadosnasc->uf = 'SP';
 $std->idebenef->dadosbenef->dadosnasc->paisnascto = '105';
-$std->idebenef->dadosbenef->dadosnasc->paisnac    = '105';
+$std->idebenef->dadosbenef->dadosnasc->paisnac = '105';
 
-$std->idebenef->dadosbenef->endereco                    = new \stdClass();
-$std->idebenef->dadosbenef->endereco->brasil            = new \stdClass();
-$std->idebenef->dadosbenef->endereco->brasil->tplograd  = 'R';
+$std->idebenef->dadosbenef->endereco = new \stdClass();
+$std->idebenef->dadosbenef->endereco->brasil = new \stdClass();
+$std->idebenef->dadosbenef->endereco->brasil->tplograd = 'R';
 $std->idebenef->dadosbenef->endereco->brasil->dsclograd = 'DESCRICAO';
-$std->idebenef->dadosbenef->endereco->brasil->nrlograd  = '123';
-$std->idebenef->dadosbenef->endereco->brasil->cep       = '12345678';
-$std->idebenef->dadosbenef->endereco->brasil->codmunic  = 3550308;
-$std->idebenef->dadosbenef->endereco->brasil->uf        = 'SP';
+$std->idebenef->dadosbenef->endereco->brasil->nrlograd = '123';
+$std->idebenef->dadosbenef->endereco->brasil->cep = '12345678';
+$std->idebenef->dadosbenef->endereco->brasil->codmunic = 3550308;
+$std->idebenef->dadosbenef->endereco->brasil->uf = 'SP';
 
-$std->infobeneficio           = new \stdClass();
+$std->infobeneficio = new \stdClass();
 $std->infobeneficio->tpplanrp = 1;
 
-$std->infobeneficio->inibeneficio             = new \stdClass();
+$std->infobeneficio->inibeneficio = new \stdClass();
 $std->infobeneficio->inibeneficio->tpbenef    = 1;
 $std->infobeneficio->inibeneficio->nrbenefic  = '123165050';
 $std->infobeneficio->inibeneficio->dtinibenef = '2017-08-28';
