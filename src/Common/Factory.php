@@ -34,35 +34,35 @@ abstract class Factory
     /**
      * @var int
      */
-    public $tpAmb = 3;
+    public $tpAmb;
     /**
      * @var int
      */
-    public $procEmi = 1;
+    public $procEmi = 1; //1- Aplicativo do empregador
     /**
      * @var string
      */
-    public $verProc = '';
+    public $verProc;
     /**
      * @var string
      */
-    public $layout = '2.2.2';
+    public $layout;
     /**
      * @var string
      */
-    public $layoutStr = '';
+    public $layoutStr;
     /**
      * @var string
      */
-    public $schema = '';
+    public $schema;
     /**
      * @var string
      */
-    public $jsonschema = '';
+    public $jsonschema;
     /**
      * @var string
      */
-    public $evtid = '';
+    public $evtid;
     /**
      * @var string
      */
@@ -80,7 +80,7 @@ abstract class Factory
      */
     protected $xml;
     /**
-     * @var DOMNode
+     * @var DOMElement
      */
     protected $eSocial;
     /**
@@ -94,13 +94,13 @@ abstract class Factory
     /**
      * @var string
      */
-    protected $evtName = '';
+    protected $evtName;
     /**
      * @var string
      */
-    protected $evtAlias = '';
+    protected $evtAlias;
     /**
-     * @var Certificate
+     * @var Certificate | null
      */
     protected $certificate;
     
@@ -108,7 +108,7 @@ abstract class Factory
      * Constructor
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate
+     * @param Certificate $certificate | null
      * @param string $date
      */
     public function __construct(
@@ -123,13 +123,13 @@ abstract class Factory
         if (! empty($date)) {
             $this->date = new DateTime($date);
         }
-        $this->tpAmb       = $stdConf->tpAmb;
-        $this->verProc     = $stdConf->verProc;
-        $this->layout      = $stdConf->eventoVersion;
-        $this->tpInsc      = $stdConf->empregador->tpInsc;
-        $this->nrInsc      = $stdConf->empregador->nrInsc;
-        $this->nmRazao     = $stdConf->empregador->nmRazao;
-        $this->layoutStr   = $this->strLayoutVer($this->layout);
+        $this->tpAmb = $stdConf->tpAmb;
+        $this->verProc = $stdConf->verProc;
+        $this->layout = $stdConf->eventoVersion;
+        $this->tpInsc = $stdConf->empregador->tpInsc;
+        $this->nrInsc = $stdConf->empregador->nrInsc;
+        $this->nmRazao = $stdConf->empregador->nmRazao;
+        $this->layoutStr = $this->strLayoutVer($this->layout);
         $this->certificate = $certificate;
         if (empty($std) || ! is_object($std)) {
             throw new \InvalidArgumentException(
@@ -161,7 +161,7 @@ abstract class Factory
 
     /**
      * Stringfy layout number
-     * @param type $layout
+     * @param string $layout
      * @return string
      */
     protected function strLayoutVer($layout)
@@ -233,9 +233,9 @@ abstract class Factory
     protected function init()
     {
         if (empty($this->dom)) {
-            $this->dom                     = new Dom('1.0', 'UTF-8');
+            $this->dom = new Dom('1.0', 'UTF-8');
             $this->dom->preserveWhiteSpace = false;
-            $this->dom->formatOutput       = false;
+            $this->dom->formatOutput = false;
             $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
                 . "<eSocial xmlns=\"$this->xmlns"
                 . $this->evtName
@@ -243,22 +243,22 @@ abstract class Factory
                 . "</eSocial>";
             $this->dom->loadXML($xml);
             $this->eSocial = $this->dom->getElementsByTagName('eSocial')->item(0);
-            $this->evtid   = FactoryId::build(
+            $this->evtid = FactoryId::build(
                 $this->tpInsc,
                 $this->nrInsc,
                 $this->date,
                 $this->std->sequencial
             );
-            $this->node    = $this->dom->createElement($this->evtName);
-            $att           = $this->dom->createAttribute('Id');
-            $att->value    = $this->evtid;
+            $this->node = $this->dom->createElement($this->evtName);
+            $att = $this->dom->createAttribute('Id');
+            $att->value = $this->evtid;
             $this->node->appendChild($att);
 
             $ideEmpregador = $this->dom->createElement("ideEmpregador");
             $this->dom->addChild(
                 $ideEmpregador,
                 "tpInsc",
-                $this->tpInsc,
+                "$this->tpInsc",
                 true
             );
             $this->dom->addChild(
@@ -319,11 +319,10 @@ abstract class Factory
      */
     protected function clearXml($xml)
     {
-        $dom                      = new DOMDocument('1.0', 'UTF-8');
-        $this->formatOutput       = false;
-        $this->preserveWhiteSpace = false;
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $dom->formatOutput = false;
+        $dom->preserveWhiteSpace = false;
         $dom->loadXML($xml);
-
         return $dom->saveXML($dom->documentElement);
     }
 
@@ -379,7 +378,6 @@ abstract class Factory
         }
         $jsonSchemaObj = json_decode(file_get_contents($this->jsonschema));
         $sc = new ParamsStandardize($jsonSchemaObj);
-
         return $sc->stdData($data);
     }
 

@@ -91,6 +91,12 @@ class EvtAfastTemp extends Factory implements FactoryInterface
         );
         $this->dom->addChild(
             $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
             "tpAmb",
             $this->tpAmb,
             true
@@ -305,24 +311,14 @@ class EvtAfastTemp extends Factory implements FactoryInterface
 
         if (! empty($this->std->fimafastamento)) {
             $fimAfastamento = $this->dom->createElement("fimAfastamento");
-
             $this->dom->addChild(
                 $fimAfastamento,
                 "dtTermAfast",
                 $this->std->fimafastamento->dttermafast,
                 true
             );
-
-            $this->dom->addChild(
-                $fimAfastamento,
-                "codMotAfast",
-                $this->std->fimafastamento->codmotafast,
-                true
-            );
-
             $infoAfastamento->appendChild($fimAfastamento);
         }
-
         $this->node->appendChild($infoAfastamento);
 
         $this->eSocial->appendChild($this->node);

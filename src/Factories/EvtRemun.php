@@ -27,17 +27,14 @@ class EvtRemun extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtRemun';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1200';
-
     /**
      * Parameters patterns
      *
@@ -215,8 +212,8 @@ class EvtRemun extends Factory implements FactoryInterface
                 );
                 $this->dom->addChild(
                     $sucessaoVinc,
-                    "dtIniVinculo",
-                    $ic->sucessaovinc->dtinivinculo,
+                    "dtAdm",
+                    $ic->sucessaovinc->dtadm,
                     true
                 );
                 $this->dom->addChild(
