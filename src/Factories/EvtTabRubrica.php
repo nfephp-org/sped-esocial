@@ -173,30 +173,6 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             );
             $this->dom->addChild(
                 $dadosRubrica,
-                "repDSR",
-                $this->std->dadosrubrica->repdsr,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
-                "rep13",
-                $this->std->dadosrubrica->rep13,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
-                "repFerias",
-                $this->std->dadosrubrica->repferias,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
-                "repAviso",
-                $this->std->dadosrubrica->repaviso,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
                 "observacao",
                 ! empty($this->std->dadosrubrica->observacao)
                     ? $this->std->dadosrubrica->observacao
@@ -262,12 +238,6 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                         $fgts->nrproc,
                         true
                     );
-                    $this->dom->addChild(
-                        $ideProcessoFGTS,
-                        "codSusp",
-                        $fgts->codsusp,
-                        true
-                    );
                     $dadosRubrica->appendChild($ideProcessoFGTS);
                 }
             }
@@ -278,12 +248,6 @@ class EvtTabRubrica extends Factory implements FactoryInterface
                         $ideProcessoSIND,
                         "nrProc",
                         $sind->nrproc,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $ideProcessoSIND,
-                        "codSusp",
-                        $sind->codsusp,
                         true
                     );
                     $dadosRubrica->appendChild($ideProcessoSIND);
