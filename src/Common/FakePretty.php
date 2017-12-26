@@ -4,21 +4,25 @@ namespace NFePHP\eSocial\Common;
 
 class FakePretty
 {
+    /**
+     * Show pretty html representation for response action only used for debugging
+     * @param string $response
+     * @param string $save complete real path to file
+     * @return string
+     */
     public static function prettyPrint($response, $save = '')
     {
         $std = json_decode($response);
         if (! empty($save)) {
             file_put_contents(
-                "/var/www/sped/sped-nfe/tests/fixtures/xml/$save.xml",
+                "$save.xml",
                 $std->body
             );
         }
-
-        $doc                     = new \DOMDocument('1.0', 'UTF-8');
+        $doc = new \DOMDocument('1.0', 'UTF-8');
         $doc->preserveWhiteSpace = false;
-        $doc->formatOutput       = true;
+        $doc->formatOutput = true;
         $doc->loadXML($std->body);
-
         $html = "<pre>";
         $html .= '<h2>url</h2>';
         $html .= $std->url;
@@ -58,7 +62,6 @@ class FakePretty
             )
         );
         $html .= "</pre>";
-
         return $html;
     }
 }

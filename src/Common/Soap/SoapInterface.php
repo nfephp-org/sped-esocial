@@ -80,8 +80,7 @@ interface SoapInterface
      * @param string $action
      * @param string $envelope
      * @param array $parameters
-     * @param string $request
-     */
+      */
     public function send(
         $operation,
         $url,

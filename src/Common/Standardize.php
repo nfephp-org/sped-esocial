@@ -27,12 +27,10 @@ class Standardize
      * @var string
      */
     public $node = '';
-
     /**
      * @var string
      */
     public $json = '';
-
     /**
      * @var array
      */
@@ -43,7 +41,11 @@ class Standardize
         'consultaLoteEventos', //extrai os dados no xml da consulta
         'eSocial' //extrai os dados dos eventos
     ];
-
+    
+    /**
+     * Constructor
+     * @param string $xml
+     */
     public function __construct($xml = null)
     {
         $this->toStd($xml);
@@ -73,9 +75,7 @@ class Standardize
 
     /**
      * Identify node and extract from XML for convertion type
-     *
      * @param  string $xml
-     *
      * @return string identificated node name
      * @throws InvalidArgumentException
      */
@@ -86,9 +86,9 @@ class Standardize
                 "O argumento passado não é um XML válido."
             );
         }
-        $dom                     = new \DOMDocument('1.0', 'UTF-8');
+        $dom = new \DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
-        $dom->formatOutput       = false;
+        $dom->formatOutput = false;
         $dom->loadXML($xml);
         foreach ($this->rootTagList as $key) {
             $node = ! empty($dom->getElementsByTagName($key)->item(0))
@@ -96,7 +96,6 @@ class Standardize
                 : '';
             if (! empty($node)) {
                 $this->node = $dom->saveXML($node);
-
                 return $key;
             }
         }
@@ -107,7 +106,6 @@ class Standardize
 
     /**
      * Returns extract node from XML
-     *
      * @return string
      */
     public function __toString()
@@ -117,9 +115,7 @@ class Standardize
 
     /**
      * Retruns JSON string form XML
-     *
      * @param  string $xml
-     *
      * @return string
      */
     public function toJson($xml = null)
@@ -127,15 +123,12 @@ class Standardize
         if (! empty($xml)) {
             $this->toStd($xml);
         }
-
         return $this->json;
     }
 
     /**
      * Returns YAML from XML
-     *
      * @param  string $xml
-     *
      * @return string
      */
     public function toYaml($xml = null)
@@ -144,15 +137,12 @@ class Standardize
             $this->toStd($xml);
         }
         $array = $this->toArray();
-
         return Yaml::dump($array, 6, 4);
     }
 
     /**
      * Returns array from XML
-     *
      * @param  string $xml
-     *
      * @return array
      */
     public function toArray($xml = null)
@@ -160,7 +150,6 @@ class Standardize
         if (! empty($xml)) {
             $this->toStd($xml);
         }
-
         return json_decode($this->json, true);
     }
 }

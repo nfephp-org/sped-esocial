@@ -7,87 +7,72 @@ use NFePHP\Common\Certificate;
 
 class Tools
 {
-    const EVT_INICIAIS       = 1;
+    const EVT_INICIAIS = 1;
 
     const EVT_NAO_PERIODICOS = 2;
 
-    const EVT_PERIODICOS     = 3;
+    const EVT_PERIODICOS = 3;
 
     /**
      * @var string
      */
     protected $path;
-
     /**
      * @var DateTime
      */
     protected $date;
-
     /**
      * @var int
      */
     protected $tpInsc;
-
     /**
      * @var string
      */
     protected $nrInsc;
-
     /**
      * @var string
      */
     protected $nmRazao;
-
     /**
      * @var int
      */
     protected $tpAmb;
-
     /**
      * @var string
      */
     protected $verProc;
-
     /**
      * @var string
      */
     protected $eventoVersion;
-
     /**
      * @var string
      */
     protected $serviceVersion;
-
     /**
      * @var string
      */
     protected $layoutStr;
-
     /**
      * @var string
      */
     protected $serviceStr;
-
     /**
      * @var array
      */
     protected $serviceXsd = [];
-
     /**
      * @var Certificate
      */
     protected $certificate;
-
     /**
      * @var int
      */
     protected $transmissortpInsc;
-
     /**
      * @var string
      */
     protected $transmissornrInsc;
-
     /**
      * @var array
      */
@@ -156,36 +141,29 @@ class Tools
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param Certificate $certificate
      */
     public function __construct(
         $config,
-        Certificate $certificate = null
+        Certificate $certificate
     ) {
         //set properties from config
-        $stdConf                 = json_decode($config);
-        $this->tpAmb             = $stdConf->tpAmb;
-        $this->verProc           = $stdConf->verProc;
-        $this->eventoVersion     = $stdConf->eventoVersion;
-        $this->serviceVersion    = $stdConf->serviceVersion;
-        $this->date              = new DateTime();
-        $this->tpInsc            = $stdConf->empregador->tpInsc;
-        $this->nrInsc            = $stdConf->empregador->nrInsc;
-        $this->nmRazao           = $stdConf->empregador->nmRazao;
+        $stdConf = json_decode($config);
+        $this->tpAmb = $stdConf->tpAmb;
+        $this->verProc = $stdConf->verProc;
+        $this->eventoVersion = $stdConf->eventoVersion;
+        $this->serviceVersion = $stdConf->serviceVersion;
+        $this->date = new DateTime();
+        $this->tpInsc = $stdConf->empregador->tpInsc;
+        $this->nrInsc = $stdConf->empregador->nrInsc;
+        $this->nmRazao = $stdConf->empregador->nmRazao;
         $this->transmissortpInsc = $stdConf->transmissor->tpInsc;
         $this->transmissornrInsc = $stdConf->transmissor->nrInsc;
-
-        $this->layoutStr  = $this->stringfyVersions($stdConf->eventoVersion);
+        $this->layoutStr = $this->stringfyVersions($stdConf->eventoVersion);
         $this->serviceStr = $this->stringfyVersions($stdConf->serviceVersion, 1);
-
         $this->certificate = $certificate;
-
-        $this->path = realpath(
-            __DIR__.'/../../'
-        ).'/';
-
+        $this->path = realpath(__DIR__ . '/../../') . '/';
         $this->serviceXsd = XsdSeeker::seek(
             $this->path."schemes/comunicacao/$this->serviceStr/"
         );
@@ -193,9 +171,8 @@ class Tools
 
     /**
      * Stringfy layout number
-     *
-     * @param  type $layout
-     *
+     * @param string $version
+     * @param int $lenght
      * @return string
      */
     protected function stringfyVersions($version, $length = 2)
@@ -203,9 +180,8 @@ class Tools
         $fils = explode('.', $version);
         $str  = 'v';
         foreach ($fils as $fil) {
-            $str .= str_pad($fil, $length, '0', STR_PAD_LEFT).'_';
+            $str .= str_pad($fil, $length, '0', STR_PAD_LEFT) . '_';
         }
-
         return substr($str, 0, -1);
     }
 }
