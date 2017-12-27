@@ -120,7 +120,10 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $infoCadastro,
                 "indCoop",
                 $cad->indcoop,
-                false
+                false,
+                '',
+                true
+
             );
             $this->dom->addChild(
                 $infoCadastro,
