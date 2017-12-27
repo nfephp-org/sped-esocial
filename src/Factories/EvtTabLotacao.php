@@ -212,6 +212,7 @@ class EvtTabLotacao extends Factory implements FactoryInterface
             }
         }
 
+        $nova = null;
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -240,7 +241,9 @@ class EvtTabLotacao extends Factory implements FactoryInterface
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (!is_null($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
