@@ -32,23 +32,45 @@ Não deixe de se cadastrar no [grupo de discussão do NFePHP](http://groups.goog
 
 ## CRONOGRAMA PREVISTO
 
-Após o fechamento do layout [vide 2.2.01](http://www.esocial.gov.br/Leiautes.aspx), o Grupo de Trabalho e o Comitê Gestor terão seis meses para trabalhar a proposta;
+**Etapa 1 - Empresas com faturamento anual superior a R$ 78 milhões**
 
-Passada essa etapa, haverá mais seis meses para realização de testes;
+Fase 1: Janeiro/18 - Apenas informações relativas às empresas, ou seja, cadastros do empregador e tabelas
 
-Ao final desse período, começará a obrigatoriedade para grandes empresas;
+Fase 2: Março/18: Nesta fase, empresas passam a ser obrigadas a enviar informações relativas aos trabalhadores e seus vínculos com as empresas (eventos não periódicos), como admissões, afastamentos e desligamentos
 
-O Grupo de Trabalho e o Comitê Gestor estudarão condições diferenciadas para micro e pequenas empresas, dentre as quais, o MEI;
+Fase 3: Maio/18: Torna-se obrigatório o envio das folhas de pagamento
 
-Se forem obedecidas estas regras o novo sistema só deverá entrar em vigor no início de 2018.
+Fase 4: Julho/18: Substituição da GFIP (Guia de Informações à Previdência Social) e compensação cruzada
 
-### *[RESOLUÇÃO Nº 2, DE 30 DE AGOSTO DE 2016](http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=77006&visao=anotado) estabelece cronograma de adesão dos empregadores ao eSocial*
+Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
-*Art. 2º O início da obrigatoriedade de utilização do eSocial dar-se-á:*
+ 
 
-*I - em 1º de janeiro de 2018, para os empregadores e contribuintes com faturamento no ano de 2016 acima de R$ 78.000.000,00 (setenta e oito milhões de reais); e*
+**Etapa 2 - Demais empresas privadas, incluindo Simples, MEIs e pessoas físicas (que possuam empregados)**
 
-*II - em 1º de julho de 2018, para os demais empregadores e contribuintes.*
+Fase 1: Julho/18 - Apenas informações relativas às empresas, ou seja, cadastros do empregador e tabelas
+
+Fase 2: Set/18: Nesta fase, empresas passam a ser obrigadas a enviar informações relativas aos trabalhadores e seus vínculos com as empresas (eventos não periódicos), como admissões, afastamentos e desligamentos
+
+Fase 3: Nov/18: Torna-se obrigatório o envio das folhas de pagamento
+
+Fase 4: Janeiro/19: Substituição da GFIP (Guia de informações à Previdência Social) e compensação cruzada
+
+Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
+
+ 
+
+**Etapa 3 - Entes Públicos**
+
+Fase 1: Janeiro/19 - Apenas informações relativas aos órgãos, ou seja, cadastros dos empregadores e tabelas
+
+Fase 2: Março/19: Nesta fase, entes passam a ser obrigadas a enviar informações relativas aos servidores e seus vínculos com os órgãos (eventos não periódicos) Ex: admissões, afastamentos e desligamentos
+
+Fase 3: Maio/19: Torna-se obrigatório o envio das folhas de pagamento
+
+Fase 4: Julho/19: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada
+
+Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
 
 **Liberação da fase de Testes: 01/07/2017**
