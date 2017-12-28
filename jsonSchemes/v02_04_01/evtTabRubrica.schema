@@ -80,26 +80,6 @@
                     "maxLength": 2,
                     "pattern": "^[0-9]"
                 },
-                "repdsr": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "rep13": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "repferias": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "repaviso": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
                 "observacao": {
                     "required": false,
                     "type": ["string","null"],
