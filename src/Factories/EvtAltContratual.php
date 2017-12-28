@@ -65,19 +65,20 @@ class EvtAltContratual extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid            = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial          = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtAltContratual = $this->dom->createElement("evtAltContratual");
-        $att              = $this->dom->createAttribute('Id');
-        $att->value       = $evtid;
-        $evtAltContratual->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -96,24 +97,12 @@ class EvtAltContratual extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtAltContratual->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtAltContratual->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtAltContratual);
-        $this->sign($eSocial);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        ;
+        //$this->sign();
     }
 }
