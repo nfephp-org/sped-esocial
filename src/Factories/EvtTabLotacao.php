@@ -67,7 +67,7 @@ class EvtTabLotacao extends Factory implements FactoryInterface
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+        //ent�o cada factory individualmente ter� de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -88,30 +88,31 @@ class EvtTabLotacao extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ide = $this->dom->createElement("ideLotacao");
         $this->dom->addChild(
             $ide,
             "codLotacao",
-            $this->std->codlotacao,
+            $this->std->idelotacao->codlotacao,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $this->std->idelotacao->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->idelotacao->fimvalid) ? $this->std->idelotacao->fimvalid : null,
             false
         );
-        
-        
+
+
         if (!empty($this->std->dadoslotacao)) {
             $da = $this->std->dadoslotacao;
+
             $dados = $this->dom->createElement("dadosLotacao");
             $this->dom->addChild(
                 $dados,
@@ -132,28 +133,30 @@ class EvtTabLotacao extends Factory implements FactoryInterface
                 false
             );
             $fpasLotacao = $this->dom->createElement("fpasLotacao");
+
             $this->dom->addChild(
                 $fpasLotacao,
                 "fpas",
-                $da->fpas,
+                $da->fpaslotacao->fpas,
                 true
             );
             $this->dom->addChild(
                 $fpasLotacao,
                 "codTercs",
-                $da->codtercs,
+                $da->fpaslotacao->codtercs,
                 true
             );
             $this->dom->addChild(
                 $fpasLotacao,
                 "codTercsSusp",
-                !empty($da->codtercssusp) ? $da->codtercssusp : null,
+                !empty($da->fpaslotacao->codtercssusp) ? $da->fpaslotacao->codtercssusp : null,
                 false
             );
-            
-            if (!empty($da->procjudterceiro)) {
+
+            if (!empty($da->fpaslotacao->procjudterceiro)) {
+
                 $procjud = $this->dom->createElement("infoProcJudTerceiros");
-                foreach ($da->procjudterceiro as $proc) {
+                foreach ($da->fpaslotacao->procjudterceiro as $proc) {
                     $pjt = $this->dom->createElement("procJudTerceiro");
                     $this->dom->addChild(
                         $pjt,
@@ -178,7 +181,7 @@ class EvtTabLotacao extends Factory implements FactoryInterface
                 $fpasLotacao->appendChild($procjud);
             }
             $dados->appendChild($fpasLotacao);
-            
+
             if (!empty($da->infoemprparcial)) {
                 $parcial = $this->dom->createElement("infoEmprParcial");
                 $this->dom->addChild(
@@ -208,7 +211,7 @@ class EvtTabLotacao extends Factory implements FactoryInterface
                 $dados->appendChild($parcial);
             }
         }
-        
+
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -226,9 +229,9 @@ class EvtTabLotacao extends Factory implements FactoryInterface
                 false
             );
         }
-        
+
         $info = $this->dom->createElement("infoLotacao");
-        //seleção do modo
+        //selecao do modo
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
             $node->appendChild($ide);
@@ -242,11 +245,11 @@ class EvtTabLotacao extends Factory implements FactoryInterface
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-        
+
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
+
         $this->sign();
     }
 }

@@ -234,7 +234,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "foneFixo",
-                ! empty($cad->foneFixo) ? $cad->foneFixo : '',
+                ! empty($cad->fonefixo) ? $cad->fonefixo : '',
                 false
             );
             $this->dom->addChild(
