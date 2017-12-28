@@ -27,17 +27,14 @@ class EvtDeslig extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtDeslig';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2299';
-
     /**
      * Parameters patterns
      *
@@ -47,7 +44,6 @@ class EvtDeslig extends Factory implements FactoryInterface
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -65,55 +61,6 @@ class EvtDeslig extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid      = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial    = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtDeslig  = $this->dom->createElement("evtDeslig");
-        $att        = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
-        $evtDeslig->appendChild($att);
-
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $evtDeslig->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtDeslig->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtDeslig);
-        $this->sign($eSocial);
+        
     }
 }
