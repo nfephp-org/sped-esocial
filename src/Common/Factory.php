@@ -103,7 +103,7 @@ abstract class Factory
      * @var Certificate | null
      */
     protected $certificate;
-    
+
     /**
      * Constructor
      * @param string $config
@@ -150,8 +150,10 @@ abstract class Factory
         );
         //convert all data fields to lower case
         $this->std = $this->propertiesToLower($std);
-        //validate input data with schema
-        $this->validInputData($this->std);
+        if (!isset($stdConf->validaJsonSchema) || $stdConf->validaJsonSchema === true) {
+            //validate input data with schema
+            $this->validInputData($this->std);
+        }
         //Adding forgotten or unnecessary fields.
         //This is done for standardization purposes.
         //Fields with no value will not be included by the builder.
@@ -270,7 +272,7 @@ abstract class Factory
             $this->node->appendChild($ideEmpregador);
         }
     }
-    
+
     /**
      * Returns alias for event
      * @return string
@@ -288,7 +290,7 @@ abstract class Factory
     {
         return $this->certificate;
     }
-    
+
     /**
      * Set Certificate::class
      * @param Certificate $certificate
