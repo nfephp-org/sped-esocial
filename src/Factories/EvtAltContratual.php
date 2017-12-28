@@ -211,7 +211,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
                 true
             );
             $infoRegimeTrab->appendChild($infoEstatutario);
-        } 
+        }
         $altContratual->appendChild($infoRegimeTrab);
         
         $infoContrato = $this->dom->createElement("infoContrato");
@@ -432,7 +432,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
         }
         
         if (!empty($this->std->observacoes)) {
-            foreach($this->std->observacoes as $obs) {
+            foreach ($this->std->observacoes as $obs) {
                 $observacoes = $this->dom->createElement("observacoes");
                 $this->dom->addChild(
                     $observacoes,
