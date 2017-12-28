@@ -172,30 +172,6 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             );
             $this->dom->addChild(
                 $dadosRubrica,
-                "repDSR",
-                $this->std->dadosrubrica->repdsr,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
-                "rep13",
-                $this->std->dadosrubrica->rep13,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
-                "repFerias",
-                $this->std->dadosrubrica->repferias,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
-                "repAviso",
-                $this->std->dadosrubrica->repaviso,
-                true
-            );
-            $this->dom->addChild(
-                $dadosRubrica,
                 "observacao",
                 ! empty($this->std->dadosrubrica->observacao)
                     ? $this->std->dadosrubrica->observacao
