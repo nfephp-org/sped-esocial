@@ -114,19 +114,19 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $infoCadastro,
                 "natJurid",
                 $cad->natjurid,
-                false
+                ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "indCoop",
                 $cad->indcoop,
-                false
+                ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "indConstr",
                 $cad->indconstr,
-                false
+                ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
                 $infoCadastro,
@@ -140,15 +140,6 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $cad->indoptregeletron,
                 true
             );
-            //campo versão 2.2.02
-            if ($this->layout == '2.2.2') {
-                $this->dom->addChild(
-                    $infoCadastro,
-                    "multTabRubricas",
-                    $cad->multtabrubricas,
-                    true
-                );
-            }
             $this->dom->addChild(
                 $infoCadastro,
                 "indEntEd",
