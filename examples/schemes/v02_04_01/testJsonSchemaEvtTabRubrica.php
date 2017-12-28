@@ -92,21 +92,6 @@ $jsonSchema = '{
                     "maxLength": 2,
                     "pattern": "^[0-9]"
                 },
-                "repdsr": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "rep13": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "repferias": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
                 "repaviso": {
                     "required": true,
                     "type": "string",
@@ -185,12 +170,6 @@ $jsonSchema = '{
                                 "required": true,
                                 "type": "string",
                                 "maxLength": 20
-                            },
-                            "codsusp": {
-                                "required": true,
-                                "type": "string",
-                                "maxLength": 14,
-                                "pattern": "^[0-9]"
                             }
                         }
                     }    
@@ -207,12 +186,6 @@ $jsonSchema = '{
                                 "required": true,
                                 "type": "string",
                                 "maxLength": 20
-                            },
-                            "codsusp": {
-                                "required": true,
-                                "type": "string",
-                                "maxLength": 14,
-                                "pattern": "^[0-9]"
                             }
                         }
                     }    
@@ -238,47 +211,41 @@ $jsonSchema = '{
     }
 }';
 
-$std             = new \stdClass();
+$std = new \stdClass();
 $std->sequencial = 1;
-$std->codrubr    = 'alalalaallkj r9487dkjhdkjhd';
+$std->codrubr = 'alalalaallkj r9487dkjhdkjhd';
 $std->idetabrubr = 'lslslsls';
-$std->inivalid   = '2017-01';
-$std->fimvalid   = '2017-12';
-$std->modo       = "INC";
+$std->inivalid = '2017-01';
+$std->fimvalid = '2017-12';
+$std->modo = "INC";
 
-$std->dadosrubrica             = new \stdClass();
-$std->dadosrubrica->dscrubr    = 'dkdldkdlk';
-$std->dadosrubrica->natrubr    = 1234;
-$std->dadosrubrica->tprubr     = 1;
-$std->dadosrubrica->codinccp   = '11';
+$std->dadosrubrica  = new \stdClass();
+$std->dadosrubrica->dscrubr = 'dkdldkdlk';
+$std->dadosrubrica->natrubr = 1234;
+$std->dadosrubrica->tprubr = 1;
+$std->dadosrubrica->codinccp = '11';
 $std->dadosrubrica->codincirrf = '11';
 $std->dadosrubrica->codincfgts = '11';
 $std->dadosrubrica->codincsind = '11';
-$std->dadosrubrica->repdsr     = 'S';
-$std->dadosrubrica->rep13      = 'S';
-$std->dadosrubrica->repferias  = 'S';
-$std->dadosrubrica->repaviso   = 'N';
 $std->dadosrubrica->observacao = '';
 
-$std->dadosrubrica->ideprocessocp[0]             = new \stdClass();
-$std->dadosrubrica->ideprocessocp[0]->tpproc     = 1;
-$std->dadosrubrica->ideprocessocp[0]->nrproc     = 'alkdslkdldkdlk';
+$std->dadosrubrica->ideprocessocp[0] = new \stdClass();
+$std->dadosrubrica->ideprocessocp[0]->tpproc = 1;
+$std->dadosrubrica->ideprocessocp[0]->nrproc = 'alkdslkdldkdlk';
 $std->dadosrubrica->ideprocessocp[0]->extdecisao = 1;
-$std->dadosrubrica->ideprocessocp[0]->codsusp    = '0929292882';
+$std->dadosrubrica->ideprocessocp[0]->codsusp = '0929292882';
 
-$std->dadosrubrica->ideprocessoirrf[0]          = new \stdClass();
+$std->dadosrubrica->ideprocessoirrf[0] = new \stdClass();
 $std->dadosrubrica->ideprocessoirrf[0]->nrproc  = 'alkdslkdldkdlk';
 $std->dadosrubrica->ideprocessoirrf[0]->codsusp = '0929292882';
 
-$std->dadosrubrica->ideprocessofgts[0]          = new \stdClass();
+$std->dadosrubrica->ideprocessofgts[0] = new \stdClass();
 $std->dadosrubrica->ideprocessofgts[0]->nrproc  = 'alkdslkdldkdlk';
-$std->dadosrubrica->ideprocessofgts[0]->codsusp = '0929292882';
 
-$std->dadosrubrica->ideprocessosind[0]          = new \stdClass();
+$std->dadosrubrica->ideprocessosind[0] = new \stdClass();
 $std->dadosrubrica->ideprocessosind[0]->nrproc  = 'alkdslkdldkdlk';
-$std->dadosrubrica->ideprocessosind[0]->codsusp = '0929292882';
 
-$std->novavalidade           = new \stdClass();
+$std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-12';
 $std->novavalidade->fimvalid = '2018-12';
 
