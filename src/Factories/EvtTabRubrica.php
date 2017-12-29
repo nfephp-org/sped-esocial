@@ -26,17 +26,14 @@ class EvtTabRubrica extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTabRubrica';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1010';
-
     /**
      * Parameters patterns
      *

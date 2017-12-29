@@ -88,7 +88,9 @@ $jsonSchema = '{
         "nrcertobito": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 32
+            "minLength": 32,
+            "maxLength": 32,
+            "pattern": "^[0-9]"
         },
         "nrproctrab": {
             "required": false,

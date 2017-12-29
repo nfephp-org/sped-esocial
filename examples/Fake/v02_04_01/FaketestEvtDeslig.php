@@ -17,7 +17,7 @@ $config     = [
     //versão do webservice
     'empregador'     => [
         'tpInsc'  => 1,  //1-CNPJ, 2-CPF
-        'nrInsc'  => '99999999999999', //numero do documento
+        'nrInsc'  => '99999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
     'transmissor'    => [
@@ -42,7 +42,7 @@ $std->dtprojfimapi = '2017-11-25';
 $std->pensalim = 2;
 $std->percaliment = 22;
 $std->vralim = 1234.45;
-$std->nrcertobito = '1234567890';
+$std->nrcertobito = '12345678901234567890123456789012';
 $std->nrProcTrab = '1234567890';
 $std->indcumprparc = 2;
 $std->observacao = 'observacao';
