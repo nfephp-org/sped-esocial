@@ -96,28 +96,28 @@ class EvtTabProcesso extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "tpProc",
-            $this->std->tpproc,
+            $this->std->ideprocesso->tpproc,
             true
         );
         $this->dom->addChild(
             $ide,
             "nrProc",
-            $this->std->nrproc,
+            $this->std->ideprocesso->nrproc,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $this->std->ideprocesso->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->ideprocesso->fimvalid) ? $this->std->ideprocesso->fimvalid : null,
             false
         );
-        //seleção do modo
+        //selecao do modo
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
         } elseif ($this->std->modo == 'ALT') {
@@ -215,7 +215,7 @@ class EvtTabProcesso extends Factory implements FactoryInterface
         }
 
         $info->appendChild($node);
-        //finalização do xml
+        //finalizacao do xml
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
         $this->sign();
