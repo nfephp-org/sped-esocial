@@ -58,7 +58,7 @@ class EvtCAT extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-       $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -125,7 +125,7 @@ class EvtCAT extends Factory implements FactoryInterface
             "nisTrab",
             !empty($this->std->nistrab) ? $this->std->nistrab : null,
             false
-        );        
+        );
         $this->node->appendChild($ideTrabalhador);
 
         $cat = $this->dom->createElement("cat");
@@ -201,7 +201,7 @@ class EvtCAT extends Factory implements FactoryInterface
             "tpLocal",
             $this->std->tplocal,
             true
-        );        
+        );
         $this->dom->addChild(
             $localAcidente,
             "dscLocal",
@@ -252,14 +252,14 @@ class EvtCAT extends Factory implements FactoryInterface
         );
         $cat->appendChild($localAcidente);
         
-        foreach($this->std->parteatingida as $pa) {
+        foreach ($this->std->parteatingida as $pa) {
             $parteAtingida = $this->dom->createElement("parteAtingida");
             $this->dom->addChild(
                 $parteAtingida,
                 "codParteAting",
                 $pa->codparteating,
                 true
-            );              
+            );
             $this->dom->addChild(
                 $parteAtingida,
                 "lateralidade",
@@ -267,16 +267,16 @@ class EvtCAT extends Factory implements FactoryInterface
                 true
             );
             $cat->appendChild($parteAtingida);
-        }    
+        }
 
-        foreach($this->std->agentecausador as $pa) {
+        foreach ($this->std->agentecausador as $pa) {
             $agenteCausador = $this->dom->createElement("agenteCausador");
             $this->dom->addChild(
                 $agenteCausador,
                 "codAgntCausador",
                 $pa->codagntcausador,
                 true
-            );              
+            );
             $cat->appendChild($agenteCausador);
         }
         if (!empty($this->std->atestado)) {
@@ -287,7 +287,7 @@ class EvtCAT extends Factory implements FactoryInterface
                 "codCNES",
                 !empty($pa->codcnes) ? $pa->codcnes : null,
                 false
-            );            
+            );
             $this->dom->addChild(
                 $atestado,
                 "dtAtendimento",
@@ -299,7 +299,7 @@ class EvtCAT extends Factory implements FactoryInterface
                 "hrAtendimento",
                 $pa->hratendimento,
                 true
-            );            
+            );
             $this->dom->addChild(
                 $atestado,
                 "indInternacao",
@@ -323,13 +323,13 @@ class EvtCAT extends Factory implements FactoryInterface
                 "dscLesao",
                 !empty($pa->dsclesao) ? $pa->dsclesao : null,
                 false
-            );            
+            );
             $this->dom->addChild(
                 $atestado,
                 "dscCompLesao",
                 !empty($pa->dsccomplesao) ? $pa->dsccomplesao : null,
                 false
-            );            
+            );
             $this->dom->addChild(
                 $atestado,
                 "diagProvavel",
@@ -347,14 +347,14 @@ class EvtCAT extends Factory implements FactoryInterface
                 "observacao",
                 !empty($pa->observacao) ? $pa->observacao : null,
                 false
-            );            
+            );
             $emitente = $this->dom->createElement("emitente");
             $this->dom->addChild(
                 $emitente,
                 "nmEmit",
                 $pa->nmemit,
                 true
-            ); 
+            );
             $this->dom->addChild(
                 $emitente,
                 "ideOC",
@@ -384,7 +384,7 @@ class EvtCAT extends Factory implements FactoryInterface
                 "dtCatOrig",
                 $pa->dtcatorig,
                 true
-            ); 
+            );
             $this->dom->addChild(
                 $catOrigem,
                 "nrCatOrig",
