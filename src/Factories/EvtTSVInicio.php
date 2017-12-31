@@ -27,17 +27,14 @@ class EvtTSVInicio extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTSVInicio';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2300';
-
     /**
      * Parameters patterns
      *
@@ -65,55 +62,5 @@ class EvtTSVInicio extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid        = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial      = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtTSVInicio = $this->dom->createElement("evtTSVInicio");
-        $att          = $this->dom->createAttribute('Id');
-        $att->value   = $evtid;
-        $evtTSVInicio->appendChild($att);
-
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $evtTSVInicio->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtTSVInicio->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtTSVInicio);
-        $this->sign($eSocial);
     }
 }
