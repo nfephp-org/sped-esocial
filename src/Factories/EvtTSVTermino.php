@@ -102,7 +102,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
             "cpfTrab",
             $this->std->cpftrab,
             true
-        );        
+        );
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "nisTrab",
@@ -114,7 +114,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
             "codCateg",
             $this->std->codcateg,
             true
-        );        
+        );
         $this->node->appendChild($ideTrabSemVinculo);
         $infoTSVTermino = $this->dom->createElement("infoTSVTermino");
         $this->dom->addChild(
@@ -132,7 +132,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
         if (!empty($this->std->verbasresc)) {
             $vr = $this->std->verbasresc;
             $verbasResc = $this->dom->createElement("verbasResc");
-            foreach($vr->dmdev as $dv) {
+            foreach ($vr->dmdev as $dv) {
                 $dmDev = $this->dom->createElement("dmDev");
                 $this->dom->addChild(
                     $dmDev,
@@ -147,7 +147,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                         "tpInsc",
                         $el->tpinsc,
                         true
-                    );                    
+                    );
                     $this->dom->addChild(
                         $ideEstabLot,
                         "nrInsc",
@@ -279,7 +279,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                             "indSimples",
                             $el->infosimples->indsimples,
                             true
-                        );                        
+                        );
                         $ideEstabLot->appendChild($infoSimples);
                     }
                     $dmDev->appendChild($ideEstabLot);
@@ -295,7 +295,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                         "tpTrib",
                         $pj->tptrib,
                         true
-                    ); 
+                    );
                     $this->dom->addChild(
                         $procJudTrab,
                         "nrProcJud",
@@ -338,7 +338,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                         "codCateg",
                         $rm->codcateg,
                         true
-                    );                    
+                    );
                     $this->dom->addChild(
                         $remunOutrEmpr,
                         "vlrRemunOE",
