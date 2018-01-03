@@ -185,7 +185,7 @@ class EvtDeslig extends Factory implements FactoryInterface
             !empty($this->std->observacao) ? $this->std->observacao : null,
             false
         );
-        $this->node->appendChild($infoDeslig);
+        
         
         if (!empty($this->std->sucessaovinc)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
@@ -195,7 +195,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                 $this->std->sucessaovinc->cnpjsucessora,
                 true
             );
-            $this->node->appendChild($sucessaoVinc);
+            $infoDeslig->appendChild($sucessaoVinc);
         }
         
         if (!empty($this->std->transftit)) {
@@ -212,7 +212,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                 $this->std->transftit->dtnascto,
                 true
             );
-            $this->node->appendChild($transfTit);
+            $infoDeslig->appendChild($transfTit);
         }
         
         if (!empty($this->std->verbasresc)) {
@@ -341,7 +341,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                                         );
                                         $this->dom->addChild(
                                             $detPlano,
-                                            "dtNascto",
+                                            "vlrPgDep",
                                             $dp->vlrpgdep,
                                             true
                                         );
@@ -405,7 +405,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                         );
                         $this->dom->addChild(
                             $ideADC,
-                            "dtefacconv",
+                            "dtEfAcConv",
                             $adc->dtefacconv,
                             true
                         );
@@ -418,7 +418,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                         foreach ($adc->ideperiodo as $aper) {
                             $idePeriodo = $this->dom->createElement("idePeriodo");
                             $this->dom->addChild(
-                                $ideADC,
+                                $idePeriodo,
                                 "perRef",
                                 $aper->perref,
                                 true
@@ -600,7 +600,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                 $verbasResc->appendChild($infoMV);
             }
             
-            $this->node->appendChild($verbasResc);
+            $infoDeslig->appendChild($verbasResc);
         }
         if (!empty($this->std->quarentena)) {
             $quarentena = $this->dom->createElement("quarentena");
@@ -610,7 +610,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                 $this->std->quarentena->dtfimquar,
                 true
             );
-            $this->node->appendChild($quarentena);
+            $infoDeslig->appendChild($quarentena);
         }
         
         $consigFGTS = $this->dom->createElement("consigFGTS");
@@ -632,8 +632,9 @@ class EvtDeslig extends Factory implements FactoryInterface
             !empty($this->std->consigfgts->nrcontr) ? $this->std->consigfgts->nrcontr : null,
             false
         );
-        $this->node->appendChild($consigFGTS);
+        $infoDeslig->appendChild($consigFGTS);
         
+        $this->node->appendChild($infoDeslig);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
