@@ -27,17 +27,14 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTSVAltContr';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2306';
-
     /**
      * Parameters patterns
      *
