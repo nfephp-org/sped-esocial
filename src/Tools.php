@@ -77,7 +77,7 @@ class Tools extends ToolsBase
      * @var string
      */
     protected $envelopeXmlns;
-    
+
     /**
      * Constructor
      * @param string $config
@@ -87,7 +87,10 @@ class Tools extends ToolsBase
     {
         parent::__construct($config, $certificate);
 
-        $this->baseUri = "https://webservices.producaorestrita.esocial.gov.br";
+        $this->baseUri = (object) [
+            "envio" => "https://webservices.producaorestrita.esocial.gov.br",
+            "consulta" => "https://webservices.producaorestrita.esocial.gov.br"
+        ];
 
         if (!empty($config->baseUri)) {
             $this->baseUri = $config->baseUri;
@@ -116,7 +119,7 @@ class Tools extends ToolsBase
             ."/eventos/envio/consulta/retornoProcessamento/$operationVersion"
             ."/ServicoConsultarLoteEventos/ConsultarLoteEventos";
         $this->method = "ConsultarLoteEventos";
-        $this->uri = $this->baseUri
+        $this->uri = $this->baseUri->consulta
             ."/servicos/empregador/consultarloteeventos"
             ."/WsConsultarLoteEventos.svc";
         $this->envelopeXmlns = [
@@ -221,7 +224,7 @@ class Tools extends ToolsBase
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
             . "/eventos/envio/v1_1_0/ServicoEnviarLoteEventos"
             . "/EnviarLoteEventos";
-        $this->uri = $this->baseUri
+        $this->uri = $this->baseUri->envio
             ."/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
