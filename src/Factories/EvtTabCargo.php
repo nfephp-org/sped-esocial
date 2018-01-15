@@ -93,19 +93,19 @@ class EvtTabCargo extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "codCargo",
-            $this->std->codcargo,
+            $this->std->idecargo->codcargo,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $this->std->idecargo->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->idecargo->fimvalid) ? $this->std->idecargo->fimvalid : null,
             false
         );
         
@@ -149,19 +149,19 @@ class EvtTabCargo extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $lei,
                     "nrLei",
-                    $da->cargopublico->nrlei,
+                    $da->cargopublico->leicargo->nrlei,
                     true
                 );
                 $this->dom->addChild(
                     $lei,
                     "dtLei",
-                    $da->cargopublico->dtlei,
+                    $da->cargopublico->leicargo->dtlei,
                     true
                 );
                 $this->dom->addChild(
                     $lei,
                     "sitCargo",
-                    $da->cargopublico->sitcargo,
+                    $da->cargopublico->leicargo->sitcargo,
                     true
                 );
                 $cpub->appendChild($lei);
