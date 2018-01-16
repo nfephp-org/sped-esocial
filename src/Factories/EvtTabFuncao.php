@@ -88,24 +88,25 @@ class EvtTabFuncao extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
+        $ideFuncao =  $this->std->idefuncao;
         $ide = $this->dom->createElement("ideFuncao");
         $this->dom->addChild(
             $ide,
             "codFuncao",
-            $this->std->codfuncao,
+            $ideFuncao->codfuncao,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $ideFuncao->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($ideFuncao->fimvalid) ? $ideFuncao->fimvalid : null,
             false
         );
         
