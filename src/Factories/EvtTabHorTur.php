@@ -93,19 +93,19 @@ class EvtTabHorTur extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "codHorContrat",
-            $this->std->codhorcontrat,
+            $this->std->idehorcontratual->codhorcontrat,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $this->std->idehorcontratual->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->idehorcontratual->fimvalid) ? $this->std->idehorcontratual->fimvalid : null,
             false
         );
         
