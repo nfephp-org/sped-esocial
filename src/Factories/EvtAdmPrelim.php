@@ -83,19 +83,19 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
         $this->dom->addChild(
             $infoRegPrelim,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->inforegprelim->cpftrab,
             true
         );
         $this->dom->addChild(
             $infoRegPrelim,
             "dtNascto",
-            $this->std->dtnascto,
+            $this->std->inforegprelim->dtnascto,
             true
         );
         $this->dom->addChild(
             $infoRegPrelim,
             "dtAdm",
-            $this->std->dtadm,
+            $this->std->inforegprelim->dtadm,
             true
         );
         $this->node->appendChild($infoRegPrelim);
