@@ -88,7 +88,7 @@ class EvtTabCargo extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ide = $this->dom->createElement("ideCargo");
         $this->dom->addChild(
             $ide,
@@ -108,8 +108,8 @@ class EvtTabCargo extends Factory implements FactoryInterface
             ! empty($this->std->idecargo->fimvalid) ? $this->std->idecargo->fimvalid : null,
             false
         );
-        
-        
+
+
         if (!empty($this->std->dadoscargo)) {
             $da = $this->std->dadoscargo;
             $dados = $this->dom->createElement("dadosCargo");
@@ -168,7 +168,7 @@ class EvtTabCargo extends Factory implements FactoryInterface
                 $dados->appendChild($cpub);
             }
         }
-        
+
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -186,7 +186,7 @@ class EvtTabCargo extends Factory implements FactoryInterface
                 false
             );
         }
-        
+
         $info = $this->dom->createElement("infoCargo");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -197,12 +197,14 @@ class EvtTabCargo extends Factory implements FactoryInterface
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (isset($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-        
+
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
