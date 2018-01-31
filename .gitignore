@@ -7,7 +7,6 @@ build
 outros
 vendor
 nbproject
-composer.lock
 .composer
 docker-compose.yml
 Caddyfile
