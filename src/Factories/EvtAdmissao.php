@@ -59,7 +59,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
     protected function toNode()
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        $ideEvento = $this->dom->createElement("ideEvento");        
+        $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
@@ -138,8 +138,8 @@ class EvtAdmissao extends Factory implements FactoryInterface
         $this->dom->addChild(
             $trabalhador,
             "indPriEmpr",
-            $this->std->trabalhador->indpriempr,
-            true
+            !empty($this->std->trabalhador->indpriempr) ? $this->std->trabalhador->indpriempr : null,
+            false
         );
         $this->dom->addChild(
             $trabalhador,
@@ -456,7 +456,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $exterior,
                 "nmCid",
-                $this->std->trabalhador->endereco->exterior->nmCid,
+                $this->std->trabalhador->endereco->exterior->nmcid,
                 true
             );
             $this->dom->addChild(
