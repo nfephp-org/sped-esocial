@@ -21,14 +21,12 @@
                 "cpftrab": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "[0-9]{11}"
                 },
                 "nistrab": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "[0-9]{11}"
                 },
                 "nmtrab": {
                     "required": true,
@@ -43,19 +41,21 @@
                 "racacor": {
                     "required": true,
                     "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "([1-6]){1}$"
+                    "minimum": 1,
+                    "maximum": 6
                 },
                 "estciv": {
                     "required": false,
-                    "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "([1-5]){1}$"
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 5
                 },
                 "grauinstr": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 2
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "pattern": "01|02|03|04|05|06|07|08|09|10|11|12"
                 },
                 "indpriempr": {
                     "required": true,
@@ -64,12 +64,7 @@
                 },
                 "nmsoc": {
                     "required": false,
-                    "type": "string",
-                    "maxLength": 70
-                },
-                "nmsoc": {
-                    "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 70
                 },
                 "dtnascto": {
@@ -79,18 +74,20 @@
                 },
                 "codmunic": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 7
                 },
                 "uf": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 2
                 },
                 "paisnascto": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 3
+                    "minLength": 3,
+                    "maxLength": 3,
+                    "pattern": "[0-9]{3}"
                 },
                 "paisnac": {
                     "required": true,
@@ -896,8 +893,9 @@
                                 },
                                 "tmpparc": {
                                     "required": true,
-                                    "type": "string",
-                                    "pattern": "S|N"
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 3
                                 },
                                 "horario": {
                                     "required": false,
