@@ -34,14 +34,12 @@ $jsonSchema = '{
                 "cpftrab": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "[0-9]{11}"
                 },
                 "nistrab": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "[0-9]{11}"
                 },
                 "nmtrab": {
                     "required": true,
@@ -56,19 +54,21 @@ $jsonSchema = '{
                 "racacor": {
                     "required": true,
                     "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "([1-6]){1}$"
+                    "minimum": 1,
+                    "maximum": 6
                 },
                 "estciv": {
                     "required": false,
-                    "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "([1-5]){1}$"
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 5
                 },
                 "grauinstr": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 2
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "pattern": "01|02|03|04|05|06|07|08|09|10|11|12"
                 },
                 "indpriempr": {
                     "required": true,
@@ -77,12 +77,7 @@ $jsonSchema = '{
                 },
                 "nmsoc": {
                     "required": false,
-                    "type": "string",
-                    "maxLength": 70
-                },
-                "nmsoc": {
-                    "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 70
                 },
                 "dtnascto": {
@@ -92,39 +87,43 @@ $jsonSchema = '{
                 },
                 "codmunic": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 7
                 },
                 "uf": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 2
                 },
                 "paisnascto": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 3
+                    "minLength": 3,
+                    "maxLength": 3,
+                    "pattern": "[0-9]{3}"
                 },
                 "paisnac": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 3
+                    "minLength": 3,
+                    "maxLength": 3,
+                    "pattern": "[0-9]{3}"
                 },
                 "nmmae": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 70
                 },
                 "nmpai": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 70
                 }
             }
         },
         "ctps": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrctps": {
                     "required": true,
@@ -145,7 +144,7 @@ $jsonSchema = '{
         },
         "nrric": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrric": {
                     "required": true,
@@ -159,19 +158,20 @@ $jsonSchema = '{
                 },
                 "dtexped": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 }
             }
         },
         "rg": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrrg": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 14
+                    "maxLength": 14,
+                    "pattern": "^[0-9]"
                 },
                 "orgaoemissor": {
                     "required": true,
@@ -180,14 +180,14 @@ $jsonSchema = '{
                 },
                 "dtexped": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 }
             }
         },
         "rne": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrrne": {
                     "required": true,
@@ -201,14 +201,14 @@ $jsonSchema = '{
                 },
                 "dtexped": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 }
             }
         },
         "oc": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nroc": {
                     "required": true,
@@ -222,19 +222,19 @@ $jsonSchema = '{
                 },
                 "dtexped": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 },
                 "dtvalid": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"];
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 }
             }
         },
         "cnh": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrregcnh": {
                     "required": true,
@@ -243,7 +243,7 @@ $jsonSchema = '{
                 },
                 "dtexped": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 },
                 "ufcnh": {
@@ -909,8 +909,9 @@ $jsonSchema = '{
                                 },
                                 "tmpparc": {
                                     "required": true,
-                                    "type": "string",
-                                    "pattern": "S|N"
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 3
                                 },
                                 "horario": {
                                     "required": false,
@@ -1025,36 +1026,40 @@ $jsonSchema = '{
     }
 }';
 
-$std             = new \stdClass();
+$std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif   = 1;
+$std->indretif = 1;
 
-$trabalhador             = new \stdClass();
-$trabalhador->cpftrab    = '11111111111';
-$trabalhador->nistrab    = '11111111111';
-$trabalhador->nmtrab     = 'JOSE DA SILVA';
-$trabalhador->sexo       = 'M';
-$trabalhador->racacor    = 5;
-$trabalhador->grauinstr  = '07';
-$trabalhador->indpriempr = 'N';
-$trabalhador->dtnascto   = '1980-01-01';
-$trabalhador->paisnascto = '105'; // 105 = Brasil
-$trabalhador->paisnac    = '105';
+$std->trabalhador = new \stdClass();
+$std->trabalhador->cpftrab = '11111111111';
+$std->trabalhador->nistrab = '11111111111';
+$std->trabalhador->nmtrab = 'JOSE DA SILVA';
+$std->trabalhador->sexo = 'M';
+$std->trabalhador->racacor = 5;
+$std->trabalhador->grauinstr = '07';
+$std->trabalhador->indpriempr = 'N';
+$std->trabalhador->dtnascto = '1980-01-01';
+$std->trabalhador->paisnascto = '105'; // 105 = Brasil
+$std->trabalhador->paisnac = '105';
 
-$std->trabalhador = $trabalhador;
+$endereco = new \stdClass();
+$endereco->brasil = new \stdClass();
+$endereco->brasil->tplograd = 'R';
+$endereco->brasil->dsclograd = 'Av. Paulista';
+$endereco->brasil->nrlograd = '1850';
+$endereco->brasil->bairro = 'Bela Vista';
+$endereco->brasil->cep = '01311200';
+$endereco->brasil->codmunic  = 3550308;
+$endereco->brasil->uf = 'SP';
 
-$endereco          = new \stdClass();
-$brasil            = new \stdClass();
-$brasil->tplograd  = 'R';
-$brasil->dsclograd = 'Av. Paulista';
-$brasil->nrlograd  = '1850';
-$brasil->bairro    = 'Bela Vista';
-$brasil->cep       = '01311200';
-$brasil->codmunic  = 3550308;
-$brasil->uf        = 'SP';
-
-$endereco->brasil               = $brasil;
-$std->endereco = $endereco;
+$endereco->exterior = new \stdClass();
+$endereco->exterior->paisresid = '108';
+$endereco->exterior->dsclograd = '5 Av';
+$endereco->exterior->nrlograd = '2222';
+$endereco->exterior->complemento = 'Apto 200';
+$endereco->exterior->bairro = 'Manhattan';
+$endereco->exterior->nomcid = 'New York';
+$endereco->exterior->codpostal  = '111111';
 
 $vinculo            = new \stdClass();
 $vinculo->matricula = '1020304050';
