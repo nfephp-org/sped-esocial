@@ -373,9 +373,8 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             }
         }
 
-        $infoComplementares = $this->dom->createElement("infoComplementares");
-
         if (isset($this->std->situacaopj)) {
+            $infoComplementares = $this->dom->createElement("infoComplementares");
             $sh = $this->std->situacaopj;
             $info = $this->dom->createElement("situacaoPJ");
             $this->dom->addChild(
@@ -386,7 +385,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoComplementares->appendChild($info);
         } elseif (isset($this->std->situacaopf)) {
-
+            $infoComplementares = $this->dom->createElement("infoComplementares");
             $sh = $this->std->situacaopf;
             $info = $this->dom->createElement("situacaoPF");
             $this->dom->addChild(
@@ -419,13 +418,17 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             case "INC":
                 $node = $this->dom->createElement("inclusao");
                 $node->appendChild($idePeriodo);
-                $infoCadastro->appendChild($infoComplementares);
+                if (isset($infoComplementares)) {
+                    $infoCadastro->appendChild($infoComplementares);
+                }
                 $node->appendChild($infoCadastro);
                 break;
             case "ALT":
                 $node = $this->dom->createElement("alteracao");
                 $node->appendChild($idePeriodo);
-                $infoCadastro->appendChild($infoComplementares);
+                if (isset($infoComplementares)) {
+                    $infoCadastro->appendChild($infoComplementares);
+                }
                 $node->appendChild($infoCadastro);
                 if (isset($novavalidade)) {
                     $node->appendChild($novavalidade);
