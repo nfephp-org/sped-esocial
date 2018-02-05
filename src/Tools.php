@@ -92,8 +92,9 @@ class Tools extends ToolsBase
             "consulta" => "https://webservices.producaorestrita.esocial.gov.br"
         ];
 
-        if (!empty($config->baseUri)) {
-            $this->baseUri = $config->baseUri;
+        $stdConfig = json_decode($config);
+        if (!empty($stdConfig->baseUri)) {
+            $this->baseUri = $stdConfig->baseUri;
         }
 
     }
