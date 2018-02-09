@@ -46,7 +46,7 @@ class Tools extends ToolsBase
         'xmlns:soap' => "http://www.w3.org/2003/05/soap-envelope",
     ];
     /**
-     * @var \SOAPHeader
+     * @var \SoapHeader
      */
     protected $objHeader;
     /**

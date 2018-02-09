@@ -142,7 +142,7 @@ abstract class Factory
             .$this->evtName
             .".schema"
         );
-        $this->schema     = realpath(
+        $this->schema = realpath(
             __DIR__
             ."/../../schemes/$this->layoutStr/"
             .$this->evtName
