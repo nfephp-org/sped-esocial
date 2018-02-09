@@ -786,8 +786,8 @@ $jsonSchema = '{
                         },
                         "vrsalfx": {
                             "required": true,
-                            "type": "integer",
-                            "maxLength": 1
+                            "type": "number",
+                            "maxLength": 17
                         },
                         "undsalfixo": {
                             "required": true,
