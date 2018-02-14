@@ -778,7 +778,12 @@ $jsonSchema = '{
                         },
                         "vrsalfx": {
                             "required": true,
+<<<<<<< HEAD
+                            "type": "number",
+                            "maxLength": 17
+=======
                             "type": "number"
+>>>>>>> upstream/master
                         },
                         "undsalfixo": {
                             "required": true,
