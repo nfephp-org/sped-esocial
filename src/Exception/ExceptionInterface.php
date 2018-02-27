@@ -1,0 +1,16 @@
+<?php
+
+namespace NFePHP\eSocial\Exception;
+
+/**
+ * @category   NFePHP
+ * @package    NFePHP\eSocial\Exception
+ * @copyright  Copyright (c) 2018
+ * @license    http://www.gnu.org/licenses/lesser.html LGPL v3
+ * @author     Roberto L. Machado <linux.rlm at gmail dot com>
+ * @link       http://github.com/nfephp-org/nfephp for the canonical source repository
+ */
+
+interface ExceptionInterface
+{
+}

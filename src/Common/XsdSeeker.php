@@ -4,11 +4,12 @@ namespace NFePHP\eSocial\Common;
 
 class XsdSeeker
 {
+
     public static $list = [
-        'ConsultaLoteEventos'      => ['version' => '', 'name' => ''],
-        'EnvioLoteEventos'         => ['version' => '', 'name' => ''],
-        'RetornoEnvioLoteEventos'  => ['version' => '', 'name' => ''],
-        'RetornoEvento'            => ['version' => '', 'name' => ''],
+        'ConsultaLoteEventos' => ['version' => '', 'name' => ''],
+        'EnvioLoteEventos' => ['version' => '', 'name' => ''],
+        'RetornoEnvioLoteEventos' => ['version' => '', 'name' => ''],
+        'RetornoEvento' => ['version' => '', 'name' => ''],
         'RetornoProcessamentoLote' => ['version' => '', 'name' => ''],
     ];
 
@@ -20,8 +21,8 @@ class XsdSeeker
                 continue;
             }
             foreach (self::$list as $key => $content) {
-                $len     = strlen($key);
-                $chave   = substr($filename, 0, $len);
+                $len = strlen($key);
+                $chave = substr($filename, 0, $len);
                 $version = self::getVersion($filename);
                 if ($chave == $key) {
                     self::$list[$key] = ['version' => $version, 'name' => $filename];
@@ -29,7 +30,6 @@ class XsdSeeker
                 }
             }
         }
-
         return self::$list;
     }
 
@@ -37,7 +37,6 @@ class XsdSeeker
     {
         $p = explode('-', $filename);
         $v = explode('.', $p[1]);
-
         return $v[0];
     }
 }

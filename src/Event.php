@@ -129,7 +129,7 @@ class Event
      * @param  string $name
      * @param  array $arguments [config, std, certificate, $date]
      *
-     * @return \NFePHP\eSocial\Factories\className
+     * @return object
      * @throws InvalidArgumentException
      */
     public static function __callStatic($name, $arguments)
@@ -160,7 +160,6 @@ class Event
         if (count($arguments) > 3) {
             return new $className($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
         }
-
         return new $className($arguments[0], $arguments[1]);
     }
 }
