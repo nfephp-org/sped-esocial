@@ -148,6 +148,12 @@ abstract class Factory
             .$this->evtName
             .".xsd"
         );
+        if (empty($this->schema)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                    . 'corretamente no config.'
+            );
+        }
         //convert all data fields to lower case
         $this->std = $this->propertiesToLower($std);
         //validate input data with schema

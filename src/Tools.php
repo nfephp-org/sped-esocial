@@ -120,6 +120,12 @@ class Tools extends ToolsBase
     public function consultarLoteEventos($protocolo)
     {
         $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
+        if (empty($operationVersion)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                    . 'corretamente no config.'
+            );
+        }
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
             ."/eventos/envio/consulta/retornoProcessamento/$operationVersion"
             ."/ServicoConsultarLoteEventos/ConsultarLoteEventos";
@@ -224,6 +230,12 @@ class Tools extends ToolsBase
             $xml .= "</evento>";
         }
         $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
+        if (empty($operationVersion)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                    . 'corretamente no config.'
+            );
+        }
         $this->method = "EnviarLoteEventos";
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
             . "/eventos/envio/"

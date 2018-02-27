@@ -15,6 +15,9 @@ class XsdSeeker
 
     public static function seek($path)
     {
+        if (!is_dir($path)) {
+            return self::$list;
+        }
         $arr = scandir($path);
         foreach ($arr as $filename) {
             if ($filename == '.' || $filename == '..') {
