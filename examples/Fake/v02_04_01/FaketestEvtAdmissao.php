@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
@@ -6,22 +7,22 @@ require_once '../../../bootstrap.php';
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
 
-$config     = [
-    'tpAmb'          => 2,
+$config = [
+    'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc'        => '2_4_01',
+    'verProc' => '2_4_01',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion'  => '2.4.1',
+    'eventoVersion' => '2.4.1',
     //versão do layout do evento
-    'serviceVersion' => '1.1.1',
+    'serviceVersion' => '1.4.1',
     //versão do webservice
-    'empregador'     => [
-        'tpInsc'  => 1,  //1-CNPJ, 2-CPF
-        'nrInsc'  => '99999999', //numero do documento
+    'empregador' => [
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
-    'transmissor'    => [
-        'tpInsc' => 1,  //1-CNPJ, 2-CPF
+    'transmissor' => [
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
     ],
 ];
@@ -83,7 +84,7 @@ $std->endereco->brasil->dsclograd = 'Av. Paulista';
 $std->endereco->brasil->nrlograd = '1850';
 $std->endereco->brasil->bairro = 'Bela Vista';
 $std->endereco->brasil->cep = '01311200';
-$std->endereco->brasil->codmunic  = 3550308;
+$std->endereco->brasil->codmunic = 3550308;
 $std->endereco->brasil->uf = 'SP';
 
 $std->endereco->exterior = new \stdClass();
@@ -93,7 +94,7 @@ $std->endereco->exterior->nrlograd = '2222';
 $std->endereco->exterior->complemento = 'Apto 200';
 $std->endereco->exterior->bairro = 'Manhattan';
 $std->endereco->exterior->nmcid = 'New York';
-$std->endereco->exterior->codpostal  = '111111';
+$std->endereco->exterior->codpostal = '111111';
 
 $std->trabestrangeiro = new \stdClass();
 $std->trabestrangeiro->dtchegada = '2001-10-10';
@@ -137,36 +138,36 @@ $std->vinculo->nrrecinfprelim = '12345678901234556';
 $std->vinculo->cadini = 'N';
 
 /*
-$std->vinculo->infoceletista = new \stdClass();
-$std->vinculo->infoceletista->dtadm = '2017-08-08';
-$std->vinculo->infoceletista->tpadmissao = 1;
-$std->vinculo->infoceletista->indadmissao = 1;
-$std->vinculo->infoceletista->tpregjor = 1;
-$std->vinculo->infoceletista->natatividade = 1;
-$std->vinculo->infoceletista->cnpjsindcategprof = '77721644000101';
-$std->vinculo->infoceletista->opcfgts = 1;
-$std->vinculo->infoceletista->dtopcfgts = '2017-01-01';
+  $std->vinculo->infoceletista = new \stdClass();
+  $std->vinculo->infoceletista->dtadm = '2017-08-08';
+  $std->vinculo->infoceletista->tpadmissao = 1;
+  $std->vinculo->infoceletista->indadmissao = 1;
+  $std->vinculo->infoceletista->tpregjor = 1;
+  $std->vinculo->infoceletista->natatividade = 1;
+  $std->vinculo->infoceletista->cnpjsindcategprof = '77721644000101';
+  $std->vinculo->infoceletista->opcfgts = 1;
+  $std->vinculo->infoceletista->dtopcfgts = '2017-01-01';
 
-$std->vinculo->infoceletista->trabtemporario = new \stdClass();
-$std->vinculo->infoceletista->trabtemporario->hipleg = 1;
-$std->vinculo->infoceletista->trabtemporario->justcontr = 'jwkjwkjwkjwk';
-$std->vinculo->infoceletista->trabtemporario->tpinclcontr = 3;
+  $std->vinculo->infoceletista->trabtemporario = new \stdClass();
+  $std->vinculo->infoceletista->trabtemporario->hipleg = 1;
+  $std->vinculo->infoceletista->trabtemporario->justcontr = 'jwkjwkjwkjwk';
+  $std->vinculo->infoceletista->trabtemporario->tpinclcontr = 3;
 
-$std->vinculo->infoceletista->trabtemporario->idetomadorserv = new \stdClass();
-$std->vinculo->infoceletista->trabtemporario->idetomadorserv->tpinsc = 2;
-$std->vinculo->infoceletista->trabtemporario->idetomadorserv->nrinsc = '12345678901234';
+  $std->vinculo->infoceletista->trabtemporario->idetomadorserv = new \stdClass();
+  $std->vinculo->infoceletista->trabtemporario->idetomadorserv->tpinsc = 2;
+  $std->vinculo->infoceletista->trabtemporario->idetomadorserv->nrinsc = '12345678901234';
 
-$std->vinculo->infoceletista->trabtemporario->idetomadorserv->ideestabvinc = new \stdClass();
-$std->vinculo->infoceletista->trabtemporario->idetomadorserv->ideestabvinc->tpinsc = 2;
-$std->vinculo->infoceletista->trabtemporario->idetomadorserv->ideestabvinc->nrinsc = '12345678901234';
+  $std->vinculo->infoceletista->trabtemporario->idetomadorserv->ideestabvinc = new \stdClass();
+  $std->vinculo->infoceletista->trabtemporario->idetomadorserv->ideestabvinc->tpinsc = 2;
+  $std->vinculo->infoceletista->trabtemporario->idetomadorserv->ideestabvinc->nrinsc = '12345678901234';
 
-$std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0] = new \stdClass();
-$std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0]->cpftrabsubst = '12345678901';
+  $std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0] = new \stdClass();
+  $std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0]->cpftrabsubst = '12345678901';
 
-$std->vinculo->infoceletista->aprend = new \stdClass();
-$std->vinculo->infoceletista->aprend->tpinsc = 1;
-$std->vinculo->infoceletista->aprend->nrinsc = '12345678901';
-*/
+  $std->vinculo->infoceletista->aprend = new \stdClass();
+  $std->vinculo->infoceletista->aprend->tpinsc = 1;
+  $std->vinculo->infoceletista->aprend->nrinsc = '12345678901';
+ */
 $std->vinculo->infoestatutario = new \stdClass();
 $std->vinculo->infoestatutario->indprovim = 1;
 $std->vinculo->infoestatutario->tpprov = 99;
@@ -245,8 +246,8 @@ $std->vinculo->desligamento->dtdeslig = '2017-08-08';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content     = file_get_contents('expired_certificate.pfx');
-    $password    = 'associacao';
+    $content = file_get_contents('expired_certificate.pfx');
+    $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado

@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
@@ -6,22 +7,22 @@ require_once '../../../bootstrap.php';
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
 
-$config     = [
-    'tpAmb'          => 2,
+$config = [
+    'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc'        => '2_4_01',
+    'verProc' => '2_4_01',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion'  => '2.4.1',
+    'eventoVersion' => '2.4.1',
     //versão do layout do evento
-    'serviceVersion' => '1.1.1',
+    'serviceVersion' => '1.4.1',
     //versão do webservice
-    'empregador'     => [
-        'tpInsc'  => 1,  //1-CNPJ, 2-CPF
-        'nrInsc'  => '99999999', //numero do documento
+    'empregador' => [
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
-    'transmissor'    => [
-        'tpInsc' => 1,  //1-CNPJ, 2-CPF
+    'transmissor' => [
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
     ],
 ];
@@ -116,7 +117,7 @@ $std->infodeficiencia->defintelectual = 'N';
 $std->infodeficiencia->reabreadap = 'N';
 $std->infodeficiencia->observacao = 'lkslkslkslkslkslks';
 
-$std->dependente[1]  = new \stdClass();
+$std->dependente[1] = new \stdClass();
 $std->dependente[1]->tpdep = '01';
 $std->dependente[1]->nmdep = 'Fulaninho de Tal';
 $std->dependente[1]->dtnascto = '2016-11-25';
@@ -206,8 +207,8 @@ $std->termino->dtterm = '2017-12-31';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content     = file_get_contents('expired_certificate.pfx');
-    $password    = 'associacao';
+    $content = file_get_contents('expired_certificate.pfx');
+    $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado

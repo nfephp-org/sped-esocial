@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
@@ -6,22 +7,22 @@ require_once '../../../bootstrap.php';
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
 
-$config     = [
-    'tpAmb'          => 2,
+$config = [
+    'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc'        => '2_4_01',
+    'verProc' => '2_4_01',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion'  => '2.4.1',
+    'eventoVersion' => '2.4.1',
     //versão do layout do evento
-    'serviceVersion' => '1.1.1',
+    'serviceVersion' => '1.4.1',
     //versão do webservice
-    'empregador'     => [
-        'tpInsc'  => 1,  //1-CNPJ, 2-CPF
-        'nrInsc'  => '99999999', //numero do documento
+    'empregador' => [
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
-    'transmissor'    => [
-        'tpInsc' => 1,  //1-CNPJ, 2-CPF
+    'transmissor' => [
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
         'nrInsc' => '99999999999999' //numero do documento
     ],
 ];
@@ -121,7 +122,6 @@ $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]
 $std->verbasresc->dmdev[1]->infotrabinterm[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->infotrabinterm[1]->codconv = 'ksksksksksk';
 
-
 $std->verbasresc->procjudtrab[1] = new \stdClass();
 $std->verbasresc->procjudtrab[1]->tptrib = 3;
 $std->verbasresc->procjudtrab[1]->nrprocjud = 'lalalalalalal';
@@ -135,10 +135,10 @@ $std->verbasresc->infomv->remunoutrempr[1]->tpinsc = 1;
 $std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '123456789012345';
 $std->verbasresc->infomv->remunoutrempr[1]->codcateg = '001';
 $std->verbasresc->infomv->remunoutrempr[1]->vlrremunoe = 2535.97;
- 
+
 $std->quarentena = new \stdClass();
 $std->quarentena->dtfimquar = '2018-12-20';
-         
+
 $std->consigfgts = new \stdClass();
 $std->consigfgts->idconsig = 'S';
 $std->consigfgts->insconsig = '12345';
@@ -147,8 +147,8 @@ $std->consigfgts->nrcontr = '123456789012345';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content     = file_get_contents('expired_certificate.pfx');
-    $password    = 'associacao';
+    $content = file_get_contents('expired_certificate.pfx');
+    $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado
