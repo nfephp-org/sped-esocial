@@ -16,7 +16,7 @@ $config = [
     'verProc' => '2_4_01', //Versão do processo de emissão do evento.
                            //Informar a versão do aplicativo emissor do evento.
     'eventoVersion' => '2.4.1', //versão do layout do evento
-    'serviceVersion' => '1.1.0', //versão do webservice
+    'serviceVersion' => '1.4.1', //versão do webservice
     'empregador' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF
         'nrInsc' => '99999999', //numero do documento
