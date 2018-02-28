@@ -11,6 +11,8 @@ class XsdSeeker
         'RetornoEnvioLoteEventos' => ['version' => '', 'name' => ''],
         'RetornoEvento' => ['version' => '', 'name' => ''],
         'RetornoProcessamentoLote' => ['version' => '', 'name' => ''],
+        'WsConsultarLoteEventos' => ['version' => '', 'name' => ''],
+        'WsEnviarLoteEventos' => ['version' => '', 'name' => '']
     ];
 
     public static function seek($path)

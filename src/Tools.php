@@ -126,15 +126,16 @@ class Tools extends ToolsBase
                     . 'corretamente no config.'
             );
         }
+        $verWsdl = $this->serviceXsd['WsConsultarLoteEventos']['version'];
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            ."/eventos/envio/consulta/retornoProcessamento/$operationVersion"
+            ."/eventos/envio/consulta/retornoProcessamento/$verWsdl"
             ."/ServicoConsultarLoteEventos/ConsultarLoteEventos";
         $this->method = "ConsultarLoteEventos";
         $this->uri = $this->urlbase['consulta'];
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/lote"
-                ."/eventos/envio/consulta/retornoProcessamento/$operationVersion",
+                ."/eventos/envio/consulta/retornoProcessamento/$verWsdl",
         ];
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
             ."/eventos/envio/consulta/retornoProcessamento/"
@@ -236,17 +237,18 @@ class Tools extends ToolsBase
                     . 'corretamente no config.'
             );
         }
+        $verWsdl = $this->serviceXsd['WsEnviarLoteEventos']['version'];
         $this->method = "EnviarLoteEventos";
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
             . "/eventos/envio/"
-            . $operationVersion
+            . $verWsdl
             . "/ServicoEnviarLoteEventos"
             . "/EnviarLoteEventos";
         $this->uri = $this->urlbase['envio'];
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador"
-                . "/lote/eventos/envio/$operationVersion",
+                . "/lote/eventos/envio/$verWsdl",
         ];
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
             . "/eventos/envio/$operationVersion\" "
