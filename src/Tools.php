@@ -46,17 +46,13 @@ class Tools extends ToolsBase
         'xmlns:soap' => "http://www.w3.org/2003/05/soap-envelope",
     ];
     /**
-     * @var \SOAPHeader
+     * @var \SoapHeader
      */
     protected $objHeader;
     /**
      * @var string
      */
     protected $xmlns;
-    /**
-     * @var string
-     */
-    protected $baseUri;
     /**
      * @var string
      */
@@ -77,6 +73,10 @@ class Tools extends ToolsBase
      * @var string
      */
     protected $envelopeXmlns;
+    /**
+     * @var array
+     */
+    protected $urlbase;
 
     /**
      * Constructor
@@ -86,17 +86,21 @@ class Tools extends ToolsBase
     public function __construct($config, Certificate $certificate)
     {
         parent::__construct($config, $certificate);
-
-        $this->baseUri = (object) [
-            "envio" => "https://webservices.producaorestrita.esocial.gov.br",
-            "consulta" => "https://webservices.producaorestrita.esocial.gov.br"
+        //define o ambiente a ser usado
+        $this->urlbase = [
+            'consulta' =>  'https://webservices.producaorestrita.esocial.gov.br/'
+                . 'servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc',
+            'envio' => 'https://webservices.producaorestrita.esocial.gov.br/'
+                . 'servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc'
         ];
-
-        $stdConfig = json_decode($config);
-        if (!empty($stdConfig->baseUri)) {
-            $this->baseUri = $stdConfig->baseUri;
+        if ($this->tpAmb == 1) {
+            $this->urlbase = [
+                'consulta' =>  'https://webservices.consulta.esocial.gov.br/'
+                    . 'servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc',
+                'envio' => 'https://webservices.envio.esocial.gov.br/'
+                    . 'servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc'
+            ];
         }
-
     }
 
     /**
@@ -116,20 +120,26 @@ class Tools extends ToolsBase
     public function consultarLoteEventos($protocolo)
     {
         $operationVersion = $this->serviceXsd['ConsultaLoteEventos']['version'];
+        if (empty($operationVersion)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                . 'corretamente no config.'
+            );
+        }
+        $verWsdl = $this->serviceXsd['WsConsultarLoteEventos']['version'];
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            ."/eventos/envio/consulta/retornoProcessamento/$operationVersion"
+            ."/eventos/envio/consulta/retornoProcessamento/$verWsdl"
             ."/ServicoConsultarLoteEventos/ConsultarLoteEventos";
         $this->method = "ConsultarLoteEventos";
-        $this->uri = $this->baseUri->consulta
-            ."/servicos/empregador/consultarloteeventos"
-            ."/WsConsultarLoteEventos.svc";
+        $this->uri = $this->urlbase['consulta'];
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/lote"
-                ."/eventos/envio/consulta/retornoProcessamento/$operationVersion",
+                ."/eventos/envio/consulta/retornoProcessamento/$verWsdl",
         ];
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
-            ."/eventos/envio/consulta/retornoProcessamento/v1_0_0\" "
+            ."/eventos/envio/consulta/retornoProcessamento/"
+            . $operationVersion . "\" "
             ."xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             ."<consultaLoteEventos>"
             ."<protocoloEnvio>$protocolo</protocoloEnvio>"
@@ -221,16 +231,24 @@ class Tools extends ToolsBase
             $xml .= "</evento>";
         }
         $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
+        if (empty($operationVersion)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                . 'corretamente no config.'
+            );
+        }
+        $verWsdl = $this->serviceXsd['WsEnviarLoteEventos']['version'];
         $this->method = "EnviarLoteEventos";
         $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
-            . "/eventos/envio/v1_1_0/ServicoEnviarLoteEventos"
+            . "/eventos/envio/"
+            . $verWsdl
+            . "/ServicoEnviarLoteEventos"
             . "/EnviarLoteEventos";
-        $this->uri = $this->baseUri->envio
-            ."/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc";
+        $this->uri = $this->urlbase['envio'];
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador"
-                . "/lote/eventos/envio/$operationVersion",
+                . "/lote/eventos/envio/$verWsdl",
         ];
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
             . "/eventos/envio/$operationVersion\" "
