@@ -142,6 +142,12 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             $this->std->dadosproc->indmatproc,
             true
         );
+        $this->dom->addChild(
+            $dados,
+            "observacao",
+            $this->std->dadosproc->observacao,
+            false
+        );
         if (! empty($this->std->dadosproc->dadosprocjud)) {
             $dadosProcJud = $this->dom->createElement("dadosProcJud");
             $this->dom->addChild(
