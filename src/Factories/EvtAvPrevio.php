@@ -153,13 +153,13 @@ class EvtAvPrevio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $detAvPrevio,
             "dtAvPrv",
-            $this->std->infoavprevio->dtavprv,
+            $this->std->infoavprevio->detavprevio->dtavprv,
             true
         );
         $this->dom->addChild(
             $detAvPrevio,
             "dtPrevDeslig",
-            $this->std->infoavprevio->dtprevdeslig,
+            $this->std->infoavprevio->detavprevio->dtprevdeslig,
             true
         );
         $this->dom->addChild(
