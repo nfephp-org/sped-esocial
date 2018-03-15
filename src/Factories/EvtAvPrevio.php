@@ -148,54 +148,59 @@ class EvtAvPrevio extends Factory implements FactoryInterface
 
         $infoAvPrevio = $this->dom->createElement("infoAvPrevio");
 
-        $detAvPrevio = $this->dom->createElement("detAvPrevio");
 
-        $this->dom->addChild(
-            $detAvPrevio,
-            "dtAvPrv",
-            $this->std->infoavprevio->detavprevio->dtavprv,
-            true
-        );
-        $this->dom->addChild(
-            $detAvPrevio,
-            "dtPrevDeslig",
-            $this->std->infoavprevio->detavprevio->dtprevdeslig,
-            true
-        );
-        $this->dom->addChild(
-            $detAvPrevio,
-            "tpAvPrevio",
-            $this->std->infoavprevio->tpavprevio,
-            true
-        );
-        $this->dom->addChild(
-            $detAvPrevio,
-            "observacao",
-            ! empty($this->std->observacao) ? $this->std->observacao : null,
-            false
-        );
+        if (isset($this->std->infoavprevio->detavprevio)) {
 
-        $infoAvPrevio->appendChild($detAvPrevio);
+            $detAvPrevio = $this->dom->createElement("detAvPrevio");
+
+            $this->dom->addChild(
+              $detAvPrevio,
+              "dtAvPrv",
+              $this->std->infoavprevio->detavprevio->dtavprv,
+              true
+            );
+            $this->dom->addChild(
+              $detAvPrevio,
+              "dtPrevDeslig",
+              $this->std->infoavprevio->detavprevio->dtprevdeslig,
+              true
+            );
+            $this->dom->addChild(
+              $detAvPrevio,
+              "tpAvPrevio",
+              $this->std->infoavprevio->detavprevio->tpavprevio,
+              true
+            );
+            $this->dom->addChild(
+              $detAvPrevio,
+              "observacao",
+              ! empty($this->std->observacao) ? $this->std->observacao : null,
+              false
+            );
+
+            $infoAvPrevio->appendChild($detAvPrevio);
+        }
+
         $evtAvPrevio->appendChild($infoAvPrevio);
 
-        if (! empty($this->std->cancavprevio)) {
+        if (! empty($this->std->infoavprevio->cancavprevio)) {
             $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
             $this->dom->addChild(
                 $cancAvPrevio,
                 "dtCancAvPrv",
-                $this->std->cancavprevio->dtCancAvPrv,
+                $this->std->infoavprevio->cancavprevio->dtcancavprv,
                 true
             );
             $this->dom->addChild(
                 $cancAvPrevio,
                 "observacao",
-                ! empty($this->std->cancavprevio->observacao) ? $this->std->cancavprevio->observacao : null,
+                ! empty($this->std->infoavprevio->cancavprevio->observacao) ? $this->std->infoavprevio->cancavprevio->observacao : null,
                 false
             );
             $this->dom->addChild(
                 $cancAvPrevio,
                 "mtvCancAvPrevio",
-                $this->std->cancavprevio->mtvcancavprevio,
+                $this->std->infoavprevio->cancavprevio->mtvcancavprevio,
                 true
             );
             $infoAvPrevio->appendChild($cancAvPrevio);
