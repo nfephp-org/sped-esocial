@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtAdmissao Event S-2200 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,12 +28,10 @@ class EvtAdmissao extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtAdmissao';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2200';
-
     /**
      * @var array
      */

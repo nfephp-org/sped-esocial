@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTabProcesso Event S-1070 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * READ for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -141,6 +142,12 @@ class EvtTabProcesso extends Factory implements FactoryInterface
             "indMatProc",
             $this->std->dadosproc->indmatproc,
             true
+        );
+        $this->dom->addChild(
+            $dados,
+            "observacao",
+            !empty($this->std->dadosproc->observacao) ? $this->std->dadosproc->observacao : null,
+            false
         );
         if (! empty($this->std->dadosproc->dadosprocjud)) {
             $dadosProcJud = $this->dom->createElement("dadosProcJud");

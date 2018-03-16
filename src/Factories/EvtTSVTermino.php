@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTSVTermino Event S-2399 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -305,8 +306,8 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                     $this->dom->addChild(
                         $procJudTrab,
                         "codSusp",
-                        $pj->codsusp,
-                        true
+                        !empty($pj->codsusp) ? $pj->codsusp : null,
+                        false
                     );
                     $verbasResc->appendChild($procJudTrab);
                 }

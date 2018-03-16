@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtRemun Event S-1200 constructor
- *
- * @category  API
- * @package   NFePHPSocial
+ * READ for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -178,24 +179,6 @@ class EvtRemun extends Factory implements FactoryInterface
                 $ic->dtnascto,
                 true
             );
-            $this->dom->addChild(
-                $infoComplem,
-                "codCBO",
-                $ic->codcbo,
-                true
-            );
-            $this->dom->addChild(
-                $infoComplem,
-                "natAtividade",
-                !empty($ic->natatividade) ? $ic->natatividade : null,
-                false
-            );
-            $this->dom->addChild(
-                $infoComplem,
-                "qtdDiasTrab",
-                !empty($ic->qtddiastrab) ? $ic->qtddiastrab : null,
-                false
-            );
             if (!empty($ic->sucessaovinc)) {
                 $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
                 $this->dom->addChild(
@@ -250,6 +233,17 @@ class EvtRemun extends Factory implements FactoryInterface
                 );
                 $ide->appendChild($procJudTrab);
             }
+        }
+        
+        if (!empty($this->std->infointerm)) {
+            $infoInterm = $this->dom->createElement("infoInterm");
+            $this->dom->addChild(
+                $infoInterm,
+                "qtdDiasInterm",
+                $this->std->infointerm->qtddiasinterm,
+                true
+            );
+            $ide->appendChild($infoInterm);
         }
         
         $this->node->appendChild($ide);
@@ -423,6 +417,20 @@ class EvtRemun extends Factory implements FactoryInterface
                             );
                             $remunPerApur->appendChild($infoAgNocivo);
                         }
+                        
+                        if (!empty($rpa->infotrabinterm)) {
+                            foreach ($rpa->infotrabinterm as $iti) {
+                                $infoTrabInterm = $this->dom->createElement("infoTrabInterm");
+                                $this->dom->addChild(
+                                    $infoTrabInterm,
+                                    "codConv",
+                                    $iti->codconv,
+                                    true
+                                );
+                                $remunPerApur->appendChild($infoTrabInterm);
+                            }
+                        }
+                        
                         $ideEstabLot->appendChild($remunPerApur);
                     }
                     $infoPerApur->appendChild($ideEstabLot);
@@ -560,6 +568,20 @@ class EvtRemun extends Factory implements FactoryInterface
                                         );
                                         $remunPerAnt->appendChild($infoAgNocivo);
                                     }
+                                    
+                                    if (!empty($rpr->infotrabinterm)) {
+                                        foreach ($rpr->infotrabinterm as $iti) {
+                                            $infoTrabInterm = $this->dom->createElement("infoTrabInterm");
+                                            $this->dom->addChild(
+                                                $infoTrabInterm,
+                                                "codConv",
+                                                $iti->codconv,
+                                                true
+                                            );
+                                            $remunPerAnt->appendChild($infoTrabInterm);
+                                        }
+                                    }
+                                    
                                     $ideEstabLot->appendChild($remunPerAnt);
                                 }
                                 $idePeriodo->appendChild($ideEstabLot);
@@ -571,7 +593,33 @@ class EvtRemun extends Factory implements FactoryInterface
                     }
                     $dmDev->appendChild($infoPerAnt);
                 }
+                
+                if (!empty($dm->infocomplcont)) {
+                    $infoComplCont = $this->dom->createElement("infoComplCont");
+                    $this->dom->addChild(
+                        $infoComplCont,
+                        "codCBO",
+                        $dm->infocomplcont->codcbo,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoComplCont,
+                        "natAtividade",
+                        !empty($dm->infocomplcont->natatividade) ? $dm->infocomplcont->natatividade : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $infoComplCont,
+                        "qtdDiasTrab",
+                        !empty($dm->infocomplcont->qtddiastrab) ? $dm->infocomplcont->qtddiastrab : null,
+                        false
+                    );
+                    $dmDev->appendChild($infoComplCont);
+                }
             }
+            
+            
+            
             $this->node->appendChild($dmDev);
         }
         $this->eSocial->appendChild($this->node);

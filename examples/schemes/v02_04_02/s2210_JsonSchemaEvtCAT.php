@@ -8,7 +8,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-2210
+//S-2210 sem alterações da 2.4.1 => 2.4.2
 
 $evento  = 'evtCAT';
 $version = '02_04_02';

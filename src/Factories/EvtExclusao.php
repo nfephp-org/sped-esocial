@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtExclusao Event S-3000 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtExclusao extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtExclusao';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-3000';
-
     /**
      * Parameters patterns
      *
@@ -65,18 +63,9 @@ class EvtExclusao extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid       = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtExclusao = $this->dom->createElement("evtExclusao");
-        $att         = $this->dom->createAttribute('Id');
-        $att->value  = $evtid;
-        $evtExclusao->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -96,22 +85,7 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtExclusao->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtExclusao->appendChild($ideEmpregador);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $infoExclusao = $this->dom->createElement("infoExclusao");
         $this->dom->addChild(
@@ -142,7 +116,6 @@ class EvtExclusao extends Factory implements FactoryInterface
             );
             $infoExclusao->appendChild($ideTrabalhador);
         }
-
         $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
         $this->dom->addChild(
             $ideFolhaPagto,
@@ -156,12 +129,10 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->std->idefolhapagto->perapur,
             true
         );
-
         $infoExclusao->appendChild($ideFolhaPagto);
-
-        $evtExclusao->appendChild($infoExclusao);
-
-        $eSocial->appendChild($evtExclusao);
-        $this->sign($eSocial);
+        $this->node->appendChild($infoExclusao);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }

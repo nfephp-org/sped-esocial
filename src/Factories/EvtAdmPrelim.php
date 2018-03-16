@@ -4,8 +4,9 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtAdmPrelim Event S-2190 constructor
- *
- * @category  NFePHP
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
@@ -54,7 +55,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
     protected function toNode()
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-
         //o idEvento pode variar de evento para evento
         //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -77,7 +77,6 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-
         //tag deste evento em particular
         $infoRegPrelim = $this->dom->createElement("infoRegPrelim");
         $this->dom->addChild(
@@ -99,9 +98,9 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
             true
         );
         $this->node->appendChild($infoRegPrelim);
-
         //finalização do xml
         $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }

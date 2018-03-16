@@ -8,6 +8,16 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1200
+//Criado o grupo {infoInterm} e respectivo campo. ok
+//Criado o grupo {remunPerApur/infoTrabInterm} e respectivo campo. ok
+//Grupo {infoPerAnt} – alterada condição. ok
+//Criado o grupo {remunPerAnt/infoTrabInterm} e respectivo campo. ok
+//Grupo {dmDev/infoTrabInterm} – excluído.
+//Criado o grupo {infoComplCont} e respectivos campos.
+//Grupo {remunOutrEmpr} – alterada descrição no registro do evento.
+//Grupo {infoComplem} – alterada descrição no registro do evento.
+//Campos {infoComplem/codCBO}, {infoComplem/natAtividade} e {infoComplem/qtdDiasTrab}– excluídos.
+//Campo {remunPerAnt/matricula} – alterada validação.
 
 $evento  = 'evtRemun';
 $version = '02_04_02';
@@ -44,6 +54,18 @@ $jsonSchema = '{
             "required": true,
             "type": "string",
             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
+        },
+        "nistrab": {
+            "required": false,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
         },
         "infomv": {
             "required": false,
@@ -104,25 +126,6 @@ $jsonSchema = '{
                     "type": "string",
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 },
-                "codcbo": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 6,
-                    "maxLength": 6,
-                    "pattern": "^[0-9]"
-                },
-                "natatividade": {
-                    "required": false,
-                    "type": ["integer","null"],
-                    "minimum": 1,
-                    "maximum": 2
-                },
-                "qtddiastrab": {
-                    "required": false,
-                    "type": ["integer","null"],
-                    "minimum": 1,
-                    "maximum": 31
-                },
                 "sucessaovinc": {
                     "required": false,
                     "type": ["object","null"],
@@ -178,6 +181,18 @@ $jsonSchema = '{
                     }
                 }
             }    
+        },
+        "infointerm": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "qtddiasinterm": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 31
+                }
+            }
         },
         "dmdev": {
             "required": true,
@@ -359,6 +374,22 @@ $jsonSchema = '{
                                                         "maximum": 4
                                                     }
                                                 }
+                                            },
+                                            "infotrabinterm": {
+                                                "required": false,
+                                                "type": ["array","null"],
+                                                "minItems": 0,
+                                                "maxItems": 99,
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "codconv": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "maxLength": 30
+                                                        }
+                                                    }
+                                                }    
                                             }
                                         }
                                     }    
@@ -510,6 +541,22 @@ $jsonSchema = '{
                                                                                 "maximum": 4
                                                                             }
                                                                         }
+                                                                    },
+                                                                    "infotrabinterm": {
+                                                                        "required": false,
+                                                                        "type": ["array","null"],
+                                                                        "minItems": 0,
+                                                                        "maxItems": 99,
+                                                                        "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "codconv": {
+                                                                                    "required": true,
+                                                                                    "type": "string",
+                                                                                    "maxLength": 30
+                                                                                }
+                                                                            }
+                                                                        }    
                                                                     }
                                                                 }
                                                             }    
@@ -522,6 +569,31 @@ $jsonSchema = '{
                                 }
                             }
                         }    
+                    },
+                    "infocomplcont": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "codcbo": {
+                                "required": true,
+                                "type": "string",
+                                "minLength": 4,
+                                "maxLength": 6,
+                                "pattern": "^[0-9]"
+                            },
+                            "natatividade": {
+                                "required": false,
+                                "type": ["integer","null"],
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "qtddiastrab": {
+                                "required": false,
+                                "type": ["integer","null"],
+                                "minimum": 1,
+                                "maximum": 31
+                            }
+                        }
                     }
                 }
             }    
@@ -536,8 +608,8 @@ $std->indretif = 1;
 $std->nrrecibo = 'abcdefghijklmnopq';
 $std->indapuracao = 2;
 $std->perapur = '2017-12';
-$std->cpfTrab = '12345678901';
-$std->nisTrab = '10987654321';
+$std->cpftrab = '12345678901';
+$std->nistrab = '10987654321';
 
 $std->infomv = new \stdClass();
 $std->infomv->indmv = 1;
@@ -550,9 +622,6 @@ $std->infomv->remunoutrempr[0]->vlrremunoe = 2345.09;
 $std->infocomplem = new \stdClass();
 $std->infocomplem->nmtrab = 'Fulano de Tal';
 $std->infocomplem->dtnascto = '1985-02-14';
-$std->infocomplem->codcbo = '123456';
-$std->infocomplem->natatividade = 1;
-$std->infocomplem->qtddiastrab = 6;
 
 $std->infocomplem->sucessaovinc = new \stdClass();
 $std->infocomplem->sucessaovinc->cnpjempregant = '12345678901234';
@@ -564,6 +633,9 @@ $std->procjudtrab[0] = new \stdClass();
 $std->procjudtrab[0]->tptrib = 2;
 $std->procjudtrab[0]->nrprocjud = '123456789';
 $std->procjudtrab[0]->codsusp = '12345678901234';
+
+$std->infointerm = new \stdClass();
+$std->infointerm->qtddiasinterm = 10;
 
 $std->dmdev[0] = new \stdClass();
 $std->dmdev[0]->idedmdev = 'kjdkjdkjdkdj';
@@ -602,6 +674,10 @@ $std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->vlrpgd
 $std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo = new \stdClass();
 $std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo->grauexp = 1;
 
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infotrabinterm[0] = new \stdClass();
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infotrabinterm[0]->codconv = 'lkkjskjsj';
+
+
 $std->dmdev[0]->ideadc[0] = new \stdClass();
 $std->dmdev[0]->ideadc[0]->dtacconv = '2016-12-10';
 $std->dmdev[0]->ideadc[0]->tpacconv = 'A';
@@ -632,6 +708,15 @@ $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensr
 
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo = new \stdClass();
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo->grauexp = 2;
+
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infotrabinterm[0] = new \stdClass();
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infotrabinterm[0]->codconv = 'lkkjskjsj';
+
+$std->dmdev[0]->infocomplcont = new \stdClass();
+$std->dmdev[0]->infocomplcont->codcbo = '123456';
+$std->dmdev[0]->infocomplcont->natatividade = 1;
+$std->dmdev[0]->infocomplcont->qtddiastrab = 14;
+
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

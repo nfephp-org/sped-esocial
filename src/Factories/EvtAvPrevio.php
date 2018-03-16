@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtAvPrevio Event S-2250 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtAvPrevio extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtAvPrevio';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2250';
-
     /**
      * Parameters patterns
      *
@@ -65,18 +63,9 @@ class EvtAvPrevio extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid       = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtAvPrevio = $this->dom->createElement("evtAvPrevio");
-        $att         = $this->dom->createAttribute('Id');
-        $att->value  = $evtid;
-        $evtAvPrevio->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -108,23 +97,7 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtAvPrevio->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtAvPrevio->appendChild($ideEmpregador);
-
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
         $ideVinculo = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
             $ideVinculo,
@@ -144,12 +117,9 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             $this->std->idevinculo->matricula,
             true
         );
-        $evtAvPrevio->appendChild($ideVinculo);
-
+        $this->node->appendChild($ideVinculo);
         $infoAvPrevio = $this->dom->createElement("infoAvPrevio");
-
         $detAvPrevio = $this->dom->createElement("detAvPrevio");
-
         $this->dom->addChild(
             $detAvPrevio,
             "dtAvPrv",
@@ -174,10 +144,7 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             ! empty($this->std->observacao) ? $this->std->observacao : null,
             false
         );
-
         $infoAvPrevio->appendChild($detAvPrevio);
-        $evtAvPrevio->appendChild($infoAvPrevio);
-
         if (! empty($this->std->cancavprevio)) {
             $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
             $this->dom->addChild(
@@ -200,8 +167,9 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             );
             $infoAvPrevio->appendChild($cancAvPrevio);
         }
-
-        $eSocial->appendChild($evtAvPrevio);
-        $this->sign($eSocial);
+        $this->node->appendChild($infoAvPrevio);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }

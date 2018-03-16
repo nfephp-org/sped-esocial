@@ -43,6 +43,18 @@ $jsonSchema = '{
             "type": "string",
             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
+        },
+        "nistrab": {
+            "required": false,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
+        },
         "infomv": {
             "required": false,
             "type": ["object","null"],
@@ -534,8 +546,8 @@ $std->indretif = 1;
 $std->nrrecibo = 'abcdefghijklmnopq';
 $std->indapuracao = 2;
 $std->perapur = '2017-12';
-$std->cpfTrab = '12345678901';
-$std->nisTrab = '10987654321';
+$std->cpftrab = '12345678901';
+$std->nistrab = '10987654321';
 
 $std->infomv = new \stdClass();
 $std->infomv->indmv = 1;

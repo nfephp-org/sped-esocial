@@ -7,7 +7,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1295
+//S-1295 sem alterações da 2.4.1 => 2.4.2
 
 $evento  = 'evtTotConting';
 $version = '02_04_02';

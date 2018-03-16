@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtReintegr Event S-2298 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * READ for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -26,17 +27,14 @@ class EvtReintegr extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtReintegr';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2298';
-
     /**
      * Parameters patterns
      *
@@ -161,6 +159,7 @@ class EvtReintegr extends Factory implements FactoryInterface
         $this->node->appendChild($infoReintegr);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        $this->sign($this->eSocial);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }

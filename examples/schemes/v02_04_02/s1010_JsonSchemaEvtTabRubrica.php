@@ -8,6 +8,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1010
+//Campos {nrProc} – alterado tamanho. 20 -> 21
 
 $evento  = 'evtTabRubrica';
 $version = '02_04_02';
@@ -94,11 +95,6 @@ $jsonSchema = '{
                     "maxLength": 2,
                     "pattern": "^[0-9]"
                 },
-                "repaviso": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
                 "observacao": {
                     "required": false,
                     "type": ["string","null"],
@@ -121,7 +117,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "maxLength": 21
                             },
                             "extdecisao": {
                                 "required": true,
@@ -149,7 +145,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "maxLength": 21
                             },
                             "codsusp": {
                                 "required": true,
@@ -171,7 +167,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "maxLength": 21
                             }
                         }
                     }    
@@ -187,7 +183,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "maxLength": 21
                             }
                         }
                     }    

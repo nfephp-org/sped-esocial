@@ -10,6 +10,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1260
+//Campos {nrProc} – alterado tamanho. 20 -> 21
 
 $evento = 'evtComProd';
 $version = '02_04_02';
@@ -150,7 +151,7 @@ $jsonSchema = '{
                     "nrproc": {
                         "required": true,
                         "type": "string",
-                        "maxLength": 20
+                        "maxLength": 21
                     },
                     "codsusp": {
                         "required": true,

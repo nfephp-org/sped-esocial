@@ -10,6 +10,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2250
+//Campo {tpAvPrevio} – incluído novo valor válido.
 
 $evento = 'evtAvPrevio';
 $version = '02_04_02';
@@ -75,8 +76,8 @@ $jsonSchema = '{
                 "tpavprevio": {
                     "required": true,
                     "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "(1|2|4|5){1}$"
+                    "minimum": 1,
+                    "maximum": 6
                 },
                 "observacao": {
                     "required": false,

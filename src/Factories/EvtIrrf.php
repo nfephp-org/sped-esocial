@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtIrrf Event S-5012 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -26,17 +27,14 @@ class EvtIrrf extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtIrrf';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-5012';
-
     /**
      * Parameters patterns
      *
@@ -75,7 +73,6 @@ class EvtIrrf extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-
         //tag deste evento em particular
         $infoIrrf = $this->dom->createElement("infoIRRF");
         $this->dom->addChild(
@@ -90,7 +87,6 @@ class EvtIrrf extends Factory implements FactoryInterface
             $this->std->infoirrf->indexistinfo,
             true
         );
-
         if (isset($this->std->infocrcontrib)) {
             foreach ($this->std->infocrcontrib as $infoc) {
                 $infocontrib = $this->dom->createElement("infoCRContrib");
@@ -110,9 +106,9 @@ class EvtIrrf extends Factory implements FactoryInterface
             }
         }
         $this->node->appendChild($infoIrrf);
-
         //finalização do xml
         $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }

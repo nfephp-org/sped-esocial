@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtRmnRPPS Event S-1202 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtRmnRPPS';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1202';
-
     /**
      * Parameters patterns
      *
@@ -65,23 +63,10 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-
-        $evtRmnRPPS = $this->dom->createElement("evtRmnRPPS");
-
-        $att = $this->dom->createAttribute('Id');
-
-        $att->value = $evtid;
-
-        $evtRmnRPPS->appendChild($att);
-
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
 
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -125,7 +110,6 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
@@ -172,8 +156,8 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $procJudTrab,
                     "codSusp",
-                    $proc->codsusp,
-                    true
+                    !empty($proc->codsusp) ? $proc->codsusp : null,
+                    false
                 );
 
                 $ideTrabalhador->appendChild($procJudTrab);
@@ -514,11 +498,11 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                     $dmDev->appendChild($infoPerAnt);
                 }
             }
-
             $this->node->appendChild($dmDev);
         }
-
+        //finalização do xml
         $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }

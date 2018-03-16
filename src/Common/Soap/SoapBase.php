@@ -5,8 +5,8 @@ namespace NFePHP\eSocial\Common\Soap;
 /**
  * Soap base class
  *
- * @category  NFePHP
- * @package   NFePHP\Common\Soap\SoapBase
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT

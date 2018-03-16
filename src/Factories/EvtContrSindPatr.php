@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtContrSindPatr Event S-1300 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtContrSindPatr';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1300';
-
     /**
      * Parameters patterns
      *
@@ -65,23 +63,9 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-
-        $evtContrSindPatr = $this->dom->createElement("evtContrSindPatr");
-
-        $att = $this->dom->createAttribute('Id');
-
-        $att->value = $evtid;
-
-        $evtContrSindPatr->appendChild($att);
-
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -125,39 +109,33 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-
         if (isset($this->std->contribsind)) {
             foreach ($this->std->contribsind as $contrib) {
                 $contribSind = $this->dom->createElement("contribSind");
-
                 $this->dom->addChild(
                     $contribSind,
                     "cnpjSindic",
                     $contrib->cnpjsindic,
                     true
                 );
-
                 $this->dom->addChild(
                     $contribSind,
                     "tpContribSind",
                     $contrib->tpcontribsind,
                     true
                 );
-
                 $this->dom->addChild(
                     $contribSind,
                     "vlrContribSind",
                     $contrib->vlrcontribsind,
                     true
                 );
-
                 $this->node->appendChild($contribSind);
             }
         }
-
         $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }

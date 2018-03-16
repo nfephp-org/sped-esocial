@@ -1,0 +1,227 @@
+{
+    "title": "evtTabEstab",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "tpinsc": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+        },
+        "nrinsc": {
+            "required": true,
+            "type": "string",
+            "maxLength": 15
+        },
+        "inivalid": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+        },
+        "fimvalid": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+        },
+        "modo": {
+            "required": true,
+            "type": "string",
+            "pattern": "INC|ALT|EXC"
+        },
+        "dadosestab": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "cnaeprep": {
+                    "required": true,
+                    "type": "integer"
+                },
+                "aliqgilrat": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "aliqrat": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 3
+                        },
+                        "fap": {
+                            "required": false,
+                            "type": ["number","null"],
+                            "minimum": 0.5,
+                            "maximum": 2
+                        },
+                        "aliqratajust": {
+                            "required": false,
+                            "type": ["number","null"],
+                            "minimum": 0.5,
+                            "maximum": 6
+                        },
+                        "procadmjudrat": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "tpproc": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 4
+                                },
+                                "nrproc": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 21
+                                },
+                                "codsusp": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 14,
+                                    "pattern": "^[0-9]"
+                                }
+                            }
+                        },
+                        "procadmjudfap": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "tpproc": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 4
+                                },
+                                "nrproc": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 21
+                                },
+                                "codsusp": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 14,
+                                    "pattern": "^[0-9]"
+                                }
+                            }
+                        }
+                    }
+                },
+                "infocaepf": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "tpcaepf": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 3
+                        }
+                    }    
+                },
+                "infoobra": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "indsubstpatrobra": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 2
+                        }
+                    }    
+                },
+                "infotrab": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "regpt": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 6
+                        },
+                        "infoapr": {
+                            "required": true,
+                            "type": "object",
+                            "properties": {
+                                "contapr": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 2
+                                },
+                                "nrprocjud": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 20
+                                },
+                                "contented": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "S|N"
+                                },
+                                "infoenteduc": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 0,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "nrinsc": {
+                                                "required": true,
+                                                "type": "string",
+                                                "minLength": 14,
+                                                "maxLength": 15,
+                                                "pattern": "^[0-9]"
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        },
+                        "infopdc": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "contpdc": {
+                                   "required": true,
+                                   "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9
+                                },
+                                "nrprocjud": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 20
+                                }
+                            }
+                        }
+                    }    
+                }
+            }
+        },    
+        "novavalidade": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                }
+            }    
+        }
+    }
+}

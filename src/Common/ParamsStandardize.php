@@ -7,7 +7,7 @@ namespace NFePHP\eSocial\Common;
  * This is necessary to guarantee the recovery of all possible fields by
  * the constructor even if there is no data
  *
- * @category  NFePHP
+ * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+

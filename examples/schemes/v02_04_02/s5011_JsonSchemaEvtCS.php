@@ -9,6 +9,12 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-5011
+//Grupo {infoComplObra} – alterada condição.
+//Campo {vrSuspBcCp00} – alterada descrição da origem.
+//Campo {vrSuspBcCp15} – alterada descrição da origem.
+//Campo {vrSuspBcCp20} – alterada descrição da origem.
+//Campo {vrSuspBcCp25} – alterada descrição da origem.
+//Campo {vrCPCalcPR} – alterado cálculo da alínea a).
 
 $evento  = 'evtCS';
 $version = '02_04_02';

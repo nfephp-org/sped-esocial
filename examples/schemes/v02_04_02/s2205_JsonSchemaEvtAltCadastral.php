@@ -85,6 +85,48 @@ $jsonSchema = '{
             "type": ["string","null"],
             "maxLength": 70
         },
+        "nascimento": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "dtnascto": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "codmunic": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{7}"
+                },
+                "uf": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "paisnascto": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 3
+                },
+                "paisnac": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 3
+                },
+                "nmmae": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 70
+                },
+                "nmpai": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 70
+                }
+            }
+        },
         "ctps": {
             "required": false,
             "type": ["object","null"],
@@ -347,8 +389,8 @@ $jsonSchema = '{
             "type": ["object","null"],
             "properties": {
                 "dtchegada": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 },
                 "classtrabestrang": {
@@ -525,6 +567,15 @@ $std->racacor = 1;
 $std->estciv = 1;
 $std->grauinstr = '10';
 $std->nmsoc = null;
+
+$std->nascimento = new \stdClass();
+$std->nascimento->dtnascto = '1982-11-02';
+$std->nascimento->codmunic = '1234567';
+$std->nascimento->uf = 'SP';
+$std->nascimento->paisnascto = '090';
+$std->nascimento->paisnac = '105';
+$std->nascimento->nmmae = 'Fulana de Tal';
+$std->nascimento->nmpai = 'Ciclano de Tal';
 
 $std->ctps = new \stdClass();
 $std->ctps->nrctps = '12345678901';

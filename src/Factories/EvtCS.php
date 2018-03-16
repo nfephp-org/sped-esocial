@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtCS Event S-5011 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -77,7 +78,6 @@ class EvtCS extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
         $infoCS = $this->dom->createElement("infoCS");
         $this->dom->addChild(
             $infoCS,
@@ -91,7 +91,6 @@ class EvtCS extends Factory implements FactoryInterface
             $this->std->indexistinfo,
             true
         );
-
         if (!empty($this->std->infocpseg)) {
             $ips = $this->std->infocpseg;
             $infoCPSeg = $this->dom->createElement("infoCPSeg");
@@ -165,7 +164,6 @@ class EvtCS extends Factory implements FactoryInterface
             $infoContrib->appendChild($infoPJ);
         }
         $infoCS->appendChild($infoContrib);
-        
         if (!empty($this->std->ideestab)) {
             foreach ($this->std->ideestab as $is) {
                 $ideEstab = $this->dom->createElement("ideEstab");
@@ -418,7 +416,6 @@ class EvtCS extends Factory implements FactoryInterface
                                 $ideLotacao->appendChild($basesRemun);
                             }
                         }
-                        
                         if (!empty($id->basesavnport)) {
                             $basesAvNPort = $this->dom->createElement("basesAvNPort");
                             $this->dom->addChild(
@@ -465,7 +462,6 @@ class EvtCS extends Factory implements FactoryInterface
                             );
                             $ideLotacao->appendChild($basesAvNPort);
                         }
-                        
                         if (!empty($id->infosubstpatropport)) {
                             foreach ($id->infosubstpatropport as $ipp) {
                                 $infoSubstPatrOpPort = $this->dom->createElement("infoSubstPatrOpPort");
@@ -481,7 +477,6 @@ class EvtCS extends Factory implements FactoryInterface
                         $ideEstab->appendChild($ideLotacao);
                     }
                 }
-                
                 if (!empty($is->basesaquis)) {
                     foreach ($is->basesaquis as $bq) {
                         $basesAquis = $this->dom->createElement("basesAquis");

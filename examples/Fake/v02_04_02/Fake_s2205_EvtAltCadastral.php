@@ -10,9 +10,9 @@ use NFePHP\eSocial\Event;
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_4_01',
+    'verProc' => '2_4_02',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.1',
+    'eventoVersion' => '2.4.2',
     //versão do layout do evento
     'serviceVersion' => '1.4.1',
     //versão do webservice
@@ -43,6 +43,15 @@ $std->racacor = 1;
 $std->estciv = 1;
 $std->grauinstr = '10';
 $std->nmsoc = null;
+
+$std->nascimento = new \stdClass();
+$std->nascimento->dtnascto = '1982-11-02';
+$std->nascimento->codmunic = '1234567';
+$std->nascimento->uf = 'SP';
+$std->nascimento->paisnascto = '090';
+$std->nascimento->paisnac = '105';
+$std->nascimento->nmmae = 'Fulana de Tal';
+$std->nascimento->nmpai = 'Ciclano de Tal';
 
 $std->ctps = new \stdClass();
 $std->ctps->nrctps = '12345678901';

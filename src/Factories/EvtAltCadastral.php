@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtAltCadastral Event S-2205 constructor
- *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * Read for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -153,6 +154,50 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             !empty($this->std->nmsoc) ? $this->std->nmsoc : null,
             false
         );
+        $nascimento = $this->dom->createElement("nascimento");
+        $this->dom->addChild(
+            $nascimento,
+            "dtNascto",
+            $this->std->nascimento->dtnascto,
+            true
+        );
+        $this->dom->addChild(
+            $nascimento,
+            "codMunic",
+            !empty($this->std->nascimento->codmunic) ? $this->std->nascimento->codmunic : null,
+            false
+        );
+        $this->dom->addChild(
+            $nascimento,
+            "uf",
+            !empty($this->std->nascimento->uf) ? $this->std->nascimento->uf : null,
+            false
+        );
+        $this->dom->addChild(
+            $nascimento,
+            "paisNascto",
+            $this->std->nascimento->paisnascto,
+            true
+        );
+        $this->dom->addChild(
+            $nascimento,
+            "paisNac",
+            $this->std->nascimento->paisnac,
+            true
+        );
+        $this->dom->addChild(
+            $nascimento,
+            "nmMae",
+            !empty($this->std->nascimento->nmmae) ? $this->std->nascimento->nmmae : null,
+            false
+        );
+        $this->dom->addChild(
+            $nascimento,
+            "nmPai",
+            !empty($this->std->nascimento->nmpai) ? $this->std->nascimento->nmpai : null,
+            false
+        );
+        $dadosTrabalhador->appendChild($nascimento);
         $documentos = null;
         if (!empty($this->std->ctps)) {
             $ct = $this->std->ctps;

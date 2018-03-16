@@ -5,7 +5,7 @@ namespace NFePHP\eSocial;
 /**
  * Class eSocial Event constructor
  *
- * @category  NFePHP
+ * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+

@@ -9,7 +9,8 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-2190 versão 02_04_01 == 02_04_02
+//S-2190 sem alterações da 2.4.1 => 2.4.2
+
 $evento = 'evtAdmPrelim';
 $version = '02_04_02';
 

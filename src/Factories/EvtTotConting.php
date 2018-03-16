@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTotConting Event S-1295 constructor
- *
- * @category  API
- * @package   NFePHPeSocial
+ * READ for 2.4.2 layout
+ * 
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtTotConting extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTotConting';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1295';
-
     /**
      * Parameters patterns
      *

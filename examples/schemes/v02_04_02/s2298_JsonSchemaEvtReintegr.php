@@ -10,6 +10,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2298
+//Campo {dtEfeito} – alterada validação.
 
 $evento = 'evtReintegr';
 $version = '02_04_02';
@@ -44,7 +45,7 @@ $jsonSchema = '{
         "nistrab": {
             "required": true,
             "type": "string",
-            ""minLength": 11,
+            "minLength": 11,
             "maxLength": 11
         },
         "matricula": {
@@ -86,6 +87,7 @@ $jsonSchema = '{
     }
 }';
 
+
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
@@ -116,7 +118,9 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
-        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $std,
+    $jsonSchemaObject,
+    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 );
 
 if ($jsonValidator->isValid()) {
