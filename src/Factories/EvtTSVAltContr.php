@@ -5,7 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTSVAltContr Event S-2306 constructor
  * Read for 2.4.2 layout
- * 
+ *
  * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017

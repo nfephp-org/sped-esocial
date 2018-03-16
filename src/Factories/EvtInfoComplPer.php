@@ -5,7 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtInfoComplPer Event S-1280 constructor
  * Read for 2.4.2 layout
- * 
+ *
  * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017

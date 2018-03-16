@@ -5,7 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtDeslig Event S-2299 constructor
  * Read for 2.4.2 layout
- * 
+ *
  * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017

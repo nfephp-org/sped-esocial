@@ -5,7 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTabLotacao Event S-1020 constructor
  * READ for 2.4.2 layout
- * 
+ *
  * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
