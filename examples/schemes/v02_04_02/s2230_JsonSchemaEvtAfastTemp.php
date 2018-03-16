@@ -10,7 +10,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2230 de 02_04_01 para 02_04_02
-//Campos {nrProc} – alterado tamanho.
+//Campos {nrProc} – alterado tamanho. 20->21
 //Grupo {emitente} – alteradas ocorrência e condição.
 //Campo {dtIniAfast} – alterada validação da alínea a).
 //Campo {dtTermAfast} – alterada validação da alínea b).
@@ -125,7 +125,7 @@ $jsonSchema = '{
                                         "maxLength": 70
                                     },
                                     "ideoc": {
-                                        "required": false,
+                                        "required": true,
                                         "type": "integer",
                                         "maxLength": 1,
                                         "pattern": "([1-3]){1}$"
@@ -203,7 +203,7 @@ $jsonSchema = '{
                 "nrproc": {
                     "required": false,
                     "type": "string",
-                    "maxLength": 20
+                    "maxLength": 21
                 }
             }
         },

@@ -27,17 +27,14 @@ class EvtPgtos extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtPgtos';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1210';
-
     /**
      * Parameters patterns
      *
@@ -112,7 +109,6 @@ class EvtPgtos extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
         $ideBenef = $this->dom->createElement("ideBenef");
         $this->dom->addChild(
             $ideBenef,
@@ -120,7 +116,6 @@ class EvtPgtos extends Factory implements FactoryInterface
             $this->std->idebenef->cpfbenef,
             true
         );
-        
         if (!empty($this->std->idebenef->vrdeddep)) {
             $deps = $this->dom->createElement("deps");
             $this->dom->addChild(
@@ -131,7 +126,6 @@ class EvtPgtos extends Factory implements FactoryInterface
             );
             $ideBenef->appendChild($deps);
         }
-        
         foreach ($this->std->idebenef->infopgto as $pgto) {
             $infoPgto = $this->dom->createElement("infoPgto");
             $this->dom->addChild(
@@ -152,7 +146,6 @@ class EvtPgtos extends Factory implements FactoryInterface
                 $pgto->indresbr,
                 true
             );
-            
             if (!empty($pgto->detpgtofl)) {
                 foreach ($pgto->detpgtofl as $pgtofl) {
                     $detPgtoFl = $this->dom->createElement("detPgtoFl");

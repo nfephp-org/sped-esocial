@@ -10,9 +10,9 @@ use NFePHP\eSocial\Event;
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_4_01',
+    'verProc' => '2_4_02',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.1',
+    'eventoVersion' => '2.4.2',
     //versão do layout do evento
     'serviceVersion' => '1.4.1',
     //versão do webservice
@@ -35,7 +35,7 @@ $std->indretif = 1;
 $std->trabsemvinculo = new \stdClass();
 $std->trabsemvinculo->cpftrab = '11111111111';
 $std->trabsemvinculo->nistrab = '11111111111';
-$std->trabsemvinculo->codcateg = 101;
+$std->trabsemvinculo->codcateg = '101';
 
 $std->tsvalteracao = new \stdClass();
 $std->tsvalteracao->dtalteracao = '2017-08-25';

@@ -6,8 +6,8 @@ namespace NFePHP\eSocial\Common;
  * Class for identification of eletronic documents in xml
  * used for Sped eSocial comunications
  *
- * @category  NFePHP
- * @package   NFePHP\eSocial\Common\Standardize
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2008 - 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT

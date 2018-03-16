@@ -10,6 +10,8 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1202
+//Campo {cpfDep} – alterada validação da alínea a).
+//Campo {codSusp} – alteradas ocorrência e validação.
 
 $evento = 'evtRmnRPPS';
 $version = '02_04_02';
@@ -87,8 +89,8 @@ $jsonSchema = '{
                                 "maxLength": 20
                             },
                             "codsusp": {
-                                "required": true,
-                                "type": "integer",
+                                "required": false,
+                                "type": ["integer","null"],
                                 "maxLength": 14
                             }
                         }

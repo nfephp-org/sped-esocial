@@ -9,6 +9,8 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1005
+//Campos {procAdmJudFap/tpProc} – incluído novo valor válido [1,2,4].
+//Campos {nrProc} – alterado tamanho. 20 -> 21
 
 $evento = 'evtTabEstab';
 $version = '02_04_02';
@@ -87,12 +89,12 @@ $jsonSchema = '{
                                     "required": true,
                                     "type": "integer",
                                     "minimum": 1,
-                                    "maximum": 2
+                                    "maximum": 4
                                 },
                                 "nrproc": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 20
+                                    "maxLength": 21
                                 },
                                 "codsusp": {
                                     "required": true,
@@ -110,12 +112,12 @@ $jsonSchema = '{
                                     "required": true,
                                     "type": "integer",
                                     "minimum": 1,
-                                    "maximum": 2
+                                    "maximum": 4
                                 },
                                 "nrproc": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 20
+                                    "maxLength": 21
                                 },
                                 "codsusp": {
                                     "required": true,

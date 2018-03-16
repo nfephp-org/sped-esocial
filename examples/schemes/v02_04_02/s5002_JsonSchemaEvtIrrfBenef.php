@@ -10,6 +10,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-5002
+//Campo {vrIrrfDesc} – alterada descrição para o código de receita 0473-01.
 
 $evento = 'evtIrrfBenef';
 $version = '02_04_02';

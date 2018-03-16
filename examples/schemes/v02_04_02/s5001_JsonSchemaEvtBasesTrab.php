@@ -9,6 +9,9 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-5001
+//Campo {vrCpSeg} – nas Observações, alterada descrição da alínea b) e incluída alínea f).
+//Campo {tpValor} – alterada descrição.
+//Campo {valor} – alterada descrição.
 
 $evento = 'evtBasesTrab';
 $version = '02_04_02';

@@ -9,7 +9,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1207
+//S-1207 sem alterações da 2.4.1 => 2.4.2
 
 $evento = 'evtBenPrRP';
 $version = '02_04_02';

@@ -10,9 +10,9 @@ use NFePHP\eSocial\Event;
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_4_01',
+    'verProc' => '2_4_02',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.1',
+    'eventoVersion' => '2.4.2',
     //versão do layout do evento
     'serviceVersion' => '1.4.1',
     //versão do webservice
@@ -34,8 +34,8 @@ $std->indretif = 1;
 $std->nrrecibo = 'abcdefghijklmnopq';
 $std->indapuracao = 2;
 $std->perapur = '2017-12';
-$std->cpfTrab = '12345678901';
-$std->nisTrab = '10987654321';
+$std->cpftrab = '12345678901';
+$std->nistrab = '10987654321';
 
 $std->infomv = new \stdClass();
 $std->infomv->indmv = 1;
@@ -48,9 +48,6 @@ $std->infomv->remunoutrempr[0]->vlrremunoe = 2345.09;
 $std->infocomplem = new \stdClass();
 $std->infocomplem->nmtrab = 'Fulano de Tal';
 $std->infocomplem->dtnascto = '1985-02-14';
-$std->infocomplem->codcbo = '123456';
-$std->infocomplem->natatividade = 1;
-$std->infocomplem->qtddiastrab = 6;
 
 $std->infocomplem->sucessaovinc = new \stdClass();
 $std->infocomplem->sucessaovinc->cnpjempregant = '12345678901234';
@@ -62,6 +59,9 @@ $std->procjudtrab[0] = new \stdClass();
 $std->procjudtrab[0]->tptrib = 2;
 $std->procjudtrab[0]->nrprocjud = '123456789';
 $std->procjudtrab[0]->codsusp = '12345678901234';
+
+$std->infointerm = new \stdClass();
+$std->infointerm->qtddiasinterm = 10;
 
 $std->dmdev[0] = new \stdClass();
 $std->dmdev[0]->idedmdev = 'kjdkjdkjdkdj';
@@ -100,6 +100,9 @@ $std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->vlrpgd
 $std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo = new \stdClass();
 $std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo->grauexp = 1;
 
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infotrabinterm[0] = new \stdClass();
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infotrabinterm[0]->codconv = 'lkkjskjsj';
+
 $std->dmdev[0]->ideadc[0] = new \stdClass();
 $std->dmdev[0]->ideadc[0]->dtacconv = '2016-12-10';
 $std->dmdev[0]->ideadc[0]->tpacconv = 'A';
@@ -131,6 +134,13 @@ $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensr
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo = new \stdClass();
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo->grauexp = 2;
 
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infotrabinterm[0] = new \stdClass();
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infotrabinterm[0]->codconv = 'lkkjskjsj';
+
+$std->dmdev[0]->infocomplcont = new \stdClass();
+$std->dmdev[0]->infocomplcont->codcbo = '123456';
+$std->dmdev[0]->infocomplcont->natatividade = 1;
+$std->dmdev[0]->infocomplcont->qtddiastrab = 14;
 
 try {
     //carrega a classe responsavel por lidar com os certificados

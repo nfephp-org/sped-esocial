@@ -7,7 +7,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1050
+//S-1050 sem alterações da 2.4.1 => 2.4.2
 
 $evento  = 'evtTabHorTur';
 $version = '02_04_02';

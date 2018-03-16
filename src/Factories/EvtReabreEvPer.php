@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtReabreEvPer Event S-1298 constructor
+ * READ for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtReabreEvPer';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1298';
-
     /**
      * Parameters patterns
      *
@@ -65,18 +63,9 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid          = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial        = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtReabreEvPer = $this->dom->createElement("evtReabreEvPer");
-        $att            = $this->dom->createAttribute('Id');
-        $att->value     = $evtid;
-        $evtReabreEvPer->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -108,24 +97,9 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtReabreEvPer->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtReabreEvPer->appendChild($ideEmpregador);
-
-        $eSocial->appendChild($evtReabreEvPer);
-        $this->sign($eSocial);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }

@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtFechaEvPer Event S-1299 constructor
+ * Read for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtFechaEvPer';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1299';
-
     /**
      * Parameters patterns
      *
@@ -65,18 +63,9 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid         = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial       = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtFechaEvPer = $this->dom->createElement("evtFechaEvPer");
-        $att           = $this->dom->createAttribute('Id');
-        $att->value    = $evtid;
-        $evtFechaEvPer->appendChild($att);
-
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -108,22 +97,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtFechaEvPer->appendChild($ideEvento);
-
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtFechaEvPer->appendChild($ideEmpregador);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $ideRespInf = $this->dom->createElement("ideRespInf");
         $this->dom->addChild(
@@ -150,7 +124,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
             ! empty($this->std->iderespinf->email) ? $this->std->iderespinf->email : null,
             false
         );
-        $evtFechaEvPer->appendChild($ideRespInf);
+        $this->node->appendChild($ideRespInf);
 
         $infoFech = $this->dom->createElement("infoFech");
         $this->dom->addChild(
@@ -195,9 +169,9 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
             ! empty($this->std->infofech->compsemmovto) ? $this->std->infofech->compsemmovto : null,
             false
         );
-        $evtFechaEvPer->appendChild($infoFech);
-
-        $eSocial->appendChild($evtFechaEvPer);
-        $this->sign($eSocial);
+        $this->node->appendChild($infoFech);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }

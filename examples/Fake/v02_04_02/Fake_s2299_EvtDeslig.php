@@ -10,9 +10,9 @@ use NFePHP\eSocial\Event;
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_4_01',
+    'verProc' => '2_4_02',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.1',
+    'eventoVersion' => '2.4.2',
     //versão do layout do evento
     'serviceVersion' => '1.4.1',
     //versão do webservice
@@ -46,7 +46,9 @@ $std->vralim = 1234.45;
 $std->nrcertobito = '12345678901234567890123456789012';
 $std->nrProcTrab = '1234567890';
 $std->indcumprparc = 2;
-$std->observacao = 'observacao';
+$std->qtddiasinterm = 12;
+$std->observacoes[0] = new \stdClass();
+$std->observacoes[0]->observacao = 'observacao';
 
 $std->sucessaovinc = new \stdClass();
 $std->sucessaovinc->cnpjsucessora = '12345678901234';
@@ -83,7 +85,6 @@ $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->nmdep = 'Fulano de Tal';
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->dtnascto = '2005-06-05';
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->vlrpgdep = 199.41;
-
 
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infoagnocivo = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infoagnocivo->grauexp = 2;
@@ -136,13 +137,15 @@ $std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '123456789012345';
 $std->verbasresc->infomv->remunoutrempr[1]->codcateg = '001';
 $std->verbasresc->infomv->remunoutrempr[1]->vlrremunoe = 2535.97;
 
+$std->verbasresc->proccs = new \stdClass();
+$std->verbasresc->proccs->nrprocjud = '1234';
+ 
 $std->quarentena = new \stdClass();
 $std->quarentena->dtfimquar = '2018-12-20';
-
-$std->consigfgts = new \stdClass();
-$std->consigfgts->idconsig = 'S';
-$std->consigfgts->insconsig = '12345';
-$std->consigfgts->nrcontr = '123456789012345';
+         
+$std->consigfgts[0] = new \stdClass();
+$std->consigfgts[0]->insconsig = '12345';
+$std->consigfgts[0]->nrcontr = '123456789012345';
 
 
 try {

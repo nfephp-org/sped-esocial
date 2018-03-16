@@ -9,7 +9,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1300
+//S-1300 sem alterações da 2.4.1 => 2.4.2
 
 $evento = 'evtContrSindPatr';
 $version = '02_04_02';

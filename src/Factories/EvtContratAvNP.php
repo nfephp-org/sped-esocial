@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtContratAvNP Event S-1270 constructor
+ * Read for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,17 +28,14 @@ class EvtContratAvNP extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtContratAvNP';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1270';
-
     /**
      * Parameters patterns
      *
@@ -65,23 +63,9 @@ class EvtContratAvNP extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid          = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-
-        $evtContratAvNP = $this->dom->createElement("evtContratAvNP");
-
-        $att            = $this->dom->createAttribute('Id');
-
-        $att->value     = $evtid;
-
-        $evtContratAvNP->appendChild($att);
-
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -125,7 +109,6 @@ class EvtContratAvNP extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         if (isset($this->std->remunavnp)) {
@@ -205,8 +188,8 @@ class EvtContratAvNP extends Factory implements FactoryInterface
                 $this->node->appendChild($remunAvNP);
             }
         }
-
         $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }

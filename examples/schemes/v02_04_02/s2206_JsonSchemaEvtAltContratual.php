@@ -9,6 +9,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2206
+//Campo {dtTerm} – alterada validação.
 
 $evento  = 'evtAltContratual';
 $version = '02_04_02';

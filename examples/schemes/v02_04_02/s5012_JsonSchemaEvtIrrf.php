@@ -9,7 +9,7 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-5012
+//S-5012 sem alterações da 2.4.1 => 2.4.2
 
 $evento = 'evtIrrf';
 $version = '02_04_01';

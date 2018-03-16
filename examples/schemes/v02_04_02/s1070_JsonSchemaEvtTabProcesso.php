@@ -9,6 +9,11 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1070
+//Campos {tpProc} – incluído novo valor válido [1-4].
+//Campos {nrProc} – alterados tamanho e validação 20 -> 21.
+//Campos {indMatProc} – alterada descrição do valor [7].
+//Campos {inclusao/dadosProc/observacao} e {alteracao/dadosProc/observacao} – criados.
+//Campos {indSusp} – alterada validação.
 
 $evento = 'evtTabProcesso';
 $version = '02_04_02';
@@ -27,12 +32,12 @@ $jsonSchema = '{
             "required": true,
             "type": "integer",
             "minimum": 1,
-            "maximum": 2
+            "maximum": 4
         },
         "nrproc": {
             "required": true,
             "type": "string",
-            "maxLength": 20
+            "maxLength": 21
         },
         "inivalid": {
             "required": true,
@@ -64,6 +69,11 @@ $jsonSchema = '{
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 99
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 255
                 },
                 "dadosprocjud": {
                     "required": false,
@@ -155,6 +165,7 @@ $std->modo = 'INC';
 $std->dadosproc = new \stdClass();
 $std->dadosproc->indautoria = 1;
 $std->dadosproc->indmatproc = 99;
+$std->dadosproc->observacao = 'lalsksksksksk';
 
 $std->dadosproc->dadosprocjud = new \stdClass();
 $std->dadosproc->dadosprocjud->ufvara = 'SP';

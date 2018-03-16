@@ -9,6 +9,11 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2300
+//Campo {cpfDep} – alterada validação da alínea a).
+//Campo {racaCor} – alterada descrição dos valores [2, 3, 4].
+//Campo {dtChegada} – alterada ocorrência e inserida validação.
+//Grupos {cargoFuncao} – alterada condição.
+//Grupos {remuneracao} – alterada condição.
 
 $evento  = 'evtTSVInicio';
 $version = '02_04_02';
@@ -381,8 +386,8 @@ $jsonSchema = '{
             "type": ["object","null"],
             "properties": {
                 "dtchegada": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"                
                 },
                 "classtrabestrang": {

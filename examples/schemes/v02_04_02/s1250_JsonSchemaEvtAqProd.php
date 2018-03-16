@@ -9,7 +9,8 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1250 02-0-4_01 == 02_04_02
+//S-1250 sem alterações da 2.4.1 => 2.4.2
+
 $evento = 'evtAqProd';
 $version = '02_04_02';
 

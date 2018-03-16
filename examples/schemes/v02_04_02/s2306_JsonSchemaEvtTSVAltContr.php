@@ -10,6 +10,10 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2306
+//Grupos {cargoFuncao} – alterada condição.
+//Grupos {remuneracao} – alterada condição.
+//Grupo {ideTrabSemVinculo} – inserido campo {codCateg} como chave.
+//Grupo {infoTSVAlteracao} – inserido campo {dtAlteracao} como chave.
 
 $evento = 'evtTSVAltContr';
 $version = '02_04_02';
@@ -48,8 +52,9 @@ $jsonSchema = '{
                 },
                 "codcateg": {
                       "required": true,
-                      "type": "integer",
-                      "maxLength": 3
+                      "type": "string",
+                      "maxLength": 3,
+                      "pattern": "^[0-9]"
                 }
             }
         },
@@ -267,7 +272,7 @@ $std->indretif = 1;
 $std->trabsemvinculo = new \stdClass();
 $std->trabsemvinculo->cpftrab = '11111111111';
 $std->trabsemvinculo->nistrab = '11111111111';
-$std->trabsemvinculo->codcateg = 101;
+$std->trabsemvinculo->codcateg = '101';
 
 $std->tsvalteracao = new \stdClass();
 $std->tsvalteracao->dtalteracao = '2017-08-25';

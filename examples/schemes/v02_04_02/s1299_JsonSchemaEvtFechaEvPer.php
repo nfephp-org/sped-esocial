@@ -10,6 +10,8 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1299
+//Campo {evtFechaEvPer} – excluída REGRA_EVE_FOPAG_IND_RETIFICACAO.
+///Campo {evtRemun} – alterada validação.
 
 $evento = 'evtFechaEvPer';
 $version = '02_04_02';

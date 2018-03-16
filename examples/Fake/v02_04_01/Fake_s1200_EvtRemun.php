@@ -34,8 +34,8 @@ $std->indretif = 1;
 $std->nrrecibo = 'abcdefghijklmnopq';
 $std->indapuracao = 2;
 $std->perapur = '2017-12';
-$std->cpfTrab = '12345678901';
-$std->nisTrab = '10987654321';
+$std->cpftrab = '12345678901';
+$std->nistrab = '10987654321';
 
 $std->infomv = new \stdClass();
 $std->infomv->indmv = 1;

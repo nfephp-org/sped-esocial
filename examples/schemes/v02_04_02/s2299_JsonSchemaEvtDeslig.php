@@ -9,6 +9,21 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2299
+//Campo {cpfDep} – alterada validação da alínea a). ok
+//Campo {codSusp} – alteradas ocorrência e validação.ok
+//Grupo {ideADC} – inserido campo {dtEfAcConv} como chave.ok
+//Campos {ideEstabLot/tpInsc} – alterada validação.ok
+//Criado o grupo {observacoes}.pk
+//Criado o grupo {procCS} e respectivo campo.ok
+//Grupo {consigFGTS} – alteradas ocorrência e condição.ok
+//Campo {dtDeslig} – alterada validação.ok
+//Campo {qtdDiasInterm} – criado.ok
+//Campo {observacao} – alterados registro pai, ocorrência e descrição.ok
+//Campo {nrCertObito} – alterada validação.ok
+//Campo {idConsig} – excluído.ok
+//Campo {insConsig} – alterada ocorrência e excluída validação.ok
+//Campo {nrContr} – alterados ocorrência e tamanho e excluída validação.ok
+//Grupo {verbasResc} – alterada condição.
 
 $evento  = 'evtDeslig';
 $version = '02_04_02';
@@ -105,10 +120,27 @@ $jsonSchema = '{
             "minimum": 0,
             "maximum": 4
         },
-        "observacao": {
+        "qtddiasinterm": {
             "required": false,
-            "type": ["string","null"],
-            "maxLength": 255
+            "type": ["integer","null"],
+            "minimum": 0,
+            "maximum": 31
+        },
+        "observacoes": {
+            "required": false,
+            "type": ["array", "null"],
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "observacao": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 255
+                    }
+                }
+            }    
         },
         "sucessaovinc": {
             "required": false,
@@ -343,8 +375,8 @@ $jsonSchema = '{
                                                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
                                                 },
                                                 "dtefacconv": {
-                                                    "required": true,
-                                                    "type": "string",
+                                                    "required": false,
+                                                    "type": ["string","null"],
                                                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                                                 },
                                                 "dsc": {
@@ -500,8 +532,8 @@ $jsonSchema = '{
                                 "maxLength": 20
                             },
                             "codsusp": {
-                                "required": true,
-                                "type": "string",
+                                "required": false,
+                                "type": ["string","null"],
                                 "maxLength": 14,
                                 "pattern": "^[0-9]"
                             }
@@ -552,6 +584,18 @@ $jsonSchema = '{
                             }
                         }
                     }
+                },
+                "procs": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "nrprocjud": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 20
+                        }
+                    }
                 }
             }
         },
@@ -567,25 +611,27 @@ $jsonSchema = '{
             }
         },
         "consigfgts": {
-            "required": true,
-            "type": "object",
-            "properties": {
-                "idconsig": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "insconsig": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 5
-                },
-                "nrcontr": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 15
+            "required": false,
+            "type": ["array","null"],
+            "minItems": 0,
+            "maxItems": 9,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "insconsig": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 5
+                    },
+                    "nrcontr": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 15
+                    }
                 }
-            }
+            }    
         }
     }
 }';
@@ -604,10 +650,12 @@ $std->dtprojfimapi = '2017-11-25';
 $std->pensalim = 2;
 $std->percaliment = 22;
 $std->vralim = 1234.45;
-$std->nrcertobito = '1234567890';
+$std->nrcertobito = '12345678901234567890123456789012';
 $std->nrProcTrab = '1234567890';
 $std->indcumprparc = 2;
-$std->observacao = 'observacao';
+$std->qtddiasinterm = 12;
+$std->observacoes[0] = new \stdClass();
+$std->observacoes[0]->observacao = 'observacao';
 
 $std->sucessaovinc = new \stdClass();
 $std->sucessaovinc->cnpjsucessora = '12345678901234';
@@ -644,7 +692,6 @@ $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->nmdep = 'Fulano de Tal';
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->dtnascto = '2005-06-05';
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->vlrpgdep = 199.41;
-
 
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infoagnocivo = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infoagnocivo->grauexp = 2;
@@ -683,7 +730,6 @@ $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]
 $std->verbasresc->dmdev[1]->infotrabinterm[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->infotrabinterm[1]->codconv = 'ksksksksksk';
 
-
 $std->verbasresc->procjudtrab[1] = new \stdClass();
 $std->verbasresc->procjudtrab[1]->tptrib = 3;
 $std->verbasresc->procjudtrab[1]->nrprocjud = 'lalalalalalal';
@@ -698,14 +744,15 @@ $std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '123456789012345';
 $std->verbasresc->infomv->remunoutrempr[1]->codcateg = '001';
 $std->verbasresc->infomv->remunoutrempr[1]->vlrremunoe = 2535.97;
 
+$std->verbasresc->proccs = new \stdClass();
+$std->verbasresc->proccs->nrprocjud = '1234';
  
 $std->quarentena = new \stdClass();
 $std->quarentena->dtfimquar = '2018-12-20';
          
-$std->consigfgts = new \stdClass();
-$std->consigfgts->idconsig = 'S';
-$std->consigfgts->insconsig = '12345';
-$std->consigfgts->nrcontr = '123456789012345';
+$std->consigfgts[0] = new \stdClass();
+$std->consigfgts[0]->insconsig = '12345';
+$std->consigfgts[0]->nrcontr = '123456789012345';
 
 
 // Schema must be decoded before it can be used for validation
