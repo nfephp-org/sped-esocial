@@ -174,7 +174,7 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             $this->dom->addChild(
               $detAvPrevio,
               "observacao",
-              ! empty($this->std->observacao) ? $this->std->observacao : null,
+              ! empty($this->std->infoavprevio->detavprevio->observacao) ? $this->std->infoavprevio->detavprevio->observacao : null,
               false
             );
 
