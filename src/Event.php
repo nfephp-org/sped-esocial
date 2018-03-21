@@ -27,6 +27,7 @@ class Event
     private static $available = [
         'evtadmissao' => Factories\EvtAdmissao::class,
         'evtcs' => Factories\EvtCS::class,
+        'evtpgtos' => Factories\EvtPgtos::class,
         'evtrmnrpps' => Factories\EvtRmnRPPS::class,
         'evtadmprelim' => Factories\EvtAdmPrelim::class,
         'evtdeslig' => Factories\EvtDeslig::class,
