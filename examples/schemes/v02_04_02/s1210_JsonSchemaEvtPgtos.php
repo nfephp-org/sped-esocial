@@ -18,11 +18,11 @@ use JsonSchema\Validator;
 //Campo {detPgtoFer/matricula} – criado.
 //Campo {detRubrFer/codRubr} – alterada validação.
 
-$evento  = 'evtPagtos';
+$evento  = 'evtPgtos';
 $version = '02_04_02';
 
 $jsonSchema = '{
-    "title": "evtPagtos",
+    "title": "evtPgtos",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -54,7 +54,7 @@ $jsonSchema = '{
             "type": "string",
             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
-        "cpftrab": {
+        "cpfbenef": {
             "required": true,
             "type": "string",
             "maxLength": 11,
@@ -552,7 +552,7 @@ $std->indretif = 1;
 $std->nrrecibo = 'abcdefghijklmnopq';
 $std->indapuracao = 2;
 $std->perapur = '2017-12';
-$std->cpftrab = '12345678901';
+$std->cpfbenef = '12345678901';
 
 $std->deps = new \stdClass();
 $std->deps->vrdeddep = 1000.00;
@@ -654,8 +654,6 @@ $std->infopgto[0]->idepgtoext->endext->complem = 'kjdhkdjdhj';
 $std->infopgto[0]->idepgtoext->endext->bairro = 'kjdlkdjkdjk';
 $std->infopgto[0]->idepgtoext->endext->nmcid = 'lkwjlkjekj';
 $std->infopgto[0]->idepgtoext->endext->codpostal = '1230099';
-
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
