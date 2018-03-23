@@ -89,12 +89,12 @@ $jsonSchema = '{
                             "iniinterv": {
                                 "required": false,
                                 "type": ["string","null"],
-                                "pattern": "^[0-2][0-3][0-5][0-9]$"
+                                "pattern": "^(?:2[0-3]|[0-1]?[0-9])[0-5]?[0-9]$"
                             },
                             "terminterv": {
                                 "required": false,
                                 "type": ["string","null"],
-                                "pattern": "^[0-2][0-3][0-5][0-9]$"
+                                "pattern": "^(?:2[0-3]|[0-1]?[0-9])[0-5]?[0-9]$"
                             }
                         }
                     }
