@@ -5,8 +5,8 @@ namespace NFePHP\eSocial\Common\Soap;
 /**
  * Soap fake class used for development only
  *
- * @category  NFePHP
- * @package   NFePHP\Common\Soap\SoapFake
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT

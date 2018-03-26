@@ -5,8 +5,8 @@ namespace NFePHP\eSocial\Common\Soap;
 /**
  * Soap class interface
  *
- * @category  NFePHP
- * @package   NFePHP\Common\Soap\SoapInterface
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2016
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT

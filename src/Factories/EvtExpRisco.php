@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtExpRisco Event S-2240 constructor
+ * Read for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,12 +28,10 @@ class EvtExpRisco extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtName = 'evtExpRisco';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2240';
-
     /**
      * Parameters patterns
      *
@@ -95,7 +94,6 @@ class EvtExpRisco extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
         $ide = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
             $ide,
@@ -116,7 +114,6 @@ class EvtExpRisco extends Factory implements FactoryInterface
             false
         );
         $this->node->appendChild($ide);
-        
         switch ($this->std->modo) {
             case 'INI':
                 $noderisco = $this->dom->createElement("iniExpRisco");

@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtBasesTrab Event S-5001 constructor
+ * Read for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -26,17 +27,14 @@ class EvtBasesTrab extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtBasesTrab';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-5001';
-
     /**
      * Parameters patterns
      *

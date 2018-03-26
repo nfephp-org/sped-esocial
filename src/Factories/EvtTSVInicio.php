@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTSVInicio Event S-2300 constructor
+ * Read for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -95,7 +96,6 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
         $trabalhador = $this->dom->createElement("trabalhador");
         $this->dom->addChild(
             $trabalhador,
@@ -486,8 +486,8 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $trabEstrangeiro,
                 "dtChegada",
-                $this->std->trabestrangeiro->dtchegada,
-                true
+                !empty($this->std->trabestrangeiro->dtchegada) ? $this->std->trabestrangeiro->dtchegada : null,
+                false
             );
             $this->dom->addChild(
                 $trabEstrangeiro,

@@ -5,8 +5,8 @@ namespace NFePHP\eSocial;
 /**
  * Classe Tools, performs communication with the e-Social webservice
  *
- * @category  NFePHP
- * @package   NFePHP\eSocial\Tools
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright Copyright (c) 2017
  * @license   https://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
  * @license   https://www.gnu.org/licenses/gpl-3.0.txt GPLv3

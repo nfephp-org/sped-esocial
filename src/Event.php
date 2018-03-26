@@ -5,7 +5,7 @@ namespace NFePHP\eSocial;
 /**
  * Class eSocial Event constructor
  *
- * @category  NFePHP
+ * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
@@ -27,6 +27,7 @@ class Event
     private static $available = [
         'evtadmissao' => Factories\EvtAdmissao::class,
         'evtcs' => Factories\EvtCS::class,
+        'evtpgtos' => Factories\EvtPgtos::class,
         'evtrmnrpps' => Factories\EvtRmnRPPS::class,
         'evtadmprelim' => Factories\EvtAdmPrelim::class,
         'evtdeslig' => Factories\EvtDeslig::class,
