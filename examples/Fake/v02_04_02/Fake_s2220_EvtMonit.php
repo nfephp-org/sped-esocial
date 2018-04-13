@@ -32,51 +32,37 @@ $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
 
-$idevinculo = new \stdClass();
-$idevinculo->cpftrab = '11111111111';
-$idevinculo->nistrab = '11111111111';
-$idevinculo->matricula = '11111111111';
+$std->idevinculo = new \stdClass();
+$std->idevinculo->cpftrab = '11111111111';
+$std->idevinculo->nistrab = '11111111111';
+$std->idevinculo->matricula = '11111111111';
 
-$std->idevinculo = $idevinculo;
+$std->aso = new \stdClass();
+$std->aso->dtaso = '2017-08-18';
+$std->aso->tpaso = 0;
+$std->aso->resaso = 1;
 
-$aso = new \stdClass();
-$aso->dtaso = '2017-08-18';
-$aso->tpaso = 0;
-$aso->resaso = 1;
+$std->aso->exame[0] = new \stdClass();
+$std->aso->exame[0]->dtexm = '2017-08-18';
+$std->aso->exame[0]->procrealizado = 10102019;
+$std->aso->exame[0]->obsproc = 'observação do exame';
+$std->aso->exame[0]->interprexm = 1;
+$std->aso->exame[0]->ordexame = 1;
+$std->aso->exame[0]->dtinimonit = '2017-08-18';
+$std->aso->exame[0]->dtfimmonit = '2018-08-18';
+$std->aso->exame[0]->indresult = 1;
+$std->aso->exame[0]->respmonit = new \stdClass();
+$std->aso->exame[0]->respmonit->nisresp = '11111111111';
+$std->aso->exame[0]->respmonit->nrconsclasse = '11111111';
 
-$std->aso = $aso;
-
-$exame[0] = new \stdClass();
-$exame[0]->dtexm = '2017-08-18';
-$exame[0]->procrealizado = 10102019;
-$exame[0]->obsproc = 'observação do exame';
-$exame[0]->interprexm = 1;
-$exame[0]->ordexame = 1;
-$exame[0]->dtinimonit = '2017-08-18';
-$exame[0]->dtfimmonit = '2018-08-18';
-$exame[0]->indresult = 1;
-
-$std->exame = $exame;
-
-$respmonit = new \stdClass();
-$respmonit->nisresp = '11111111111';
-$respmonit->nrconsclasse = '11111111';
-
-$std->respmonit = $respmonit;
-
-$ideservsaude = new \stdClass();
-$ideservsaude->codcnes = '1111111';
-$ideservsaude->frmctt = 'CONTATO';
-$ideservsaude->email = 'teste@exemplo.com.br';
-
-$std->ideservsaude = $ideservsaude;
-
-$medico = new \stdClass();
-$medico->nmmed = 'NOME DO MEDICO';
-$medico->nrcrm = '12345678';
-$medico->ufcrm = 'SP';
-
-$std->medico = $medico;
+$std->aso->ideservsaude = new \stdClass();
+$std->aso->ideservsaude->codcnes = '1111111';
+$std->aso->ideservsaude->frmctt = 'CONTATO';
+$std->aso->ideservsaude->email = 'teste@exemplo.com.br';
+$std->aso->ideservsaude->medico = new \stdClass();
+$std->aso->ideservsaude->medico->nmmed = 'NOME DO MEDICO';
+$std->aso->ideservsaude->medico->nrcrm = '12345678';
+$std->aso->ideservsaude->medico->ufcrm = 'SP';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
