@@ -172,7 +172,7 @@ class Tools
     /**
      * Stringfy layout number
      * @param string $version
-     * @param int $lenght
+     * @param int $length
      * @return string
      */
     protected function stringfyVersions($version, $length = 2)

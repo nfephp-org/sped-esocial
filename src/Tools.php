@@ -70,7 +70,7 @@ class Tools extends ToolsBase
      */
     protected $parameters;
     /**
-     * @var string
+     * @var array
      */
     protected $envelopeXmlns;
     /**
@@ -188,7 +188,6 @@ class Tools extends ToolsBase
             "SOAPAction: \"$this->action\"",
             "Content-length: $msgSize",
         ];
-        //return $envelope;
         return (string) $this->soap->send(
             $this->method,
             $this->uri,

@@ -135,11 +135,12 @@ $std->dadoshorcontratual->hrentr = '0800';
 $std->dadoshorcontratual->hrsaida = '1630';
 $std->dadoshorcontratual->durjornada = 258;
 $std->dadoshorcontratual->perhorflexivel = 'N';
-$std->dadoshorcontratual->horarioIntervalo[0] = new \stdClass();
-$std->dadoshorcontratual->horarioIntervalo[0]->tpinterv = 1;
-$std->dadoshorcontratual->horarioIntervalo[0]->durinterv = 30;
-$std->dadoshorcontratual->horarioIntervalo[0]->iniinterv = '1110';
-$std->dadoshorcontratual->horarioIntervalo[0]->terminterv = '1140';
+
+$std->dadoshorcontratual->horariointervalo[0] = new \stdClass();
+$std->dadoshorcontratual->horariointervalo[0]->tpinterv = 1;
+$std->dadoshorcontratual->horariointervalo[0]->durinterv = 30;
+$std->dadoshorcontratual->horariointervalo[0]->iniinterv = '1110';
+$std->dadoshorcontratual->horariointervalo[0]->terminterv = '1140';
 
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-01';

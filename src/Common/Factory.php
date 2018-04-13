@@ -278,7 +278,7 @@ abstract class Factory
 
     /**
      * Returns Certificate::class
-     * @return Certificate
+     * @return Certificate|null
      */
     public function getCertificate()
     {
