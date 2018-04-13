@@ -124,127 +124,129 @@ class EvtMonit extends Factory implements FactoryInterface
             $this->std->aso->resaso,
             true
         );
-        if (isset($this->std->exame)) {
-            foreach ($this->std->exame as $exam) {
+        if (isset($this->std->aso->exame)) {
+            foreach ($this->std->aso->exame as $exa) {
                 $exame = $this->dom->createElement("exame");
                 $this->dom->addChild(
                     $exame,
                     "dtExm",
-                    $exam->dtexm,
+                    $exa->dtexm,
                     true
                 );
                 $this->dom->addChild(
                     $exame,
                     "procRealizado",
-                    ! empty($exam->procrealizado) ? $exam->procrealizado : null,
+                    !empty($exa->procrealizado) ? $exa->procrealizado : null,
                     false
                 );
                 $this->dom->addChild(
                     $exame,
                     "obsProc",
-                    ! empty($exam->obsproc) ? $exam->obsproc : null,
+                    !empty($exa->obsproc) ? $exa->obsproc : null,
                     false
                 );
                 $this->dom->addChild(
                     $exame,
                     "interprExm",
-                    $exam->interprexm,
+                    $exa->interprexm,
                     true
                 );
                 $this->dom->addChild(
                     $exame,
                     "ordExame",
-                    $exam->ordexame,
+                    $exa->ordexame,
                     true
                 );
                 $this->dom->addChild(
                     $exame,
                     "dtIniMonit",
-                    $exam->dtinimonit,
+                    $exa->dtinimonit,
                     true
                 );
                 $this->dom->addChild(
                     $exame,
                     "dtFimMonit",
-                    ! empty($exam->dtfimmonit) ? $exam->dtfimmonit : null,
+                    !empty($exa->dtfimmonit) ? $exa->dtfimmonit : null,
                     false
                 );
                 $this->dom->addChild(
                     $exame,
                     "indResult",
-                    ! empty($exam->indresult) ? $exam->indresult : null,
+                    !empty($exa->indresult) ? $exa->indresult : null,
                     false
                 );
+                $respMonit = $this->dom->createElement("respMonit");
+                $resm = $exa->respmonit;
+                $this->dom->addChild(
+                    $respMonit,
+                    "nisResp",
+                    $resm->nisresp,
+                    true
+                );
+                $this->dom->addChild(
+                    $respMonit,
+                    "nrConsClasse",
+                    $resm->nrconsclasse,
+                    true
+                );
+                $this->dom->addChild(
+                    $respMonit,
+                    "ufConsClasse",
+                    !empty($resm->ufconsclasse) ? $resm->ufconsclasse : null,
+                    false
+                );
+                $exame->appendChild($respMonit);
                 $aso->appendChild($exame);
             }
         }
-        $respMonit = $this->dom->createElement("respMonit");
-        $this->dom->addChild(
-            $respMonit,
-            "nisResp",
-            $this->std->respmonit->nisresp,
-            true
-        );
-        $this->dom->addChild(
-            $respMonit,
-            "nrConsClasse",
-            $this->std->respmonit->nrconsclasse,
-            true
-        );
-        $this->dom->addChild(
-            $respMonit,
-            "ufConsClasse",
-            ! empty($this->std->respmonit->ufconsclasse) ? $this->std->respmonit->ufconsclasse : null,
-            false
-        );
-        isset($exame) ? $exame->appendChild($respMonit) : null;
         $ideServSaude = $this->dom->createElement("ideServSaude");
+        $sers = $this->std->aso->ideservsaude;
         $this->dom->addChild(
             $ideServSaude,
             "codCNES",
-            ! empty($this->std->ideservsaude->codcnes) ? $this->std->ideservsaude->codcnes : null,
+            !empty($sers->codcnes) ? $sers->codcnes : null,
             false
         );
         $this->dom->addChild(
             $ideServSaude,
             "frmCtt",
-            $this->std->ideservsaude->frmctt,
+            $sers->frmctt,
             true
         );
         $this->dom->addChild(
             $ideServSaude,
             "email",
-            ! empty($this->std->ideservsaude->email) ? $this->std->ideservsaude->email : null,
+            !empty($sers->email) ? $sers->email : null,
             false
         );
-        $aso->appendChild($ideServSaude);
         $medico = $this->dom->createElement("medico");
+        $med = $sers->medico;
         $this->dom->addChild(
             $medico,
             "nmMed",
-            $this->std->medico->nmmed,
+            $med->nmmed,
             true
         );
-        $ideServSaude->appendChild($medico);
         $crm = $this->dom->createElement("crm");
         $this->dom->addChild(
             $crm,
             "nrCRM",
-            $this->std->medico->nrcrm,
+            $med->nrcrm,
             true
         );
         $this->dom->addChild(
             $crm,
             "ufCRM",
-            $this->std->medico->ufcrm,
+            $med->ufcrm,
             true
         );
         $medico->appendChild($crm);
+        $ideServSaude->appendChild($medico);
+        $aso->appendChild($ideServSaude);
         $this->node->appendChild($aso);
-
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        $this->sign();
         //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
