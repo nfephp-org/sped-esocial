@@ -40,15 +40,7 @@ class EvtTabHorTur extends Factory implements FactoryInterface
     protected $evtAlias = 'S-1050';
 
     /**
-     * Parameters patterns
-     *
-     * @var array
-     */
-    protected $parameters = [];
-
-    /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -106,7 +98,7 @@ class EvtTabHorTur extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
         
@@ -137,8 +129,8 @@ class EvtTabHorTur extends Factory implements FactoryInterface
                 $da->perhorflexivel,
                 true
             );
-            if (!empty($da->horarioIntervalo)) {
-                foreach ($da->horarioIntervalo as $inter) {
+            if (!empty($da->horariointervalo)) {
+                foreach ($da->horariointervalo as $inter) {
                     $intervalo = $this->dom->createElement("horarioIntervalo");
                     $this->dom->addChild(
                         $intervalo,
@@ -168,7 +160,6 @@ class EvtTabHorTur extends Factory implements FactoryInterface
                 }
             }
         }
-        
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -186,7 +177,6 @@ class EvtTabHorTur extends Factory implements FactoryInterface
                 false
             );
         }
-        
         $info = $this->dom->createElement("infoHorContratual");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -197,12 +187,13 @@ class EvtTabHorTur extends Factory implements FactoryInterface
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (isset($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

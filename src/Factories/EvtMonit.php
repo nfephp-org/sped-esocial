@@ -36,16 +36,9 @@ class EvtMonit extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-2220';
-    /**
-     * Parameters patterns
-     *
-     * @var array
-     */
-    protected $parameters = [];
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -204,7 +197,7 @@ class EvtMonit extends Factory implements FactoryInterface
             ! empty($this->std->respmonit->ufconsclasse) ? $this->std->respmonit->ufconsclasse : null,
             false
         );
-        $exame->appendChild($respMonit);
+        isset($exame) ? $exame->appendChild($respMonit) : null;
         $ideServSaude = $this->dom->createElement("ideServSaude");
         $this->dom->addChild(
             $ideServSaude,

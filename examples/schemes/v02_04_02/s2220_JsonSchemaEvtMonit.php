@@ -65,93 +65,94 @@ $jsonSchema = '{
                 "tpaso": {
                      "required": true,
                      "type": "integer",
-                     "maxLength": 1,
-                     "pattern": "([0|1|2|3|4|8]){1}$"
+                     "minimum": 0,
+                     "maximum": 8
                 },
                 "resaso": {
                      "required": true,
                      "type": "integer",
-                     "maxLength": 1,
-                     "pattern": "([1-2]){1}$"
-                }
-            }
-        },
-        "exame": {
-            "required": true,
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 99,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "dtexm": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                    },
-                    "procrealizado": {
-                        "required": false,
-                        "type": "integer",
-                        "maxLength": 8
-                    },
-                    "obsproc": {
-                        "required": false,
-                        "type": "string",
-                        "maxLength": 200
-                    },
-                    "interprexm": {
-                        "required": true,
-                        "type": "integer",
-                        "maxLength": 1,
-                        "pattern": "([1-3]){1}$"
-                    },
-                    "ordexame": {
-                        "required": true,
-                        "type": "integer",
-                        "maxLength": 1,
-                        "pattern": "([1-2]){1}$"
-                    },
-                    "dtinimonit": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                    },
-                    "dtfimmonit": {
-                        "required": false,
-                        "type": "string",
-                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                    },
-                    "indresult": {
-                        "required": false,
-                        "type": "integer",
-                        "maxLength": 1,
-                        "pattern": "([1-4]){1}$"
+                     "minumum": 1,
+                     "maximum": 2
+                },
+                "exame": {
+                    "required": true,
+                    "type": "array",
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "dtexm": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            },
+                            "procrealizado": {
+                                "required": false,
+                                "type": ["integer","null"],
+                                "maximum": 99999999
+                            },
+                            "obsproc": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "maxLength": 200
+                            },
+                            "interprexm": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 3
+                            },
+                            "ordexame": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "dtinimonit": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            },
+                            "dtfimmonit": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            },
+                            "indresult": {
+                                "required": false,
+                                "type": ["integer","null"],
+                                "minimum": 1,
+                                "maximum": 4
+                            },
+                            "respmonit": {
+                                "required": true,
+                                "type": "object",
+                                "properties": {
+                                    "nisresp": {
+                                        "required": true,
+                                        "type": "string",
+                                        "minLength": 11,
+                                        "maxLength": 11
+                                    },
+                                    "nrconsclasse": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 8
+                                    },
+                                    "ufconsclasse": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 2
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "respmonit": {
-            "required": true,
-            "type": "object",
-            "properties": {
-                "nisresp": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
-                },
-                "nrconsclasse": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 8
-                },
-                "ufconsclasse": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 2
-                }
-            }
-        },
+        ,
         "ideservsaude": {
             "required": true,
             "type": "object",
