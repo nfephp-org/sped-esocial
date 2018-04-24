@@ -213,8 +213,7 @@
                 "codmunic": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 6,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{7}"
                 },
                 "indrpps": {
                     "required": true,
