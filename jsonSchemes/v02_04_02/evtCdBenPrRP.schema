@@ -21,8 +21,7 @@
                 "cpfbenef": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "^[0-9]{11}$"
                 },
                 "nmbenefic": {
                     "required": true,
@@ -44,23 +43,22 @@
                                 },
                                 "codmunic": {
                                     "required": false,
-                                    "type": "integer",
-                                    "maxLength": 7
+                                    "type": "integer"
                                 },
                                 "uf": {
                                     "required": true,
                                     "type": "string",
-                                    "length": 2
+                                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                                 },
                                 "paisnascto": {
                                     "required": true,
                                     "type": "string",
-                                    "length": 3
+                                    "pattern": "^[0-9]{3}$"
                                 },
                                 "paisnac": {
                                     "required": true,
                                     "type": "string",
-                                    "length": 3
+                                    "pattern": "^[0-9]{3}$"
                                 },
                                 "nmmae": {
                                     "required": false,
@@ -95,7 +93,7 @@
                                         "nrlograd": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 10
+                                            "pattern": "^[0-9]{1,10}|(S\/N)$"
                                         },
                                         "complemento": {
                                             "required": false,
@@ -110,17 +108,16 @@
                                         "cep": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 8
+                                            "pattern": "^[0-9]{8}"
                                         },
                                         "codmunic": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 7
+                                            "type": "integer"
                                         },
                                         "uf": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 2
+                                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                                         }
                                     }
                                 },
@@ -131,7 +128,7 @@
                                         "paisResid": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 3
+                                            "pattern": "^[0-9]{3}$"
                                         },
                                         "dsclograd": {
                                             "required": true,
@@ -141,7 +138,7 @@
                                         "nrlograd": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 10
+                                            "pattern": "^[0-9]{1,10}|(S\/N)$"
                                         },
                                         "complemento": {
                                             "required": false,
@@ -178,8 +175,8 @@
                 "tpplanrp": {
                      "required": true,
                      "type": "integer",
-                     "maxLength": 1,
-                     "pattern": "([1-2]){1}$"
+                     "minimum": 1,
+                     "maximum": 2
                 },
                 "inibeneficio": {
                     "required": true,
@@ -188,7 +185,8 @@
                         "tpbenef": {
                              "required": true,
                              "type": "integer",
-                             "maxLength": 2
+                             "minimum": 1,
+                             "maximum": 99
                         },
                         "nrbenefic": {
                              "required": true,
@@ -202,12 +200,11 @@
                         },
                         "vrbenef": {
                             "required": true,
-                            "type": "integer",
-                            "maxLength": 14
+                            "type": "number"
                         },
                         "infopenmorte": {
-                            "required": true,
-                            "type": "object",
+                            "required": false,
+                            "type": ["object","null"],
                             "properties": {
                                 "idquota": {
                                      "required": true,
@@ -217,21 +214,21 @@
                                 "cpfinst": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 11,
-                                    "minLength": 11
+                                    "pattern": "^[0-9]{11}$"
                                 }
                             }
                         }
                     }
                 },
                 "altbeneficio": {
-                    "required": true,
-                    "type": "object",
+                    "required": false,
+                    "type": ["object","null"],
                     "properties": {
                         "tpbenef": {
                              "required": true,
                              "type": "integer",
-                             "maxLength": 2
+                             "minimum": 1,
+                             "maximum": 99
                         },
                         "nrbenefic": {
                              "required": true,
@@ -245,12 +242,11 @@
                         },
                         "vrbenef": {
                             "required": true,
-                            "type": "integer",
-                            "maxLength": 14
+                            "type": "number"
                         },
                         "infopenmorte": {
-                            "required": true,
-                            "type": "object",
+                            "required": false,
+                            "type": ["object","null"],
                             "properties": {
                                 "idquota": {
                                      "required": true,
@@ -260,21 +256,21 @@
                                 "cpfinst": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 11,
-                                    "minLength": 11
+                                    "pattern": "^[0-9]{11}"
                                 }
                             }
                         }
                     }
                 },
                 "fimbeneficio": {
-                    "required": true,
-                    "type": "object",
+                    "required": false,
+                    "type": ["object","null"],
                     "properties": {
                         "tpbenef": {
                              "required": true,
                              "type": "integer",
-                             "maxLength": 2
+                             "minimum": 1,
+                             "maximum": 99
                         },
                         "nrbenefic": {
                              "required": true,
@@ -289,7 +285,8 @@
                         "mtvfim": {
                             "required": true,
                             "type": "integer",
-                            "maxLength": 2
+                            "minimum": 1,
+                            "maximum": 8
                         }
                     }
                 }

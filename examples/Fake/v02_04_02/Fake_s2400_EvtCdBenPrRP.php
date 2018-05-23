@@ -48,7 +48,7 @@ $std->idebenef->dadosbenef->endereco = new \stdClass();
 $std->idebenef->dadosbenef->endereco->brasil = new \stdClass();
 $std->idebenef->dadosbenef->endereco->brasil->tplograd = 'R';
 $std->idebenef->dadosbenef->endereco->brasil->dsclograd = 'DESCRICAO';
-$std->idebenef->dadosbenef->endereco->brasil->nrlograd = '123';
+$std->idebenef->dadosbenef->endereco->brasil->nrlograd = 'S/N';
 $std->idebenef->dadosbenef->endereco->brasil->cep = '12345678';
 $std->idebenef->dadosbenef->endereco->brasil->codmunic = 3550308;
 $std->idebenef->dadosbenef->endereco->brasil->uf = 'SP';
@@ -60,27 +60,28 @@ $std->infobeneficio->inibeneficio = new \stdClass();
 $std->infobeneficio->inibeneficio->tpbenef = 1;
 $std->infobeneficio->inibeneficio->nrbenefic = '123165050';
 $std->infobeneficio->inibeneficio->dtinibenef = '2017-08-28';
-$std->infobeneficio->inibeneficio->vrbenef = 1500;
+$std->infobeneficio->inibeneficio->vrbenef = 1500.11;
 
-$std->infobeneficio->inibeneficio->infopenmorte = new \stdClass();
-$std->infobeneficio->inibeneficio->infopenmorte->idquota = '123131561';
-$std->infobeneficio->inibeneficio->infopenmorte->cpfinst = '11122233344';
 
-$std->infobeneficio->altbeneficio = new \stdClass();
-$std->infobeneficio->altbeneficio->tpbenef = 1;
-$std->infobeneficio->altbeneficio->nrbenefic = '123165050';
-$std->infobeneficio->altbeneficio->dtinibenef = '2017-08-28';
-$std->infobeneficio->altbeneficio->vrbenef = 1500;
+//$std->infobeneficio->inibeneficio->infopenmorte = new \stdClass();
+//$std->infobeneficio->inibeneficio->infopenmorte->idquota = '123131561';
+//$std->infobeneficio->inibeneficio->infopenmorte->cpfinst = '11122233344';
 
-$std->infobeneficio->altbeneficio->infopenmorte = new \stdClass();
-$std->infobeneficio->altbeneficio->infopenmorte->idquota = '123131561';
-$std->infobeneficio->altbeneficio->infopenmorte->cpfinst = '11122233344';
+//$std->infobeneficio->altbeneficio = new \stdClass();
+//$std->infobeneficio->altbeneficio->tpbenef = 1;
+//$std->infobeneficio->altbeneficio->nrbenefic = '123165050';
+//$std->infobeneficio->altbeneficio->dtinibenef = '2017-08-28';
+//$std->infobeneficio->altbeneficio->vrbenef = 1500.50;
 
-$std->infobeneficio->fimbeneficio = new \stdClass();
-$std->infobeneficio->fimbeneficio->tpbenef = 1;
-$std->infobeneficio->fimbeneficio->nrbenefic = '123165050';
-$std->infobeneficio->fimbeneficio->dtfimbenef = '2017-08-28';
-$std->infobeneficio->fimbeneficio->mtvfim = 3;
+//$std->infobeneficio->altbeneficio->infopenmorte = new \stdClass();
+//$std->infobeneficio->altbeneficio->infopenmorte->idquota = '123131561';
+//$std->infobeneficio->altbeneficio->infopenmorte->cpfinst = '11122233344';
+
+//$std->infobeneficio->fimbeneficio = new \stdClass();
+//$std->infobeneficio->fimbeneficio->tpbenef = 1;
+//$std->infobeneficio->fimbeneficio->nrbenefic = '123165050';
+//$std->infobeneficio->fimbeneficio->dtfimbenef = '2017-08-28';
+//$std->infobeneficio->fimbeneficio->mtvfim = 3;
 
 
 try {

@@ -36,8 +36,7 @@ $jsonSchema = '{
                 "cpfbenef": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "^[0-9]{11}$"
                 },
                 "nmbenefic": {
                     "required": true,
@@ -59,23 +58,22 @@ $jsonSchema = '{
                                 },
                                 "codmunic": {
                                     "required": false,
-                                    "type": "integer",
-                                    "maxLength": 7
+                                    "type": "integer"
                                 },
                                 "uf": {
                                     "required": true,
                                     "type": "string",
-                                    "length": 2
+                                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                                 },
                                 "paisnascto": {
                                     "required": true,
                                     "type": "string",
-                                    "length": 3
+                                    "pattern": "^[0-9]{3}$"
                                 },
                                 "paisnac": {
                                     "required": true,
                                     "type": "string",
-                                    "length": 3
+                                    "pattern": "^[0-9]{3}$"
                                 },
                                 "nmmae": {
                                     "required": false,
@@ -110,7 +108,7 @@ $jsonSchema = '{
                                         "nrlograd": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 10
+                                            "pattern": "^[0-9]{1,10}|(S\/N)$"
                                         },
                                         "complemento": {
                                             "required": false,
@@ -125,17 +123,16 @@ $jsonSchema = '{
                                         "cep": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 8
+                                            "pattern": "^[0-9]{8}"
                                         },
                                         "codmunic": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 7
+                                            "type": "integer"
                                         },
                                         "uf": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 2
+                                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                                         }
                                     }
                                 },
@@ -146,7 +143,7 @@ $jsonSchema = '{
                                         "paisResid": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 3
+                                            "pattern": "^[0-9]{3}$"
                                         },
                                         "dsclograd": {
                                             "required": true,
@@ -156,7 +153,7 @@ $jsonSchema = '{
                                         "nrlograd": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 10
+                                            "pattern": "^[0-9]{1,10}|(S\/N)$"
                                         },
                                         "complemento": {
                                             "required": false,
@@ -193,8 +190,8 @@ $jsonSchema = '{
                 "tpplanrp": {
                      "required": true,
                      "type": "integer",
-                     "maxLength": 1,
-                     "pattern": "([1-2]){1}$"
+                     "minimum": 1,
+                     "maximum": 2
                 },
                 "inibeneficio": {
                     "required": true,
@@ -203,7 +200,8 @@ $jsonSchema = '{
                         "tpbenef": {
                              "required": true,
                              "type": "integer",
-                             "maxLength": 2
+                             "minimum": 1,
+                             "maximum": 99
                         },
                         "nrbenefic": {
                              "required": true,
@@ -217,12 +215,11 @@ $jsonSchema = '{
                         },
                         "vrbenef": {
                             "required": true,
-                            "type": "integer",
-                            "maxLength": 14
+                            "type": "number"
                         },
                         "infopenmorte": {
-                            "required": true,
-                            "type": "object",
+                            "required": false,
+                            "type": ["object","null"],
                             "properties": {
                                 "idquota": {
                                      "required": true,
@@ -232,21 +229,21 @@ $jsonSchema = '{
                                 "cpfinst": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 11,
-                                    "minLength": 11
+                                    "pattern": "^[0-9]{11}$"
                                 }
                             }
                         }
                     }
                 },
                 "altbeneficio": {
-                    "required": true,
-                    "type": "object",
+                    "required": false,
+                    "type": ["object","null"],
                     "properties": {
                         "tpbenef": {
                              "required": true,
                              "type": "integer",
-                             "maxLength": 2
+                             "minimum": 1,
+                             "maximum": 99
                         },
                         "nrbenefic": {
                              "required": true,
@@ -260,12 +257,11 @@ $jsonSchema = '{
                         },
                         "vrbenef": {
                             "required": true,
-                            "type": "integer",
-                            "maxLength": 14
+                            "type": "number"
                         },
                         "infopenmorte": {
-                            "required": true,
-                            "type": "object",
+                            "required": false,
+                            "type": ["object","null"],
                             "properties": {
                                 "idquota": {
                                      "required": true,
@@ -275,21 +271,21 @@ $jsonSchema = '{
                                 "cpfinst": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 11,
-                                    "minLength": 11
+                                    "pattern": "^[0-9]{11}"
                                 }
                             }
                         }
                     }
                 },
                 "fimbeneficio": {
-                    "required": true,
-                    "type": "object",
+                    "required": false,
+                    "type": ["object","null"],
                     "properties": {
                         "tpbenef": {
                              "required": true,
                              "type": "integer",
-                             "maxLength": 2
+                             "minimum": 1,
+                             "maximum": 99
                         },
                         "nrbenefic": {
                              "required": true,
@@ -304,7 +300,8 @@ $jsonSchema = '{
                         "mtvfim": {
                             "required": true,
                             "type": "integer",
-                            "maxLength": 2
+                            "minimum": 1,
+                            "maximum": 8
                         }
                     }
                 }
@@ -342,30 +339,30 @@ $std->infobeneficio = new \stdClass();
 $std->infobeneficio->tpplanrp = 1;
 
 $std->infobeneficio->inibeneficio = new \stdClass();
-$std->infobeneficio->inibeneficio->tpbenef    = 1;
-$std->infobeneficio->inibeneficio->nrbenefic  = '123165050';
+$std->infobeneficio->inibeneficio->tpbenef = 1;
+$std->infobeneficio->inibeneficio->nrbenefic = '123165050';
 $std->infobeneficio->inibeneficio->dtinibenef = '2017-08-28';
-$std->infobeneficio->inibeneficio->vrbenef    = 1500;
+$std->infobeneficio->inibeneficio->vrbenef = 1500.33;
 
-$std->infobeneficio->inibeneficio->infopenmorte          = new \stdClass();
+$std->infobeneficio->inibeneficio->infopenmorte = new \stdClass();
 $std->infobeneficio->inibeneficio->infopenmorte->idquota = '123131561';
 $std->infobeneficio->inibeneficio->infopenmorte->cpfinst = '11122233344';
 
-$std->infobeneficio->altbeneficio             = new \stdClass();
-$std->infobeneficio->altbeneficio->tpbenef    = 1;
-$std->infobeneficio->altbeneficio->nrbenefic  = '123165050';
+$std->infobeneficio->altbeneficio = new \stdClass();
+$std->infobeneficio->altbeneficio->tpbenef = 1;
+$std->infobeneficio->altbeneficio->nrbenefic = '123165050';
 $std->infobeneficio->altbeneficio->dtinibenef = '2017-08-28';
-$std->infobeneficio->altbeneficio->vrbenef    = 1500;
+$std->infobeneficio->altbeneficio->vrbenef = 1500.50;
 
-$std->infobeneficio->altbeneficio->infopenmorte          = new \stdClass();
+$std->infobeneficio->altbeneficio->infopenmorte = new \stdClass();
 $std->infobeneficio->altbeneficio->infopenmorte->idquota = '123131561';
 $std->infobeneficio->altbeneficio->infopenmorte->cpfinst = '11122233344';
 
-$std->infobeneficio->fimbeneficio             = new \stdClass();
-$std->infobeneficio->fimbeneficio->tpbenef    = 1;
-$std->infobeneficio->fimbeneficio->nrbenefic  = '123165050';
+$std->infobeneficio->fimbeneficio = new \stdClass();
+$std->infobeneficio->fimbeneficio->tpbenef = 1;
+$std->infobeneficio->fimbeneficio->nrbenefic = '123165050';
 $std->infobeneficio->fimbeneficio->dtfimbenef = '2017-08-28';
-$std->infobeneficio->fimbeneficio->mtvfim     = 3;
+$std->infobeneficio->fimbeneficio->mtvfim = 3;
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
