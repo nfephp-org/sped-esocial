@@ -152,40 +152,40 @@ class EvtAfastTemp extends Factory implements FactoryInterface
         $this->dom->addChild(
             $iniAfastamento,
             "dtIniAfast",
-            $this->std->iniafastamento->dtiniafast,
+            $this->std->infoafastamento->iniafastamento->dtiniafast,
             true
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "codMotAfast",
-            $this->std->iniafastamento->codmotafast,
+            $this->std->infoafastamento->iniafastamento->codmotafast,
             true
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "infoMesmoMtv",
-            ! empty($this->std->iniafastamento->infomesmomtv) ? $this->std->iniafastamento->infomesmomtv : null,
+            ! empty($this->std->infoafastamento->iniafastamento->infomesmomtv) ? $this->std->iniafastamento->infomesmomtv : null,
             false
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "tpAcidTransito",
-            ! empty($this->std->iniafastamento->tpacidtransito) ? $this->std->iniafastamento->tpacidtransito : null,
+            ! empty($this->std->infoafastamento->iniafastamento->tpacidtransito) ? $this->std->iniafastamento->tpacidtransito : null,
             false
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "observacao",
-            ! empty($this->std->iniafastamento->observacao) ? $this->std->iniafastamento->observacao : null,
+            ! empty($this->std->infoafastamento->iniafastamento->observacao) ? $this->std->infoafastamento->iniafastamento->observacao : null,
             false
         );
 
-        if (isset($this->std->iniafastamento->infoatestado)) {
-            foreach ($this->std->iniafastamento->infoatestado as $info) {
+        if (isset($this->std->infoafastamento->iniafastamento->infoatestado)) {
+            foreach ($this->std->infoafastamento->iniafastamento->infoatestado as $info) {
                 $infoAtestado = $this->dom->createElement("infoAtestado");
 
                 $this->dom->addChild(
