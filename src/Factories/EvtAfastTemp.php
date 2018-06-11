@@ -166,14 +166,14 @@ class EvtAfastTemp extends Factory implements FactoryInterface
         $this->dom->addChild(
             $iniAfastamento,
             "infoMesmoMtv",
-            ! empty($this->std->infoafastamento->iniafastamento->infomesmomtv) ? $this->std->iniafastamento->infomesmomtv : null,
+            ! empty($this->std->infoafastamento->iniafastamento->infomesmomtv) ? $this->std->infoafastamento->iniafastamento->infomesmomtv : null,
             false
         );
 
         $this->dom->addChild(
             $iniAfastamento,
             "tpAcidTransito",
-            ! empty($this->std->infoafastamento->iniafastamento->tpacidtransito) ? $this->std->iniafastamento->tpacidtransito : null,
+            ! empty($this->std->infoafastamento->iniafastamento->tpacidtransito) ? $this->std->infoafastamento->iniafastamento->tpacidtransito : null,
             false
         );
 
