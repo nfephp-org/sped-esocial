@@ -240,40 +240,40 @@ class EvtAfastTemp extends Factory implements FactoryInterface
             }
         }
 
-        if (! empty($this->std->infocessao)) {
+        if (! empty($this->std->infoafastamento->iniafastamento->infocessao)) {
             $infoCessao = $this->dom->createElement("infoCessao");
 
             $this->dom->addChild(
                 $infoCessao,
                 "cnpjCess",
-                $this->std->infocessao->cnpjcess,
+                $this->std->infoafastamento->iniafastamento->infocessao->cnpjcess,
                 true
             );
 
             $this->dom->addChild(
                 $infoCessao,
                 "infOnus",
-                $this->std->infocessao->infonus,
+                $this->std->infoafastamento->iniafastamento->infocessao->infonus,
                 true
             );
 
             $iniAfastamento->appendChild($infoCessao);
         }
 
-        if (! empty($this->std->infomandsind)) {
+        if (! empty($this->std->infoafastamento->iniafastamento->infomandsind)) {
             $infoMandSind = $this->dom->createElement("infoMandSind");
 
             $this->dom->addChild(
                 $infoMandSind,
                 "cnpjSind",
-                $this->std->infomandsind->cnpjsind,
+                $this->std->infoafastamento->iniafastamento->infomandsind->cnpjsind,
                 true
             );
 
             $this->dom->addChild(
                 $infoMandSind,
                 "infOnusRemun",
-                $this->std->infomandsind->infonusremun,
+                $this->std->infoafastamento->iniafastamento->infomandsind->infonusremun,
                 true
             );
 
