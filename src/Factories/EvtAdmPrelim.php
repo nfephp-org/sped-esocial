@@ -38,7 +38,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate | null
-     * @param string date
+     * @param string $date
      */
     public function __construct(
         $config,

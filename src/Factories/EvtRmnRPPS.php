@@ -165,7 +165,7 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
         }
 
         $this->node->appendChild($ideTrabalhador);
-
+        $dmDev = '';
         if (isset($this->std->dmdev)) {
             foreach ($this->std->dmdev as $dev) {
                 $dmDev = $this->dom->createElement("dmDev");
@@ -498,7 +498,9 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                     $dmDev->appendChild($infoPerAnt);
                 }
             }
-            $this->node->appendChild($dmDev);
+            if (!empty($dmDev)) {
+                $this->node->appendChild($dmDev);
+            }    
         }
         //finalização do xml
         $this->eSocial->appendChild($this->node);
