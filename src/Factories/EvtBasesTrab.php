@@ -233,6 +233,6 @@ class EvtBasesTrab extends Factory implements FactoryInterface
         $this->node->appendChild($infoCp);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->node);
-        $this->sign($this->eSocial);
+        $this->sign();
     }
 }

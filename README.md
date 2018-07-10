@@ -3,7 +3,7 @@
 
 *sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
-# Em desenvolvimento Não tente usar !!!
+# Em desenvolvimento Não usar diretamente em PRODUÇÃO sem testar!!!
 
 *Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
 
@@ -78,6 +78,68 @@ Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança 
 **Empresas do SIMPLES NACIONAL : a definir**
 
 [CAIXA Nº 761 DE 12/04/2017](https://www.legisweb.com.br/legislacao/?id=342289)
+
+
+## Faseamento detalhado por Eventos
+
+### Fase 1
+**Cadastros do empregador e tabelas:**
+
+- S-1000 - Informações do Empregador/Contribuinte/Órgão Público
+- S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos
+- S-1010 - Tabela de Rubricas
+- S-1020 - Tabela de Lotações Tributárias
+- S-1030 - Tabela de Cargos/Empregos Públicos
+- S-1050 - Tabela de Horários/Turnos de Trabalho
+- S-1070 - Tabela de Processos Administrativos/Judiciais
+
+
+### Fase 2
+**Dados dos trabalhadores e seus vínculos com as empresas (eventos não periódicos):**
+
+- S-2190 - Admissão de Trabalhador - Registro Preliminar
+- S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador
+- S-2205 - Alteração de Dados Cadastrais do Trabalhador
+- S-2206 - Alteração de Contrato de Trabalho
+- S-2230 - Afastamento Temporário
+- S-2250 - Aviso Prévio
+- S-2298 - Reintegração
+- S-2299 - Desligamento
+- S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início
+- S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual
+- S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário – Término
+- S-3000 - Exclusão de eventos
+
+
+### Fase 3
+**Folha de Pagamento (eventos periódicos):**
+
+- S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social
+- S-1210 - Pagamentos de Rendimentos do Trabalho
+- S-1280 - Informações Complementares aos Eventos Periódicos
+- S-1295 - Solicitação de Totalização para Pagamento em Contingência
+- S-1298 - Reabertura dos Eventos Periódicos
+- S-1299 - Fechamento dos Eventos Periódicos
+- S-1300 - Contribuição Sindical Patronal
+
+
+### Fase 4
+**Substituição da GFIP (Guia de informações à Previdência Social) e compensação cruzada:**
+
+O DCTF Web (Declaração de Débitos e Créditos Tributários Federais) substituirá a GFIP e que será gerada pelo eSocial, EFD-Reinf e SERO (Serviço Eletrônico de Aferição de Obras), com apuração automática dos débitos (contribuição previdenciária, contribuição para outras entidades e fundos, IRRF) e, quando for o caso, dos créditos (salário-família, salário-maternidade e retenções sobre notas fiscais).
+
+Não haverá geração automática da DCTF Web sem que tenha sido transmitida a apuração (eSocial, EFD-Reinf, SERO). Também não será possível a inclusão manual de débitos ou de deduções/retenções;
+
+Deverá ser transmitida até o dia 15 do mês subsequente ao de ocorrência dos fatos geradores.
+
+### Fase 5
+**Dados de segurança e saúde do trabalhador:**
+
+- S-1060 – Tabela de Ambientes de Trabalho
+- S-2210 – Comunicação de Acidente de Trabalho
+- S-2220 – Monitoramento da Saúde do Trabalhador
+- S-2240 – Condições Ambientais do Trabalho - Fatores de Risco
+- S-2241 – Insalubridade, Periculosidade e Aposentadoria Especial
 
 
 ## CONCEITO DO e-SOCIAL

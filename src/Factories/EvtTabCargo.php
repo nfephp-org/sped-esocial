@@ -193,17 +193,16 @@ class EvtTabCargo extends Factory implements FactoryInterface
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
             $node->appendChild($ide);
-            $node->appendChild($dados);
+            isset($dados) ? $node->appendChild($dados) : null;
         } elseif ($this->std->modo == 'ALT') {
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
-            $node->appendChild($dados);
-            $node->appendChild($nova);
+            isset($dados) ? $node->appendChild($dados): null;
+            isset($nova) ? $node->appendChild($nova): null;
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

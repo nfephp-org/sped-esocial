@@ -34,14 +34,12 @@ class EvtExpRisco extends Factory implements FactoryInterface
     protected $evtAlias = 'S-2240';
     /**
      * Parameters patterns
-     *
      * @var array
      */
     protected $parameters = [];
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -115,10 +113,6 @@ class EvtExpRisco extends Factory implements FactoryInterface
         );
         $this->node->appendChild($ide);
         switch ($this->std->modo) {
-            case 'INI':
-                $noderisco = $this->dom->createElement("iniExpRisco");
-                $dtnode = 'dtIniCondicao';
-                break;
             case 'ALT':
                 $noderisco = $this->dom->createElement("altExpRisco");
                 $dtnode = 'dtAltCondicao';
@@ -127,6 +121,11 @@ class EvtExpRisco extends Factory implements FactoryInterface
                 $noderisco = $this->dom->createElement("fimExpRisco");
                 $dtnode = 'dtFimCondicao';
                 break;
+            case 'INI':
+            default:
+                //INI
+                $noderisco = $this->dom->createElement("iniExpRisco");
+                $dtnode = 'dtIniCondicao';
         }
         $this->dom->addChild(
             $noderisco,

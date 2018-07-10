@@ -110,7 +110,7 @@ class EvtTabFuncao extends Factory implements FactoryInterface
             false
         );
         
-        
+        $dados = null;
         if (!empty($this->std->dadosfuncao)) {
             $da = $this->std->dadosfuncao;
             $dados = $this->dom->createElement("dadosFuncao");
@@ -127,7 +127,7 @@ class EvtTabFuncao extends Factory implements FactoryInterface
                 true
             );
         }
-        
+        $nova = null;
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(

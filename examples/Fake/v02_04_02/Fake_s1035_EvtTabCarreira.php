@@ -33,13 +33,15 @@ $std->sequencial = 1;
 $std->codcarreira = 'assistente';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
-$std->modo = 'INC';
+$std->modo = 'ALT';
 
 $std->dadoscarreira = new \stdClass();
 $std->dadoscarreira->dsccarreira = 'descricao da carreira';
-$std->dadoscarreira->leicarr = '123456';
+$std->dadoscarreira->leicarr = null;//'123456';
 $std->dadoscarreira->dtleicarr = '2016-10-08';
 $std->dadoscarreira->sitcarr = 2;
+
+//os dados abaixo somente devem ser passados para ALT
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-01';
 $std->novavalidade->fimvalid = '2017-12';

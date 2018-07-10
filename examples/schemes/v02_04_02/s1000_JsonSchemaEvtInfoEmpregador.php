@@ -228,8 +228,7 @@ $jsonSchema = '{
                 "codmunic": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 6,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{7}"
                 },
                 "indrpps": {
                     "required": true,
@@ -403,7 +402,7 @@ $std->contato->email    = 'fulano@mail.com';//Endereço eletrônico
 //$std->infoente = new \stdClass();
 //$std->infoente->nmente = 'Ente seila';//Nome do Ente Federativo ao qual o órgão está vinculado
 //$std->infoente->uf = 'PR';//sigla da Unidade da Federação
-//$std->infoente->codmunic = '358854';// código do município
+//$std->infoente->codmunic = '0358854';// código do município
 //$std->infoente->indrpps = 'N';//Regime Próprio de Previdência Social - RPPS. S - Sim; N - Não.
 //$std->infoente->subteto = 9;//1 - Executivo; 2 - Judiciário; 3 - Legislativo; 9 - Todos os poderes.
 //$std->infoente->vrsubteto = 10584.50;//valor do subteto do Ente Federativo

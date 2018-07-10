@@ -28,27 +28,17 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTabAmbiente';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1060';
 
     /**
-     * Parameters patterns
-     *
-     * @var array
-     */
-    protected $parameters = [];
-
-    /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -166,7 +156,6 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                 false
             );
         }
-        
         $info = $this->dom->createElement("infoAmbiente");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -188,7 +177,6 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

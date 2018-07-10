@@ -18,10 +18,8 @@ use NFePHP\eSocial\Exception\EventsException;
 
 class Event
 {
-
     /**
      * Relationship between the name of the event and its respective class
-     *
      * @var array
      */
     private static $available = [
@@ -59,7 +57,6 @@ class Event
         'evtmonit' => Factories\EvtMonit::class,
         'evttabrubrica' => Factories\EvtTabRubrica::class,
         'evtcdbenprrp' => Factories\EvtCdBenPrRP::class,
-        'evtpgtos' => Factories\EvtPgtos::class,
         'evttsvaltcontr' => Factories\EvtTSVAltContr::class,
         'evtcomprod' => Factories\EvtComProd::class,
         'evtreabreevper' => Factories\EvtReabreEvPer::class,

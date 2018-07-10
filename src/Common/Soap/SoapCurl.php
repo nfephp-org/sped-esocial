@@ -23,7 +23,6 @@ class SoapCurl extends SoapBase implements SoapInterface
 {
     /**
      * Constructor
-     *
      * @param Certificate $certificate
      * @param LoggerInterface $logger
      */
@@ -40,7 +39,6 @@ class SoapCurl extends SoapBase implements SoapInterface
      * @param  string $action
      * @param  string $envelope
      * @param  array $parameters
-     *
      * @return string
      * @throws \NFePHP\Common\Exception\SoapException
      */
@@ -51,10 +49,9 @@ class SoapCurl extends SoapBase implements SoapInterface
         $envelope,
         $parameters
     ) {
-        $response          = '';
+        $response = '';
         $this->requestHead = implode("\n", $parameters);
         $this->requestBody = $envelope;
-
         try {
             $this->saveTemporarilyKeyFiles();
             $oCurl = curl_init();
@@ -84,9 +81,9 @@ class SoapCurl extends SoapBase implements SoapInterface
                 curl_setopt($oCurl, CURLOPT_POSTFIELDS, $envelope);
                 curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parameters);
             }
-            $response        = curl_exec($oCurl);
+            $response = curl_exec($oCurl);
             $this->soaperror = curl_error($oCurl);
-            $ainfo           = curl_getinfo($oCurl);
+            $ainfo = curl_getinfo($oCurl);
             if (is_array($ainfo)) {
                 $this->soapinfo = $ainfo;
             }
@@ -112,13 +109,11 @@ class SoapCurl extends SoapBase implements SoapInterface
                 .$this->getFaultString($this->responseBody)
             );
         }
-
         return $this->responseBody;
     }
 
     /**
      * Set proxy into cURL parameters
-     *
      * @param resource $oCurl
      */
     private function setCurlProxy(&$oCurl)
@@ -136,9 +131,7 @@ class SoapCurl extends SoapBase implements SoapInterface
 
     /**
      * Extract faultstring form response if exists
-     *
      * @param  string $body
-     *
      * @return string
      */
     private function getFaultString($body)
@@ -146,33 +139,30 @@ class SoapCurl extends SoapBase implements SoapInterface
         if (empty($body)) {
             return '';
         }
-        $dom                     = new \DOMDocument('1.0', 'UTF-8');
-        $dom->formatOutput       = false;
+        $dom = new \DOMDocument('1.0', 'UTF-8');
+        $dom->formatOutput = false;
         $dom->preserveWhiteSpace = false;
         $dom->loadXML($body);
         $faultstring = '';
-        $nodefault   = ! empty($dom->getElementsByTagName('faultstring')->item(0))
+        $nodefault = ! empty($dom->getElementsByTagName('faultstring')->item(0))
             ? $dom->getElementsByTagName('faultstring')->item(0)
             : '';
-        if (! empty($nodefault)) {
+        if (!empty($nodefault)) {
             $faultstring = $nodefault->nodeValue;
         }
-
         return htmlentities($faultstring, ENT_QUOTES, 'UTF-8');
     }
 
     /**
      * Recover WSDL form given URL
-     *
      * @param  string $url
-     *
      * @return string
      */
     public function wsdl($url)
     {
         $response = '';
         $this->saveTemporarilyKeyFiles();
-        $url   .= '?WSDL';
+        $url .= '?WSDL';
         $oCurl = curl_init();
         curl_setopt($oCurl, CURLOPT_URL, $url);
         curl_setopt($oCurl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -189,14 +179,13 @@ class SoapCurl extends SoapBase implements SoapInterface
         curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
         $response  = curl_exec($oCurl);
         $soaperror = curl_error($oCurl);
-        $ainfo     = curl_getinfo($oCurl);
-        $headsize  = curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
-        $httpcode  = curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
+        $ainfo = curl_getinfo($oCurl);
+        $headsize = curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
+        $httpcode = curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
         curl_close($oCurl);
         if ($httpcode != 200) {
             return '';
         }
-
         return $response;
     }
 }
