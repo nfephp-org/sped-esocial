@@ -62,52 +62,56 @@ $jsonSchema = '{
         "infoavprevio": {
             "required": true,
             "type": "object",
-            "properties": {
-                "dtavprv": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "dtprevdeslig": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "tpavprevio": {
-                    "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 6
-                },
-                "observacao": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 255
+            "detavprevio": {
+                "required": false,
+                "type": "object",
+                "properties": {
+                    "dtavprv": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    },
+                    "dtprevdeslig": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    },
+                    "tpavprevio": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 6
+                    },
+                    "observacao": {
+                        "required": false,
+                        "type": "string",
+                        "maxLength": 255
+                    }
+                }
+            },
+            "cancavprevio": {
+                "required": false,
+                "type": "object",
+                "properties": {
+                    "dtcancavprv": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    },
+                    "observacao": {
+                        "required": false,
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "mtvcancavprevio": {
+                        "required": true,
+                        "type": "integer",
+                        "maxLength": 1,
+                        "pattern": "(1|2|3|9){1}$"
+                    }
                 }
             }
         },
-        "cancavprevio": {
-            "required": false,
-            "type": "object",
-            "properties": {
-                "dtcancavprv": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "observacao": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 255
-                },
-                "mtvcancavprevio": {
-                    "required": true,
-                    "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "(1|2|3|9){1}$"
-                }
-            }
-        }
     }
 }';
 
