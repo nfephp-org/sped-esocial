@@ -41,9 +41,23 @@ $idevinculo->matricula = '11111111111';
 $std->idevinculo = $idevinculo;
 
 $infoavprevio = new \stdClass();
-$infoavprevio->dtavprv = '2008-09-28';
-$infoavprevio->dtprevdeslig = '2014-09-18';
-$infoavprevio->tpAvprevio = 2;
+
+$dtAvPrv = '2008-09-28';
+if ($dtAvPrv) {
+    $detavprevio  = new \stdClass();
+    $detavprevio->dtavprv = $dtAvPrv;
+    $detavprevio->dtprevdeslig = '2014-09-18';
+    $detavprevio->tpAvprevio = 2;
+    $infoavprevio->detavprevio = $detavprevio;
+}
+
+$dtCancAvPrv = '';
+if ($dtCancAvPrv) {
+    $cancavprevio  = new \stdClass();
+    $cancavprevio->dtcancavprv = $dtCancAvPrv;
+    $cancavprevio->mtvcancavprevio = 1;
+    $infoavprevio->cancavprevio = $cancavprevio;
+}
 
 $std->infoavprevio = $infoavprevio;
 
