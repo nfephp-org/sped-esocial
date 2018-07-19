@@ -41,7 +41,7 @@ $std->idetrabalhador->cpftrab = '11111111111';
 $std->idetrabalhador->procjudtrab[0] = new \stdClass();
 $std->idetrabalhador->procjudtrab[0]->tptrib = 1;
 $std->idetrabalhador->procjudtrab[0]->nrprocjud = '12456';
-$std->idetrabalhador->procjudtrab[0]->codsusp = 123456;
+$std->idetrabalhador->procjudtrab[0]->codsusp = '123456';
 
 $std->dmdev[0] = new \stdClass();
 $std->dmdev[0]->idedmdev = '213789';
@@ -59,22 +59,22 @@ $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->codcateg = 101;
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0] = new \stdClass();
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->codrubr = '123150';
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->idetabrubr = '12345678';
-$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->qtdrubr = 1;
-$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->fatorrubr = 1;
-$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->vrrubr = 1;
+$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->qtdrubr = 1.00;
+$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->fatorrubr = 1.00;
+$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->itensremun[0]->vrrubr = 1.00;
 
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet = new \stdClass();
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0] = new \stdClass();
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->cnpjoper = '11111111111111';
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->regans = '111111';
-$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->vrpgtit = 1500;
+$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->vrpgtit = 1500.20;
 
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0] = new \stdClass();
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0]->tpdep = '01';
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0]->cpfdep = '11111111111';
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0]->nmdep = 'NOME';
 $std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0]->dtnascto = '1987-01-01';
-$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0]->vlrpgdep = 1500;
+$std->dmdev[0]->infoperapur->ideestab[0]->remunperapur[0]->infosaudecolet->detoper[0]->detplano[0]->vlrpgdep = 1500.30;
 
 $std->dmdev[0]->infoperant = new \stdClass();
 $std->dmdev[0]->infoperant->ideadc[0] = new \stdClass();
@@ -95,10 +95,10 @@ $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0
 $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0] = new \stdClass();
 $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->codrubr = '1615615';
 $std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->idetabrubr = '1615615';
-$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->qtdrubr = 12345;
-$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->fatorrubr = 12345;
-$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->vrunit = 1500;
-$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->vrrubr = 1500;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->qtdrubr = 12345.20;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->fatorrubr = 0.20;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->vrunit = 1500.40;
+$std->dmdev[0]->infoperant->ideadc[0]->ideperiodo[0]->ideestab[0]->remunperant[0]->itensremun[0]->vrrubr = 1500.77;
 
 
 try {
