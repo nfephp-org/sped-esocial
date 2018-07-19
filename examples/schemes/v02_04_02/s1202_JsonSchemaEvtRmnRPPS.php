@@ -34,7 +34,7 @@ $jsonSchema = '{
         },
         "nrrecibo": {
             "required": false,
-            "type": "string",
+            "type": ["string","null"],
             "maxLength": 40
         },
         "indapuracao": {
@@ -46,7 +46,7 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "maxLength": 7
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
         "idetrabalhador": {
             "required": true,
@@ -60,28 +60,28 @@ $jsonSchema = '{
                 },
                 "nistrab": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 11,
                     "minLength": 11
                 },
                 "qtddepfp": {
                     "required": false,
-                    "type": "integer",
+                    "type": ["integer","null"],
                     "maxLength": 2
                 },
                 "procjudtrab": {
                     "required": false,
-                    "type": "array",
+                    "type": ["array","null"],
                     "minItems": 0,
                     "maxItems": 99,
                     "items": {
                         "type": "object",
                         "properties": {
                             "tptrib": {
-                                 "required": true,
-                                 "type": "integer",
-                                 "maxLength": 1,
-                                 "pattern": "([1-4]){1}$"
+                                "required": true,
+                                "type": "integer",
+                                "minumum": 1,
+                                "maximum": 4
                             },
                             "nrprocjud": {
                                 "required": true,
@@ -90,8 +90,9 @@ $jsonSchema = '{
                             },
                             "codsusp": {
                                 "required": false,
-                                "type": ["integer","null"],
-                                "maxLength": 14
+                                "type": ["string","null"],
+                                "maxLength": 14,
+                                "pattern": "^[0-9]"
                             }
                         }
                     }
@@ -112,14 +113,14 @@ $jsonSchema = '{
                         "maxLength": 30
                     },
                     "infoperapur": {
-                        "required": true,
-                        "type": "object",
+                        "required": false,
+                        "type": ["object","null"],
                         "properties": {
                             "ideestab": {
                                 "required": true,
                                 "type": "array",
                                 "minItems": 1,
-                                "maxItems": 10,
+                                "maxItems": 24,
                                 "items": {
                                     "type": "object",
                                     "properties": {
@@ -146,7 +147,7 @@ $jsonSchema = '{
                                                 "properties": {
                                                     "matricula": {
                                                         "required": false,
-                                                        "type": "string",
+                                                        "type": ["string","null"],
                                                         "maxLength": 30
                                                     },
                                                     "codcateg": {
@@ -175,30 +176,26 @@ $jsonSchema = '{
                                                                 },
                                                                 "qtdrubr": {
                                                                     "required": false,
-                                                                    "type": "integer",
-                                                                    "maxLength": 6
+                                                                    "type": ["number","null"]
                                                                 },
                                                                 "fatorrubr": {
                                                                     "required": false,
-                                                                    "type": "integer",
-                                                                    "maxLength": 5
+                                                                    "type": ["number","null"]
                                                                 },
                                                                 "vrunit": {
                                                                     "required": false,
-                                                                    "type": "integer",
-                                                                    "maxLength": 14
+                                                                    "type": ["number","null"]
                                                                 },
                                                                 "vrrubr": {
                                                                     "required": true,
-                                                                    "type": "integer",
-                                                                    "maxLength": 14
+                                                                    "type": "number"
                                                                 }
                                                             }
                                                         }
                                                     },
                                                     "infosaudecolet": {
                                                         "required": false,
-                                                        "type": "object",
+                                                        "type": ["object","null"],
                                                         "properties": {
                                                             "detoper": {
                                                                 "required": true,
@@ -220,12 +217,11 @@ $jsonSchema = '{
                                                                         },
                                                                         "vrpgtit": {
                                                                             "required": true,
-                                                                            "type": "integer",
-                                                                            "maxLength": 14
+                                                                            "type": "number"
                                                                         },
                                                                         "detplano": {
                                                                             "required": false,
-                                                                            "type": "array",
+                                                                            "type": ["array","null"],
                                                                             "minItems": 0,
                                                                             "maxItems": 99,
                                                                             "items": {
@@ -238,7 +234,7 @@ $jsonSchema = '{
                                                                                     },
                                                                                     "cpfdep": {
                                                                                         "required": false,
-                                                                                        "type": "string",
+                                                                                        "type": ["string","null"],
                                                                                         "maxLength": 11
                                                                                     },
                                                                                     "nmdep": {
@@ -253,8 +249,7 @@ $jsonSchema = '{
                                                                                     },
                                                                                     "vlrpgdep": {
                                                                                         "required": true,
-                                                                                        "type": "integer",
-                                                                                        "maxLength": 14
+                                                                                        "type": "number"
                                                                                     }
                                                                                 }
                                                                             }
@@ -273,14 +268,14 @@ $jsonSchema = '{
                         }
                     },
                     "infoperant": {
-                        "required": true,
-                        "type": "object",
+                        "required": false,
+                        "type": ["object","null"],
                         "properties": {
                             "ideadc": {
                                 "required": true,
                                 "type": "array",
-                                "minItems": 0,
-                                "maxItems": 99,
+                                "minItems": 1,
+                                "maxItems": 8,
                                 "items": {
                                     "type": "object",
                                     "properties": {
@@ -296,7 +291,7 @@ $jsonSchema = '{
                                         },
                                         "dtef": {
                                             "required": false,
-                                            "type": "string",
+                                            "type": ["string","null"],
                                             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                                         },
                                         "ideperiodo": {
@@ -330,7 +325,7 @@ $jsonSchema = '{
                                                                         "properties": {
                                                                             "matricula": {
                                                                                 "required": false,
-                                                                                "type": "string",
+                                                                                "type": ["string","null"],
                                                                                 "maxLength": 30
                                                                             },
                                                                             "codcateg": {
@@ -359,23 +354,19 @@ $jsonSchema = '{
                                                                                         },
                                                                                         "qtdrubr": {
                                                                                             "required": false,
-                                                                                            "type": "integer",
-                                                                                            "maxLength": 6
+                                                                                            "type": ["number","null"]
                                                                                         },
                                                                                         "fatorrubr": {
                                                                                             "required": false,
-                                                                                            "type": "integer",
-                                                                                            "maxLength": 5
+                                                                                            "type": ["number","null"]
                                                                                         },
                                                                                         "vrunit": {
                                                                                             "required": false,
-                                                                                            "type": "integer",
-                                                                                            "maxLength": 14
+                                                                                            "type": ["number","null"]
                                                                                         },
                                                                                         "vrrubr": {
                                                                                             "required": true,
-                                                                                            "type": "integer",
-                                                                                            "maxLength": 14
+                                                                                            "type": "number"
                                                                                         }
                                                                                     }
                                                                                 }
@@ -413,7 +404,7 @@ $std->idetrabalhador->cpftrab = '11111111111';
 $std->idetrabalhador->procjudtrab[0] = new \stdClass();
 $std->idetrabalhador->procjudtrab[0]->tptrib = 1;
 $std->idetrabalhador->procjudtrab[0]->nrprocjud = '12456';
-$std->idetrabalhador->procjudtrab[0]->codsusp = 123456;
+$std->idetrabalhador->procjudtrab[0]->codsusp = '123456';
 
 $std->dmdev[0] = new \stdClass();
 $std->dmdev[0]->idedmdev = '213789';

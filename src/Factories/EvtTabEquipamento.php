@@ -3,7 +3,7 @@
 namespace NFePHP\eSocial\Factories;
 
 /**
- * Class eSocial EvtTabHorTur Event S-1050 constructor
+ * Class eSocial EvtTabEquipamento Event S-1065 constructor
  * READ for 2.4.2 layout
  *
  * @category  library
@@ -22,22 +22,20 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtTabHorTur extends Factory implements FactoryInterface
+class EvtTabEquipamento extends Factory implements FactoryInterface
 {
     /**
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
-    protected $evtName = 'evtTabHorTur';
-
+    protected $evtName = 'evtTabEquipamento';
     /**
      * @var string
      */
-    protected $evtAlias = 'S-1050';
+    protected $evtAlias = 'S-1065';
 
     /**
      * Constructor
@@ -82,86 +80,50 @@ class EvtTabHorTur extends Factory implements FactoryInterface
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
         
-        $ide = $this->dom->createElement("ideHorContratual");
+        $ide = $this->dom->createElement("ideEquipamento");
         $this->dom->addChild(
             $ide,
-            "codHorContrat",
-            $this->std->codhorcontrat,
+            "codEP",
+            $this->std->codep,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
             $this->std->inivalid,
-            true
+            false
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
         
-        
-        $dados = '';
-        if (!empty($this->std->dadoshorcontratual)) {
-            $da = $this->std->dadoshorcontratual;
-            $dados = $this->dom->createElement("dadosHorContratual");
+        $dados = null;
+        if (!empty($this->std->tpep)) {
+            $dados = $this->dom->createElement("dadosEquipamento");
             $this->dom->addChild(
                 $dados,
-                "hrEntr",
-                $da->hrentr,
+                "tpEP",
+                $this->std->tpep,
                 true
             );
             $this->dom->addChild(
                 $dados,
-                "hrSaida",
-                $da->hrsaida,
+                "dscEP",
+                $this->std->dscep,
                 true
             );
             $this->dom->addChild(
                 $dados,
-                "durJornada",
-                $da->durjornada,
-                true
+                "caEPI",
+                $this->std->caepi,
+                false
             );
-            $this->dom->addChild(
-                $dados,
-                "perHorFlexivel",
-                $da->perhorflexivel,
-                true
-            );
-            if (!empty($da->horariointervalo)) {
-                foreach ($da->horariointervalo as $inter) {
-                    $intervalo = $this->dom->createElement("horarioIntervalo");
-                    $this->dom->addChild(
-                        $intervalo,
-                        "tpInterv",
-                        $inter->tpinterv,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $intervalo,
-                        "durInterv",
-                        $inter->durinterv,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $intervalo,
-                        "iniInterv",
-                        !empty($inter->iniinterv) ? $inter->iniinterv : null,
-                        false
-                    );
-                    $this->dom->addChild(
-                        $intervalo,
-                        "termInterv",
-                        !empty($inter->terminterv) ? $inter->terminterv : null,
-                        false
-                    );
-                    $dados->appendChild($intervalo);
-                }
-            }
         }
+        
+        $nova = null;
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -179,17 +141,22 @@ class EvtTabHorTur extends Factory implements FactoryInterface
                 false
             );
         }
-        $info = $this->dom->createElement("infoHorContratual");
+        
+        $info = $this->dom->createElement("infoEquipamento");
         //seleção do modo
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
             $node->appendChild($ide);
-            $node->appendChild($dados);
+            if (!empty($dados)) {
+                $node->appendChild($dados);
+            }
         } elseif ($this->std->modo == 'ALT') {
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
-            $node->appendChild($dados);
-            if (isset($nova)) {
+            if (!empty($dados)) {
+                $node->appendChild($dados);
+            }
+            if (!empty($nova)) {
                 $node->appendChild($nova);
             }
         } else {
@@ -199,7 +166,7 @@ class EvtTabHorTur extends Factory implements FactoryInterface
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->sign();
     }
 }
