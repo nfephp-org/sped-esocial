@@ -196,7 +196,9 @@ class EvtTabHorTur extends Factory implements FactoryInterface
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (isset($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
