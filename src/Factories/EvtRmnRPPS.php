@@ -209,7 +209,7 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
     {
         if (!isset($std->infoperapur)) {
             return;
-        }    
+        }
         $infoPerApur = $this->dom->createElement("infoPerApur");
         $this->ideestab($infoPerApur, $std);
         $node->appendChild($infoPerApur);
@@ -403,7 +403,7 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
     {
         if (!isset($std->infoperant)) {
             return;
-        }    
+        }
         $infoPerAnt = $this->dom->createElement("infoPerAnt");
         //add ideadc to infoPerAnt
         $this->ideadc($infoPerAnt, $std);
@@ -420,13 +420,22 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
         foreach ($std->infoperant->ideadc as $adc) {
             $ideADC = $this->dom->createElement("ideADC");
             $this->dom->addChild(
-                    $ideADC, "dtLei", $adc->dtlei, true
+                $ideADC,
+                "dtLei",
+                $adc->dtlei,
+                true
             );
             $this->dom->addChild(
-                    $ideADC, "nrLei", $adc->nrlei, true
+                $ideADC,
+                "nrLei",
+                $adc->nrlei,
+                true
             );
             $this->dom->addChild(
-                    $ideADC, "dtEf", !empty($adc->dtef) ? $adc->dtef : null, false
+                $ideADC,
+                "dtEf",
+                !empty($adc->dtef) ? $adc->dtef : null,
+                false
             );
             //add ideperiodo to ideADC
             $this->ideperiodo($ideADC, $adc);
@@ -520,8 +529,8 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
                     $ideEstab->appendChild($remunPerAnt);
                 }
                 $idePeriodo->appendChild($ideEstab);
-            }    
+            }
             $node->appendChild($idePeriodo);
-        }    
+        }
     }
 }
