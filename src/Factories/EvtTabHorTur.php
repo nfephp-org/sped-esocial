@@ -41,16 +41,19 @@ class EvtTabHorTur extends Factory implements FactoryInterface
 
     /**
      * Constructor
+     *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate
+     * @param Certificate $certificate | null
+     * @param string $date
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null,
+        $date = ''
     ) {
-        parent::__construct($config, $std, $certificate);
+        parent::__construct($config, $std, $certificate, $date);
     }
 
     /**

@@ -51,11 +51,16 @@ class EvtRmnRPPS extends Factory implements FactoryInterface
      *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate
+     * @param Certificate $certificate | null
+     * @param string $date
      */
-    public function __construct($config, stdClass $std, Certificate $certificate)
-    {
-        parent::__construct($config, $std, $certificate);
+    public function __construct(
+        $config,
+        stdClass $std,
+        Certificate $certificate = null,
+        $date = ''
+    ) {
+        parent::__construct($config, $std, $certificate, $date);
     }
 
     /**
