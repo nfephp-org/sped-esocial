@@ -30,7 +30,7 @@
             "pattern": "INC|ALT|EXC"
         },
         "dadosoperportuario": {
-            "required": true,
+            "required": false,
             "type": "object",
             "properties": {
                 "aliqrat" : {
