@@ -98,95 +98,96 @@ class EvtDeslig extends Factory implements FactoryInterface
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $ideVinculo = $this->dom->createElement("ideVinculo");
+
         $this->dom->addChild(
             $ideVinculo,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->idevinculo->cpftrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "nisTrab",
-            $this->std->nistrab,
+            $this->std->idevinculo->nistrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->std->matricula,
+            $this->std->idevinculo->matricula,
             true
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $infoDeslig = $this->dom->createElement("infoDeslig");
         $this->dom->addChild(
             $infoDeslig,
             "mtvDeslig",
-            $this->std->mtvdeslig,
+            $this->std->infodeslig->mtvdeslig,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "dtDeslig",
-            $this->std->dtdeslig,
+            $this->std->infodeslig->dtdeslig,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "indPagtoAPI",
-            $this->std->indpagtoapi,
+            $this->std->infodeslig->indpagtoapi,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "dtProjFimAPI",
-            !empty($this->std->dtprojfimapi) ? $this->std->dtprojfimapi : null,
+            !empty($this->std->infodeslig->dtprojfimapi) ? $this->std->infodeslig->dtprojfimapi : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "pensAlim",
-            $this->std->pensalim,
+            $this->std->infodeslig->pensalim,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "percAliment",
-            !empty($this->std->percaliment) ? $this->std->percaliment : null,
+            !empty($this->std->infodeslig->percaliment) ? $this->std->infodeslig->percaliment : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "vrAlim",
-            !empty($this->std->vralim) ? $this->std->vralim : null,
+            !empty($this->std->infodeslig->vralim) ? $this->std->infodeslig->vralim : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "nrCertObito",
-            !empty($this->std->nrcertobito) ? $this->std->nrcertobito : null,
+            !empty($this->std->infodeslig->nrcertobito) ? $this->std->infodeslig->nrcertobito : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "nrProcTrab",
-            !empty($this->std->nrproctrab) ? $this->std->nrproctrab : null,
+            !empty($this->std->infodeslig->nrproctrab) ? $this->std->infodeslig->nrproctrab : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "indCumprParc",
-            $this->std->indcumprparc,
+            $this->std->infodeslig->indcumprparc,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "observacao",
-            !empty($this->std->observacao) ? $this->std->observacao : null,
+            !empty($this->std->infodeslig->observacao) ? $this->std->infodeslig->observacao : null,
             false
         );
-        
-        
+
+
         if (!empty($this->std->sucessaovinc)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
             $this->dom->addChild(
@@ -197,7 +198,7 @@ class EvtDeslig extends Factory implements FactoryInterface
             );
             $infoDeslig->appendChild($sucessaoVinc);
         }
-        
+
         if (!empty($this->std->transftit)) {
             $transfTit = $this->dom->createElement("transfTit");
             $this->dom->addChild(
@@ -214,7 +215,7 @@ class EvtDeslig extends Factory implements FactoryInterface
             );
             $infoDeslig->appendChild($transfTit);
         }
-        
+
         if (!empty($this->std->verbasresc)) {
             $verbasResc = $this->dom->createElement("verbasResc");
             foreach ($this->std->verbasresc->dmdev as $dm) {
@@ -247,7 +248,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                             $isl->codlotacao,
                             true
                         );
-                        
+
                         foreach ($isl->detverbas as $dv) {
                             $detVerbas = $this->dom->createElement("detVerbas");
                             $this->dom->addChild(
@@ -288,7 +289,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                             );
                             $ideEstabLot->appendChild($detVerbas);
                         }
-                        
+
                         if (!empty($isl->infosaudecolet)) {
                             $infoSaudeColet = $this->dom->createElement("infoSaudeColet");
                             foreach ($isl->infosaudecolet->detoper as $do) {
@@ -311,7 +312,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                                     $do->vrpgtit,
                                     true
                                 );
-                                
+
                                 if (!empty($do->detplano)) {
                                     foreach ($do->detplano as $dp) {
                                         $detPlano = $this->dom->createElement("detPlano");
@@ -348,12 +349,12 @@ class EvtDeslig extends Factory implements FactoryInterface
                                         $detOper->appendChild($detPlano);
                                     }
                                 }
-                                
+
                                 $infoSaudeColet->appendChild($detOper);
                             }
                             $ideEstabLot->appendChild($infoSaudeColet);
                         }
-                        
+
                         if (!empty($isl->infoagnocivo)) {
                             $infoAgNocivo = $this->dom->createElement("infoAgNocivo");
                             $this->dom->addChild(
@@ -364,7 +365,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                             );
                             $ideEstabLot->appendChild($infoAgNocivo);
                         }
-                        
+
                         if (!empty($isl->infosimples)) {
                             $infoSimples = $this->dom->createElement("infoSimples");
                             $this->dom->addChild(
@@ -375,12 +376,12 @@ class EvtDeslig extends Factory implements FactoryInterface
                             );
                             $ideEstabLot->appendChild($infoSimples);
                         }
-                        
+
                         $infoPerApur->appendChild($ideEstabLot);
                     }
                     $dmDev->appendChild($infoPerApur);
                 }
-                
+
                 if (!empty($dm->infoperant)) {
                     $infoPerAnt = $this->dom->createElement("infoPerAnt");
                     foreach ($dm->infoperant->ideadc as $adc) {
@@ -443,7 +444,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                                     $ael->codlotacao,
                                     true
                                 );
-                                
+
                                 foreach ($ael->detverbas as $adv) {
                                     $dmdetVerbas = $this->dom->createElement("detVerbas");
                                     $this->dom->addChild(
@@ -482,10 +483,10 @@ class EvtDeslig extends Factory implements FactoryInterface
                                         $adv->vrrubr,
                                         true
                                     );
-                                    
+
                                     $dmideEstabLot->appendChild($dmdetVerbas);
                                 }
-                                
+
                                 if (!empty($ael->infoagnocivo)) {
                                     $infoAgNocivo = $this->dom->createElement("infoAgNocivo");
                                     $this->dom->addChild(
@@ -496,7 +497,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                                     );
                                     $dmideEstabLot->appendChild($infoAgNocivo);
                                 }
-                        
+
                                 if (!empty($ael->infosimples)) {
                                     $infoSimples = $this->dom->createElement("infoSimples");
                                     $this->dom->addChild(
@@ -507,18 +508,18 @@ class EvtDeslig extends Factory implements FactoryInterface
                                     );
                                     $dmideEstabLot->appendChild($infoSimples);
                                 }
-                                
+
                                 $idePeriodo->appendChild($dmideEstabLot);
                             }
                             $ideADC->appendChild($idePeriodo);
                         }
-                        
-                        
+
+
                         $infoPerAnt->appendChild($ideADC);
                     }
                     $dmDev->appendChild($infoPerAnt);
                 }
-                
+
                 if (!empty($dm->infotrabinterm)) {
                     foreach ($dm->infotrabinterm as $tin) {
                         $infoTrabInterm = $this->dom->createElement("infoTrabInterm");
@@ -531,10 +532,10 @@ class EvtDeslig extends Factory implements FactoryInterface
                         $dmDev->appendChild($infoTrabInterm);
                     }
                 }
-                
+
                 $verbasResc->appendChild($dmDev);
             }
-            
+
             if (!empty($this->std->verbasresc->procjudtrab)) {
                 foreach ($this->std->verbasresc->procjudtrab as $pjt) {
                     $procJudTrab = $this->dom->createElement("procJudTrab");
@@ -559,7 +560,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                     $verbasResc->appendChild($procJudTrab);
                 }
             }
-            
+
             if (!empty($this->std->verbasresc->infomv)) {
                 $imv = $this->std->verbasresc->infomv;
                 $infoMV = $this->dom->createElement("infoMV");
@@ -599,7 +600,7 @@ class EvtDeslig extends Factory implements FactoryInterface
                 }
                 $verbasResc->appendChild($infoMV);
             }
-            
+
             $infoDeslig->appendChild($verbasResc);
         }
         if (!empty($this->std->quarentena)) {
@@ -612,28 +613,33 @@ class EvtDeslig extends Factory implements FactoryInterface
             );
             $infoDeslig->appendChild($quarentena);
         }
-        
+
         $consigFGTS = $this->dom->createElement("consigFGTS");
-        $this->dom->addChild(
-            $consigFGTS,
-            "idConsig",
-            $this->std->consigfgts->idconsig,
-            true
-        );
-        $this->dom->addChild(
-            $consigFGTS,
-            "insConsig",
-            !empty($this->std->consigfgts->insconsig) ? $this->std->consigfgts->insconsig : null,
-            true
-        );
-        $this->dom->addChild(
-            $consigFGTS,
-            "nrContr",
-            !empty($this->std->consigfgts->nrcontr) ? $this->std->consigfgts->nrcontr : null,
-            false
-        );
-        $infoDeslig->appendChild($consigFGTS);
-        
+
+        if (!empty($this->std->consigfgts)) {
+
+            $this->dom->addChild(
+                $consigFGTS,
+                "idConsig",
+                $this->std->consigfgts->idconsig,
+                true
+            );
+            $this->dom->addChild(
+                $consigFGTS,
+                "insConsig",
+                !empty($this->std->consigfgts->insconsig) ? $this->std->consigfgts->insconsig : null,
+                true
+            );
+            $this->dom->addChild(
+                $consigFGTS,
+                "nrContr",
+                !empty($this->std->consigfgts->nrcontr) ? $this->std->consigfgts->nrcontr : null,
+                false
+            );
+            $infoDeslig->appendChild($consigFGTS);
+
+        }
+
         $this->node->appendChild($infoDeslig);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
