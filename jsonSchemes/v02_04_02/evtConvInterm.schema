@@ -1,0 +1,160 @@
+{
+  "title": "evtConvInterm",
+  "type": "object",
+  "properties": {
+    "sequencial": {
+      "required": true,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 99999
+    },
+    "indRetif": {
+      "required": true,
+      "type": "integer",
+      "pattern": "\\d"
+    },
+    "nrRecibo": {
+      "required": false,
+      "type": "string",
+      "minimum": 0,
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "ideVinculo": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "cpfTrab": {
+          "required": true,
+          "type": "string",
+          "maxLength": 11,
+          "minLength": 11,
+          "pattern": "\\d{11}"
+        },
+        "nisTrab": {
+          "required": true,
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 11
+        },
+        "matricula": {
+          "required": true,
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      }
+    },
+    "infoConvInterm": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "codConv": {
+          "required": true,
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "dtInicio": {
+          "required": true,
+          "type": "string",
+          "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "dtFim": {
+          "required": true,
+          "type": "string",
+          "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "dtPrevPgto": {
+          "required": true,
+          "type": "string",
+          "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "jornada": {
+          "required": true,
+          "type": "object",
+          "properties": {
+            "codHorContrat": {
+              "required": false,
+              "minimum": 0,
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "dscJornada": {
+              "required": false,
+              "minimum": 0,
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 999
+            }
+          }
+        }
+      },
+      "localTrab": {
+        "required": true,
+        "type": "object",
+        "properties": {
+          "indLocal": {
+            "required": true,
+            "type": "integer",
+            "pattern": "\\d"
+          },
+          "localTrabInterm": {
+            "required": false,
+            "type": "object",
+            "minimum": 0,
+            "properties": {
+              "tpLograd": {
+                "required": true,
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4
+              },
+              "dscLograd": {
+                "required": true,
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "nrLograd": {
+                "required": true,
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 10
+              },
+              "complem": {
+                "required": false,
+                "type": "string",
+                "minimum": 0,
+                "maxLength": 30
+              },
+              "bairro": {
+                "required": false,
+                "type": "string",
+                "minimum": 0,
+                "minLength": 1,
+                "maxLength": 60
+              },
+              "cep": {
+                "required": true,
+                "type": "string",
+                "pattern": "\\d{8}"
+              },
+              "codMunic": {
+                "required": true,
+                "type": "integer"
+              },
+              "uf": {
+                "required": true,
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
