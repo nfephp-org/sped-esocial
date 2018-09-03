@@ -89,67 +89,67 @@
               "maxLength": 999
             }
           }
-        }
-      },
-      "localTrab": {
-        "required": true,
-        "type": "object",
-        "properties": {
-          "indLocal": {
-            "required": true,
-            "type": "integer",
-            "pattern": "\\d"
-          },
-          "localTrabInterm": {
-            "required": false,
-            "type": "object",
-            "minimum": 0,
-            "properties": {
-              "tpLograd": {
-                "required": true,
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 4
-              },
-              "dscLograd": {
-                "required": true,
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 80
-              },
-              "nrLograd": {
-                "required": true,
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 10
-              },
-              "complem": {
-                "required": false,
-                "type": "string",
-                "minimum": 0,
-                "maxLength": 30
-              },
-              "bairro": {
-                "required": false,
-                "type": "string",
-                "minimum": 0,
-                "minLength": 1,
-                "maxLength": 60
-              },
-              "cep": {
-                "required": true,
-                "type": "string",
-                "pattern": "\\d{8}"
-              },
-              "codMunic": {
-                "required": true,
-                "type": "integer"
-              },
-              "uf": {
-                "required": true,
-                "type": "string",
-                "minLength": 2,
-                "maxLength": 2
+        },
+        "localTrab": {
+          "required": true,
+          "type": "object",
+          "properties": {
+            "indLocal": {
+              "required": true,
+              "type": "integer",
+              "pattern": "\\d"
+            },
+            "localTrabInterm": {
+              "required": false,
+              "type": "object",
+              "minimum": 0,
+              "properties": {
+                "tpLograd": {
+                  "required": true,
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4
+                },
+                "dscLograd": {
+                  "required": true,
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "nrLograd": {
+                  "required": true,
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 10
+                },
+                "complem": {
+                  "required": false,
+                  "type": "string",
+                  "minimum": 0,
+                  "maxLength": 30
+                },
+                "bairro": {
+                  "required": false,
+                  "type": "string",
+                  "minimum": 0,
+                  "minLength": 1,
+                  "maxLength": 60
+                },
+                "cep": {
+                  "required": true,
+                  "type": "string",
+                  "pattern": "\\d{8}"
+                },
+                "codMunic": {
+                  "required": true,
+                  "type": "integer"
+                },
+                "uf": {
+                  "required": true,
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 2
+                }
               }
             }
           }
