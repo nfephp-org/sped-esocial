@@ -187,38 +187,37 @@ class EvtDeslig extends Factory implements FactoryInterface
             false
         );
 
-
-        if (!empty($this->std->sucessaovinc)) {
+        if (!empty($this->std->infodeslig->sucessaovinc)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
             $this->dom->addChild(
                 $sucessaoVinc,
                 "cnpjSucessora",
-                $this->std->sucessaovinc->cnpjsucessora,
+                $this->std->infodeslig->sucessaovinc->cnpjsucessora,
                 true
             );
             $infoDeslig->appendChild($sucessaoVinc);
         }
 
-        if (!empty($this->std->transftit)) {
+        if (!empty($this->std->infodeslig->transftit)) {
             $transfTit = $this->dom->createElement("transfTit");
             $this->dom->addChild(
                 $transfTit,
                 "cpfSubstituto",
-                $this->std->transftit->cpfsubstituto,
+                $this->std->infodeslig->transftit->cpfsubstituto,
                 true
             );
             $this->dom->addChild(
                 $transfTit,
                 "dtNascto",
-                $this->std->transftit->dtnascto,
+                $this->std->infodeslig->transftit->dtnascto,
                 true
             );
             $infoDeslig->appendChild($transfTit);
         }
 
-        if (!empty($this->std->verbasresc)) {
+        if (!empty($this->std->infodeslig->verbasresc)) {
             $verbasResc = $this->dom->createElement("verbasResc");
-            foreach ($this->std->verbasresc->dmdev as $dm) {
+            foreach ($this->std->infodeslig->verbasresc->dmdev as $dm) {
                 $dmDev = $this->dom->createElement("dmDev");
                 $this->dom->addChild(
                     $dmDev,
@@ -536,8 +535,8 @@ class EvtDeslig extends Factory implements FactoryInterface
                 $verbasResc->appendChild($dmDev);
             }
 
-            if (!empty($this->std->verbasresc->procjudtrab)) {
-                foreach ($this->std->verbasresc->procjudtrab as $pjt) {
+            if (!empty($this->std->infodeslig->verbasresc->procjudtrab)) {
+                foreach ($this->std->infodeslig->verbasresc->procjudtrab as $pjt) {
                     $procJudTrab = $this->dom->createElement("procJudTrab");
                     $this->dom->addChild(
                         $procJudTrab,
@@ -561,8 +560,8 @@ class EvtDeslig extends Factory implements FactoryInterface
                 }
             }
 
-            if (!empty($this->std->verbasresc->infomv)) {
-                $imv = $this->std->verbasresc->infomv;
+            if (!empty($this->std->infodeslig->verbasresc->infomv)) {
+                $imv = $this->std->infodeslig->verbasresc->infomv;
                 $infoMV = $this->dom->createElement("infoMV");
                 $this->dom->addChild(
                     $infoMV,
@@ -603,41 +602,32 @@ class EvtDeslig extends Factory implements FactoryInterface
 
             $infoDeslig->appendChild($verbasResc);
         }
-        if (!empty($this->std->quarentena)) {
+        if (!empty($this->std->infodeslig->quarentena)) {
             $quarentena = $this->dom->createElement("quarentena");
             $this->dom->addChild(
                 $quarentena,
                 "dtFimQuar",
-                $this->std->quarentena->dtfimquar,
+                $this->std->infodeslig->quarentena->dtfimquar,
                 true
             );
             $infoDeslig->appendChild($quarentena);
         }
 
-        $consigFGTS = $this->dom->createElement("consigFGTS");
-
-        if (!empty($this->std->consigfgts)) {
-
-            $this->dom->addChild(
-                $consigFGTS,
-                "idConsig",
-                $this->std->consigfgts->idconsig,
-                true
-            );
+        if (!empty($this->std->infodeslig->consigfgts->insconsig) && !empty($this->std->infodeslig->consigfgts->nrcontr)) {
+            $consigFGTS = $this->dom->createElement("consigFGTS");
             $this->dom->addChild(
                 $consigFGTS,
                 "insConsig",
-                !empty($this->std->consigfgts->insconsig) ? $this->std->consigfgts->insconsig : null,
+                $this->std->infodeslig->consigfgts->insconsig,
                 true
             );
             $this->dom->addChild(
                 $consigFGTS,
                 "nrContr",
-                !empty($this->std->consigfgts->nrcontr) ? $this->std->consigfgts->nrcontr : null,
+                $this->std->infodeslig->consigfgts->nrcontr,
                 false
             );
             $infoDeslig->appendChild($consigFGTS);
-
         }
 
         $this->node->appendChild($infoDeslig);
