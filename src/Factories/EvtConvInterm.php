@@ -82,13 +82,13 @@ class EvtConvInterm extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
-            $this->indRetif,
+            $this->std->indretif,
             true
         );
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->nrRecibo) ? $this->nrRecibo : null,
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -132,19 +132,19 @@ class EvtConvInterm extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideVinculo,
             "cpfTrab",
-            $this->cpfTrab,
+            $this->std->idevinculo->cpftrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "nisTrab",
-            $this->nisTrab,
+            $this->std->idevinculo->nistrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->matricula,
+            $this->std->idevinculo->matricula,
             true
         );
         $evtConvInterm->appendChild($ideVinculo);
@@ -167,6 +167,12 @@ class EvtConvInterm extends Factory implements FactoryInterface
             $infoConvInterm,
             "dtFim",
             $this->std->infoconvinterm->dtfim,
+            true
+        );
+        $this->dom->addChild(
+            $infoConvInterm,
+            "dtPrevPgto",
+            $this->std->infoconvinterm->dtprevpgto,
             true
         );
         //Jornada
