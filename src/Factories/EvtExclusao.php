@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -65,18 +64,6 @@ class EvtExclusao extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid       = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtExclusao = $this->dom->createElement("evtExclusao");
-        $att         = $this->dom->createAttribute('Id');
-        $att->value  = $evtid;
-        $evtExclusao->appendChild($att);
-
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -96,22 +83,9 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtExclusao->appendChild($ideEvento);
 
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtExclusao->appendChild($ideEmpregador);
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $infoExclusao = $this->dom->createElement("infoExclusao");
         $this->dom->addChild(
@@ -126,42 +100,42 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->std->infoexclusao->nrrecevt,
             true
         );
-        if (! empty($this->std->idetrabalhador)) {
+        if (!empty($this->std->infoexclusao->idetrabalhador)) {
             $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
             $this->dom->addChild(
                 $ideTrabalhador,
                 "cpfTrab",
-                $this->std->idetrabalhador->cpftrab,
+                $this->std->infoexclusao->idetrabalhador->cpftrab,
                 true
             );
             $this->dom->addChild(
                 $ideTrabalhador,
                 "nisTrab",
-                ! empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
+                !empty($this->std->infoexclusao->idetrabalhador->nistrab) ? $this->std->infoexclusao->idetrabalhador->nistrab : null,
                 false
             );
             $infoExclusao->appendChild($ideTrabalhador);
         }
 
-        $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
-        $this->dom->addChild(
-            $ideFolhaPagto,
-            "indApuracao",
-            $this->std->idefolhapagto->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideFolhaPagto,
-            "perApur",
-            $this->std->idefolhapagto->perapur,
-            true
-        );
+        if (!empty($this->std->ideFolhaPagto)) {
+            $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
+            $this->dom->addChild(
+                $ideFolhaPagto,
+                "indApuracao",
+                $this->std->idefolhapagto->indapuracao,
+                true
+            );
+            $this->dom->addChild(
+                $ideFolhaPagto,
+                "perApur",
+                $this->std->idefolhapagto->perapur,
+                true
+            );
+            $infoExclusao->appendChild($ideFolhaPagto);
+        }
 
-        $infoExclusao->appendChild($ideFolhaPagto);
-
-        $evtExclusao->appendChild($infoExclusao);
-
-        $eSocial->appendChild($evtExclusao);
-        $this->sign($eSocial);
+        $this->node->appendChild($infoExclusao);
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
