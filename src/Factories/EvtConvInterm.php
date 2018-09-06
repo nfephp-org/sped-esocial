@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -65,19 +64,6 @@ class EvtConvInterm extends Factory implements FactoryInterface
      */
     protected function toNode()
     {
-        $evtid = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-        $eSocial = $this->dom->getElementsByTagName("eSocial")->item(0);
-        $evtConvInterm = $this->dom->createElement("evtConvInterm");
-        $att = $this->dom->createAttribute('Id');
-        $att->value = $evtid;
-        $evtConvInterm->appendChild($att);
-
-        //ideEvento
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -109,23 +95,8 @@ class EvtConvInterm extends Factory implements FactoryInterface
             $this->verProc,
             true
         );
-        $evtConvInterm->appendChild($ideEvento);
-
-        //ideEmpregador
-        $ideEmpregador = $this->dom->createElement("ideEmpregador");
-        $this->dom->addChild(
-            $ideEmpregador,
-            "tpInsc",
-            $this->tpInsc,
-            true
-        );
-        $this->dom->addChild(
-            $ideEmpregador,
-            "nrInsc",
-            $this->nrInsc,
-            true
-        );
-        $evtConvInterm->appendChild($ideEmpregador);
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         //ideVinculo
         $ideVinculo = $this->dom->createElement("ideVinculo");
@@ -147,7 +118,7 @@ class EvtConvInterm extends Factory implements FactoryInterface
             $this->std->idevinculo->matricula,
             true
         );
-        $evtConvInterm->appendChild($ideVinculo);
+        $this->node->appendChild($ideVinculo);
 
         //infoConvInterm
         $infoConvInterm = $this->dom->createElement("infoConvInterm");
@@ -255,8 +226,8 @@ class EvtConvInterm extends Factory implements FactoryInterface
         }
 
         $infoConvInterm->appendChild($localTrab);
-        $evtConvInterm->appendChild($infoConvInterm);
-        $eSocial->appendChild($evtConvInterm);
-        $this->sign($eSocial);
+        $this->node->appendChild($infoConvInterm);
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
