@@ -86,7 +86,7 @@ Os eventos estão subdivididos em grupos
 - S-2200 Admissão de Trabalhador
 - S-2220 Alteração de Dados Cadastrais do Trabalhador
 - S-2240 Alteração de Contrato de Trabalho
-- S-2260 Comunicação de Acidente de Trabalho
+- S-2260 Convocação para Trabalho Intermitente
 - S-2280 Atestado de Saúde Ocupacional
 - S-2320 Afastamento Temporário
 - S-2325 Alteração de Motivo de Afastamento
