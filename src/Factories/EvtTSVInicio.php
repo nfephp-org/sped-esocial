@@ -97,10 +97,11 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->node->insertBefore($ideEvento, $ideEmpregador);
         
         $trabalhador = $this->dom->createElement("trabalhador");
+
         $this->dom->addChild(
             $trabalhador,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->trabalhador->cpftrab,
             true
         );
         $this->dom->addChild(
@@ -112,19 +113,19 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $trabalhador,
             "nmTrab",
-            $this->std->nmtrab,
+            $this->std->trabalhador->nmtrab,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "sexo",
-            $this->std->sexo,
+            $this->std->trabalhador->sexo,
             true
         );
         $this->dom->addChild(
             $trabalhador,
             "racaCor",
-            $this->std->racacor,
+            $this->std->trabalhador->racacor,
             true
         );
         $this->dom->addChild(
@@ -136,7 +137,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $trabalhador,
             "grauInstr",
-            $this->std->grauinstr,
+            $this->std->trabalhador->grauinstr,
             true
         );
         $this->dom->addChild(
@@ -145,19 +146,22 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             !empty($this->std->nmsoc) ? $this->std->nmsoc : null,
             false
         );
+
         $nascimento = $this->dom->createElement("nascimento");
         $this->dom->addChild(
             $nascimento,
             "dtNascto",
-            $this->std->dtnascto,
+            $this->std->trabalhador->nascimento->dtnascto,
             true
         );
+
         $this->dom->addChild(
             $nascimento,
             "codMunic",
-            $this->std->codmunic,
-            true
+            !empty($this->std->trabalhador->nascimento->codmunic) ? $this->std->trabalhador->nascimento->codmunic : null,
+            false
         );
+
         $this->dom->addChild(
             $nascimento,
             "uf",
@@ -167,32 +171,33 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $nascimento,
             "paisNascto",
-            $this->std->paisnascto,
+            $this->std->trabalhador->nascimento->paisnascto,
             true
         );
         $this->dom->addChild(
             $nascimento,
             "paisNac",
-            $this->std->paisnac,
+            $this->std->trabalhador->nascimento->paisnac,
             true
         );
         $this->dom->addChild(
             $nascimento,
             "nmMae",
-            !empty($this->std->nmmae) ? $this->std->nmmae : null,
+            !empty($this->std->trabalhador->nascimento->nmmae) ? $this->std->trabalhador->nascimento->nmmae : null,
             false
         );
         $this->dom->addChild(
             $nascimento,
             "nmPai",
-            !empty($this->std->nmpai) ? $this->std->nmpai : null,
+            !empty($this->std->trabalhador->nascimento->nmpai) ? $this->std->trabalhador->nascimento->nmpai : null,
             false
         );
         $trabalhador->appendChild($nascimento);
         
         $documentos = null;
-        if (!empty($this->std->ctps)) {
-            $doc = $this->std->ctps;
+
+        if (!empty($this->std->trabalhador->documentos->ctps)) {
+            $doc = $this->std->trabalhador->documentos->ctps;
             $documentos = $this->dom->createElement("documentos");
             $ctps = $this->dom->createElement("CTPS");
             $this->dom->addChild(
@@ -215,9 +220,9 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             );
             $documentos->appendChild($ctps);
         }
-        
-        if (!empty($this->std->ric)) {
-            $doc = $this->std->ric;
+
+        if (!empty($this->std->trabalhador->documentos->ric)) {
+            $doc = $this->std->trabalhador->documentos->ric;
             if (empty($documentos)) {
                 $documentos = $this->dom->createElement("documentos");
             }
@@ -242,9 +247,9 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             );
             $documentos->appendChild($ric);
         }
-        
-        if (!empty($this->std->rg)) {
-            $doc = $this->std->rg;
+
+        if (!empty($this->std->trabalhador->documentos->rg)) {
+            $doc = $this->std->trabalhador->documentos->rg;
             if (empty($documentos)) {
                 $documentos = $this->dom->createElement("documentos");
             }
@@ -270,8 +275,8 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $documentos->appendChild($rg);
         }
         
-        if (!empty($this->std->rne)) {
-            $doc = $this->std->rne;
+        if (!empty($this->std->trabalhador->documentos->rne)) {
+            $doc = $this->std->trabalhador->documentos->rne;
             if (empty($documentos)) {
                 $documentos = $this->dom->createElement("documentos");
             }
@@ -297,8 +302,8 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $documentos->appendChild($rne);
         }
         
-        if (!empty($this->std->oc)) {
-            $doc = $this->std->oc;
+        if (!empty($this->std->trabalhador->documentos->oc)) {
+            $doc = $this->std->trabalhador->documentos->oc;
             if (empty($documentos)) {
                 $documentos = $this->dom->createElement("documentos");
             }
@@ -330,8 +335,8 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $documentos->appendChild($oc);
         }
         
-        if (!empty($this->std->cnh)) {
-            $doc = $this->std->cnh;
+        if (!empty($this->std->trabalhador->documentos->cnh)) {
+            $doc = $this->std->trabalhador->documentos->cnh;
             if (empty($documentos)) {
                 $documentos = $this->dom->createElement("documentos");
             }
@@ -378,10 +383,10 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         if (!empty($documentos)) {
             $trabalhador->appendChild($documentos);
         }
-        
+
         $endereco = $this->dom->createElement("endereco");
-        if (!empty($this->std->brasil)) {
-            $end = $this->std->brasil;
+        if (!empty($this->std->trabalhador->endereco->brasil)) {
+            $end = $this->std->trabalhador->endereco->brasil;
             $brasil = $this->dom->createElement("brasil");
             $this->dom->addChild(
                 $brasil,
@@ -432,8 +437,8 @@ class EvtTSVInicio extends Factory implements FactoryInterface
                 true
             );
             $endereco->appendChild($brasil);
-        } elseif (!empty($this->std->exterior)) {
-            $end = $this->std->exterior;
+        } elseif (!empty($this->std->trabalhador->endereco->exterior)) {
+            $end = $this->std->trabalhador->endereco->exterior;
             $exterior = $this->dom->createElement("exterior");
             $this->dom->addChild(
                 $exterior,
@@ -481,37 +486,37 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         }
         $trabalhador->appendChild($endereco);
         
-        if (!empty($this->std->trabestrangeiro)) {
+        if (!empty($this->std->trabalhador->trabestrangeiro)) {
             $trabEstrangeiro = $this->dom->createElement("trabEstrangeiro");
             $this->dom->addChild(
                 $trabEstrangeiro,
                 "dtChegada",
-                $this->std->trabestrangeiro->dtchegada,
+                $this->std->trabalhador->trabestrangeiro->dtchegada,
                 true
             );
             $this->dom->addChild(
                 $trabEstrangeiro,
                 "classTrabEstrang",
-                $this->std->trabestrangeiro->classtrabestrang,
+                $this->std->trabalhador->trabestrangeiro->classtrabestrang,
                 true
             );
             $this->dom->addChild(
                 $trabEstrangeiro,
                 "casadoBr",
-                $this->std->trabestrangeiro->casadobr,
+                $this->std->trabalhador->trabestrangeiro->casadobr,
                 true
             );
             $this->dom->addChild(
                 $trabEstrangeiro,
                 "filhosBr",
-                $this->std->trabestrangeiro->filhosbr,
+                $this->std->trabalhador->trabestrangeiro->filhosbr,
                 true
             );
             $trabalhador->appendChild($trabEstrangeiro);
         }
-        
-        if (!empty($this->std->infodeficiencia)) {
-            $def = $this->std->infodeficiencia;
+
+        if (!empty($this->std->trabalhador->infodeficiencia)) {
+            $def = $this->std->trabalhador->infodeficiencia;
             $infoDeficiencia = $this->dom->createElement("infoDeficiencia");
             $this->dom->addChild(
                 $infoDeficiencia,
@@ -557,9 +562,9 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             );
             $trabalhador->appendChild($infoDeficiencia);
         }
-        
-        if (!empty($this->std->dependente)) {
-            foreach ($this->std->dependente as $dep) {
+
+        if (!empty($this->std->trabalhador->dependente)) {
+            foreach ($this->std->trabalhador->dependente as $dep) {
                 $dependente = $this->dom->createElement("dependente");
                 $this->dom->addChild(
                     $dependente,
@@ -606,9 +611,9 @@ class EvtTSVInicio extends Factory implements FactoryInterface
                 $trabalhador->appendChild($dependente);
             }
         }
-        
-        if (!empty($this->std->contato)) {
-            $con = $this->std->contato;
+
+        if (!empty($this->std->trabalhador->contato)) {
+            $con = $this->std->trabalhador->contato;
             $contato = $this->dom->createElement("contato");
             $this->dom->addChild(
                 $contato,
@@ -637,7 +642,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $trabalhador->appendChild($contato);
         }
         $this->node->appendChild($trabalhador);
-        
+
         $infoTSVInicio = $this->dom->createElement("infoTSVInicio");
         $ii = $this->std->infotsvinicio;
         $this->dom->addChild(
@@ -665,9 +670,10 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             false
         );
         $infoComplementares = null;
-        if (!empty($this->std->cargofuncao)) {
+
+        if (!empty($this->std->infotsvinicio->infocomplementares->cargofuncao)) {
             $infoComplementares = $this->dom->createElement("infoComplementares");
-            $rem = $this->std->cargofuncao;
+            $rem = $this->std->infotsvinicio->infocomplementares->cargofuncao;
             $cargoFuncao = $this->dom->createElement("cargoFuncao");
             $this->dom->addChild(
                 $cargoFuncao,
@@ -683,12 +689,12 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             );
             $infoComplementares->appendChild($cargoFuncao);
         }
-        
-        if (!empty($this->std->remuneracao)) {
+
+        if (!empty($this->std->infotsvinicio->infocomplementares->remuneracao)) {
             if (empty($infoComplementares)) {
                 $infoComplementares = $this->dom->createElement("infoComplementares");
             }
-            $rem = $this->std->remuneracao;
+            $rem = $this->std->infotsvinicio->infocomplementares->remuneracao;
             $remuneracao = $this->dom->createElement("remuneracao");
             $this->dom->addChild(
                 $remuneracao,
@@ -711,11 +717,11 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $infoComplementares->appendChild($remuneracao);
         }
         
-        if (!empty($this->std->fgts)) {
+        if (!empty($this->std->infotsvinicio->infocomplementares->fgts)) {
             if (empty($infoComplementares)) {
                 $infoComplementares = $this->dom->createElement("infoComplementares");
             }
-            $fg = $this->std->fgts;
+            $fg = $this->std->infotsvinicio->infocomplementares->fgts;
             $fgts = $this->dom->createElement("fgts");
             $this->dom->addChild(
                 $fgts,
@@ -731,12 +737,12 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             );
             $infoComplementares->appendChild($fgts);
         }
-        
-        if (!empty($this->std->infodirigentesindical)) {
+
+        if (!empty($this->std->infotsvinicio->infocomplementares->infodirigentesindical)) {
             if (empty($infoComplementares)) {
                 $infoComplementares = $this->dom->createElement("infoComplementares");
             }
-            $sind = $this->std->infodirigentesindical;
+            $sind = $this->std->infotsvinicio->infocomplementares->infodirigentesindical;
             $infoDirigenteSindical = $this->dom->createElement("infoDirigenteSindical");
             $this->dom->addChild(
                 $infoDirigenteSindical,
@@ -765,7 +771,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $infoComplementares->appendChild($infoDirigenteSindical);
         }
         
-        if (!empty($this->std->infotrabcedido)) {
+        if (!empty($this->std->infotsvinicio->infocomplementares->infotrabcedido)) {
             if (empty($infoComplementares)) {
                 $infoComplementares = $this->dom->createElement("infoComplementares");
             }
@@ -773,50 +779,51 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoTrabCedido,
                 "categOrig",
-                $this->std->infotrabcedido->categorig,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->categorig,
                 true
             );
             $this->dom->addChild(
                 $infoTrabCedido,
                 "cnpjCednt",
-                $this->std->infotrabcedido->cnpjcednt,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->cnpjcednt,
                 true
             );
             $this->dom->addChild(
                 $infoTrabCedido,
                 "matricCed",
-                $this->std->infotrabcedido->matricced,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->matricced,
                 true
             );
             $this->dom->addChild(
                 $infoTrabCedido,
                 "dtAdmCed",
-                $this->std->infotrabcedido->dtadmced,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->dtadmced,
                 true
             );
             $this->dom->addChild(
                 $infoTrabCedido,
                 "tpRegTrab",
-                $this->std->infotrabcedido->tpregtrab,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->tpregtrab,
                 true
             );
             $this->dom->addChild(
                 $infoTrabCedido,
                 "tpRegPrev",
-                $this->std->infotrabcedido->tpregprev,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->tpregprev,
                 true
             );
             $this->dom->addChild(
                 $infoTrabCedido,
                 "infOnus",
-                $this->std->infotrabcedido->infonus,
+                $this->std->infotsvinicio->infocomplementares->infotrabcedido->infonus,
                 true
             );
             $infoComplementares->appendChild($infoTrabCedido);
         }
+
         
-        if (!empty($this->std->infoestagiario)) {
-            $est = $this->std->infoestagiario;
+        if (!empty($this->std->infotsvinicio->infocomplementares->infoestagiario)) {
+            $est = $this->std->infotsvinicio->infocomplementares->infoestagiario;
             if (empty($infoComplementares)) {
                 $infoComplementares = $this->dom->createElement("infoComplementares");
             }
@@ -984,35 +991,35 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         if (!empty($infoComplementares)) {
             $infoTSVInicio->appendChild($infoComplementares);
         }
-        
-        if (!empty($this->std->afastamento)) {
+
+        if (!empty($this->std->infotsvinicio->afastamento)) {
             $afastamento = $this->dom->createElement("afastamento");
             $this->dom->addChild(
                 $afastamento,
                 "dtIniAfast",
-                $this->std->afastamento->dtiniafast,
+                $this->std->infotsvinicio->afastamento->dtiniafast,
                 true
             );
             $this->dom->addChild(
                 $afastamento,
                 "codMotAfast",
-                $this->std->afastamento->codmotafast,
+                $this->std->infotsvinicio->afastamento->codmotafast,
                 true
             );
             $infoTSVInicio->appendChild($afastamento);
         }
         
-        if (!empty($this->std->termino)) {
+        if (!empty($this->std->infotsvinicio->termino)) {
             $termino = $this->dom->createElement("termino");
             $this->dom->addChild(
                 $termino,
                 "dtTerm",
-                $this->std->termino->dtterm,
+                $this->std->infotsvinicio->termino->dtterm,
                 true
             );
             $infoTSVInicio->appendChild($termino);
         }
-        
+
         $this->node->appendChild($infoTSVInicio);
         
         $this->eSocial->appendChild($this->node);
