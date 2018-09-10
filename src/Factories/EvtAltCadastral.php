@@ -151,7 +151,7 @@ class EvtAltCadastral extends Factory implements FactoryInterface
         $this->dom->addChild(
             $dadosTrabalhador,
             "nmSoc",
-            !empty($this->std->alteracao->dadostrabalhador->nmsoc) ? $this->std->nmsoc : null,
+            !empty($this->std->alteracao->dadostrabalhador->nmsoc) ? $this->std->alteracao->dadostrabalhador->nmsoc : null,
             false
         );
         $documentos = null;
