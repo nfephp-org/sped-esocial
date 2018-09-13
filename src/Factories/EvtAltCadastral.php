@@ -352,7 +352,6 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             if (!empty($ct->nrregcnh)) {
                 $CNH = $this->dom->createElement("CNH");
             
-
                 $this->dom->addChild(
                     $CNH,
                     "nrRegCnh",
@@ -461,8 +460,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
                 true
             );
             $endereco->appendChild($brasil);
-        } elseif (!empty($this->std->exterior)) {
-            $ct = $this->std->exterior;
+        } elseif (!empty($this->std->alteracao->dadostrabalhador->exterior)) {
+            $ct = $this->std->alteracao->dadostrabalhador->exterior;
             $exterior = $this->dom->createElement("exterior");
             $this->dom->addChild(
                 $exterior,
@@ -510,8 +509,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
         }
         $dadosTrabalhador->appendChild($endereco);
 
-        if (!empty($this->std->trabestrangeiro)) {
-            $ct = $this->std->trabestrangeiro;
+        if (!empty($this->std->alteracao->dadostrabalhador->trabestrangeiro)) {
+            $ct = $this->std->alteracao->dadostrabalhador->trabestrangeiro;
             $trabEstrangeiro = $this->dom->createElement("trabEstrangeiro");
             $this->dom->addChild(
                 $trabEstrangeiro,
@@ -540,8 +539,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             $dadosTrabalhador->appendChild($trabEstrangeiro);
         }
 
-        if (!empty($this->std->infodeficiencia)) {
-            $ct = $this->std->infodeficiencia;
+        if (!empty($this->std->alteracao->dadostrabalhador->infodeficiencia)) {
+            $ct = $this->std->alteracao->dadostrabalhador->infodeficiencia;
             $infoDeficiencia = $this->dom->createElement("infoDeficiencia");
             $this->dom->addChild(
                 $infoDeficiencia,
@@ -594,8 +593,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             $dadosTrabalhador->appendChild($infoDeficiencia);
         }
 
-        if (!empty($this->std->dependente)) {
-            foreach ($this->std->dependente as $dep) {
+        if (!empty($this->std->alteracao->dadostrabalhador->dependente)) {
+            foreach ($this->std->alteracao->dadostrabalhador->dependente as $dep) {
                 $dependente = $this->dom->createElement("dependente");
                 $this->dom->addChild(
                     $dependente,
@@ -643,7 +642,7 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             }
         }
 
-        if (!empty($this->std->aposentadoria)) {
+        if (!empty($this->std->alteracao->dadostrabalhador->aposentadoria)) {
             $aposentadoria = $this->dom->createElement("aposentadoria");
             $this->dom->addChild(
                 $aposentadoria,
@@ -654,8 +653,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
             $dadosTrabalhador->appendChild($aposentadoria);
         }
 
-        if (!empty($this->std->contato)) {
-            $ct = $this->std->dadostrabalhador->contato;
+        if (!empty($this->std->alteracao->dadostrabalhador->contato)) {
+            $ct = $this->std->alteracao->dadostrabalhador->contato;
             $contato = $this->dom->createElement("contato");
             $this->dom->addChild(
                 $contato,
