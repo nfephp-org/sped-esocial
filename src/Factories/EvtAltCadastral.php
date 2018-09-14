@@ -65,6 +65,8 @@ class EvtAltCadastral extends Factory implements FactoryInterface
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
+        file_put_contents('storage/logs/data.log', var_export($this->std,true));
+
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
@@ -512,31 +514,33 @@ class EvtAltCadastral extends Factory implements FactoryInterface
         if (!empty($this->std->alteracao->dadostrabalhador->trabestrangeiro)) {
             $ct = $this->std->alteracao->dadostrabalhador->trabestrangeiro;
             $trabEstrangeiro = $this->dom->createElement("trabEstrangeiro");
-            $this->dom->addChild(
-                $trabEstrangeiro,
-                "dtChegada",
-                $ct->dtchegada,
-                true
-            );
-            $this->dom->addChild(
-                $trabEstrangeiro,
-                "classTrabEstrang",
-                $ct->classtrabestrang,
-                true
-            );
-            $this->dom->addChild(
-                $trabEstrangeiro,
-                "casadoBr",
-                $ct->casadobr,
-                true
-            );
-            $this->dom->addChild(
-                $trabEstrangeiro,
-                "filhosBr",
-                $ct->filhosbr,
-                true
-            );
-            $dadosTrabalhador->appendChild($trabEstrangeiro);
+            if (!empty($ct->dtchegada)) {
+                $this->dom->addChild(
+                    $trabEstrangeiro,
+                    "dtChegada",
+                    $ct->dtchegada,
+                    true
+                );
+                $this->dom->addChild(
+                    $trabEstrangeiro,
+                    "classTrabEstrang",
+                    $ct->classtrabestrang,
+                    true
+                );
+                $this->dom->addChild(
+                    $trabEstrangeiro,
+                    "casadoBr",
+                    $ct->casadobr,
+                    true
+                );
+                $this->dom->addChild(
+                    $trabEstrangeiro,
+                    "filhosBr",
+                    $ct->filhosbr,
+                    true
+                );
+                $dadosTrabalhador->appendChild($trabEstrangeiro);
+            }
         }
 
         if (!empty($this->std->alteracao->dadostrabalhador->infodeficiencia)) {
@@ -595,62 +599,66 @@ class EvtAltCadastral extends Factory implements FactoryInterface
 
         if (!empty($this->std->alteracao->dadostrabalhador->dependente)) {
             foreach ($this->std->alteracao->dadostrabalhador->dependente as $dep) {
-                $dependente = $this->dom->createElement("dependente");
-                $this->dom->addChild(
-                    $dependente,
-                    "tpDep",
-                    $dep->tpdep,
-                    true
-                );
-                $this->dom->addChild(
-                    $dependente,
-                    "nmDep",
-                    $dep->nmdep,
-                    true
-                );
-                $this->dom->addChild(
-                    $dependente,
-                    "dtNascto",
-                    $dep->dtnascto,
-                    true
-                );
-                $this->dom->addChild(
-                    $dependente,
-                    "cpfDep",
-                    !empty($dep->cpfdep) ? $dep->cpfdep : null,
-                    false
-                );
-                $this->dom->addChild(
-                    $dependente,
-                    "depIRRF",
-                    $dep->depirrf,
-                    true
-                );
-                $this->dom->addChild(
-                    $dependente,
-                    "depSF",
-                    $dep->depsf,
-                    true
-                );
-                $this->dom->addChild(
-                    $dependente,
-                    "incTrab",
-                    $dep->inctrab,
-                    true
-                );
-                $dadosTrabalhador->appendChild($dependente);
+                if (!empty($dep->cpfdep)) {
+                    $dependente = $this->dom->createElement("dependente");
+                    $this->dom->addChild(
+                        $dependente,
+                        "tpDep",
+                        $dep->tpdep,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "nmDep",
+                        $dep->nmdep,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "dtNascto",
+                        $dep->dtnascto,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "cpfDep",
+                        !empty($dep->cpfdep) ? $dep->cpfdep : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "depIRRF",
+                        $dep->depirrf,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "depSF",
+                        $dep->depsf,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "incTrab",
+                        $dep->inctrab,
+                        true
+                    );
+                    $dadosTrabalhador->appendChild($dependente);
+                }
             }
         }
 
         if (!empty($this->std->alteracao->dadostrabalhador->aposentadoria)) {
-            $aposentadoria = $this->dom->createElement("aposentadoria");
-            $this->dom->addChild(
-                $aposentadoria,
-                "trabAposent",
-                $this->std->aposentadoria->trabaposent,
-                true
-            );
-            $dadosTrabalhador->appendChild($aposentadoria);
+            if (!empty($this->std->aposentadoria->trabaposent)) {
+                $aposentadoria = $this->dom->createElement("aposentadoria");
+                $this->dom->addChild(
+                    $aposentadoria,
+                    "trabAposent",
+                    $this->std->aposentadoria->trabaposent,
+                    true
+                );
+                $dadosTrabalhador->appendChild($aposentadoria);
+            }
         }
 
         if (!empty($this->std->alteracao->dadostrabalhador->contato)) {
