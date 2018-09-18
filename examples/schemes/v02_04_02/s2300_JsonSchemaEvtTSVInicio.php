@@ -102,14 +102,12 @@ $jsonSchema = '{
         "paisnascto": {
             "required": true,
             "type": "string",
-            "minimum": 3,
-            "maximum": 3
+            "pattern": "^[0-9]{3}"
         },
         "paisnac": {
             "required": true,
             "type": "string",
-            "minimum": 3,
-            "maximum": 3
+            "pattern": "^[0-9]{3}"
         },
         "nmmae": {
             "required": false,
@@ -388,7 +386,7 @@ $jsonSchema = '{
                 "dtchegada": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"                
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 },
                 "classtrabestrang": {
                     "required": true,
@@ -692,7 +690,7 @@ $jsonSchema = '{
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 9 
+                    "maximum": 9
                 },
                 "areaatuacao": {
                     "required": false,
@@ -843,7 +841,7 @@ $jsonSchema = '{
                 "dtiniafast": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"                
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                 },
                 "codmotafast": {
                     "required": true,
