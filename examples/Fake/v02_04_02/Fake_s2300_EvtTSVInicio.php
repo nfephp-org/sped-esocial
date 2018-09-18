@@ -43,8 +43,8 @@ $std->nmsoc = 'Fulano de Tal';
 $std->dtnascto = '1996-06-11';
 $std->codmunic = '1234567';
 $std->uf = 'AC';
-$std->paisnascto = 'BRA';
-$std->paisnac = 'BRA';
+$std->paisnascto = '105';
+$std->paisnac = '105';
 $std->nmmae = 'Maria de Tal';
 $std->nmpai = "Joao de Tal";
 //documentos
