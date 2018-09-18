@@ -4,9 +4,10 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtReintegr Event S-2298 constructor
+ * READ for 2.4.2 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -20,147 +21,162 @@ use NFePHP\eSocial\Common\Factory;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
+/**
+ * Class EvtReintegr
+ * @package NFePHP\eSocial\Factories
+ */
 class EvtReintegr extends Factory implements FactoryInterface
 {
     /**
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtReintegr';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-2298';
-
     /**
-     * Parameters patterns
-     *
      * @var array
      */
     protected $parameters = [];
 
     /**
-     * Constructor
-     *
-     * @param string $config
+     * EvtReintegr constructor.
+     * @param $config
      * @param stdClass $std
-     * @param Certificate $certificate
+     * @param Certificate|null $certificate
+     * @param string $date
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null,
+        $date = ''
     ) {
-        parent::__construct($config, $std, $certificate);
+        parent::__construct($config, $std, $certificate, $date);
     }
 
     /**
-     * Node constructor
+     *
      */
     protected function toNode()
     {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
-        $ideEvento = $this->dom->createElement("ideEvento");
+        $ideEvento = $this->dom->createElement('ideEvento');
+
         $this->dom->addChild(
             $ideEvento,
-            "indRetif",
+            'indRetif',
             $this->std->indretif,
             true
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            'nrRecibo',
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "tpAmb",
+            'tpAmb',
             $this->tpAmb,
             true
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "procEmi",
+            'procEmi',
             $this->procEmi,
             true
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "verProc",
+            'verProc',
             $this->verProc,
             true
         );
+
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        //nodes do evento
-        $ideVinculo = $this->dom->createElement("ideVinculo");
+
+        $ideVinculo = $this->dom->createElement('ideVinculo');
+
         $this->dom->addChild(
             $ideVinculo,
-            "cpfTrab",
-            $this->std->cpftrab,
+            'cpfTrab',
+            $this->std->idevinculo->cpftrab,
             true
         );
+
         $this->dom->addChild(
             $ideVinculo,
-            "nisTrab",
-            $this->std->nistrab,
+            'nisTrab',
+            $this->std->idevinculo->nistrab,
             true
         );
+
         $this->dom->addChild(
             $ideVinculo,
-            "matricula",
-            $this->std->matricula,
+            'matricula',
+            $this->std->idevinculo->matricula,
             true
         );
+
         $this->node->appendChild($ideVinculo);
 
-        $infoReintegr = $this->dom->createElement("infoReintegr");
+        $infoReintegr = $this->dom->createElement('infoReintegr');
+
         $this->dom->addChild(
             $infoReintegr,
-            "tpReint",
-            $this->std->tpreint,
+            'tpReint',
+            $this->std->inforeintegr->tpreint,
             true
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "nrProcJud",
-            ! empty($this->std->nrprocjud) ? $this->std->nrprocjud : null,
+            'nrProcJud',
+            !empty($this->std->inforeintegr->nrprocjud) ? $this->std->inforeintegr->nrprocjud : null,
             false
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "nrLeiAnistia",
-            ! empty($this->std->nrleianistia) ? $this->std->nrleianistia : null,
+            'nrLeiAnistia',
+            !empty($this->std->inforeintegr->nrleianistia) ? $this->std->inforeintegr->nrleianistia : null,
             false
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "dtEfetRetorno",
-            $this->std->dtefetretorno,
+            'dtEfetRetorno',
+            $this->std->inforeintegr->dtefetretorno,
             true
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "dtEfeito",
-            $this->std->dtefeito,
+            'dtEfeito',
+            $this->std->inforeintegr->dtefeito,
             true
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "indPagtoJuizo",
-            $this->std->indpagtojuizo,
+            'indPagtoJuizo',
+            $this->std->inforeintegr->indpagtojuizo,
             true
         );
+
         $this->node->appendChild($infoReintegr);
-        //finalização do xml
         $this->eSocial->appendChild($this->node);
-        $this->sign($this->eSocial);
+        $this->sign();
     }
 }
