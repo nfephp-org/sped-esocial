@@ -107,7 +107,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $trabalhador,
             "nisTrab",
-            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            !empty($this->std->trabalhador->nistrab) ? $this->std->trabalhador->nistrab : null,
             false
         );
         $this->dom->addChild(
@@ -131,7 +131,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $trabalhador,
             "estCiv",
-            !empty($this->std->estciv) ? $this->std->estciv : null,
+            !empty($this->std->trabalhador->estciv) ? $this->std->trabalhador->estciv : null,
             false
         );
         $this->dom->addChild(
@@ -143,7 +143,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $trabalhador,
             "nmSoc",
-            !empty($this->std->nmsoc) ? $this->std->nmsoc : null,
+            !empty($this->std->trabalhador->nmsoc) ? $this->std->trabalhador->nmsoc : null,
             false
         );
 
