@@ -314,12 +314,12 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                     $verbasResc->appendChild($procJudTrab);
                 }
             }
-            if (!empty($this->std->verbasresc->infomv)) {
+            if (!empty($this->std->infotsvtermino->verbasresc->infomv)) {
                 $infoMV = $this->dom->createElement("infoMV");
                 $this->dom->addChild(
                     $infoMV,
                     "indMV",
-                    $this->std->verbasresc->infomv->indmv,
+                    $this->std->infotsvtermino->verbasresc->infomv->indmv,
                     true
                 );
                 foreach ($this->std->verbasresc->infomv->remunoutrempr as $rm) {
@@ -354,12 +354,12 @@ class EvtTSVTermino extends Factory implements FactoryInterface
             }
             $infoTSVTermino->appendChild($verbasResc);
         }
-        if (!empty($this->std->quarentena)) {
+        if (!empty($this->std->infotsvtermino->quarentena)) {
             $quarentena = $this->dom->createElement("quarentena");
             $this->dom->addChild(
                 $quarentena,
                 "dtFimQuar",
-                $this->std->quarentena->dtfimquar,
+                $this->std->infotsvtermino->quarentena->dtfimquar,
                 true
             );
             $infoTSVTermino->appendChild($quarentena);
