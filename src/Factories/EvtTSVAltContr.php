@@ -89,13 +89,14 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
             true
         );
 
-        $this->dom->addChild(
-          $ideEvento,
-          "nrRecibo",
-          $this->std->nrrecibo,
-          false
-        );
-
+        if (isset($this->std->nrrecibo)) {
+            $this->dom->addChild(
+              $ideEvento,
+              "nrRecibo",
+              $this->std->nrrecibo,
+              false
+            );
+        }
 
         $this->dom->addChild(
             $ideEvento,
