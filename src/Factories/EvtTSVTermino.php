@@ -64,6 +64,9 @@ class EvtTSVTermino extends Factory implements FactoryInterface
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
+        
+        file_put_contents('storage/logs/tvstermino.log', var_export($this->std, true));
+
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
@@ -100,19 +103,19 @@ class EvtTSVTermino extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->idetrabsemvinculo->cpftrab,
             true
         );
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "nisTrab",
-            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            !empty($this->std->idetrabsemvinculo->nistrab) ? $this->std->idetrabsemvinculo->nistrab : null,
             false
         );
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "codCateg",
-            $this->std->codcateg,
+           201,
             true
         );
         $this->node->appendChild($ideTrabSemVinculo);
@@ -120,17 +123,17 @@ class EvtTSVTermino extends Factory implements FactoryInterface
         $this->dom->addChild(
             $infoTSVTermino,
             "dtTerm",
-            $this->std->dtterm,
+            $this->std->infotsvtermino->dtterm,
             true
         );
         $this->dom->addChild(
             $infoTSVTermino,
             "mtvDesligTSV",
-            !empty($this->std->mtvdesligtsv) ? $this->std->mtvdesligtsv : null,
+            !empty($this->std->infotsvtermino->mtvdesligtsv) ? $this->std->infotsvtermino->mtvdesligtsv : null,
             false
         );
-        if (!empty($this->std->verbasresc)) {
-            $vr = $this->std->verbasresc;
+        if (!empty($this->std->infotsvtermino->verbasresc)) {
+            $vr = $this->std->infotsvtermino->verbasresc;
             $verbasResc = $this->dom->createElement("verbasResc");
             foreach ($vr->dmdev as $dv) {
                 $dmDev = $this->dom->createElement("dmDev");
