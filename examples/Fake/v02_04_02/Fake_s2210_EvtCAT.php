@@ -31,8 +31,8 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+//$std->indretif = 0;
+//$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
 $std->tpregistrador = 5;
 $std->tpinsc = 1;
 $std->nrinsc = '12345678901234';

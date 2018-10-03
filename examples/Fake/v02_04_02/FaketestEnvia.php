@@ -15,7 +15,7 @@ $config = [
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
     'verProc' => '2_4_01', //Versão do processo de emissão do evento.
                            //Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.1', //versão do layout do evento
+    'eventoVersion' => '2.4.2', //versão do layout do evento
     'serviceVersion' => '1.4.1', //versão do webservice
     'empregador' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF
