@@ -260,10 +260,10 @@ abstract class SoapBase implements SoapInterface
         //como o DFe podem ser mais longos, dependendo a forma que o aplicativo
         //utilize a API. Outra solução para remover arquivos "perdidos" pode ser
         //encontrada oportunamente.
-        $dt           = new \DateTime();
-        $tint         = new \DateInterval("PT".$this->waitingTime."M");
+        $dt = new \DateTime();
+        $tint = new \DateInterval("PT".$this->waitingTime."M");
         $tint->invert = true;
-        $tsLimit      = $dt->add($tint)->getTimestamp();
+        $tsLimit = $dt->add($tint)->getTimestamp();
         foreach ($contents as $item) {
             if ($item['type'] == 'file') {
                 if ($item['path'] == $this->prifile
@@ -437,11 +437,11 @@ abstract class SoapBase implements SoapInterface
             );
         }
         $this->certsdir = $this->certificate->getCnpj().'/certs/';
-        $this->prifile  = $this->certsdir.Strings::randomString(10).'.pem';
-        $this->pubfile  = $this->certsdir.Strings::randomString(10).'.pem';
+        $this->prifile = $this->certsdir.Strings::randomString(10).'.pem';
+        $this->pubfile = $this->certsdir.Strings::randomString(10).'.pem';
         $this->certfile = $this->certsdir.Strings::randomString(10).'.pem';
-        $ret            = true;
-        $private        = $this->certificate->privateKey;
+        $ret = true;
+        $private = $this->certificate->privateKey;
         if ($this->encriptPrivateKey) {
             //cria uma senha temporária ALEATÓRIA para salvar a chave primaria
             //portanto mesmo que localizada e identificada não estará acessível
@@ -529,8 +529,8 @@ abstract class SoapBase implements SoapInterface
         $envelope   .= ">";
         $soapheader = "<$prefix:Header/>";
         if (! empty($header)) {
-            $ns         = ! empty($header->namespace) ? $header->namespace : '';
-            $name       = $header->name;
+            $ns = ! empty($header->namespace) ? $header->namespace : '';
+            $name = $header->name;
             $soapheader = "<$prefix:Header>";
             $soapheader .= "<$name xmlns=\"$ns\">";
             foreach ($header->data as $key => $value) {
