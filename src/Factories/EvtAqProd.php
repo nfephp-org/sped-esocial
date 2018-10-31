@@ -196,100 +196,104 @@ class EvtAqProd extends Factory implements FactoryInterface
                         true
                     );
 
-                    foreach ($ideprod->nfs as $prodnfs) {
-                        $nfs = $this->dom->createElement("nfs");
+                    if (isset($ideprod->nfs)) {
+                        foreach ($ideprod->nfs as $prodnfs) {
+                            $nfs = $this->dom->createElement("nfs");
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "serie",
-                            ! empty($prodnfs->serie) ? $prodnfs->serie : null,
-                            false
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "serie",
+                                ! empty($prodnfs->serie) ? $prodnfs->serie : null,
+                                false
+                            );
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "nrDocto",
-                            $prodnfs->nrdocto,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "nrDocto",
+                                $prodnfs->nrdocto,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "dtEmisNF",
-                            $prodnfs->dtemisnf,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "dtEmisNF",
+                                $prodnfs->dtemisnf,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "vlrBruto",
-                            $prodnfs->vlrbruto,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vlrBruto",
+                                $prodnfs->vlrbruto,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrCPDescPR",
-                            $prodnfs->vrcpdescpr,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vrCPDescPR",
+                                $prodnfs->vrcpdescpr,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrRatDescPR",
-                            $prodnfs->vrratdescpr,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vrRatDescPR",
+                                $prodnfs->vrratdescpr,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrSenarDesc",
-                            $prodnfs->vrsenardesc,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vrSenarDesc",
+                                $prodnfs->vrsenardesc,
+                                true
+                            );
 
-                        $ideProdutor->appendChild($nfs);
+                            $ideProdutor->appendChild($nfs);
+                        }
                     }
 
-                    foreach ($ideprod->infoprocjud as $prodprocjud) {
-                        $infoProcJud = $this->dom->createElement("infoProcJud");
+                    if (isset($ideprod->infoprocjud)) {
+                        foreach ($ideprod->infoprocjud as $prodprocjud) {
+                            $infoProcJud = $this->dom->createElement("infoProcJud");
 
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "nrProcJud",
-                            $prodprocjud->nrprocjud,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $infoProcJud,
+                                "nrProcJud",
+                                $prodprocjud->nrprocjud,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "codSusp",
-                            $prodprocjud->codsusp,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $infoProcJud,
+                                "codSusp",
+                                $prodprocjud->codsusp,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "vrCPNRet",
-                            $prodprocjud->vrcpnret,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $infoProcJud,
+                                "vrCPNRet",
+                                $prodprocjud->vrcpnret,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "vrRatNRet",
-                            $prodprocjud->vrratnret,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $infoProcJud,
+                                "vrRatNRet",
+                                $prodprocjud->vrratnret,
+                                true
+                            );
 
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "vrSenarNRet",
-                            $prodprocjud->vrsenarnret,
-                            true
-                        );
+                            $this->dom->addChild(
+                                $infoProcJud,
+                                "vrSenarNRet",
+                                $prodprocjud->vrsenarnret,
+                                true
+                            );
 
-                        $ideProdutor->appendChild($infoProcJud);
+                            $ideProdutor->appendChild($infoProcJud);
+                        }
                     }
 
                     $tpAquis->appendChild($ideProdutor);

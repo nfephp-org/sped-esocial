@@ -31,7 +31,7 @@ $jsonSchema = '{
             "maximum": 2
         },
         "nrrecibo": {
-            "required": true,
+            "required": false,
             "type": "string",
             "maxLength": 40
         },
@@ -44,7 +44,7 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "maximum": 1
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
         "ideestabadquir": {
             "required": true,
@@ -76,8 +76,7 @@ $jsonSchema = '{
                             },
                             "vlrtotaquis": {
                                 "required": true,
-                                "type": "integer",
-                                "maxLength": 14
+                                "type": "number"
                             },
                             "ideprodutor": {
                                 "required": true,
@@ -95,28 +94,24 @@ $jsonSchema = '{
                                         },
                                         "nrinscprod": {
                                             "required": true,
-                                            "type": "integer",
+                                            "type": "string",
                                             "maxLength": 14
                                         },
                                         "vlrbruto": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 14
+                                            "type": "number"
                                         },
                                         "vrcpdescpr": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 14
+                                            "type": "number"
                                         },
                                         "vrratdescpr": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 14
+                                            "type": "number"
                                         },
                                         "vrsenardesc": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 14
+                                            "type": "number"
                                         },
                                         "nfs": {
                                             "required": false,
@@ -143,18 +138,15 @@ $jsonSchema = '{
                                                     },
                                                     "vlrbruto": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "number"
                                                     },
                                                     "vrcpdescpr": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "number"
                                                     },
                                                     "vrsenardesc": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "number"
                                                     }
                                                 }
                                             }
@@ -179,23 +171,20 @@ $jsonSchema = '{
                                                     },
                                                     "vrcpnret": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "number"
                                                     },
                                                     "vrratnret": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "number"
                                                     },
                                                     "vrsenarnret": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "number"
                                                     }
                                                 }
                                             }
                                         }
-                                       
+
                                     }
                                 }
                             }
@@ -204,7 +193,7 @@ $jsonSchema = '{
                 }
             }
         }
-        
+
     }
 }';
 

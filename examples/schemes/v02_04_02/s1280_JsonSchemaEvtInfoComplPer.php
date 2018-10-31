@@ -59,8 +59,7 @@ $jsonSchema = '{
                 },
                 "percpedcontrib": {
                      "required": true,
-                     "type": "integer",
-                     "maxLength": 5
+                     "type": "number"
                 }
             }
         },
@@ -87,13 +86,11 @@ $jsonSchema = '{
             "properties": {
                 "fatormes": {
                      "required": true,
-                     "type": "integer",
-                     "maxLength": 5
+                     "type": "number"
                 },
                 "fator13": {
                      "required": true,
-                     "type": "integer",
-                     "maxLength": 5
+                     "type": "number"
                 }
             }
         }
