@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  name="WsSolicitarDownloadEventos"
+                  targetNamespace="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0">
+    <wsp:Policy wsu:Id="ServicoSolicitarDownloadEventos_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="true"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                   targetNamespace="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0">
+            <xs:element name="SolicitarDownloadEventosPorId">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="solicitacao">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SolicitarDownloadEventosPorIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="SolicitarDownloadEventosPorIdResult">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SolicitarDownloadEventosPorNrRecibo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="solicitacao">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SolicitarDownloadEventosPorNrReciboResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="SolicitarDownloadEventosPorNrReciboResult">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorId_InputMessage">
+        <wsdl:part name="parameters" element="tns:SolicitarDownloadEventosPorId"/>
+    </wsdl:message>
+    <wsdl:message name="ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorId_OutputMessage">
+        <wsdl:part name="parameters" element="tns:SolicitarDownloadEventosPorIdResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorNrRecibo_InputMessage">
+        <wsdl:part name="parameters" element="tns:SolicitarDownloadEventosPorNrRecibo"/>
+    </wsdl:message>
+    <wsdl:message name="ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorNrRecibo_OutputMessage">
+        <wsdl:part name="parameters" element="tns:SolicitarDownloadEventosPorNrReciboResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ServicoSolicitarDownloadEventos">
+        <wsdl:operation name="SolicitarDownloadEventosPorId">
+            <wsdl:input
+                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0/ServicoSolicitarDownloadEventos/SolicitarDownloadEventosPorId"
+                    message="tns:ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorId_InputMessage"/>
+            <wsdl:output
+                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0/ServicoSolicitarDownloadEventos/SolicitarDownloadEventosPorIdResponse"
+                    message="tns:ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorId_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="SolicitarDownloadEventosPorNrRecibo">
+            <wsdl:input
+                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0/ServicoSolicitarDownloadEventos/SolicitarDownloadEventosPorNrRecibo"
+                    message="tns:ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorNrRecibo_InputMessage"/>
+            <wsdl:output
+                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0/ServicoSolicitarDownloadEventos/SolicitarDownloadEventosPorNrReciboResponse"
+                    message="tns:ServicoSolicitarDownloadEventos_SolicitarDownloadEventosPorNrRecibo_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ServicoSolicitarDownloadEventos" type="tns:ServicoSolicitarDownloadEventos">
+        <wsp:PolicyReference URI="#ServicoSolicitarDownloadEventos_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="SolicitarDownloadEventosPorId">
+            <soap:operation
+                    soapAction="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0/ServicoSolicitarDownloadEventos/SolicitarDownloadEventosPorId"
+                    style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SolicitarDownloadEventosPorNrRecibo">
+            <soap:operation
+                    soapAction="http://www.esocial.gov.br/servicos/empregador/download/solicitacao/v1_0_0/ServicoSolicitarDownloadEventos/SolicitarDownloadEventosPorNrRecibo"
+                    style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WsSolicitarDownloadEventos">
+        <wsdl:port name="ServicoSolicitarDownloadEventos" binding="tns:ServicoSolicitarDownloadEventos">
+            <soap:address location="endereco_ambiente_acessar_consulta"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
