@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -950,6 +949,12 @@ class EvtAdmissao extends Factory implements FactoryInterface
             ! empty($this->std->vinculo->infocontrato->duracao->clauassec) ? $this->std->vinculo->infocontrato->duracao->clauassec : null,
             false
         );
+        $this->dom->addChild(
+            $duracao,
+            'objDet',
+            $this->std->vinculo->infocontrato->duracao->objdet ?? null,
+            false
+        );
         $contrato->appendChild($duracao);
         //localTrabalho (obrigatorio)
         $localTrabalho = $this->dom->createElement("localTrabalho");
@@ -1114,6 +1119,12 @@ class EvtAdmissao extends Factory implements FactoryInterface
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
             $this->dom->addChild(
                 $sucessaoVinc,
+                'tpInscAnt',
+                $this->std->vinculo->sucessaovinc->tpinscant,
+                true
+            );
+            $this->dom->addChild(
+                $sucessaoVinc,
                 "cnpjEmpregAnt",
                 $this->std->vinculo->sucessaovinc->cnpjempregant,
                 true
@@ -1161,6 +1172,41 @@ class EvtAdmissao extends Factory implements FactoryInterface
             );
             $vinculo->appendChild($transfDom);
         }
+
+        if (isset($this->std->vinculo->mudancaCPF)) {
+            $mudancaCPF = $this->dom->createElement('mudancaCPF');
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'cpfAnt',
+                $this->std->vinculo->mudancacpf->cpfant,
+                true
+            );
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'matricAnt',
+                $this->std->vinculo->mudancacpf->matricant,
+                true
+            );
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'dtAltCPF',
+                $this->std->vinculo->mudancacpf->dtaltcpf,
+                true
+            );
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'observacao',
+                $this->std->vinculo->mudancacpf->observacao ?? null,
+                false
+            );
+
+            $vinculo->appendChild($mudancaCPF);
+        }
+
         //afastamento (opcional)
         if (isset($this->std->vinculo->afastamento)) {
             $afastamento = $this->dom->createElement("afastamento");
