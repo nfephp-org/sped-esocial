@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -132,6 +131,41 @@ class EvtTSVTermino extends Factory implements FactoryInterface
             !empty($this->std->infotsvtermino->mtvdesligtsv) ? $this->std->infotsvtermino->mtvdesligtsv : null,
             false
         );
+
+        $this->dom->addChild(
+            $infoTSVTermino,
+            'pensAlim',
+            $this->std->infotsvtermino->pensalim ?? null,
+            false
+        );
+
+        $this->dom->addChild(
+            $infoTSVTermino,
+            'percAliment',
+            $this->std->infotsvtermino->percaliment ?? null,
+            false
+        );
+
+        $this->dom->addChild(
+            $infoTSVTermino,
+            'vrAlim',
+            $this->std->infotsvtermino->vralim ?? null,
+            false
+        );
+
+        if (isset($this->std->infotsvtermino->mudancacpf)) {
+            $mudancaCPF = $this->dom->createElement('mudancaCPF');
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'novoCPF',
+                $this->std->infotsvtermino->mudancacpf->novocpf,
+                true
+            );
+
+            $infoTSVTermino->appendChild($mudancaCPF);
+        }
+
         if (!empty($this->std->infotsvtermino->verbasresc)) {
             $vr = $this->std->infotsvtermino->verbasresc;
             $verbasResc = $this->dom->createElement("verbasResc");
