@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -189,6 +188,14 @@ class EvtDeslig extends Factory implements FactoryInterface
 
         if (!empty($this->std->infodeslig->sucessaovinc)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
+
+            $this->dom->addChild(
+                $sucessaoVinc,
+                'tpInscSuc',
+                $this->std->infodeslig->sucessaovinc->tpinscsuc,
+                true
+            );
+
             $this->dom->addChild(
                 $sucessaoVinc,
                 "cnpjSucessora",
@@ -213,6 +220,19 @@ class EvtDeslig extends Factory implements FactoryInterface
                 true
             );
             $infoDeslig->appendChild($transfTit);
+        }
+
+        if (isset($this->std->infodeslig->mudancacpf)) {
+            $mudancaCPF = $this->dom->createElement('mudancaCPF');
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'novoCPF',
+                $this->std->infodeslig->mudancacpf->novocpf,
+                true
+            );
+
+            $infoDeslig->appendChild($mudancaCPF);
         }
 
         if (!empty($this->std->infodeslig->verbasresc)) {
