@@ -134,169 +134,102 @@ class EvtAqProd extends Factory implements FactoryInterface
         if (isset($this->std->ideestabadquir->tpaquis)) {
             foreach ($this->std->ideestabadquir->tpaquis as $tp) {
                 $tpAquis = $this->dom->createElement("tpAquis");
-
-                $this->dom->addChild(
-                    $tpAquis,
-                    "indAquis",
-                    $tp->indaquis,
-                    true
-                );
-
-                $this->dom->addChild(
-                    $tpAquis,
-                    "vlrTotAquis",
-                    $tp->vlrtotaquis,
-                    true
+                $tpAquis->setAttribute('indAquis', $tp->indaquis);
+                $tpAquis->setAttribute(
+                    'vlrTotAquis',
+                    number_format($tp->vlrtotaquis, 2, '.', '')
                 );
 
                 foreach ($tp->ideprodutor as $ideprod) {
                     $ideProdutor = $this->dom->createElement("ideProdutor");
-
-                    $this->dom->addChild(
-                        $ideProdutor,
-                        "tpInscProd",
-                        $ideprod->tpinscprod,
-                        true
+                    $ideProdutor->setAttribute('tpInscProd', $ideprod->tpinscprod);
+                    $ideProdutor->setAttribute('nrInscProd', $ideprod->nrinscprod);
+                    $ideProdutor->setAttribute(
+                        'vlrBruto',
+                        number_format($ideprod->vlrbruto, 2, '.', '')
                     );
-
-                    $this->dom->addChild(
-                        $ideProdutor,
-                        "nrInscProd",
-                        $ideprod->nrinscprod,
-                        true
+                    $ideProdutor->setAttribute(
+                        'vrCPDescPR',
+                        number_format($ideprod->vrcpdescpr, 2, '.', '')
                     );
-
-                    $this->dom->addChild(
-                        $ideProdutor,
-                        "vlrBruto",
-                        $ideprod->vlrbruto,
-                        true
+                    $ideProdutor->setAttribute(
+                        'vrRatDescPR',
+                        number_format($ideprod->vrratdescpr, 2, '.', '')
                     );
-
-                    $this->dom->addChild(
-                        $ideProdutor,
-                        "vrCPDescPR",
-                        $ideprod->vrcpdescpr,
-                        true
+                    $ideProdutor->setAttribute(
+                        'vrSenarDesc',
+                        number_format($ideprod->vrsenardesc, 2, '.', '')
                     );
-
-                    $this->dom->addChild(
-                        $ideProdutor,
-                        "vrRatDescPR",
-                        $ideprod->vrratdescpr,
-                        true
-                    );
-
-                    $this->dom->addChild(
-                        $ideProdutor,
-                        "vrSenarDesc",
-                        $ideprod->vrsenardesc,
-                        true
-                    );
+                    $ideProdutor->setAttribute('indOpcCP', $ideprod->indopccp);
 
                     foreach ($ideprod->nfs as $prodnfs) {
                         $nfs = $this->dom->createElement("nfs");
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "serie",
-                            ! empty($prodnfs->serie) ? $prodnfs->serie : null,
-                            false
+                        !empty($prodnfs->serie) ? $nfs->setAttribute('serie', $prodnfs->serie): null;
+                        $nfs->setAttribute('nrDocto', $prodnfs->nrdocto);
+                        $nfs->setAttribute('dtEmisNF', $prodnfs->dtemisnf);
+                        $nfs->setAttribute(
+                            'vlrBruto',
+                            number_format($prodnfs->vlrbruto, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "nrDocto",
-                            $prodnfs->nrdocto,
-                            true
+                        $nfs->setAttribute(
+                            'vrCPDescPR',
+                            number_format($prodnfs->vrcpdescpr, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "dtEmisNF",
-                            $prodnfs->dtemisnf,
-                            true
+                        $nfs->setAttribute(
+                            'vrRatDescPR',
+                            number_format($prodnfs->vrratdescpr, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vlrBruto",
-                            $prodnfs->vlrbruto,
-                            true
+                        $nfs->setAttribute(
+                            'vrSenarDesc',
+                            number_format($prodnfs->vrsenardesc, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrCPDescPR",
-                            $prodnfs->vrcpdescpr,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrRatDescPR",
-                            $prodnfs->vrratdescpr,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrSenarDesc",
-                            $prodnfs->vrsenardesc,
-                            true
-                        );
-
                         $ideProdutor->appendChild($nfs);
                     }
 
                     foreach ($ideprod->infoprocjud as $prodprocjud) {
                         $infoProcJud = $this->dom->createElement("infoProcJud");
-
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "nrProcJud",
-                            $prodprocjud->nrprocjud,
-                            true
+                        $infoProcJud->setAttribute('nrProcJud', $prodprocjud->nrprocjud);
+                        $infoProcJud->setAttribute('codSusp', $prodprocjud->codsusp);
+                        $infoProcJud->setAttribute(
+                            'vrCPNRet',
+                            number_format($prodprocjud->vrcpnret, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "codSusp",
-                            $prodprocjud->codsusp,
-                            true
+                        $infoProcJud->setAttribute(
+                            'vrRatNRet',
+                            number_format($prodprocjud->vrratnret, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "vrCPNRet",
-                            $prodprocjud->vrcpnret,
-                            true
+                        $infoProcJud->setAttribute(
+                            'vrSenarNRet',
+                            number_format($prodprocjud->vrsenarnret, 2, '.', '')
                         );
-
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "vrRatNRet",
-                            $prodprocjud->vrratnret,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $infoProcJud,
-                            "vrSenarNRet",
-                            $prodprocjud->vrsenarnret,
-                            true
-                        );
-
                         $ideProdutor->appendChild($infoProcJud);
                     }
-
                     $tpAquis->appendChild($ideProdutor);
+                    
+                    if (!empty($tp->infoprocj)) {
+                        foreach ($tp->infoprocj as $procjud) {
+                            $procJ = $this->dom->createElement("infoProcJ");
+                            $procJ->setAttribute('nrProcJud', $procjud->nrprocjud);
+                            $procJ->setAttribute('codSusp', $procjud->codsusp);
+                            $procJ->setAttribute(
+                                'vrCPNRet',
+                                number_format($procjud->vrcpnret, 2, '.', '')
+                            );
+                            $procJ->setAttribute(
+                                'vrRatNRet',
+                                number_format($procjud->vrratnret, 2, '.', '')
+                            );
+                            $procJ->setAttribute(
+                                'vrSenarNRet',
+                                number_format($procjud->vrsenarnret, 2, '.', '')
+                            );
+                            $tpAquis->appendChild($procJ);
+                        }
+                    }
                 }
-
                 $ideEstabAdquir->appendChild($tpAquis);
             }
         }
-
         $infoAquisProd->appendChild($ideEstabAdquir);
         $this->node->appendChild($infoAquisProd);
         $this->eSocial->appendChild($this->node);

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:esocial="http://www.esocial.gov.br/schema/download/solicitacao/retorno/v1_0_0"
+           targetNamespace="http://www.esocial.gov.br/schema/download/solicitacao/retorno/v1_0_0"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xs:element name="eSocial">
+    <xs:annotation>
+      <xs:documentation>Elemento raiz do eSocial.</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="download">
+          <xs:annotation>
+            <xs:documentation>Elemento de  informacoes relativas ao download cirurgico.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="status" type="esocial:TStatus">
+                <xs:annotation>
+                  <xs:documentation>Contém o status da solicitação.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="retornoSolicDownloadEvts" type="esocial:TRetornoSolicitacaoDownloadEvento" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Contém o retorno da solicitação de download dos eventos.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="TRetornoSolicitacaoDownloadEvento">
+    <xs:annotation>
+      <xs:documentation>Define os campos de retorno a solicitação de download de eventos.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="arquivos">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="arquivo" maxOccurs="50">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="status" type="esocial:TStatus">
+                    <xs:annotation>
+                      <xs:documentation>Contém o status para o arquivo.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="evt" type="esocial:TEventoeSocial" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Identificação única do evento. Atributo Id que fica na tag evtXXXXX de cada evento.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="rec" type="esocial:TReciboeSocial" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Número do recibo do evento</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TEventoeSocial">
+    <xs:annotation>
+      <xs:documentation>
+        Define os dados de um arquivo do eSocial (evento).
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:any processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Contém o xml do evento.</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+
+    <xs:attribute name="Id" use="required" type="xs:ID">
+      <xs:annotation>
+        <xs:documentation>Identificação única do evento. Atributo Id que fica na tag evtXXXXX de cada evento.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TReciboeSocial">
+    <xs:annotation>
+      <xs:documentation>
+        Define os dados de um arquivo do eSocial (recibo).
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:any processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Contém o xml do evento.</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+
+    <xs:attribute name="nrRec" use="required">
+      <xs:annotation>
+        <xs:documentation>Número do recibo do evento</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="40" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TStatus">
+    <xs:annotation>
+      <xs:documentation>Contém o status da solicitação realizada.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name="cdResposta" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            Código de resposta da solicitação realizada.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="descResposta">
+        <xs:annotation>
+          <xs:documentation>Contém a descrição correspondente ao código de resposta.</xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="2048" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

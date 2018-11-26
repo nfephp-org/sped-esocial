@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtInfoEmpregador Event S-1000 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -128,6 +129,12 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 "indDesFolha",
                 $cad->inddesfolha,
                 true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indOpcCP",
+                $cad->indopccp,
+                false
             );
             $this->dom->addChild(
                 $infoCadastro,

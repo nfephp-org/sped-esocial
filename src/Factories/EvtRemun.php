@@ -183,6 +183,12 @@ class EvtRemun extends Factory implements FactoryInterface
                 $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
                 $this->dom->addChild(
                     $sucessaoVinc,
+                    "tpInscAnt",
+                    $ic->sucessaovinc->tpinscant,
+                    true
+                );
+                $this->dom->addChild(
+                    $sucessaoVinc,
                     "cnpjEmpregAnt",
                     $ic->sucessaovinc->cnpjempregant,
                     true

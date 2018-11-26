@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTabFuncao Event S-1040 constructor
  * READ for 2.4.2 layout
+ * READ for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial

@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTabCarreira Event S-1035 constructor
  * READ for 2.4.2 layout
+ * READ for 2.5.0 layout
  *
  * @category  library
  * @copyright NFePHP Copyright (c) 2017
