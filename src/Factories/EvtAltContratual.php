@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -285,6 +284,14 @@ class EvtAltContratual extends Factory implements FactoryInterface
             !empty($ct->duracao->dtterm) ? $ct->duracao->dtterm : null,
             false
         );
+
+        $this->dom->addChild(
+            $duracao,
+            'objDet',
+            $ct->duracao->objdet ?? null,
+            false
+        );
+
         $infoContrato->appendChild($duracao);
 
         $localTrabalho = $this->dom->createElement("localTrabalho");
