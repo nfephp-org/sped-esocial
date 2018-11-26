@@ -17,7 +17,6 @@ namespace NFePHP\eSocial\Factories;
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\Factory;
-use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
@@ -990,6 +989,33 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         
         if (!empty($infoComplementares)) {
             $infoTSVInicio->appendChild($infoComplementares);
+        }
+
+        if (isset($this->std->infotsvinicio->mudancaCPF)) {
+            $mudancaCPF = $this->dom->createElement('mudancaCPF');
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'cpfAnt',
+                $this->std->infotsvinicio->mudancacpf->cpfant,
+                true
+            );
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'dtAltCPF',
+                $this->std->infotsvinicio->mudancacpf->dtaltcpf,
+                true
+            );
+
+            $this->dom->addChild(
+                $mudancaCPF,
+                'observacao',
+                $this->std->infotsvinicio->mudancacpf->observacao ?? null,
+                false
+            );
+
+            $infoTSVInicio->appendChild($mudancaCPF);
         }
 
         if (!empty($this->std->infotsvinicio->afastamento)) {
