@@ -134,12 +134,14 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $cad->inddesfolha,
                 true
             );
+
             $this->dom->addChild(
                 $infoCadastro,
                 "indOpcCP",
-                $cad->indOpcCP,
+                $cad->indopccp ?? null,
                 false
             );
+
             $this->dom->addChild(
                 $infoCadastro,
                 "indOptRegEletron",
