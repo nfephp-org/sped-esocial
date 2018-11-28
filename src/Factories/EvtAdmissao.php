@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtAdmissao Event S-2200 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -969,6 +970,12 @@ class EvtAdmissao extends Factory implements FactoryInterface
             ! empty($std->clauassec) ? $std->clauassec : null,
             false
         );
+        $this->dom->addChild(
+            $duracao,
+            "objDet",
+            ! empty($std->objdet) ? $std->objdet : null,
+            false
+        );
         $contrato->appendChild($duracao);
         //localTrabalho (obrigatorio)
         $localTrabalho = $this->dom->createElement("localTrabalho");
@@ -1144,6 +1151,12 @@ class EvtAdmissao extends Factory implements FactoryInterface
         if (isset($vin->sucessaovinc)) {
             $std = $vin->sucessaovinc;
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
+            $this->dom->addChild(
+                $sucessaoVinc,
+                "tpInscAnt",
+                !empty($std->tpinscant) ? $std->tpinscant : null,
+                false
+            );
             $this->dom->addChild(
                 $sucessaoVinc,
                 "cnpjEmpregAnt",
