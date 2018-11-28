@@ -30,7 +30,7 @@
             "pattern": "INC|ALT|EXC"
         },
         "dadoscarreira": {
-            "required": false,
+            "required": true,
             "type": "object",
             "properties": {
                 "dsccarreira": {

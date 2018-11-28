@@ -5,10 +5,11 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtComProd Event S-1260 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @copyright NFePHP Copyright (c) 2018
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -120,136 +121,137 @@ class EvtComProd extends Factory implements FactoryInterface
             $this->std->estabelecimento->nrinscestabrural,
             true
         );
-        $tpComerc = $this->dom->createElement("tpComerc");
-        $this->dom->addChild(
-            $tpComerc,
-            "indComerc",
-            $this->std->estabelecimento->indcomerc,
-            true
-        );
-        $this->dom->addChild(
-            $tpComerc,
-            "vrTotCom",
-            $this->std->estabelecimento->vrtotcom,
-            true
-        );
-        if (isset($this->std->estabelecimento->ideadquir)) {
-            foreach ($this->std->estabelecimento->ideadquir as $adquir) {
-                $ideAdquir = $this->dom->createElement("ideAdquir");
-
-                $this->dom->addChild(
-                    $ideAdquir,
-                    "tpInsc",
-                    $adquir->tpinsc,
-                    true
-                );
-                $this->dom->addChild(
-                    $ideAdquir,
-                    "nrInsc",
-                    $adquir->nrinsc,
-                    true
-                );
-                $this->dom->addChild(
-                    $ideAdquir,
-                    "vrComerc",
-                    $adquir->vrcomerc,
-                    true
-                );
-                if (isset($adquir->nfs)) {
-                    foreach ($adquir->nfs as $nf) {
-                        $nfs = $this->dom->createElement("nfs");
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "serie",
-                            !empty($nf->serie) ? $nf->serie : null,
-                            false
-                        );
-                        $this->dom->addChild(
-                            $nfs,
-                            "nrDocto",
-                            $nf->nrdocto,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $nfs,
-                            "dtEmisNF",
-                            $nf->dtemisnf,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $nfs,
-                            "vlrBruto",
-                            $nf->vlrbruto,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrCPDescPR",
-                            $nf->vrcpdescpr,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrRatDescPR",
-                            $nf->vrratdescpr,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrSenarDesc",
-                            $nf->vrsenardesc,
-                            true
-                        );
-                        $ideAdquir->appendChild($nfs);
+        foreach ($this->std->estabelecimento->tpcomerc as $tpcom) {
+            $tpComerc = $this->dom->createElement("tpComerc");
+            $this->dom->addChild(
+                $tpComerc,
+                "indComerc",
+                $tpcom->indcomerc,
+                true
+            );
+            $this->dom->addChild(
+                $tpComerc,
+                "vrTotCom",
+                $tpcom->vrtotcom,
+                true
+            );
+            if (isset($tpcom->ideadquir)) {
+                foreach ($tpcom->ideadquir as $adquir) {
+                    $ideAdquir = $this->dom->createElement("ideAdquir");
+                    $this->dom->addChild(
+                        $ideAdquir,
+                        "tpInsc",
+                        $adquir->tpinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideAdquir,
+                        "nrInsc",
+                        $adquir->nrinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideAdquir,
+                        "vrComerc",
+                        $adquir->vrcomerc,
+                        true
+                    );
+                    if (isset($adquir->nfs)) {
+                        foreach ($adquir->nfs as $nf) {
+                            $nfs = $this->dom->createElement("nfs");
+                            $this->dom->addChild(
+                                $nfs,
+                                "serie",
+                                !empty($nf->serie) ? $nf->serie : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $nfs,
+                                "nrDocto",
+                                $nf->nrdocto,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $nfs,
+                                "dtEmisNF",
+                                $nf->dtemisnf,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vlrBruto",
+                                $nf->vlrbruto,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vrCPDescPR",
+                                $nf->vrcpdescpr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vrRatDescPR",
+                                $nf->vrratdescpr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $nfs,
+                                "vrSenarDesc",
+                                $nf->vrsenardesc,
+                                true
+                            );
+                            $ideAdquir->appendChild($nfs);
+                        }
                     }
+                    $tpComerc->appendChild($ideAdquir);
                 }
-                $tpComerc->appendChild($ideAdquir);
             }
-        }
-        if (isset($this->std->infoprocjud)) {
-            foreach ($this->std->infoprocjud as $procjud) {
-                $infoProcJud = $this->dom->createElement("infoProcJud");
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "tpProc",
-                    $procjud->tpproc,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "nrProc",
-                    $procjud->nrproc,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "codSusp",
-                    $procjud->codsusp,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "vrCPSusp",
-                    !empty($procjud->vrcpsusp) ? $procjud->vrcpsusp : null,
-                    false
-                );
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "vrRatSusp",
-                    !empty($procjud->vrratsusp) ? $procjud->vrratsusp : null,
-                    false
-                );
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "vrSenarSusp",
-                    !empty($procjud->vrsenarsusp) ? $procjud->vrsenarsusp : null,
-                    false
-                );
-                $tpComerc->appendChild($infoProcJud);
+            
+            if (isset($tpcom->infoprocjud)) {
+                foreach ($tpcom->infoprocjud as $procjud) {
+                    $infoProcJud = $this->dom->createElement("infoProcJud");
+                    $this->dom->addChild(
+                        $infoProcJud,
+                        "tpProc",
+                        $procjud->tpproc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoProcJud,
+                        "nrProc",
+                        $procjud->nrproc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoProcJud,
+                        "codSusp",
+                        $procjud->codsusp,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoProcJud,
+                        "vrCPSusp",
+                        !empty($procjud->vrcpsusp) ? $procjud->vrcpsusp : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $infoProcJud,
+                        "vrRatSusp",
+                        !empty($procjud->vrratsusp) ? $procjud->vrratsusp : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $infoProcJud,
+                        "vrSenarSusp",
+                        !empty($procjud->vrsenarsusp) ? $procjud->vrsenarsusp : null,
+                        false
+                    );
+                    $tpComerc->appendChild($infoProcJud);
+                }
             }
+            $ideEstabel->appendChild($tpComerc);
         }
-        $ideEstabel->appendChild($tpComerc);
         $infoComProd->appendChild($ideEstabel);
         $this->node->appendChild($infoComProd);
         $this->eSocial->appendChild($this->node);

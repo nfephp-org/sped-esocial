@@ -44,18 +44,17 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "maxLength": 7,
-            "minLength": 7
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
         "infosubstpatr": {
             "required": false,
             "type": "object",
             "properties": {
                 "indsubstpatr": {
-                     "required": true,
-                     "type": "integer",
-                     "maxLength": 1,
-                     "pattern": "([1-2]){1}$"
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
                 },
                 "percpedcontrib": {
                      "required": true,
@@ -71,12 +70,11 @@ $jsonSchema = '{
             "items": {
                 "type": "object",
                 "properties": {
-                        "cnpjopportuario": {
-                            "required": true,
-                            "type": "string",
-                            "minLength": 14,
-                            "maxLength": 14
-                        }
+                    "cnpjopportuario": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{14}$"
+                    }
                 }
             }
         },
@@ -112,8 +110,8 @@ $std->infosubstpatropport[0] = new \stdClass();
 $std->infosubstpatropport[0]->cnpjopportuario = '11111111111111';
 
 $std->infoativconcom = new \stdClass();
-$std->infoativconcom->fatormes = 11111;
-$std->infoativconcom->fator13 = 11111;
+$std->infoativconcom->fatormes = 1.11;
+$std->infoativconcom->fator13 = 0.22;
 
 
 // Schema must be decoded before it can be used for validation

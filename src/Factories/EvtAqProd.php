@@ -135,7 +135,7 @@ class EvtAqProd extends Factory implements FactoryInterface
             if ($this->layoutStr !== 'v02_05_00') {
                 $this->tpAquis($ideEstabAdquir, $this->std->ideestabadquir->tpaquis);
             } else {
-                $this->tpAquisV02_05_00(
+                $this->tpAquisV020500(
                     $ideEstabAdquir,
                     $this->std->ideestabadquir->tpaquis
                 );
@@ -304,7 +304,7 @@ class EvtAqProd extends Factory implements FactoryInterface
      * @param DOMElement $ideEstabAdquir
      * @param stdClass $tpaquis
      */
-    protected function tpAquisV02_05_00(&$ideEstabAdquir, $tpaquis)
+    protected function tpAquisV020500(&$ideEstabAdquir, $tpaquis)
     {
         foreach ($tpaquis as $tp) {
             $tpAquis = $this->dom->createElement("tpAquis");

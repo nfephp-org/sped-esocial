@@ -30,7 +30,7 @@
             "pattern": "INC|ALT|EXC"
         },
         "dadosfuncao": {
-            "required": false,
+            "required": true,
             "type": "object",
             "properties": {
                 "dscfuncao": {

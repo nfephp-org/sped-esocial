@@ -10,11 +10,11 @@ use NFePHP\eSocial\Event;
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_4_02',
+    'verProc' => '2_5_0',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.2',
+    'eventoVersion' => '2.5.0',
     //versão do layout do evento
-    'serviceVersion' => '1.4.1',
+    'serviceVersion' => '1.5.0',
     //versão do webservice
     'empregador' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF
@@ -36,7 +36,7 @@ $std->indapuracao = 1;
 $std->perapur = '2017-08';
 
 $std->estabelecimento = new \stdClass();
-$std->estabelecimento->nrinscestabrural = '111111111111111';
+$std->estabelecimento->nrinscestabrural = '12345678901234';
 
 $std->estabelecimento->tpcomerc[0] = new \stdClass();
 $std->estabelecimento->tpcomerc[0]->indcomerc = '2';
@@ -44,7 +44,7 @@ $std->estabelecimento->tpcomerc[0]->vrtotcom = 1500.00;
 
 $std->estabelecimento->tpcomerc[0]->ideadquir[0] = new \stdClass();
 $std->estabelecimento->tpcomerc[0]->ideadquir[0]->tpinsc = '1';
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nrinsc = '111111111111111';
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nrinsc = '12345678';
 $std->estabelecimento->tpcomerc[0]->ideadquir[0]->vrcomerc = 1500.22;
 
 $std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0] = new \stdClass();

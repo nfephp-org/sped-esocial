@@ -1,19 +1,22 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
+use JsonSchema\Constraints\Constraint;
 use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1295 sem alterações da 2.4.1 => 2.4.2
+//S-1298 sem alterações da 2.4.1 => 2.4.2
+//S-1298 sem alterações da 2.4.2 => 2.5.0
 
-$evento  = 'evtTotConting';
-$version = '02_04_02';
+$evento = 'evtReabreEvPer';
+$version = '02_05_00';
 
 $jsonSchema = '{
-    "title": "evtTotConting",
+    "title": "evtReabreEvPer",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -32,41 +35,14 @@ $jsonSchema = '{
             "required": true,
             "type": "string",
             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
-        },
-        "nmresp": {
-            "required": true,
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 70
-        },
-        "cpfresp": {
-            "required": true,
-            "type": "string",
-            "pattern": "^[0-9]{11}$"
-        },
-        "telefone": {
-            "required": true,
-            "type": "string",
-            "pattern": "^[0-9]{10,13}$"
-        },
-        "email": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 60,
-            "format": "email"
         }
     }
 }';
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indapuracao = 1;
-$std->perapur = '2017';
-$std->nmresp = 'Fulano de Tal';
-$std->cpfresp = '12345678901';
-$std->telefone = '1123456789';
-$std->email = 'test@mail.com';
-
+$std->indapuracao = 2;
+$std->perapur = '2017-08';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
@@ -84,8 +60,7 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
-    $std,
-    $jsonSchemaObject
+        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 );
 
 if ($jsonValidator->isValid()) {

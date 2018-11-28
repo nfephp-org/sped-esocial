@@ -30,7 +30,7 @@
             "pattern": "INC|ALT|EXC"
         },
         "dadosambiente": {
-            "required": false,
+            "required": true,
             "type": "object",
             "properties": {
                 "dscamb": {
