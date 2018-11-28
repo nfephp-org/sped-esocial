@@ -43,8 +43,8 @@ $std->infosubstpatropport[0] = new \stdClass();
 $std->infosubstpatropport[0]->cnpjopportuario = '11111111111111';
 
 $std->infoativconcom = new \stdClass();
-$std->infoativconcom->fatormes = 11111;
-$std->infoativconcom->fator13 = 11111;
+$std->infoativconcom->fatormes = 1.11;
+$std->infoativconcom->fator13 = 0.22;
 
 try {
     //carrega a classe responsavel por lidar com os certificados

@@ -40,7 +40,7 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "maxLength": 7
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
         "estabelecimento": {
             "required": true,
@@ -51,129 +51,128 @@ $jsonSchema = '{
                     "type": "string",
                     "maxLength": 15
                 },
-                "indcomerc": {
+                "tpcomerc": {
                     "required": true,
-                    "type": "integer",
-                    "maxLength": 1,
-                    "pattern": "2|3|8|9"
-                },
-                "vrtotcom": {
-                    "required": true,
-                    "type": "integer",
-                    "maxLength": 14
-                },
-                "ideadquir": {
-                    "required": false,
                     "type": "array",
-                    "minItems": 0,
-                    "maxItems": 9999,
+                    "minItems": 1,
+                    "maxItems": 4,
                     "items": {
                         "type": "object",
                         "properties": {
-                            "tpinsc": {
-                                "required": true,
-                                "type": "integer",
-                                "maxLength": 1,
-                                "pattern": "([1-2]){1}$"
-                            },
-                            "nrinsc": {
+                            "indcomerc": {
                                 "required": true,
                                 "type": "string",
-                                "minLength": 8,
-                                "maxLength": 15,
-                                "pattern": "^[0-9]"
+                                "pattern": "^(2|3|8|9)$"
                             },
-                            "vrcomerc": {
+                            "vrtotcom": {
                                 "required": true,
-                                "type": "integer",
-                                "maxLength": 14
+                                "type": "number"
                             },
-                            "nfs": {
+                            "ideadquir": {
                                 "required": false,
-                                "type": "array",
+                                "type": ["array","null"],
                                 "minItems": 0,
                                 "maxItems": 9999,
                                 "items": {
                                     "type": "object",
                                     "properties": {
-                                        "serie": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^[1-2]{1}$"
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^[0-9]{8,15}"
+                                        },
+                                        "vrcomerc": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "nfs": {
                                             "required": false,
-                                            "type": "string",
-                                            "maxLength": 5
-                                        },
-                                        "nrdocto": {
-                                            "required": true,
-                                            "type": "string",
-                                            "maxLength": 20
-                                        },
-                                        "dtemisnf": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                                        },
-                                        "vlrbruto": {
+                                            "type": ["array","null"],
+                                            "minItems": 0,
+                                            "maxItems": 9999,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "serie": {
+                                                        "required": false,
+                                                        "type": "string",
+                                                        "maxLength": 5
+                                                    },
+                                                    "nrdocto": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "maxLength": 20
+                                                    },
+                                                    "dtemisnf": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                                    },
+                                                    "vlrbruto": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    },
+                                                    "vrcpdescpr": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    },
+                                                    "vrsenardesc": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "infoprocjud": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 10,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tpproc": {
                                             "required": true,
                                             "type": "integer",
-                                            "maxLength": 14
+                                            "minimum": 1,
+                                            "maximum": 2
                                         },
-                                        "vrcpdescpr": {
+                                        "nrproc": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 14
+                                            "type": "string",
+                                            "maxLength": 21
                                         },
-                                        "vrsenardesc": {
+                                        "codsusp": {
                                             "required": true,
-                                            "type": "integer",
-                                            "maxLength": 14
+                                            "type": "string",
+                                            "maxLength": 14,
+                                            "pattern": "^[0-9]"
+                                        },
+                                        "vrcpsusp": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "vrratsusp": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "vrsenarsusp": {
+                                            "required": false,
+                                            "type": ["number","null"]
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-                }
-            }
-        },
-        "infoprocjud": {
-            "required": false,
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 10,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "tpproc": {
-                        "required": true,
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 2
-                    },
-                    "nrproc": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 21
-                    },
-                    "codsusp": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 14,
-                        "pattern": "^[0-9]"
-                    },
-                    "vrcpsusp": {
-                        "required": false,
-                        "type": "integer",
-                        "maxLength": 14
-                    },
-                    "vrratsusp": {
-                        "required": false,
-                        "type": "integer",
-                        "maxLength": 14
-                    },
-                    "vrsenarsusp": {
-                        "required": false,
-                        "type": "integer",
-                        "maxLength": 14
-                    }
+                    }    
                 }
             }
         }
@@ -187,37 +186,32 @@ $std->nrrecibo = '123456';
 $std->indapuracao = 1;
 $std->perapur = '2017-08';
 
-$estabelecimento = new \stdClass();
-$estabelecimento->nrinscestabrural = '111111111111111';
-$estabelecimento->indcomerc = 2;
-$estabelecimento->vrtotcom = 1500;
+$std->estabelecimento = new \stdClass();
+$std->estabelecimento->nrinscestabrural = '111111111111111';
 
-$ideadquir[0] = new \stdClass();
-$ideadquir[0]->tpinsc = 1;
-$ideadquir[0]->nrinsc = '111111111111111';
-$ideadquir[0]->vrcomerc = 1500;
+$std->estabelecimento->tpcomerc[0] = new \stdClass();
+$std->estabelecimento->tpcomerc[0]->indcomerc = '2';
+$std->estabelecimento->tpcomerc[0]->vrtotcom = 1500.00;
 
-$nfs[0] = new \stdClass();
-$nfs[0]->serie = '12345';
-$nfs[0]->nrdocto = '1111111111111111111';
-$nfs[0]->dtemisnf = '2017-08-23';
-$nfs[0]->vlrbruto = 1500;
-$nfs[0]->vrcpdescpr = 1500;
-$nfs[0]->vrratdescpr = 1500;
-$nfs[0]->vrsenardesc = 1500;
+$std->estabelecimento->tpcomerc[0]->ideadquir[0] = new \stdClass();
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->tpinsc = '1';
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nrinsc = '111111111111111';
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->vrcomerc = 1500.22;
 
-$ideadquir[0]->nfs = $nfs;
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0] = new \stdClass();
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->serie = '12345';
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->nrdocto = '1111111111111111111';
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->dtemisnf = '2017-08-23';
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vlrbruto = 1500.44;
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrcpdescpr = 1500.55;
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrratdescpr = 1500.66;
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrsenardesc = 1500.77;
 
-$estabelecimento->ideadquir = $ideadquir;
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0] = new \stdClass();
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->tpproc = 1;
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->nrproc = '111111111111111111';
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->codsusp = '11111111111111';
 
-$std->estabelecimento = $estabelecimento;
-
-$infoprocjud[0] = new \stdClass();
-$infoprocjud[0]->tpproc = 1;
-$infoprocjud[0]->nrproc = '111111111111111111';
-$infoprocjud[0]->codsusp = '11111111111111';
-
-$std->infoprocjud = $infoprocjud;
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
@@ -235,7 +229,7 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
-        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 );
 
 if ($jsonValidator->isValid()) {

@@ -9,13 +9,14 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1270 sem alterações da 2.4.1 => 2.4.2
+//S-1280 sem alterações da 2.4.1 => 2.4.2
+//S-1280 sem alterações da 2.4.2 => 2.5.0
 
-$evento = 'evtContratAvNP';
-$version = '02_04_02';
+$evento = 'evtInfoComplPer';
+$version = '02_05_00';
 
 $jsonSchema = '{
-    "title": "evtContratAvNP",
+    "title": "evtInfoComplPer",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -46,63 +47,49 @@ $jsonSchema = '{
             "type": "string",
             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
         },
-        "remunavnp": {
-            "required": true,
+        "infosubstpatr": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "indsubstpatr": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "percpedcontrib": {
+                     "required": true,
+                     "type": "number"
+                }
+            }
+        },
+        "infosubstpatropport": {
+            "required": false,
             "type": "array",
-            "minItems": 1,
-            "maxItems": 999,
+            "minItems": 0,
+            "maxItems": 9999,
             "items": {
                 "type": "object",
                 "properties": {
-                    "tpinsc": {
-                        "required": true,
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 2
-                    },
-                    "tpinsc": {
-                         "required": true,
-                         "type": "integer",
-                         "minimum": 1,
-                        "maximum": 4
-                    },
-                    "nrinsc": {
+                    "cnpjopportuario": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^[0-9]{8,14}$"
-                    },
-                    "codlotacao": {
-                        "required": true,
-                        "type": "string"
-                    },
-                    "vrbccp00": {
-                        "required": true,
-                        "type": "number"
-                    },
-                    "vrbccp15": {
-                        "required": true,
-                        "type": "number"
-                    },
-                    "vrbccp20": {
-                        "required": true,
-                        "type": "number"
-                    },
-                    "vrbccp25": {
-                        "required": true,
-                        "type": "number"
-                    },
-                    "vrbccp13": {
-                        "required": true,
-                        "type": "number"
-                    },
-                    "vrbcfgts": {
-                        "required": true,
-                        "type": "number"
-                    },
-                    "vrdesccp": {
-                        "required": true,
-                        "type": "number"
+                        "pattern": "^[0-9]{14}$"
                     }
+                }
+            }
+        },
+        "infoativconcom": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "fatormes": {
+                     "required": true,
+                     "type": "number"
+                },
+                "fator13": {
+                     "required": true,
+                     "type": "number"
                 }
             }
         }
@@ -112,21 +99,21 @@ $jsonSchema = '{
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = '1231513';
+$std->nrrecibo = '1111111111111';
 $std->indapuracao = 1;
 $std->perapur = '2017-08';
 
-$std->remunavnp[0] = new \stdClass();
-$std->remunavnp[0]->tpinsc = 1;
-$std->remunavnp[0]->nrinsc = '11111111111111';
-$std->remunavnp[0]->codlotacao = '11111111111111';
-$std->remunavnp[0]->vrbccp00 = 1500.11;
-$std->remunavnp[0]->vrbccp15 = 1500.22;
-$std->remunavnp[0]->vrbccp20 = 1500.33;
-$std->remunavnp[0]->vrbccp25 = 1500.44;
-$std->remunavnp[0]->vrbccp13 = 1500.55;
-$std->remunavnp[0]->vrbcfgts = 1500.66;
-$std->remunavnp[0]->vrdesccp = 1500.77;
+$std->infosubstpatr = new \stdClass();
+$std->infosubstpatr->indsubstpatr = 1;
+$std->infosubstpatr->percpedcontrib = 1;
+
+$std->infosubstpatropport[0] = new \stdClass();
+$std->infosubstpatropport[0]->cnpjopportuario = '11111111111111';
+
+$std->infoativconcom = new \stdClass();
+$std->infoativconcom->fatormes = 1.11;
+$std->infoativconcom->fator13 = 0.22;
+
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

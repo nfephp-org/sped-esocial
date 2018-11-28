@@ -30,7 +30,7 @@
             "pattern": "INC|ALT|EXC"
         },
         "dadoshorcontratual": {
-            "required": false,
+            "required": true,
             "type": "object",
             "properties": {
                 "hrentr": {

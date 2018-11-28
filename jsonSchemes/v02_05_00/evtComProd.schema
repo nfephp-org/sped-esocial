@@ -32,13 +32,13 @@
                 "nrinscestabrural": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 15
+                    "pattern": "^[0-9]{14}$"
                 },
                 "tpcomerc": {
                     "required": true,
                     "type": "array",
                     "minItems": 1,
-                    "maxItems": 4,
+                    "maxItems": 5,
                     "items": {
                         "type": "object",
                         "properties": {
@@ -67,7 +67,7 @@
                                         "nrinsc": {
                                             "required": true,
                                             "type": "string",
-                                            "pattern": "^[0-9]{8,15}"
+                                            "pattern": "^[0-9]{8,15}$"
                                         },
                                         "vrcomerc": {
                                             "required": true,

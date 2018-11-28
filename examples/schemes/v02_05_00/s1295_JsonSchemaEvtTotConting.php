@@ -8,9 +8,10 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1295 sem alterações da 2.4.1 => 2.4.2
+//S-1295 sem alterações da 2.4.2 => 2.5.0
 
 $evento  = 'evtTotConting';
-$version = '02_04_02';
+$version = '02_05_00';
 
 $jsonSchema = '{
     "title": "evtTotConting",
