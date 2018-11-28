@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtInfoEmpregador Event S-1000 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -34,19 +35,16 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate | null
-     * @param string $date
+     * @param Certificate $certificate
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
-        $date = ''
+        Certificate $certificate = null
     ) {
-        parent::__construct($config, $std, $certificate, $date);
+        parent::__construct($config, $std, $certificate);
     }
 
     /**
@@ -131,6 +129,12 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 "indDesFolha",
                 $cad->inddesfolha,
                 true
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indOpcCP",
+                $cad->indopccp,
+                false
             );
             $this->dom->addChild(
                 $infoCadastro,

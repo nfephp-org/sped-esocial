@@ -45,7 +45,7 @@ $tpaquis[0]->vlrtotaquis = 1500;
 
 $ideprodutor[0] = new \stdClass();
 $ideprodutor[0]->tpinscprod = 1;
-$ideprodutor[0]->nrinscprod = 11111111111111;
+$ideprodutor[0]->nrinscprod = '11111111111111';
 $ideprodutor[0]->vlrbruto = 1500;
 $ideprodutor[0]->vrcpdescpr = 0;
 $ideprodutor[0]->vrratdescpr = 0;

@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtRemun Event S-1200 constructor
  * READ for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -48,16 +49,14 @@ class EvtRemun extends Factory implements FactoryInterface
      *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate | null
-     * @param string $date
+     * @param Certificate $certificate
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
-        $date = ''
+        Certificate $certificate
     ) {
-        parent::__construct($config, $std, $certificate, $date);
+        parent::__construct($config, $std, $certificate);
     }
 
     /**
@@ -183,6 +182,12 @@ class EvtRemun extends Factory implements FactoryInterface
             );
             if (!empty($ic->sucessaovinc)) {
                 $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
+                $this->dom->addChild(
+                    $sucessaoVinc,
+                    "tpInscAnt",
+                    $ic->sucessaovinc->tpinscant,
+                    true
+                );
                 $this->dom->addChild(
                     $sucessaoVinc,
                     "cnpjEmpregAnt",

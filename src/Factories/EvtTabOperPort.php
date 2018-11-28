@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTabOperPort Event S-1080 constructor
  * READ for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -44,19 +45,16 @@ class EvtTabOperPort extends Factory implements FactoryInterface
     
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate | null
-     * @param string $date
+     * @param Certificate $certificate
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
-        $date = ''
+        Certificate $certificate
     ) {
-        parent::__construct($config, $std, $certificate, $date);
+        parent::__construct($config, $std, $certificate);
     }
 
     /**

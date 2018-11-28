@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:esocial="http://www.esocial.gov.br/schema/consulta/identificadores-eventos/retorno/v1_0_0"
+           targetNamespace="http://www.esocial.gov.br/schema/consulta/identificadores-eventos/retorno/v1_0_0"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xs:element name="eSocial">
+    <xs:annotation>
+      <xs:documentation>Elemento raiz do eSocial.</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="retornoConsultaIdentificadoresEvts">
+          <xs:annotation>
+            <xs:documentation>Elemento de  informacoes relativas ao download.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="status" type="esocial:TStatus">
+                <xs:annotation>
+                  <xs:documentation>Contém o status da consulta.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="retornoIdentificadoresEvts" type="esocial:TRetornoConsultaIdentificadoresEventos" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation>Contém o retorno da consulta aos eventos.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="TRetornoConsultaIdentificadoresEventos">
+    <xs:annotation>
+      <xs:documentation>Define os campos de retorno a consulta de eventos.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="qtdeTotEvtsConsulta" type="xs:long">
+        <xs:annotation>
+          <xs:documentation>Quantidade total de eventos encontrados de acordo com o filtro informado. Porém somente os 50 primeiros serão retornados na tag identificadoresEvts</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dhUltimoEvtRetornado" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Data/Hora de envio do último evento retornado na tag metadadosEvts.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="identificadoresEvts" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="identificadorEvt" maxOccurs="50">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id" type="xs:ID">
+                    <xs:annotation>
+                      <xs:documentation>Identificação única do evento. Atributo Id que fica na tag evtXXXXX de cada evento.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="nrRec">
+                    <xs:annotation>
+                      <xs:documentation>Número do recibo do evento</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="40" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TStatus">
+    <xs:annotation>
+      <xs:documentation>Contém o status da solicitação realizada.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+      <xs:element name="cdResposta" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>
+            Código de resposta da solicitação realizada.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="descResposta">
+        <xs:annotation>
+          <xs:documentation>Contém a descrição correspondente ao código de resposta.</xs:documentation>
+        </xs:annotation>
+
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="2048" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTabAmbiente Event S-1060 constructor
  * READ for 2.4.2 layout
+ * READ for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -39,19 +40,16 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate | null
-     * @param string $date
+     * @param Certificate $certificate
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
-        $date = ''
+        Certificate $certificate
     ) {
-        parent::__construct($config, $std, $certificate, $date);
+        parent::__construct($config, $std, $certificate);
     }
 
     /**
@@ -106,6 +104,13 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
         if (!empty($this->std->dadosambiente)) {
             $da = $this->std->dadosambiente;
             $dados = $this->dom->createElement("dadosAmbiente");
+            //incluso em 2.5.0
+            $this->dom->addChild(
+                $dados,
+                "nmAmb",
+                !empty($da->nmamb) ? $da->nmamb : null,
+                !empty($da->nmamb) ? true : false
+            );
             $this->dom->addChild(
                 $dados,
                 "dscAmb",
@@ -130,15 +135,26 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                 $da->nrinsc,
                 true
             );
-            foreach ($this->std->dadosambiente->fatorrisco as $ftr) {
-                $fator = $this->dom->createElement("fatorRisco");
-                $this->dom->addChild(
-                    $fator,
-                    "codFatRis",
-                    $ftr->codfatris,
-                    true
-                );
-                $dados->appendChild($fator);
+            //incluso em 2.5.0
+            $this->dom->addChild(
+                $dados,
+                "codLotacao",
+                !empty($da->codlotacao) ? $da->codlotacao : null,
+                false
+            );
+            
+            //não existe mais em 2.5.0
+            if (!empty($this->std->dadosambiente->fatorrisco)) {
+                foreach ($this->std->dadosambiente->fatorrisco as $ftr) {
+                    $fator = $this->dom->createElement("fatorRisco");
+                    $this->dom->addChild(
+                        $fator,
+                        "codFatRis",
+                        $ftr->codfatris,
+                        true
+                    );
+                    $dados->appendChild($fator);
+                }
             }
         }
         $nova = null;

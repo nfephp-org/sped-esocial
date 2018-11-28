@@ -42,22 +42,19 @@ class EvtBenPrRP extends Factory implements FactoryInterface
      * @var array
      */
     protected $parameters = [];
-
     /**
      * Constructor
      *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate | null
-     * @param string $date
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
-        $date = ''
+        Certificate $certificate = null
     ) {
-        parent::__construct($config, $std, $certificate, $date);
+        parent::__construct($config, $std, $certificate);
     }
 
     /**
