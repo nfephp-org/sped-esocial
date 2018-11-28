@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTabProcesso Event S-1070 constructor
  * READ for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -50,16 +51,14 @@ class EvtTabProcesso extends Factory implements FactoryInterface
      *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate | null
-     * @param string $date
+     * @param Certificate $certificate
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
-        $date = ''
+        Certificate $certificate
     ) {
-        parent::__construct($config, $std, $certificate, $date);
+        parent::__construct($config, $std, $certificate);
     }
 
     /**
@@ -130,83 +129,80 @@ class EvtTabProcesso extends Factory implements FactoryInterface
         }
         $node->appendChild($ide);
 
-        if (!empty($this->std->dadosproc)) {
-            $dados = $this->dom->createElement("dadosProc");
+        $dados = $this->dom->createElement("dadosProc");
+        $this->dom->addChild(
+            $dados,
+            "indAutoria",
+            ! empty($this->std->dadosproc->indautoria)
+                ? $this->std->dadosproc->indautoria
+                : null,
+            false
+        );
+        $this->dom->addChild(
+            $dados,
+            "indMatProc",
+            $this->std->dadosproc->indmatproc,
+            true
+        );
+        $this->dom->addChild(
+            $dados,
+            "observacao",
+            !empty($this->std->dadosproc->observacao) ? $this->std->dadosproc->observacao : null,
+            false
+        );
+        if (! empty($this->std->dadosproc->dadosprocjud)) {
+            $dadosProcJud = $this->dom->createElement("dadosProcJud");
             $this->dom->addChild(
-                $dados,
-                "indAutoria",
-                ! empty($this->std->dadosproc->indautoria)
-                    ? $this->std->dadosproc->indautoria
-                    : null,
-                false
-            );
-
-            $this->dom->addChild(
-                $dados,
-                "indMatProc",
-                $this->std->dadosproc->indmatproc,
+                $dadosProcJud,
+                "ufVara",
+                $this->std->dadosproc->dadosprocjud->ufvara,
                 true
             );
             $this->dom->addChild(
-                $dados,
-                "observacao",
-                !empty($this->std->dadosproc->observacao) ? $this->std->dadosproc->observacao : null,
-                false
+                $dadosProcJud,
+                "codMunic",
+                $this->std->dadosproc->dadosprocjud->codmunic,
+                true
             );
-            if (! empty($this->std->dadosproc->dadosprocjud)) {
-                $dadosProcJud = $this->dom->createElement("dadosProcJud");
-                $this->dom->addChild(
-                    $dadosProcJud,
-                    "ufVara",
-                    $this->std->dadosproc->dadosprocjud->ufvara,
-                    true
-                );
-                $this->dom->addChild(
-                    $dadosProcJud,
-                    "codMunic",
-                    $this->std->dadosproc->dadosprocjud->codmunic,
-                    true
-                );
-                $this->dom->addChild(
-                    $dadosProcJud,
-                    "idVara",
-                    $this->std->dadosproc->dadosprocjud->idvara,
-                    true
-                );
-                $dados->appendChild($dadosProcJud);
-            }
-            if (! empty($this->std->dadosproc->infosusp)) {
-                foreach ($this->std->dadosproc->infosusp as $susp) {
-                    $infoSusp = $this->dom->createElement("infoSusp");
-                    $this->dom->addChild(
-                        $infoSusp,
-                        "codSusp",
-                        $susp->codsusp,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $infoSusp,
-                        "indSusp",
-                        $susp->indsusp,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $infoSusp,
-                        "dtDecisao",
-                        $susp->dtdecisao,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $infoSusp,
-                        "indDeposito",
-                        $susp->inddeposito,
-                        true
-                    );
-                    $dados->appendChild($infoSusp);
-                }
-            }
-            $node->appendChild($dados);
+            $this->dom->addChild(
+                $dadosProcJud,
+                "idVara",
+                $this->std->dadosproc->dadosprocjud->idvara,
+                true
+            );
+            $dados->appendChild($dadosProcJud);
         }
+        if (! empty($this->std->dadosproc->infosusp)) {
+            foreach ($this->std->dadosproc->infosusp as $susp) {
+                $infoSusp = $this->dom->createElement("infoSusp");
+                $this->dom->addChild(
+                    $infoSusp,
+                    "codSusp",
+                    $susp->codsusp,
+                    true
+                );
+                $this->dom->addChild(
+                    $infoSusp,
+                    "indSusp",
+                    $susp->indsusp,
+                    true
+                );
+                $this->dom->addChild(
+                    $infoSusp,
+                    "dtDecisao",
+                    $susp->dtdecisao,
+                    true
+                );
+                $this->dom->addChild(
+                    $infoSusp,
+                    "indDeposito",
+                    $susp->inddeposito,
+                    true
+                );
+                $dados->appendChild($infoSusp);
+            }
+        }
+        $node->appendChild($dados);
 
         if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
             $newVal       = $this->std->novavalidade;

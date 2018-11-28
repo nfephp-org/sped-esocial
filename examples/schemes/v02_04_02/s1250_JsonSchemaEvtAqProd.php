@@ -53,7 +53,8 @@ $jsonSchema = '{
                 "tpinscadq": {
                     "required": true,
                     "type": "integer",
-                    "pattern": "1|3"
+                    "minimum": 1,
+                    "maximum": 3
                 },
                 "nrinscadq": {
                     "required": true,
@@ -71,8 +72,8 @@ $jsonSchema = '{
                             "indaquis": {
                                 "required": true,
                                 "type": "integer",
-                                "maxLength": 1,
-                                "pattern": "([1-3]){1}$"
+                                "minimum": 1,
+                                "maximum": 3
                             },
                             "vlrtotaquis": {
                                 "required": true,
@@ -89,13 +90,13 @@ $jsonSchema = '{
                                         "tpinscprod": {
                                             "required": true,
                                             "type": "integer",
-                                            "maxLength": 1,
-                                            "pattern": "([1-2]){1}$"
+                                            "minimum": 1,
+                                            "maximum": 2
                                         },
                                         "nrinscprod": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 14
+                                            "pattern": "^[0-9]{11,14}$"
                                         },
                                         "vlrbruto": {
                                             "required": true,
@@ -166,8 +167,7 @@ $jsonSchema = '{
                                                     },
                                                     "codsusp": {
                                                         "required": true,
-                                                        "type": "integer",
-                                                        "maxLength": 14
+                                                        "type": "integer"
                                                     },
                                                     "vrcpnret": {
                                                         "required": true,
