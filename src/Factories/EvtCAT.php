@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtCAT Event S-2210 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -95,165 +96,16 @@ class EvtCAT extends Factory implements FactoryInterface
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
         
-        $ideRegistrador = $this->dom->createElement("ideRegistrador");
-        $this->dom->addChild(
-            $ideRegistrador,
-            "tpRegistrador",
-            $this->std->tpregistrador,
-            true
-        );
-        $this->dom->addChild(
-            $ideRegistrador,
-            "tpInsc",
-            !empty($this->std->tpinsc) ? $this->std->tpinsc : null,
-            false
-        );
-        $this->dom->addChild(
-            $ideRegistrador,
-            "nrInsc",
-            !empty($this->std->nrinsc) ? $this->std->nrinsc : null,
-            false
-        );
-        $this->node->insertBefore($ideRegistrador, $ideEmpregador);
+        if ($this->layoutStr !== 'v02_05_00') {
+            $this->tagRegistrador($ideEmpregador);
+            $this->tagTrabalhador();
+        } else {
+            $this->tagVinculo();
+        }
+        $cat = $this->tagCAT();
+        $this->tagLocalAcidente($cat);
         
-        $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
-        $this->dom->addChild(
-            $ideTrabalhador,
-            "cpfTrab",
-            $this->std->cpftrab,
-            true
-        );
-        $this->dom->addChild(
-            $ideTrabalhador,
-            "nisTrab",
-            !empty($this->std->nistrab) ? $this->std->nistrab : null,
-            false
-        );
-        $this->node->appendChild($ideTrabalhador);
-
-        $cat = $this->dom->createElement("cat");
-        $this->dom->addChild(
-            $cat,
-            "dtAcid",
-            $this->std->dtacid,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "tpAcid",
-            $this->std->tpacid,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "hrAcid",
-            $this->std->hracid,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "hrsTrabAntesAcid",
-            $this->std->hrstrabantesacid,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "tpCat",
-            $this->std->tpcat,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "indCatObito",
-            $this->std->indcatobito,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "dtObito",
-            !empty($this->std->dtobito) ? $this->std->dtobito : null,
-            false
-        );
-        $this->dom->addChild(
-            $cat,
-            "indComunPolicia",
-            $this->std->indcomunpolicia,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "codSitGeradora",
-            !empty($this->std->codsitgeradora) ? $this->std->codsitgeradora : null,
-            false
-        );
-        $this->dom->addChild(
-            $cat,
-            "iniciatCAT",
-            $this->std->iniciatcat,
-            true
-        );
-        $this->dom->addChild(
-            $cat,
-            "observacao",
-            !empty($this->std->observacao) ? $this->std->observacao : null,
-            false
-        );
-        $localAcidente = $this->dom->createElement("localAcidente");
-        $this->dom->addChild(
-            $localAcidente,
-            "tpLocal",
-            $this->std->tplocal,
-            true
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "dscLocal",
-            !empty($this->std->dsclocal) ? $this->std->dsclocal : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "dscLograd",
-            !empty($this->std->dsclograd) ? $this->std->dsclograd : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "nrLograd",
-            !empty($this->std->nrlograd) ? $this->std->nrlograd : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "codMunic",
-            !empty($this->std->codmunic) ? $this->std->codmunic : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "uf",
-            !empty($this->std->uf) ? $this->std->uf : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "cnpjLocalAcid",
-            !empty($this->std->cnpjlocalacid) ? $this->std->cnpjlocalacid : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "pais",
-            !empty($this->std->pais) ? $this->std->pais : null,
-            false
-        );
-        $this->dom->addChild(
-            $localAcidente,
-            "codPostal",
-            !empty($this->std->codpostal) ? $this->std->codpostal : null,
-            false
-        );
-        $cat->appendChild($localAcidente);
+        
         
         foreach ($this->std->parteatingida as $pa) {
             $parteAtingida = $this->dom->createElement("parteAtingida");
@@ -364,12 +216,21 @@ class EvtCAT extends Factory implements FactoryInterface
                 $pa->ideoc,
                 true
             );
-            $this->dom->addChild(
-                $emitente,
-                "nrOc",
-                $pa->nroc,
-                true
-            );
+            if ($this->layoutStr == 'v02_05_00') {
+                $this->dom->addChild(
+                    $emitente,
+                    "nrOC",
+                    $pa->nroc,
+                    true
+                );
+            } else {
+                $this->dom->addChild(
+                    $emitente,
+                    "nrOc",
+                    $pa->nroc,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $emitente,
                 "ufOC",
@@ -385,20 +246,272 @@ class EvtCAT extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $catOrigem,
                 "dtCatOrig",
-                $pa->dtcatorig,
-                true
-            );
-            $this->dom->addChild(
-                $catOrigem,
-                "nrCatOrig",
-                !empty($pa->nrcatorig) ? $pa->nrcatorig : null,
+                !empty($pa->dtcatorig) ? $pa->dtcatorig : null,
                 false
             );
+            if ($this->layoutStr != 'v02_05_00') {
+                $this->dom->addChild(
+                    $catOrigem,
+                    "nrCatOrig",
+                    !empty($pa->nrcatorig) ? $pa->nrcatorig : null,
+                    false
+                );
+            } else {
+                $this->dom->addChild(
+                    $catOrigem,
+                    "nrRecCatOrig",
+                    !empty($pa->nrreccatorig) ? $pa->nrreccatorig : null,
+                    false
+                );
+            }
             $cat->appendChild($catOrigem);
         }
         $this->node->appendChild($cat);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+    
+    protected function tagRegistrador(\DOMElement $ideEmpregador)
+    {
+        $ideRegistrador = $this->dom->createElement("ideRegistrador");
+        $this->dom->addChild(
+            $ideRegistrador,
+            "tpRegistrador",
+            $this->std->tpregistrador,
+            true
+        );
+        $this->dom->addChild(
+            $ideRegistrador,
+            "tpInsc",
+            !empty($this->std->tpinsc) ? $this->std->tpinsc : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideRegistrador,
+            "nrInsc",
+            !empty($this->std->nrinsc) ? $this->std->nrinsc : null,
+            false
+        );
+        $this->node->insertBefore($ideRegistrador, $ideEmpregador);
+    }
+    
+    protected function tagTrabalhador()
+    {
+        $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "cpfTrab",
+            $this->std->cpftrab,
+            true
+        );
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "nisTrab",
+            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            false
+        );
+        $this->node->appendChild($ideTrabalhador);
+    }
+    
+    protected function tagVinculo()
+    {
+        $ideVinculo = $this->dom->createElement("ideVinculo");
+        $this->dom->addChild(
+            $ideVinculo,
+            "cpfTrab",
+            $this->std->cpftrab,
+            true
+        );
+        $this->dom->addChild(
+            $ideVinculo,
+            "nisTrab",
+            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideVinculo,
+            "matricula",
+            !empty($this->std->matricula) ? $this->std->matricula : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideVinculo,
+            "codCateg",
+            !empty($this->std->codcateg) ? $this->std->codcateg : null,
+            false
+        );
+        $this->node->appendChild($ideVinculo);
+    }
+    
+    protected function tagCAT()
+    {
+        $cat = $this->dom->createElement("cat");
+        $this->dom->addChild(
+            $cat,
+            "dtAcid",
+            $this->std->dtacid,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "tpAcid",
+            $this->std->tpacid,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "hrAcid",
+            $this->std->hracid,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "hrsTrabAntesAcid",
+            $this->std->hrstrabantesacid,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "tpCat",
+            $this->std->tpcat,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "indCatObito",
+            $this->std->indcatobito,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "dtObito",
+            !empty($this->std->dtobito) ? $this->std->dtobito : null,
+            false
+        );
+        $this->dom->addChild(
+            $cat,
+            "indComunPolicia",
+            $this->std->indcomunpolicia,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "codSitGeradora",
+            !empty($this->std->codsitgeradora) ? $this->std->codsitgeradora : null,
+            false
+        );
+        $this->dom->addChild(
+            $cat,
+            "iniciatCAT",
+            $this->std->iniciatcat,
+            true
+        );
+        if ($this->layoutStr !== 'v02_04_02') {
+            $this->dom->addChild(
+                $cat,
+                "obsCAT",
+                !empty($this->std->obscat) ? $this->std->obscat : null,
+                false
+            );
+        } else {
+            $this->dom->addChild(
+                $cat,
+                "observacao",
+                !empty($this->std->observacao) ? $this->std->observacao : null,
+                false
+            );
+        }
+        return $cat;
+    }
+    
+    protected function tagLocalAcidente(\DOMElement &$cat)
+    {
+        $localAcidente = $this->dom->createElement("localAcidente");
+        $this->dom->addChild(
+            $localAcidente,
+            "tpLocal",
+            $this->std->tplocal,
+            true
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "dscLocal",
+            !empty($this->std->dsclocal) ? $this->std->dsclocal : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "codAmb",
+            !empty($this->std->codamb) ? $this->std->codamb : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "tpLograd",
+            !empty($this->std->tplograd) ? $this->std->tplograd : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "dscLograd",
+            !empty($this->std->dsclograd) ? $this->std->dsclograd : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "nrLograd",
+            !empty($this->std->nrlograd) ? $this->std->nrlograd : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "complemento",
+            !empty($this->std->complemento) ? $this->std->complemento : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "bairro",
+            !empty($this->std->bairro) ? $this->std->bairro : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "cep",
+            !empty($this->std->cep) ? $this->std->cep : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "codMunic",
+            !empty($this->std->codmunic) ? $this->std->codmunic : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "uf",
+            !empty($this->std->uf) ? $this->std->uf : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "cnpjLocalAcid",
+            !empty($this->std->cnpjlocalacid) ? $this->std->cnpjlocalacid : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "pais",
+            !empty($this->std->pais) ? $this->std->pais : null,
+            false
+        );
+        $this->dom->addChild(
+            $localAcidente,
+            "codPostal",
+            !empty($this->std->codpostal) ? $this->std->codpostal : null,
+            false
+        );
+        $cat->appendChild($localAcidente);
     }
 }
