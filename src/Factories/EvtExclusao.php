@@ -118,20 +118,22 @@ class EvtExclusao extends Factory implements FactoryInterface
             );
             $infoExclusao->appendChild($ideTrabalhador);
         }
-        $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
-        $this->dom->addChild(
-            $ideFolhaPagto,
-            "indApuracao",
-            $this->std->idefolhapagto->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideFolhaPagto,
-            "perApur",
-            $this->std->idefolhapagto->perapur,
-            true
-        );
-        $infoExclusao->appendChild($ideFolhaPagto);
+        if (! empty($this->std->idefolhapagto)) {
+            $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
+            $this->dom->addChild(
+                $ideFolhaPagto,
+                "indApuracao",
+                $this->std->idefolhapagto->indapuracao,
+                true
+            );
+            $this->dom->addChild(
+                $ideFolhaPagto,
+                "perApur",
+                $this->std->idefolhapagto->perapur,
+                true
+            );
+            $infoExclusao->appendChild($ideFolhaPagto);
+        }
         $this->node->appendChild($infoExclusao);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);

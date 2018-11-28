@@ -43,7 +43,7 @@ $jsonSchema = '{
             }
         },
         "idefolhapagto": {
-            "required": true,
+            "required": false,
             "type": "object",
             "properties": {
                 "indapuracao": {
