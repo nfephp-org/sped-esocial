@@ -10,11 +10,11 @@ use NFePHP\eSocial\Event;
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '2_4_02',
+    'verProc' => '2_5_0',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.4.2',
+    'eventoVersion' => '2.5.0',
     //versão do layout do evento
-    'serviceVersion' => '1.4.1',
+    'serviceVersion' => '1.5.0',
     //versão do webservice
     'empregador' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF
@@ -31,8 +31,8 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif = 1;
-//$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->indretif = 2;
+$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
 $std->tpregistrador = 5;
 $std->tpinsc = 1;
 $std->nrinsc = '12345678901234';
@@ -46,16 +46,20 @@ $std->tpcat = 2;
 $std->indcatobito = 'N';
 $std->dtobito = null;
 $std->indcomunpolicia = 'S';
-$std->codsitgeradora = '222';
+$std->codsitgeradora = '123456789';
 $std->iniciatcat = 3;
-$std->observacao = 'lksjlskjlskjslkjslkjslkjslksjl';
+$std->obscat = 'lksjlskjlskjslkjslkjslkjslksjl';
 $std->tplocal = 8;
 $std->dsclocal = 'klçkdçldkdlkdlk';
+$std->codamb = 'kskskskks';
+$std->tplograd = 'AAAA';
 $std->dsclograd = 'poiwpoiwowiowi';
 $std->nrlograd = '2929b';
+$std->complemento = 'lslslsl';
+$std->bairro = 'nsnnsnsn';
+$std->cep = '04154000';
 $std->codmunic = '1200104';
 $std->uf = 'AC';
-$std->cnpjlocalacid = '12345678901234';
 $std->pais = '105';
 $std->codpostal = '123456789012';
 
@@ -84,8 +88,7 @@ $std->atestado->nroc = '12222kkkk';
 $std->atestado->ufoc = 'AC';
 
 $std->catorigem = new \stdClass();
-$std->catorigem->dtcatorig = '2016-12-14';
-$std->catorigem->nrcatorig = '2565656556';
+$std->catorigem->nrreccatorig = '2565656556';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
