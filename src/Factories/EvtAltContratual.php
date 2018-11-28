@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtAltContratual Event S-2206 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -280,6 +281,12 @@ class EvtAltContratual extends Factory implements FactoryInterface
             $duracao,
             "dtTerm",
             !empty($ct->dtterm) ? $ct->dtterm : null,
+            false
+        );
+        $this->dom->addChild(
+            $duracao,
+            "objDet",
+            !empty($ct->objdet) ? $ct->objdet : null,
             false
         );
         $infoContrato->appendChild($duracao);
