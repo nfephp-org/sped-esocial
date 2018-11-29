@@ -6,9 +6,9 @@
 ## Layout 2.4.2 (versão atual ativa)
 
 ## Layout 2.5.0 [(NOTA)](https://portal.esocial.gov.br/manuais/nota-orientativa-011-2018-convivencia-de-versoes.pdf)
-> PreProd 2.5.0 estará disponível a partir de 17/12/2018
-> Produção 2.5.0 e 2.4.2 de 01/01/2019 até 28/02/2019
-> Produçao apenas 2.5.0 a partir de 01/03/2019
+> - PreProd 2.5.0 estará disponível a partir de 17/12/2018
+> - Produção 2.5.0 e 2.4.2 de 01/01/2019 até 28/02/2019
+> - Produçao apenas 2.5.0 a partir de 01/03/2019
 
 ### *Esta API aninda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
 
