@@ -3,12 +3,18 @@
 
 *sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
-# Em desenvolvimento Não usar diretamente em PRODUÇÃO sem testar!!!
+## Layout 2.4.2 (versão atual ativa)
+
+## Layout 2.5.0 [(NOTA)](https://portal.esocial.gov.br/manuais/nota-orientativa-011-2018-convivencia-de-versoes.pdf)
+> PreProd 2.5.0 estará disponível a partir de 17/12/2018
+> Produção 2.5.0 e 2.4.2 de 01/01/2019 até 28/02/2019
+> Produçao apenas 2.5.0 a partir de 01/03/2019
+
+### *Esta API aninda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
 
 *Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
 
 [![Chat][ico-gitter]][link-gitter]
-
 
 [![Latest Stable Version][ico-stable]][link-packagist]
 [![Build Status][ico-travis]][link-travis]
@@ -43,7 +49,6 @@ Fase 3: Maio/18: Torna-se obrigatório o envio das folhas de pagamento
 Fase 4: Julho/18: Substituição da GFIP (Guia de Informações à Previdência Social) e compensação cruzada
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
-
  
 
 **Etapa 2 - Demais empresas privadas, incluindo Simples, MEIs e pessoas físicas (que possuam empregados)**
@@ -58,7 +63,6 @@ Fase 4: Janeiro/19: Substituição da GFIP (Guia de informações à Previdênci
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
- 
 
 **Etapa 3 - Entes Públicos**
 
@@ -72,8 +76,6 @@ Fase 4: Julho/19: Substituição da GFIP (guia de informações à Previdência)
 
 Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
-
-**Liberação da fase de Testes: 01/07/2017**
 
 **Empresas do SIMPLES NACIONAL : a definir**
 

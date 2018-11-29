@@ -285,6 +285,7 @@ $std->dadosestab->infotrab->infopdc->nrprocjud = '12345678901234567890';
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-12';
 //$std->novavalidade->fimvalid = '2018-12';
+//
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
 
