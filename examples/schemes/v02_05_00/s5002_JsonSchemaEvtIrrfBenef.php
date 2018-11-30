@@ -1,4 +1,21 @@
-{
+<?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+require_once '../../../bootstrap.php';
+
+use JsonSchema\Constraints\Constraint;
+use JsonSchema\Constraints\Factory;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
+
+//S-5002
+//Campo {vrIrrfDesc} – alterada descrição para o código de receita 0473-01.
+
+$evento = 'evtIrrfBenef';
+$version = '02_04_02';
+
+$jsonSchema = '{
     "title": "evtIrrfBenef",
     "type": "object",
     "properties": {
@@ -142,4 +159,73 @@
             }
         }
     }
+}';
+
+// Schema must be decoded before it can be used for validation
+$jsonSchemaObject = json_decode($jsonSchema);
+
+$std = new \stdClass();
+$std->sequencial = 1;
+$std->nrrecarqbase = 'ljdkdjdlkjdlkdjkdjdkjdkjdkdjk';
+$std->perapur = '2017-08';
+$std->cpftrab = '99999999999';
+$std->vrdeddep = '1234.56';
+
+$std->infoirrf[0] = new \stdClass();
+$std->infoirrf[0]->codcateg = '101';
+$std->infoirrf[0]->indresbr = 'N';
+
+$std->infoirrf[0]->basesirrf[0] = new \stdClass();
+$std->infoirrf[0]->basesirrf[0]->tpvalor = '00';
+$std->infoirrf[0]->basesirrf[0]->valor = '1000';
+
+$std->infoirrf[0]->irrf[0] = new \stdClass();
+$std->infoirrf[0]->irrf[0]->tpcr = '056107';
+$std->infoirrf[0]->irrf[0]->vrirrfdesc = 12345.23;
+
+$std->infoirrf[0]->idepgtoext = new \stdClass();
+$std->infoirrf[0]->idepgtoext->codpais = '105';
+$std->infoirrf[0]->idepgtoext->indnif = 1;
+$std->infoirrf[0]->idepgtoext->nifbenef = 'lsklsslkslslsk';
+$std->infoirrf[0]->idepgtoext->dsclograd = 'RUA';
+$std->infoirrf[0]->idepgtoext->nrlograd = '123';
+$std->infoirrf[0]->idepgtoext->complem = 'ddddd';
+$std->infoirrf[0]->idepgtoext->bairro = 'eeee';
+$std->infoirrf[0]->idepgtoext->nmcid = 'nnnnnn';
+$std->infoirrf[0]->idepgtoext->codpostal = '123456789012';
+
+
+
+
+if (empty($jsonSchemaObject)) {
+    echo "Erro no JSON SCHEMA";
+    die;
 }
+
+// The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
+$schemaStorage = new SchemaStorage();
+
+// This does two things:
+// 1) Mutates $jsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
+// 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $jsonSchemaObject
+$schemaStorage->addSchema('file://mySchema', $jsonSchemaObject);
+
+// Provide $schemaStorage to the Validator so that references can be resolved during validation
+$jsonValidator = new Validator(new Factory($schemaStorage));
+
+// Do validation (use isValid() and getErrors() to check the result)
+$jsonValidator->validate(
+        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+);
+
+if ($jsonValidator->isValid()) {
+    echo "The supplied JSON validates against the schema.<br/>";
+} else {
+    echo "JSON does not validate. Violations:<br/>";
+    foreach ($jsonValidator->getErrors() as $error) {
+        echo sprintf("[%s] %s<br/>", $error['property'], $error['message']);
+    }
+    die;
+}
+//salva se sucesso
+file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);

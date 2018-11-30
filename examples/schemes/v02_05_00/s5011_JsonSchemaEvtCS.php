@@ -1,4 +1,25 @@
-{
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+require_once '../../../bootstrap.php';
+
+use JsonSchema\Constraints\Constraint;
+use JsonSchema\Constraints\Factory;
+use JsonSchema\SchemaStorage;
+use JsonSchema\Validator;
+
+//S-5011
+//Grupo {infoComplObra} – alterada condição.
+//Campo {vrSuspBcCp00} – alterada descrição da origem.
+//Campo {vrSuspBcCp15} – alterada descrição da origem.
+//Campo {vrSuspBcCp20} – alterada descrição da origem.
+//Campo {vrSuspBcCp25} – alterada descrição da origem.
+//Campo {vrCPCalcPR} – alterado cálculo da alínea a).
+
+$evento  = 'evtCS';
+$version = '02_04_02';
+
+$jsonSchema = '{
     "title": "evtCS",
     "type": "object",
     "properties": {
@@ -531,4 +552,147 @@
             }            
         }
     }    
+}';
+
+$std = new \stdClass();
+$std->sequencial = 1;
+$std->indapuracao = 1;
+$std->perapur = '2017-11';
+$std->nrrecarqbase = 'ksksksk1211_40';
+$std->indexistinfo = 3;
+
+$std->infocpseg = new \stdClass();
+$std->infocpseg->vrdesccp = 222.56;
+$std->infocpseg->vrcpseg = 333.89;
+$std->infocontrib = new \stdClass();
+$std->infocontrib->classtrib = '02';
+$std->infocontrib->infopj = new \stdClass();
+$std->infocontrib->infopj->indcoop = 0;
+$std->infocontrib->infopj->indconstr = 1;
+$std->infocontrib->infopj->indsubstpatr = 2;
+$std->infocontrib->infopj->percredcontrib = 23.45;
+$std->infocontrib->infopj->infoatconc = new \stdClass();
+$std->infocontrib->infopj->infoatconc->fatormes = 0.96;
+$std->infocontrib->infopj->infoatconc->fator13 = 0.01;
+
+$std->ideestab[1] = new \stdClass();
+$std->ideestab[1]->tpinsc = 4;
+$std->ideestab[1]->nrinsc = '12345678901234';
+$std->ideestab[1]->infoestab = new \stdClass();
+$std->ideestab[1]->infoestab->cnaeprep = 12345;
+$std->ideestab[1]->infoestab->aliqrat = 4;
+$std->ideestab[1]->infoestab->fap = 0.5;
+$std->ideestab[1]->infoestab->aliqratajust = 2.00;
+$std->ideestab[1]->infoestab->infocomplobra = new \stdClass();
+$std->ideestab[1]->infoestab->infocomplobra->indsubstpatrobra = 1;
+
+$std->ideestab[1]->idelotacao[1] = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->codlotacao = 'kjskjsksj';
+$std->ideestab[1]->idelotacao[1]->fpas = 111;
+$std->ideestab[1]->idelotacao[1]->codtercs = 'lsls';
+$std->ideestab[1]->idelotacao[1]->codtercssusp = 'oeoe';
+$std->ideestab[1]->idelotacao[1]->infotercsusp[1] = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->infotercsusp[1]->codterc = 'aaaa';
+$std->ideestab[1]->idelotacao[1]->infoemprparcial = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->infoemprparcial->tpinsccontrat = 1;
+$std->ideestab[1]->idelotacao[1]->infoemprparcial->nrinsccontrat = '12345678901234';
+$std->ideestab[1]->idelotacao[1]->infoemprparcial->tpinscprop = 2;
+$std->ideestab[1]->idelotacao[1]->infoemprparcial->nrinscprop = '12345678901';
+$std->ideestab[1]->idelotacao[1]->dadosopport = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->dadosopport->cnpjopportuario = '12345678901234';
+$std->ideestab[1]->idelotacao[1]->dadosopport->aliqrat = 3;
+$std->ideestab[1]->idelotacao[1]->dadosopport->fap = 1.0;
+$std->ideestab[1]->idelotacao[1]->dadosopport->aliqratajust = 2.99;
+$std->ideestab[1]->idelotacao[1]->basesremun[1] = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->indincid = 9;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->codcateg = 123;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrbccp00 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrbccp15 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrbccp20 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrbccp25 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrsuspbccp00 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrsuspbccp15 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrsuspbccp20 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrsuspbccp25 = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrdescsest = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrcalcsest = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrdescsenat = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrcalcsenat = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrsalfam = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesremun[1]->basescp->vrsalmat = 100.00;
+$std->ideestab[1]->idelotacao[1]->basesavnport = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrbccp00 = 222.22;
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrbccp15 = 222.22;
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrbccp20 = 222.22;
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrbccp25 = 222.22;
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrbccp13 = 222.22;
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrbcfgts = 222.22;
+$std->ideestab[1]->idelotacao[1]->basesavnport->vrdesccp = 222.22;
+
+$std->ideestab[1]->idelotacao[1]->infosubstpatropport[1] = new \stdClass();
+$std->ideestab[1]->idelotacao[1]->infosubstpatropport[1]->cnpjopportuario = '12345678901234';
+
+$std->ideestab[1]->basesaquis[1] = new \stdClass();
+$std->ideestab[1]->basesaquis[1]->indaquis = 2;
+$std->ideestab[1]->basesaquis[1]->vlraquis = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrcpdescpr = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrcpnret = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrratnret = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrsenarnret = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrcpcalcpr = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrratdescpr = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrratcalcpr = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrsenardesc = 333.33;
+$std->ideestab[1]->basesaquis[1]->vrsenarcalc = 333.33;
+
+$std->ideestab[1]->basescomerc[1] = new \stdClass();
+$std->ideestab[1]->basescomerc[1]->indcomerc = 8;
+$std->ideestab[1]->basescomerc[1]->vrbccompr = 44.44;
+$std->ideestab[1]->basescomerc[1]->vrcpsusp = 44.44;
+$std->ideestab[1]->basescomerc[1]->vrratsusp = 44.44;
+$std->ideestab[1]->basescomerc[1]->vrsenarsusp = 44.44;
+
+$std->ideestab[1]->infocrestab[1] = new \stdClass();
+$std->ideestab[1]->infocrestab[1]->tpcr = 12345;
+$std->ideestab[1]->infocrestab[1]->vrcr = 55.55;
+$std->ideestab[1]->infocrestab[1]->vrsuspcr = 55.55;
+
+$std->infocrcontrib[1] = new \stdClass();
+$std->infocrcontrib[1]->tpcr = 122;
+$std->infocrcontrib[1]->vrcr = 1458.65;
+$std->infocrcontrib[1]->vrcrsusp = 1400.65;
+
+
+// Schema must be decoded before it can be used for validation
+$jsonSchemaObject = json_decode($jsonSchema);
+
+// The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
+$schemaStorage = new SchemaStorage();
+
+// This does two things:
+// 1) Mutates $jsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
+// 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $jsonSchemaObject
+$schemaStorage->addSchema('file://mySchema', $jsonSchemaObject);
+
+// Provide $schemaStorage to the Validator so that references can be resolved during validation
+$jsonValidator = new Validator(new Factory($schemaStorage));
+
+// Do validation (use isValid() and getErrors() to check the result)
+$jsonValidator->validate(
+    $std,
+    $jsonSchemaObject,
+    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+);
+
+if ($jsonValidator->isValid()) {
+    echo "The supplied JSON validates against the schema.<br/>";
+} else {
+    echo "JSON does not validate. Violations:<br/>";
+    foreach ($jsonValidator->getErrors() as $error) {
+        echo sprintf("[%s] %s<br/>", $error['property'], $error['message']);
+    }
+    die;
 }
+//salva se sucesso
+file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
