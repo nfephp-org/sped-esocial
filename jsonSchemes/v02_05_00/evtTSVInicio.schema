@@ -1,24 +1,4 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-require_once '../../../bootstrap.php';
-
-use JsonSchema\Constraints\Constraint;
-use JsonSchema\Constraints\Factory;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Validator;
-
-//S-2300
-//Campo {cpfDep} – alterada validação da alínea a).
-//Campo {racaCor} – alterada descrição dos valores [2, 3, 4].
-//Campo {dtChegada} – alterada ocorrência e inserida validação.
-//Grupos {cargoFuncao} – alterada condição.
-//Grupos {remuneracao} – alterada condição.
-
-$evento  = 'evtTSVInicio';
-$version = '02_04_02';
-
-$jsonSchema = '{
+{
     "title": "evtTSVInicio",
     "type": "object",
     "properties": {
@@ -58,7 +38,7 @@ $jsonSchema = '{
         "sexo": {
             "required": true,
             "type": "string",
-            "pattern": "F|M"
+            "pattern": "^(F|M)$"
         },
         "racacor": {
             "required": true,
@@ -96,8 +76,7 @@ $jsonSchema = '{
         "uf": {
             "required": false,
             "type": ["string","null"],
-            "minimum": 2,
-            "maximum": 2
+            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
         },
         "paisnascto": {
             "required": true,
@@ -140,8 +119,7 @@ $jsonSchema = '{
                 "ufctps": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                 }
             }
         },
@@ -260,8 +238,7 @@ $jsonSchema = '{
                 "ufcnh": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                 },
                 "dtvalid": {
                     "required": true,
@@ -276,7 +253,7 @@ $jsonSchema = '{
                 "categoriacnh": {
                     "required": true,
                     "type": "string",
-                    "pattern": "A|B|C|D|E|AB|AC|AD|AE"
+                    "pattern": "^(A|B|C|D|E|AB|AC|AD|AE)$"
                 }
             }
         },
@@ -327,8 +304,7 @@ $jsonSchema = '{
                 "uf": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                 }
             }
         },
@@ -397,12 +373,12 @@ $jsonSchema = '{
                 "casadobr": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "filhosbr": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 }
             }
         },
@@ -413,32 +389,32 @@ $jsonSchema = '{
                 "deffisica": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defvisual": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defauditiva": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defmental": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defintelectual": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "reabreadap": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "observacao": {
                     "required": false,
@@ -480,17 +456,17 @@ $jsonSchema = '{
                     "depirrf": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     },
                     "depsf": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     },
                     "inctrab": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     }
                 }
             }
@@ -528,7 +504,7 @@ $jsonSchema = '{
                 "cadini": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "codcateg": {
                     "required": true,
@@ -684,7 +660,7 @@ $jsonSchema = '{
                 "natestagio": {
                     "required": true,
                     "type": "string",
-                    "pattern": "O|N"
+                    "pattern": "^(O|N)$"
                 },
                 "nivestagio": {
                     "required": true,
@@ -754,13 +730,12 @@ $jsonSchema = '{
                         "codmunic": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^[0-9]{7}$"
+                            "pattern": "^[0-9]{7}"
                         },
                         "uf": {
                             "required": false,
                             "type": ["string","null"],
-                            "minLength": 2,
-                            "maxLength": 2
+                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                         }
                     }
                 },
@@ -810,8 +785,7 @@ $jsonSchema = '{
                         "uf": {
                             "required": true,
                             "type": "string",
-                            "minLength": 2,
-                            "maxLength": 2
+                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                         }
                     }
                 },
@@ -834,6 +808,27 @@ $jsonSchema = '{
                 }
             }
         },
+        "mudancacpf": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "cpfant": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "dtaltcpf": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 255
+                }
+            }
+        },
         "afastamento": {
             "required": false,
             "type": ["object","null"],
@@ -846,7 +841,7 @@ $jsonSchema = '{
                 "codmotafast": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}$"
+                    "pattern": "^[0-9]{2}"
                 }
             }
         },
@@ -862,214 +857,4 @@ $jsonSchema = '{
             }
         }
     }
-}';
-
-$std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
-$std->cpftrab = '12345678901';
-$std->nistrab = '1234';
-$std->nmtrab = 'Fulano de Tal';
-$std->sexo = 'M';
-$std->racacor = 2;
-$std->estciv = 3;
-$std->grauinstr = '03';
-$std->nmsoc = 'Fulano de Tal';
-$std->dtnascto = '1996-06-11';
-$std->codmunic = '1234567';
-$std->uf = 'AC';
-$std->paisnascto = '105';
-$std->paisnac = '105';
-$std->nmmae = 'Maria de Tal';
-$std->nmpai = "Joao de Tal";
-//documentos
-$std->ctps = new \stdClass();
-$std->ctps->nrctps = '11215454';
-$std->ctps->seriectps = '011';
-$std->ctps->ufctps = 'AC';
-
-$std->ric = new \stdClass();
-$std->ric->nrric = '28282828';
-$std->ric->orgaoemissor = 'sslkjslkjslksj';
-$std->ric->dtexped = '2011-07-07';
-
-$std->rg = new \stdClass();
-$std->rg->nrrg = '1234567';
-$std->rg->orgaoemissor = 'sslkslkslks';
-$std->rg->dtexped = '2011-06-06';
-
-$std->rne = new \stdClass();
-$std->rne->nrrne = '8829822982982';
-$std->rne->orgaoemissor = 'slkslsklsklsk';
-$std->rne->dtexped = '2011-08-08';
-
-$std->oc = new \stdClass();
-$std->oc->nroc = '1929282882828';
-$std->oc->orgaoemissor = 'lslslsls';
-$std->oc->dtexped = '2011-10-10';
-$std->oc->dtvalid = '2022-10-10';
-
-$std->cnh = new \stdClass();
-$std->cnh->nrregcnh = '123456789012';
-$std->cnh->dtexped = '2017-05-05';
-$std->cnh->ufcnh = 'XX';
-$std->cnh->dtvalid = '2022-05-05';
-$std->cnh->dtprihab = '2011-01-01';
-$std->cnh->categoriacnh = 'AB';
-
-//endereço
-$std->brasil = new \stdClass();
-$std->brasil->tplograd = 'av';
-$std->brasil->dsclograd = 'slkslkslkslsk';
-$std->brasil->nrlograd = 'sksks';
-$std->brasil->complemento = 'owpososomsmm';
-$std->brasil->bairro = 'sksksksk';
-$std->brasil->cep = '12345678';
-$std->brasil->codmunic = '1234567';
-$std->brasil->uf = 'AC';
-
-$std->exterior = new \stdClass();
-$std->exterior->paisresid = '158';
-$std->exterior->dsclograd = 'kkssjksjsk';
-$std->exterior->nrlograd = '1112sss';
-$std->exterior->complemento = 'lslslsls';
-$std->exterior->bairro = 'lslslsl';
-$std->exterior->nmcid = 'slkskslks';
-$std->exterior->codpostal = '1234';
-
-$std->trabestrangeiro = new \stdClass();
-$std->trabestrangeiro->dtchegada = '2015-11-11';
-$std->trabestrangeiro->classtrabestrang = 12;
-$std->trabestrangeiro->casadobr = 'N';
-$std->trabestrangeiro->filhosbr = 'N';
-
-$std->infodeficiencia = new \stdClass();
-$std->infodeficiencia->deffisica = 'N';
-$std->infodeficiencia->defvisual = 'N';
-$std->infodeficiencia->defauditiva = 'N';
-$std->infodeficiencia->defmental = 'N';
-$std->infodeficiencia->defintelectual = 'N';
-$std->infodeficiencia->reabreadap = 'N';
-$std->infodeficiencia->observacao = 'lkslkslkslkslkslks';
-
-$std->dependente[1]  = new \stdClass();
-$std->dependente[1]->tpdep = '01';
-$std->dependente[1]->nmdep = 'Fulaninho de Tal';
-$std->dependente[1]->dtnascto = '2016-11-25';
-$std->dependente[1]->cpfdep = '12345678901';
-$std->dependente[1]->depirrf = 'N';
-$std->dependente[1]->depsf = 'N';
-$std->dependente[1]->inctrab = 'N';
-
-$std->contato = new \stdClass();
-$std->contato->foneprinc = '1234567890';
-$std->contato->fonealternat = '0912345678';
-$std->contato->emailprinc = 'ele@mail.com';
-$std->contato->emailalternat = 'ela@email.com.br';
-
-$std->infotsvinicio = new \stdClass();
-$std->infotsvinicio->cadini = 'S';
-$std->infotsvinicio->codcateg = '101';
-$std->infotsvinicio->dtinicio = '2017-05-12';
-$std->infotsvinicio->natatividade = 2;
-
-$std->cargofuncao = new \stdClass();
-$std->cargofuncao->codcargo = 'oaoaoa';
-$std->cargofuncao->codfuncao = 'ksksksksk sk';
-
-$std->remuneracao = new \stdClass();
-$std->remuneracao->vrsalfx = 1200.00;
-$std->remuneracao->undsalfixo = 7;
-$std->remuneracao->dscsalvar = 'lkklslskksl s lks lsklsks ';
-
-$std->fgts = new \stdClass();
-$std->fgts->opcfgts = 1;
-$std->fgts->dtopcfgts = '2017-05-12';
-
-$std->infodirigentesindical = new \stdClass();
-$std->infodirigentesindical->categorig = '001';
-$std->infodirigentesindical->cnpjorigem = '12345678901234';
-$std->infodirigentesindical->dtadmorig = '2017-05-12';
-$std->infodirigentesindical->matricorig = 'ytuytuystyst';
-
-$std->infotrabcedido = new \stdClass();
-$std->infotrabcedido->categorig = '001';
-$std->infotrabcedido->cnpjcednt = '12345678901234';
-$std->infotrabcedido->matricced = 'lksçkçslksl';
-$std->infotrabcedido->dtadmced = '2017-05-12';
-$std->infotrabcedido->tpregtrab = 2;
-$std->infotrabcedido->tpregprev = 3;
-$std->infotrabcedido->infonus = 3;
-
-$std->infoestagiario = new \stdClass();
-$std->infoestagiario->natestagio = 'N';
-$std->infoestagiario->nivestagio = 8;
-$std->infoestagiario->areaatuacao = 'ksksksksk';
-$std->infoestagiario->nrapol = 'kak228282828';
-$std->infoestagiario->vlrbolsa = 1200.00;
-$std->infoestagiario->dtprevterm = '2017-12-31';
-
-$std->infoestagiario->instensino = new \stdClass();
-$std->infoestagiario->instensino->cnpjinstensino = '12345678901234';
-$std->infoestagiario->instensino->nmrazao = 'dlkdldkldkd';
-$std->infoestagiario->instensino->dsclograd = 'lslsppopapap';
-$std->infoestagiario->instensino->nrlograd = '12244';
-$std->infoestagiario->instensino->bairro = 'kakakaka';
-$std->infoestagiario->instensino->cep = '12345678';
-$std->infoestagiario->instensino->codmunic = '1234567';
-$std->infoestagiario->instensino->uf = 'AC';
-
-$std->infoestagiario->ageintegracao = new \stdClass();
-$std->infoestagiario->ageintegracao->cnpjagntinteg = '12345678901234';
-$std->infoestagiario->ageintegracao->nmrazao = 'mamaamamamam';
-$std->infoestagiario->ageintegracao->dsclograd = 'oaoaoaoao';
-$std->infoestagiario->ageintegracao->nrlograd = 'msmsmsmsms';
-$std->infoestagiario->ageintegracao->bairro = 'lslslslsl';
-$std->infoestagiario->ageintegracao->cep = '12345678';
-$std->infoestagiario->ageintegracao->codmunic = '1234567';
-$std->infoestagiario->ageintegracao->uf = 'AC';
-
-$std->infoestagiario->supervisorestagio = new \stdClass();
-$std->infoestagiario->supervisorestagio->cpfsupervisor = '12345678901';
-$std->infoestagiario->supervisorestagio->nmsuperv = 'lksklskslkslkslk slkslkslkskslk';
-
-$std->afastamento = new \stdClass();
-$std->afastamento->dtiniafast = '2017-06-01';
-$std->afastamento->codmotafast = '01';
-
-$std->termino = new \stdClass();
-$std->termino->dtterm = '2017-12-31';
-
-// Schema must be decoded before it can be used for validation
-$jsonSchemaObject = json_decode($jsonSchema);
-
-// The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
-$schemaStorage = new SchemaStorage();
-
-// This does two things:
-// 1) Mutates $jsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
-// 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $jsonSchemaObject
-$schemaStorage->addSchema('file://mySchema', $jsonSchemaObject);
-
-// Provide $schemaStorage to the Validator so that references can be resolved during validation
-$jsonValidator = new Validator(new Factory($schemaStorage));
-
-// Do validation (use isValid() and getErrors() to check the result)
-$jsonValidator->validate(
-    $std,
-    $jsonSchemaObject,
-    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
-);
-
-if ($jsonValidator->isValid()) {
-    echo "The supplied JSON validates against the schema.<br/>";
-} else {
-    echo "JSON does not validate. Violations:<br/>";
-    foreach ($jsonValidator->getErrors() as $error) {
-        echo sprintf("[%s] %s<br/>", $error['property'], $error['message']);
-    }
-    die;
 }
-//salva se sucesso
-file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);

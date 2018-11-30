@@ -5,10 +5,11 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtDeslig Event S-2299 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @copyright NFePHP Copyright (c) 2018
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -203,6 +204,12 @@ class EvtDeslig extends Factory implements FactoryInterface
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
             $this->dom->addChild(
                 $sucessaoVinc,
+                "tpInscSuc",
+                !empty($this->std->sucessaovinc->tpinscsuc) ? $this->std->sucessaovinc->tpinscsuc : null,
+                false
+            );
+            $this->dom->addChild(
+                $sucessaoVinc,
                 "cnpjSucessora",
                 $this->std->sucessaovinc->cnpjsucessora,
                 true
@@ -225,6 +232,17 @@ class EvtDeslig extends Factory implements FactoryInterface
             );
             $infoDeslig->appendChild($transfTit);
         }
+        if (!empty($this->std->mudancacpf)) {
+            $mudancaCPF = $this->dom->createElement("mudancaCPF");
+            $this->dom->addChild(
+                $transfTit,
+                "novoCPF",
+                $this->std->mudancacpf->novocpf,
+                true
+            );
+            $infoDeslig->appendChild($mudancaCPF);
+        }
+        
         if (!empty($this->std->verbasresc)) {
             $verbasResc = $this->dom->createElement("verbasResc");
             foreach ($this->std->verbasresc->dmdev as $dm) {
@@ -635,7 +653,7 @@ class EvtDeslig extends Factory implements FactoryInterface
         $this->node->appendChild($infoDeslig);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->sign();
     }
 }

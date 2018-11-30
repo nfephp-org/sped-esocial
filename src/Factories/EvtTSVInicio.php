@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTSVInicio Event S-2300 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -986,7 +987,29 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         if (!empty($infoComplementares)) {
             $infoTSVInicio->appendChild($infoComplementares);
         }
-        
+        if (!empty($this->std->mudancacpf)) {
+            $mudc = $this->std->mudancacpf;
+            $mudancaCPF = $this->dom->createElement("mudancaCPF");
+            $this->dom->addChild(
+                $mudancaCPF,
+                "cpfAnt",
+                $mudc->cpfant,
+                true
+            );
+            $this->dom->addChild(
+                $mudancaCPF,
+                "dtAltCPF",
+                $mudc->dtaltcpf,
+                true
+            );
+            $this->dom->addChild(
+                $mudancaCPF,
+                "observacao",
+                !empty($mudc->observacao) ? $mudc->observacao : null,
+                false
+            );
+            $infoTSVInicio->appendChild($mudancaCPF);
+        }
         if (!empty($this->std->afastamento)) {
             $afastamento = $this->dom->createElement("afastamento");
             $this->dom->addChild(
