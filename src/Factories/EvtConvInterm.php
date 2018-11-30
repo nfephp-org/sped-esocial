@@ -3,13 +3,12 @@
 namespace NFePHP\eSocial\Factories;
 
 /**
- * Class eSocial EvtAvPrevio Event S-2250 constructor
- * Read for 2.4.2 layout
+ * Class eSocial EvtConvInterm Event S-2260 constructor
  * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @copyright NFePHP Copyright (c) 2018
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -23,7 +22,7 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtAvPrevio extends Factory implements FactoryInterface
+class EvtConvInterm extends Factory implements FactoryInterface
 {
     /**
      * @var int
@@ -32,11 +31,11 @@ class EvtAvPrevio extends Factory implements FactoryInterface
     /**
      * @var string
      */
-    protected $evtName = 'evtAvPrevio';
+    protected $evtName = 'evtConvInterm';
     /**
      * @var string
      */
-    protected $evtAlias = 'S-2250';
+    protected $evtAlias = 'S-2260';
     /**
      * Parameters patterns
      *
@@ -121,60 +120,110 @@ class EvtAvPrevio extends Factory implements FactoryInterface
             true
         );
         $this->node->appendChild($ideVinculo);
-        $infoAvPrevio = $this->dom->createElement("infoAvPrevio");
-        if (! empty($this->std->infoavprevio->detavprevio)) {
-            $detAvPrevio = $this->dom->createElement("detAvPrevio");
+        
+        $i = $this->std->infoconvinterm;
+        $info = $this->dom->createElement("infoConvInterm");
+        $this->dom->addChild(
+            $info,
+            "codConv",
+            $i->codconv,
+            true
+        );
+        $this->dom->addChild(
+            $info,
+            "dtInicio",
+            $i->dtinicio,
+            true
+        );
+        $this->dom->addChild(
+            $info,
+            "dtFim",
+            $i->dtfim,
+            true
+        );
+        $this->dom->addChild(
+            $info,
+            "dtPrevPgto",
+            $i->dtprevpgto,
+            true
+        );
+        $jornada = $this->dom->createElement("jornada");
+        $this->dom->addChild(
+            $jornada,
+            "codHorContrat",
+            !empty($i->jornada->codhorcontrat) ? $i->jornada->codhorcontrat : null,
+            false
+        );
+        $this->dom->addChild(
+            $jornada,
+            "dscJornada",
+            !empty($i->jornada->dscjornada) ? $i->jornada->dscjornada : null,
+            false
+        );
+        $info->appendChild($jornada);
+        
+        $localTrab = $this->dom->createElement("localTrab");
+        $this->dom->addChild(
+            $localTrab,
+            "indLocal",
+            $i->localtrab->indlocal,
+            true
+        );
+        if (!empty($i->localtrab->localtrabinterm)) {
+            $l = $i->localtrab->localtrabinterm;
+            $local = $this->dom->createElement("localTrabInterm");
             $this->dom->addChild(
-                $detAvPrevio,
-                "dtAvPrv",
-                $this->std->infoavprevio->detavprevio->dtavprv,
+                $local,
+                "tpLograd",
+                $l->tplograd,
                 true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "dtPrevDeslig",
-                $this->std->infoavprevio->detavprevio->dtprevdeslig,
+                $local,
+                "dscLograd",
+                $l->dsclograd,
                 true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "tpAvPrevio",
-                $this->std->infoavprevio->detavprevio->tpavprevio,
+                $local,
+                "nrLograd",
+                $l->nrlograd,
                 true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "observacao",
-                ! empty($this->std->infoavprevio->detavprevio->observacao) ?
-                    $this->std->infoavprevio->detavprevio->observacao : null,
+                $local,
+                "complem",
+                !empty($l->complem) ? $l->complem : null,
                 false
             );
-            $infoAvPrevio->appendChild($detAvPrevio);
-        }
-        if (! empty($this->std->infoavprevio->cancavprevio)) {
-            $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
             $this->dom->addChild(
-                $cancAvPrevio,
-                "dtCancAvPrv",
-                $this->std->infoavprevio->cancavprevio->dtcancavprv,
-                true
-            );
-            $this->dom->addChild(
-                $cancAvPrevio,
-                "observacao",
-                ! empty($this->std->infoavprevio->cancavprevio->observacao) ?
-                    $this->std->infoavprevio->cancavprevio->observacao : null,
+                $local,
+                "bairro",
+                !empty($l->bairro) ? $l->bairro : null,
                 false
             );
             $this->dom->addChild(
-                $cancAvPrevio,
-                "mtvCancAvPrevio",
-                $this->std->infoavprevio->cancavprevio->mtvcancavprevio,
+                $local,
+                "cep",
+                $l->cep,
                 true
             );
-            $infoAvPrevio->appendChild($cancAvPrevio);
+            $this->dom->addChild(
+                $local,
+                "codMunic",
+                $l->codmunic,
+                true
+            );
+            $this->dom->addChild(
+                $local,
+                "uf",
+                $l->uf,
+                true
+            );
+            $localTrab->appendChild($local);
         }
-        $this->node->appendChild($infoAvPrevio);
+        $info->appendChild($localTrab);
+        $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();

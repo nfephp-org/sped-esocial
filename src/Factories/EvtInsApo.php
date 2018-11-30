@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtInsApo Event S-2241 constructor
  * Read for 2.4.2 layout
+ * Não existe em 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial

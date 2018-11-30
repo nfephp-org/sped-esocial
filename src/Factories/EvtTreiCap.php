@@ -3,13 +3,13 @@
 namespace NFePHP\eSocial\Factories;
 
 /**
- * Class eSocial EvtAvPrevio Event S-2250 constructor
- * Read for 2.4.2 layout
+ * Class eSocial EvtTreiCap Event S-2245 constructor
  * Read for 2.5.0 layout
+ *
  *
  * @category  library
  * @package   NFePHP\eSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @copyright NFePHP Copyright (c) 2018
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -23,7 +23,7 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtAvPrevio extends Factory implements FactoryInterface
+class EvtTreiCap extends Factory implements FactoryInterface
 {
     /**
      * @var int
@@ -32,11 +32,11 @@ class EvtAvPrevio extends Factory implements FactoryInterface
     /**
      * @var string
      */
-    protected $evtName = 'evtAvPrevio';
+    protected $evtName = 'evtTreiCap';
     /**
      * @var string
      */
-    protected $evtAlias = 'S-2250';
+    protected $evtAlias = 'S-2245';
     /**
      * Parameters patterns
      *
@@ -79,8 +79,8 @@ class EvtAvPrevio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
-            false
+            $this->std->nrrecibo,
+            true
         );
         $this->dom->addChild(
             $ideEvento,
@@ -111,70 +111,108 @@ class EvtAvPrevio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideVinculo,
             "nisTrab",
-            $this->std->idevinculo->nistrab,
-            true
+            !empty($this->std->idevinculo->nistrab) ? $this->std->idevinculo->nistrab : null,
+            false
         );
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->std->idevinculo->matricula,
-            true
+            !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideVinculo,
+            "codCateg",
+            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+            false
         );
         $this->node->appendChild($ideVinculo);
-        $infoAvPrevio = $this->dom->createElement("infoAvPrevio");
-        if (! empty($this->std->infoavprevio->detavprevio)) {
-            $detAvPrevio = $this->dom->createElement("detAvPrevio");
+        
+        $t = $this->std->treicap;
+        $treiCap = $this->dom->createElement("treiCap");
+        $this->dom->addChild(
+            $treiCap,
+            "codTreiCap",
+            $t->codtreicap,
+            true
+        );
+        $this->dom->addChild(
+            $treiCap,
+            "obsTreiCap",
+            !empty($t->obstreicap) ? $t->obstreicap : null,
+            false
+        );
+        if (!empty($t->infocomplem)) {
+            $i = $t->infocomplem;
+            $infoComplem = $this->dom->createElement("infoComplem");
             $this->dom->addChild(
-                $detAvPrevio,
-                "dtAvPrv",
-                $this->std->infoavprevio->detavprevio->dtavprv,
+                $infoComplem,
+                "dtTreiCap",
+                $i->dttreicap,
                 true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "dtPrevDeslig",
-                $this->std->infoavprevio->detavprevio->dtprevdeslig,
+                $infoComplem,
+                "durTreiCap",
+                $i->durtreicap,
                 true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "tpAvPrevio",
-                $this->std->infoavprevio->detavprevio->tpavprevio,
+                $infoComplem,
+                "modTreiCap",
+                $i->modtreicap,
                 true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "observacao",
-                ! empty($this->std->infoavprevio->detavprevio->observacao) ?
-                    $this->std->infoavprevio->detavprevio->observacao : null,
-                false
+                $infoComplem,
+                "tpTreiCap",
+                $i->tptreicap,
+                true
             );
-            $infoAvPrevio->appendChild($detAvPrevio);
+            
+            foreach ($i->ideprofresp as $p) {
+                $ideProfResp = $this->dom->createElement("ideProfResp");
+                $this->dom->addChild(
+                    $ideProfResp,
+                    "cpfProf",
+                    !empty($p->cpfprof) ? $p->cpfprof : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $ideProfResp,
+                    "nmProf",
+                    $p->nmprof,
+                    true
+                );
+                $this->dom->addChild(
+                    $ideProfResp,
+                    "tpProf",
+                    $p->tpprof,
+                    true
+                );
+                $this->dom->addChild(
+                    $ideProfResp,
+                    "formProf",
+                    $p->formprof,
+                    true
+                );
+                $this->dom->addChild(
+                    $ideProfResp,
+                    "codCBO",
+                    $p->codcbo,
+                    true
+                );
+                $this->dom->addChild(
+                    $ideProfResp,
+                    "nacProf",
+                    $p->nacprof,
+                    true
+                );
+                $infoComplem->appendChild($ideProfResp);
+            }
+            $treiCap->appendChild($infoComplem);
         }
-        if (! empty($this->std->infoavprevio->cancavprevio)) {
-            $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
-            $this->dom->addChild(
-                $cancAvPrevio,
-                "dtCancAvPrv",
-                $this->std->infoavprevio->cancavprevio->dtcancavprv,
-                true
-            );
-            $this->dom->addChild(
-                $cancAvPrevio,
-                "observacao",
-                ! empty($this->std->infoavprevio->cancavprevio->observacao) ?
-                    $this->std->infoavprevio->cancavprevio->observacao : null,
-                false
-            );
-            $this->dom->addChild(
-                $cancAvPrevio,
-                "mtvCancAvPrevio",
-                $this->std->infoavprevio->cancavprevio->mtvcancavprevio,
-                true
-            );
-            $infoAvPrevio->appendChild($cancAvPrevio);
-        }
-        $this->node->appendChild($infoAvPrevio);
+        $this->node->appendChild($treiCap);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
