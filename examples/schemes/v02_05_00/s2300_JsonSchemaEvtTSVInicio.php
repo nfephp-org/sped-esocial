@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+ini_set('display_errors|On');
 require_once '../../../bootstrap.php';
 
 use JsonSchema\Constraints\Constraint;
@@ -16,7 +16,7 @@ use JsonSchema\Validator;
 //Grupos {remuneracao} – alterada condição.
 
 $evento  = 'evtTSVInicio';
-$version = '02_04_02';
+$version = '02_05_00';
 
 $jsonSchema = '{
     "title": "evtTSVInicio",
@@ -58,7 +58,7 @@ $jsonSchema = '{
         "sexo": {
             "required": true,
             "type": "string",
-            "pattern": "F|M"
+            "pattern": "^(F|M)$"
         },
         "racacor": {
             "required": true,
@@ -96,8 +96,7 @@ $jsonSchema = '{
         "uf": {
             "required": false,
             "type": ["string","null"],
-            "minimum": 2,
-            "maximum": 2
+            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
         },
         "paisnascto": {
             "required": true,
@@ -140,8 +139,7 @@ $jsonSchema = '{
                 "ufctps": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                 }
             }
         },
@@ -260,8 +258,7 @@ $jsonSchema = '{
                 "ufcnh": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                 },
                 "dtvalid": {
                     "required": true,
@@ -276,7 +273,7 @@ $jsonSchema = '{
                 "categoriacnh": {
                     "required": true,
                     "type": "string",
-                    "pattern": "A|B|C|D|E|AB|AC|AD|AE"
+                    "pattern": "^(A|B|C|D|E|AB|AC|AD|AE)$"
                 }
             }
         },
@@ -327,8 +324,7 @@ $jsonSchema = '{
                 "uf": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                 }
             }
         },
@@ -397,12 +393,12 @@ $jsonSchema = '{
                 "casadobr": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "filhosbr": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 }
             }
         },
@@ -413,32 +409,32 @@ $jsonSchema = '{
                 "deffisica": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defvisual": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defauditiva": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defmental": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defintelectual": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "reabreadap": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "observacao": {
                     "required": false,
@@ -480,17 +476,17 @@ $jsonSchema = '{
                     "depirrf": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     },
                     "depsf": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     },
                     "inctrab": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     }
                 }
             }
@@ -528,7 +524,7 @@ $jsonSchema = '{
                 "cadini": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "codcateg": {
                     "required": true,
@@ -684,7 +680,7 @@ $jsonSchema = '{
                 "natestagio": {
                     "required": true,
                     "type": "string",
-                    "pattern": "O|N"
+                    "pattern": "^(O|N)$"
                 },
                 "nivestagio": {
                     "required": true,
@@ -754,13 +750,12 @@ $jsonSchema = '{
                         "codmunic": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^[0-9]{7}$"
+                            "pattern": "^[0-9]{7}"
                         },
                         "uf": {
                             "required": false,
                             "type": ["string","null"],
-                            "minLength": 2,
-                            "maxLength": 2
+                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                         }
                     }
                 },
@@ -810,8 +805,7 @@ $jsonSchema = '{
                         "uf": {
                             "required": true,
                             "type": "string",
-                            "minLength": 2,
-                            "maxLength": 2
+                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
                         }
                     }
                 },
@@ -834,6 +828,27 @@ $jsonSchema = '{
                 }
             }
         },
+        "mudancacpf": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "cpfant": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "dtaltcpf": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 255
+                }
+            }
+        },
         "afastamento": {
             "required": false,
             "type": ["object","null"],
@@ -846,7 +861,7 @@ $jsonSchema = '{
                 "codmotafast": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}$"
+                    "pattern": "^[0-9]{2}"
                 }
             }
         },
@@ -913,7 +928,7 @@ $std->oc->dtvalid = '2022-10-10';
 $std->cnh = new \stdClass();
 $std->cnh->nrregcnh = '123456789012';
 $std->cnh->dtexped = '2017-05-05';
-$std->cnh->ufcnh = 'XX';
+$std->cnh->ufcnh = 'AC';
 $std->cnh->dtvalid = '2022-05-05';
 $std->cnh->dtprihab = '2011-01-01';
 $std->cnh->categoriacnh = 'AB';
@@ -1033,6 +1048,11 @@ $std->infoestagiario->ageintegracao->uf = 'AC';
 $std->infoestagiario->supervisorestagio = new \stdClass();
 $std->infoestagiario->supervisorestagio->cpfsupervisor = '12345678901';
 $std->infoestagiario->supervisorestagio->nmsuperv = 'lksklskslkslkslk slkslkslkskslk';
+
+$std->mudancacpf = new \stdClass();
+$std->mudancacpf->cpfant = '12345678901';
+$std->mudancacpf->dtaltcpf = '2018-11-10';
+$std->mudancacpf->observacao = 'bla bla bla';
 
 $std->afastamento = new \stdClass();
 $std->afastamento->dtiniafast = '2017-06-01';

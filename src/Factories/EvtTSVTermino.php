@@ -5,6 +5,7 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtTSVTermino Event S-2399 constructor
  * Read for 2.4.2 layout
+ * Read for 2.5.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -130,6 +131,24 @@ class EvtTSVTermino extends Factory implements FactoryInterface
             $infoTSVTermino,
             "mtvDesligTSV",
             !empty($this->std->mtvdesligtsv) ? $this->std->mtvdesligtsv : null,
+            false
+        );
+        $this->dom->addChild(
+            $infoTSVTermino,
+            "pensAlim",
+            !empty($this->std->pensalim) ? $this->std->pensalim : null,
+            false
+        );
+        $this->dom->addChild(
+            $infoTSVTermino,
+            "percAliment",
+            !empty($this->std->percaliment) ? $this->std->percaliment : null,
+            false
+        );
+        $this->dom->addChild(
+            $infoTSVTermino,
+            "vrAlim",
+            !empty($this->std->vralim) ? $this->std->vralim : null,
             false
         );
         if (!empty($this->std->verbasresc)) {
