@@ -125,8 +125,8 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
         );
         $this->dom->addChild(
             $infoTSVAlteracao,
-            "codFuncao",
-            !empty($this->std->tsvalteracao->codfuncao) ? $this->std->tsvalteracao->codfuncao : null,
+            "natAtividade",
+            !empty($this->std->tsvalteracao->natatividade) ? $this->std->tsvalteracao->natatividade : null,
             false
         );
         $infoComplementares = $this->dom->createElement("infoComplementares");
