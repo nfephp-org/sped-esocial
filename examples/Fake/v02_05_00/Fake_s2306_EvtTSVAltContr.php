@@ -39,6 +39,7 @@ $std->trabsemvinculo->codcateg = '101';
 
 $std->tsvalteracao = new \stdClass();
 $std->tsvalteracao->dtalteracao = '2017-08-25';
+$std->tsvalteracao->natatividade = 1;
 
 $std->cargofuncao = new \stdClass();
 $std->cargofuncao->codcargo = '12345678955';
