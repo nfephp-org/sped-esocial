@@ -114,25 +114,25 @@ class EvtRemun extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->idetrabalhador->cpftrab,
             true
         );
         $this->dom->addChild(
             $ide,
             "nisTrab",
-            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            !empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
             false
         );
         
-        if (!empty($this->std->infomv)) {
+        if (!empty($this->std->idetrabalhador->infomv)) {
             $info = $this->dom->createElement("infoMV");
             $this->dom->addChild(
                 $info,
                 "indMV",
-                $this->std->infomv->indmv,
+                $this->std->idetrabalhador->infomv->indmv,
                 true
             );
-            foreach ($this->std->infomv->remunoutrempr as $remo) {
+            foreach ($this->std->idetrabalhador->infomv->remunoutrempr as $remo) {
                 $remunOutrEmpr = $this->dom->createElement("remunOutrEmpr");
                 $this->dom->addChild(
                     $remunOutrEmpr,
@@ -163,8 +163,8 @@ class EvtRemun extends Factory implements FactoryInterface
             $ide->appendChild($info);
         }
         
-        if (!empty($this->std->infocomplem)) {
-            $ic = $this->std->infocomplem;
+        if (!empty($this->std->idetrabalhador->infocomplem)) {
+            $ic = $this->std->idetrabalhador->infocomplem;
             $infoComplem = $this->dom->createElement("infoComplem");
             $this->dom->addChild(
                 $infoComplem,
@@ -227,8 +227,8 @@ class EvtRemun extends Factory implements FactoryInterface
             $ide->appendChild($infoComplem);
         }
         
-        if (!empty($this->std->procjudtrab)) {
-            foreach ($this->std->procjudtrab as $proc) {
+        if (!empty($this->std->idetrabalhador->procjudtrab)) {
+            foreach ($this->std->idetrabalhador->procjudtrab as $proc) {
                 $procJudTrab = $this->dom->createElement("procJudTrab");
                 $this->dom->addChild(
                     $procJudTrab,
@@ -268,9 +268,9 @@ class EvtRemun extends Factory implements FactoryInterface
                 $dm->codcateg,
                 true
             );
-            if (!empty($dm->ideestablot)) {
+            if (!empty($dm->infoperapur->ideestablot)) {
                 $infoPerApur = $this->dom->createElement("infoPerApur");
-                foreach ($dm->ideestablot as $idsl) {
+                foreach ($dm->infoperapur->ideestablot as $idsl) {
                     $ideEstabLot = $this->dom->createElement("ideEstabLot");
                     $this->dom->addChild(
                         $ideEstabLot,
@@ -351,9 +351,9 @@ class EvtRemun extends Factory implements FactoryInterface
                             $remunPerApur->appendChild($itensRemun);
                         }
                         
-                        if (!empty($rpa->detoper)) {
+                        if (!empty($rpa->infosaudecolet->detoper)) {
                             $infoSaudeColet = $this->dom->createElement("infoSaudeColet");
-                            foreach ($rpa->detoper as $dop) {
+                            foreach ($rpa->infosaudecolet->detoper as $dop) {
                                 $detOper = $this->dom->createElement("detOper");
                                 $this->dom->addChild(
                                     $detOper,
@@ -428,9 +428,9 @@ class EvtRemun extends Factory implements FactoryInterface
                     $infoPerApur->appendChild($ideEstabLot);
                 }
                 $dmDev->appendChild($infoPerApur);
-                if (!empty($dm->ideadc)) {
+                if (!empty($dm->infoperant->ideadc)) {
                     $infoPerAnt = $this->dom->createElement("infoPerAnt");
-                    foreach ($dm->ideadc as $adc) {
+                    foreach ($dm->infoperant->ideadc as $adc) {
                         $ideADC = $this->dom->createElement("ideADC");
                         $this->dom->addChild(
                             $ideADC,
