@@ -83,6 +83,7 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
 
         $ideEvento = $this->dom->createElement("ideEvento");
+
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
@@ -92,19 +93,19 @@ class EvtContrSindPatr extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            !empty($this->std->ideempregador->nrrecibo) ? $this->std->ideempregador->nrrecibo : null,
             false
         );
         $this->dom->addChild(
             $ideEvento,
             "indApuracao",
-            $this->std->indapuracao,
+            $this->std->ideempregador->indapuracao,
             true
         );
         $this->dom->addChild(
             $ideEvento,
             "perApur",
-            $this->std->perapur,
+            $this->std->ideempregador->perapur,
             true
         );
         $this->dom->addChild(
