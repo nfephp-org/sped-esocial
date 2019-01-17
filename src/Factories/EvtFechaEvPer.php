@@ -74,6 +74,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         $eSocial       = $this->dom->getElementsByTagName("eSocial")->item(0);
         $evtFechaEvPer = $this->dom->createElement("evtFechaEvPer");
         $att           = $this->dom->createAttribute('Id');
+
         $att->value    = $evtid;
         $evtFechaEvPer->appendChild($att);
 
@@ -125,32 +126,35 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
         );
         $evtFechaEvPer->appendChild($ideEmpregador);
 
-        $ideRespInf = $this->dom->createElement("ideRespInf");
-        $this->dom->addChild(
-            $ideRespInf,
-            "nmResp",
-            $this->std->iderespinf->nmresp,
-            true
-        );
-        $this->dom->addChild(
-            $ideRespInf,
-            "cpfResp",
-            $this->std->iderespinf->cpfresp,
-            true
-        );
-        $this->dom->addChild(
-            $ideRespInf,
-            "telefone",
-            $this->std->iderespinf->telefone,
-            true
-        );
-        $this->dom->addChild(
-            $ideRespInf,
-            "email",
-            ! empty($this->std->iderespinf->email) ? $this->std->iderespinf->email : null,
-            false
-        );
-        $evtFechaEvPer->appendChild($ideRespInf);
+        if (isset($this->std->iderespinf)) {
+            $ideRespInf = $this->dom->createElement("ideRespInf");
+
+            $this->dom->addChild(
+                $ideRespInf,
+                "nmResp",
+                $this->std->iderespinf->nmresp,
+                true
+            );
+            $this->dom->addChild(
+                $ideRespInf,
+                "cpfResp",
+                $this->std->iderespinf->cpfresp,
+                true
+            );
+            $this->dom->addChild(
+                $ideRespInf,
+                "telefone",
+                $this->std->iderespinf->telefone,
+                true
+            );
+            $this->dom->addChild(
+                $ideRespInf,
+                "email",
+                ! empty($this->std->iderespinf->email) ? $this->std->iderespinf->email : null,
+                false
+            );
+            $evtFechaEvPer->appendChild($ideRespInf);
+        }
 
         $infoFech = $this->dom->createElement("infoFech");
         $this->dom->addChild(
