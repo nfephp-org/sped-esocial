@@ -1039,7 +1039,7 @@ class EvtAdmissao extends Factory implements FactoryInterface
         }
         $contrato->appendChild($localTrabalho);
         //horContratual (opcional)
-        if (isset($this->std->vinculo->infocontrato->horcontatual)) {
+        if (isset($this->std->vinculo->infocontrato->horcontratual)) {
             $horContratual = $this->dom->createElement("horContratual");
             $this->dom->addChild(
                 $horContratual,
