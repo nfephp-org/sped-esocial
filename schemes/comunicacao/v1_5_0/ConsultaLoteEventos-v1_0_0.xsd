@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <xs:schema version="1.0.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:esocial="http://www.esocial.gov.br/schema/lote/eventos/envio/consulta/retornoProcessamento/v1_0_0"
