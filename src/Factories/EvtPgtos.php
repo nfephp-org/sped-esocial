@@ -121,12 +121,12 @@ class EvtPgtos extends Factory implements FactoryInterface
             true
         );
         
-        if (!empty($this->std->idebenef->vrdeddep)) {
+        if (!empty($this->std->idebenef->deps->vrdeddep)) {
             $deps = $this->dom->createElement("deps");
             $this->dom->addChild(
                 $deps,
                 "vrDedDep",
-                $this->std->idebenef->vrdeddep,
+                $this->std->idebenef->deps->vrdeddep,
                 true
             );
             $ideBenef->appendChild($deps);
@@ -265,42 +265,49 @@ class EvtPgtos extends Factory implements FactoryInterface
                             $infoPgtoParc = $this->dom->createElement("infoPgtoParc");
                             $this->dom->addChild(
                                 $infoPgtoParc,
+                                "matricula",
+                                !empty($pp->matricula) ? $pp->matricula : null,
+                                false
+                            );
+
+                            $this->dom->addChild(
+                                $infoPgtoParc,
                                 "codRubr",
                                 $pp->codrubr,
                                 true
                             );
-                                $this->dom->addChild(
-                                    $infoPgtoParc,
-                                    "ideTabRubr",
-                                    $pp->idetabrubr,
-                                    true
-                                );
-                                $this->dom->addChild(
-                                    $infoPgtoParc,
-                                    "qtdRubr",
-                                    !empty($pp->qtdrubr) ? $pp->qtdrubr : null,
-                                    false
-                                );
-                                $this->dom->addChild(
-                                    $infoPgtoParc,
-                                    "fatorRubr",
-                                    !empty($pp->fatorrubr) ? $pp->fatorrubr : null,
-                                    false
-                                );
-                                $this->dom->addChild(
-                                    $infoPgtoParc,
-                                    "vrUnit",
-                                    !empty($pp->vrunit) ? $pp->vrunit : null,
-                                    false
-                                );
-                                $this->dom->addChild(
-                                    $infoPgtoParc,
-                                    "vrRubr",
-                                    $pp->vrrubr,
-                                    true
-                                );
-                                $detPgtoFl->appendChild($infoPgtoParc);
-                                $infoPgtoParc = null;
+                            $this->dom->addChild(
+                                $infoPgtoParc,
+                                "ideTabRubr",
+                                $pp->idetabrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $infoPgtoParc,
+                                "qtdRubr",
+                                !empty($pp->qtdrubr) ? $pp->qtdrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $infoPgtoParc,
+                                "fatorRubr",
+                                !empty($pp->fatorrubr) ? $pp->fatorrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $infoPgtoParc,
+                                "vrUnit",
+                                !empty($pp->vrunit) ? $pp->vrunit : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $infoPgtoParc,
+                                "vrRubr",
+                                $pp->vrrubr,
+                                true
+                            );
+                            $detPgtoFl->appendChild($infoPgtoParc);
+                            $infoPgtoParc = null;
                         }
                     }
                     $infoPgto->appendChild($detPgtoFl);
@@ -342,38 +349,38 @@ class EvtPgtos extends Factory implements FactoryInterface
                             $rpt->codrubr,
                             true
                         );
-                            $this->dom->addChild(
-                                $retPgtoTot,
-                                "ideTabRubr",
-                                $rpt->idetabrubr,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $retPgtoTot,
-                                "qtdRubr",
-                                !empty($rpt->qtdrubr) ? $rpt->qtdrubr : null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $retPgtoTot,
-                                "fatorRubr",
-                                !empty($rpt->fatorrubr) ? $rpt->fatorrubr : null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $retPgtoTot,
-                                "vrUnit",
-                                !empty($rpt->vrunit) ? $rpt->vrunit : null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $retPgtoTot,
-                                "vrRubr",
-                                $rpt->vrrubr,
-                                true
-                            );
-                            $detPgtoBenPr->appendChild($retPgtoTot);
-                            $retPgtoTot = null;
+                        $this->dom->addChild(
+                            $retPgtoTot,
+                            "ideTabRubr",
+                            $rpt->idetabrubr,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $retPgtoTot,
+                            "qtdRubr",
+                            !empty($rpt->qtdrubr) ? $rpt->qtdrubr : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $retPgtoTot,
+                            "fatorRubr",
+                            !empty($rpt->fatorrubr) ? $rpt->fatorrubr : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $retPgtoTot,
+                            "vrUnit",
+                            !empty($rpt->vrunit) ? $rpt->vrunit : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $retPgtoTot,
+                            "vrRubr",
+                            $rpt->vrrubr,
+                            true
+                        );
+                        $detPgtoBenPr->appendChild($retPgtoTot);
+                        $retPgtoTot = null;
                     }
                 }
                 if (!empty($pgto->detpgtobenpr->infopgtoparc)) {
@@ -385,38 +392,38 @@ class EvtPgtos extends Factory implements FactoryInterface
                             $rpt->codrubr,
                             true
                         );
-                            $this->dom->addChild(
-                                $infoPgtoParc,
-                                "ideTabRubr",
-                                $rpt->idetabrubr,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $infoPgtoParc,
-                                "qtdRubr",
-                                !empty($rpt->qtdrubr) ? $rpt->qtdrubr : null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $infoPgtoParc,
-                                "fatorRubr",
-                                !empty($rpt->fatorrubr) ? $rpt->fatorrubr : null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $infoPgtoParc,
-                                "vrUnit",
-                                !empty($rpt->vrunit) ? $rpt->vrunit : null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $infoPgtoParc,
-                                "vrRubr",
-                                $rpt->vrrubr,
-                                true
-                            );
-                            $detPgtoBenPr->appendChild($infoPgtoParc);
-                            $infoPgtoParc = null;
+                        $this->dom->addChild(
+                            $infoPgtoParc,
+                            "ideTabRubr",
+                            $rpt->idetabrubr,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $infoPgtoParc,
+                            "qtdRubr",
+                            !empty($rpt->qtdrubr) ? $rpt->qtdrubr : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $infoPgtoParc,
+                            "fatorRubr",
+                            !empty($rpt->fatorrubr) ? $rpt->fatorrubr : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $infoPgtoParc,
+                            "vrUnit",
+                            !empty($rpt->vrunit) ? $rpt->vrunit : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $infoPgtoParc,
+                            "vrRubr",
+                            $rpt->vrrubr,
+                            true
+                        );
+                        $detPgtoBenPr->appendChild($infoPgtoParc);
+                        $infoPgtoParc = null;
                     }
                 }
                 $infoPgto->appendChild($detPgtoBenPr);
@@ -431,24 +438,30 @@ class EvtPgtos extends Factory implements FactoryInterface
                         $rpt->codcateg,
                         true
                     );
-                        $this->dom->addChild(
-                            $detPgtoFer,
-                            "dtIniGoz",
-                            $rpt->dtinigoz,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $detPgtoFer,
-                            "qtDias",
-                            $rpt->qtdias,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $detPgtoFer,
-                            "vrLiq",
-                            $rpt->vrliq,
-                            true
-                        );
+                    $this->dom->addChild(
+                        $detPgtoFer,
+                        "matricula",
+                        $rpt->matricula,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $detPgtoFer,
+                        "dtIniGoz",
+                        $rpt->dtinigoz,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $detPgtoFer,
+                        "qtDias",
+                        $rpt->qtdias,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $detPgtoFer,
+                        "vrLiq",
+                        $rpt->vrliq,
+                        true
+                    );
                     if (!empty($rpt->detrubrfer)) {
                         foreach ($rpt->detrubrfer as $dpt) {
                             $detRubrFer = $this->dom->createElement("detRubrFer");
@@ -458,73 +471,73 @@ class EvtPgtos extends Factory implements FactoryInterface
                                 $dpt->codrubr,
                                 true
                             );
-                                    $this->dom->addChild(
-                                        $detRubrFer,
-                                        "ideTabRubr",
-                                        $dpt->idetabrubr,
-                                        true
-                                    );
-                                    $this->dom->addChild(
-                                        $detRubrFer,
-                                        "qtdRubr",
-                                        !empty($dpt->qtdrubr) ? $dpt->qtdrubr : null,
-                                        false
-                                    );
-                                    $this->dom->addChild(
-                                        $detRubrFer,
-                                        "fatorRubr",
-                                        !empty($dpt->fatorrubr) ? $dpt->fatorrubr : null,
-                                        false
-                                    );
-                                    $this->dom->addChild(
-                                        $detRubrFer,
-                                        "vrUnit",
-                                        !empty($dpt->vrunit) ? $dpt->vrunit : null,
-                                        false
-                                    );
-                                    $this->dom->addChild(
-                                        $detRubrFer,
-                                        "vrRubr",
-                                        $dpt->vrrubr,
-                                        true
-                                    );
+                            $this->dom->addChild(
+                                $detRubrFer,
+                                "ideTabRubr",
+                                $dpt->idetabrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $detRubrFer,
+                                "qtdRubr",
+                                !empty($dpt->qtdrubr) ? $dpt->qtdrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $detRubrFer,
+                                "fatorRubr",
+                                !empty($dpt->fatorrubr) ? $dpt->fatorrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $detRubrFer,
+                                "vrUnit",
+                                !empty($dpt->vrunit) ? $dpt->vrunit : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $detRubrFer,
+                                "vrRubr",
+                                $dpt->vrrubr,
+                                true
+                            );
                             if (!empty($dpt->penalim)) {
                                 foreach ($dpt->penalim as $xf) {
-                                        $penAlim = $this->dom->createElement("penAlim");
-                                        $this->dom->addChild(
-                                            $penAlim,
-                                            "cpfBenef",
-                                            $xf->cpfbenef,
-                                            true
-                                        );
-                                        $this->dom->addChild(
-                                            $penAlim,
-                                            "dtNasctoBenef",
-                                            !empty($xf->dtnasctobenef) ? $xf->dtnasctobenef : null,
-                                            true
-                                        );
-                                        $this->dom->addChild(
-                                            $penAlim,
-                                            "nmBenefic",
-                                            $xf->nmbenefic,
-                                            true
-                                        );
-                                        $this->dom->addChild(
-                                            $penAlim,
-                                            "vlrPensao",
-                                            $xf->vlrpensao,
-                                            true
-                                        );
-                                        $detRubrFer->appendChild($penAlim);
-                                        $penAlim = null;
+                                    $penAlim = $this->dom->createElement("penAlim");
+                                    $this->dom->addChild(
+                                        $penAlim,
+                                        "cpfBenef",
+                                        $xf->cpfbenef,
+                                        true
+                                    );
+                                    $this->dom->addChild(
+                                        $penAlim,
+                                        "dtNasctoBenef",
+                                        !empty($xf->dtnasctobenef) ? $xf->dtnasctobenef : null,
+                                        true
+                                    );
+                                    $this->dom->addChild(
+                                        $penAlim,
+                                        "nmBenefic",
+                                        $xf->nmbenefic,
+                                        true
+                                    );
+                                    $this->dom->addChild(
+                                        $penAlim,
+                                        "vlrPensao",
+                                        $xf->vlrpensao,
+                                        true
+                                    );
+                                    $detRubrFer->appendChild($penAlim);
+                                    $penAlim = null;
                                 }
                             }
-                                    $detPgtoFer->appendChild($detRubrFer);
-                                    $detRubrFer = null;
+                            $detPgtoFer->appendChild($detRubrFer);
+                            $detRubrFer = null;
                         }
                     }
-                        $infoPgto->appendChild($detPgtoFer);
-                        $detPgtoFer = null;
+                    $infoPgto->appendChild($detPgtoFer);
+                    $detPgtoFer = null;
                 }
             }
             if (!empty($pgto->detpgtoant)) {
@@ -537,10 +550,6 @@ class EvtPgtos extends Factory implements FactoryInterface
                         true
                     );
                     foreach ($pgant->infopgtoant as $ipa) {
-                       //echo "<pre>";
-                       //print_r($ipa);
-                    //echo "</pre>";
-                    //die;
                         $infoPgtoAnt = $this->dom->createElement("infoPgtoAnt");
                         $this->dom->addChild(
                             $infoPgtoAnt,
@@ -567,56 +576,56 @@ class EvtPgtos extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $idePais,
                     "codPais",
-                    $pgto->idepgtoext->codpais,
+                    $pgto->idepgtoext->idepais->codpais,
                     true
                 );
                 $this->dom->addChild(
                     $idePais,
                     "indNIF",
-                    $pgto->idepgtoext->indnif,
+                    $pgto->idepgtoext->idepais->indnif,
                     true
                 );
                 $this->dom->addChild(
                     $idePais,
                     "nifBenef",
-                    !empty($pgto->idepgtoext->nifbenef) ? $pgto->idepgtoext->nifbenef : null,
+                    !empty($pgto->idepgtoext->idepais->nifbenef) ? $pgto->idepgtoext->idepais->nifbenef : null,
                     false
                 );
                 $endExt = $this->dom->createElement("endExt");
                 $this->dom->addChild(
                     $endExt,
                     "dscLograd",
-                    $pgto->idepgtoext->dsclograd,
+                    $pgto->idepgtoext->endext->dsclograd,
                     true
                 );
                 $this->dom->addChild(
                     $endExt,
                     "nrLograd",
-                    !empty($pgto->idepgtoext->nrlograd) ? $pgto->idepgtoext->nrlograd : null,
+                    !empty($pgto->idepgtoext->endext->nrlograd) ? $pgto->idepgtoext->endext->nrlograd : null,
                     false
                 );
                 $this->dom->addChild(
                     $endExt,
                     "complem",
-                    !empty($pgto->idepgtoext->complem) ? $pgto->idepgtoext->complem : null,
+                    !empty($pgto->idepgtoext->endext->complem) ? $pgto->idepgtoext->endext->complem : null,
                     false
                 );
                 $this->dom->addChild(
                     $endExt,
                     "bairro",
-                    !empty($pgto->idepgtoext->bairro) ? $pgto->idepgtoext->bairro : null,
+                    !empty($pgto->idepgtoext->endext->bairro) ? $pgto->idepgtoext->endext->bairro : null,
                     false
                 );
                 $this->dom->addChild(
                     $endExt,
                     "nmCid",
-                    $pgto->idepgtoext->nmcid,
+                    $pgto->idepgtoext->endext->nmcid,
                     true
                 );
                 $this->dom->addChild(
                     $endExt,
                     "codPostal",
-                    !empty($pgto->idepgtoext->codoostal) ? $pgto->idepgtoext->codoostal : null,
+                    !empty($pgto->idepgtoext->endext->codoostal) ? $pgto->idepgtoext->endext->codoostal : null,
                     false
                 );
                 $idePgtoExt->appendChild($idePais);
