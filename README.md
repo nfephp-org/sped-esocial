@@ -10,7 +10,7 @@
 > - Produção 2.5.0 e 2.4.2 de 01/01/2019 até 28/02/2019
 > - Produçao apenas 2.5.0 a partir de 01/03/2019
 
-### *Esta API aninda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
+### *Esta API ainda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
 
 *Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
 
