@@ -91,14 +91,22 @@ class Tools extends ToolsBase
             'consulta' =>  'https://webservices.producaorestrita.esocial.gov.br/'
             . 'servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc',
             'envio' => 'https://webservices.producaorestrita.esocial.gov.br/'
-            . 'servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc'
+            . 'servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc',
+            'identificadores' => 'https://webservices.producaorestrita.esocial.gov.br/'
+            . 'servicos/empregador/dwlcirurgico/WsConsultarIdentificadoresEventos.svc',
+            'download' => 'https://webservices.producaorestrita.esocial.gov.br/'
+            . 'servicos/empregador/dwlcirurgico/WsSolicitarDownloadEventos.svc'
         ];
         if ($this->tpAmb == 1) {
             $this->urlbase = [
                 'consulta' =>  'https://webservices.consulta.esocial.gov.br/'
                 . 'servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc',
                 'envio' => 'https://webservices.envio.esocial.gov.br/'
-                . 'servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc'
+                . 'servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc',
+                'identificadores' => 'https://webservices.download.esocial.gov.br/'
+                . 'servicos/empregador/dwlcirurgico/WsConsultarIdentificadoresEventos.svc',
+                'download' => 'https://webservices.download.esocial.gov.br/'
+                . 'servicos/empregador/dwlcirurgico/WsSolicitarDownloadEventos.svc'
             ];
         }
     }
@@ -160,6 +168,26 @@ class Tools extends ToolsBase
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
+    }
+    
+    public function consultarEventosEmpregador()
+    {
+    }
+    
+    public function consultarEventosTabela()
+    {
+    }
+    
+    public function consultarEventosTrabalhador()
+    {
+    }
+    
+    public function downloadEventosPorId()
+    {
+    }
+    
+    public function downloadEventosPorNrRecibo()
+    {
     }
 
     /**

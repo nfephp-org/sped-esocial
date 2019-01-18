@@ -8,9 +8,14 @@ class XsdSeeker
     public static $list = [
         'ConsultaLoteEventos' => ['version' => '', 'name' => ''],
         'EnvioLoteEventos' => ['version' => '', 'name' => ''],
+        'ConsultaIdentificadoresEventosEmpregador' => ['version' => '', 'name' => ''],
+        'ConsultaIdentificadoresEventosTabela' => ['version' => '', 'name' => ''],
+        'ConsultaIdentificadoresEventosTrabalhador' => ['version' => '', 'name' => ''],
         'RetornoEnvioLoteEventos' => ['version' => '', 'name' => ''],
         'RetornoEvento' => ['version' => '', 'name' => ''],
         'RetornoProcessamentoLote' => ['version' => '', 'name' => ''],
+        'SolicitacaoDownloadEventosPorId' => ['version' => '', 'name' => ''],
+        'SolicitacaoDownloadEventosPorNrRecibo' => ['version' => '', 'name' => ''],
         'WsConsultarLoteEventos' => ['version' => '', 'name' => ''],
         'WsEnviarLoteEventos' => ['version' => '', 'name' => '']
     ];

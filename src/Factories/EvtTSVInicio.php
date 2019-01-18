@@ -708,7 +708,7 @@ class EvtTSVInicio extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $remuneracao,
                 "dscSalVar",
-                !empty($rem->dscsalVar) ? $rem->dscsalVar : null,
+                !empty($rem->dscsalvar) ? $rem->dscsalvar : null,
                 false
             );
             $infoComplementares->appendChild($remuneracao);
