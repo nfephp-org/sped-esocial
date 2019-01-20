@@ -17,6 +17,7 @@ namespace NFePHP\eSocial;
 use InvalidArgumentException;
 use NFePHP\Common\Certificate;
 use NFePHP\Common\Validator;
+use NFePHP\Common\Signer;
 use NFePHP\eSocial\Common\FactoryInterface;
 use NFePHP\eSocial\Common\Soap\SoapCurl;
 use NFePHP\eSocial\Common\Soap\SoapInterface;
@@ -159,6 +160,7 @@ class Tools extends ToolsBase
             ."<protocoloEnvio>$protocolo</protocoloEnvio>"
             ."</consultaLoteEventos>"
             ."</eSocial>";
+        
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -220,7 +222,9 @@ class Tools extends ToolsBase
             . "</consultaEvtsEmpregador>"
             . "</consultaIdentificadoresEvts>"
             . "</eSocial>";
-            
+        
+        $request = $this->sign($request);
+        
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -230,11 +234,11 @@ class Tools extends ToolsBase
         );
         
         $body = "<v1:{$this->method}>"
-            ."<v1:consultaEventosEmpregador>"
-            .$request
-            ."</v1:consultaEventosEmpregador>"
-            ."</v1:{$this->method}>";
-            
+            . "<v1:consultaEventosEmpregador>"
+            . $request
+            . "</v1:consultaEventosEmpregador>"
+            . "</v1:{$this->method}>";
+        
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
@@ -249,7 +253,7 @@ class Tools extends ToolsBase
      * @return string
      * @throws InvalidArgumentException
      */
-    public function consultarEventosTabela($tpEvt, $chEvt, $dtIni, $dtFim)
+    public function consultarEventosTabela($tpEvt, $chEvt = null, $dtIni = null, $dtFim = null)
     {
         $operationVersion = $this->serviceXsd['ConsultaIdentificadoresEventosTabela']['version'];
         if (empty($operationVersion)) {
@@ -272,7 +276,7 @@ class Tools extends ToolsBase
         ];
         
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/consulta/"
-            . "identificadores-eventos/empregador/"
+            . "identificadores-eventos/tabela/"
             . $operationVersion . "\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<consultaIdentificadoresEvts>"
@@ -281,14 +285,18 @@ class Tools extends ToolsBase
             . "<nrInsc>{$this->nrInsc}</nrInsc>"
             . "</ideEmpregador>"
             . "<consultaEvtsTabela>"
-            . "<tpEvt>$tpEvt</tpEvt>"
-            . "<chEvt>$chEvt</chEvt>"
-            . "<dtIni>$dtIni</dtIni>"
-            . "<dtFim>$dtFim</dtFim>"
-            . "</consultaEvtsTabela>"
+            . "<tpEvt>$tpEvt</tpEvt>";
+        
+        $request .= !empty($chEvt) ? "<chEvt>$chEvt</chEvt>" : "";
+        $request .= !empty($dtIni) ? "<dtIni>$dtIni</dtIni>" : "";
+        $request .= !empty($dtFim) ? "<dtFim>$dtFim</dtFim>" : "";
+        
+        $request .= "</consultaEvtsTabela>"
             . "</consultaIdentificadoresEvts>"
             . "</eSocial>";
-            
+        
+        $request = $this->sign($request);
+        
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -339,7 +347,7 @@ class Tools extends ToolsBase
         ];
         
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/consulta/"
-            . "identificadores-eventos/empregador/"
+            . "identificadores-eventos/trabalhador/"
             . $operationVersion . "\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<consultaIdentificadoresEvts>"
@@ -354,7 +362,9 @@ class Tools extends ToolsBase
             . "</consultaEvtsTrabalhador>"
             . "</consultaIdentificadoresEvts>"
             . "</eSocial>";
-            
+
+        $request = $this->sign($request);
+        
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -376,11 +386,11 @@ class Tools extends ToolsBase
     
     /**
      * Download Event by Id
-     * @param string $id
+     * @param array $ids
      * @return string
      * @throws InvalidArgumentException
      */
-    public function downloadEventosPorId($id)
+    public function downloadEventosPorId($ids)
     {
         $operationVersion = $this->serviceXsd['SolicitacaoDownloadEventosPorId']['version'];
         if (empty($operationVersion)) {
@@ -404,18 +414,22 @@ class Tools extends ToolsBase
         ];
         
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/download/"
-            . "solicitacao/id/$operationVersion \" "
+            . "solicitacao/id/$operationVersion\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<download>"
             . "<ideEmpregador>"
             . "<tpInsc>{$this->tpInsc}</tpInsc>"
             . "<nrInsc>{$this->nrInsc}</nrInsc>"
             . "</ideEmpregador>"
-            . "<solicDownloadEvtsPorId>"
-            . "<id>$id</id>"
-            . "</solicDownloadEvtsPorId>"
+            . "<solicDownloadEvtsPorId>";
+        foreach ($ids as $id) {
+            $request .= "<id>$id</id>";
+        }
+        $request .= "</solicDownloadEvtsPorId>"
             . "</download>"
             . "</eSocial>";
+        
+        $request = $this->sign($request);
         
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
@@ -438,11 +452,11 @@ class Tools extends ToolsBase
     
     /**
      * Download Event by receipt number
-     * @param string $nrRec
+     * @param array $nrRecs
      * @return string
      * @throws InvalidArgumentException
      */
-    public function downloadEventosPorNrRecibo($nrRec)
+    public function downloadEventosPorNrRecibo($nrRecs)
     {
         $operationVersion = $this->serviceXsd['SolicitacaoDownloadEventosPorNrRecibo']['version'];
         if (empty($operationVersion)) {
@@ -466,25 +480,31 @@ class Tools extends ToolsBase
         ];
         
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/download/"
-            . "solicitacao/nrRecibo/$operationVersion \" "
+            . "solicitacao/nrRecibo/$operationVersion\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
             . "<download>"
             . "<ideEmpregador>"
             . "<tpInsc>{$this->tpInsc}</tpInsc>"
             . "<nrInsc>{$this->nrInsc}</nrInsc>"
             . "</ideEmpregador>"
-            . "<solicDownloadEventosPorNrRecibo>"
-            . "<nrRec>$nrRec</nrRec>"
-            . "</solicDownloadEventosPorNrRecibo>"
+            . "<solicDownloadEventosPorNrRecibo>";
+        
+        foreach ($nrRecs as $nrRec) {
+            $request .= "<nrRec>$nrRec</nrRec>";
+        }
+        
+        $request .= "</solicDownloadEventosPorNrRecibo>"
             . "</download>"
             . "</eSocial>";
+        
+        $request = $this->sign($request);
         
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
             $this->path
             ."schemes/comunicacao/$this->serviceStr/"
-            ."SolicitacaoDownloadEventosPorId-$operationVersion.xsd"
+            ."SolicitacaoDownloadEventosPorNrRecibo-$operationVersion.xsd"
         );
         
         $body = "<v1:{$this->method}>"
@@ -518,6 +538,7 @@ class Tools extends ToolsBase
             .$request
             ."</soapenv:Body>"
             ."</soapenv:Envelope>";
+        
         $msgSize    = strlen($envelope);
         $parameters = [
             "Content-Type: text/xml;charset=UTF-8",
@@ -641,5 +662,22 @@ class Tools extends ToolsBase
                 $evento->setCertificate($this->certificate);
             }
         }
+    }
+    
+    protected function sign($request)
+    {
+        $sign = Signer::sign(
+            $this->certificate,
+            $request,
+            'eSocial',
+            '',
+            OPENSSL_ALGO_SHA256,
+            [true, false, null, null]
+        );
+        return str_replace(
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '',
+            $sign
+        );
     }
 }
