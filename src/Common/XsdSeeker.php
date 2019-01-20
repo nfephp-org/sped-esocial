@@ -17,7 +17,9 @@ class XsdSeeker
         'SolicitacaoDownloadEventosPorId' => ['version' => '', 'name' => ''],
         'SolicitacaoDownloadEventosPorNrRecibo' => ['version' => '', 'name' => ''],
         'WsConsultarLoteEventos' => ['version' => '', 'name' => ''],
-        'WsEnviarLoteEventos' => ['version' => '', 'name' => '']
+        'WsEnviarLoteEventos' => ['version' => '', 'name' => ''],
+        'WsConsultarIdentificadoresEventos' => ['version' => '', 'name' => ''],
+        'WsSolicitarDownloadEventos' => ['version' => '', 'name' => ''],
     ];
 
     public static function seek($path)

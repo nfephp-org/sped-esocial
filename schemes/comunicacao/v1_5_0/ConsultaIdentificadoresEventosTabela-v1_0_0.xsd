@@ -1,25 +1,21 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema version="1.0.0"
            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:esocial="http://www.esocial.gov.br/schema/consulta/identificadores-eventos/tabela/v1_0_0"
            targetNamespace="http://www.esocial.gov.br/schema/consulta/identificadores-eventos/tabela/v1_0_0"
            elementFormDefault="qualified" attributeFormDefault="unqualified">
-
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
-
   <xs:element name="eSocial">
     <xs:annotation>
       <xs:documentation>Elemento raiz do eSocial.</xs:documentation>
     </xs:annotation>
-
     <xs:complexType>
       <xs:sequence>
         <xs:element name="consultaIdentificadoresEvts">
           <xs:annotation>
             <xs:documentation>Elemento de  informacoes relativas a consulta de eventos.</xs:documentation>
           </xs:annotation>
-
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ideEmpregador" type="esocial:TIdeEmpregador">
@@ -27,7 +23,6 @@
                   <xs:documentation>Identificação do empregador.</xs:documentation>
                 </xs:annotation>
               </xs:element>
-
               <xs:element name="consultaEvtsTabela" type="esocial:TConsultaEventosTabela">
                 <xs:annotation>
                   <xs:documentation>Contém o filtro para consulta aos eventos de tabela.</xs:documentation>
@@ -40,13 +35,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
   <xs:complexType name="TConsultaEventosTabela">
     <xs:annotation>
       <xs:documentation>Define o filtro para consulta aos eventos de tabela.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-
       <xs:element name="tpEvt">
         <xs:simpleType>
           <xs:annotation>
@@ -57,7 +50,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-
       <xs:element name="chEvt" minOccurs="0">
         <xs:simpleType>
           <xs:annotation>
@@ -67,7 +59,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-
       <xs:element name="dtIni" minOccurs="0">
         <xs:simpleType>
           <xs:annotation>
@@ -77,7 +68,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-
       <xs:element name="dtFim" minOccurs="0">
         <xs:simpleType>
           <xs:annotation>
@@ -89,14 +79,11 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="TIdeEmpregador">
     <xs:annotation>
       <xs:documentation>Define a identificação do empregador. 1-CNPJ; 2-CPF;</xs:documentation>
     </xs:annotation>
-
     <xs:sequence>
-
       <xs:element name="tpInsc">
         <xs:simpleType>
           <xs:annotation>
