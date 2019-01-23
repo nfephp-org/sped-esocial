@@ -158,8 +158,8 @@ class EvtTSVInicio extends Factory implements FactoryInterface
         $this->dom->addChild(
             $nascimento,
             "codMunic",
-            $this->std->codmunic,
-            true
+            !empty($this->std->codmunic) ? $this->std->codmunic : null,
+            false
         );
         $this->dom->addChild(
             $nascimento,
