@@ -410,9 +410,8 @@
             <xs:documentation>Complemento do logradouro</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
-            <xs:minLength value="2"/>
+            <xs:minLength value="1"/>
             <xs:maxLength value="30"/>
-            <xs:whiteSpace value="preserve"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
@@ -530,9 +529,8 @@
             <xs:documentation>Complemento do logradouro</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
-            <xs:minLength value="2"/>
+            <xs:minLength value="1"/>
             <xs:maxLength value="30"/>
-            <xs:whiteSpace value="preserve"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>

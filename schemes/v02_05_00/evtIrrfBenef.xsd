@@ -33,7 +33,8 @@
                           <xs:documentation>Período ao qual se referem as informações</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:string">
-                          <xs:pattern value="[2]{1}\d{3}-(1[0-2]|0[1-9])"/>
+                          <xs:minLength value="4"/>
+                          <xs:maxLength value="7"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
@@ -294,9 +295,8 @@
                   <xs:documentation>Complemento do logradouro</xs:documentation>
                 </xs:annotation>
                 <xs:restriction base="xs:string">
-                  <xs:minLength value="2"/>
+                  <xs:minLength value="1"/>
                   <xs:maxLength value="30"/>
-                  <xs:whiteSpace value="preserve"/>
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
