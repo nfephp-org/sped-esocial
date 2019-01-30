@@ -47,7 +47,7 @@ $std->infoamb[1]->codamb = 'xxxxx';
 $std->infoativ = new \stdClass();
 $std->infoativ->dscativdes = 'lkskslkslsklsks  lsk slsklsk';
 $std->infoativ->ativpericinsal[0] = new \stdClass();
-$std->infoativ->ativpericinsal[0]->codativ = '221111';
+$std->infoativ->ativpericinsal[0]->codativ = '22.111';
 
 $std->fatrisco[0] = new \stdClass();
 $std->fatrisco[0]->codfatris = '01.01.012';
