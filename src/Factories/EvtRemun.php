@@ -245,7 +245,7 @@ class EvtRemun extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $procJudTrab,
                     "codSusp",
-                    $proc->codsusp,
+                    !empty($proc->codsusp) ? $proc->codsusp : null,
                     true
                 );
                 $ide->appendChild($procJudTrab);
