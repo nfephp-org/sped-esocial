@@ -242,7 +242,7 @@ class EvtDeslig extends Factory implements FactoryInterface
             );
             $infoDeslig->appendChild($mudancaCPF);
         }
-        
+
         if (!empty($this->std->verbasresc)) {
             $verbasResc = $this->dom->createElement("verbasResc");
             foreach ($this->std->verbasresc->dmdev as $dm) {
@@ -630,7 +630,7 @@ class EvtDeslig extends Factory implements FactoryInterface
             );
             $infoDeslig->appendChild($quarentena);
         }
-        
+
         if (!empty($this->std->consigfgts)) {
             foreach ($this->std->consigfgts as $cfg) {
                 $consigFGTS = $this->dom->createElement("consigFGTS");
@@ -649,11 +649,11 @@ class EvtDeslig extends Factory implements FactoryInterface
                 $infoDeslig->appendChild($consigFGTS);
             }
         }
-        
+
         $this->node->appendChild($infoDeslig);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        $this->xml = $this->dom->saveXML($this->eSocial);
-        //$this->sign();
+        // $this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
