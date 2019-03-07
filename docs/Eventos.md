@@ -70,9 +70,9 @@ Os eventos estão subdivididos em grupos
 
 ### EVENTOS INICIAIS grupo [1]
 
-> Identificam o contribuinte e contêm dados básicos de classificação fiscal e estrutura administrativa. É o primeiro evento a ser transmitido ao eSocial. Também compõe os eventos iniciais o cadastramento inicial dos vínculos, que deve ser informado após terem sido transmitidos os eventos de tabelas do empregador. 
+> Identificam o contribuinte e contêm dados básicos de classificação fiscal e estrutura administrativa. São os primeiros eventos a serem transmitido ao eSocial. Também compõe os eventos iniciais o cadastramento inicial dos vínculos, que deve ser informado após terem sido transmitidos os eventos de tabelas do empregador. 
 > 
-> Já os Eventos de Tabelas são eventos permanentes utilizados por outras partes do eSocial. É recomendável transmiti-las logo após o envio do evento de Informações do Empregador. 
+> Os Eventos das Tabelas, são eventos permanentes utilizados por outras partes do eSocial. É recomendável transmiti-las logo após o envio do evento de Informações do Empregador (S-1000). 
 
 - [S-1000 Informações do Empregador](EvtInfoEmpregador.md)
 - [S-1005 Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos](EvtTabEstab.md)
