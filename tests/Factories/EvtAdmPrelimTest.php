@@ -80,7 +80,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
         );
         $actual = $evt->toJson();
         //file_put_contents($this->fixturesPath . 'evtAdmPrelim.json', $actual);
-        $expected = file_get_contents($this->fixturesPath.'evtAdmPrelim.json');
+        $expected = file_get_contents($this->fixturesPath . 'evtAdmPrelim.json');
         $this->assertEquals($expected, $actual);
     }
 
