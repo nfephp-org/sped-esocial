@@ -147,7 +147,7 @@ class EvtAqProd extends Factory implements FactoryInterface
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * Estrutura do tpAquin v2.4.2
      * @param DOMElement $ideEstabAdquir
@@ -298,7 +298,7 @@ class EvtAqProd extends Factory implements FactoryInterface
             $ideEstabAdquir->appendChild($tpAquis);
         }
     }
-    
+
     /**
      * Grandes altereções de estrutura na tag tpAquis
      * @param DOMElement $ideEstabAdquir
@@ -335,46 +335,50 @@ class EvtAqProd extends Factory implements FactoryInterface
                 );
                 $ideProdutor->setAttribute('indOpcCP', $ideprod->indopccp);
 
-                foreach ($ideprod->nfs as $prodnfs) {
-                    $nfs = $this->dom->createElement("nfs");
-                    !empty($prodnfs->serie) ? $nfs->setAttribute('serie', $prodnfs->serie) : null;
-                    $nfs->setAttribute('nrDocto', $prodnfs->nrdocto);
-                    $nfs->setAttribute('dtEmisNF', $prodnfs->dtemisnf);
-                    $nfs->setAttribute(
-                        'vlrBruto',
-                        number_format($prodnfs->vlrbruto, 2, '.', '')
-                    );
-                    $nfs->setAttribute(
-                        'vrCPDescPR',
-                        number_format($prodnfs->vrcpdescpr, 2, '.', '')
-                    );
-                    $nfs->setAttribute(
-                        'vrRatDescPR',
-                        number_format($prodnfs->vrratdescpr, 2, '.', '')
-                    );
-                    $nfs->setAttribute(
-                        'vrSenarDesc',
-                        number_format($prodnfs->vrsenardesc, 2, '.', '')
-                    );
-                    $ideProdutor->appendChild($nfs);
+                if (isset($ideprod->nfs)) {
+                    foreach ($ideprod->nfs as $prodnfs) {
+                        $nfs = $this->dom->createElement("nfs");
+                        !empty($prodnfs->serie) ? $nfs->setAttribute('serie', $prodnfs->serie) : null;
+                        $nfs->setAttribute('nrDocto', $prodnfs->nrdocto);
+                        $nfs->setAttribute('dtEmisNF', $prodnfs->dtemisnf);
+                        $nfs->setAttribute(
+                            'vlrBruto',
+                            number_format($prodnfs->vlrbruto, 2, '.', '')
+                        );
+                        $nfs->setAttribute(
+                            'vrCPDescPR',
+                            number_format($prodnfs->vrcpdescpr, 2, '.', '')
+                        );
+                        $nfs->setAttribute(
+                            'vrRatDescPR',
+                            number_format($prodnfs->vrratdescpr, 2, '.', '')
+                        );
+                        $nfs->setAttribute(
+                            'vrSenarDesc',
+                            number_format($prodnfs->vrsenardesc, 2, '.', '')
+                        );
+                        $ideProdutor->appendChild($nfs);
+                    }
                 }
-                foreach ($ideprod->infoprocjud as $prodprocjud) {
-                    $infoProcJud = $this->dom->createElement("infoProcJud");
-                    $infoProcJud->setAttribute('nrProcJud', $prodprocjud->nrprocjud);
-                    $infoProcJud->setAttribute('codSusp', $prodprocjud->codsusp);
-                    $infoProcJud->setAttribute(
-                        'vrCPNRet',
-                        number_format($prodprocjud->vrcpnret, 2, '.', '')
-                    );
-                    $infoProcJud->setAttribute(
-                        'vrRatNRet',
-                        number_format($prodprocjud->vrratnret, 2, '.', '')
-                    );
-                    $infoProcJud->setAttribute(
-                        'vrSenarNRet',
-                        number_format($prodprocjud->vrsenarnret, 2, '.', '')
-                    );
-                    $ideProdutor->appendChild($infoProcJud);
+                if (isset($ideprod->infoprocjud)) {
+                    foreach ($ideprod->infoprocjud as $prodprocjud) {
+                        $infoProcJud = $this->dom->createElement("infoProcJud");
+                        $infoProcJud->setAttribute('nrProcJud', $prodprocjud->nrprocjud);
+                        $infoProcJud->setAttribute('codSusp', $prodprocjud->codsusp);
+                        $infoProcJud->setAttribute(
+                            'vrCPNRet',
+                            number_format($prodprocjud->vrcpnret, 2, '.', '')
+                        );
+                        $infoProcJud->setAttribute(
+                            'vrRatNRet',
+                            number_format($prodprocjud->vrratnret, 2, '.', '')
+                        );
+                        $infoProcJud->setAttribute(
+                            'vrSenarNRet',
+                            number_format($prodprocjud->vrsenarnret, 2, '.', '')
+                        );
+                        $ideProdutor->appendChild($infoProcJud);
+                    }
                 }
                 $tpAquis->appendChild($ideProdutor);
                 if (!empty($tp->infoprocj)) {

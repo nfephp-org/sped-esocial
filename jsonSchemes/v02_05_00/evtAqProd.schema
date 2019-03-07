@@ -15,7 +15,7 @@
             "maximum": 2
         },
         "nrrecibo": {
-            "required": true,
+            "required": false,
             "type": "string",
             "maxLength": 40
         },
@@ -213,8 +213,8 @@
                             }
                         }
                     }
-                }    
+                }
             }
-        }    
+        }
     }
 }
