@@ -90,6 +90,8 @@ Os eventos estão subdivididos em grupos
 
 > São os fatos jurídicos firmados entre empregador/tomador e trabalhadores que não têm uma data prefixada para ocorrer. Vão depender dos acontecimentos na vida da empresa e do trabalhador, tais como contratação, afastamentos, demissões, dentre outros. Esses fatos influenciam na concessão de direitos e no cumprimento de deveres trabalhistas, previdenciários e fiscais. 
 
+> Alguns desses eventos preconizam um controle de ocorrencia. Por exemplo, somente posso alterar um contato (S-2206) SE o trabalhador já tiver sido admitido (S-2200).
+
 - [S-2190 Admissão de Trabalhador - Registro Preliminar](EvtAdmPerlim.md)
 - [S-2200 Admissão de Trabalhador](EvtAdmissao.md)
 - [S-2205 Alteração de Dados Cadastrais do Trabalhador](EvtAltCadastral.md)
