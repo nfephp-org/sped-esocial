@@ -22,7 +22,7 @@ $configJson = json_encode($arrconfig);
 ```
 | Propriedade | Tipo | Ocorrência | Tamanho | Dec | Descrição |
 | :---  | :---: | :---: | :---: | :---: | :--- |
-| tpAmb | N | 1-1 | 1 | - | Identificação do ambiente: <p>1 - Produção;</p><p>2 - Produção restrita - dados reais;</p><p>3 - Produção restrita - dados fictícios.</p><p>6 - Homologação</p><p>7 - Validação</p><p>8 - Testes</p><p>9 - Desenvolvimento</p>|
+| tpAmb | N | 1-1 | 1 | - | Identificação do ambiente: <p>1 - Produção;</p><p>2 - Produção restrita (testes)</p>|
 | verProc | C | 1-1 | 20 | - | Versão do processo de emissão do evento.  Informar a versão do aplicativo emissor do evento. |
 | eventoVersion | C | 1-1 | 10 | Informar a versão do layout do evento |
 | serviceVersion | C | 1-1 | 10 | Informar a versão do layout do metodo de comunicação | 

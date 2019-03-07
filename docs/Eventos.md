@@ -89,7 +89,7 @@ Os eventos estão subdivididos em grupos
 ### EVENTOS NÃO PERIÓDICOS grupo [2]
 
 > São os fatos jurídicos firmados entre empregador/tomador e trabalhadores que não têm uma data prefixada para ocorrer. Vão depender dos acontecimentos na vida da empresa e do trabalhador, tais como contratação, afastamentos, demissões, dentre outros. Esses fatos influenciam na concessão de direitos e no cumprimento de deveres trabalhistas, previdenciários e fiscais. 
-
+>
 > Alguns desses eventos preconizam um controle de ocorrencia. Por exemplo, somente posso alterar um contato (S-2206) SE o trabalhador já tiver sido admitido (S-2200).
 
 - [S-2190 Admissão de Trabalhador - Registro Preliminar](EvtAdmPerlim.md)
