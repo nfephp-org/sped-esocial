@@ -49,6 +49,7 @@ try {
     $std->dtAdm = '2017-02-12';
     
     $evento = Event::evtAdmPrelim($configJson, $std);
+    
 
     //instancia a classe responsável pela comunicação
     $tools = new Tools($configJson, $certificate);

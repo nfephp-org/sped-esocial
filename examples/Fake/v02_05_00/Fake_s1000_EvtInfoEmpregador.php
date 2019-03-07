@@ -120,6 +120,7 @@ $std->situacaopj->indsitpj = 0; //0 - Situação Normal; 1 - Extinção; 2 - Fus
 //$std->novavalidade->inivalid = '2017-06';//mês e ano de início da validade das informações prestadas no evento,
 //$std->novavalidade->fimvalid = null;//mês e ano de término da validade das informações, se houve
 
+
 try {
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');
@@ -132,11 +133,13 @@ try {
         $std,
         $certificate,
         '2017-08-03 10:37:00' //opcional data e hora
-    )->toXML();
+    )->toXml();
 
     header('Content-type: text/xml; charset=UTF-8');
     //retorna o evento em xml assinado
+    //echo "<pre>";
     echo $xml;
+    //echo "</pre>";
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

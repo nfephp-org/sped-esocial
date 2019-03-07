@@ -162,7 +162,7 @@ abstract class Factory
         //This is done for standardization purposes.
         //Fields with no value will not be included by the builder.
         //$this->std = $this->standardizeProperties($this->std);
-        $this->init();
+        //$this->init();
     }
 
     /**
@@ -300,6 +300,7 @@ abstract class Factory
      */
     public function toXML()
     {
+        $this->init();
         if (empty($this->xml)) {
             $this->toNode();
         }
@@ -337,29 +338,16 @@ abstract class Factory
      */
     public function toJson()
     {
-        if (empty($this->xml)) {
-            $this->toNode();
-        }
-        //a assinatura só faz sentido no XML, os demais formatos
-        //não devem conter dados da assinatura
-        $xml = Signer::removeSignature($this->xml);
-        $dom = new \DOMDocument();
-        $dom->loadXML($xml);
-        $sxml = simplexml_load_string($dom->saveXML());
-        return str_replace(
-            '@attributes',
-            'attributes',
-            json_encode($sxml, JSON_PRETTY_PRINT)
-        );
+        return json_encode($this->std);
     }
 
     /**
-     * Convert xml to stdClass
+     * Returns stdClass
      * @return stdClass
      */
     public function toStd()
     {
-        return json_decode($this->toJson());
+        return $this->std;
     }
 
     /**

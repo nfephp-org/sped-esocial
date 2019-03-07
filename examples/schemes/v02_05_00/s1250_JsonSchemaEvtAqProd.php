@@ -37,8 +37,8 @@ $jsonSchema = '{
             "maximum": 2
         },
         "nrrecibo": {
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": ["string","null"],
             "maxLength": 40
         },
         "indapuracao": {
