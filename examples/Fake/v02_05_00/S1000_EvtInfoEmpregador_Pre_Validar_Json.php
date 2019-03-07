@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
-use NFePHP\Common\Certificate;
+
 use NFePHP\eSocial\Event;
 
 $config = [
@@ -33,6 +33,8 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1; //numero sequencial
 $std->modo = 'INC'; //INC inclusão, ALT alteração EXC exclusão
+//NOTA: se for uma alteração ou exclusão, então o sequencial não pode ser = 1 
+//deve ser maior pois o 1 já foi feito anteriormente
 
 $std->ideperiodo = new \stdClass();
 $std->ideperiodo->inivalid = '2017-01'; //aaaa-mm do inicio da validade
@@ -122,22 +124,11 @@ $std->situacaopj->indsitpj = 0; //0 - Situação Normal; 1 - Extinção; 2 - Fus
 
 
 try {
-    //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
-    $password = 'associacao';
-    $certificate = Certificate::readPfx($content, $password);
-
-    //cria o evento evtInfoEmpregador
-    $xml = Event::evtInfoEmpregador(
-        $configJson,
-        $std,
-        $certificate,
-        '2017-08-03 10:37:00' //opcional data e hora
-    )->toXml();
-      
-    header('Content-type: text/xml; charset=UTF-8');
-    //retorna o evento em xml assinado
-    echo $xml;      
+    //$json = Event::evtInfoEmpregador($configJson, $std)->toJson();
+    $json = Event::s1000($configJson, $std)->toJson();
+    echo "<pre>";
+    echo $json;
+    echo "</pre>";
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
