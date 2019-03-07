@@ -49,7 +49,7 @@ try {
     $tools->loadSoapClass($soap);
 
     //executa a consulta
-    $tpEvt = 'S-3000';
+    $tpEvt = 'S-1000';
     $perapur = '2018-12'; //ou apenas o ano
     $response = $tools->consultarEventosEmpregador($tpEvt, $perapur);
 
