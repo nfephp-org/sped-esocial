@@ -1,6 +1,6 @@
 # Eventos
 
-O e-Social foi estruturado em sua versão 2.5.0 com 41 eventos
+O e-Social foi estruturado em sua versão 2.5.0 com 45 eventos
 
 01. [S-1000 evtInfoEmpregador - Informações do Empregador/Contribuinte/Órgão Público](EvtInfoEmpregador.md)
 02. [S-1005 evtTabEstab - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos](EvtTabEstab.md)
@@ -35,24 +35,25 @@ O e-Social foi estruturado em sua versão 2.5.0 com 41 eventos
 31. [S-2240 evtExpRisco - Condições Ambientais do Trabalho - Fatores de Risco](EvtExpRisco.md)
 32. [S-2245 evtTreiCap - Treinamentos, Capacitações, Exercícios Simulados e Outras Anotações](EvtTreiCap.md)
 33. [S-2250 evtAvPrevio - Aviso Prévio](EvtAvPrevio.md)
-33. [S-2260 evtConvInterm - Convocação para Trabalho Intermitente](EvtConvInterm.md)
-34. [S-2298 evtReintegr - Reintegração](EvtReintegr.md)
-35. [S-2299 evtDeslig - Desligamento](EvtDeslig.md)
-33. [S-2300 evtTSVInicio - Trabalhador Sem Vínculo de Emprego/Estatutário - Início](EvtTSVInicio.md)
-34. [S-2306 evtTSVAltContr - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual](EvtTSVAltContr.md)
-35. [S-2399 evtTSVTermino - Trabalhador Sem Vínculo de Emprego/Estatutário - Término](EvtTSVTermino.md)
-36. [S-2400 evtCdBenPrRP - Cadastro de Benefícios Previdenciários - RPPS](EvtCdBenPrRP.md)
-37. [S-3000 evtExclusao - Exclusão de eventos](EvtExclusao.md)
-38. [S-5001 evtBasesTrab - Informações das contribuições sociais por trabalhador](EvtBasesTrab.md)
-39. [S-5002 evtIrrfBenef - Imposto de Renda Retido na Fonte](EvtIrrfBenef.md)
-40. [S-5011 evtCS - Informações das contribuições sociais consolidadas por contribuinte](EvtCS.md)
-41. [S-5012 evtIrrf - Informações do IRRF consolidadas por contribuinte](EvtIrrf.md)
+34. [S-2260 evtConvInterm - Convocação para Trabalho Intermitente](EvtConvInterm.md)
+35. [S-2298 evtReintegr - Reintegração](EvtReintegr.md)
+36. [S-2299 evtDeslig - Desligamento](EvtDeslig.md)
+37. [S-2300 evtTSVInicio - Trabalhador Sem Vínculo de Emprego/Estatutário - Início](EvtTSVInicio.md)
+38. [S-2306 evtTSVAltContr - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual](EvtTSVAltContr.md)
+39. [S-2399 evtTSVTermino - Trabalhador Sem Vínculo de Emprego/Estatutário - Término](EvtTSVTermino.md)
+40. [S-2400 evtCdBenPrRP - Cadastro de Benefícios Previdenciários - RPPS](EvtCdBenPrRP.md)
+41. [S-3000 evtExclusao - Exclusão de eventos](EvtExclusao.md)
+42. [S-5001 evtBasesTrab - Informações das contribuições sociais por trabalhador](EvtBasesTrab.md)
+43. [S-5002 evtIrrfBenef - Imposto de Renda Retido na Fonte](EvtIrrfBenef.md)
+44. [S-5011 evtCS - Informações das contribuições sociais consolidadas por contribuinte](EvtCS.md)
+45. [S-5012 evtIrrf - Informações do IRRF consolidadas por contribuinte](EvtIrrf.md)
 
 
 # Eventos Descontinuados
 
-~~ [S-1065 evtTabEquipamento - Tabela de Equipamentos de Proteção](EvtTabEquipamento.md) ~~
-~~ [S-2100 evtCadInicial - Cadastramento Inicial do Vínculo](EvtCadInicial.md)~~
+~~[S-1065 evtTabEquipamento - Tabela de Equipamentos de Proteção](EvtTabEquipamento.md)~~
+
+~~[S-2100 evtCadInicial - Cadastramento Inicial do Vínculo](EvtCadInicial.md)~~
 
 
 ## PADRONIZAÇÃO
