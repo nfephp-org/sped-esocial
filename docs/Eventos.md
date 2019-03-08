@@ -2,7 +2,7 @@
 
 O e-Social foi estruturado em sua versão 2.5.0 com 45 eventos
 
-01. [S-1000 evtInfoEmpregador - Informações do Empregador/Contribuinte/Órgão Público](EvtInfoEmpregador.md)
+01. [**S-1000 evtInfoEmpregador** - Informações do Empregador/Contribuinte/Órgão Público](EvtInfoEmpregador.md)
 02. [S-1005 evtTabEstab - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos](EvtTabEstab.md)
 03. [S-1010 evtTabRubrica - Tabela de Rubricas](EvtTabRubrica.md)
 04. [S-1020 evtTabLotacao - Tabela de Lotações Tributárias](EvtTabLotacao.md)
