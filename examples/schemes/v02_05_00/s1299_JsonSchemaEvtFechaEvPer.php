@@ -60,7 +60,7 @@ $jsonSchema = '{
                 "email": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "mail"
+                    "maxLength": 60
                 }
             }
         },

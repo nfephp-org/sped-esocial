@@ -38,7 +38,7 @@ $std->iderespinf = new \stdClass();
 $std->iderespinf->nmresp = 'JOAO';
 $std->iderespinf->cpfresp = '11111111111';
 $std->iderespinf->telefone = '1122223333';
-$std->iderespinf->email = 'fulano@mail.com';
+$std->iderespinf->email = 'odirlei@avanti.ind.br';
 
 $std->infofech = new \stdClass();
 $std->infofech->evtremun = 'N';
