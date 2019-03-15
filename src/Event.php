@@ -70,6 +70,9 @@ class Event
         'evtcontrsindpatr' => Factories\EvtContrSindPatr::class,
         'evtremun' => Factories\EvtRemun::class,
         'evttotconting' => Factories\EvtTotConting::class,
+        'evttoxic' => Factories\EvtToxic::class,
+        'evtfgts' => Factories\EvtFGTS::class,
+        'evtbasesfgts' => Factories\EvtBasesFGTS::class
     ];
 
     /**
@@ -112,6 +115,7 @@ class Event
         's1070' => 'evttabprocesso',
         's2210' => 'evtcat',
         's2220' => 'evtmonit',
+        's2221' => 'evttoxic',
         's1010' => 'evttabrubrica',
         's2400' => 'evtcdbenprrp',
         's1210' => 'evtpgtos',
@@ -124,7 +128,9 @@ class Event
         's2399' => 'evttsvtermino',
         's1300' => 'evtcontrsindpatr',
         's1200' => 'evtremun',
-        's1295' => 'evttotconting'
+        's1295' => 'evttotconting',
+        's5003' => 'evtbasesfgts',
+        's5013' => 'evtfgts',
     ];
 
     /**

@@ -1,6 +1,6 @@
 # Eventos
 
-O e-Social foi estruturado em sua versão 2.5.0 com 45 eventos
+O e-Social foi estruturado em sua versão 2.5.0 com 48 eventos
 
 01. [**S-1000 evtInfoEmpregador** - Informações do Empregador/Contribuinte/Órgão Público](EvtInfoEmpregador.md)
 02. [**S-1005 evtTabEstab** - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos](EvtTabEstab.md)
@@ -31,23 +31,25 @@ O e-Social foi estruturado em sua versão 2.5.0 com 45 eventos
 27. [**S-2206 evtAltContratual** - Alteração de Contrato de Trabalho](EvtAltContratual.md)
 28. [**S-2210 evtCAT** - Comunicação de Acidente de Trabalho](EvtCAT.md)
 29. [**S-2220 evtMonit** - Monitoramento da Saúde do Trabalhador](EvtMonit.md)
-30. [**S-2230 evtAfastTemp** - Afastamento Temporário](EvtAfastTemp.md)
-31. [**S-2240 evtExpRisco** - Condições Ambientais do Trabalho - Fatores de Risco](EvtExpRisco.md)
-32. [**S-2245 evtTreiCap** - Treinamentos, Capacitações, Exercícios Simulados e Outras Anotações](EvtTreiCap.md)
-33. [**S-2250 evtAvPrevio** - Aviso Prévio](EvtAvPrevio.md)
-34. [**S-2260 evtConvInterm** - Convocação para Trabalho Intermitente](EvtConvInterm.md)
-35. [**S-2298 evtReintegr** - Reintegração](EvtReintegr.md)
-36. [**S-2299 evtDeslig** - Desligamento](EvtDeslig.md)
-37. [**S-2300 evtTSVInicio** - Trabalhador Sem Vínculo de Emprego/Estatutário - Início](EvtTSVInicio.md)
-38. [**S-2306 evtTSVAltContr** - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual](EvtTSVAltContr.md)
-39. [**S-2399 evtTSVTermino** - Trabalhador Sem Vínculo de Emprego/Estatutário - Término](EvtTSVTermino.md)
-40. [**S-2400 evtCdBenPrRP** - Cadastro de Benefícios Previdenciários - RPPS](EvtCdBenPrRP.md)
-41. [**S-3000 evtExclusao** - Exclusão de eventos](EvtExclusao.md)
-42. [**S-5001 evtBasesTrab** - Informações das contribuições sociais por trabalhador](EvtBasesTrab.md)
-43. [**S-5002 evtIrrfBenef** - Imposto de Renda Retido na Fonte](EvtIrrfBenef.md)
-44. [**S-5011 evtCS** - Informações das contribuições sociais consolidadas por contribuinte](EvtCS.md)
-45. [**S-5012 evtIrrf** - Informações do IRRF consolidadas por contribuinte](EvtIrrf.md)
-
+30. [**S-2221 evtToxic** - Exame Toxicológico do Motorista Profissional](EvtToxic.md)
+31. [**S-2230 evtAfastTemp** - Afastamento Temporário](EvtAfastTemp.md)
+32. [**S-2240 evtExpRisco** - Condições Ambientais do Trabalho - Fatores de Risco](EvtExpRisco.md)
+33. [**S-2245 evtTreiCap** - Treinamentos, Capacitações, Exercícios Simulados e Outras Anotações](EvtTreiCap.md)
+34. [**S-2250 evtAvPrevio** - Aviso Prévio](EvtAvPrevio.md)
+35. [**S-2260 evtConvInterm** - Convocação para Trabalho Intermitente](EvtConvInterm.md)
+36. [**S-2298 evtReintegr** - Reintegração](EvtReintegr.md)
+37. [**S-2299 evtDeslig** - Desligamento](EvtDeslig.md)
+38. [**S-2300 evtTSVInicio** - Trabalhador Sem Vínculo de Emprego/Estatutário - Início](EvtTSVInicio.md)
+39. [**S-2306 evtTSVAltContr** - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual](EvtTSVAltContr.md)
+40. [**S-2399 evtTSVTermino** - Trabalhador Sem Vínculo de Emprego/Estatutário - Término](EvtTSVTermino.md)
+41. [**S-2400 evtCdBenPrRP** - Cadastro de Benefícios Previdenciários - RPPS](EvtCdBenPrRP.md)
+42. [**S-3000 evtExclusao** - Exclusão de eventos](EvtExclusao.md)
+43. [**S-5001 evtBasesTrab** - Informações das contribuições sociais por trabalhador](EvtBasesTrab.md)
+44. [**S-5002 evtIrrfBenef** - Imposto de Renda Retido na Fonte](EvtIrrfBenef.md)
+45. [**S-5003 evtBasesFGTS** - Informações do FGTS por Trabalhador](EvtBasesFGTS.md)
+46. [**S-5011 evtCS** - Informações das contribuições sociais consolidadas por contribuinte](EvtCS.md)
+47. [**S-5012 evtIrrf** - Informações do IRRF consolidadas por contribuinte](EvtIrrf.md)
+48. [**S-5013 evtFGTS** - Informações do FGTS consolidadas por contribuinte](EvtFGTS.md)
 
 # Eventos Descontinuados
 
@@ -64,7 +66,7 @@ Para efeito de padronização na passagem dos parametros para as classes foram a
 
 Os eventos estão subdivididos em grupos 
 
-1. Eventos iniciais e de tabelas 
+1. Eventos iniciais e de tabelas
 2. Eventos Não periódicos 
 3. Eventos periódicos
 
@@ -98,6 +100,7 @@ Os eventos estão subdivididos em grupos
 - [S-2206 Alteração de Contrato de Trabalho](EvtAltContratual.md)
 - [S-2210 Comunicação de Acidente de Trabalho](EvtCAT.md)
 - [S-2220 Monitoramento da Saúde do Trabalhador](EvtMonit.md)
+- [S-2221 Exame Toxicológico do Motorista Profissional](EvtToxic.md)
 - [S-2230 Afastamento Temporário](EvtAfastTemp.md)
 - [S-2240 Condições Ambientais do Trabalho - Fatores de Risco](EvtExpRisco.md)
 - [S-2245 Treinamentos, Capacitações, Exercícios Simulados e Outras Anotações](EvtTreiCap.md)
@@ -112,9 +115,10 @@ Os eventos estão subdivididos em grupos
 - [S-3000 Exclusão de eventos](EvtExclusao.md)
 - [S-5001 Informações das contribuições sociais por trabalhador](EvtBasesTrab.md)
 - [S-5002 Imposto de Renda Retido na Fonte](EvtIrrfBenef.md)
+- [S-5003 Informações do FGTS por Trabalhador](EvtBasesFGTS.md)
 - [S-5011 Informações das contribuições sociais consolidadas por contribuinte](EvtCS.md)
 - [S-5012 Informações do IRRF consolidadas por contribuinte](EvtIrrf.md)
-
+- [S-5013 Informações do FGTS consolidadas por contribuinte](EvtFGTS.md)
 
 ### EVENTOS PERIÓDICOS grupo [3]
 
@@ -132,5 +136,4 @@ Os eventos estão subdivididos em grupos
 - [S-1298 Reabertura dos Eventos Periódicos](EvtReabreEvPer.md)
 - [S-1299 Fechamento dos Eventos Periódicos](EvtFechaEvPer.md)
 - [S-1300 Contribuição Sindical Patronal](EvtContrSindPatr.md)
-
 
