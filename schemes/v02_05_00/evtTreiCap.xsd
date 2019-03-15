@@ -53,7 +53,7 @@
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
-                    <xs:element name="infoComplem" minOccurs="0">
+                    <xs:element name="infoComplem">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dtTreiCap">
@@ -65,7 +65,7 @@
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="durTreiCap">
+                          <xs:element name="durTreiCap" minOccurs="0">
                             <xs:simpleType>
                               <xs:annotation>
                                 <xs:documentation>Duração do treinamento/capacitação/exercício simulado, em horas</xs:documentation>
@@ -74,7 +74,7 @@
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="modTreiCap">
+                          <xs:element name="modTreiCap" minOccurs="0">
                             <xs:simpleType>
                               <xs:annotation>
                                 <xs:documentation>Modalidade do treinamento/capacitação/exercício simulado</xs:documentation>
@@ -84,7 +84,7 @@
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="tpTreiCap">
+                          <xs:element name="tpTreiCap" minOccurs="0">
                             <xs:simpleType>
                               <xs:annotation>
                                 <xs:documentation>Tipo de treinamento/capacitação/exercício simulado</xs:documentation>
@@ -94,7 +94,7 @@
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="ideProfResp" maxOccurs="99">
+                          <xs:element name="ideProfResp" minOccurs="0" maxOccurs="99">
                             <xs:annotation>
                               <xs:documentation>Informações relativas ao profissional responsável</xs:documentation>
                             </xs:annotation>

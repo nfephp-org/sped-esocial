@@ -238,7 +238,6 @@ class Tools extends ToolsBase
             . $request
             . "</v1:consultaEventosEmpregador>"
             . "</v1:{$this->method}>";
-        
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
@@ -304,7 +303,6 @@ class Tools extends ToolsBase
             ."schemes/comunicacao/$this->serviceStr/"
             ."ConsultaIdentificadoresEventosTabela-$operationVersion.xsd"
         );
-        
         $body = "<v1:{$this->method}>"
             ."<v1:consultaEventosTabela>"
             .$request
@@ -666,18 +664,13 @@ class Tools extends ToolsBase
     
     protected function sign($request)
     {
-        $sign = Signer::sign(
+        return $sign = Signer::sign(
             $this->certificate,
             $request,
             'eSocial',
             '',
             OPENSSL_ALGO_SHA256,
-            [true, false, null, null]
-        );
-        return str_replace(
-            '<?xml version="1.0" encoding="UTF-8"?>',
-            '',
-            $sign
+            [false, false, null, null]
         );
     }
 }
