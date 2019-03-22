@@ -47,7 +47,8 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null,
+        $date = ''
     ) {
         parent::__construct($config, $std, $certificate);
     }
