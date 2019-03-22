@@ -69,6 +69,7 @@ Table: rubricas - tabela de rubricas
 |id_rubricasprocfgts|integer|id da tabela dos processos correlatos a Contribuição Sindical RELACIONADOS as rubricas|
 
 Table: rubricasprocs - tabela de processos administrativos e judiciais
+
 |field|type|comment|
 |:---|:---:|:---|
 |id|integer|id da tabela|
@@ -78,6 +79,7 @@ Table: rubricasprocs - tabela de processos administrativos e judiciais
 |codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070.|
 
 Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
+
 |field|type|comment|
 |:---|:---:|:---|
 |id|integer|id da tabela|
@@ -85,12 +87,14 @@ Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
 |codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070|
 
 Table: rubricasprocfgts - tabela de processos judiciais relativos a FGTS
+
 |field|type|comment|
 |:---|:---:|:---|
 |id|integer|id da tabela|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1, 7]|
 
 Table: rubricasprocsind - tabela de processos judiciais relativos a Sindicatos
+
 |field|type|comment|
 |:---|:---:|:---|
 |id|integer|id da tabela|
