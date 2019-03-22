@@ -115,12 +115,6 @@ class EvtMonit extends Factory implements FactoryInterface
             );
             $this->dom->addChild(
                 $aso,
-                "tpAso",
-                $this->std->aso->tpaso,
-                true
-            );
-            $this->dom->addChild(
-                $aso,
                 "resAso",
                 $this->std->aso->resaso,
                 true
