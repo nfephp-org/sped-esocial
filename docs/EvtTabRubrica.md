@@ -48,7 +48,7 @@ Diante disso, alertamos para a necessidade de um profissional qualificado para o
 
 ## Recomendação para Tabela de Base de Dados
 
-Table: rubricas - tabela de rubricas
+### Table: rubricas - tabela de rubricas
 
 |field|type|comment|
 |:---|:---:|:---|
@@ -68,7 +68,7 @@ Table: rubricas - tabela de rubricas
 |id_rubricasprocfgts|integer|id da tabela dos processos correlatos a FGTS RELACIONADOS as rubricas|
 |id_rubricasprocfgts|integer|id da tabela dos processos correlatos a Contribuição Sindical RELACIONADOS as rubricas|
 
-Table: rubricasprocs - tabela de processos administrativos e judiciais
+### Table: rubricasprocs - tabela de processos administrativos e judiciais
 
 |field|type|comment|
 |:---|:---:|:---|
@@ -78,7 +78,7 @@ Table: rubricasprocs - tabela de processos administrativos e judiciais
 |extDecisao|integer|Extensão da Decisão/Sentença: 1 - Contribuição Previdenciária Patronal; 2 - Contribuição Previdenciária Patronal + Descontada dos Segurados.|
 |codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070.|
 
-Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
+### Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
 
 |field|type|comment|
 |:---|:---:|:---|
@@ -86,14 +86,14 @@ Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1].|
 |codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070|
 
-Table: rubricasprocfgts - tabela de processos judiciais relativos a FGTS
+### Table: rubricasprocfgts - tabela de processos judiciais relativos a FGTS
 
 |field|type|comment|
 |:---|:---:|:---|
 |id|integer|id da tabela|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1, 7]|
 
-Table: rubricasprocsind - tabela de processos judiciais relativos a Sindicatos
+### Table: rubricasprocsind - tabela de processos judiciais relativos a Sindicatos
 
 |field|type|comment|
 |:---|:---:|:---|
