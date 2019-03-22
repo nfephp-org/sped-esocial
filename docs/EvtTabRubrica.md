@@ -51,7 +51,7 @@ Diante disso, alertamos para a necessidade de um profissional qualificado para o
 Table: rubricas - tabela de rubricas
 
 |field|type|comment|
-|:---:|:---:|:---|
+|:---|:---:|:---|
 |id|integer|id da tabela|
 |codRubr|string|código interno da rubrica|
 |iniValid|datetime|inicio da validade|
@@ -70,7 +70,7 @@ Table: rubricas - tabela de rubricas
 
 Table: rubricasprocs - tabela de processos administrativos e judiciais
 |field|type|comment|
-|:---:|:---:|:---|
+|:---|:---:|:---|
 |id|integer|id da tabela|
 |tpProc|integer|Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial.|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]|
@@ -79,20 +79,20 @@ Table: rubricasprocs - tabela de processos administrativos e judiciais
 
 Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
 |field|type|comment|
-|:---:|:---:|:---|
+|:---|:---:|:---|
 |id|integer|id da tabela|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1].|
 |codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070|
 
 Table: rubricasprocfgts - tabela de processos judiciais relativos a FGTS
 |field|type|comment|
-|:---:|:---:|:---|
+|:---|:---:|:---|
 |id|integer|id da tabela|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1, 7]|
 
 Table: rubricasprocsind - tabela de processos judiciais relativos a Sindicatos
 |field|type|comment|
-|:---:|:---:|:---|
+|:---|:---:|:---|
 |id|integer|id da tabela|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [8]|
 
