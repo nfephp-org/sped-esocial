@@ -73,13 +73,16 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado
+    /*
     $xml = Event::evtTabEstab(
         $configJson,
         $std,
         $certificate,
         '2017-08-03 10:37:00' //opcional data e hora
     )->toXml();
-
+*/
+    $evt = Event::evtTabEstab($configJson, $std);
+    
     header('Content-type: text/xml; charset=UTF-8');
     echo $xml;
 } catch (\Exception $e) {

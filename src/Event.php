@@ -164,6 +164,9 @@ class Event
         if (empty($arguments[1])) {
             throw EventsException::wrongArgument(1002, $name);
         }
+        if (count($arguments) > 1 && count($arguments) < 3) {
+            return new $className($arguments[0], $arguments[1]);
+        }
         if (count($arguments) > 2 && count($arguments) < 4) {
             return new $className($arguments[0], $arguments[1], $arguments[2]);
         }
