@@ -42,7 +42,6 @@ $std->exmedocup->tpexameocup = 1;
 
 $std->exmedocup->aso = new \stdClass();
 $std->exmedocup->aso->dtaso = '2017-08-18';
-$std->exmedocup->aso->tpaso = 0;
 $std->exmedocup->aso->resaso = 1;
 
 $std->exmedocup->aso->exame[0] = new \stdClass();
