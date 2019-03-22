@@ -68,6 +68,9 @@ Diante disso, alertamos para a necessidade de um profissional qualificado para o
 |id_rubricasprocfgts|integer|id da tabela dos processos correlatos a FGTS RELACIONADOS as rubricas|
 |id_rubricasprocfgts|integer|id da tabela dos processos correlatos a Contribuição Sindical RELACIONADOS as rubricas|
 
+> NOTA: os relacionamentos será de um para muitos (pois podem existir vários processos por rubrica.
+
+
 ### Table: rubricasprocs - tabela de processos administrativos e judiciais
 
 |field|type|comment|
