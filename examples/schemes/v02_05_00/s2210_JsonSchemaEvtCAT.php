@@ -41,12 +41,6 @@ $jsonSchema = '{
             "type": ["string","null"],
             "maxLength": 40
         },
-        "tpregistrador": {
-            "required": false,
-            "type": ["integer","null"],
-            "minimum": 1,
-            "maximum": 9
-        },
         "tpinsc": {
             "required": true,
             "type": "integer",

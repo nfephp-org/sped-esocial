@@ -96,12 +96,8 @@ class EvtCAT extends Factory implements FactoryInterface
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
         
-        if ($this->layoutStr !== 'v02_05_00') {
-            $this->tagRegistrador($ideEmpregador);
-            $this->tagTrabalhador();
-        } else {
-            $this->tagVinculo();
-        }
+        $this->tagVinculo();
+        
         $cat = $this->tagCAT();
         $this->tagLocalAcidente($cat);
         
