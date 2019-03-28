@@ -42,8 +42,8 @@ $jsonSchema = '{
             "maxLength": 40
         },
         "tpregistrador": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 9
         },
@@ -353,7 +353,6 @@ $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
-$std->tpregistrador = 5;
 $std->tpinsc = 1;
 $std->nrinsc = '12345678901234';
 $std->cpftrab = '12345678901';

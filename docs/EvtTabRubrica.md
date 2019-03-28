@@ -48,17 +48,60 @@ Diante disso, alertamos para a necessidade de um profissional qualificado para o
 
 ## Recomendação para Tabela de Base de Dados
 
-Table: tabrubricas
+### Table: rubricas - tabela de rubricas
 
 |field|type|comment|
-|---|---|---|
+|:---|:---:|:---|
 |id|integer|id da tabela|
-|codigo|string|código interno da rubrica|
-|inivalid|datetime|inicio da validade|
-|fimvalid|datetime|fim da validade|
-|desc|string|descrição da rubrica|
-|natureza|
+|codRubr|string|código interno da rubrica|
+|iniValid|datetime|inicio da validade|
+|fimValid|datetime|fim da validade|
+|dscRubr|string|descrição da rubrica|
+|natRubr|string|Tabela 3 - Tabela de Natureza das Rubricas da Folha de Pagamento|
+|tpRubr|integer|Tipo de rubrica: 1 - Vencimento, provento ou pensão; 2 - Desconto; 3 - Informativa; 4 - Informativa dedutora|
+|codIncCP|string|Código de incidência tributária da rubrica para a Previdência Social|
+|codIncIRRF|string|Código de incidência tributária da rubrica para o IRRF|
+|codIncFGTS|string|Código de incidência da rubrica para o FGTS|
+|codIncSIND|string|Código de incidência tributária da rubrica para a Contribuição Sindical Laboral|
+|id_rubricasprocs|integer|id da tabela dos processos adminsitrativos RELACIONADOS as rubricas|
+|id_rubricasprocirrf|integer|id da tabela dos processos correlatos a IRRF RELACIONADOS as rubricas|
+|id_rubricasprocfgts|integer|id da tabela dos processos correlatos a FGTS RELACIONADOS as rubricas|
+|id_rubricasprocfgts|integer|id da tabela dos processos correlatos a Contribuição Sindical RELACIONADOS as rubricas|
 
+> NOTA: os relacionamentos serão de um para muitos (pois podem existir vários processos por rubrica).
+
+
+### Table: rubricasprocs - tabela de processos administrativos e judiciais
+
+|field|type|comment|
+|:---|:---:|:---|
+|id|integer|id da tabela|
+|tpProc|integer|Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial.|
+|nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]|
+|extDecisao|integer|Extensão da Decisão/Sentença: 1 - Contribuição Previdenciária Patronal; 2 - Contribuição Previdenciária Patronal + Descontada dos Segurados.|
+|codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070.|
+
+### Table: rubricasprocirrf - tabela de processos judiciais relativos a IRRF
+
+|field|type|comment|
+|:---|:---:|:---|
+|id|integer|id da tabela|
+|nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1].|
+|codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070|
+
+### Table: rubricasprocfgts - tabela de processos judiciais relativos a FGTS
+
+|field|type|comment|
+|:---|:---:|:---|
+|id|integer|id da tabela|
+|nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1, 7]|
+
+### Table: rubricasprocsind - tabela de processos judiciais relativos a Sindicatos
+
+|field|type|comment|
+|:---|:---:|:---|
+|id|integer|id da tabela|
+|nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [8]|
 
 ## Parâmetros
 O stdClass deve ser carregado com os seguintes parâmetros:
