@@ -68,7 +68,7 @@ $std->verbasresc->dmdev[1]->idedmdev = 'akakakak737477382828282828282';
 $std->verbasresc->dmdev[1]->infoperapur = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->tpinsc = 1;
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->nrinsc = '123456789012345';
+$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->nrinsc = '12345678901234';
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->codlotacao = 'asdfg';
 
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1] = new \stdClass();
@@ -108,7 +108,7 @@ $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1] = new \stdClass
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->perref = '2017-01';
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->tpinsc = 1;
-$std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->nrinsc = '123456789012345';
+$std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->nrinsc = '12345678901234';
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->codlotacao = 'asdfg';
 
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1] = new \stdClass();
@@ -138,7 +138,7 @@ $std->verbasresc->infomv->indmv = 2;
 
 $std->verbasresc->infomv->remunoutrempr[1] = new \stdClass();
 $std->verbasresc->infomv->remunoutrempr[1]->tpinsc = 1;
-$std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '123456789012345';
+$std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '12345678901234';
 $std->verbasresc->infomv->remunoutrempr[1]->codcateg = '001';
 $std->verbasresc->infomv->remunoutrempr[1]->vlrremunoe = 2535.97;
 

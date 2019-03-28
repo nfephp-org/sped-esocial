@@ -4,7 +4,6 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtDeslig Event S-2299 constructor
- * Read for 2.4.2 layout
  * Read for 2.5.0 layout
  *
  * @category  library
@@ -234,10 +233,11 @@ class EvtDeslig extends Factory implements FactoryInterface
         }
         if (!empty($this->std->mudancacpf)) {
             $mudancaCPF = $this->dom->createElement("mudancaCPF");
+            $mcpf = $this->std->mudancacpf;
             $this->dom->addChild(
-                $transfTit,
+                $mudancaCPF,
                 "novoCPF",
-                $this->std->mudancacpf->novocpf,
+                $mcpf->novocpf,
                 true
             );
             $infoDeslig->appendChild($mudancaCPF);
@@ -653,7 +653,7 @@ class EvtDeslig extends Factory implements FactoryInterface
         $this->node->appendChild($infoDeslig);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        // $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }
