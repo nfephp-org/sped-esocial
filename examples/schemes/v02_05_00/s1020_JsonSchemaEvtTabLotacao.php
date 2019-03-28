@@ -63,8 +63,7 @@ $jsonSchema = '{
                 "nrinsc": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 15,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{8,14}"
                 },
                 "fpas": {
                     "required": true,

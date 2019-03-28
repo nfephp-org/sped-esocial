@@ -127,14 +127,14 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $dados,
                 "tpInsc",
-                $da->tpinsc,
-                true
+                !empty($da->tpinsc) ? $da->tpinsc : null,
+                false
             );
             $this->dom->addChild(
                 $dados,
                 "nrInsc",
-                $da->nrinsc,
-                true
+                !empty($da->nrinsc) ? $da->nrinsc : null,
+                false
             );
             //incluso em 2.5.0
             $this->dom->addChild(
@@ -143,20 +143,6 @@ class EvtTabAmbiente extends Factory implements FactoryInterface
                 !empty($da->codlotacao) ? $da->codlotacao : null,
                 false
             );
-            
-            //não existe mais em 2.5.0
-            if (!empty($this->std->dadosambiente->fatorrisco)) {
-                foreach ($this->std->dadosambiente->fatorrisco as $ftr) {
-                    $fator = $this->dom->createElement("fatorRisco");
-                    $this->dom->addChild(
-                        $fator,
-                        "codFatRis",
-                        $ftr->codfatris,
-                        true
-                    );
-                    $dados->appendChild($fator);
-                }
-            }
         }
         $nova = null;
         if (!empty($this->std->novavalidade)) {

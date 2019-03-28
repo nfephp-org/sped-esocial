@@ -188,7 +188,7 @@
                                                 "nrinsc": {
                                                     "required": true,
                                                     "type": "string",
-                                                    "maxLength": 15
+                                                    "pattern": "^[0-9]{8,14}"
                                                 },
                                                 "codlotacao": {
                                                     "required": true,
@@ -395,7 +395,7 @@
                                                                         "nrinsc": {
                                                                             "required": true,
                                                                             "type": "string",
-                                                                            "maxLength": 15
+                                                                            "pattern": "^[0-9]{8,14}"
                                                                         },
                                                                         "codlotacao": {
                                                                             "required": true,
@@ -547,7 +547,7 @@
                                     "nrinsc": {
                                         "required": true,
                                         "type": "string",
-                                        "pattern": "^[0-9]{1,15}$"
+                                        "pattern": "^[0-9]{8,14}$"
                                     },
                                     "codcateg": {
                                         "required": true,

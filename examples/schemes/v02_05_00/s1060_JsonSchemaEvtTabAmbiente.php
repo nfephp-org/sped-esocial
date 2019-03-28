@@ -58,49 +58,29 @@ $jsonSchema = '{
                     "required": true,
                     "type": "string",
                     "minLength": 8,
-                    "maxLength": 999
+                    "maxLength": 8000
                 },
                 "localamb": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 2
+                    "maximum": 3
                 },
                 "tpinsc": {
-                    "required": true,
-                    "type": "integer",
+                    "required": false,
+                    "type": ["integer","null"],
                     "minimum": 1,
-                    "maximum": 3
+                    "maximum": 4
                 },
                 "nrinsc": {
                     "required": true,
                     "type": "string",
-                    "minLength": 8,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{8,15}"
                 },
                 "codLotacao": {
                     "required": false,
                     "type": ["string","null"],
-                    "minLength": 8,
-                    "maxLength": 15
-                },
-                "fatorrisco": {
-                    "required": false,
-                    "type": ["array","null"],
-                    "minItems": 0,
-                    "maxItems": 999,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "codfatris": {
-                                "required": true,
-                                "type": "string",
-                                "maxLength": 10,
-                                "pattern": "^[0-9.]+$"
-                            }
-                        }
-                    }    
+                    "maxLength": 30
                 }
             }
         },
@@ -128,7 +108,7 @@ $std = new \stdClass();
 $std->sequencial = 1;
 $std->codamb = 'ambiente um';
 $std->inivalid = '2017-01';
-$std->fimvalid = '2017-12';
+//$std->fimvalid = '2017-12';
 $std->modo = 'INC';
 
 $std->dadosambiente = new \stdClass();
@@ -139,13 +119,10 @@ $std->dadosambiente->tpinsc = 1;
 $std->dadosambiente->nrinsc = '12345678901234';
 $std->dadosambiente->codLotacao = '12345678';
 
-//$std->dadosambiente->fatorrisco[0] = new \stdClass();
-//$std->dadosambiente->fatorrisco[0]->codfatris = '01.01.006';
-
 //o bloco abaixo deve ser usado somente em caso de alteração
-$std->novavalidade = new \stdClass();
-$std->novavalidade->inivalid = '2017-01';
-$std->novavalidade->fimvalid = '2017-12';
+//$std->novavalidade = new \stdClass();
+//$std->novavalidade->inivalid = '2017-01';
+//$std->novavalidade->fimvalid = '2017-12';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

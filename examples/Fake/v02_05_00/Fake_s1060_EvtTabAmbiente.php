@@ -43,10 +43,6 @@ $std->dadosambiente->tpinsc = 1;
 $std->dadosambiente->nrinsc = '12345678901234';
 $std->dadosambiente->codLotacao = '12345678';//incluso em 2.5.0
 
-//removido em 2.5.0
-//$std->dadosambiente->fatorrisco[0] = new \stdClass();
-//$std->dadosambiente->fatorrisco[0]->codfatris = '01.01.006';
-
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-01';
 $std->novavalidade->fimvalid = '2017-12';

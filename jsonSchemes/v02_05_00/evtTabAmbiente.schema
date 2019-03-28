@@ -43,49 +43,29 @@
                     "required": true,
                     "type": "string",
                     "minLength": 8,
-                    "maxLength": 999
+                    "maxLength": 8000
                 },
                 "localamb": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 2
+                    "maximum": 3
                 },
                 "tpinsc": {
-                    "required": true,
-                    "type": "integer",
+                    "required": false,
+                    "type": ["integer","null"],
                     "minimum": 1,
-                    "maximum": 3
+                    "maximum": 4
                 },
                 "nrinsc": {
                     "required": true,
                     "type": "string",
-                    "minLength": 8,
-                    "maxLength": 15,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{8,15}"
                 },
                 "codLotacao": {
                     "required": false,
                     "type": ["string","null"],
-                    "minLength": 8,
-                    "maxLength": 15
-                },
-                "fatorrisco": {
-                    "required": false,
-                    "type": ["array","null"],
-                    "minItems": 0,
-                    "maxItems": 999,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "codfatris": {
-                                "required": true,
-                                "type": "string",
-                                "maxLength": 10,
-                                "pattern": "^[0-9.]+$"
-                            }
-                        }
-                    }    
+                    "maxLength": 30
                 }
             }
         },
