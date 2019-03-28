@@ -664,13 +664,17 @@ class Tools extends ToolsBase
     
     protected function sign($request)
     {
-        return $sign = Signer::sign(
-            $this->certificate,
-            $request,
-            'eSocial',
+        return str_replace(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
             '',
-            OPENSSL_ALGO_SHA256,
-            [false, false, null, null]
+            $sign = Signer::sign(
+                $this->certificate,
+                $request,
+                'eSocial',
+                '',
+                OPENSSL_ALGO_SHA256,
+                [false, false, null, null]
+            )
         );
     }
 }

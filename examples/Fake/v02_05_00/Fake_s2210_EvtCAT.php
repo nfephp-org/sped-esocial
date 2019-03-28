@@ -33,7 +33,6 @@ $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 2;
 $std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
-$std->tpregistrador = 5;
 $std->tpinsc = 1;
 $std->nrinsc = '12345678901234';
 $std->cpftrab = '12345678901';
