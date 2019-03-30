@@ -27,12 +27,14 @@ $jsonSchema = '{
         "codrubr": {
             "required": true,
             "type": "string",
-            "maxLength": 30
+            "maxLength": 30,
+            "pattern": "^(?!eSocial)"
         },
         "idetabrubr": {
             "required": true,
             "type": "string",
-            "maxLength": 8
+            "maxLength": 8,
+            "pattern": "^(?!eSocial)"
         },
         "inivalid": {
             "required": true,
