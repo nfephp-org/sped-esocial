@@ -133,7 +133,7 @@ $jsonSchema = '{
                                     "nroc": {
                                         "required": true,
                                         "type": "string",
-                                        "pattern": "^.{14}$"
+                                        "pattern": "^.{2,14}$"
                                     },
                                     "ufoc": {
                                         "required": false,
