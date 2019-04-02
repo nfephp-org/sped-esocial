@@ -73,8 +73,8 @@ $jsonSchema = '{
                     "maximum": 4
                 },
                 "nrinsc": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "pattern": "^[0-9]{8,15}"
                 },
                 "codLotacao": {
