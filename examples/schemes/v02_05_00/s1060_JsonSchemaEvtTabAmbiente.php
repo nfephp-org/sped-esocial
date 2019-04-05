@@ -57,7 +57,7 @@ $jsonSchema = '{
                 "dscamb": {
                     "required": true,
                     "type": "string",
-                    "minLength": 8,
+                    "minLength": 3,
                     "maxLength": 8000
                 },
                 "localamb": {
