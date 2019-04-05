@@ -135,36 +135,40 @@ class EvtRemun extends Factory implements FactoryInterface
                 $this->std->infomv->indmv,
                 true
             );
-            foreach ($this->std->infomv->remunoutrempr as $remo) {
-                $remunOutrEmpr = $this->dom->createElement("remunOutrEmpr");
-                $this->dom->addChild(
-                    $remunOutrEmpr,
-                    "tpInsc",
-                    $remo->tpinsc,
-                    true
-                );
-                $this->dom->addChild(
-                    $remunOutrEmpr,
-                    "nrInsc",
-                    $remo->nrinsc,
-                    true
-                );
-                $this->dom->addChild(
-                    $remunOutrEmpr,
-                    "codCateg",
-                    $remo->codcateg,
-                    true
-                );
-                $this->dom->addChild(
-                    $remunOutrEmpr,
-                    "vlrRemunOE",
-                    $remo->vlrremunoe,
-                    true
-                );
-                $info->appendChild($remunOutrEmpr);
+            
+            if (!empty($this->std->infomv->remunoutrempr)) {
+                foreach ($this->std->infomv->remunoutrempr as $remo) {
+                    $remunOutrEmpr = $this->dom->createElement("remunOutrEmpr");
+                    $this->dom->addChild(
+                        $remunOutrEmpr,
+                        "tpInsc",
+                        $remo->tpinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $remunOutrEmpr,
+                        "nrInsc",
+                        $remo->nrinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $remunOutrEmpr,
+                        "codCateg",
+                        $remo->codcateg,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $remunOutrEmpr,
+                        "vlrRemunOE",
+                        $remo->vlrremunoe,
+                        true
+                    );
+                    $info->appendChild($remunOutrEmpr);
+                }
+                $ide->appendChild($info);
             }
-            $ide->appendChild($info);
         }
+        
         
         if (!empty($this->std->infocomplem)) {
             $ic = $this->std->infocomplem;

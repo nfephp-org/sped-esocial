@@ -78,8 +78,8 @@ $jsonSchema = '{
                     "maximum": 3
                 },
                 "remunoutrempr": {
-                    "required": true,
-                    "type": "array",
+                    "required": false,
+                    "type": ["array","null"],
                     "minItems": 1,
                     "maxItems": 999,
                     "items": {
