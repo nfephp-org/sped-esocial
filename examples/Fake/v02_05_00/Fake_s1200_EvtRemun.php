@@ -39,12 +39,13 @@ $std->nistrab = '10987654321';
 
 $std->infomv = new \stdClass();
 $std->infomv->indmv = 1;
+/*
 $std->infomv->remunoutrempr[0] = new \stdClass();
 $std->infomv->remunoutrempr[0]->tpinsc = 1;
 $std->infomv->remunoutrempr[0]->nrinsc = '12345678901234';
 $std->infomv->remunoutrempr[0]->codcateg = 901;
 $std->infomv->remunoutrempr[0]->vlrremunoe = 2345.09;
-
+*/
 $std->infocomplem = new \stdClass();
 $std->infocomplem->nmtrab = 'Fulano de Tal';
 $std->infocomplem->dtnascto = '1985-02-14';
