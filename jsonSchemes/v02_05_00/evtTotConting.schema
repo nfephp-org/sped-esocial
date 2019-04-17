@@ -1,0 +1,45 @@
+{
+    "title": "evtTotConting",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+        },
+        "nmresp": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 70
+        },
+        "cpfresp": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "telefone": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{10,13}$"
+        },
+        "email": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 60,
+            "format": "email"
+        }
+    }
+}
