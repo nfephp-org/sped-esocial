@@ -68,7 +68,7 @@ $jsonSchema = '{
             }
         },
         "iniafastamento": {
-            "required": true,
+            "required": false,
             "type": "object",
             "properties": {
                 "dtiniafast": {
