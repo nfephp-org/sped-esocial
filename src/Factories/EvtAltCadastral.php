@@ -65,7 +65,6 @@ class EvtAltCadastral extends Factory implements FactoryInterface
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
-        file_put_contents('storage/logs/data.log', var_export($this->std,true));
 
         $this->dom->addChild(
             $ideEvento,
