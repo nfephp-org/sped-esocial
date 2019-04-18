@@ -255,16 +255,16 @@ class EvtTabRubrica extends Factory implements FactoryInterface
             $node->appendChild($dadosRubrica);
         }
         if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
-            $newVal       = $this->std->novavalidade;
+            $newVal = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
-                $ideRubrica,
+                $novaValidade,
                 "iniValid",
                 $newVal->inivalid,
                 true
             );
             $this->dom->addChild(
-                $ideRubrica,
+                $novaValidade,
                 "fimValid",
                 ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false
@@ -276,6 +276,7 @@ class EvtTabRubrica extends Factory implements FactoryInterface
         $infoRubrica->appendChild($node);
         $this->node->appendChild($infoRubrica);
         $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }

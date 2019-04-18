@@ -34,7 +34,7 @@ $std->codrubr = 'alalalalaallkj ';
 $std->idetabrubr = 'lslslsls';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
-$std->modo = "INC";
+$std->modo = "ALT";
 
 $std->dadosrubrica = new \stdClass();
 $std->dadosrubrica->dscrubr = 'dkdldkdlk';
