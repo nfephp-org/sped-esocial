@@ -61,12 +61,12 @@ $std->ctps->ufctps = 'SP';
 $std->ric = new \stdClass();
 $std->ric->nrric = '12345678901234';
 $std->ric->orgaoemissor = 'LSLSLLSLLLSLSL';
-$std->ric->dtexped = '2000-12-21';
+//$std->ric->dtexped = '2000-12-21';
 
 $std->rg = new \stdClass();
 $std->rg->nrrg = '12345678901234';
 $std->rg->orgaoemissor = 'jdjdjqjeiiei';
-$std->rg->dtexped = '1998-01-25';
+//$std->rg->dtexped = '1998-01-25';
 
 $std->rne = new \stdClass();
 $std->rne->nrrne = '12345678901234';
@@ -76,15 +76,15 @@ $std->rne->dtexped = '2010-10-10';
 $std->oc = new \stdClass();
 $std->oc->nroc = '12345678901234';
 $std->oc->orgaoemissor = 'lklklk3iosiosislk';
-$std->oc->dtexped = '2011-11-06';
+//$std->oc->dtexped = '2011-11-06';
 $std->oc->dtvalid = '2018-11-06';
 
 $std->cnh = new \stdClass();
 $std->cnh->nrregcnh = '123456789012';
-$std->cnh->dtexped = '2013-12-05';
+//$std->cnh->dtexped = '2013-12-05';
 $std->cnh->ufcnh = 'SP';
 $std->cnh->dtvalid = '2018-12-05';
-$std->cnh->dtprihab = '1999-05-28';
+//$std->cnh->dtprihab = '1999-05-28';
 $std->cnh->categoriacnh = 'AE';
 
 $std->brasil = new \stdClass();
