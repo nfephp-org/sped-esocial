@@ -798,7 +798,7 @@ $jsonSchema = '{
                         "dscsalvar": {
                             "required": false,
                             "type": ["string","null"],
-                            "maxLength": 90
+                            "maxLength": 255
                         },
                         "tpcontr": {
                             "required": true,

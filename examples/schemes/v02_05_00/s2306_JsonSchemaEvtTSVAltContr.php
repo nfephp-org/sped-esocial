@@ -105,7 +105,7 @@ $jsonSchema = '{
                 "dscsalvar": {
                     "required": false,
                     "type": "string",
-                    "maxLength": 90
+                    "maxLength": 255
                 }
             }
         },
