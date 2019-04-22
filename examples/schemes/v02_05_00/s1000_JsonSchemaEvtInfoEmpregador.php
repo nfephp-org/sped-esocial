@@ -31,7 +31,7 @@ $jsonSchema = '{
         },
         "ideperiodo": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "inivalid": {
                     "required": true,
@@ -47,7 +47,7 @@ $jsonSchema = '{
         },
         "infocadastro": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nmrazao": {
                     "required": true,
@@ -72,7 +72,7 @@ $jsonSchema = '{
                 },
                 "indconstr": {
                     "required": false,
-                    "type": "integer",
+                    "type": ["integer","null"],
                     "minimum": 0,
                     "maximum": 1
                 },
@@ -114,7 +114,7 @@ $jsonSchema = '{
         },
         "dadosisencao": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "ideminlei": {
                     "required": true,
@@ -191,7 +191,7 @@ $jsonSchema = '{
         },
         "infoop": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrsiafi": {
                     "required": true,
@@ -202,7 +202,7 @@ $jsonSchema = '{
         },
         "infoefr": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "ideefr": {
                     "required": true,
@@ -219,7 +219,7 @@ $jsonSchema = '{
         },
         "infoente": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nmente": {
                     "required": true,
@@ -256,7 +256,7 @@ $jsonSchema = '{
         },
         "infoorginternacional": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indacordoisenmulta": {
                     "required": true,
@@ -268,7 +268,7 @@ $jsonSchema = '{
         },
         "softwarehouse": {
             "required": false,
-            "type": "array",
+            "type": ["array","null"],
             "minItems": 0,
             "maxItems": 99,
             "items": {
@@ -305,7 +305,7 @@ $jsonSchema = '{
         },        
         "situacaopj": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indsitpj": {
                     "required": true,
@@ -317,7 +317,7 @@ $jsonSchema = '{
         },
         "situacaopf": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indsitpf": {
                     "required": true,
@@ -329,7 +329,7 @@ $jsonSchema = '{
         },
         "novavalidade": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "inivalid": {
                     "required": true,

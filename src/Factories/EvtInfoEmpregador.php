@@ -88,7 +88,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         $this->dom->addChild(
             $idePeriodo,
             "fimValid",
-            ! empty($this->std->ideperiodo->fimvalid) ? $this->std->ideperiodo->fimvalid : '',
+            !empty($this->std->ideperiodo->fimvalid) ? $this->std->ideperiodo->fimvalid : '',
             false
         );
         //infoCadastro
@@ -110,19 +110,19 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoCadastro,
                 "natJurid",
-                $cad->natjurid,
+                !empty($cad->natjurid) ? $cad->natjurid : null,
                 ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "indCoop",
-                $cad->indcoop,
+                !empty($cad->indcoop) ? $cad->indcoop : null,
                 ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "indConstr",
-                $cad->indconstr,
+                !empty($cad->indconstr) ? $cad->indconstr : null,
                 ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
@@ -134,7 +134,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoCadastro,
                 "indOpcCP",
-                $cad->indopccp,
+                !empty($cad->indopccp) ? $cad->indopccp : null,
                 false
             );
             $this->dom->addChild(
@@ -146,19 +146,19 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoCadastro,
                 "indEntEd",
-                $cad->indented,
+                !empty($cad->indented) ? $cad->indented : null,
                 false
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "indEtt",
-                $cad->indett,
+                !empty($cad->indett) ? $cad->indett : null,
                 false
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "nrRegEtt",
-                $cad->nrregett,
+                !empty($cad->nrregett) ? $cad->nrregett : null,
                 false
             );
         }
@@ -192,26 +192,26 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "nrProtRenov",
-                $cad->nrprotrenov,
+                !empty($cad->nrprotrenov) ? $cad->nrprotrenov : null,
                 false
             );
             $this->dom->addChild(
                 $info,
                 "dtProtRenov",
-                $cad->dtprotrenov,
+                !empty($cad->dtprotrenov) ? $cad->dtprotrenov : null,
                 false
             );
             $this->dom->addChild(
                 $info,
                 "dtDou",
-                $cad->dtdou,
+                !empty($cad->dtdou) ? $cad->dtdou : null,
                 false
             );
             $this->dom->addChild(
                 $info,
                 "pagDou",
-                $cad->pagdou,
-                true
+                !empty($cad->pagdou) ? $cad->pagdou : null,
+                false
             );
             $infoCadastro->appendChild($info);
         }
@@ -233,19 +233,19 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "foneFixo",
-                ! empty($cad->fonefixo) ? $cad->fonefixo : '',
+                !empty($cad->fonefixo) ? $cad->fonefixo : '',
                 false
             );
             $this->dom->addChild(
                 $info,
                 "foneCel",
-                $cad->fonecel,
+                !empty($cad->fonecel) ? $cad->fonecel : null,
                 false
             );
             $this->dom->addChild(
                 $info,
                 "email",
-                $cad->email,
+                !empty($cad->email) ? $cad->email : null,
                 false
             );
             $infoCadastro->appendChild($info);
@@ -271,7 +271,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoEFR,
                     "cnpjEFR",
-                    $cad->cnpjefr,
+                    !empty($cad->cnpjefr) ? $cad->cnpjefr : null,
                     false
                 );
                 $infoOP->appendChild($infoEFR);
@@ -294,7 +294,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoEnte,
                     "codMunic",
-                    $cad->codmunic,
+                    !empty($cad->codmunic) ? $cad->codmunic : null,
                     false
                 );
                 $this->dom->addChild(
@@ -360,7 +360,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $info,
                     "email",
-                    $sh->email,
+                    !empty($sh->email) ? $sh->email : null,
                     false
                 );
                 $infoCadastro->appendChild($info);
@@ -401,7 +401,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $novavalidade,
                 "fimValid",
-                $sh->fimValid,
+                !empty($sh->fimValid) ? $sh->fimValid : null,
                 false
             );
         }
