@@ -179,8 +179,8 @@ $jsonSchema = '{
                         "maxLength": 20
                     },
                     "codsusp": {
-                        "required": true,
-                        "type": "string",
+                        "required": false,
+                        "type": ["string","null"],
                         "maxLength": 14
                     }
                 }
