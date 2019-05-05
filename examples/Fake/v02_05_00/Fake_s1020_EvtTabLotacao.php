@@ -33,7 +33,7 @@ $std->sequencial = 1;
 $std->codlotacao = 'assistente';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
-$std->modo = 'INC';
+$std->modo = 'ALT';
 
 $std->dadoslotacao = new \stdClass();
 $std->dadoslotacao->tplotacao = '01';
@@ -53,9 +53,9 @@ $std->dadoslotacao->infoemprparcial->nrinsccontrat = '12345678901234';
 $std->dadoslotacao->infoemprparcial->tpinscprop = 2;
 $std->dadoslotacao->infoemprparcial->nrinscprop = '12345678901234';
 
-$std->novavalidade = new \stdClass();
-$std->novavalidade->inivalid = '2017-01';
-$std->novavalidade->fimvalid = '2017-12';
+//$std->novavalidade = new \stdClass();
+//$std->novavalidade->inivalid = '2017-01';
+//$std->novavalidade->fimvalid = '2017-12';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
