@@ -532,8 +532,8 @@ $jsonSchema = '{
             "type": "object",
             "properties": {
                 "matricula": {
-                    "required": false,
-                    "type": ["string","null"],
+                    "required": true,
+                    "type": "string",
                     "maxLength": 30
                 },
                 "tpregtrab": {

@@ -356,8 +356,8 @@ $jsonSchema = '{
                                     "maximum": 999
                                 },
                                 "matricula": {
-                                    "required": true,
-                                    "type": "string",
+                                    "required": false,
+                                    "type": ["string","null"],
                                     "maxLength": 30
                                 },
                                 "dtinigoz": {
