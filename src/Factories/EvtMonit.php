@@ -100,8 +100,8 @@ class EvtMonit extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->std->idevinculo->matricula,
-            true
+            !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
+            false
         );
         $this->node->appendChild($ideVinculo);
         

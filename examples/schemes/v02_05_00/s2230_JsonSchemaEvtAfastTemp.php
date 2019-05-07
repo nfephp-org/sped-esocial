@@ -56,8 +56,8 @@ $jsonSchema = '{
                     "pattern": "^[0-9]{11}$"
                 },
                 "matricula": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "maxLength": 30
                 },
                 "codcateg": {

@@ -434,8 +434,8 @@ class EvtPgtos extends Factory implements FactoryInterface
                     $this->dom->addChild(
                         $detPgtoFer,
                         "matricula",
-                        $rpt->matricula,
-                        true
+                        !empty($rpt->matricula) ? $rpt->matricula : null,
+                        false
                     );
                     $this->dom->addChild(
                         $detPgtoFer,

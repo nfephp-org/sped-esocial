@@ -117,13 +117,13 @@ class EvtAfastTemp extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->std->idevinculo->matricula,
-            true
+            !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
+            false
         );
         $this->dom->addChild(
             $ideVinculo,
             "codCateg",
-            ! empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
             false
         );
         $this->node->appendChild($ideVinculo);
