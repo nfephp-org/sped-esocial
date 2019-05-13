@@ -116,13 +116,13 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoCadastro,
                 "indCoop",
-                !empty($cad->indcoop) ? $cad->indcoop : null,
+                isset($cad->indcoop) ? $cad->indcoop : null,
                 ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
                 $infoCadastro,
                 "indConstr",
-                !empty($cad->indconstr) ? $cad->indconstr : null,
+                isset($cad->indconstr) ? $cad->indconstr : null,
                 ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
             );
             $this->dom->addChild(
