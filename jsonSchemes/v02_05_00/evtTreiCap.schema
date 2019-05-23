@@ -83,6 +83,11 @@
                             "minimum": 1,
                             "maximum": 5
                         },
+                        "indtreinant": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^S|N$"
+                        },
                         "ideprofresp": {
                             "required": true,
                             "type": "array",

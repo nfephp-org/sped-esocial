@@ -47,6 +47,7 @@ $std->treicap->infocomplem->dttreicap = '2018-11-12';
 $std->treicap->infocomplem->durtreicap = 22.4;
 $std->treicap->infocomplem->modtreicap = 3; //1-3
 $std->treicap->infocomplem->tptreicap = 5; //1-5
+$std->treicap->infocomplem->indtreinant = 'N';
 
 $std->treicap->infocomplem->ideprofresp[0] = new \stdClass();
 $std->treicap->infocomplem->ideprofresp[0]->cpfprof = '12345678901';

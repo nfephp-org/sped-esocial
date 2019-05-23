@@ -79,8 +79,8 @@ class EvtTreiCap extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            $this->std->nrrecibo,
-            true
+            isset($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
         );
         $this->dom->addChild(
             $ideEvento,
@@ -167,6 +167,12 @@ class EvtTreiCap extends Factory implements FactoryInterface
                 $infoComplem,
                 "tpTreiCap",
                 $i->tptreicap,
+                true
+            );
+            $this->dom->addChild(
+                $infoComplem,
+                "indTreinAnt",
+                $i->indtreinant,
                 true
             );
             

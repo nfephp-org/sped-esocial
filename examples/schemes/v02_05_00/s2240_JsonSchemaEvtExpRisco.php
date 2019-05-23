@@ -20,6 +20,7 @@ use JsonSchema\Validator;
 //Campo {dscOC} – alterada validação.
 //Campo {metErg} – incluída validação.
 //Campo {observacao} – alterado nome (para {obsCompl}) e incluída validação.
+//alteração 2.5 descFatRisc
 
 $evento = 'evtExpRisco';
 $version = '02_05_00';
@@ -128,6 +129,11 @@ $jsonSchema = '{
                         "required": true,
                         "type": "string",
                         "pattern": "^([0-9][0-9.]*[0-9])$"
+                    },
+                    "dscfatrisc": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^.{2,999}$"
                     },
                     "tpaval": {
                         "required": true,
@@ -342,6 +348,7 @@ $std->infoativ->ativpericinsal[0]->codativ = '22.111';
 
 $std->fatrisco[0] = new \stdClass();
 $std->fatrisco[0]->codfatris = '01.01.012';
+$std->fatrisco[0]->dscfatrisc = 'Cair um meteoro na cabeça';
 $std->fatrisco[0]->tpaval = 1;
 $std->fatrisco[0]->intconc = 20;
 $std->fatrisco[0]->limtol = 22.34;
