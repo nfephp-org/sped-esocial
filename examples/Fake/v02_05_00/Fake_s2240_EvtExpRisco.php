@@ -51,6 +51,7 @@ $std->infoativ->ativpericinsal[0]->codativ = '22.111';
 
 $std->fatrisco[0] = new \stdClass();
 $std->fatrisco[0]->codfatris = '01.01.012';
+$std->fatrisco[0]->dscfatrisc = 'Cair um meteoro na cabeça';
 $std->fatrisco[0]->tpaval = 1;
 $std->fatrisco[0]->intconc = 20;
 $std->fatrisco[0]->limtol = 22.34;

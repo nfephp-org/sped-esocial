@@ -169,6 +169,12 @@ class EvtTreiCap extends Factory implements FactoryInterface
                 $i->tptreicap,
                 true
             );
+            $this->dom->addChild(
+                $infoComplem,
+                "indTreinAnt",
+                $i->indtreinant,
+                true
+            );
             
             foreach ($i->ideprofresp as $p) {
                 $ideProfResp = $this->dom->createElement("ideProfResp");

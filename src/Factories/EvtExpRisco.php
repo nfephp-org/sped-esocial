@@ -179,6 +179,12 @@ class EvtExpRisco extends Factory implements FactoryInterface
             );
             $this->dom->addChild(
                 $fatRisco,
+                "dscFatRisc",
+                isset($f->dscfatrisc) ? $f->dscfatrisc : null,
+                false
+            );
+            $this->dom->addChild(
+                $fatRisco,
                 "tpAval",
                 $f->tpaval,
                 true
