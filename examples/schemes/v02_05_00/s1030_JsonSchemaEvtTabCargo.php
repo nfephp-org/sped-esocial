@@ -45,7 +45,7 @@ $jsonSchema = '{
             "pattern": "INC|ALT|EXC"
         },
         "dadoscargo": {
-            "required": true,
+            "required": false,
             "type": "object",
             "properties": {
                 "nmcargo": {
