@@ -300,7 +300,7 @@
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-              <xs:element name="dmDev" maxOccurs="99">
+              <xs:element name="dmDev" maxOccurs="999">
                 <xs:annotation>
                   <xs:documentation>Demonstrativos de valores devidos ao trabalhador</xs:documentation>
                 </xs:annotation>
@@ -484,6 +484,7 @@
                                       <xs:documentation>Data da assinatura do acordo/convenção</xs:documentation>
                                     </xs:annotation>
                                     <xs:restriction base="xs:date">
+                                      <xs:minInclusive value="1890-01-01"/>
                                     </xs:restriction>
                                   </xs:simpleType>
                                 </xs:element>

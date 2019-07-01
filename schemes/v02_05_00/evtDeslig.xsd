@@ -445,6 +445,7 @@
                                                   <xs:documentation>Data da assinatura do acordo/convenção</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:restriction base="xs:date">
+                                                  <xs:minInclusive value="1890-01-01"/>
                                                 </xs:restriction>
                                               </xs:simpleType>
                                             </xs:element>

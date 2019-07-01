@@ -1879,6 +1879,7 @@
             <xs:documentation>Data de admissão na Empresa Cedente</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:date">
+            <xs:minInclusive value="1890-01-01"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>

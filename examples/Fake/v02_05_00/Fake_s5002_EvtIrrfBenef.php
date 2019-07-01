@@ -33,10 +33,10 @@ $std->sequencial = 1;
 $std->nrrecarqbase = 'ljdkdjdlkjdlkdjkdjdkjdkjdkdjk';
 $std->perapur = '2017-08';
 $std->cpftrab = '99999999999';
-$std->vrdeddep = '1234.56';
+$std->vrdeddep = 1234.56;
 
 $std->infoirrf[0] = new \stdClass();
-$std->infoirrf[0]->codcateg = '101';
+$std->infoirrf[0]->codcateg = 101;
 $std->infoirrf[0]->indresbr = 'N';
 
 $std->infoirrf[0]->basesirrf[0] = new \stdClass();

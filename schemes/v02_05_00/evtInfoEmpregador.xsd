@@ -263,6 +263,16 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+      <xs:element name="indPorte" minOccurs="0">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Indicativo de microempresa ou empresa de pequeno porte</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[S]"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element name="indOptRegEletron">
         <xs:simpleType>
           <xs:annotation>
