@@ -202,7 +202,7 @@ $jsonSchema = '{
             "required": true,
             "type": "array",
             "minItems": 1,
-            "maxItems": 99,
+            "maxItems": 999,
             "items": {
                 "type": "object",
                 "properties": {

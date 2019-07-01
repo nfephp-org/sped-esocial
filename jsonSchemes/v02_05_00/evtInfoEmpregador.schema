@@ -72,6 +72,11 @@
                     "minimum": 1,
                     "maximum": 2
                 },
+                "indporte": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
+                },
                 "indoptregeletron": {
                     "required": true,
                     "type": "integer",

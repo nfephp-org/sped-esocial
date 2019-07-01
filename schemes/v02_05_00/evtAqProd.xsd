@@ -58,7 +58,7 @@
                             </xs:annotation>
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="ideProdutor" maxOccurs="9999">
+                                <xs:element name="ideProdutor" maxOccurs="14999">
                                   <xs:annotation>
                                     <xs:documentation>Identificação dos produtores rurais</xs:documentation>
                                   </xs:annotation>

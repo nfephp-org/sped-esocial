@@ -139,6 +139,12 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $this->dom->addChild(
                 $infoCadastro,
+                "indPorte",
+                !empty($cad->indporte) ? $cad->indporte : null,
+                false
+            );
+            $this->dom->addChild(
+                $infoCadastro,
                 "indOptRegEletron",
                 $cad->indoptregeletron,
                 true
