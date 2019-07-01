@@ -419,6 +419,16 @@
                                           </xs:restriction>
                                         </xs:simpleType>
                                       </xs:element>
+                                      <xs:element name="cnoObra">
+                                        <xs:simpleType>
+                                          <xs:annotation>
+                                            <xs:documentation>Número do CNO da obra</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:restriction base="xs:string">
+                                            <xs:pattern value="\d{12}"/>
+                                          </xs:restriction>
+                                        </xs:simpleType>
+                                      </xs:element>
                                     </xs:sequence>
                                   </xs:complexType>
                                 </xs:element>

@@ -73,7 +73,7 @@ $std->ideestab[1]->idelotacao[1]->infoemprparcial->tpinsccontrat = 1;
 $std->ideestab[1]->idelotacao[1]->infoemprparcial->nrinsccontrat = '12345678901234';
 $std->ideestab[1]->idelotacao[1]->infoemprparcial->tpinscprop = 2;
 $std->ideestab[1]->idelotacao[1]->infoemprparcial->nrinscprop = '12345678901';
-
+$std->ideestab[1]->idelotacao[1]->infoemprparcial->cnoobra = '123456789012';
 $std->ideestab[1]->idelotacao[1]->dadosopport = new \stdClass();
 $std->ideestab[1]->idelotacao[1]->dadosopport->cnpjopportuario = '12345678901234';
 $std->ideestab[1]->idelotacao[1]->dadosopport->aliqrat = 3;

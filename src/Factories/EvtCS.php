@@ -285,6 +285,12 @@ class EvtCS extends Factory implements FactoryInterface
                                 $id->infoemprparcial->nrinscprop,
                                 true
                             );
+                            $this->dom->addChild(
+                                $infoEmprParcial,
+                                "cnoObra",
+                                $id->infoemprparcial->cnoobra,
+                                true
+                            );
                             $ideLotacao->appendChild($infoEmprParcial);
                         }
                         if (!empty($id->dadosopport)) {
