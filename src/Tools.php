@@ -372,9 +372,9 @@ class Tools extends ToolsBase
         );
         
         $body = "<v1:{$this->method}>"
-            ."<v1:consultaEventosTabela>"
+            ."<v1:consultaEventosTrabalhador>"
             .$request
-            ."</v1:consultaEventosTabela>"
+            ."</v1:consultaEventosTrabalhador>"
             ."</v1:{$this->method}>";
             
         $this->lastRequest  = $body;
