@@ -6,7 +6,7 @@ require_once '../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Common\FakePretty;
-use NFePHP\eSocial\Common\Soap\SoapFake;
+use NFePHP\Common\Soap\SoapFake;
 use NFePHP\eSocial\Event;
 use NFePHP\eSocial\Tools;
 
