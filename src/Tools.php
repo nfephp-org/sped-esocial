@@ -543,12 +543,18 @@ class Tools extends ToolsBase
             "SOAPAction: \"$this->action\"",
             "Content-length: $msgSize",
         ];
+
+        // Versão do SOAP esperada é a 1.1, conforme manual do desenvolvedor eSocial versão 1.1:
+        // "Alteração da versão do SOAP de 1.2 para 1.1."
+        // http://portal.esocial.gov.br/institucional/manuais/manualorientacaodesenvolvedoresocialv1-7.pdf
         return (string) $this->soap->send(
-            $this->method,
             $this->uri,
+            $this->method,
             $this->action,
-            $envelope,
-            $parameters
+            SOAP_1_1,
+            $parameters,
+            [],
+            $envelope
         );
     }
 
