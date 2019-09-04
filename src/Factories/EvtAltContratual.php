@@ -52,7 +52,8 @@ class EvtAltContratual extends Factory implements FactoryInterface
         $config,
         stdClass $std,
         Certificate $certificate
-    ) {
+    )
+    {
         parent::__construct($config, $std, $certificate);
     }
 
@@ -72,7 +73,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -94,7 +95,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
 
         $this->dom->addChild(
@@ -116,7 +117,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
             true
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $altContratual = $this->dom->createElement("altContratual");
 
         $this->dom->addChild(
@@ -211,13 +212,13 @@ class EvtAltContratual extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoEstatutario,
                 "tpPlanRP",
-                $ct->tpPlanRP,
+                $ct->tpplanrp,
                 true
             );
             $infoRegimeTrab->appendChild($infoEstatutario);
         }
         $altContratual->appendChild($infoRegimeTrab);
-        
+
         $infoContrato = $this->dom->createElement("infoContrato");
         $ct = $this->std->altcontratual->infocontrato;
         $this->dom->addChild(
@@ -432,7 +433,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
                 $infoContrato->appendChild($filiacaoSindical);
             }
         }
-        
+
         if (!empty($this->std->altcontratual->infocontrato->alvarajudicial)) {
             $alvaraJudicial = $this->dom->createElement("alvaraJudicial");
             $this->dom->addChild(
@@ -443,7 +444,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
             );
             $infoContrato->appendChild($alvaraJudicial);
         }
-        
+
         if (!empty($this->std->altcontratual->infocontrato->observacoes)) {
             foreach ($this->std->altcontratual->infocontrato->observacoes as $obs) {
                 $observacoes = $this->dom->createElement("observacoes");
@@ -456,7 +457,7 @@ class EvtAltContratual extends Factory implements FactoryInterface
                 $infoContrato->appendChild($observacoes);
             }
         }
-        
+
         if (!empty($this->std->altcontratual->infocontrato->servpubl)) {
             $servPubl = $this->dom->createElement("servPubl");
             $this->dom->addChild(
