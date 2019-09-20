@@ -76,7 +76,14 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
             $this->std->indretif,
             true
         );
-
+        if ($this->std->indretif == 2) {
+            $this->dom->addChild(
+                $ideEvento,
+                "nrRecibo",
+                $this->std->nrrecibo,
+                true
+            );
+        }
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",

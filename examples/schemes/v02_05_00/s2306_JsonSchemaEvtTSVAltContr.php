@@ -34,6 +34,11 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 2
         },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 40
+        },
         "trabsemvinculo": {
             "required": true,
             "type": "object",
@@ -258,7 +263,8 @@ $jsonSchema = '{
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif = 1;
+$std->indretif = 2;
+$std->nrrecibo = '292929jdjdkjananananannana';
 
 $std->trabsemvinculo = new \stdClass();
 $std->trabsemvinculo->cpftrab = '11111111111';
