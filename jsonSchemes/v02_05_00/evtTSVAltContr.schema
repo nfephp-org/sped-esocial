@@ -14,6 +14,11 @@
             "minimum": 1,
             "maximum": 2
         },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 40
+        },
         "trabsemvinculo": {
             "required": true,
             "type": "object",
