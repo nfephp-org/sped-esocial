@@ -18,9 +18,9 @@ use InvalidArgumentException;
 use NFePHP\Common\Certificate;
 use NFePHP\Common\Validator;
 use NFePHP\Common\Signer;
+use NFePHP\Common\Soap\SoapCurl;
+use NFePHP\Common\Soap\SoapInterface;
 use NFePHP\eSocial\Common\FactoryInterface;
-use NFePHP\eSocial\Common\Soap\SoapCurl;
-use NFePHP\eSocial\Common\Soap\SoapInterface;
 use NFePHP\eSocial\Common\Tools as ToolsBase;
 use RuntimeException;
 
@@ -35,7 +35,7 @@ class Tools extends ToolsBase
      */
     public $lastResponse;
     /**
-     * @var \NFePHP\Common\Soap\SoapInterface
+     * @var SoapInterface
      */
     protected $soap;
     /**
@@ -543,12 +543,18 @@ class Tools extends ToolsBase
             "SOAPAction: \"$this->action\"",
             "Content-length: $msgSize",
         ];
+
+        // Versão do SOAP esperada é a 1.1, conforme manual do desenvolvedor eSocial versão 1.1:
+        // "Alteração da versão do SOAP de 1.2 para 1.1."
+        // http://portal.esocial.gov.br/institucional/manuais/manualorientacaodesenvolvedoresocialv1-7.pdf
         return (string) $this->soap->send(
-            $this->method,
             $this->uri,
+            $this->method,
             $this->action,
-            $envelope,
-            $parameters
+            SOAP_1_1,
+            $parameters,
+            [],
+            $envelope
         );
     }
 
