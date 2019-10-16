@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
-use NFePHP\Common\Soap\SoapFake;
+use NFePHP\eSocial\Common\Soap\SoapFake;
 use NFePHP\eSocial\Common\FakePretty;
 use NFePHP\eSocial\Event;
 use NFePHP\eSocial\Tools;
