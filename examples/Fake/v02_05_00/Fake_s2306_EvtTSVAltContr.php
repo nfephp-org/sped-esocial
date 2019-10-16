@@ -30,7 +30,7 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif = 2;
+$std->indretif = 2; 
 $std->nrrecibo = '1234ajajeoqetshrbe';
 
 $std->trabsemvinculo = new \stdClass();
