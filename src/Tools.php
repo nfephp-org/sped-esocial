@@ -526,29 +526,54 @@ class Tools extends ToolsBase
         if (empty($this->soap)) {
             $this->soap = new SoapCurl($this->certificate);
         }
-        $envelope = "<soapenv:Envelope ";
-        foreach ($this->envelopeXmlns as $key => $xmlns) {
-            $envelope .= "$key = \"$xmlns\" ";
-        }
-        $envelope .= ">"
-            ."<soapenv:Header/>"
-            ."<soapenv:Body>"
-            .$request
-            ."</soapenv:Body>"
-            ."</soapenv:Envelope>";
-        
-        $msgSize    = strlen($envelope);
-        $parameters = [
-            "Content-Type: text/xml;charset=UTF-8",
-            "SOAPAction: \"$this->action\"",
-            "Content-length: $msgSize",
-        ];
+        /**
+        * $envelope = "<soapenv:Envelope ";
+        *foreach ($this->envelopeXmlns as $key => $xmlns) {
+        *    $envelope .= "$key = \"$xmlns\" ";
+        *}
+        *$envelope .= ">"
+        *    ."<soapenv:Header/>"
+        *    ."<soapenv:Body>"
+        *    .$request
+        *    ."</soapenv:Body>"
+        *    ."</soapenv:Envelope>";
+        *
+        *$msgSize    = strlen($envelope);
+        *$parameters = [
+        *    "Content-Type: text/xml;charset=UTF-8",
+        *    "SOAPAction: \"$this->action\"",
+        *    "Content-length: $msgSize",
+        *];
+        *return (string) $this->soap->send(
+        *    $this->method,
+        *    $this->uri,
+        *    $this->action,
+        *    $envelope,
+        *    $parameters
+        *);
+        */
+        // Versão do SOAP esperada é a 1.1, conforme manual do desenvolvedor eSocial versão 1.1:
+        // "Alteração da versão do SOAP de 1.2 para 1.1."
+        // http://portal.esocial.gov.br/institucional/manuais/manualorientacaodesenvolvedoresocialv1-7.pdf
+        /*
+         * Send soap message
+         * @param string $url
+         * @param string $operation
+         * @param string $action
+         * @param int $soapver
+         * @param array $parameters
+         * @param array $namespaces
+         * @param \SoapHeader $soapheader
+         * @param string $request
+         */
         return (string) $this->soap->send(
-            $this->method,
             $this->uri,
+            $this->method,
             $this->action,
-            $envelope,
-            $parameters
+            SOAP_1_1,
+            [],
+            $this->envelopeXmlns,
+            $request
         );
     }
 
