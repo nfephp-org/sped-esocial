@@ -526,6 +526,7 @@ class Tools extends ToolsBase
         if (empty($this->soap)) {
             $this->soap = new SoapCurl($this->certificate);
         }
+        /*
         $envelope = "<soapenv:Envelope ";
         foreach ($this->envelopeXmlns as $key => $xmlns) {
             $envelope .= "$key = \"$xmlns\" ";
@@ -543,19 +544,32 @@ class Tools extends ToolsBase
             "SOAPAction: \"$this->action\"",
             "Content-length: $msgSize",
         ];
-
+        */
         // Versão do SOAP esperada é a 1.1, conforme manual do desenvolvedor eSocial versão 1.1:
         // "Alteração da versão do SOAP de 1.2 para 1.1."
         // http://portal.esocial.gov.br/institucional/manuais/manualorientacaodesenvolvedoresocialv1-7.pdf
+        /*
+         * Send soap message
+         * @param string $url
+         * @param string $operation
+         * @param string $action
+         * @param int $soapver
+         * @param array $parameters
+         * @param array $namespaces
+         * @param \SoapHeader $soapheader
+         * @param string $request
+         */
         return (string) $this->soap->send(
             $this->uri,
             $this->method,
             $this->action,
             SOAP_1_1,
-            $parameters,
             [],
-            $envelope
+            $this->envelopeXmlns,
+            $request
         );
+
+        
     }
 
     /**
