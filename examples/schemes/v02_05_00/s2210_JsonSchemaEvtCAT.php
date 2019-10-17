@@ -9,7 +9,7 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2210 sem alterações da 2.4.1 => 2.4.2
-//S-2210 
+//S-2210
 //Campo {hrAcid} – alteradas ocorrência e validação.
 //Campo {tpLograd} – criado.
 //Campos {cep}, {codMunic}, {uf} e {pais} – alterada validação.
@@ -200,6 +200,22 @@ $jsonSchema = '{
             "type": ["string","null"],
             "maxLength": 12
         },
+        "idelocalacid": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "tpinsc": {
+                    "required": true,
+                    "type": "integer",
+                    "pattern": "^[1,3,4]$"
+                },
+                "nrinsc": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{8,14}$"
+                }
+            }
+        },
         "parteatingida": {
             "required": true,
             "type": "array",
@@ -220,7 +236,7 @@ $jsonSchema = '{
                         "maximum": 3
                     }
                 }
-            }    
+            }
         },
         "agentecausador": {
             "required": true,
@@ -237,7 +253,7 @@ $jsonSchema = '{
                         "pattern": "^[0-9]{1,9}$"
                     }
                 }
-            }    
+            }
         },
         "atestado": {
             "required": false,
