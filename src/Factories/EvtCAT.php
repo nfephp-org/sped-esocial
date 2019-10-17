@@ -95,14 +95,19 @@ class EvtCAT extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $this->tagVinculo();
-        
+
         $cat = $this->tagCAT();
-        $this->tagLocalAcidente($cat);
-        
-        
-        
+
+        $localAcidente = $this->tagLocalAcidente($cat);
+
+        if (!empty($this->std->idelocalacid)) {
+            $this->tagIdeLocalAcid($localAcidente);
+        }
+
+
+
         foreach ($this->std->parteatingida as $pa) {
             $parteAtingida = $this->dom->createElement("parteAtingida");
             $this->dom->addChild(
@@ -267,7 +272,7 @@ class EvtCAT extends Factory implements FactoryInterface
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     protected function tagRegistrador(\DOMElement $ideEmpregador)
     {
         $ideRegistrador = $this->dom->createElement("ideRegistrador");
@@ -291,7 +296,7 @@ class EvtCAT extends Factory implements FactoryInterface
         );
         $this->node->insertBefore($ideRegistrador, $ideEmpregador);
     }
-    
+
     protected function tagTrabalhador()
     {
         $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
@@ -309,7 +314,7 @@ class EvtCAT extends Factory implements FactoryInterface
         );
         $this->node->appendChild($ideTrabalhador);
     }
-    
+
     protected function tagVinculo()
     {
         $ideVinculo = $this->dom->createElement("ideVinculo");
@@ -339,7 +344,7 @@ class EvtCAT extends Factory implements FactoryInterface
         );
         $this->node->appendChild($ideVinculo);
     }
-    
+
     protected function tagCAT()
     {
         $cat = $this->dom->createElement("cat");
@@ -420,7 +425,7 @@ class EvtCAT extends Factory implements FactoryInterface
         }
         return $cat;
     }
-    
+
     protected function tagLocalAcidente(\DOMElement &$cat)
     {
         $localAcidente = $this->dom->createElement("localAcidente");
@@ -509,5 +514,25 @@ class EvtCAT extends Factory implements FactoryInterface
             false
         );
         $cat->appendChild($localAcidente);
+
+        return $localAcidente;
+    }
+
+    protected function tagIdeLocalAcid(\DOMElement &$cat)
+    {
+        $ideLocalAcid = $this->dom->createElement("ideLocalAcid");
+        $this->dom->addChild(
+            $ideLocalAcid,
+            "tpInsc",
+            $this->std->idelocalacid->tpinsc,
+            true
+        );
+        $this->dom->addChild(
+            $ideLocalAcid,
+            "nrInsc",
+            $this->std->idelocalacid->nrinsc,
+            true
+        );
+        $cat->appendChild($ideLocalAcid);
     }
 }

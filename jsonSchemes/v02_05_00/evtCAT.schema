@@ -178,6 +178,22 @@
             "type": ["string","null"],
             "maxLength": 12
         },
+        "idelocalacid": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "tpinsc": {
+                    "required": true,
+                    "type": "integer",
+                    "pattern": "^[1,3,4]$"
+                },
+                "nrinsc": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{8,14}$"
+                }
+            }
+        },
         "parteatingida": {
             "required": true,
             "type": "array",
@@ -198,7 +214,7 @@
                         "maximum": 3
                     }
                 }
-            }    
+            }
         },
         "agentecausador": {
             "required": true,
@@ -215,7 +231,7 @@
                         "pattern": "^[0-9]{1,9}$"
                     }
                 }
-            }    
+            }
         },
         "atestado": {
             "required": false,
