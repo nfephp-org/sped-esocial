@@ -51,7 +51,7 @@ $jsonSchema = '{
                 "dscfuncao": {
                     "required": true,
                     "type": "string",
-                    "minLength": 8,
+                    "minLength": 1,
                     "maxLength": 100
                 },
                 "codcbo": {
