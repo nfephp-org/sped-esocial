@@ -59,8 +59,8 @@ $jsonSchema = '{
             }
         },
         "idetrabalhador": {
-            "required": true,
-            "type": "object",
+            "required": false,
+            "type": ["object","null"],
             "properties": {
                 "cpftrab": {
                     "required": true,

@@ -103,7 +103,7 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->std->infoexclusao->nrrecevt,
             true
         );
-        if (! empty($this->std->idetrabalhador)) {
+        if (!empty($this->std->idetrabalhador)) {
             $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
             $this->dom->addChild(
                 $ideTrabalhador,
@@ -114,12 +114,12 @@ class EvtExclusao extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $ideTrabalhador,
                 "nisTrab",
-                ! empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
+                !empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
                 false
             );
             $infoExclusao->appendChild($ideTrabalhador);
         }
-        if (! empty($this->std->idefolhapagto)) {
+        if (!empty($this->std->idefolhapagto)) {
             $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
             $this->dom->addChild(
                 $ideFolhaPagto,
