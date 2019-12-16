@@ -40,7 +40,7 @@ class EvtPgtos extends Factory implements FactoryInterface
      * @var array
      */
     protected $parameters = [];
-    
+
     /**
      * Constructor
      *
@@ -231,7 +231,7 @@ class EvtPgtos extends Factory implements FactoryInterface
                                         $penAlim,
                                         "dtNasctoBenef",
                                         !empty($pa->dtnasctobenef) ? $pa->dtnasctobenef : null,
-                                        true
+                                        false
                                     );
                                     $this->dom->addChild(
                                         $penAlim,
@@ -262,7 +262,7 @@ class EvtPgtos extends Factory implements FactoryInterface
                                 !empty($pp->matricula) ? $pp->matricula : null,
                                 false
                             );
-                            
+
                             $this->dom->addChild(
                                 $infoPgtoParc,
                                 "codRubr",
@@ -507,7 +507,7 @@ class EvtPgtos extends Factory implements FactoryInterface
                                         $penAlim,
                                         "dtNasctoBenef",
                                         !empty($xf->dtnasctobenef) ? $xf->dtnasctobenef : null,
-                                        true
+                                        false
                                     );
                                     $this->dom->addChild(
                                         $penAlim,
@@ -628,7 +628,7 @@ class EvtPgtos extends Factory implements FactoryInterface
             $ideBenef->appendChild($infoPgto);
             $infoPgto = null;
         }
-       
+
         $this->node->appendChild($ideBenef);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
