@@ -264,6 +264,9 @@ class Tools extends ToolsBase
 
                 $mensagemErro = "Erro ao processar as informações para envio no eSocial.<br>";
                 $mensagemErro .= "Consulte o manual para preenchimento correto das informações.";
+                $mensagemErro .= "<br><br>";
+                $mensagemErro .= "Mensagem técnica:<br>";
+                $mensagemErro .= $exception->getMessage();
 
                 $this->saveOcorrencias(
                     [
