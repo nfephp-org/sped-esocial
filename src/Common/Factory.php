@@ -404,4 +404,9 @@ abstract class Factory
         }
         $this->xml = $xml;
     }
+
+    public function getEventName()
+    {
+        return $this->evtName;
+    }
 }
