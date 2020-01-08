@@ -126,6 +126,7 @@ $std->infofech->evtaqprod = 'N';
 $std->infofech->evtcomprod = 'N';
 $std->infofech->evtcontratavnp = 'N';
 $std->infofech->evtinfocomplper = 'N';
+$std->infofech->compsemmovto = '2019-12';
 
 
 // Schema must be decoded before it can be used for validation
