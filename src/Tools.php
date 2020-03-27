@@ -227,8 +227,16 @@ class Tools extends ToolsBase
                 . "você está tentando enviar $nEvt eventos !"
             );
         }
+
+        $path = 'storage' . DIRECTORY_SEPARATOR . 'envios' . DIRECTORY_SEPARATOR . date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR;
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+        $nomeEvento = 'SXXXX';
+
         foreach ($eventos as $evt) {
             //verifica se o evento pertence ao grupo indicado
+            $nomeEvento = $evt->alias();
             if (!in_array($evt->alias(), $this->grupos[$grupo])) {
                 throw new RuntimeException(
                     'O evento ' . $evt->alias() . ' não pertence a este grupo [ '
@@ -329,7 +337,10 @@ class Tools extends ToolsBase
             . "</envioLoteEventos>"
             . "</eSocial>";
         //validar a requisição conforme o seu respectivo XSD
-
+        $date = new \DateTime();
+        $nomeArquivo = date("d-m-Y") . "-" . $nomeEvento . "-". $date->getTimestamp() . ".xml";
+        file_put_contents($path . $nomeArquivo, print_r($request, true));
+        
         Validator::isValid(
             $request,
             $this->path
