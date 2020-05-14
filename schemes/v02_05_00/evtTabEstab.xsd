@@ -384,10 +384,10 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="infoTrab">
+      <xs:element name="infoTrab" minOccurs="0">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="regPt">
+            <xs:element name="regPt" minOccurs="0">
               <xs:simpleType>
                 <xs:annotation>
                   <xs:documentation>Registro de ponto</xs:documentation>
@@ -397,7 +397,7 @@
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
-            <xs:element name="infoApr">
+            <xs:element name="infoApr" minOccurs="0">
               <xs:annotation>
                 <xs:documentation>Informações relacionadas à contratação de aprendiz</xs:documentation>
               </xs:annotation>

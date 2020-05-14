@@ -147,7 +147,7 @@
                             "maximum": 6
                         },
                         "infoapr": {
-                            "required": true,
+                            "required": false,
                             "type": "object",
                             "properties": {
                                 "contapr": {
