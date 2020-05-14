@@ -165,8 +165,8 @@ $jsonSchema = '{
                             "maximum": 6
                         },
                         "infoapr": {
-                            "required": true,
-                            "type": "object",
+                            "required": false,
+                            "type": ["object", "null"],
                             "properties": {
                                 "contapr": {
                                     "required": true,

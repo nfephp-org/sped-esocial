@@ -148,7 +148,7 @@
                         },
                         "infoapr": {
                             "required": false,
-                            "type": "object",
+                            "type": ["object", "null"],
                             "properties": {
                                 "contapr": {
                                     "required": true,
