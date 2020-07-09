@@ -171,7 +171,7 @@ class EvtTSVAltContr extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $remuneracao,
                 "dscSalVar",
-                !empty($this->std->remuneracao->dscsalVar) ? $this->std->remuneracao->dscsalVar : null,
+                !empty($this->std->remuneracao->dscsalvar) ? $this->std->remuneracao->dscsalvar : null,
                 false
             );
             $infoComplementares->appendChild($remuneracao);
