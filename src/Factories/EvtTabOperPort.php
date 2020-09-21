@@ -55,7 +55,7 @@ class EvtTabOperPort extends Factory implements FactoryInterface
         Certificate $certificate = null,
         $date = ''
     ) {
-        parent::__construct($config, $std, $certificate);
+        parent::__construct($config, $std, $certificate, $date);
     }
 
     /**
