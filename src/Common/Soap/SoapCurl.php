@@ -82,6 +82,7 @@ class SoapCurl extends SoapBase implements SoapInterface
             }
             $response = curl_exec($oCurl);
             $this->soaperror = curl_error($oCurl);
+            $this->soaperror_code = curl_errno($oCurl);
             $ainfo = curl_getinfo($oCurl);
             if (is_array($ainfo)) {
                 $this->soapinfo = $ainfo;
@@ -100,13 +101,16 @@ class SoapCurl extends SoapBase implements SoapInterface
             throw SoapException::unableToLoadCurl($e->getMessage());
         }
         if ($this->soaperror != '') {
-            throw SoapException::soapFault($this->soaperror." [$url]");
+            if (intval($this->soaperror_code) == 0) {
+                $this->soaperror_code = 7;
+            }
+            throw SoapException::soapFault($this->soaperror." [$url]", $this->soaperror_code);
         }
         if ($httpcode != 200) {
-            throw SoapException::soapFault(
-                " [$url] HTTP Error code: $httpcode - "
-                .$this->getFaultString($this->responseBody)
-            );
+            if (intval($httpcode) == 0) {
+                $httpcode = 52;
+            }
+            throw SoapException::soapFault(" [$url]" . $this->responseHead, $httpcode);
         }
         return $this->responseBody;
     }
