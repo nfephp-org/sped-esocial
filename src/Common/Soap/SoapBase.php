@@ -45,6 +45,10 @@ abstract class SoapBase implements SoapInterface
      */
     public $soaperror;
     /**
+     * @var int
+     */
+    public $soaperror_code;
+    /**
      * @var array
      */
     public $soapinfo = [];
