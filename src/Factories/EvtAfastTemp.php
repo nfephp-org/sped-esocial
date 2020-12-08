@@ -311,12 +311,12 @@ class EvtAfastTemp extends Factory implements FactoryInterface
             $infoAfastamento->appendChild($infoRetif);
         }
 
-        if (! empty($this->std->fimafastamento)) {
+        if (! empty($this->std->infoafastamento->fimafastamento)) {
             $fimAfastamento = $this->dom->createElement("fimAfastamento");
             $this->dom->addChild(
                 $fimAfastamento,
                 "dtTermAfast",
-                $this->std->fimafastamento->dttermafast,
+                $this->std->infoafastamento->fimafastamento->dttermafast,
                 true
             );
             $infoAfastamento->appendChild($fimAfastamento);
