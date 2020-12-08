@@ -147,140 +147,142 @@ class EvtAfastTemp extends Factory implements FactoryInterface
 
         $infoAfastamento = $this->dom->createElement("infoAfastamento");
 
-        $iniAfastamento = $this->dom->createElement("iniAfastamento");
+        if (!empty($this->std->infoafastamento->iniafastamento)) {
+            $iniAfastamento = $this->dom->createElement("iniAfastamento");
 
-        $this->dom->addChild(
-            $iniAfastamento,
-            "dtIniAfast",
-            $this->std->infoafastamento->iniafastamento->dtiniafast,
-            true
-        );
+            $this->dom->addChild(
+                $iniAfastamento,
+                "dtIniAfast",
+                $this->std->infoafastamento->iniafastamento->dtiniafast,
+                true
+            );
 
-        $this->dom->addChild(
-            $iniAfastamento,
-            "codMotAfast",
-            $this->std->infoafastamento->iniafastamento->codmotafast,
-            true
-        );
+            $this->dom->addChild(
+                $iniAfastamento,
+                "codMotAfast",
+                $this->std->infoafastamento->iniafastamento->codmotafast,
+                true
+            );
 
-        $this->dom->addChild(
-            $iniAfastamento,
-            "infoMesmoMtv",
-            ! empty($this->std->infoafastamento->iniafastamento->infomesmomtv) ? $this->std->infoafastamento->iniafastamento->infomesmomtv : null,
-            false
-        );
+            $this->dom->addChild(
+                $iniAfastamento,
+                "infoMesmoMtv",
+                ! empty($this->std->infoafastamento->iniafastamento->infomesmomtv) ? $this->std->infoafastamento->iniafastamento->infomesmomtv : null,
+                false
+            );
 
-        $this->dom->addChild(
-            $iniAfastamento,
-            "tpAcidTransito",
-            ! empty($this->std->infoafastamento->iniafastamento->tpacidtransito) ? $this->std->infoafastamento->iniafastamento->tpacidtransito : null,
-            false
-        );
+            $this->dom->addChild(
+                $iniAfastamento,
+                "tpAcidTransito",
+                ! empty($this->std->infoafastamento->iniafastamento->tpacidtransito) ? $this->std->infoafastamento->iniafastamento->tpacidtransito : null,
+                false
+            );
 
-        $this->dom->addChild(
-            $iniAfastamento,
-            "observacao",
-            ! empty($this->std->infoafastamento->iniafastamento->observacao) ? $this->std->infoafastamento->iniafastamento->observacao : null,
-            false
-        );
+            $this->dom->addChild(
+                $iniAfastamento,
+                "observacao",
+                ! empty($this->std->infoafastamento->iniafastamento->observacao) ? $this->std->infoafastamento->iniafastamento->observacao : null,
+                false
+            );
 
-        if (isset($this->std->infoafastamento->iniafastamento->infoatestado)) {
-            foreach ($this->std->infoafastamento->iniafastamento->infoatestado as $info) {
-                $infoAtestado = $this->dom->createElement("infoAtestado");
-
-                $this->dom->addChild(
-                    $infoAtestado,
-                    "codCID",
-                    ! empty($info->codcid) ? $info->codcid : null,
-                    false
-                );
-
-                $this->dom->addChild(
-                    $infoAtestado,
-                    "qtdDiasAfast",
-                    $info->qtddiasafast,
-                    true
-                );
-
-                if (isset($info->emitente)) {
-                    $emitente = $this->dom->createElement("emitente");
+            if (isset($this->std->infoafastamento->iniafastamento->infoatestado)) {
+                foreach ($this->std->infoafastamento->iniafastamento->infoatestado as $info) {
+                    $infoAtestado = $this->dom->createElement("infoAtestado");
 
                     $this->dom->addChild(
-                        $emitente,
-                        "nmEmit",
-                        $info->emitente->nmemit,
-                        true
-                    );
-
-                    $this->dom->addChild(
-                        $emitente,
-                        "ideOC",
-                        $info->emitente->ideoc,
-                        true
-                    );
-
-                    $this->dom->addChild(
-                        $emitente,
-                        "nrOc",
-                        $info->emitente->nroc,
-                        true
-                    );
-
-                    $this->dom->addChild(
-                        $emitente,
-                        "ufOC",
-                        ! empty($info->emitente->ufoc) ? $info->emitente->ufoc : null,
+                        $infoAtestado,
+                        "codCID",
+                        ! empty($info->codcid) ? $info->codcid : null,
                         false
                     );
 
-                    $infoAtestado->appendChild($emitente);
+                    $this->dom->addChild(
+                        $infoAtestado,
+                        "qtdDiasAfast",
+                        $info->qtddiasafast,
+                        true
+                    );
+
+                    if (isset($info->emitente)) {
+                        $emitente = $this->dom->createElement("emitente");
+
+                        $this->dom->addChild(
+                            $emitente,
+                            "nmEmit",
+                            $info->emitente->nmemit,
+                            true
+                        );
+
+                        $this->dom->addChild(
+                            $emitente,
+                            "ideOC",
+                            $info->emitente->ideoc,
+                            true
+                        );
+
+                        $this->dom->addChild(
+                            $emitente,
+                            "nrOc",
+                            $info->emitente->nroc,
+                            true
+                        );
+
+                        $this->dom->addChild(
+                            $emitente,
+                            "ufOC",
+                            ! empty($info->emitente->ufoc) ? $info->emitente->ufoc : null,
+                            false
+                        );
+
+                        $infoAtestado->appendChild($emitente);
+                    }
+
+                    $iniAfastamento->appendChild($infoAtestado);
                 }
-
-                $iniAfastamento->appendChild($infoAtestado);
             }
+
+            if (! empty($this->std->infoafastamento->iniafastamento->infocessao)) {
+                $infoCessao = $this->dom->createElement("infoCessao");
+
+                $this->dom->addChild(
+                    $infoCessao,
+                    "cnpjCess",
+                    $this->std->infoafastamento->iniafastamento->infocessao->cnpjcess,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $infoCessao,
+                    "infOnus",
+                    $this->std->infoafastamento->iniafastamento->infocessao->infonus,
+                    true
+                );
+
+                $iniAfastamento->appendChild($infoCessao);
+            }
+
+            if (! empty($this->std->infoafastamento->iniafastamento->infomandsind)) {
+                $infoMandSind = $this->dom->createElement("infoMandSind");
+
+                $this->dom->addChild(
+                    $infoMandSind,
+                    "cnpjSind",
+                    $this->std->infoafastamento->iniafastamento->infomandsind->cnpjsind,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $infoMandSind,
+                    "infOnusRemun",
+                    $this->std->infoafastamento->iniafastamento->infomandsind->infonusremun,
+                    true
+                );
+
+                $iniAfastamento->appendChild($infoMandSind);
+            }
+
+            $infoAfastamento->appendChild($iniAfastamento);
         }
-
-        if (! empty($this->std->infoafastamento->iniafastamento->infocessao)) {
-            $infoCessao = $this->dom->createElement("infoCessao");
-
-            $this->dom->addChild(
-                $infoCessao,
-                "cnpjCess",
-                $this->std->infoafastamento->iniafastamento->infocessao->cnpjcess,
-                true
-            );
-
-            $this->dom->addChild(
-                $infoCessao,
-                "infOnus",
-                $this->std->infoafastamento->iniafastamento->infocessao->infonus,
-                true
-            );
-
-            $iniAfastamento->appendChild($infoCessao);
-        }
-
-        if (! empty($this->std->infoafastamento->iniafastamento->infomandsind)) {
-            $infoMandSind = $this->dom->createElement("infoMandSind");
-
-            $this->dom->addChild(
-                $infoMandSind,
-                "cnpjSind",
-                $this->std->infoafastamento->iniafastamento->infomandsind->cnpjsind,
-                true
-            );
-
-            $this->dom->addChild(
-                $infoMandSind,
-                "infOnusRemun",
-                $this->std->infoafastamento->iniafastamento->infomandsind->infonusremun,
-                true
-            );
-
-            $iniAfastamento->appendChild($infoMandSind);
-        }
-
-        $infoAfastamento->appendChild($iniAfastamento);
 
         if (! empty($this->std->inforetif)) {
             $infoRetif = $this->dom->createElement("infoRetif");
@@ -309,12 +311,12 @@ class EvtAfastTemp extends Factory implements FactoryInterface
             $infoAfastamento->appendChild($infoRetif);
         }
 
-        if (! empty($this->std->infoafastamento->fimafastamento)) {
+        if (! empty($this->std->fimafastamento)) {
             $fimAfastamento = $this->dom->createElement("fimAfastamento");
             $this->dom->addChild(
                 $fimAfastamento,
                 "dtTermAfast",
-                $this->std->infoafastamento->fimafastamento->dttermafast,
+                $this->std->fimafastamento->dttermafast,
                 true
             );
             $infoAfastamento->appendChild($fimAfastamento);
