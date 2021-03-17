@@ -5,6 +5,8 @@
 
 ## Layout 2.5.0 (válido para uso até 09/03/2022, com alterações em eventos e outras regras com cronograma variado)
 
+[VIDE NOTA ORIENTATIVA](https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/nota-orientativa-s-1-0-01-2021.pdf)
+
 ## Layout S-1.0 (a partir de 10/05/2021) - EM IMPLEMENTAÇÃO
 
 ### *Esta API ainda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
