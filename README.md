@@ -3,8 +3,9 @@
 
 *sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
-## Layout 2.5.0
+## Layout 2.5.0 (válido para uso até 09/03/2022, com alterações em eventos e outras regras com cronograma variado)
 
+## Layout S-1.0 (a partir de 10/05/2021) - EM IMPLEMENTAÇÃO
 
 ### *Esta API ainda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
 
@@ -45,7 +46,7 @@ Fase 3: Maio/18: Torna-se obrigatório o envio das folhas de pagamento
 Fase 4: Julho/18: Substituição da GFIP (Guia de Informações à Previdência Social) e compensação cruzada
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
- 
+
 
 **Etapa 2 - Demais empresas privadas, incluindo Simples, MEIs e pessoas físicas (que possuam empregados)**
 
@@ -80,7 +81,7 @@ Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança 
 
 ## Donations
 
-**Estamos em busca de *doadores* e *patrocinadores* para ajudar a financiar parte do desenvolvimento deste pacote e de outros pacotes, aqueles que estiverem interessados por favor entrem em contato com o autor pelo email linux.rlm@gmail.com** 
+**Estamos em busca de *doadores* e *patrocinadores* para ajudar a financiar parte do desenvolvimento deste pacote e de outros pacotes, aqueles que estiverem interessados por favor entrem em contato com o autor pelo email linux.rlm@gmail.com**
 
 Este é um projeto totalmente *OpenSource*, para usá-lo, copia-lo e modificá-lo você não paga absolutamente nada. Porém para continuarmos a mantê-lo de forma adequada é necessária alguma contribuição seja feita, seja auxiliando na codificação, na documentação, na realização de testes e identificação de falhas e BUGs.
 
