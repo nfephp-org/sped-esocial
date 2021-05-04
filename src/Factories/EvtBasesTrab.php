@@ -238,7 +238,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
                             $iref->perRef,
                             true
                         );
-                        foreach($iref->detinfoperref as $dref) {
+                        foreach ($iref->detinfoperref as $dref) {
                             $detref = $this->dom->createElement("detInfoPerRef");
                             $this->dom->addChild(
                                 $detref,
@@ -261,8 +261,7 @@ class EvtBasesTrab extends Factory implements FactoryInterface
                             $inforef->appendChild($detref);
                         }
                         $infoCategIncid->appendChild($inforef);
-                    }    
-                    
+                    }
                 }
                 $ideEstabLot->appendChild($infoCategIncid);
             }
