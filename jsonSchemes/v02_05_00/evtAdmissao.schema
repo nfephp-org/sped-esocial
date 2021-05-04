@@ -156,7 +156,8 @@
                 "nrrg": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{6,14}$"
+                    "minLength": 2,
+                    "maxLength": 14
                 },
                 "orgaoemissor": {
                     "required": true,
