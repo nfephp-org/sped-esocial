@@ -62,6 +62,10 @@ abstract class Factory
     /**
      * @var string
      */
+    public $definitions;
+    /**
+     * @var string
+     */
     public $evtid;
     /**
      * @var string
@@ -148,6 +152,10 @@ abstract class Factory
             .$this->evtName
             .".xsd"
         );
+        $this->definitions = realpath(
+            __DIR__
+            ."/../../jsonSchemes/definitions.schema"
+        );
         if (empty($this->schema)) {
             throw new \InvalidArgumentException(
                 'Schemas não localizados, verifique de passou as versões '
@@ -172,10 +180,20 @@ abstract class Factory
      */
     protected function strLayoutVer($layout)
     {
-        $fils = explode('.', $layout);
-        $str  = 'v';
-        foreach ($fils as $fil) {
-            $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
+        //v_S_01_00_00
+        //v02_05_00
+        if (substr($layout, 0, 1) == 'S') {
+            $str  = 'v_S_';
+            $fils = explode('.', substr($layout, 2, strlen($layout)-1));
+            foreach ($fils as $fil) {
+                $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
+            }
+        } else {
+            $fils = explode('.', $layout);
+            $str  = 'v';
+            foreach ($fils as $fil) {
+                $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
+            }
         }
         return substr($str, 0, -1);
     }
@@ -210,6 +228,17 @@ abstract class Factory
         if (! is_file($this->jsonschema)) {
             return true;
         }
+        $errors = JsonValidation::validate($data, $this->jsonschema, $this->definitions);
+        if (empty($errors)) {
+            return true;
+        }
+        $msg = '';
+        foreach ($errors as $key => $error) {
+            $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']). ";";
+        }
+        $msg = substr($msg, 0, strlen($msg)-2);
+        throw new \Exception($msg);
+        /*
         $validator = new JsonValid();
         $validator->check($data, (object) ['$ref' => 'file://'.$this->jsonschema]);
         if (! $validator->isValid()) {
@@ -220,7 +249,7 @@ abstract class Factory
             throw new \RuntimeException($msg);
         }
 
-        return true;
+        return true;*/
     }
 
     /**

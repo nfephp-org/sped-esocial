@@ -9,14 +9,14 @@ $config = [
     'eventoVersion' => '2.2.2', //versão do layout do evento
     'serviceVersion' => '1.1.0',//versão do webservice
     'empregador' => [
-        'tpInsc' => 1,  //1-CNPJ, 2-CPF
-        'nrInsc' => '99999999999999', //numero do documento do empregador
-        'nmRazao' => 'Razao Social'
-    ],    
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999', //numero do documento apenas a raiz do cnpj
+        'nmRazao' => 'Razao Social',
+    ],
     'transmissor' => [
-        'tpInsc' => 1,  //1-CNPJ, 2-CPF
-        'nrInsc' => '99999999999999' //numero do documento do transmissor
-    ]
+        'tpInsc' => 1, //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999999999' //numero do documento CNPJ/CPF completo
+    ],
 ];
 $configJson = json_encode($arrconfig);
 ```

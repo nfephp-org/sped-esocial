@@ -1,0 +1,108 @@
+{
+    "title": "evtTabCargo",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "codcargo": {
+            "required": true,
+            "type": "string",
+            "maxLength": 30,
+            "pattern": "^(?!eSocial)"
+        },
+        "inivalid": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+        },
+        "fimvalid": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+        },
+        "modo": {
+            "required": true,
+            "type": "string",
+            "pattern": "INC|ALT|EXC"
+        },
+        "dadoscargo": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "nmcargo": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 8,
+                    "maxLength": 100
+                },
+                "codcbo": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 6,
+                    "pattern": "^[0-9]"
+                },
+                "cargopublico": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "acumcargo": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 4
+                        },
+                        "contagemesp": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 4
+                        },
+                        "dedicexcl": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "S|N"
+                        },
+                        "nrlei": {
+                            "required": true,
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 12
+                        },
+                        "dtlei": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "sitcargo": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 3
+                        }
+                    }
+                }
+            }
+        },
+        "novavalidade": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                }
+            }    
+        }
+    }
+}

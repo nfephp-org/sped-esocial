@@ -1,0 +1,159 @@
+{
+    "title": "evtFGTS",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^([0-9]{4}-(0[1-9]{1}|1[0-2]{1}))$"
+        },
+        "infofgts": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "nrrecarqbase": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40
+                },
+                "indexistinfo": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
+                },
+                "infobasefgts": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "baseperapur": {
+                            "required": false,
+                            "type": "array",
+                            "minItems": 0,
+                            "maxItems": 21,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "tpvalor": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^[0-9]{2}$"
+                                    },
+                                    "basefgts": {
+                                        "required": true,
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        },
+                        "infobaseperante": {
+                            "required": false,
+                            "type": "array",
+                            "minItems": 0,
+                            "maxItems": 180,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "perref": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^([0-9]{4}-(0[1-9]{1}|1[0-2]{1}))$"
+                                    },
+                                    "baseperante": {
+                                        "required": true,
+                                        "type": "array",
+                                        "minItems": 1,
+                                        "maxItems": 11,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "tpvalore": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]{2}$"
+                                                },
+                                                "basefgtse": {
+                                                    "required": true,
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }    
+                                    }
+                                }
+                            }    
+                        }
+                    }
+                },
+                "infodpsfgts": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "dpsperapur": {
+                            "required": false,
+                            "type": "array",
+                            "minItems": 0,
+                            "maxItems": 20,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "tpdps": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^[0-9]{2}$"
+                                    },
+                                    "vrfgts": {
+                                        "required": true,
+                                        "type": "number"
+                                    }
+                                }
+                            }    
+                        },
+                        "infodpsperante": {
+                            "required": false,
+                            "type": "array",
+                            "minItems": 0,
+                            "maxItems": 180,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "perref": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^([0-9]{4}-(0[1-9]{1}|1[0-2]{1}))$"
+                                    },
+                                    "dpsperante": {
+                                        "required": true,
+                                        "type": "array",
+                                        "minItems": 1,
+                                        "maxItems": 10,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "tpdpse": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]{2}$"
+                                                },
+                                                "vrfgtse": {
+                                                    "required": true,
+                                                    "type": "number"
+                                                }
+                                            }
+                                        } 
+                                    }
+                                }
+                            }    
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -5,15 +5,15 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
-use NFePHP\Common\Certificate;
+
 use NFePHP\eSocial\Event;
 
 $config = [
     'tpAmb' => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc' => '1.0.0',
+    'verProc' => 'S_1.0.0',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion' => '2.5.0',
+    'eventoVersion' => 'S.1.0.0',
     //versão do layout do evento
     'serviceVersion' => '1.5.0',
     //versão do webservice
@@ -33,6 +33,8 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1; //numero sequencial
 $std->modo = 'INC'; //INC inclusão, ALT alteração EXC exclusão
+//NOTA: se for uma alteração ou exclusão, então o sequencial não pode ser = 1 
+//deve ser maior pois o 1 já foi feito anteriormente
 
 $std->ideperiodo = new \stdClass();
 $std->ideperiodo->inivalid = '2017-01'; //aaaa-mm do inicio da validade
@@ -47,7 +49,6 @@ $std->infocadastro->indcoop = 0; //Indicativo de Cooperativa: 0 - Não é cooper
 $std->infocadastro->indconstr = 0; //Indicativo de Construtora: 0 - Não é Construtora; 1 - Empresa Construtora.
 $std->infocadastro->inddesfolha = 0; //Indicativo de Desoneração da Folha: 0 - Não Aplicável; 1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.
 $std->infocadastro->indopccp = 2; //Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária, nos termos do art. 25, §13, da Lei 8.212/1991 e do art. 25, §7°, da Lei 8.870/1994. O não preenchimento deste campo por parte do produtor rural implica opção pela comercialização da sua produção: 1 - Sobre a comercialização da sua produção; 2 - Sobre a folha de pagamento.
-$std->infocadastro->indporte = 'S'; //Indicativo de microempresa ou empresa de pequeno porte
 $std->infocadastro->indoptregeletron = 0; //registro eletrônico de empregados: 0 - Não optou pelo registro eletrônico de empregados; 1 - Optou pelo registro eletrônico de empregados
 $std->infocadastro->indented = 'N'; //realiza a contratação de aprendiz por entidade N - Não é entidade educativa sem fins lucrativos; S - É entidade educativa sem fins lucrativos
 $std->infocadastro->indett = 'N'; //Indicativo de Empresa de Trabalho Temporário N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário.
@@ -92,8 +93,8 @@ $std->contato->email = 'fulano@mail.com'; //Endereço eletrônico
 //$std->infoente->vrsubteto = 10584.50;//valor do subteto do Ente Federativo
 //campo OPCIONAL
 //Informações exclusivas de organismos internacionais e outras instituições extraterritoriais
-$std->infoorginternacional = new \stdClass();
-$std->infoorginternacional->indacordoisenmulta = 0; //Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo.
+//$std->infoorginternacional = new \stdClass();
+//$std->infoorginternacional->indacordoisenmulta = 0; //Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo.
 //campo OPCIONAL
 //Informações relativas ao desenvolvedor do software que gerou o arquivo xml.
 //Array com até 99 ocorrências
@@ -123,22 +124,11 @@ $std->situacaopj->indsitpj = 0; //0 - Situação Normal; 1 - Extinção; 2 - Fus
 
 
 try {
-    //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
-    $password = 'associacao';
-    $certificate = Certificate::readPfx($content, $password);
-
-    //cria o evento evtInfoEmpregador
-    $xml = Event::evtInfoEmpregador(
-        $configJson,
-        $std,
-        $certificate,
-        '2017-08-03 10:37:00' //opcional data e hora
-    )->toXml();
-      
-    header('Content-type: text/xml; charset=UTF-8');
-    //retorna o evento em xml assinado
-    echo $xml;      
+    //$json = Event::evtInfoEmpregador($configJson, $std)->toJson();
+    $json = Event::s1000($configJson, $std)->toJson();
+    echo "<pre>";
+    echo $json;
+    echo "</pre>";
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
