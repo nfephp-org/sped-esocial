@@ -72,7 +72,8 @@ class Event
         'evttotconting' => Factories\EvtTotConting::class,
         'evttoxic' => Factories\EvtToxic::class,
         'evtfgts' => Factories\EvtFGTS::class,
-        'evtbasesfgts' => Factories\EvtBasesFGTS::class
+        'evtbasesfgts' => Factories\EvtBasesFGTS::class,
+        'evtbaixa' => Factories\EvtBaixa::class,
     ];
 
     /**
@@ -131,6 +132,7 @@ class Event
         's1295' => 'evttotconting',
         's5003' => 'evtbasesfgts',
         's5013' => 'evtfgts',
+        's8299' => 'evtbaixa',
     ];
 
     /**

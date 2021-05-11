@@ -6,6 +6,7 @@ namespace NFePHP\eSocial\Factories;
  * Class eSocial EvtInfoEmpregador Event S-1000 constructor
  * Read for 2.4.2 layout
  * Read for 2.5.0 layout
+ * Read for S_1.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -95,24 +96,32 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         if (isset($this->std->infocadastro)) {
             $cad = $this->std->infocadastro;
             $infoCadastro = $this->dom->createElement("infoCadastro");
-            $this->dom->addChild(
-                $infoCadastro,
-                "nmRazao",
-                $cad->nmrazao,
-                true
-            );
+            
+            //alterado S_1.0, apenas 2.05
+            if (substr($this->layout, 0, 1) != 'S') {
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "nmRazao",
+                    $cad->nmrazao,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $infoCadastro,
                 "classTrib",
                 $cad->classtrib,
                 true
             );
-            $this->dom->addChild(
-                $infoCadastro,
-                "natJurid",
-                !empty($cad->natjurid) ? $cad->natjurid : null,
-                ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
-            );
+            
+            //alterado S_1.0, apenas 2.05
+            if (substr($this->layout, 0, 1) != 'S') {
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "natJurid",
+                    !empty($cad->natjurid) ? $cad->natjurid : null,
+                    ($this->tpInsc == 1) ? true : false //obrigatorio para pessoa juridica
+                );
+            }
             $this->dom->addChild(
                 $infoCadastro,
                 "indCoop",
@@ -149,25 +158,38 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $cad->indoptregeletron,
                 true
             );
+            
+            //incluido S_1.0
             $this->dom->addChild(
                 $infoCadastro,
-                "indEntEd",
-                !empty($cad->indented) ? $cad->indented : null,
+                "cnpjEFR",
+                !empty($cad->cnpjefr) ? $cad->cnpjefr : null,
                 false
             );
-            $this->dom->addChild(
-                $infoCadastro,
-                "indEtt",
-                !empty($cad->indett) ? $cad->indett : null,
-                false
-            );
-            $this->dom->addChild(
-                $infoCadastro,
-                "nrRegEtt",
-                !empty($cad->nrregett) ? $cad->nrregett : null,
-                false
-            );
+            
+            //alterado S_1.0, apenas 2.05
+            if (substr($this->layout, 0, 1) != 'S') {
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "indEntEd",
+                    !empty($cad->indented) ? $cad->indented : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "indEtt",
+                    !empty($cad->indett) ? $cad->indett : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $infoCadastro,
+                    "nrRegEtt",
+                    !empty($cad->nrregett) ? $cad->nrregett : null,
+                    false
+                );
+            }
         }
+        
         if (isset($this->std->dadosisencao) && !empty($infoCadastro)) {
             $cad  = $this->std->dadosisencao;
             $info = $this->dom->createElement("dadosIsencao");
@@ -192,7 +214,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $info,
                 "dtVencCertif",
-                $cad->dtcenccertif,
+                $cad->dtvenccertif,
                 true
             );
             $this->dom->addChild(
@@ -221,113 +243,117 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        if (isset($this->std->contato) && !empty($infoCadastro)) {
-            $cad  = $this->std->contato;
-            $info = $this->dom->createElement("contato");
-            $this->dom->addChild(
-                $info,
-                "nmCtt",
-                $cad->nmctt,
-                true
-            );
-            $this->dom->addChild(
-                $info,
-                "cpfCtt",
-                $cad->cpfctt,
-                true
-            );
-            $this->dom->addChild(
-                $info,
-                "foneFixo",
-                !empty($cad->fonefixo) ? $cad->fonefixo : '',
-                false
-            );
-            $this->dom->addChild(
-                $info,
-                "foneCel",
-                !empty($cad->fonecel) ? $cad->fonecel : null,
-                false
-            );
-            $this->dom->addChild(
-                $info,
-                "email",
-                !empty($cad->email) ? $cad->email : null,
-                false
-            );
-            $infoCadastro->appendChild($info);
-        }
-        if (isset($this->std->infoop)  && !empty($infoCadastro)) {
-            $cad  = $this->std->infoop;
-            $infoOP = $this->dom->createElement("infoOP");
-            $this->dom->addChild(
-                $infoOP,
-                "nrSiafi",
-                $cad->nrsiafi,
-                true
-            );
-            if (isset($this->std->infoefr)) {
-                $cad  = $this->std->infoefr;
-                $infoEFR = $this->dom->createElement("infoEFR");
+        
+        //alterado S_1.0, apenas 2.05
+        if (substr($this->layout, 0, 1) != 'S') {
+            if (isset($this->std->contato) && !empty($infoCadastro)) {
+                $cad  = $this->std->contato;
+                $info = $this->dom->createElement("contato");
                 $this->dom->addChild(
-                    $infoEFR,
-                    "ideEFR",
-                    $cad->ideefr,
+                    $info,
+                    "nmCtt",
+                    $cad->nmctt,
                     true
                 );
                 $this->dom->addChild(
-                    $infoEFR,
-                    "cnpjEFR",
-                    !empty($cad->cnpjefr) ? $cad->cnpjefr : null,
-                    false
-                );
-                $infoOP->appendChild($infoEFR);
-            }
-            if (isset($this->std->infoente)) {
-                $cad  = $this->std->infoente;
-                $infoEnte = $this->dom->createElement("infoEnte");
-                $this->dom->addChild(
-                    $infoEnte,
-                    "nmEnte",
-                    $cad->nmente,
+                    $info,
+                    "cpfCtt",
+                    $cad->cpfctt,
                     true
                 );
                 $this->dom->addChild(
-                    $infoEnte,
-                    "uf",
-                    $cad->uf,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "codMunic",
-                    !empty($cad->codmunic) ? $cad->codmunic : null,
+                    $info,
+                    "foneFixo",
+                    !empty($cad->fonefixo) ? $cad->fonefixo : '',
                     false
                 );
                 $this->dom->addChild(
-                    $infoEnte,
-                    "indRPPS",
-                    $cad->indrpps,
-                    true
+                    $info,
+                    "foneCel",
+                    !empty($cad->fonecel) ? $cad->fonecel : null,
+                    false
                 );
                 $this->dom->addChild(
-                    $infoEnte,
-                    "subteto",
-                    $cad->subteto,
-                    true
+                    $info,
+                    "email",
+                    !empty($cad->email) ? $cad->email : null,
+                    false
                 );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "vrSubteto",
-                    number_format($cad->vrsubteto, 2, ".", ""),
-                    true
-                );
-                $infoOP->appendChild($infoEnte);
+                $infoCadastro->appendChild($info);
             }
-            $infoCadastro->appendChild($infoOP);
+            if (isset($this->std->infoop)  && !empty($infoCadastro)) {
+                $cad  = $this->std->infoop;
+                $infoOP = $this->dom->createElement("infoOP");
+                $this->dom->addChild(
+                    $infoOP,
+                    "nrSiafi",
+                    $cad->nrsiafi,
+                    true
+                );
+                if (isset($this->std->infoefr)) {
+                    $cad  = $this->std->infoefr;
+                    $infoEFR = $this->dom->createElement("infoEFR");
+                    $this->dom->addChild(
+                        $infoEFR,
+                        "ideEFR",
+                        $cad->ideefr,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoEFR,
+                        "cnpjEFR",
+                        !empty($cad->cnpjefr) ? $cad->cnpjefr : null,
+                        false
+                    );
+                    $infoOP->appendChild($infoEFR);
+                }
+                if (isset($this->std->infoente)) {
+                    $cad  = $this->std->infoente;
+                    $infoEnte = $this->dom->createElement("infoEnte");
+                    $this->dom->addChild(
+                        $infoEnte,
+                        "nmEnte",
+                        $cad->nmente,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoEnte,
+                        "uf",
+                        $cad->uf,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoEnte,
+                        "codMunic",
+                        !empty($cad->codmunic) ? $cad->codmunic : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $infoEnte,
+                        "indRPPS",
+                        $cad->indrpps,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoEnte,
+                        "subteto",
+                        $cad->subteto,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $infoEnte,
+                        "vrSubteto",
+                        number_format($cad->vrsubteto, 2, ".", ""),
+                        true
+                    );
+                    $infoOP->appendChild($infoEnte);
+                }
+                $infoCadastro->appendChild($infoOP);
+            }
         }
         if (isset($this->std->infoorginternacional) && !empty($infoCadastro)) {
             $cad = $this->std->infoorginternacional;
-            $info = $this->dom->createElement("infoorgInternacional");
+            $info = $this->dom->createElement("infoOrgInternacional");
             $this->dom->addChild(
                 $info,
                 "indAcordoIsenMulta",
@@ -336,64 +362,69 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             );
             $infoCadastro->appendChild($info);
         }
-        if (isset($this->std->softwarehouse) && !empty($infoCadastro)) {
-            foreach ($this->std->softwarehouse as $sh) {
-                $info = $this->dom->createElement("softwareHouse");
-                $this->dom->addChild(
-                    $info,
-                    "cnpjSoftHouse",
-                    $sh->cnpjsofthouse,
-                    true
-                );
-                $this->dom->addChild(
-                    $info,
-                    "nmRazao",
-                    $sh->nmrazao,
-                    true
-                );
-                $this->dom->addChild(
-                    $info,
-                    "nmCont",
-                    $sh->nmcont,
-                    true
-                );
-                $this->dom->addChild(
-                    $info,
-                    "telefone",
-                    $sh->telefone,
-                    true
-                );
-                $this->dom->addChild(
-                    $info,
-                    "email",
-                    !empty($sh->email) ? $sh->email : null,
-                    false
-                );
-                $infoCadastro->appendChild($info);
+        
+        //alterado S_1.0, apenas 2.05
+        if (substr($this->layout, 0, 1) != 'S') {
+            if (isset($this->std->softwarehouse) && !empty($infoCadastro)) {
+                foreach ($this->std->softwarehouse as $sh) {
+                    $info = $this->dom->createElement("softwareHouse");
+                    $this->dom->addChild(
+                        $info,
+                        "cnpjSoftHouse",
+                        $sh->cnpjsofthouse,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $info,
+                        "nmRazao",
+                        $sh->nmrazao,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $info,
+                        "nmCont",
+                        $sh->nmcont,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $info,
+                        "telefone",
+                        $sh->telefone,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $info,
+                        "email",
+                        !empty($sh->email) ? $sh->email : null,
+                        false
+                    );
+                    $infoCadastro->appendChild($info);
+                }
             }
-        }
-        if (isset($this->std->situacaopj)) {
-            $infoComplementares = $this->dom->createElement("infoComplementares");
-            $sh = $this->std->situacaopj;
-            $info = $this->dom->createElement("situacaoPJ");
-            $this->dom->addChild(
-                $info,
-                "indSitPJ",
-                $sh->indsitpj,
-                true
-            );
-            $infoComplementares->appendChild($info);
-        } elseif (isset($this->std->situacaopf)) {
-            $infoComplementares = $this->dom->createElement("infoComplementares");
-            $sh = $this->std->situacaopf;
-            $info = $this->dom->createElement("situacaoPF");
-            $this->dom->addChild(
-                $info,
-                "indSitPF",
-                $sh->indsitpf,
-                true
-            );
-            $infoComplementares->appendChild($info);
+        
+            if (isset($this->std->situacaopj)) {
+                $infoComplementares = $this->dom->createElement("infoComplementares");
+                $sh = $this->std->situacaopj;
+                $info = $this->dom->createElement("situacaoPJ");
+                $this->dom->addChild(
+                    $info,
+                    "indSitPJ",
+                    $sh->indsitpj,
+                    true
+                );
+                $infoComplementares->appendChild($info);
+            } elseif (isset($this->std->situacaopf)) {
+                $infoComplementares = $this->dom->createElement("infoComplementares");
+                $sh = $this->std->situacaopf;
+                $info = $this->dom->createElement("situacaoPF");
+                $this->dom->addChild(
+                    $info,
+                    "indSitPF",
+                    $sh->indsitpf,
+                    true
+                );
+                $infoComplementares->appendChild($info);
+            }
         }
         if (isset($this->std->novavalidade)) {
             $sh = $this->std->novavalidade;

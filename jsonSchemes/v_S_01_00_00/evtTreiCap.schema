@@ -1,0 +1,139 @@
+{
+    "title": "evtTreiCap",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"]
+        },
+        "idevinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "nistrab": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{11}$"
+                },
+                "matricula": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 30
+                },
+                "codcateg": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 3
+                }
+            }
+        },
+        "treicap": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "codtreicap": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{4}$"
+                },
+                "obstreicap": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^.{4,999}$"
+                },
+                "infocomplem": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "dttreicap": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "durtreicap": {
+                            "required": true,
+                            "type": "number"
+                        },
+                        "modtreicap": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 3
+                        },
+                        "tptreicap": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5
+                        },
+                        "indtreinant": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^S|N$"
+                        },
+                        "ideprofresp": {
+                            "required": true,
+                            "type": "array",
+                            "minItems": 1,
+                            "maxItems": 99,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "cpfprof": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^[0-9]{11}$"
+                                    },
+                                    "nmprof": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^.{1,70}$"
+                                    },
+                                    "tpprof": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 2
+                                    },
+                                    "formprof": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^.{1,255}$"
+                                    },
+                                    "codcbo": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^[0-9]{6}$"
+                                    },
+                                    "nacprof": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 2
+                                    }
+                                }
+                            }    
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
