@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTabEquipamento Event S-1065 constructor
- * READ for 2.4.2 layout
+
  * Read for 2.5.0 layout
  *
  * @category  library
@@ -81,7 +81,7 @@ class EvtTabEquipamento extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ide = $this->dom->createElement("ideEquipamento");
         $this->dom->addChild(
             $ide,
@@ -101,7 +101,7 @@ class EvtTabEquipamento extends Factory implements FactoryInterface
             ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
-        
+
         $dados = null;
         if (!empty($this->std->tpep)) {
             $dados = $this->dom->createElement("dadosEquipamento");
@@ -124,7 +124,7 @@ class EvtTabEquipamento extends Factory implements FactoryInterface
                 false
             );
         }
-        
+
         $nova = null;
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
@@ -143,7 +143,7 @@ class EvtTabEquipamento extends Factory implements FactoryInterface
                 false
             );
         }
-        
+
         $info = $this->dom->createElement("infoEquipamento");
         //seleção do modo
         if ($this->std->modo == 'INC') {

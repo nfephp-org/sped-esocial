@@ -4,7 +4,6 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtAdmPrelim Event S-2190 constructor
- * Read for 2.4.2 layout
  * Read for 2.5.0 layout
  *
  * @category  library
@@ -32,6 +31,10 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-2190';
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS2190;
 
     /**
      * Constructor

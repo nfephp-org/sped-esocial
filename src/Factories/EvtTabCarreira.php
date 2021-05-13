@@ -4,7 +4,6 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTabCarreira Event S-1035 constructor
- * READ for 2.4.2 layout
  * READ for 2.5.0 layout
  *
  * @category  library
@@ -36,6 +35,16 @@ class EvtTabCarreira extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-1035';
+    /**
+     * Parameters patterns
+     *
+     * @var array
+     */
+    protected $parameters = [];
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS1035;
 
     /**
      * Constructor
@@ -80,7 +89,7 @@ class EvtTabCarreira extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ide = $this->dom->createElement("ideCarreira");
         $this->dom->addChild(
             $ide,

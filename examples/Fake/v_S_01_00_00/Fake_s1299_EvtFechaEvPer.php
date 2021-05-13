@@ -31,23 +31,44 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 //carrega os dados do envento
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+$std->indapuracao = 1; //obrigatorio
+//Indicativo de período de apuração. 1 - Mensal 2 - Anual (13° salário)
 
-$std->iderespinf = new \stdClass();
-$std->iderespinf->nmresp = 'JOAO';
-$std->iderespinf->cpfresp = '11111111111';
-$std->iderespinf->telefone = '1122223333';
-$std->iderespinf->email = 'odirlei@avanti.ind.br';
+$std->perapur = '2017-08';  //obrigatorio
+//Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], 
+//ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 
+$std->indguia = 1; //opcional
+//Indicativo do tipo de guia. 1 - Documento de Arrecadação do eSocial - DAE
+
+//informações para o fechamento
 $std->infofech = new \stdClass();
-$std->infofech->evtremun = 'N';
-$std->infofech->evtpgtos = 'N';
-$std->infofech->evtaqprod = 'N';
-$std->infofech->evtcomprod = 'N';
-$std->infofech->evtcontratavnp = 'N';
-$std->infofech->evtinfocomplper = 'N';
-$std->infofech->compsemmovto = '2019-12';
+$std->infofech->evtremun = 'N';  //obrigatorio
+//Possui informações relativas a remuneração de trabalhadores ou provento/pensão de 
+//beneficiários no período de apuração?
+//Se for igual a [S], deve existir evento de remuneração (S-1200, S-1202, S-1207, S-2299 ou S-2399)
+//para o período de apuração. Caso contrário, não deve existir evento de remuneração.
+
+$std->infofech->evtcomprod = 'N';  //obrigatorio
+//Possui informações de comercialização de produção?
+//Se for igual a [S], deve existir o evento S-1260 para o período de apuração. Caso contrário, não deve existir o evento.
+
+$std->infofech->evtcontratavnp = 'N';  //obrigatorio
+//Contratou, por intermédio de sindicato, serviços de trabalhadores avulsos não portuários?
+//Se for igual a [S], deve existir o evento S-1270 para o período de apuração. Caso contrário, não deve existir o evento.
+
+$std->infofech->evtinfocomplper = 'N'; //obrigatorio
+//Possui informações de desoneração de folha de
+//pagamento ou, sendo empresa enquadrada no Simples,
+//possui informações sobre a receita obtida em atividades
+//cuja contribuição previdenciária incidente sobre a folha de
+//pagamento é concomitantemente substituída e não
+//substituída?
+
+$std->infofech->indexcapur1250 = 'S'; //opcional mas aceita somente NULL ou S
+//Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.
+//Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Preenchimento obrigatório caso o
+//campo tenha sido informado em fechamento anterior do mesmo período de apuração
 
 try {
     //carrega a classe responsavel por lidar com os certificados

@@ -107,6 +107,10 @@ abstract class Factory
      * @var Certificate | null
      */
     protected $certificate;
+     /**
+     * @var string
+     */
+    protected $method_name;
     
     /**
      * Constructor
@@ -122,7 +126,7 @@ abstract class Factory
         $date = ''
     ) {
         //set properties from config
-        $stdConf    = json_decode($config);
+        $stdConf = json_decode($config);
         $this->date = new DateTime();
         if (! empty($date)) {
             $this->date = new DateTime($date);
@@ -140,6 +144,9 @@ abstract class Factory
                 'Você deve passar os parâmetros num stdClass.'
             );
         }
+        //constroi o nome do método construtor baseado na versão
+        $this->method_name = 'toNode'
+            . str_replace('.', '', $this->layout);
         $this->jsonschema = realpath(
             __DIR__
             ."/../../jsonSchemes/$this->layoutStr/"
@@ -238,18 +245,6 @@ abstract class Factory
         }
         $msg = substr($msg, 0, strlen($msg)-2);
         throw new \Exception($msg);
-        /*
-        $validator = new JsonValid();
-        $validator->check($data, (object) ['$ref' => 'file://'.$this->jsonschema]);
-        if (! $validator->isValid()) {
-            $msg = "JSON does not validate. Violations:\n";
-            foreach ($validator->getErrors() as $error) {
-                $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']);
-            }
-            throw new \RuntimeException($msg);
-        }
-
-        return true;*/
     }
 
     /**
@@ -336,7 +331,17 @@ abstract class Factory
         return $this->clearXml($this->xml);
     }
 
-    abstract protected function toNode();
+    /**
+     * Node constructor
+     */
+    protected function toNode()
+    {
+        $method_name = $this->method_name;
+        if (!method_exists($this, $method_name)) {
+            throw new Exception("Erro interno método {$method_name} não localizado.");
+        }
+        return $this->$method_name();
+    }
 
     /**
      * Remove XML declaration from XML string

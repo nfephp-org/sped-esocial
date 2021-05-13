@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtIrrfBenef Event S-5002 constructor
- * Read for 2.4.2 layout
+
  * Read for 2.5.0 layout
  *
  * @category  library
