@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtReintegr Event S-2298 constructor
- * READ for 2.4.2 layout
+
  * READ for 2.5.0 layout
  *
  * @category  library

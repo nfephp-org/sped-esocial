@@ -10,13 +10,9 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-1299
-//Campo {evtFechaEvPer} – excluída REGRA_EVE_FOPAG_IND_RETIFICACAO.
-///Campo {evtRemun} – alterada validação.
-
-//S-1299 sem alterações da 2.4.2 => 2.5.0
 
 $evento = 'evtFechaEvPer';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtFechaEvPer",
@@ -36,49 +32,19 @@ $jsonSchema = '{
         },
         "perapur": {
             "required": true,
-            "type": "string"
+            "type": "string",
+            "$ref": "#/definitions/periodo"
         },
-        "iderespinf": {
-            "required": true,
-            "type": "object",
-            "properties": {
-                "nmresp": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 70
-                },
-                "cpfresp": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{11}$"
-                },
-                "telefone": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{10,13}$"
-                },
-                "email": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "maxLength": 60
-                }
-            }
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
         },
         "infofech": {
-            "required": true,
             "type": "object",
             "properties": {
                 "evtremun": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "evtpgtos": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "evtaqprod": {
                     "required": true,
                     "type": "string",
                     "pattern": "^(S|N)$"
@@ -98,35 +64,56 @@ $jsonSchema = '{
                     "type": "string",
                     "pattern": "^(S|N)$"
                 },
-                "compsemmovto": {
+                "indexcapur1250": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "pattern": "^(S)$"
                 }
             }
-        }
+        }    
     }
 }';
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+$std->indapuracao = 1; //obrigatorio
+//Indicativo de período de apuração. 1 - Mensal 2 - Anual (13° salário)
 
-$std->iderespinf = new \stdClass();
-$std->iderespinf->nmresp = 'JOAO';
-$std->iderespinf->cpfresp = '11111111111';
-$std->iderespinf->telefone = '1122223333';
-$std->iderespinf->email = 'fulano@mail.com';
+$std->perapur = '2017-08';  //obrigatorio
+//Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], 
+//ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 
+$std->indguia = 1; //opcional
+//Indicativo do tipo de guia. 1 - Documento de Arrecadação do eSocial - DAE
+
+//informações para o fechamento
 $std->infofech = new \stdClass();
-$std->infofech->evtremun = 'N';
-$std->infofech->evtpgtos = 'N';
-$std->infofech->evtaqprod = 'N';
-$std->infofech->evtcomprod = 'N';
-$std->infofech->evtcontratavnp = 'N';
-$std->infofech->evtinfocomplper = 'N';
-$std->infofech->compsemmovto = '2019-12';
+$std->infofech->evtremun = 'N';  //obrigatorio
+//Possui informações relativas a remuneração de trabalhadores ou provento/pensão de 
+//beneficiários no período de apuração?
+//Se for igual a [S], deve existir evento de remuneração (S-1200, S-1202, S-1207, S-2299 ou S-2399)
+//para o período de apuração. Caso contrário, não deve existir evento de remuneração.
+
+$std->infofech->evtcomprod = 'N';  //obrigatorio
+//Possui informações de comercialização de produção?
+//Se for igual a [S], deve existir o evento S-1260 para o período de apuração. Caso contrário, não deve existir o evento.
+
+$std->infofech->evtcontratavnp = 'N';  //obrigatorio
+//Contratou, por intermédio de sindicato, serviços de trabalhadores avulsos não portuários?
+//Se for igual a [S], deve existir o evento S-1270 para o período de apuração. Caso contrário, não deve existir o evento.
+
+$std->infofech->evtinfocomplper = 'N'; //obrigatorio
+//Possui informações de desoneração de folha de
+//pagamento ou, sendo empresa enquadrada no Simples,
+//possui informações sobre a receita obtida em atividades
+//cuja contribuição previdenciária incidente sobre a folha de
+//pagamento é concomitantemente substituída e não
+//substituída?
+
+$std->infofech->indexcapur1250 = 'S'; //opcional
+//Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.
+//Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Preenchimento obrigatório caso o
+//campo tenha sido informado em fechamento anterior do mesmo período de apuração
 
 
 // Schema must be decoded before it can be used for validation
@@ -146,7 +133,9 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
-        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $std,
+    $jsonSchemaObject,
+    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 );
 
 if ($jsonValidator->isValid()) {
@@ -159,4 +148,4 @@ if ($jsonValidator->isValid()) {
     die;
 }
 //salva se sucesso
-file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
+file_put_contents("../../../jsonSchemes/v_$version/$evento.schema", $jsonSchema);

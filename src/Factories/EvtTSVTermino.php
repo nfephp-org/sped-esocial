@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTSVTermino Event S-2399 constructor
- * Read for 2.4.2 layout
+
  * Read for 2.5.0 layout
  *
  * @category  library
@@ -99,7 +99,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideTrabSemVinculo = $this->dom->createElement("ideTrabSemVinculo");
         $this->dom->addChild(
             $ideTrabSemVinculo,
@@ -308,7 +308,7 @@ class EvtTSVTermino extends Factory implements FactoryInterface
                 }
                 $verbasResc->appendChild($dmDev);
             }
-            
+
             if (!empty($this->std->verbasresc->procjudtrab)) {
                 foreach ($this->std->verbasresc->procjudtrab as $pj) {
                     $procJudTrab = $this->dom->createElement("procJudTrab");

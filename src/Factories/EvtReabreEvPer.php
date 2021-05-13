@@ -4,7 +4,6 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtReabreEvPer Event S-1298 constructor
- * READ for 2.4.2 layout
  * READ for 2.5.0 layout
  *
  * @category  library
@@ -43,6 +42,10 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
      * @var array
      */
     protected $parameters = [];
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS1298;
 
     /**
      * Constructor
@@ -59,50 +62,5 @@ class EvtReabreEvPer extends Factory implements FactoryInterface
         $date = ''
     ) {
         parent::__construct($config, $std, $certificate, $date);
-    }
-
-    /**
-     * Node constructor
-     */
-    protected function toNode()
-    {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "indApuracao",
-            $this->std->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "perApur",
-            $this->std->perapur,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-        $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
     }
 }
