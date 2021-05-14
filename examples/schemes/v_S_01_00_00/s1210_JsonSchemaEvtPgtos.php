@@ -658,6 +658,13 @@ $std->infopgto[0]->idepgtoext->endext->codpostal = '1230099';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
+if (empty($jsonSchemaObject)) {
+    echo "<h2>Erro de digitação no schema ! Revise</h2>";
+    echo "<pre>";
+    print_r($jsonSchema);
+    echo "</pre>";
+    die();
+}
 
 // The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
 $schemaStorage = new SchemaStorage();
@@ -687,4 +694,4 @@ if ($jsonValidator->isValid()) {
     die;
 }
 //salva se sucesso
-file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
+file_put_contents("../../../jsonSchemes/v_$version/$evento.schema", $jsonSchema);
