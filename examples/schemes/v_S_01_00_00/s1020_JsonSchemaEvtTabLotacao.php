@@ -33,17 +33,17 @@ $jsonSchema = '{
         "inivalid": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+            "$ref": "#/definitions/periodo"
         },
         "fimvalid": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+            "$ref": "#/definitions/periodo"
         },
         "modo": {
             "required": true,
             "type": "string",
-            "pattern": "INC|ALT|EXC"
+            "$ref": "#/definitions/modo"
         },
         "dadoslotacao": {
             "required": true,
@@ -52,7 +52,7 @@ $jsonSchema = '{
                 "tplotacao": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}$"
+                    "pattern": "^0[1-9]{1}|10|21|24|90|91$"
                 },
                 "tpinsc": {
                     "required": false,
@@ -63,25 +63,22 @@ $jsonSchema = '{
                 "nrinsc": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{11,14}$"
+                    "pattern": "^[0-9]{11}|[0-9]{12}|[0-9]{14}}$"
                 },
                 "fpas": {
                     "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 999
+                    "type": "string",
+                    "pattern": "^(5[0-9]{2}|6[0-9]{2}|7[0-9]{2}|8[0-9]{2})$"
                 },
                 "codtercs": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 4,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{4}$"
                 },
                 "codtercssusp": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 4,
-                    "pattern": "^[0-9]"
+                    "pattern": "^[0-9]{4}$"
                 },
                 "procjudterceiro": {
                     "required": false,
@@ -99,7 +96,7 @@ $jsonSchema = '{
                             "nrprocjud": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "$ref": "#/definitions/string20"
                             },
                             "codsusp": {
                                 "required": true,
@@ -149,7 +146,9 @@ $jsonSchema = '{
                         },
                         "fap": {
                             "required": true,
-                            "type": "number"
+                            "type": "number",
+                            "minumum": 0.5,
+                            "maximum": 2.0000
                         }
                     }
                 }
@@ -162,12 +161,12 @@ $jsonSchema = '{
                 "inivalid": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "$ref": "#/definitions/periodo"
                 },
                 "fimvalid": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "$ref": "#/definitions/periodo"
                 }
             }    
         }
@@ -187,7 +186,7 @@ $std->dadoslotacao = new \stdClass();
 $std->dadoslotacao->tplotacao = '01';
 $std->dadoslotacao->tpinsc = 1;
 $std->dadoslotacao->nrinsc = '12345678901234';
-$std->dadoslotacao->fpas = 507;
+$std->dadoslotacao->fpas = '507';
 $std->dadoslotacao->codtercs = '0064';
 $std->dadoslotacao->codtercssusp = '0072';
 
@@ -207,7 +206,7 @@ $std->dadoslotacao->infoemprparcial->nrinscprop = '12345678901234';
 //campo opcional
 $std->dadoslotacao->dadosopport = new \stdClass();
 $std->dadoslotacao->dadosopport->aliqrat = 3;
-$std->dadoslotacao->dadosopport->fap = 2.04;
+$std->dadoslotacao->dadosopport->fap = 1.04;
 
 //campo opcional, usar somente qunado alteração
 $std->novavalidade = new \stdClass();
