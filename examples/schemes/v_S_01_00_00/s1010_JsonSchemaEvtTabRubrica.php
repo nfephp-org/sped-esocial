@@ -40,17 +40,17 @@ $jsonSchema = '{
         "inivalid": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+            "$ref": "#/definitions/periodo"
         },
         "fimvalid": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+            "$ref": "#/definitions/periodo"
         },
         "modo": {
             "required": true,
             "type": "string",
-            "pattern": "INC|ALT|EXC"
+            "$ref": "#/definitions/modo"
         },
         "dadosrubrica": {
             "required": false,
@@ -63,7 +63,9 @@ $jsonSchema = '{
                 },
                 "natrubr": {
                     "required": true,
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 1000,
+                    "maximum": 9999
                 },
                 "tprubr": {
                     "required": true,
@@ -79,17 +81,17 @@ $jsonSchema = '{
                 "codincirrf": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}$"
+                    "pattern": "^[0-9]{1,4}$"
                 },
                 "codincfgts": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}$"
+                    "pattern": "^(00|11|12|21|91|92|93)$"
                 },
                 "codinccprp": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{2}$"
+                    "pattern": "^(00|11|12|31|32|91)$"
                 },
                 "tetoremun": {
                     "required": false,
@@ -118,7 +120,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 21
+                                "$ref": "#/definitions/proc172021"
                             },
                             "extdecisao": {
                                 "required": true,
@@ -145,7 +147,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "$ref": "#/definitions/string20"
                             },
                             "codsusp": {
                                 "required": true,
@@ -166,7 +168,7 @@ $jsonSchema = '{
                             "nrproc": {
                                 "required": true,
                                 "type": "string",
-                                "maxLength": 20
+                                "$ref": "#/definitions/string20"
                             }
                         }
                     }    
@@ -180,12 +182,12 @@ $jsonSchema = '{
                 "inivalid": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "$ref": "#/definitions/periodo"
                 },
                 "fimvalid": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "$ref": "#/definitions/periodo"
                 }
             }    
         }
@@ -215,18 +217,18 @@ $std->dadosrubrica->observacao = null;
 //campo ARRAY opcional
 $std->dadosrubrica->ideprocessocp[0] = new \stdClass();
 $std->dadosrubrica->ideprocessocp[0]->tpproc = 1;
-$std->dadosrubrica->ideprocessocp[0]->nrproc = 'alkdslkdldkdlk';
+$std->dadosrubrica->ideprocessocp[0]->nrproc = '12345678901234567';
 $std->dadosrubrica->ideprocessocp[0]->extdecisao = 1;
 $std->dadosrubrica->ideprocessocp[0]->codsusp = '0929292882';
 
 //campo ARRAY opcional
 $std->dadosrubrica->ideprocessoirrf[0] = new \stdClass();
-$std->dadosrubrica->ideprocessoirrf[0]->nrproc  = 'alkdslkdldkdlk';
+$std->dadosrubrica->ideprocessoirrf[0]->nrproc  = 'asdfghjkliuytrewqasd';
 $std->dadosrubrica->ideprocessoirrf[0]->codsusp = '0929292882';
 
 //campo ARRAY opcional
 $std->dadosrubrica->ideprocessofgts[0] = new \stdClass();
-$std->dadosrubrica->ideprocessofgts[0]->nrproc  = 'alkdslkdldkdlk';
+$std->dadosrubrica->ideprocessofgts[0]->nrproc  = 'asdfghjkliuytrewqasd';
 
 
 //campos opcionais usar apenas em alterações
