@@ -61,7 +61,7 @@ $std->modo = 'INC'; //INC, ALT ou EXC
 
 //dados do estabelecimento 
 $std->dadosestab = new \stdClass(); //Opcional
-$std->dadosestab->cnaeprep = 26213;
+$std->dadosestab->cnaeprep = "1234567";
 //Preencher com o código CNAE conforme legislação vigente,
 //referente à atividade econômica preponderante do
 //estabelecimento.

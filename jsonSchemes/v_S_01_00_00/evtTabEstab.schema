@@ -40,7 +40,8 @@
             "properties": {
                 "cnaeprep": {
                     "required": true,
-                    "type": "integer"
+                    "type": "string",
+                    "$ref": "#/definitions/cnae"
                 },
                 "aliqgilrat": {
                     "required": false,
