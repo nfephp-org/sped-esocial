@@ -30,6 +30,22 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
+$std->indretif = 1; //obrigatorio
+$std->nrrecibo = '1.4.1234567890123456789'; //opcional
+$std->cpfbenef = '12345678901'; //obrigatorio
+$std->nrbeneficio = 'b1234'; //obrigatorio
+$std->dtaltbeneficio = '2021-03-02';
+$std->tpbeneficio = "0805";
+$std->tpplanrp = 0;
+$std->dsc = "bla bla bla bla";
+$std->indsuspensao = "N";
+//opcional
+$std->infopenmorte = new \stdClass();
+$std->infopenmorte->tppenmorte = 1; //obrigatorio
+//opcional
+$std->suspensao = new \stdClass();
+$std->suspensao->mtvsuspensao = '01';
+$std->suspensao->dscsuspensao = 'bla bla bla bla';
 
 
 try {

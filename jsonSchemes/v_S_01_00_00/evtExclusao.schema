@@ -15,14 +15,12 @@
                 "tpevento": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 6,
-                    "minLength": 5
+                    "pattern": "^S-[1-2]{1}[0-9]{3}$"
                 },
                 "nrrecevt": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 40,
-                    "minLength": 1
+                    "$ref": "#/definitions/recibo"
                 }
             }
         },
@@ -38,7 +36,8 @@
                 },
                 "perapur": {
                     "required": true,
-                    "type": "string"
+                    "type": "string",
+                    "$ref": "#/definitions/periodo"
                 }
             }
         },
@@ -49,14 +48,7 @@
                 "cpftrab": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
-                },
-                "nistrab": {
-                    "required": false,
-                    "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "pattern": "^[0-9]{11}$"
                 }
             }
         }

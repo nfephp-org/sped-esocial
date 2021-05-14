@@ -30,6 +30,12 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
+$std->indretif = 1; //obrigatorio
+$std->nrrecibo = '1.4.1234567890123456789'; //opcional
+$std->cpfbenef = '12345678901'; //obrigatorio
+$std->nrbeneficio = 'b1234'; //obrigatorio
+$std->dtefetreativ = '2021-05-20'; //obrigatorio
+$std->dtefeito = '2021-06-01'; //obrigatorio
 
 
 
