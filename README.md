@@ -73,10 +73,7 @@ Fase 2: Set/21: Nesta fase, entes passam a ser obrigadas a enviar informações 
 
 Fase 3: Jan/22: Torna-se obrigatório o envio das folhas de pagamento
 
-Fase 4: Jul/22: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada
-
-Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
-* _não consta da portaria conjunta_
+Fase 4: Jul/22: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada. Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
 
 **Empresas do SIMPLES NACIONAL : a definir**
