@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
@@ -9,13 +8,14 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
+//S-2418
 //versão S_1.00
 
-$evento = 'evtExclusao';
+$evento  = 'evtReativBen';
 $version = 'S_01_00_00';
 
 $jsonSchema = '{
-    "title": "evtExclusao",
+    "title": "evtReativBen",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -24,69 +24,48 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 99999
         },
-        "infoexclusao": {
+        "indretif": {
             "required": true,
-            "type": "object",
-            "properties": {
-                "tpevento": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^S-[1-2]{1}[0-9]{3}$"
-                },
-                "nrrecevt": {
-                    "required": true,
-                    "type": "string",
-                    "$ref": "#/definitions/recibo"
-                }
-            }
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
         },
-        "idefolhapagto": {
+        "nrrecibo": {
             "required": false,
-            "type": "object",
-            "properties": {
-                "indapuracao": {
-                    "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 2
-                },
-                "perapur": {
-                    "required": true,
-                    "type": "string",
-                    "$ref": "#/definitions/periodo"
-                }
-            }
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
         },
-        "idetrabalhador": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "cpftrab": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{11}$"
-                }
-            }
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "nrbeneficio": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,20}$"
+        },
+        "dtefetreativ": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "dtefeito": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
         }
     }
 }';
 
-
 $std = new \stdClass();
 $std->sequencial = 1;
-
-$std->infoexclusao = new \stdClass();
-$std->infoexclusao->tpevento = 'S-1200';
-$std->infoexclusao->nrrecevt = '1.9.1234567890123456789';
-
-$std->idetrabalhador = new \stdClass();
-$std->idetrabalhador->cpftrab = '11111111111';
-
-$std->idefolhapagto = new \stdClass();
-$std->idefolhapagto->indapuracao = 1;
-$std->idefolhapagto->perapur = '2017-08';
-
-
+$std->indretif = 1; //obrigatorio
+$std->nrrecibo = '1.4.1234567890123456789'; //opcional
+$std->cpfbenef = '12345678901'; //obrigatorio
+$std->nrbeneficio = 'b1234'; //obrigatorio
+$std->dtefetreativ = '2021-05-20'; //obrigatorio
+$std->dtefeito = '2021-06-01'; //obrigatorio
 
 
 // Schema must be decoded before it can be used for validation
@@ -98,7 +77,6 @@ if (empty($jsonSchemaObject)) {
     echo "</pre>";
     die();
 }
-
 
 // The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
 $schemaStorage = new SchemaStorage();
@@ -114,7 +92,9 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
-        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $std,
+    $jsonSchemaObject,
+    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 );
 
 if ($jsonValidator->isValid()) {

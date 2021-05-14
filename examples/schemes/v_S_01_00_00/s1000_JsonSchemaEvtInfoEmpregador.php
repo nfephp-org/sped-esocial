@@ -8,10 +8,6 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1000 sem alterações da 2.4.1 => 2.4.2
-//S-1000 inclusão do campo indOpcCP em 2.5.0
-//S-1000 inclusao do campo indPorte em 2.5.0
-//S-1000 inclusão e remossão de campos
 //versão S_1.00
 
 $evento  = 'evtInfoEmpregador';
