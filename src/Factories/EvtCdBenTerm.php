@@ -3,12 +3,12 @@
 namespace NFePHP\eSocial\Factories;
 
 /**
- * Class eSocial EvtCS Event S-5011 constructor
- * Read for 2.5.0 layout
+ * Class eSocial EvtCdBenTerm Event S-2420 constructor
+ * Read for S.1.0.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @copyright NFePHP Copyright (c) 2021
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -22,7 +22,7 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtCS extends Factory implements FactoryInterface
+class EvtCdBenTerm extends Factory implements FactoryInterface
 {
     /**
      * @var int
@@ -31,11 +31,11 @@ class EvtCS extends Factory implements FactoryInterface
     /**
      * @var string
      */
-    protected $evtName = 'evtCS';
+    protected $evtName = 'evtCdBenTerm';
     /**
      * @var string
      */
-    protected $evtAlias = 'S-5011';
+    protected $evtAlias = 'S-2420';
     /**
      * Parameters patterns
      *
@@ -45,7 +45,7 @@ class EvtCS extends Factory implements FactoryInterface
     
     //Trait que contêm os métodos construtores das versões diferentes ainda ativas
     //quando uma versão for desativada o metodo correspondente pode e deve ser removido
-    use Traits\TraitS5011;
+    use Traits\TraitS2420;
 
     /**
      * Constructor

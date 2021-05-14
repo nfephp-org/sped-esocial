@@ -144,6 +144,9 @@ abstract class Factory
                 'Você deve passar os parâmetros num stdClass.'
             );
         }
+        if ($this->layout == 'S.1.0.0' && $this->evtAlias = 'S-2400') {
+            $this->evtName = 'evtCdBenefIn';
+        }
         //constroi o nome do método construtor baseado na versão
         $this->method_name = 'toNode'
             . str_replace('.', '', $this->layout);

@@ -60,6 +60,12 @@ class Event
         'evtmonit' => Factories\EvtMonit::class,
         'evttabrubrica' => Factories\EvtTabRubrica::class,
         'evtcdbenprrp' => Factories\EvtCdBenPrRP::class,
+        'evtcdbenefin' => Factories\EvtCdBenPrRP::class, //novo nome para evento S-2400
+        'evtcdbenefalt' => Factories\EvtCdBenefAlt::class,
+        'evtcdbenin' => Factories\EvtCdBenIn::class,
+        'evtcdbenalt' => Factories\EvtCdBenAlt::class,
+        'evtreativben' => Factories\EvtReativBen::class,
+        'evtcdbenterm' => Factories\EvtCdBenTerm::class,
         'evttsvaltcontr' => Factories\EvtTSVAltContr::class,
         'evtcomprod' => Factories\EvtComProd::class,
         'evtreabreevper' => Factories\EvtReabreEvPer::class,
@@ -133,6 +139,12 @@ class Event
         's5003' => 'evtbasesfgts',
         's5013' => 'evtfgts',
         's8299' => 'evtbaixa',
+        's2405' => 'evtcdbenefalt',
+        's2410' => 'evtcdbenin',
+        's2416' => 'evtcdbenalt',
+        's2418' => 'evtreativben',
+        's2420' => 'evtcdbenterm',
+        
     ];
 
     /**
