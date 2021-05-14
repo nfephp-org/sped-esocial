@@ -33,29 +33,39 @@ $std->sequencial = 1;
 $std->codlotacao = 'assistente';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
-$std->modo = 'ALT';
+$std->modo = 'INC';
 
+//campo obrigatório
 $std->dadoslotacao = new \stdClass();
 $std->dadoslotacao->tplotacao = '01';
 $std->dadoslotacao->tpinsc = 1;
 $std->dadoslotacao->nrinsc = '12345678901234';
-$std->dadoslotacao->fpas = 507;
+$std->dadoslotacao->fpas = '507';
 $std->dadoslotacao->codtercs = '0064';
 $std->dadoslotacao->codtercssusp = '0072';
+
+//campo opcional
 $std->dadoslotacao->procjudterceiro[0] = new \stdClass();
 $std->dadoslotacao->procjudterceiro[0]->codterc = '0064';
 $std->dadoslotacao->procjudterceiro[0]->nrprocjud = '12345678901234567890';
 $std->dadoslotacao->procjudterceiro[0]->codsusp = '1234567';
 
+//campo opcional
 $std->dadoslotacao->infoemprparcial = new \stdClass();
 $std->dadoslotacao->infoemprparcial->tpinsccontrat = 1;
 $std->dadoslotacao->infoemprparcial->nrinsccontrat = '12345678901234';
 $std->dadoslotacao->infoemprparcial->tpinscprop = 2;
 $std->dadoslotacao->infoemprparcial->nrinscprop = '12345678901234';
 
-//$std->novavalidade = new \stdClass();
-//$std->novavalidade->inivalid = '2017-01';
-//$std->novavalidade->fimvalid = '2017-12';
+//campo opcional
+$std->dadoslotacao->dadosopport = new \stdClass();
+$std->dadoslotacao->dadosopport->aliqrat = 3;
+$std->dadoslotacao->dadosopport->fap = 1.04;
+
+//campo opcional, usar somente qunado alteração
+$std->novavalidade = new \stdClass();
+$std->novavalidade->inivalid = '2017-01';
+$std->novavalidade->fimvalid = '2017-12';
 
 try {
     //carrega a classe responsavel por lidar com os certificados

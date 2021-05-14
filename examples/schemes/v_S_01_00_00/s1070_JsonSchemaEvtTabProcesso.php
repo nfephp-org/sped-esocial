@@ -39,22 +39,22 @@ $jsonSchema = '{
         "nrproc": {
             "required": true,
             "type": "string",
-            "maxLength": 21
+            "$ref": "#/definitions/proc16172021"
         },
         "inivalid": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+            "$ref": "#/definitions/periodo"
         },
         "fimvalid": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+            "$ref": "#/definitions/periodo"
         },
         "modo": {
             "required": true,
             "type": "string",
-            "pattern": "INC|ALT|EXC"
+            "$ref": "#/definitions/modo"
         },
         "dadosproc": {
             "required": false,
@@ -70,12 +70,12 @@ $jsonSchema = '{
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 99
+                    "maximum": 7
                 },
                 "observacao": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 255
+                    "pattern": "^.{1,255}$"
                 },
                 "dadosprocjud": {
                     "required": false,
@@ -114,12 +114,12 @@ $jsonSchema = '{
                             "indsusp": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^[0-9]{2}$"
+                                "pattern": "^0[1-9]{1}|1[0-4]{1}|90|92$"
                             },
                             "dtdecisao": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                "$ref": "#/definitions/data"
                             },
                             "inddeposito": {
                                 "required": true,
@@ -138,12 +138,12 @@ $jsonSchema = '{
                 "inivalid": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "$ref": "#/definitions/periodo"
                 },
                 "fimvalid": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                    "$ref": "#/definitions/periodo"
                 }
             }    
         }
@@ -153,14 +153,14 @@ $jsonSchema = '{
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->tpproc = 1;
-$std->nrproc = 'alksldkdjkj';
-$std->inivalid = '12017-01';
+$std->nrproc = '1234567890123456';
+$std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
 $std->modo = 'INC';
 
 $std->dadosproc = new \stdClass();
 $std->dadosproc->indautoria = 1;
-$std->dadosproc->indmatproc = 99;
+$std->dadosproc->indmatproc = 7;
 $std->dadosproc->observacao = 'lalsksksksksk';
 
 $std->dadosproc->dadosprocjud = new \stdClass();
@@ -170,13 +170,13 @@ $std->dadosproc->dadosprocjud->idvara = '234';
 
 $std->dadosproc->infosusp[0] = new \stdClass();
 $std->dadosproc->infosusp[0]->codsusp = '12345678901234';
-$std->dadosproc->infosusp[0]->indsusp = '00';
+$std->dadosproc->infosusp[0]->indsusp = '01';
 $std->dadosproc->infosusp[0]->dtdecisao = '2017-07-22';
 $std->dadosproc->infosusp[0]->inddeposito = 'N';
 
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-12';
-//$std->novavalidade->fimvalid = '2018-12';
+$std->novavalidade->fimvalid = '2018-12';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

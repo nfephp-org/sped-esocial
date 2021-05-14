@@ -31,15 +31,15 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->tpproc = 1;
-$std->nrproc = 'alksldkdjkj';
+$std->nrproc = '1234567890123456';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';
-$std->modo = 'INC';
+$std->modo = 'EXC';
 
 $std->dadosproc = new \stdClass();
 $std->dadosproc->indautoria = 1;
-$std->dadosproc->indmatproc = 99;
-//$std->dadosproc->observacao = 'lalsksksksksk';
+$std->dadosproc->indmatproc = 7;
+$std->dadosproc->observacao = 'lalsksksksksk';
 
 $std->dadosproc->dadosprocjud = new \stdClass();
 $std->dadosproc->dadosprocjud->ufvara = 'SP';
@@ -48,13 +48,13 @@ $std->dadosproc->dadosprocjud->idvara = '234';
 
 $std->dadosproc->infosusp[0] = new \stdClass();
 $std->dadosproc->infosusp[0]->codsusp = '12345678901234';
-$std->dadosproc->infosusp[0]->indsusp = '00';
+$std->dadosproc->infosusp[0]->indsusp = '01';
 $std->dadosproc->infosusp[0]->dtdecisao = '2017-07-22';
 $std->dadosproc->infosusp[0]->inddeposito = 'N';
 
 $std->novavalidade = new \stdClass();
 $std->novavalidade->inivalid = '2017-12';
-//$std->novavalidade->fimvalid = '2018-12';
+$std->novavalidade->fimvalid = '2018-12';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
