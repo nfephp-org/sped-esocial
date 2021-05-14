@@ -2,13 +2,14 @@
 
 namespace NFePHP\eSocial\Factories\Traits;
 
-trait TraitS
+trait TraitS2416
 {
     /**
      * builder for version 2.5.0
      */
     protected function toNode250()
     {
+        throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão 2.5.0 !!");
     }
     
     /**
@@ -16,5 +17,6 @@ trait TraitS
      */
     protected function toNodeS100()
     {
+        throw new \Exception("TODO !!");
     }
 }

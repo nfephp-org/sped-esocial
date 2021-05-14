@@ -20,7 +20,7 @@ class ESocialTestCase extends TestCase
         $config             = [
             'tpAmb'          => 2,
             //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-            'verProc'        => '2_5_01',
+            'verProc'        => '2_5_0',
             //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
             'eventoVersion'  => '2.5.0',
             //versão do layout do evento
