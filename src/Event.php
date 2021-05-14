@@ -144,7 +144,6 @@ class Event
         's2416' => 'evtcdbenalt',
         's2418' => 'evtreativben',
         's2420' => 'evtcdbenterm',
-        
     ];
 
     /**

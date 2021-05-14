@@ -4,7 +4,6 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtInfoEmpregador Event S-1000 constructor
-
  * Read for 2.5.0 layout
  * Read for S_1.0 layout
  *

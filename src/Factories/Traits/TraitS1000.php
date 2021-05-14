@@ -601,7 +601,7 @@ trait TraitS1000
         $this->node->appendChild($infoEmpregador);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->sign();
     }
 }
