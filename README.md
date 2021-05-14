@@ -65,15 +65,18 @@ Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de seguranç
 
 **Etapa 3 - Entes Públicos**
 
-Fase 1: Janeiro/19 - Apenas informações relativas aos órgãos, ou seja, cadastros dos empregadores e tabelas
+_Atualizada pela [Portaria Conjunta ERFB/SEPRT nº 76, de 22 de outubro de 2020](https://www.in.gov.br/en/web/dou/-/portaria-conjunta-n-76-de-22-de-outubro-de-2020-284694569)_
 
-Fase 2: Março/19: Nesta fase, entes passam a ser obrigadas a enviar informações relativas aos servidores e seus vínculos com os órgãos (eventos não periódicos) Ex: admissões, afastamentos e desligamentos
+Fase 1: Jun/21 - Apenas informações relativas aos órgãos, ou seja, cadastros dos empregadores e tabelas
 
-Fase 3: Maio/19: Torna-se obrigatório o envio das folhas de pagamento
+Fase 2: Set/21: Nesta fase, entes passam a ser obrigadas a enviar informações relativas aos servidores e seus vínculos com os órgãos (eventos não periódicos) Ex: admissões, afastamentos e desligamentos
 
-Fase 4: Julho/19: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada
+Fase 3: Jan/22: Torna-se obrigatório o envio das folhas de pagamento
+
+Fase 4: Jul/22: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada
 
 Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
+* _não consta da portaria conjunta_
 
 
 **Empresas do SIMPLES NACIONAL : a definir**
