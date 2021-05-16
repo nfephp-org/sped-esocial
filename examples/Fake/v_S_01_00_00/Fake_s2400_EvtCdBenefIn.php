@@ -90,8 +90,12 @@ try {
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
+    /*********************************************************
+     * Este evento MUDOU de nome na versão S 1.0 
+     *********************************************************/
+    
     //cria o evento e retorna o XML assinado
-    $xml = Event::evtCdBenPrRP(
+    $xml = Event::evtCdBenefIn(
         $configJson,
         $std,
         $certificate,
