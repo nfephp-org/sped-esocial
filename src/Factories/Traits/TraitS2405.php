@@ -249,7 +249,7 @@ trait TraitS2405
                 $dadosBenef->appendChild($dependente);
             }
         }
-        $alteracao->appendChild($dadosBenef); 
+        $alteracao->appendChild($dadosBenef);
         $this->node->appendChild($alteracao);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
