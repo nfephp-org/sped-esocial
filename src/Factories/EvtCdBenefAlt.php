@@ -22,7 +22,7 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtCdBenTerm extends Factory implements FactoryInterface
+class EvtCdBenefAlt extends Factory implements FactoryInterface
 {
     /**
      * @var int
