@@ -224,7 +224,7 @@ trait TraitS1010
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -328,6 +328,12 @@ trait TraitS1010
                 $dadosRubrica,
                 "codIncFGTS",
                 $this->std->dadosrubrica->codincfgts,
+                true
+            );
+            $this->dom->addChild(
+                $dadosRubrica,
+                "tetoRemun",
+                $this->std->dadosrubrica->tetoremun,
                 true
             );
             $this->dom->addChild(
