@@ -327,29 +327,29 @@ trait TraitS1000
                 );
                 $infoCadastro->appendChild($info);
             }
-            if (isset($this->std->situacaopj)) {
-                $infoComplementares = $this->dom->createElement("infoComplementares");
-                $sh = $this->std->situacaopj;
-                $info = $this->dom->createElement("situacaoPJ");
-                $this->dom->addChild(
-                    $info,
-                    "indSitPJ",
-                    $sh->indsitpj,
-                    true
-                );
-                $infoComplementares->appendChild($info);
-            } elseif (isset($this->std->situacaopf)) {
-                $infoComplementares = $this->dom->createElement("infoComplementares");
-                $sh = $this->std->situacaopf;
-                $info = $this->dom->createElement("situacaoPF");
-                $this->dom->addChild(
-                    $info,
-                    "indSitPF",
-                    $sh->indsitpf,
-                    true
-                );
-                $infoComplementares->appendChild($info);
-            }
+        }
+        if (isset($this->std->situacaopj)) {
+            $infoComplementares = $this->dom->createElement("infoComplementares");
+            $sh = $this->std->situacaopj;
+            $info = $this->dom->createElement("situacaoPJ");
+            $this->dom->addChild(
+                $info,
+                "indSitPJ",
+                $sh->indsitpj,
+                true
+            );
+            $infoComplementares->appendChild($info);
+        } elseif (isset($this->std->situacaopf)) {
+            $infoComplementares = $this->dom->createElement("infoComplementares");
+            $sh = $this->std->situacaopf;
+            $info = $this->dom->createElement("situacaoPF");
+            $this->dom->addChild(
+                $info,
+                "indSitPF",
+                $sh->indsitpf,
+                true
+            );
+            $infoComplementares->appendChild($info);
         }
         if (isset($this->std->novavalidade)) {
             $sh = $this->std->novavalidade;
@@ -601,7 +601,7 @@ trait TraitS1000
         $this->node->appendChild($infoEmpregador);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        //$this->sign();
     }
 }
