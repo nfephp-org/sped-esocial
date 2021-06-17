@@ -92,8 +92,8 @@ $std->contato->email = 'fulano@mail.com'; //Endereço eletrônico
 //$std->infoente->vrsubteto = 10584.50;//valor do subteto do Ente Federativo
 //campo OPCIONAL
 //Informações exclusivas de organismos internacionais e outras instituições extraterritoriais
-$std->infoorginternacional = new \stdClass();
-$std->infoorginternacional->indacordoisenmulta = 0; //Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo.
+//$std->infoorginternacional = new \stdClass();
+//$std->infoorginternacional->indacordoisenmulta = 0; //Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo.
 //campo OPCIONAL
 //Informações relativas ao desenvolvedor do software que gerou o arquivo xml.
 //Array com até 99 ocorrências
@@ -121,6 +121,7 @@ $std->situacaopj->indsitpj = 0; //0 - Situação Normal; 1 - Extinção; 2 - Fus
 //$std->novavalidade->inivalid = '2017-06';//mês e ano de início da validade das informações prestadas no evento,
 //$std->novavalidade->fimvalid = null;//mês e ano de término da validade das informações, se houve
 
+//$std = json_decode('{"sequencial":1,"modo":"INC","ideperiodo":{"inivalid":"2019-12"},"infocadastro":{"nmrazao":"FATIMA MENEZES RESENDE EIRELI","classtrib":"02","natjurid":"2305","indcoop":0,"indconstr":0,"inddesfolha":0,"indopccp":null,"indoptregeletron":0,"indented":"N","indett":"N","nrregett":null},"contato":{"nmctt":"WELERSON PINTO DA SILVA","cpfctt":"70675813115","fonefixo":"6240163620","fonecel":"","email":""},"situacaopj":{"indsitpj":0}}');
 
 try {
     //carrega a classe responsavel por lidar com os certificados
