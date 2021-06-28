@@ -397,7 +397,7 @@ trait TraitS1000
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -601,7 +601,7 @@ trait TraitS1000
         $this->node->appendChild($infoEmpregador);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        $this->xml = $this->dom->saveXML($this->eSocial);
-        //$this->sign();
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
