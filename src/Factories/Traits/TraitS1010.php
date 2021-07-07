@@ -332,6 +332,14 @@ trait TraitS1010
             );
             $this->dom->addChild(
                 $dadosRubrica,
+                "tetoRemun",
+                ! empty($this->std->dadosrubrica->tetoremun)
+                    ? $this->std->dadosrubrica->tetoremun
+                    : Null,
+                false
+            );
+            $this->dom->addChild(
+                $dadosRubrica,
                 "observacao",
                 ! empty($this->std->dadosrubrica->observacao)
                     ? $this->std->dadosrubrica->observacao
