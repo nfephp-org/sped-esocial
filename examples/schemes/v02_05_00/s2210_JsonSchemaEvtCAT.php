@@ -85,12 +85,12 @@ $jsonSchema = '{
         "hracid": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{4}$"
+            "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$"
         },
         "hrstrabantesacid": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{4}$"
+            "pattern": "^([0-9][0-9][0-5][0-9])$"
         },
         "tpcat": {
             "required": true,
@@ -273,7 +273,7 @@ $jsonSchema = '{
                 "hratendimento": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-2][0-3][0-5][0-9]$"
+                    "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$"
                 },
                 "indinternacao": {
                     "required": true,
