@@ -457,16 +457,16 @@ trait TraitS1005
                     }
                     $infoTrab->appendChild($infoApr);
                 }
-            }
-            if (!empty($this->std->dadosestab->infotrab->infopdc)) {
-                $infoPCD = $this->dom->createElement("infoPCD");
-                $this->dom->addChild(
-                    $infoPCD,
-                    "nrProcJud",
-                    $this->std->dadosestab->infotrab->infopdc->nrprocjud,
-                    true
-                );
-                $infoTrab->appendChild($infoPCD);
+                if (!empty($this->std->dadosestab->infotrab->infopdc)) {
+                    $infoPCD = $this->dom->createElement("infoPCD");
+                    $this->dom->addChild(
+                        $infoPCD,
+                        "nrProcJud",
+                        $this->std->dadosestab->infotrab->infopdc->nrprocjud,
+                        true
+                    );
+                    $infoTrab->appendChild($infoPCD);
+                }
             }
             $dadosEstab->appendChild($infoTrab);
             $node->appendChild($dadosEstab);
