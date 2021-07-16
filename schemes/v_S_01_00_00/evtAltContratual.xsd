@@ -54,7 +54,7 @@
                                                 <xs:restriction base="xs:string">
                                                     <xs:minLength value="1" />
                                                     <xs:maxLength value="150" />
-                                                    <xs:pattern value=".*[^\s].*" />
+                                                    <xs:pattern value="[^\s]{1}[\S\s]*" />
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
@@ -189,7 +189,7 @@
                                                                             <xs:element name="localTrabGeral" minOccurs="0" type="T_localTrabGeral">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Estabelecimento onde o trabalhador exercerá suas atividades</xs:documentation>
-                                                                                    <xs:documentation>DESCRICAO_COMPLETA:Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado.</xs:documentation>
+                                                                                    <xs:documentation>DESCRICAO_COMPLETA:Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado.</xs:documentation>
                                                                                     <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(2206_altContratual_vinculo_infoContrato_codCateg) for diferente de [104]); N (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>

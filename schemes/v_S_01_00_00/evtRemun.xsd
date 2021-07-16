@@ -171,8 +171,9 @@
                                                                 <xs:element name="qtdDiasAv" minOccurs="0" type="TS_dia">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Quantidade de dias trabalhados no mês pelo trabalhador avulso no tomador de serviços identificado em {ideEstabLot/codLotacao}(1200_dmDev_infoPerApur_ideEstabLot_codLotacao). Cada dia, total ou parcial, em que o trabalhador tenha prestado serviços ao tomador deve ser considerado. Ex.: Se, em um mesmo mês, o trabalhador prestou serviços durante uma hora em um dia e durante mais uma hora em outro dia, deve-se informar a quantidade de 2 dias.</xs:documentation>
+                                                                        <xs:documentation>Caso não tenha havido trabalho no mês, informar 0 (zero).</xs:documentation>
                                                                         <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEstabLot/codLotacao}(./codLotacao) possuir {tpLotacao}(1020_infoLotacao_inclusao_dadosLotacao_tpLotacao) em S-1020 = [08, 09] em {perApur}(1200_ideEvento_perApur) e se {indApuracao}(1200_ideEvento_indApuracao) = [1].</xs:documentation>
-                                                                        <xs:documentation>Se informado, deve ser um número entre 1 e 31, de acordo com o calendário anual.</xs:documentation>
+                                                                        <xs:documentation>Se informado, deve ser um número entre 0 e 31, de acordo com o calendário anual.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="remunPerApur" maxOccurs="8">
@@ -239,7 +240,12 @@
                                                                         </xs:restriction>
                                                                     </xs:simpleType>
                                                                 </xs:element>
-                                                                <xs:element name="tpAcConv" type="TS_tpAcConv" />
+                                                                <xs:element name="tpAcConv" type="TS_tpAcConv">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Tipo do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores.</xs:documentation>
+                                                                        <xs:documentation>Validação: Se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [04, 22], não pode ser informado [E, H].</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
                                                                 <xs:element name="dsc" type="TS_dsc" />
                                                                 <xs:element name="remunSuc" type="TS_sim_nao">
                                                                     <xs:annotation>
@@ -315,7 +321,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Informações complementares contratuais do trabalhador</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA:Grupo preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente.</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: O ((se {codCateg}(1200_dmDev_codCateg) = [2XX, 304, 305, 4XX, 7XX, 902]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); OC ((se {codCateg}(1200_dmDev_codCateg) = [901, 903, 904]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); N (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: O ((se {codCateg}(1200_dmDev_codCateg) = [2XX, 304, 305, 4XX, 5XX, 7XX, 902]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); OC ((se {codCateg}(1200_dmDev_codCateg) = [901, 903, 904]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -336,7 +342,8 @@
                                                     <xs:element name="qtdDiasTrab" minOccurs="0" type="TS_dia">
                                                         <xs:annotation>
                                                             <xs:documentation>Informação prestada exclusivamente pelo segurado especial em caso de contratação de contribuinte individual, indicando a quantidade de dias trabalhados pelo mesmo.</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [22], {natAtividade}(./natAtividade) = [2] e {indApuracao}(1200_ideEvento_indApuracao) = [1]. Neste caso, preencher com um número entre 1 e 31, de acordo com o calendário anual.</xs:documentation>
+                                                            <xs:documentation>Caso não tenha havido trabalho no mês, informar 0 (zero).</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [22], {natAtividade}(./natAtividade) = [2] e {indApuracao}(1200_ideEvento_indApuracao) = [1]. Neste caso, preencher com um número entre 0 e 31, de acordo com o calendário anual.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -364,7 +371,7 @@
                     <xs:documentation>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.</xs:documentation>
                     <xs:documentation>Validação: Não pode ser utilizada rubrica:</xs:documentation>
                     <xs:documentation>a) cujo {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 seja igual a [25, 26, 51] se {codCateg}(1200_dmDev_codCateg) pertencer ao grupo "Contribuinte Individual" ou "Bolsista" da Tabela 01;</xs:documentation>
-                    <xs:documentation>b) cuja {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que {perApur}(1200_ideEvento_perApur) >= [2021-05] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
+                    <xs:documentation>b) cuja {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 seja igual a [1801, 9220], desde que {perApur}(1200_ideEvento_perApur) >= [2021-07] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="ideTabRubr" type="TS_ideTabRubr" />
@@ -374,7 +381,7 @@
             <xs:element name="indApurIR" type="TS_indApurIR" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Indicativo de tipo de apuração de IR.</xs:documentation>
-                    <xs:documentation>Validação: Informação obrigatória e exclusiva se {perApur}(1200_ideEvento_perApur) >= [2021-05] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou se {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
+                    <xs:documentation>Validação: Informação obrigatória e exclusiva se {perApur}(1200_ideEvento_perApur) >= [2021-07] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou se {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>

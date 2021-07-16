@@ -80,7 +80,7 @@
                                                                 <xs:element name="tmpResid" minOccurs="0" type="TS_tmpResid">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Tempo de residência do trabalhador imigrante.</xs:documentation>
-                                                                        <xs:documentation>Validação: Preenchimento obrigatório quando houver trabalhador com ({dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm) ou {dtExercicio}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio) ou {dtInicio}(2300_infoTSVInicio_dtInicio)) no Registro de Eventos Trabalhistas - RET >= [2021-05-10].</xs:documentation>
+                                                                        <xs:documentation>Validação: Preenchimento obrigatório quando houver trabalhador com ({dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm) ou {dtExercicio}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio) ou {dtInicio}(2300_infoTSVInicio_dtInicio)) no Registro de Eventos Trabalhistas - RET >= [2021-07-19].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="condIng" type="TS_condIng" />
@@ -103,7 +103,8 @@
                                                                 <xs:element name="infoCota" minOccurs="0" type="TS_sim_nao">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.</xs:documentation>
-                                                                        <xs:documentation>Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200 com {tpRegTrab}(2200_vinculo_tpRegTrab) = [1] e ativo em {dtAlteracao}(2205_alteracao_dtAlteracao).</xs:documentation>
+                                                                        <xs:documentation>Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200 com {tpRegTrab}(2200_vinculo_tpRegTrab) = [1] e ativo em {dtAlteracao}(2205_alteracao_dtAlteracao). Somente pode ser informado [S] se pelo menos um dos campos a seguir estiver preenchido com [S]: {defFisica}(./defFisica), {defVisual}(./defVisual), {defAuditiva}(./defAuditiva), {defMental}(./defMental), {defIntelectual}(./defIntelectual) e {reabReadap}(./reabReadap).</xs:documentation>
+                                                                        <xs:documentation>Esta validação não deve ser realizada quando se tratar de evento enviado em versão do leiaute anterior a S-1.0.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="observacao" minOccurs="0" type="TS_observacao" />

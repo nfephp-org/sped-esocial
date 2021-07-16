@@ -180,7 +180,7 @@
                                                                                                 <xs:documentation>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.</xs:documentation>
                                                                                                 <xs:documentation>Validação: Não pode ser utilizada rubrica:</xs:documentation>
                                                                                                 <xs:documentation>a) cujo {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 seja igual a [25, 26, 51];</xs:documentation>
-                                                                                                <xs:documentation>b) cuja {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2021-05].</xs:documentation>
+                                                                                                <xs:documentation>b) cuja {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 seja igual a [1801, 9220], desde que mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2021-07].</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                         <xs:element name="ideTabRubr" type="TS_ideTabRubr" />
@@ -190,7 +190,7 @@
                                                                                         <xs:element name="indApurIR" minOccurs="0" type="TS_indApurIR">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Indicativo de tipo de apuração de IR.</xs:documentation>
-                                                                                                <xs:documentation>Validação: Informação obrigatória e exclusiva se mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2021-05].</xs:documentation>
+                                                                                                <xs:documentation>Validação: Informação obrigatória e exclusiva se mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2021-07].</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                     </xs:sequence>

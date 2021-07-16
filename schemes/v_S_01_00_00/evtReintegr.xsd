@@ -87,7 +87,7 @@
                                             <xs:simpleType>
                                                 <xs:annotation>
                                                     <xs:documentation>Informar a lei de anistia, descrevendo seu número e ano de publicação.</xs:documentation>
-                                                    <xs:documentation>Validação: Preenchimento obrigatório se {tpReint}(./tpReint) = [2].</xs:documentation>
+                                                    <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpReint}(./tpReint) = [2].</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:restriction base="xs:string">
                                                     <xs:pattern value="\w{5,13}" />

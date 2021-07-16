@@ -170,7 +170,7 @@
                                                         <xs:annotation>
                                                             <xs:documentation>Informações do estabelecimento</xs:documentation>
                                                             <xs:documentation>DESCRICAO_COMPLETA:Informações relativas a cada estabelecimento, necessárias à apuração das contribuições sociais.</xs:documentation>
-                                                            <xs:documentation>CONDICAO_GRUPO: O (se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]); N (nos demais casos)</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: N (se {ideEstab/tpInsc}(../tpInsc) = [2] OU (se {ideEstab/tpInsc}(../tpInsc) = [3] e se tratar de empregador doméstico)); O (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -186,17 +186,17 @@
                                                                         <xs:documentation>Validação: Deve corresponder à alíquota declarada no evento S-1005. Caso não haja informação, retornar a alíquota definida na legislação vigente para o código CNAE informado.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="fap" type="TS_fap">
+                                                                <xs:element name="fap" type="TS_fap" minOccurs="0">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Fator Acidentário de Prevenção - FAP.</xs:documentation>
-                                                                        <xs:documentation>Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente.</xs:documentation>
+                                                                        <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]. Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="aliqRatAjust">
+                                                                <xs:element name="aliqRatAjust" minOccurs="0">
                                                                     <xs:simpleType>
                                                                         <xs:annotation>
                                                                             <xs:documentation>Alíquota do RAT após ajuste pelo FAP.</xs:documentation>
-                                                                            <xs:documentation>Validação: Deve corresponder ao resultado da multiplicação dos campos {infoEstab/aliqRat}(./aliqRat) e {infoEstab/fap}(./fap).</xs:documentation>
+                                                                            <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]. Deve corresponder ao resultado da multiplicação dos campos {infoEstab/aliqRat}(./aliqRat) e {infoEstab/fap}(./fap).</xs:documentation>
                                                                         </xs:annotation>
                                                                         <xs:restriction base="xs:decimal">
                                                                             <xs:totalDigits value="5" />
@@ -373,7 +373,7 @@
                                                                                 <xs:simpleType>
                                                                                     <xs:annotation>
                                                                                         <xs:documentation>Preencher com o código correspondente ao tipo de incidência para fins de apuração da contribuição previdenciária.</xs:documentation>
-                                                                                        <xs:documentation>Validação: a) Para empresas com {classTrib}(5011_infoCS_infoContrib_classTrib) = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com {indIncid}(./indIncid) = [9].</xs:documentation>
+                                                                                        <xs:documentation>Validação: a) Para empresas com {classTrib}(5011_infoCS_infoContrib_classTrib) = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com {indIncid}(./indIncid) = [9], EXCETO para {classTrib}(5011_infoCS_infoContrib_classTrib) = [01] E {ideEstab/tpInsc}(5011_infoCS_ideEstab) = [4], que deve ser totalizada com {indIncid}(./indIncid) = [1].</xs:documentation>
                                                                                         <xs:documentation>b) Para empresas com {classTrib}(5011_infoCS_infoContrib_classTrib) = [03], considerar a informação prestada no campo {indSimples}(5001_infoCp_ideEstabLot_infoCategIncid_indSimples) do evento S-5001, conforme abaixo:</xs:documentation>
                                                                                         <xs:documentation>- Se o {indSimples}(5001_infoCp_ideEstabLot_infoCategIncid_indSimples) em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com {indIncid}(./indIncid) = [9];</xs:documentation>
                                                                                         <xs:documentation>- Se o {indSimples}(5001_infoCp_ideEstabLot_infoCategIncid_indSimples) em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com {indIncid}(./indIncid) = [1] (normal);</xs:documentation>

@@ -6,14 +6,6 @@ trait TraitS1202
 {
     
     /**
-     * builder for version S.1.0.0
-     */
-    protected function toNodeS100()
-    {
-        throw new \Exception("TODO !!");
-    }
-    
-    /**
      * builder for version 2.5.0
      */
     protected function toNode250()
@@ -114,6 +106,15 @@ trait TraitS1202
         $this->sign();
     }
 
+    
+        /**
+     * builder for version S.1.0.0
+     */
+    protected function toNodeS100()
+    {
+        throw new \Exception("TODO !!");
+    }
+    
     /**
      * Add ProcJud to ideTrabalhador
      * @param \DOMElement $node

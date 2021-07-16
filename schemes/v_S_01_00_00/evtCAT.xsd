@@ -428,7 +428,7 @@
                                                             <xs:restriction base="xs:string">
                                                                 <xs:minLength value="1" />
                                                                 <xs:maxLength value="200" />
-                                                                <xs:pattern value=".*[^\s].*" />
+                                                                <xs:pattern value="[^\s]{1}[\S\s]*" />
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
