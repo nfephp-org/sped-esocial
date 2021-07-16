@@ -46,17 +46,17 @@ trait TraitS2400
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $ideBenef = $this->dom->createElement("ideBenef");
-        $iben = $this->std->idebenef;
+        $this->std = $this->std->idebenef;
         $this->dom->addChild(
             $ideBenef,
             "cpfBenef",
-            $iben->cpfbenef,
+            $this->std->cpfbenef,
             true
         );
         $this->dom->addChild(
             $ideBenef,
             "nmBenefic",
-            $iben->nmbenefic,
+            $this->std->nmbenefic,
             true
         );
         $this->node->appendChild($ideBenef);
@@ -224,44 +224,44 @@ trait TraitS2400
         );
         $this->node->appendChild($infoBeneficio);
         if (isset($this->std->infobeneficio->inibeneficio)) {
-            $iben = $this->std->infobeneficio->inibeneficio;
+            $this->std = $this->std->infobeneficio->inibeneficio;
             $iniBeneficio = $this->dom->createElement("iniBeneficio");
             $this->dom->addChild(
                 $iniBeneficio,
                 "tpBenef",
-                $iben->tpbenef,
+                $this->std->tpbenef,
                 true
             );
             $this->dom->addChild(
                 $iniBeneficio,
                 "nrBenefic",
-                $iben->nrbenefic,
+                $this->std->nrbenefic,
                 true
             );
             $this->dom->addChild(
                 $iniBeneficio,
                 "dtIniBenef",
-                $iben->dtinibenef,
+                $this->std->dtinibenef,
                 true
             );
             $this->dom->addChild(
                 $iniBeneficio,
                 "vrBenef",
-                $iben->vrbenef,
+                $this->std->vrbenef,
                 true
             );
-            if (isset($iben->infopenmorte)) {
+            if (isset($this->std->infopenmorte)) {
                 $infoPenMorte = $this->dom->createElement("infoPenMorte");
                 $this->dom->addChild(
                     $infoPenMorte,
                     "idQuota",
-                    $iben->infopenmorte->idquota,
+                    $this->std->infopenmorte->idquota,
                     true
                 );
                 $this->dom->addChild(
                     $infoPenMorte,
                     "cpfInst",
-                    $iben->infopenmorte->cpfinst,
+                    $this->std->infopenmorte->cpfinst,
                     true
                 );
                 $iniBeneficio->appendChild($infoPenMorte);
@@ -270,44 +270,44 @@ trait TraitS2400
         }
 
         if (isset($this->std->infobeneficio->altbeneficio)) {
-            $iben = $this->std->infobeneficio->altbeneficio;
+            $this->std = $this->std->infobeneficio->altbeneficio;
             $altBeneficio = $this->dom->createElement("altBeneficio");
             $this->dom->addChild(
                 $altBeneficio,
                 "tpBenef",
-                $iben->tpbenef,
+                $this->std->tpbenef,
                 true
             );
             $this->dom->addChild(
                 $altBeneficio,
                 "nrBenefic",
-                $iben->nrbenefic,
+                $this->std->nrbenefic,
                 true
             );
             $this->dom->addChild(
                 $altBeneficio,
                 "dtIniBenef",
-                $iben->dtinibenef,
+                $this->std->dtinibenef,
                 true
             );
             $this->dom->addChild(
                 $altBeneficio,
                 "vrBenef",
-                $iben->vrbenef,
+                $this->std->vrbenef,
                 true
             );
-            if (isset($iben->infopenmorte)) {
+            if (isset($this->std->infopenmorte)) {
                 $infoPenMorte = $this->dom->createElement("infoPenMorte");
                 $this->dom->addChild(
                     $infoPenMorte,
                     "idQuota",
-                    $iben->infopenmorte->idquota,
+                    $this->std->infopenmorte->idquota,
                     true
                 );
                 $this->dom->addChild(
                     $infoPenMorte,
                     "cpfInst",
-                    $iben->infopenmorte->cpfinst,
+                    $this->std->infopenmorte->cpfinst,
                     true
                 );
                 $altBeneficio->appendChild($infoPenMorte);
@@ -353,6 +353,250 @@ trait TraitS2400
      */
     protected function toNodeS100()
     {
-        throw new \Exception("TODO !!");
+        
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
+        $beneficiario = $this->dom->createElement("beneficiario");
+        $this->dom->addChild(
+            $beneficiario,
+            "cpfBenef",
+            $this->std->cpfbenef,
+            true
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "nmBenefic",
+            $this->std->nmbenefic,
+            true
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "dtNascto",
+            $this->std->dtnascto,
+            true
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "dtInicio",
+            $this->std->dtinicio,
+            true
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "sexo",
+            !empty($this->std->sexo) ? $this->std->sexo : null,
+            false
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "racaCor",
+            $this->std->racacor,
+            true
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "estCiv",
+            !empty($this->std->estciv) ? $this->std->estciv : null,
+            false
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "incFisMen",
+            $this->std->incfismen,
+            true
+        );
+        $this->dom->addChild(
+            $beneficiario,
+            "dtIncFisMen",
+            !empty($this->std->dtincfismen) ? $this->std->dtincfismen : null,
+            false
+        );
+        $endereco = $this->dom->createElement("endereco");
+        $end = $this->std->endereco;
+        if (!empty($end->brasil)) {
+            $brasil = $this->dom->createElement("brasil");
+            $this->dom->addChild(
+                $brasil,
+                "tpLograd",
+                !empty($end->brasil->tplograd) ? $end->brasil->tplograd : null,
+                false
+            );
+            $this->dom->addChild(
+                $brasil,
+                "dscLograd",
+                $end->brasil->dsclograd,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "nrLograd",
+                $end->brasil->nrlograd,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "complemento",
+                !empty($end->brasil->complemento) ? $end->brasil->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $brasil,
+                "bairro",
+                !empty($end->brasil->bairro) ? $end->brasil->bairro : null,
+                false
+            );
+            $this->dom->addChild(
+                $brasil,
+                "cep",
+                $end->brasil->cep,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "codMunic",
+                $end->brasil->codmunic,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "uf",
+                $end->brasil->uf,
+                true
+            );
+            $endereco->appendChild($brasil);
+        } else {
+            $exterior = $this->dom->createElement("exterior");
+            $this->dom->addChild(
+                $exterior,
+                "paisResid",
+                $end->exterior->paisresid,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "dscLograd",
+                $end->exterior->dsclograd,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "nrLograd",
+                $end->exterior->nrlograd,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "complemento",
+                !empty($end->exterior->complemento) ? $end->exterior->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $exterior,
+                "bairro",
+                !empty($end->exterior->bairro) ? $end->exterior->bairro : null,
+                false
+            );
+            $this->dom->addChild(
+                $exterior,
+                "nmCid",
+                $end->exterior->nmcid,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "codPostal",
+                !empty($end->exterior->codpostal) ? $end->exterior->codpostal : null,
+                false
+            );
+            $endereco->appendChild($exterior);
+        }
+        $beneficiario->appendChild($endereco);
+        
+        foreach ($this->std->dependente as $dep) {
+            $dependente = $this->dom->createElement("dependente");
+            $this->dom->addChild(
+                $dependente,
+                "tpDep",
+                $dep->tpdep,
+                true
+            );
+            $this->dom->addChild(
+                $dependente,
+                "nmDep",
+                $dep->nmdep,
+                true
+            );
+            $this->dom->addChild(
+                $dependente,
+                "dtNascto",
+                $dep->dtnascto,
+                true
+            );
+            $this->dom->addChild(
+                $dependente,
+                "cpfDep",
+                !empty($dep->cpfdep) ? $dep->cpfdep : null,
+                false
+            );
+            $this->dom->addChild(
+                $dependente,
+                "sexoDep",
+                !empty($dep->sexodep) ? $dep->sexodep : null,
+                false
+            );
+            $this->dom->addChild(
+                $dependente,
+                "depIRRF",
+                $dep->depirrf,
+                true
+            );
+            $this->dom->addChild(
+                $dependente,
+                "incFisMen",
+                $dep->incfismen,
+                true
+            );
+            $beneficiario->appendChild($dependente);
+        }
+        
+        $this->node->appendChild($beneficiario);
+        
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
