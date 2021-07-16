@@ -467,8 +467,8 @@ trait TraitS1005
                     );
                     $infoTrab->appendChild($infoPCD);
                 }
-            }
-            $dadosEstab->appendChild($infoTrab);
+                $dadosEstab->appendChild($infoTrab);
+            }            
             $node->appendChild($dadosEstab);
         }
         if (!empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
