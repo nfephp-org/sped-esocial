@@ -31,16 +31,20 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->nrrecibo = '1.1.1234567890123456789';
+$std->indguia = 1;
 $std->cpftrab = '12345678901';
-$std->nistrab = '12345678902';
+$std->matricula = 'ABC12345678902';
 $std->codcateg = 101;
 $std->dtterm = '2017-12-22';
 $std->mtvdesligtsv = '01';
 $std->pensalim = 3;
 $std->percaliment = 10.00;
 $std->vralim = 600.23;
+$std->nrproctrab = "12345678901234567890";
+$std->novocpf = "12345678901";
 
+    
 $std->verbasresc = new \stdClass();
 $std->verbasresc->dmdev[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->idedmdev = 'ksksksksksksksk';
@@ -55,32 +59,14 @@ $std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->codrubr = '2323dffdf';
 $std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->idetabrubr = 'sdser234';
 $std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->qtdrubr = 256.20;
 $std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->fatorrubr = 25.56;
-$std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->vrunit = 256.89;
 $std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->vrrubr = 12345.56;
-
-
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet = new \stdClass();
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1] = new \stdClass();
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->cnpjoper = '12345678901234';
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->regans = 'as2323';
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->vrpgtit = 299.75;
-
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1] = new \stdClass();
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->tpdep = '01';
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->cpfdep = '12345678901';
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->nmdep = 'Cacetinho da Silva';
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->dtnascto = '2010-05-30';
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->vlrpgdep = 256.02;
-
-
-$std->verbasresc->dmdev[1]->ideestablot[1]->infoagnocivo = new \stdClass();
-$std->verbasresc->dmdev[1]->ideestablot[1]->infoagnocivo->grauexp = 4;
+$std->verbasresc->dmdev[1]->ideestablot[1]->detverbas[1]->indapurir = 0;
 
 $std->verbasresc->dmdev[1]->ideestablot[1]->infosimples = new \stdClass();
-$std->verbasresc->dmdev[1]->ideestablot[1]->infosimples->indsimples = 2;
+$std->verbasresc->dmdev[1]->ideestablot[1]->infosimples->indsimples = 1;
 
 $std->verbasresc->procjudtrab[1] = new \stdClass();
-$std->verbasresc->procjudtrab[1]->tptrib = 3;
+$std->verbasresc->procjudtrab[1]->tptrib = 2;
 $std->verbasresc->procjudtrab[1]->nrprocjud = '12345678901234567890';
 $std->verbasresc->procjudtrab[1]->codsusp = '12345678901234';
 $std->verbasresc->infomv = new \stdClass();
