@@ -120,7 +120,7 @@
                                                         <xs:annotation>
                                                             <xs:documentation>Período aquisitivo de férias</xs:documentation>
                                                             <xs:documentation>DESCRICAO_COMPLETA:Informações referentes ao período aquisitivo de férias.</xs:documentation>
-                                                            <xs:documentation>CONDICAO_GRUPO: O (se {codMotAfast}(../codMotAfast) = [15] E (o código de categoria no RET for igual a [1XX, 301, 302, 303, 304, 306, 307, 309, 310, 312, 410] com {tpRegTrab} em S-2200/S-2300 = [1] OU o código de categoria no RET for igual a [401] com {tpRegTrab}(2300_infoTSVInicio_infoComplementares_infoDirigenteSindical_tpRegTrab) em S-2300 = [1] ou não informado) E {dtIniAfast}(../dtIniAfast) >= [2021-05-10]); N (nos demais casos)</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: O (se {codMotAfast}(../codMotAfast) = [15] E (o código de categoria no RET for igual a [1XX, 301, 302, 303, 304, 306, 307, 309, 310, 312, 410] com {tpRegTrab} em S-2200/S-2300 = [1] OU o código de categoria no RET for igual a [401] com {tpRegTrab}(2300_infoTSVInicio_infoComplementares_infoDirigenteSindical_tpRegTrab) em S-2300 = [1] ou não informado) E {dtIniAfast}(../dtIniAfast) >= [2021-07-19]); N (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>

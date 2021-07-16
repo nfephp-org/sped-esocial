@@ -89,7 +89,7 @@
                                                     <xs:element name="tmpResid" minOccurs="0" type="TS_tmpResid">
                                                         <xs:annotation>
                                                             <xs:documentation>Tempo de residência do trabalhador imigrante.</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento obrigatório se ({dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm) ou {dtExercicio}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio)) >= [2021-05-10].</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório se ({dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm) ou {dtExercicio}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio)) >= [2021-07-19].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="condIng" type="TS_condIng" />
@@ -112,7 +112,8 @@
                                                     <xs:element name="infoCota" minOccurs="0" type="TS_sim_nao">
                                                         <xs:annotation>
                                                             <xs:documentation>Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpRegTrab}(2200_vinculo_tpRegTrab) = [1].</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpRegTrab}(2200_vinculo_tpRegTrab) = [1]. Somente pode ser informado [S] se pelo menos um dos campos a seguir estiver preenchido com [S]: {defFisica}(./defFisica), {defVisual}(./defVisual), {defAuditiva}(./defAuditiva), {defMental}(./defMental), {defIntelectual}(./defIntelectual) e {reabReadap}(./reabReadap).</xs:documentation>
+                                                            <xs:documentation>Esta validação não deve ser realizada quando se tratar de evento enviado em versão do leiaute anterior a S-1.0.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="observacao" minOccurs="0" type="TS_observacao" />
@@ -566,7 +567,7 @@
                                                                 <xs:element name="localTrabGeral" minOccurs="0" type="T_localTrabGeral">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Estabelecimento onde o trabalhador exercerá suas atividades</xs:documentation>
-                                                                        <xs:documentation>DESCRICAO_COMPLETA:Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado.</xs:documentation>
+                                                                        <xs:documentation>DESCRICAO_COMPLETA:Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado.</xs:documentation>
                                                                         <xs:documentation>CONDICAO_GRUPO: N (se {codCateg}(2200_vinculo_infoContrato_codCateg) = [104]); O (se {codCateg}(2200_vinculo_infoContrato_codCateg) for diferente de [104] e se grupo {desligamento}(2200_vinculo_desligamento) não estiver preenchido); F (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
@@ -801,7 +802,7 @@
                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
                                                             <xs:documentation>a) Deve ser igual ou posterior à data de admissão/exercício do trabalhador;</xs:documentation>
                                                             <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público e a natureza jurídica do declarante deve ser Administração Pública (grupo [1]);</xs:documentation>
-                                                            <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N], deve ser anterior à data da transferência ou alteração do CPF do empregado ({sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf) ou {dtAltCPF}(2200_vinculo_mudancaCPF_dtAltCPF)) e igual ou posterior a [2021-05-10]. Não informar se {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [1] ou se {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) for diferente de [5, 8, 10].</xs:documentation>
+                                                            <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N], deve ser anterior à data da transferência ou alteração do CPF do empregado ({sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf) ou {dtAltCPF}(2200_vinculo_mudancaCPF_dtAltCPF)) e igual ou posterior a [2021-07-19]. Não informar se {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [1] ou se {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) for diferente de [5, 8, 10].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>

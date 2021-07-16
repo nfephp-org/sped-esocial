@@ -129,7 +129,7 @@
                                             <xs:simpleType>
                                                 <xs:annotation>
                                                     <xs:documentation>Código de Receita - CR da contribuição descontada do trabalhador.</xs:documentation>
-                                                    <xs:documentation>Validação: Se {indApuracao}(5001_ideEvento_indApuracao) = [2], deve ser igual a [108221, 108222, 108223, 108224].</xs:documentation>
+                                                    <xs:documentation>Validação: Se {indApuracao}(5001_ideEvento_indApuracao) = [2], deve ser igual a [108221, 108222, 108223, 108224, 108225].</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:restriction base="xs:integer">
                                                     <xs:enumeration value="108201">
@@ -144,12 +144,17 @@
                                                     </xs:enumeration>
                                                     <xs:enumeration value="108203">
                                                         <xs:annotation>
-                                                            <xs:documentation>CP descontada do segurado empregado doméstico ou segurado especial</xs:documentation>
+                                                            <xs:documentation>CP descontada do segurado empregado doméstico</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:enumeration>
                                                     <xs:enumeration value="108204">
                                                         <xs:annotation>
                                                             <xs:documentation>CP descontada do segurado especial curto prazo - Lei 11.718/2008</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                    <xs:enumeration value="108205">
+                                                        <xs:annotation>
+                                                            <xs:documentation>CP descontada do segurado empregado do segurado especial</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:enumeration>
                                                     <xs:enumeration value="108221">
@@ -164,7 +169,7 @@
                                                     </xs:enumeration>
                                                     <xs:enumeration value="108223">
                                                         <xs:annotation>
-                                                            <xs:documentation>CP descontada do segurado empregado doméstico ou segurado especial 13° salário</xs:documentation>
+                                                            <xs:documentation>CP descontada do segurado empregado doméstico 13° salário</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:enumeration>
                                                     <xs:enumeration value="108224">
@@ -172,6 +177,11 @@
                                                             <xs:documentation>CP descontada do segurado especial curto prazo 13° salário - Lei 11.718/2008</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:enumeration>
+                                                    <xs:enumeration value="108225">
+                                                        <xs:annotation>
+                                                            <xs:documentation>CP descontada do segurado empregado do segurado especial 13° salário</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>                                                    
                                                     <xs:enumeration value="109901">
                                                         <xs:annotation>
                                                             <xs:documentation>CP descontada do contribuinte individual, alíquota de 11%</xs:documentation>

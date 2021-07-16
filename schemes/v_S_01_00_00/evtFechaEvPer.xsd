@@ -57,7 +57,7 @@
                                             <xs:simpleType>
                                                 <xs:annotation>
                                                     <xs:documentation>Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.</xs:documentation>
-                                                    <xs:documentation>Validação: Não informar se {perApur}(1299_ideEvento_perApur) >= [2021-05] ou se {indApuracao}(1299_ideEvento_indApuracao) = [2]. Preenchimento obrigatório caso o campo tenha sido informado em fechamento anterior do mesmo período de apuração.</xs:documentation>
+                                                    <xs:documentation>Validação: Não informar se {perApur}(1299_ideEvento_perApur) >= [2021-07] ou se {indApuracao}(1299_ideEvento_indApuracao) = [2]. Preenchimento obrigatório caso o campo tenha sido informado em fechamento anterior do mesmo período de apuração.</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:restriction base="xs:string">
                                                     <xs:enumeration value="S">
@@ -67,7 +67,7 @@
                                                     </xs:enumeration>
                                                 </xs:restriction>
                                             </xs:simpleType>
-                                        </xs:element>
+                                        </xs:element>                                      
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

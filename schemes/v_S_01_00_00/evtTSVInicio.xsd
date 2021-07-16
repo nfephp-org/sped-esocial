@@ -73,7 +73,7 @@
                                                     <xs:element name="tmpResid" minOccurs="0" type="TS_tmpResid">
                                                         <xs:annotation>
                                                             <xs:documentation>Tempo de residência do trabalhador imigrante.</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento obrigatório se {dtInicio}(2300_infoTSVInicio_dtInicio) >= [2021-05-10].</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório se {dtInicio}(2300_infoTSVInicio_dtInicio) >= [2021-07-19].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="condIng" type="TS_condIng" />

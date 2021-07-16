@@ -335,7 +335,7 @@ trait TraitS1010
                 "tetoRemun",
                 ! empty($this->std->dadosrubrica->tetoremun)
                     ? $this->std->dadosrubrica->tetoremun
-                    : Null,
+                    : null,
                 false
             );
             $this->dom->addChild(

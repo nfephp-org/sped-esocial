@@ -49,7 +49,7 @@
                                         <xs:element name="dtDeslig" type="xs:date">
                                             <xs:annotation>
                                                 <xs:documentation>Preencher com a data de desligamento do vínculo (último dia trabalhado).</xs:documentation>
-                                                <xs:documentation>Validação: Deve ser uma data igual ou posterior a 20/09/2019 e igual ou anterior à data atual.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser uma data igual ou posterior a 24/09/2019 e igual ou anterior à data atual. No caso de empregado reintegrado e quando não se tratar de retificação do desligamento anterior à reintegração, também deve ser uma data igual ou posterior a {dtEfetRetorno}(2298_infoReintegr_dtEfetRetorno) do evento S-2298.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="dtProjFimAPI" minOccurs="0" type="xs:date">
