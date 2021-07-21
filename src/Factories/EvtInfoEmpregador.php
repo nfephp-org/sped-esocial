@@ -265,12 +265,49 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
         if (isset($this->std->infoop) && !empty($infoCadastro)) {
             $cad = $this->std->infoop;
             $infoOP = $this->dom->createElement("infoOP");
+
             $this->dom->addChild(
                 $infoOP,
-                "nrSiafi",
-                $cad->nrsiafi,
+                "indUGRPPS",
+                $cad->indUGRPPS,
                 true
             );
+
+            $this->dom->addChild(
+                $infoOP,
+                "esferaOP",
+                $cad->esferaOP,
+                !empty($cad->esferaOP) ? $cad->esferaOP : ''
+            );
+
+            $this->dom->addChild(
+                $infoOP,
+                "poderOP",
+                $cad->poderOP,
+                true
+            );
+
+            $this->dom->addChild(
+                $infoOP,
+                "vrTetoRem",
+                $cad->vrTetoRem,
+                true
+            );
+
+            $this->dom->addChild(
+                $infoOP,
+                "ideEFR",
+                $cad->ideEFR,
+                true
+            );
+
+            $this->dom->addChild(
+                $infoOP,
+                "cnpjEFR",
+                $cad->cnpjEFR,
+                !empty($cad->cnpjEFR) ? $cad->cnpjEFR : ''
+            );
+
             if (isset($this->std->infoefr)) {
                 $cad = $this->std->infoefr;
                 $infoEFR = $this->dom->createElement("infoEFR");
@@ -280,6 +317,22 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                     $cad->ideefr,
                     true
                 );
+
+                $this->dom->addChild(
+                    $infoEFR,
+                    "indRPPS",
+                    $cad->indRPPS,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $infoEFR,
+                    "prevComp",
+                    $cad->prevComp,
+                    true
+                );
+
+
                 if ($cad->ideefr == 'N') {
                     $this->dom->addChild(
                         $infoEFR,
@@ -289,47 +342,6 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                     );
                 }
                 $infoOP->appendChild($infoEFR);
-            }
-            if (isset($this->std->infoente)) {
-                $cad = $this->std->infoente;
-                $infoEnte = $this->dom->createElement("infoEnte");
-                $this->dom->addChild(
-                    $infoEnte,
-                    "nmEnte",
-                    $cad->nmente,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "uf",
-                    $cad->uf,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "codMunic",
-                    $cad->codmunic,
-                    false
-                );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "indRPPS",
-                    $cad->indrpps,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "subteto",
-                    $cad->subteto,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoEnte,
-                    "vrSubteto",
-                    number_format($cad->vrsubteto, 2, ".", ""),
-                    true
-                );
-                $infoOP->appendChild($infoEnte);
             }
             $infoCadastro->appendChild($infoOP);
         }
