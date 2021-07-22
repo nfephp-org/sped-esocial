@@ -269,7 +269,7 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoOP,
                 "indUGRPPS",
-                $cad->ugrpps,
+                $cad->indugrpps,
                 true
             );
 
