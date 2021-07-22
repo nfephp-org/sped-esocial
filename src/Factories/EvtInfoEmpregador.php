@@ -269,43 +269,43 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
             $this->dom->addChild(
                 $infoOP,
                 "indUGRPPS",
-                $cad->indUGRPPS,
+                $cad->ugrpps,
                 true
             );
 
             $this->dom->addChild(
                 $infoOP,
                 "esferaOP",
-                $cad->esferaOP,
-                !empty($cad->esferaOP) ? $cad->esferaOP : ''
+                $cad->esferaop,
+                !empty($cad->esferaop) ? $cad->esferaop : ''
             );
 
             $this->dom->addChild(
                 $infoOP,
                 "poderOP",
-                $cad->poderOP,
+                $cad->poderop,
                 true
             );
 
             $this->dom->addChild(
                 $infoOP,
                 "vrTetoRem",
-                $cad->vrTetoRem,
+                $cad->vrtetorem,
                 true
             );
 
             $this->dom->addChild(
                 $infoOP,
                 "ideEFR",
-                $cad->ideEFR,
+                $cad->ideefr,
                 true
             );
 
             $this->dom->addChild(
                 $infoOP,
                 "cnpjEFR",
-                $cad->cnpjEFR,
-                !empty($cad->cnpjEFR) ? $cad->cnpjEFR : ''
+                $cad->cnpjefr,
+                !empty($cad->cnpjefr) ? $cad->cnpjefr : ''
             );
 
             if (isset($this->std->infoefr)) {
@@ -321,14 +321,14 @@ class EvtInfoEmpregador extends Factory implements FactoryInterface
                 $this->dom->addChild(
                     $infoEFR,
                     "indRPPS",
-                    $cad->indRPPS,
+                    $cad->indrpps,
                     true
                 );
 
                 $this->dom->addChild(
                     $infoEFR,
                     "prevComp",
-                    $cad->prevComp,
+                    $cad->prevcomp,
                     true
                 );
 
