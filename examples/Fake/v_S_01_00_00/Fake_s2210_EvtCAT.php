@@ -31,26 +31,33 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->indretif = 2;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->indretif = 1;
+$std->nrrecibo = '1.1.1234567890123456789';
+
 $std->tpinsc = 1;
 $std->nrinsc = '12345678901234';
+
 $std->cpftrab = '12345678901';
-$std->nistrab = '12345678901';
+$std->matricula = '9292kkk';
+$std->codcateg = '123';
+
 $std->dtacid = '2017-12-10';
-$std->tpacid = '12.456';
+$std->tpacid = 1;
 $std->hracid = '0522';
-$std->hrstrabantesacid = '0522';
-$std->tpcat = 2;
-$std->indcatobito = 'N';
-$std->dtobito = null;
+$std->hrstrabantesacid = '0559';
+
+$std->tpcat = 1;
+$std->indcatobito = 'S';
+$std->dtobito = '2017-12-10';
+
 $std->indcomunpolicia = 'S';
 $std->codsitgeradora = '123456789';
+
 $std->iniciatcat = 3;
 $std->obscat = 'lksjlskjlskjslkjslkjslkjslksjl';
-$std->tplocal = 8;
+
+$std->tplocal = 9;
 $std->dsclocal = 'klçkdçldkdlkdlk';
-$std->codamb = 'kskskskks';
 $std->tplograd = 'AAAA';
 $std->dsclograd = 'poiwpoiwowiowi';
 $std->nrlograd = '2929b';
@@ -62,19 +69,23 @@ $std->uf = 'AC';
 $std->pais = '105';
 $std->codpostal = '123456789012';
 
-$std->parteatingida[1] = new \stdClass();
-$std->parteatingida[1]->codparteating = '123456789';
-$std->parteatingida[1]->lateralidade = 2;
+$std->idelocalacid = new \stdClass();
+$std->idelocalacid->tpinsc = 1;
+$std->idelocalacid->nrinsc = '12345678901234';
 
-$std->agentecausador[1] = new \stdClass();
-$std->agentecausador[1]->codagntcausador = '123456789';
+
+$std->parteatingida = new \stdClass();
+$std->parteatingida->codparteating = '123456789';
+$std->parteatingida->lateralidade = 0;
+
+$std->agentecausador = new \stdClass();
+$std->agentecausador->codagntcausador = '123456789';
 
 $std->atestado = new \stdClass();
-$std->atestado->codcnes = '8282828';
 $std->atestado->dtatendimento = '2017-02-01';
-$std->atestado->hratendimento = '1255';
-$std->atestado->indinternacao = 'N';
-$std->atestado->durtrat = 52;
+$std->atestado->hratendimento = '0000';
+$std->atestado->indinternacao = 'S';
+$std->atestado->durtrat = 2;
 $std->atestado->indafast = 'N';
 $std->atestado->dsclesao = '123456789';
 $std->atestado->dsccompLesao = 'lskjslkjslkjslksjlskjslkj';
@@ -87,7 +98,7 @@ $std->atestado->nroc = '12222kkkk';
 $std->atestado->ufoc = 'AC';
 
 $std->catorigem = new \stdClass();
-$std->catorigem->nrreccatorig = '2565656556';
+$std->catorigem->nrreccatorig = '1.1.1234567890123456789';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
