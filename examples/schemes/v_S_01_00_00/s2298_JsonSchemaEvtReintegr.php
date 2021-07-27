@@ -12,9 +12,10 @@ use JsonSchema\Validator;
 //S-2298
 //Campo {dtEfeito} – alterada validação.
 //S-2298 v2.5.0 Campo {nrProcJud} – alterada validação.
+//versão S_1.00
 
 $evento = 'evtReintegr';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtReintegr",
@@ -35,14 +36,9 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
-            "required": true,
-            "type": "string",
-            "pattern": "^[0-9]{11}$"
-        },
-        "nistrab": {
             "required": true,
             "type": "string",
             "pattern": "^[0-9]{11}$"
@@ -66,22 +62,18 @@ $jsonSchema = '{
         "nrleianistia": {
             "required": false,
             "type": ["string","null"],
+            "minLength": 5,
             "maxLength": 13
         },
         "dtefetretorno": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "dtefeito": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-        },
-        "indpagtojuizo": {
-            "required": true,
-            "type": "string",
-            "pattern": "^(S|N)$"
+            "$ref": "#/definitions/data"
         }
     }
 }';
@@ -90,16 +82,15 @@ $jsonSchema = '{
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->nrrecibo = '1.1.1234567890123456789';
 $std->cpftrab = '99999999999';
-$std->nistrab = '11111111111';
 $std->matricula = '123456788-56478ABC';
 $std->tpreint = 1;
 $std->nrprocjud = '192929-0220234567891';
 $std->nrleianistia = null;
 $std->dtefetretorno = '2017-08-22';
 $std->dtefeito = '2017-08-13';
-$std->indpagtojuizo = 'N';
+
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
