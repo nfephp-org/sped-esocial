@@ -16,9 +16,10 @@ use JsonSchema\Validator;
 //Campo {observacao} – alterado nome (para {obsCAT}).
 //Campo {dtCatOrig} – excluído.
 //Campo {nrRecCatOrig} – alteradas ocorrência e validação.
+//versão S_1.00
 
 $evento  = 'evtCAT';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtCAT",
@@ -39,7 +40,7 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "tpinsc": {
             "required": true,
@@ -57,30 +58,27 @@ $jsonSchema = '{
             "type": "string",
             "pattern": "^[0-9]{11}$"
         },
-        "nistrab": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 11
-        },
         "matricula": {
             "required": false,
             "type": ["string","null"],
+            "minLength": 1,
             "maxLength": 30
         },
         "codcateg": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 3
+            "pattern": "^[0-9]{3}$"
         },
         "dtacid": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "tpacid": {
             "required": true,
-            "type": "string",
-            "maxLength": 6
+            "type": "integer",
+            "minumum": 1,
+            "maximum": 3
         },
         "hracid": {
             "required": true,
@@ -90,7 +88,7 @@ $jsonSchema = '{
         "hrstrabantesacid": {
             "required": true,
             "type": "string",
-            "pattern": "^([0-9][0-9][0-5][0-9])$"
+            "pattern": "^([0-9]{2}[0-5][0-9])$"
         },
         "tpcat": {
             "required": true,
@@ -106,7 +104,7 @@ $jsonSchema = '{
         "dtobito": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "indcomunpolicia": {
             "required": true,
@@ -124,10 +122,11 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 3
         },
-        "observacao": {
+        "obscat": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 255
+            "minLength": 1,
+            "maxLength": 999
         },
         "tplocal": {
             "required": true,
@@ -138,41 +137,38 @@ $jsonSchema = '{
         "dsclocal": {
             "required": false,
             "type": ["string","null"],
-            "minLength": 3,
-            "maxLength": 80
-        },
-        "codamb": {
-            "required": false,
-            "type": ["string","null"],
-            "minLength": 3,
-            "maxLength": 30
+            "minLength": 1,
+            "maxLength": 255
         },
         "tplograd": {
-            "required": true,
-            "type": "string",
-            "pattern": "^.{1,4}$"
-        },
-        "dsclograd": {
             "required": false,
             "type": ["string","null"],
             "minLength": 1,
-            "maxLength": 80
+            "maxLength": 4
+        },
+        "dsclograd": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
         },
         "nrlograd": {
-            "required": false,
-            "type": ["string","null"],
+            "required": true,
+            "type": "string",
             "minLength": 1,
             "maxLength": 10
         },
         "complemento": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^.{1,30}$"
+            "minLength": 1,
+            "maxLength": 30
         },
         "bairro": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^.{1,90}$"
+            "minLength": 1,
+            "maxLength": 90
         },
         "cep": {
             "required": false,
@@ -187,8 +183,7 @@ $jsonSchema = '{
         "uf": {
             "required": false,
             "type": ["string","null"],
-            "minLength": 2,
-            "maxLength": 2
+            "$ref": "#/definitions/siglauf"
         },
         "pais": {
             "required": false,
@@ -198,6 +193,7 @@ $jsonSchema = '{
         "codpostal": {
             "required": false,
             "type": ["string","null"],
+            "minLength": 4,
             "maxLength": 12
         },
         "idelocalacid": {
@@ -207,7 +203,8 @@ $jsonSchema = '{
                 "tpinsc": {
                     "required": true,
                     "type": "integer",
-                    "pattern": "^[1,3,4]$"
+                    "minimum": 1,
+                    "maximum": 4
                 },
                 "nrinsc": {
                     "required": true,
@@ -218,40 +215,30 @@ $jsonSchema = '{
         },
         "parteatingida": {
             "required": true,
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 99,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "codparteating": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^[0-9]{1,9}$"
-                    },
-                    "lateralidade": {
-                        "required": true,
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 3
-                    }
+            "type": "object",
+            "properties": {
+                "codparteating": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{9}$"
+                },
+                "lateralidade": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 3
                 }
             }
         },
         "agentecausador": {
             "required": true,
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 99,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "codagntcausador": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 9,
-                        "pattern": "^[0-9]{1,9}$"
-                    }
+            "type": "object",
+            "properties": {
+                "codagntcausador": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 9,
+                    "pattern": "^[0-9]{9}$"
                 }
             }
         },
@@ -259,16 +246,10 @@ $jsonSchema = '{
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "codcnes": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 1,
-                    "maxLength": 7
-                },
                 "dtatendimento": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "hratendimento": {
                     "required": true,
@@ -294,17 +275,19 @@ $jsonSchema = '{
                 "dsclesao": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{1,9}$"
+                    "pattern": "^[0-9]{9}$"
                 },
                 "dsccompLesao": {
                     "required": false,
                     "type": ["string","null"],
+                    "minLength": 1,
                     "maxLength": 200
                 },
                 "diagprovavel": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 200
+                    "minLength": 1,
+                    "maxLength": 100
                 },
                 "codcid": {
                     "required": true,
@@ -312,16 +295,16 @@ $jsonSchema = '{
                     "minLength": 3,
                     "maxLength": 4
                 },
-                "obscat": {
+                "observacao": {
                     "required": false,
                     "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 999
+                    "minLength": 1,
+                    "maxLength": 255
                 },
                 "nmemit": {
                     "required": true,
                     "type": "string",
-                    "minLength": 3,
+                    "minLength": 2,
                     "maxLength": 70
                 },
                 "ideoc": {
@@ -333,14 +316,13 @@ $jsonSchema = '{
                 "nroc": {
                     "required": true,
                     "type": "string",
-                    "minLength": 3,
+                    "minLength": 1,
                     "maxLength": 14
                 },
                 "ufoc": {
                     "required": true,
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
+                    "$ref": "#/definitions/siglauf"
                 }
             }
         },
@@ -348,11 +330,10 @@ $jsonSchema = '{
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "nrcatorig": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 1,
-                    "maxLength": 40
+                "nrreccatorig": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/recibo"
                 }
             }
         }
@@ -362,27 +343,32 @@ $jsonSchema = '{
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->nrrecibo = '1.1.1234567890123456789';
+
 $std->tpinsc = 1;
 $std->nrinsc = '12345678901234';
+
 $std->cpftrab = '12345678901';
-$std->nistrab = '12345678901';
 $std->matricula = '9292kkk';
 $std->codcateg = '123';
+
 $std->dtacid = '2017-12-10';
-$std->tpacid = '12.456';
+$std->tpacid = 1;
 $std->hracid = '0522';
-$std->hrstrabantesacid = '0522';
-$std->tpcat = 2;
-$std->indcatobito = 'N';
-$std->dtobito = null;
+$std->hrstrabantesacid = '0559';
+
+$std->tpcat = 1;
+$std->indcatobito = 'S';
+$std->dtobito = '2017-12-10';
+
 $std->indcomunpolicia = 'S';
 $std->codsitgeradora = '123456789';
+
 $std->iniciatcat = 3;
 $std->obscat = 'lksjlskjlskjslkjslkjslkjslksjl';
-$std->tplocal = 8;
+
+$std->tplocal = 9;
 $std->dsclocal = 'klçkdçldkdlkdlk';
-$std->codamb = 'slslslsl';
 $std->tplograd = 'AAAA';
 $std->dsclograd = 'poiwpoiwowiowi';
 $std->nrlograd = '2929b';
@@ -394,19 +380,23 @@ $std->uf = 'AC';
 $std->pais = '105';
 $std->codpostal = '123456789012';
 
-$std->parteatingida[1] = new \stdClass();
-$std->parteatingida[1]->codparteating = '123456789';
-$std->parteatingida[1]->lateralidade = 2;
+$std->idelocalacid = new \stdClass();
+$std->idelocalacid->tpinsc = 1;
+$std->idelocalacid->nrinsc = '12345678901234';
 
-$std->agentecausador[1] = new \stdClass();
-$std->agentecausador[1]->codagntcausador = '123456789';
+
+$std->parteatingida = new \stdClass();
+$std->parteatingida->codparteating = '123456789';
+$std->parteatingida->lateralidade = 0;
+
+$std->agentecausador = new \stdClass();
+$std->agentecausador->codagntcausador = '123456789';
 
 $std->atestado = new \stdClass();
-$std->atestado->codcnes = '8282828';
 $std->atestado->dtatendimento = '2017-02-01';
 $std->atestado->hratendimento = '0000';
-$std->atestado->indinternacao = 'N';
-$std->atestado->durtrat = 52;
+$std->atestado->indinternacao = 'S';
+$std->atestado->durtrat = 2;
 $std->atestado->indafast = 'N';
 $std->atestado->dsclesao = '123456789';
 $std->atestado->dsccompLesao = 'lskjslkjslkjslksjlskjslkj';
@@ -419,7 +409,7 @@ $std->atestado->nroc = '12222kkkk';
 $std->atestado->ufoc = 'AC';
 
 $std->catorigem = new \stdClass();
-$std->catorigem->nrreccatorig = '2565656556';
+$std->catorigem->nrreccatorig = '1.1.1234567890123456789';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
@@ -460,4 +450,4 @@ if ($jsonValidator->isValid()) {
     die;
 }
 //salva se sucesso
-file_put_contents("../../../jsonSchemes/v$version/$evento.schema", $jsonSchema);
+file_put_contents("../../../jsonSchemes/v_$version/$evento.schema", $jsonSchema);
