@@ -41,8 +41,8 @@ $jsonSchema = '{
                     "minLength": 11
                 },
                 "nistrab": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "maxLength": 11,
                     "minLength": 11
                 },
