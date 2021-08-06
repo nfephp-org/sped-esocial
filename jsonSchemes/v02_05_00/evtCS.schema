@@ -223,6 +223,11 @@
                                                 "required": true,
                                                 "type": "string",
                                                 "pattern": "^[0-9]{11,14}$"
+                                            },
+                                            "cnoobra": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{12}$"
                                             }
                                         }
                                     },

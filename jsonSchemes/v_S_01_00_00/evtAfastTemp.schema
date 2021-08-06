@@ -1,0 +1,197 @@
+{
+    "title": "evtAfastTemp",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 40
+        },
+        "idevinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "nistrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "matricula": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 30
+                },
+                "codcateg": {
+                    "required": false,
+                    "type": "integer",
+                    "maxLength": 3
+                }
+            }
+        },
+        "iniafastamento": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dtiniafast": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "codmotafast": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 2
+                },
+                "infomesmomtv": {
+                    "required": false,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },
+                "tpacidtransito": {
+                    "required": false,
+                    "type": "integer",
+                    "minumum": 1,
+                    "maximum": 3
+                },
+                "observacao": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 255
+                },
+                "infoatestado": {
+                    "required": false,
+                    "type": "array",
+                    "minItems": 0,
+                    "maxItems": 9,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "codcid": {
+                                "required": false,
+                                "type": "string",
+                                "maxLength": 4
+                            },
+                            "qtddiasafast": {
+                                "required": true,
+                                "type": "integer",
+                                "maxLength": 3
+                            },
+                            "emitente": {
+                                "required": false,
+                                "type": "object",
+                                "properties": {
+                                    "nmemit": {
+                                        "required": true,
+                                        "type": "string",
+                                        "maxLength": 70
+                                    },
+                                    "ideoc": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minumum": 1,
+                                        "maximum": 3
+                                    },
+                                    "nroc": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^.{2,14}$"
+                                    },
+                                    "ufoc": {
+                                        "required": false,
+                                        "type": "string",
+                                        "pattern": "^.{2}$"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "infocessao": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "cnpjcess": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "infonus": {
+                            "required": true,
+                            "type": "integer",
+                            "minumum": 1,
+                            "maximum": 3
+                        }
+                    }
+                },
+                "infomandsind": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "cnpjsind": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "infonusremun": {
+                            "required": true,
+                            "type": "integer",
+                            "minumum": 1,
+                            "maximum": 3
+                        }
+                    }
+                }
+            }
+        },
+        "inforetif": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "origretif": {
+                    "required": true,
+                    "type": "integer",
+                    "minumum": 1,
+                    "maximum": 3
+                },
+                "tpproc": {
+                    "required": true,
+                    "type": "integer",
+                    "minumum": 1,
+                    "maximum": 2
+                },
+                "nrproc": {
+                    "required": false,
+                    "type": "string",
+                    "maxLength": 21
+                }
+            }
+        },
+        "fimafastamento": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dttermafast": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                }
+            }
+        }
+    }
+}

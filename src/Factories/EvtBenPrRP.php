@@ -5,8 +5,8 @@ namespace NFePHP\eSocial\Factories;
 /**
  * Class eSocial EvtBenPrRP Event S-1207 constructor
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -41,6 +41,11 @@ class EvtBenPrRP extends Factory implements FactoryInterface
      * @var array
      */
     protected $parameters = [];
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS1207;
+    
     /**
      * Constructor
      *
@@ -51,121 +56,9 @@ class EvtBenPrRP extends Factory implements FactoryInterface
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null
+        Certificate $certificate = null,
+        $date = ''
     ) {
-        parent::__construct($config, $std, $certificate);
-    }
-
-    /**
-     * Node constructor
-     */
-    protected function toNode()
-    {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "indRetif",
-            $this->std->indretif,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
-            false
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "indApuracao",
-            $this->std->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "perApur",
-            $this->std->perapur,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-        $ideBenef = $this->dom->createElement("ideBenef");
-        $this->dom->addChild(
-            $ideBenef,
-            "cpfBenef",
-            $this->std->cpfbenef,
-            true
-        );
-        $this->node->appendChild($ideBenef);
-        if (isset($this->std->dmdev)) {
-            foreach ($this->std->dmdev as $dev) {
-                $dmDev = $this->dom->createElement("dmDev");
-                $this->dom->addChild(
-                    $dmDev,
-                    "tpBenef",
-                    $dev->tpbenef,
-                    true
-                );
-                $this->dom->addChild(
-                    $dmDev,
-                    "nrBenefic",
-                    $dev->nrbenefic,
-                    true
-                );
-                $this->dom->addChild(
-                    $dmDev,
-                    "ideDmDev",
-                    $dev->idedmdev,
-                    true
-                );
-                if (isset($dev->itens)) {
-                    foreach ($dev->itens as $item) {
-                        $itens = $this->dom->createElement("itens");
-                        $this->dom->addChild(
-                            $itens,
-                            "codRubr",
-                            $item->codrubr,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $itens,
-                            "ideTabRubr",
-                            $item->idetabrubr,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $itens,
-                            "vrRubr",
-                            $item->vrrubr,
-                            true
-                        );
-                        $dmDev->appendChild($itens);
-                    }
-                }
-                $this->node->appendChild($dmDev);
-            }
-        }
-        $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        parent::__construct($config, $std, $certificate, $date);
     }
 }

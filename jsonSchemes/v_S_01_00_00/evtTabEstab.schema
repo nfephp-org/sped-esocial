@@ -1,0 +1,197 @@
+{
+    "title": "evtTabEstab",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "tpinsc": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+        },
+        "nrinsc": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{12}|[0-9]{14}$"
+        },
+        "inivalid": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/periodo"
+        },
+        "fimvalid": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/periodo"
+        },
+        "modo": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/modo"
+        },
+        "dadosestab": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "cnaeprep": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/cnae"
+                },
+                "aliqgilrat": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "aliqrat": {
+                            "required": false,
+                            "type": ["integer","null"],
+                            "minimum": 1,
+                            "maximum": 3
+                        },
+                        "fap": {
+                            "required": false,
+                            "type": ["number","null"],
+                            "minimum": 0.5,
+                            "maximum": 2.0000
+                        },
+                        "procadmjudrat": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "tpproc": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 2
+                                },
+                                "nrproc": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{17}|.{20}|.{21}$"
+                                },
+                                "codsusp": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 14,
+                                    "pattern": "^[0-9]{1,14}$"
+                                }
+                            }
+                        },
+                        "procadmjudfap": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "tpproc": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 4
+                                },
+                                "nrproc": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{16}|.{17}|.{20}|.{21}$"
+                                },
+                                "codsusp": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 14,
+                                    "pattern": "^[0-9]{1,14}$"
+                                }
+                            }
+                        }
+                    }
+                },
+                "infocaepf": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "tpcaepf": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 3
+                        }
+                    }    
+                },
+                "infoobra": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "indsubstpatrobra": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 2
+                        }
+                    }    
+                },
+                "infotrab": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "infoapr": {
+                            "required": false,
+                            "type": ["object", "null"],
+                            "properties": {
+                                "nrprocjud": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{20}$"
+                                },
+                                "infoenteduc": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 0,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "nrinsc": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{14}$"
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        },
+                        "infopdc": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "nrprocjud": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{20}$"
+                                }
+                            }
+                        }
+                    }    
+                }
+            }
+        },    
+        "novavalidade": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/periodo"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/periodo"
+                }
+            }    
+        }
+    }
+}

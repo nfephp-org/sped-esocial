@@ -8,8 +8,8 @@ namespace NFePHP\eSocial\Common\Soap;
  * either with a SOAP server or a server RESTFUL
  * The codes and their descriptions are stored in a json file in the same folder
  *
- * @category  NFePHP
- * @package   NFePHP\Common\Soap\SoapCode
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2016
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -26,7 +26,6 @@ class SoapCode
         if (array_key_exists($code, $codes)) {
             return $codes[$code];
         }
-
         return ['level' => 'Desconhecido', 'description' => 'Desconhecido', 'means' => 'Desconhecido'];
     }
 }

@@ -1,0 +1,80 @@
+{
+    "title": "evtInfoComplPer",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": "string",
+            "maxLength": 40
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+        },
+        "infosubstpatr": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "indsubstpatr": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "percpedcontrib": {
+                     "required": true,
+                     "type": "number"
+                }
+            }
+        },
+        "infosubstpatropport": {
+            "required": false,
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 9999,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "cnpjopportuario": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{14}$"
+                    }
+                }
+            }
+        },
+        "infoativconcom": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "fatormes": {
+                     "required": true,
+                     "type": "number"
+                },
+                "fator13": {
+                     "required": true,
+                     "type": "number"
+                }
+            }
+        }
+    }
+}

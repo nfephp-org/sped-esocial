@@ -7,7 +7,7 @@ namespace NFePHP\eSocial\Common;
  * This is necessary to guarantee the recovery of all possible fields by
  * the constructor even if there is no data
  *
- * @category  NFePHP
+ * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
@@ -17,28 +17,32 @@ namespace NFePHP\eSocial\Common;
  * @link      http://github.com/nfephp-org/sped-esocial for the canonical source repository
  */
 
+use stdClass;
+
 class ParamsStandardize
 {
+    /**
+     * @var stdClass
+     */
     protected $schema;
-
+    /**
+     * @var array
+     */
     protected $keys;
 
     /**
      * Constructor
-     *
      * @param \stdClass $schema
      */
     public function __construct(\stdClass $schema)
     {
         $this->schema = $schema;
-        $this->keys   = $this->getKeys($schema);
+        $this->keys = $this->getKeys($schema);
     }
 
     /**
      * Read all primary keys fields from data
-     *
      * @param  \stdClass $schema
-     *
      * @return array
      */
     protected function getKeys(\stdClass $schema)
@@ -54,11 +58,9 @@ class ParamsStandardize
 
     /**
      * Recover primary fields
-     *
      * @param  \stdClass $obj
      * @param  string $prop
      * @param  \stdClass $default
-     *
      * @return \stdClass
      */
     protected function get(\stdClass $obj, $prop, \stdClass $default = null)
@@ -68,22 +70,18 @@ class ParamsStandardize
 
     /**
      * Read all fields from data and put in standard structure
-     *
      * @param  \stdClass $data
-     *
      * @return \stdClass
      */
     public function stdData(\stdClass $data)
     {
         $clone = new \stdClass();
         $this->getProperties($this->schema, $data, $clone, $this->keys, '');
-
         return $clone;
     }
 
     /**
      * Build standard structure from schema and load data fields, if exists
-     *
      * @param \stdClass $schema
      * @param \stdClass $data
      * @param \stdClass $clone
@@ -108,7 +106,7 @@ class ParamsStandardize
                     $ref = '';
                 }
                 if ($prop->type == 'object') {
-                    if (! empty($ref)) {
+                    if (!empty($ref)) {
                         $ref .= ":$name";
                     } else {
                         $ref = $name;
@@ -117,7 +115,7 @@ class ParamsStandardize
                 } else {
                     $comm = "\$clone->";
                     $orig = "\$data->";
-                    if (! empty($ref)) {
+                    if (!empty($ref)) {
                         $part = explode(':', $ref);
                         $num  = count($part);
                         foreach ($part as $p) {
@@ -131,8 +129,7 @@ class ParamsStandardize
                     $orig .= $name;
                     $resp = null;
                     eval("\$resp = $orig;");
-
-                    if (! empty($resp) || $resp === 0) {
+                    if (!empty($resp) || $resp === 0) {
                         $comm .= $name.'= $resp';
                     } else {
                         $comm .= "$name = null";

@@ -4,8 +4,9 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtAdmPrelim Event S-2190 constructor
+ * Read for 2.5.0 layout
  *
- * @category  NFePHP
+ * @category  library
  * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
@@ -30,6 +31,10 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @var string
      */
     protected $evtAlias = 'S-2190';
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS2190;
 
     /**
      * Constructor
@@ -37,7 +42,7 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate | null
-     * @param string date
+     * @param string $date
      */
     public function __construct(
         $config,
@@ -46,62 +51,5 @@ class EvtAdmPrelim extends Factory implements FactoryInterface
         $date = ''
     ) {
         parent::__construct($config, $std, $certificate, $date);
-    }
-
-    /**
-     * Node constructor
-     */
-    protected function toNode()
-    {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-
-        //tag deste evento em particular
-        $infoRegPrelim = $this->dom->createElement("infoRegPrelim");
-        $this->dom->addChild(
-            $infoRegPrelim,
-            "cpfTrab",
-            $this->std->inforegprelim->cpftrab,
-            true
-        );
-        $this->dom->addChild(
-            $infoRegPrelim,
-            "dtNascto",
-            $this->std->inforegprelim->dtnascto,
-            true
-        );
-        $this->dom->addChild(
-            $infoRegPrelim,
-            "dtAdm",
-            $this->std->inforegprelim->dtadm,
-            true
-        );
-        $this->node->appendChild($infoRegPrelim);
-
-        //finalização do xml
-        $this->eSocial->appendChild($this->node);
-        $this->sign();
     }
 }

@@ -6,9 +6,9 @@ namespace NFePHP\eSocial\Common;
  * Class for identification of eletronic documents in xml
  * used for Sped eSocial comunications
  *
- * @category  NFePHP
- * @package   NFePHP\eSocial\Common\Standardize
- * @copyright NFePHP Copyright (c) 2008 - 2017
+ * @category  library
+ * @package   NFePHP\eSocial
+ * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -19,7 +19,6 @@ namespace NFePHP\eSocial\Common;
 use InvalidArgumentException;
 use NFePHP\Common\Validator;
 use stdClass;
-use Symfony\Component\Yaml\Yaml;
 
 class Standardize
 {
@@ -53,9 +52,7 @@ class Standardize
 
     /**
      * Returns stdClass converted from xml
-     *
      * @param  string $xml
-     *
      * @return stdClass
      */
     public function toStd($xml = null)
@@ -63,13 +60,12 @@ class Standardize
         if (! empty($xml)) {
             $this->whichIs($xml);
         }
-        $sxml       = simplexml_load_string($this->node);
+        $sxml = simplexml_load_string($this->node);
         $this->json = str_replace(
             '@attributes',
             'attributes',
             json_encode($sxml, JSON_PRETTY_PRINT)
         );
-
         return json_decode($this->json);
     }
 
@@ -124,20 +120,6 @@ class Standardize
             $this->toStd($xml);
         }
         return $this->json;
-    }
-
-    /**
-     * Returns YAML from XML
-     * @param  string $xml
-     * @return string
-     */
-    public function toYaml($xml = null)
-    {
-        if (! empty($xml)) {
-            $this->toStd($xml);
-        }
-        $array = $this->toArray();
-        return Yaml::dump($array, 6, 4);
     }
 
     /**

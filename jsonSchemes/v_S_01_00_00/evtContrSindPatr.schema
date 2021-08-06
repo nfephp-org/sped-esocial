@@ -1,0 +1,60 @@
+{
+    "title": "evtContrSindPatr",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 40
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+        },
+        "contribsind": {
+            "required": true,
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 999,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "cnpjsindic": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{14}$"
+                    },
+                    "tpcontribsind": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 4
+                    },
+                    "vlrcontribsind": {
+                        "required": true,
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

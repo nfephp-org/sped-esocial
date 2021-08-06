@@ -5,8 +5,8 @@ namespace NFePHP\eSocial\Common\Soap;
 /**
  * Soap fake class used for development only
  *
- * @category  NFePHP
- * @package   NFePHP\Common\Soap\SoapFake
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -14,6 +14,7 @@ namespace NFePHP\eSocial\Common\Soap;
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
  * @link      http://github.com/nfephp-org/sped-common for the canonical source repository
  */
+
 use NFePHP\Common\Certificate;
 use Psr\Log\LoggerInterface;
 
@@ -25,11 +26,13 @@ class SoapFake extends SoapBase implements SoapInterface
      * @param Certificate $certificate
      * @param LoggerInterface $logger
      */
-    public function __construct(Certificate $certificate = null, LoggerInterface $logger = null)
-    {
+    public function __construct(
+        Certificate $certificate = null,
+        LoggerInterface $logger = null
+    ) {
         parent::__construct($certificate, $logger);
     }
-
+    
     public function send(
         $operation,
         $url,
@@ -39,7 +42,6 @@ class SoapFake extends SoapBase implements SoapInterface
     ) {
         $requestHead = implode("\n", $parameters);
         $requestBody = $envelope;
-
         return json_encode(
             [
                 'url'        => $url,
