@@ -20,6 +20,7 @@ trait TraitS5012
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+
         //tag deste evento em particular
         $infoIrrf = $this->dom->createElement("infoIRRF");
         $this->dom->addChild(
@@ -34,6 +35,7 @@ trait TraitS5012
             $this->std->infoirrf->indexistinfo,
             true
         );
+
         if (isset($this->std->infocrcontrib)) {
             foreach ($this->std->infocrcontrib as $infoc) {
                 $infocontrib = $this->dom->createElement("infoCRContrib");
@@ -53,9 +55,9 @@ trait TraitS5012
             }
         }
         $this->node->appendChild($infoIrrf);
+
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
     

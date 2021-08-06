@@ -173,40 +173,6 @@ trait TraitS5001
                         $infoCategIncid->appendChild($calcTerc);
                     }
                 }
-                if (isset($infocat->infoperref)) {
-                    foreach ($infocat->infoperref as $iref) {
-                        $inforef = $this->dom->createElement("infoPerRef");
-                        $this->dom->addChild(
-                            $inforef,
-                            "perRef",
-                            $iref->perRef,
-                            true
-                        );
-                        foreach ($iref->detinfoperref as $dref) {
-                            $detref = $this->dom->createElement("detInfoPerRef");
-                            $this->dom->addChild(
-                                $detref,
-                                "ind13",
-                                $dref->ind13,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $detref,
-                                "tpValor",
-                                $dref->tpvalor,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $detref,
-                                "vrPerRef",
-                                $dref->vrperref,
-                                true
-                            );
-                            $inforef->appendChild($detref);
-                        }
-                        $infoCategIncid->appendChild($inforef);
-                    }
-                }
                 $ideEstabLot->appendChild($infoCategIncid);
             }
             $infoCp->appendChild($ideEstabLot);
@@ -214,7 +180,7 @@ trait TraitS5001
         $this->node->appendChild($infoCp);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->node);
-        $this->sign();
+        $this->sign($this->eSocial);
     }
     
     /**

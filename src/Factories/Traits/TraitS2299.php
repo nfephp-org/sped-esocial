@@ -44,152 +44,149 @@ trait TraitS2299
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
+
         $this->dom->addChild(
             $ideVinculo,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->idevinculo->cpftrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "nisTrab",
-            $this->std->nistrab,
+            $this->std->idevinculo->nistrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->std->matricula,
+            $this->std->idevinculo->matricula,
             true
         );
         $this->node->appendChild($ideVinculo);
+
         $infoDeslig = $this->dom->createElement("infoDeslig");
         $this->dom->addChild(
             $infoDeslig,
             "mtvDeslig",
-            $this->std->mtvdeslig,
+            $this->std->infodeslig->mtvdeslig,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "dtDeslig",
-            $this->std->dtdeslig,
+            $this->std->infodeslig->dtdeslig,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "indPagtoAPI",
-            $this->std->indpagtoapi,
+            $this->std->infodeslig->indpagtoapi,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "dtProjFimAPI",
-            !empty($this->std->dtprojfimapi) ? $this->std->dtprojfimapi : null,
+            !empty($this->std->infodeslig->dtprojfimapi) ? $this->std->infodeslig->dtprojfimapi : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "pensAlim",
-            $this->std->pensalim,
+            $this->std->infodeslig->pensalim,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
             "percAliment",
-            !empty($this->std->percaliment) ? $this->std->percaliment : null,
+            !empty($this->std->infodeslig->percaliment) ? $this->std->infodeslig->percaliment : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "vrAlim",
-            !empty($this->std->vralim) ? $this->std->vralim : null,
+            !empty($this->std->infodeslig->vralim) ? $this->std->infodeslig->vralim : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "nrCertObito",
-            !empty($this->std->nrcertobito) ? $this->std->nrcertobito : null,
+            !empty($this->std->infodeslig->nrcertobito) ? $this->std->infodeslig->nrcertobito : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "nrProcTrab",
-            !empty($this->std->nrproctrab) ? $this->std->nrproctrab : null,
+            !empty($this->std->infodeslig->nrproctrab) ? $this->std->infodeslig->nrproctrab : null,
             false
         );
         $this->dom->addChild(
             $infoDeslig,
             "indCumprParc",
-            $this->std->indcumprparc,
+            $this->std->infodeslig->indcumprparc,
             true
         );
         $this->dom->addChild(
             $infoDeslig,
-            "qtdDiasInterm",
-            !empty($this->std->qtddiasinterm) ? $this->std->qtddiasinterm : null,
+            "observacao",
+            !empty($this->std->infodeslig->observacao) ? $this->std->infodeslig->observacao : null,
             false
         );
-        if (!empty($this->std->observacoes)) {
-            foreach ($this->std->observacoes as $obs) {
-                $observacoes = $this->dom->createElement("observacoes");
-                $this->dom->addChild(
-                    $observacoes,
-                    "observacao",
-                    $obs->observacao,
-                    false
-                );
-                $infoDeslig->appendChild($observacoes);
-            }
-        }
-        if (!empty($this->std->sucessaovinc)) {
+
+        if (!empty($this->std->infodeslig->sucessaovinc)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
+
             $this->dom->addChild(
                 $sucessaoVinc,
-                "tpInscSuc",
-                !empty($this->std->sucessaovinc->tpinscsuc) ? $this->std->sucessaovinc->tpinscsuc : null,
-                false
+                'tpInscSuc',
+                $this->std->infodeslig->sucessaovinc->tpinscsuc,
+                true
             );
+
             $this->dom->addChild(
                 $sucessaoVinc,
                 "cnpjSucessora",
-                $this->std->sucessaovinc->cnpjsucessora,
+                $this->std->infodeslig->sucessaovinc->cnpjsucessora,
                 true
             );
             $infoDeslig->appendChild($sucessaoVinc);
         }
-        if (!empty($this->std->transftit)) {
+
+        if (!empty($this->std->infodeslig->transftit)) {
             $transfTit = $this->dom->createElement("transfTit");
             $this->dom->addChild(
                 $transfTit,
                 "cpfSubstituto",
-                $this->std->transftit->cpfsubstituto,
+                $this->std->infodeslig->transftit->cpfsubstituto,
                 true
             );
             $this->dom->addChild(
                 $transfTit,
                 "dtNascto",
-                $this->std->transftit->dtnascto,
+                $this->std->infodeslig->transftit->dtnascto,
                 true
             );
             $infoDeslig->appendChild($transfTit);
         }
-        if (!empty($this->std->mudancacpf)) {
-            $mudancaCPF = $this->dom->createElement("mudancaCPF");
-            $mcpf = $this->std->mudancacpf;
+
+        if (isset($this->std->infodeslig->mudancacpf)) {
+            $mudancaCPF = $this->dom->createElement('mudancaCPF');
+
             $this->dom->addChild(
                 $mudancaCPF,
-                "novoCPF",
-                $mcpf->novocpf,
+                'novoCPF',
+                $this->std->infodeslig->mudancacpf->novocpf,
                 true
             );
+
             $infoDeslig->appendChild($mudancaCPF);
         }
 
-        if (!empty($this->std->verbasresc)) {
+        if (!empty($this->std->infodeslig->verbasresc)) {
             $verbasResc = $this->dom->createElement("verbasResc");
-            foreach ($this->std->verbasresc->dmdev as $dm) {
+            foreach ($this->std->infodeslig->verbasresc->dmdev as $dm) {
                 $dmDev = $this->dom->createElement("dmDev");
                 $this->dom->addChild(
                     $dmDev,
@@ -219,6 +216,7 @@ trait TraitS2299
                             $isl->codlotacao,
                             true
                         );
+
                         foreach ($isl->detverbas as $dv) {
                             $detVerbas = $this->dom->createElement("detVerbas");
                             $this->dom->addChild(
@@ -259,6 +257,7 @@ trait TraitS2299
                             );
                             $ideEstabLot->appendChild($detVerbas);
                         }
+
                         if (!empty($isl->infosaudecolet)) {
                             $infoSaudeColet = $this->dom->createElement("infoSaudeColet");
                             foreach ($isl->infosaudecolet->detoper as $do) {
@@ -281,6 +280,7 @@ trait TraitS2299
                                     $do->vrpgtit,
                                     true
                                 );
+
                                 if (!empty($do->detplano)) {
                                     foreach ($do->detplano as $dp) {
                                         $detPlano = $this->dom->createElement("detPlano");
@@ -317,10 +317,12 @@ trait TraitS2299
                                         $detOper->appendChild($detPlano);
                                     }
                                 }
+
                                 $infoSaudeColet->appendChild($detOper);
                             }
                             $ideEstabLot->appendChild($infoSaudeColet);
                         }
+
                         if (!empty($isl->infoagnocivo)) {
                             $infoAgNocivo = $this->dom->createElement("infoAgNocivo");
                             $this->dom->addChild(
@@ -331,6 +333,7 @@ trait TraitS2299
                             );
                             $ideEstabLot->appendChild($infoAgNocivo);
                         }
+
                         if (!empty($isl->infosimples)) {
                             $infoSimples = $this->dom->createElement("infoSimples");
                             $this->dom->addChild(
@@ -341,10 +344,12 @@ trait TraitS2299
                             );
                             $ideEstabLot->appendChild($infoSimples);
                         }
+
                         $infoPerApur->appendChild($ideEstabLot);
                     }
                     $dmDev->appendChild($infoPerApur);
                 }
+
                 if (!empty($dm->infoperant)) {
                     $infoPerAnt = $this->dom->createElement("infoPerAnt");
                     foreach ($dm->infoperant->ideadc as $adc) {
@@ -370,8 +375,8 @@ trait TraitS2299
                         $this->dom->addChild(
                             $ideADC,
                             "dtEfAcConv",
-                            !empty($adc->dtefacconv) ? $adc->dtefacconv : null,
-                            false
+                            $adc->dtefacconv,
+                            true
                         );
                         $this->dom->addChild(
                             $ideADC,
@@ -407,6 +412,7 @@ trait TraitS2299
                                     $ael->codlotacao,
                                     true
                                 );
+
                                 foreach ($ael->detverbas as $adv) {
                                     $dmdetVerbas = $this->dom->createElement("detVerbas");
                                     $this->dom->addChild(
@@ -445,8 +451,10 @@ trait TraitS2299
                                         $adv->vrrubr,
                                         true
                                     );
+
                                     $dmideEstabLot->appendChild($dmdetVerbas);
                                 }
+
                                 if (!empty($ael->infoagnocivo)) {
                                     $infoAgNocivo = $this->dom->createElement("infoAgNocivo");
                                     $this->dom->addChild(
@@ -457,6 +465,7 @@ trait TraitS2299
                                     );
                                     $dmideEstabLot->appendChild($infoAgNocivo);
                                 }
+
                                 if (!empty($ael->infosimples)) {
                                     $infoSimples = $this->dom->createElement("infoSimples");
                                     $this->dom->addChild(
@@ -467,14 +476,18 @@ trait TraitS2299
                                     );
                                     $dmideEstabLot->appendChild($infoSimples);
                                 }
+
                                 $idePeriodo->appendChild($dmideEstabLot);
                             }
                             $ideADC->appendChild($idePeriodo);
                         }
+
+
                         $infoPerAnt->appendChild($ideADC);
                     }
                     $dmDev->appendChild($infoPerAnt);
                 }
+
                 if (!empty($dm->infotrabinterm)) {
                     foreach ($dm->infotrabinterm as $tin) {
                         $infoTrabInterm = $this->dom->createElement("infoTrabInterm");
@@ -487,10 +500,12 @@ trait TraitS2299
                         $dmDev->appendChild($infoTrabInterm);
                     }
                 }
+
                 $verbasResc->appendChild($dmDev);
             }
-            if (!empty($this->std->verbasresc->procjudtrab)) {
-                foreach ($this->std->verbasresc->procjudtrab as $pjt) {
+
+            if (!empty($this->std->infodeslig->verbasresc->procjudtrab)) {
+                foreach ($this->std->infodeslig->verbasresc->procjudtrab as $pjt) {
                     $procJudTrab = $this->dom->createElement("procJudTrab");
                     $this->dom->addChild(
                         $procJudTrab,
@@ -507,14 +522,15 @@ trait TraitS2299
                     $this->dom->addChild(
                         $procJudTrab,
                         "codSusp",
-                        !empty($pjt->codsusp) ? $pjt->codsusp : null,
-                        false
+                        $pjt->codsusp,
+                        true
                     );
                     $verbasResc->appendChild($procJudTrab);
                 }
             }
-            if (!empty($this->std->verbasresc->infomv)) {
-                $imv = $this->std->verbasresc->infomv;
+
+            if (!empty($this->std->infodeslig->verbasresc->infomv)) {
+                $imv = $this->std->infodeslig->verbasresc->infomv;
                 $infoMV = $this->dom->createElement("infoMV");
                 $this->dom->addChild(
                     $infoMV,
@@ -552,53 +568,42 @@ trait TraitS2299
                 }
                 $verbasResc->appendChild($infoMV);
             }
-            if (!empty($this->std->verbasresc->proccs)) {
-                $procCS = $this->dom->createElement("procCS");
-                $this->dom->addChild(
-                    $procCS,
-                    "nrProcJud",
-                    $this->std->verbasresc->proccs->nrprocjud,
-                    true
-                );
-                $verbasResc->appendChild($procCS);
-            }
+
             $infoDeslig->appendChild($verbasResc);
         }
-        if (!empty($this->std->quarentena)) {
+        if (!empty($this->std->infodeslig->quarentena)) {
             $quarentena = $this->dom->createElement("quarentena");
             $this->dom->addChild(
                 $quarentena,
                 "dtFimQuar",
-                $this->std->quarentena->dtfimquar,
+                $this->std->infodeslig->quarentena->dtfimquar,
                 true
             );
             $infoDeslig->appendChild($quarentena);
         }
 
-        if (!empty($this->std->consigfgts)) {
-            foreach ($this->std->consigfgts as $cfg) {
-                $consigFGTS = $this->dom->createElement("consigFGTS");
-                $this->dom->addChild(
-                    $consigFGTS,
-                    "insConsig",
-                    $cfg->insconsig,
-                    true
-                );
-                $this->dom->addChild(
-                    $consigFGTS,
-                    "nrContr",
-                    $cfg->nrcontr,
-                    true
-                );
-                $infoDeslig->appendChild($consigFGTS);
-            }
+        if (!empty($this->std->infodeslig->consigfgts->insconsig) && !empty($this->std->infodeslig->consigfgts->nrcontr)) {
+            $consigFGTS = $this->dom->createElement("consigFGTS");
+            $this->dom->addChild(
+                $consigFGTS,
+                "insConsig",
+                $this->std->infodeslig->consigfgts->insconsig,
+                true
+            );
+            $this->dom->addChild(
+                $consigFGTS,
+                "nrContr",
+                $this->std->infodeslig->consigfgts->nrcontr,
+                false
+            );
+            $infoDeslig->appendChild($consigFGTS);
         }
 
         $this->node->appendChild($infoDeslig);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        $this->sign($this->eSocial);
     }
     
     /**

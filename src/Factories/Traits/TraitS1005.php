@@ -38,28 +38,29 @@ trait TraitS1005
 
         //tag comum a todos os modos
         $ideEstab = $this->dom->createElement("ideEstab");
+        $stdIdeEstab = $this->std->ideestab;
         $this->dom->addChild(
             $ideEstab,
             "tpInsc",
-            $this->std->tpinsc,
+            $stdIdeEstab->tpinsc,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "nrInsc",
-            $this->std->nrinsc,
+            $stdIdeEstab->nrinsc,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "iniValid",
-            $this->std->inivalid,
+            $stdIdeEstab->inivalid,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($stdIdeEstab->fimvalid) ? $stdIdeEstab->fimvalid : null,
             false
         );
 
@@ -176,7 +177,7 @@ trait TraitS1005
                 );
                 $dadosEstab->appendChild($infoObra);
             }
-            
+
             $infoTrab = $this->dom->createElement("infoTrab");
             $this->dom->addChild(
                 $infoTrab,
@@ -184,46 +185,45 @@ trait TraitS1005
                 $this->std->dadosestab->infotrab->regpt,
                 true
             );
-            if (! empty($this->std->dadosestab->infoapr)) {
-                $infoApr = $this->dom->createElement("infoApr");
-                $this->dom->addChild(
-                    $infoApr,
-                    "contApr",
-                    $this->std->dadosestab->infotrab->infoapr->contapr,
-                    true
-                );
-                $this->dom->addChild(
-                    $infoApr,
-                    "nrProcJud",
-                    ! empty($this->std->dadosestab->infotrab->infoapr->nrprocjud)
-                        ? $this->std->dadosestab->infotrab->infoapr->nrprocjud
-                        : null,
-                    false
-                );
-                $this->dom->addChild(
-                    $infoApr,
-                    "contEntEd",
-                    ! empty($this->std->dadosestab->infotrab->infoapr->contented)
-                        ? $this->std->dadosestab->infotrab->infoapr->contented
-                        : null,
-                    false
-                );
 
-                if (! empty($this->std->dadosestab->infotrab->infoapr->infoenteduc)) {
-                    foreach ($this->std->dadosestab->infotrab->infoapr->infoenteduc as $edu) {
-                        $infoEntEduc = $this->dom->createElement("infoEntEduc");
-                        $this->dom->addChild(
-                            $infoEntEduc,
-                            "nrInsc",
-                            $edu->nrinsc,
-                            true
-                        );
-                        $infoApr->appendChild($infoEntEduc);
-                    }
+            $infoApr = $this->dom->createElement("infoApr");
+            $this->dom->addChild(
+                $infoApr,
+                "contApr",
+                $this->std->dadosestab->infotrab->infoapr->contapr,
+                true
+            );
+            $this->dom->addChild(
+                $infoApr,
+                "nrProcJud",
+                ! empty($this->std->dadosestab->infotrab->infoapr->nrprocjud)
+                    ? $this->std->dadosestab->infotrab->infoapr->nrprocjud
+                    : null,
+                false
+            );
+            $this->dom->addChild(
+                $infoApr,
+                "contEntEd",
+                ! empty($this->std->dadosestab->infotrab->infoapr->contented)
+                    ? $this->std->dadosestab->infotrab->infoapr->contented
+                    : null,
+                false
+            );
+
+            if (! empty($this->std->dadosestab->infotrab->infoapr->infoenteduc)) {
+                foreach ($this->std->dadosestab->infotrab->infoapr->infoenteduc as $edu) {
+                    $infoEntEduc = $this->dom->createElement("infoEntEduc");
+                    $this->dom->addChild(
+                        $infoEntEduc,
+                        "nrInsc",
+                        $edu->nrinsc,
+                        true
+                    );
+                    $infoApr->appendChild($infoEntEduc);
                 }
-
-                $infoTrab->appendChild($infoApr);
             }
+
+            $infoTrab->appendChild($infoApr);
             if (! empty($this->std->dadosestab->infotrab->infopdc)) {
                 $infoPCD = $this->dom->createElement("infoPCD");
                 $this->dom->addChild(
@@ -247,16 +247,16 @@ trait TraitS1005
         }
 
         if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
-            $newVal = $this->std->novavalidade;
+            $newVal       = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
-                $novaValidade,
+                $ideRubrica,
                 "iniValid",
                 $newVal->inivalid,
                 true
             );
             $this->dom->addChild(
-                $novaValidade,
+                $ideRubrica,
                 "fimValid",
                 ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false

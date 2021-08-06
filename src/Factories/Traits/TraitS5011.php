@@ -24,6 +24,7 @@ trait TraitS5011
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
         $infoCS = $this->dom->createElement("infoCS");
         $this->dom->addChild(
             $infoCS,
@@ -37,6 +38,7 @@ trait TraitS5011
             $this->std->indexistinfo,
             true
         );
+
         if (!empty($this->std->infocpseg)) {
             $ips = $this->std->infocpseg;
             $infoCPSeg = $this->dom->createElement("infoCPSeg");
@@ -110,6 +112,7 @@ trait TraitS5011
             $infoContrib->appendChild($infoPJ);
         }
         $infoCS->appendChild($infoContrib);
+        
         if (!empty($this->std->ideestab)) {
             foreach ($this->std->ideestab as $is) {
                 $ideEstab = $this->dom->createElement("ideEstab");
@@ -226,12 +229,6 @@ trait TraitS5011
                                 $infoEmprParcial,
                                 "nrInscProp",
                                 $id->infoemprparcial->nrinscprop,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $infoEmprParcial,
-                                "cnoObra",
-                                $id->infoemprparcial->cnoobra,
                                 true
                             );
                             $ideLotacao->appendChild($infoEmprParcial);
@@ -368,6 +365,7 @@ trait TraitS5011
                                 $ideLotacao->appendChild($basesRemun);
                             }
                         }
+                        
                         if (!empty($id->basesavnport)) {
                             $basesAvNPort = $this->dom->createElement("basesAvNPort");
                             $this->dom->addChild(
@@ -414,6 +412,7 @@ trait TraitS5011
                             );
                             $ideLotacao->appendChild($basesAvNPort);
                         }
+                        
                         if (!empty($id->infosubstpatropport)) {
                             foreach ($id->infosubstpatropport as $ipp) {
                                 $infoSubstPatrOpPort = $this->dom->createElement("infoSubstPatrOpPort");
@@ -429,6 +428,7 @@ trait TraitS5011
                         $ideEstab->appendChild($ideLotacao);
                     }
                 }
+                
                 if (!empty($is->basesaquis)) {
                     foreach ($is->basesaquis as $bq) {
                         $basesAquis = $this->dom->createElement("basesAquis");
@@ -591,7 +591,7 @@ trait TraitS5011
         $this->node->appendChild($infoCS);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+        $this->sign();      
     }
     
     /**

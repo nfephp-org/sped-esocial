@@ -26,6 +26,7 @@ trait TraitS5002
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+
         $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
         $this->dom->addChild(
             $ideTrabalhador,
@@ -34,6 +35,7 @@ trait TraitS5002
             true
         );
         $this->node->appendChild($ideTrabalhador);
+
         if (! empty($this->std->vrdeddep)) {
             $infoDep = $this->dom->createElement("infoDep");
             $this->dom->addChild(
@@ -44,6 +46,7 @@ trait TraitS5002
             );
             $this->node->appendChild($infoDep);
         }
+
         foreach ($this->std->infoirrf as $nIrrf) {
             $infoIrrf = $this->dom->createElement("infoIrrf");
             $this->dom->addChild(
@@ -58,6 +61,7 @@ trait TraitS5002
                 $nIrrf->indresbr,
                 true
             );
+
             foreach ($nIrrf->basesirrf as $base) {
                 $basesIrrf = $this->dom->createElement("basesIrrf");
                 $this->dom->addChild(
@@ -74,6 +78,7 @@ trait TraitS5002
                 );
                 $infoIrrf->appendChild($basesIrrf);
             }
+
             foreach ($nIrrf->irrf as $base) {
                 $irrf = $this->dom->createElement("irrf");
                 $this->dom->addChild(
@@ -90,6 +95,7 @@ trait TraitS5002
                 );
                 $infoIrrf->appendChild($irrf);
             }
+
             if (isset($nIrrf->idepgtoext)) {
                 $idePgtoExt = $this->dom->createElement("idePgtoExt");
                 $idePais    = $this->dom->createElement("idePais");
@@ -156,7 +162,6 @@ trait TraitS5002
             }
         }
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
     

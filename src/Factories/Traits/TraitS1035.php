@@ -32,7 +32,7 @@ trait TraitS1035
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-
+        
         $ide = $this->dom->createElement("ideCarreira");
         $this->dom->addChild(
             $ide,
@@ -49,9 +49,10 @@ trait TraitS1035
         $this->dom->addChild(
             $ide,
             "fimValid",
-            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
+        
         if (!empty($this->std->dadoscarreira)) {
             $da = $this->std->dadoscarreira;
             $dados = $this->dom->createElement("dadosCarreira");
@@ -80,6 +81,7 @@ trait TraitS1035
                 true
             );
         }
+        
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -97,6 +99,7 @@ trait TraitS1035
                 false
             );
         }
+        
         $info = $this->dom->createElement("infoCarreira");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -107,13 +110,12 @@ trait TraitS1035
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            if (isset($nova)) {
-                $node->appendChild($nova);
-            }
+            $node->appendChild($nova);
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
+        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

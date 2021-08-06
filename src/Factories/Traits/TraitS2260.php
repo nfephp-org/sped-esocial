@@ -9,9 +9,6 @@ trait TraitS2260
      */
     protected function toNode250()
     {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -22,7 +19,7 @@ trait TraitS2260
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -43,7 +40,10 @@ trait TraitS2260
             $this->verProc,
             true
         );
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+
+        //ideVinculo
         $ideVinculo = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
             $ideVinculo,
@@ -64,112 +64,115 @@ trait TraitS2260
             true
         );
         $this->node->appendChild($ideVinculo);
-        
-        $i = $this->std->infoconvinterm;
-        $info = $this->dom->createElement("infoConvInterm");
+
+        //infoConvInterm
+        $infoConvInterm = $this->dom->createElement("infoConvInterm");
         $this->dom->addChild(
-            $info,
+            $infoConvInterm,
             "codConv",
-            $i->codconv,
+            $this->std->infoconvinterm->codconv,
             true
         );
         $this->dom->addChild(
-            $info,
+            $infoConvInterm,
             "dtInicio",
-            $i->dtinicio,
+            $this->std->infoconvinterm->dtinicio,
             true
         );
         $this->dom->addChild(
-            $info,
+            $infoConvInterm,
             "dtFim",
-            $i->dtfim,
+            $this->std->infoconvinterm->dtfim,
             true
         );
         $this->dom->addChild(
-            $info,
+            $infoConvInterm,
             "dtPrevPgto",
-            $i->dtprevpgto,
+            $this->std->infoconvinterm->dtprevpgto,
             true
         );
+        //Jornada
         $jornada = $this->dom->createElement("jornada");
         $this->dom->addChild(
             $jornada,
             "codHorContrat",
-            !empty($i->jornada->codhorcontrat) ? $i->jornada->codhorcontrat : null,
+            !empty($this->std->infoconvinterm->jornada->codhorcontrat) ? $this->std->infoconvinterm->jornada->codhorcontrat : null,
             false
         );
         $this->dom->addChild(
             $jornada,
             "dscJornada",
-            !empty($i->jornada->dscjornada) ? $i->jornada->dscjornada : null,
+            !empty($this->std->infoconvinterm->jornada->dscjornada) ? $this->std->infoconvinterm->jornada->dscjornada : null,
             false
         );
-        $info->appendChild($jornada);
-        
+        $infoConvInterm->appendChild($jornada);
+
+        //localTrab
         $localTrab = $this->dom->createElement("localTrab");
         $this->dom->addChild(
             $localTrab,
             "indLocal",
-            $i->localtrab->indlocal,
+            $this->std->infoconvinterm->localtrab->indlocal,
             true
         );
-        if (!empty($i->localtrab->localtrabinterm)) {
-            $l = $i->localtrab->localtrabinterm;
-            $local = $this->dom->createElement("localTrabInterm");
+
+        //localtrabinterm
+        if (!empty($this->std->infoconvinterm->localtrab->localtrabinterm)) {
+            $localTrabInterm = $this->dom->createElement("localTrabInterm");
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "tpLograd",
-                $l->tplograd,
+                $this->std->infoconvinterm->localtrab->localtrabinterm->tplograd,
                 true
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "dscLograd",
-                $l->dsclograd,
+                $this->std->infoconvinterm->localtrab->localtrabinterm->dsclograd,
                 true
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "nrLograd",
-                $l->nrlograd,
+                $this->std->infoconvinterm->localtrab->localtrabinterm->nrlograd,
                 true
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "complem",
-                !empty($l->complem) ? $l->complem : null,
+                !empty($this->std->infoconvinterm->localtrab->localtrabinterm->complem) ? $this->std->infoconvinterm->localtrab->localtrabinterm->complem : null,
                 false
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "bairro",
-                !empty($l->bairro) ? $l->bairro : null,
+                !empty($this->std->infoconvinterm->localtrab->localtrabinterm->bairro) ? $this->std->infoconvinterm->localtrab->localtrabinterm->bairro : null,
                 false
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "cep",
-                $l->cep,
+                $this->std->infoconvinterm->localtrab->localtrabinterm->cep,
                 true
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "codMunic",
-                $l->codmunic,
+                $this->std->infoconvinterm->localtrab->localtrabinterm->codmunic,
                 true
             );
             $this->dom->addChild(
-                $local,
+                $localTrabInterm,
                 "uf",
-                $l->uf,
+                $this->std->infoconvinterm->localtrab->localtrabinterm->uf,
                 true
             );
-            $localTrab->appendChild($local);
+            $localTrab->appendChild($localTrabInterm);
         }
-        $info->appendChild($localTrab);
-        $this->node->appendChild($info);
+
+        $infoConvInterm->appendChild($localTrab);
+        $this->node->appendChild($infoConvInterm);
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
     

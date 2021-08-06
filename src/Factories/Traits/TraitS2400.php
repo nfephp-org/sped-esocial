@@ -46,17 +46,17 @@ trait TraitS2400
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $ideBenef = $this->dom->createElement("ideBenef");
-        $this->std = $this->std->idebenef;
+        $iben = $this->std->idebenef;
         $this->dom->addChild(
             $ideBenef,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $iben->cpfbenef,
             true
         );
         $this->dom->addChild(
             $ideBenef,
             "nmBenefic",
-            $this->std->nmbenefic,
+            $iben->nmbenefic,
             true
         );
         $this->node->appendChild($ideBenef);
@@ -224,44 +224,44 @@ trait TraitS2400
         );
         $this->node->appendChild($infoBeneficio);
         if (isset($this->std->infobeneficio->inibeneficio)) {
-            $this->std = $this->std->infobeneficio->inibeneficio;
+            $iben = $this->std->infobeneficio->inibeneficio;
             $iniBeneficio = $this->dom->createElement("iniBeneficio");
             $this->dom->addChild(
                 $iniBeneficio,
                 "tpBenef",
-                $this->std->tpbenef,
+                $iben->tpbenef,
                 true
             );
             $this->dom->addChild(
                 $iniBeneficio,
                 "nrBenefic",
-                $this->std->nrbenefic,
+                $iben->nrbenefic,
                 true
             );
             $this->dom->addChild(
                 $iniBeneficio,
                 "dtIniBenef",
-                $this->std->dtinibenef,
+                $iben->dtinibenef,
                 true
             );
             $this->dom->addChild(
                 $iniBeneficio,
                 "vrBenef",
-                $this->std->vrbenef,
+                $iben->vrbenef,
                 true
             );
-            if (isset($this->std->infopenmorte)) {
+            if (isset($iben->infopenmorte)) {
                 $infoPenMorte = $this->dom->createElement("infoPenMorte");
                 $this->dom->addChild(
                     $infoPenMorte,
                     "idQuota",
-                    $this->std->infopenmorte->idquota,
+                    $iben->infopenmorte->idquota,
                     true
                 );
                 $this->dom->addChild(
                     $infoPenMorte,
                     "cpfInst",
-                    $this->std->infopenmorte->cpfinst,
+                    $iben->infopenmorte->cpfinst,
                     true
                 );
                 $iniBeneficio->appendChild($infoPenMorte);
@@ -270,44 +270,44 @@ trait TraitS2400
         }
 
         if (isset($this->std->infobeneficio->altbeneficio)) {
-            $this->std = $this->std->infobeneficio->altbeneficio;
+            $iben = $this->std->infobeneficio->altbeneficio;
             $altBeneficio = $this->dom->createElement("altBeneficio");
             $this->dom->addChild(
                 $altBeneficio,
                 "tpBenef",
-                $this->std->tpbenef,
+                $iben->tpbenef,
                 true
             );
             $this->dom->addChild(
                 $altBeneficio,
                 "nrBenefic",
-                $this->std->nrbenefic,
+                $iben->nrbenefic,
                 true
             );
             $this->dom->addChild(
                 $altBeneficio,
                 "dtIniBenef",
-                $this->std->dtinibenef,
+                $iben->dtinibenef,
                 true
             );
             $this->dom->addChild(
                 $altBeneficio,
                 "vrBenef",
-                $this->std->vrbenef,
+                $iben->vrbenef,
                 true
             );
-            if (isset($this->std->infopenmorte)) {
+            if (isset($iben->infopenmorte)) {
                 $infoPenMorte = $this->dom->createElement("infoPenMorte");
                 $this->dom->addChild(
                     $infoPenMorte,
                     "idQuota",
-                    $this->std->infopenmorte->idquota,
+                    $iben->infopenmorte->idquota,
                     true
                 );
                 $this->dom->addChild(
                     $infoPenMorte,
                     "cpfInst",
-                    $this->std->infopenmorte->cpfinst,
+                    $iben->infopenmorte->cpfinst,
                     true
                 );
                 $altBeneficio->appendChild($infoPenMorte);

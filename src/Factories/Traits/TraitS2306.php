@@ -9,24 +9,41 @@ trait TraitS2306
      */
     protected function toNode250()
     {
+        $evtid = FactoryId::build(
+            $this->tpInsc,
+            $this->nrInsc,
+            $this->date,
+            $this->sequencial
+        );
+
+        $evtTSVAltContr = $this->dom->createElement("evtTSVAltContr");
+
+        $att = $this->dom->createAttribute('Id');
+
+        $att->value = $evtid;
+
+        $evtTSVAltContr->appendChild($att);
+
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+
         $ideEvento = $this->dom->createElement("ideEvento");
+
         $this->dom->addChild(
             $ideEvento,
             "indRetif",
             $this->std->indretif,
             true
         );
-        if ($this->std->indretif == 2) {
+
+        if (isset($this->std->nrrecibo)) {
             $this->dom->addChild(
-                $ideEvento,
-                "nrRecibo",
-                $this->std->nrrecibo,
-                true
+              $ideEvento,
+              "nrRecibo",
+              $this->std->nrrecibo,
+              false
             );
         }
+
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -45,246 +62,303 @@ trait TraitS2306
             $this->verProc,
             true
         );
+
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+
         $ideTrabSemVinculo = $this->dom->createElement("ideTrabSemVinculo");
+
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "cpfTrab",
-            $this->std->trabsemvinculo->cpftrab,
+            $this->std->idetrabsemvinculo->cpftrab,
             true
         );
+
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "nisTrab",
-            !empty($this->std->trabsemvinculo->nistrab) ? $this->std->trabsemvinculo->nistrab : null,
+            !empty($this->std->idetrabsemvinculo->nistrab) ? $this->std->idetrabsemvinculo->nistrab : null,
             false
         );
+
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "codCateg",
-            $this->std->trabsemvinculo->codcateg,
+            $this->std->idetrabsemvinculo->codcateg,
             true
         );
+
         $this->node->appendChild($ideTrabSemVinculo);
+
         $infoTSVAlteracao = $this->dom->createElement("infoTSVAlteracao");
+
         $this->dom->addChild(
             $infoTSVAlteracao,
             "dtAlteracao",
-            $this->std->tsvalteracao->dtalteracao,
+            $this->std->infotsvalteracao->dtalteracao,
             true
         );
+
         $this->dom->addChild(
             $infoTSVAlteracao,
             "natAtividade",
-            !empty($this->std->tsvalteracao->natatividade) ? $this->std->tsvalteracao->natatividade : null,
+            !empty($this->std->infotsvalteracao->natatividade) ? $this->std->infotsvalteracao->natatividade : null,
             false
         );
+
         $infoComplementares = $this->dom->createElement("infoComplementares");
-        $infoTSVAlteracao->appendChild($infoComplementares);
-        if (isset($this->std->cargofuncao)) {
+
+        if (isset($this->std->infotsvalteracao->infocomplementares->cargofuncao)) {
+            $stdCargofuncao = $this->std->infotsvalteracao->infocomplementares->cargofuncao;
             $cargoFuncao = $this->dom->createElement("cargoFuncao");
+
             $this->dom->addChild(
                 $cargoFuncao,
                 "codCargo",
-                $this->std->cargofuncao->codcargo,
+                $stdCargofuncao->codcargo,
                 true
             );
+
             $this->dom->addChild(
                 $cargoFuncao,
                 "codFuncao",
-                !empty($this->std->cargofuncao->codfuncao) ? $this->std->cargofuncao->codfuncao : null,
+                !empty($stdCargofuncao->codfuncao) ? $stdCargofuncao->codfuncao : null,
                 false
             );
+
             $infoComplementares->appendChild($cargoFuncao);
         }
-        if (isset($this->std->remuneracao)) {
+
+        if (isset($this->std->infotsvalteracao->infocomplementares->remuneracao)) {
             $remuneracao = $this->dom->createElement("remuneracao");
+            $stdRemuneracao = $this->std->infotsvalteracao->infocomplementares->remuneracao;
+
             $this->dom->addChild(
                 $remuneracao,
                 "vrSalFx",
-                $this->std->remuneracao->vrsalfx,
+                $stdRemuneracao->vrsalfx,
                 true
             );
+
             $this->dom->addChild(
                 $remuneracao,
                 "undSalFixo",
-                $this->std->remuneracao->undsalfixo,
+                $stdRemuneracao->undsalfixo,
                 true
             );
+
             $this->dom->addChild(
                 $remuneracao,
                 "dscSalVar",
-                !empty($this->std->remuneracao->dscsalvar) ? $this->std->remuneracao->dscsalvar : null,
+                !empty($stdRemuneracao->dscsalVar) ? $stdRemuneracao->dscsalVar : null,
                 false
             );
+
             $infoComplementares->appendChild($remuneracao);
         }
-        if (isset($this->std->estagiario)) {
+
+        if (isset($this->std->infotsvalteracao->infocomplementares->infoestagiario)) {
+            $stdEstagiario = $this->std->infotsvalteracao->infocomplementares->infoestagiario;
             $infoEstagiario = $this->dom->createElement("infoEstagiario");
+
             $this->dom->addChild(
                 $infoEstagiario,
                 "natEstagio",
-                $this->std->estagiario->natestagio,
+                $stdEstagiario->natestagio,
                 true
             );
+
             $this->dom->addChild(
                 $infoEstagiario,
                 "nivEstagio",
-                $this->std->estagiario->nivestagio,
+                $stdEstagiario->nivestagio,
                 true
             );
+
             $this->dom->addChild(
                 $infoEstagiario,
                 "areaAtuacao",
-                !empty($this->std->estagiario->areaatuacao) ? $this->std->estagiario->areaatuacao : null,
+                !empty($stdEstagiario->areaatuacao) ? $stdEstagiario->areaatuacao : null,
                 false
             );
+
             $this->dom->addChild(
                 $infoEstagiario,
                 "nrApol",
-                !empty($this->std->estagiario->nrapol) ? $this->std->estagiario->nrapol : null,
+                !empty($stdEstagiario->nrapol) ? $stdEstagiario->nrapol : null,
                 false
             );
+
             $this->dom->addChild(
                 $infoEstagiario,
                 "vlrBolsa",
-                !empty($this->std->estagiario->vlrbolsa) ? $this->std->estagiario->vlrbolsa : null,
+                !empty($stdEstagiario->vlrbolsa) ? $stdEstagiario->vlrbolsa : null,
                 false
             );
+
             $this->dom->addChild(
                 $infoEstagiario,
                 "dtPrevTerm",
-                $this->std->estagiario->dtprevterm,
+                $stdEstagiario->dtprevterm,
                 true
             );
-            if (isset($this->std->estagiario->instituicao)) {
+
+            if (isset($stdEstagiario->instensino)) {
                 $instEnsino = $this->dom->createElement("instEnsino");
+
                 $this->dom->addChild(
                     $instEnsino,
                     "cnpjInstEnsino",
-                    $this->std->estagiario->instituicao->cnpjinstensino,
+                    $stdEstagiario->instensino->cnpjinstensino,
                     true
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",
-                    $this->std->estagiario->instituicao->nmrazao,
+                    $stdEstagiario->instensino->nmrazao,
                     true
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "dscLograd",
-                    !empty($this->std->estagiario->instituicao->dsclograd) ?
-                        $this->std->estagiario->instituicao->dsclograd : null,
+                    !empty($stdEstagiario->instensino->dsclograd) ?
+                        $stdEstagiario->instensino->dsclograd : null,
                     false
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "nrLograd",
-                    !empty($this->std->estagiario->instituicao->nrlograd) ?
-                        $this->std->estagiario->instituicao->nrlograd : null,
+                    !empty($stdEstagiario->instensino->nrlograd) ?
+                        $stdEstagiario->instensino->nrlograd : null,
                     false
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "bairro",
-                    !empty($this->std->estagiario->instituicao->bairro) ? $this->std->estagiario->instituicao->bairro :
+                    !empty($stdEstagiario->instensino->bairro) ? $stdEstagiario->instensino->bairro :
                         null,
                     false
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "cep",
-                    !empty($this->std->estagiario->instituicao->cep) ? $this->std->estagiario->instituicao->cep : null,
+                    !empty($stdEstagiario->instensino->cep) ? $stdEstagiario->instensino->cep : null,
                     false
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "codMunic",
-                    !empty($this->std->estagiario->instituicao->codmunic) ?
-                        $this->std->estagiario->instituicao->codmunic : null,
+                    !empty($stdEstagiario->instensino->codmunic) ?
+                        $stdEstagiario->instensino->codmunic : null,
                     false
                 );
+
                 $this->dom->addChild(
                     $instEnsino,
                     "uf",
-                    !empty($this->std->estagiario->instituicao->uf) ? $this->std->estagiario->instituicao->uf : null,
+                    !empty($stdEstagiario->instensino->uf) ? $stdEstagiario->instensino->uf : null,
                     false
                 );
+
                 $infoEstagiario->appendChild($instEnsino);
             }
-            if (isset($this->std->estagiario->ageintegracao)) {
+
+            if (isset($stdEstagiario->ageintegracao)) {
                 $ageIntegracao = $this->dom->createElement("ageIntegracao");
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "cnpjAgntInteg",
-                    $this->std->estagiario->ageintegracao->cnpjagntinteg,
+                    $stdEstagiario->ageintegracao->cnpjagntinteg,
                     true
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "nmRazao",
-                    $this->std->estagiario->ageintegracao->nmrazao,
+                    $stdEstagiario->ageintegracao->nmrazao,
                     true
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "dscLograd",
-                    $this->std->estagiario->ageintegracao->dsclograd,
+                    $stdEstagiario->ageintegracao->dsclograd,
                     true
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "nrLograd",
-                    $this->std->estagiario->ageintegracao->nrlograd,
+                    $stdEstagiario->ageintegracao->nrlograd,
                     true
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "bairro",
-                    !empty($this->std->estagiario->ageintegracao->bairro) ?
-                        $this->std->estagiario->ageintegracao->bairro : null,
+                    !empty($stdEstagiario->ageintegracao->bairro) ?
+                        $stdEstagiario->ageintegracao->bairro : null,
                     false
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "cep",
-                    $this->std->estagiario->ageintegracao->cep,
+                    $stdEstagiario->ageintegracao->cep,
                     true
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "codMunic",
-                    $this->std->estagiario->ageintegracao->codmunic,
+                    $stdEstagiario->ageintegracao->codmunic,
                     true
                 );
+
                 $this->dom->addChild(
                     $ageIntegracao,
                     "uf",
-                    $this->std->estagiario->ageintegracao->uf,
+                    $stdEstagiario->ageintegracao->uf,
                     true
                 );
+
                 $infoEstagiario->appendChild($ageIntegracao);
             }
-            if (isset($this->std->estagiario->supervisor)) {
+
+            if (isset($stdEstagiario->supervisorestagio)) {
                 $supervisorEstagio = $this->dom->createElement("supervisorEstagio");
+
                 $this->dom->addChild(
                     $supervisorEstagio,
                     "cpfSupervisor",
-                    $this->std->estagiario->supervisor->cpfsupervisor,
+                    $stdEstagiario->supervisorestagio->cpfsupervisor,
                     true
                 );
+
                 $this->dom->addChild(
                     $supervisorEstagio,
                     "nmSuperv",
-                    $this->std->estagiario->supervisor->nmsuperv,
+                    $stdEstagiario->supervisorestagio->nmsuperv,
                     true
                 );
+
+
                 $infoEstagiario->appendChild($supervisorEstagio);
             }
+
             $infoComplementares->appendChild($infoEstagiario);
         }
+
+        $infoTSVAlteracao->appendChild($infoComplementares);
         $this->node->appendChild($infoTSVAlteracao);
+
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();

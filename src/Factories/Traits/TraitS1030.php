@@ -37,19 +37,19 @@ trait TraitS1030
         $this->dom->addChild(
             $ide,
             "codCargo",
-            $this->std->codcargo,
+            $this->std->idecargo->codcargo,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $this->std->idecargo->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->idecargo->fimvalid) ? $this->std->idecargo->fimvalid : null,
             false
         );
 
@@ -93,19 +93,19 @@ trait TraitS1030
                 $this->dom->addChild(
                     $lei,
                     "nrLei",
-                    $da->cargopublico->nrlei,
+                    $da->cargopublico->leicargo->nrlei,
                     true
                 );
                 $this->dom->addChild(
                     $lei,
                     "dtLei",
-                    $da->cargopublico->dtlei,
+                    $da->cargopublico->leicargo->dtlei,
                     true
                 );
                 $this->dom->addChild(
                     $lei,
                     "sitCargo",
-                    $da->cargopublico->sitcargo,
+                    $da->cargopublico->leicargo->sitcargo,
                     true
                 );
                 $cpub->appendChild($lei);
@@ -136,16 +136,19 @@ trait TraitS1030
         if ($this->std->modo == 'INC') {
             $node = $this->dom->createElement("inclusao");
             $node->appendChild($ide);
-            isset($dados) ? $node->appendChild($dados) : null;
+            $node->appendChild($dados);
         } elseif ($this->std->modo == 'ALT') {
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
-            isset($dados) ? $node->appendChild($dados): null;
-            isset($nova) ? $node->appendChild($nova): null;
+            $node->appendChild($dados);
+            if (isset($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
+
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

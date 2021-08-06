@@ -9,9 +9,18 @@ trait TraitS2250
      */
     protected function toNode250()
     {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+        $evtid       = FactoryId::build(
+            $this->tpInsc,
+            $this->nrInsc,
+            $this->date,
+            $this->sequencial
+        );
+        $eSocial     = $this->dom->getElementsByTagName("eSocial")->item(0);
+        $evtAvPrevio = $this->dom->createElement("evtAvPrevio");
+        $att         = $this->dom->createAttribute('Id');
+        $att->value  = $evtid;
+        $evtAvPrevio->appendChild($att);
+
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -43,7 +52,23 @@ trait TraitS2250
             $this->verProc,
             true
         );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        $evtAvPrevio->appendChild($ideEvento);
+
+        $ideEmpregador = $this->dom->createElement("ideEmpregador");
+        $this->dom->addChild(
+            $ideEmpregador,
+            "tpInsc",
+            $this->tpInsc,
+            true
+        );
+        $this->dom->addChild(
+            $ideEmpregador,
+            "nrInsc",
+            $this->nrInsc,
+            true
+        );
+        $evtAvPrevio->appendChild($ideEmpregador);
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
             $ideVinculo,
@@ -63,37 +88,45 @@ trait TraitS2250
             $this->std->idevinculo->matricula,
             true
         );
-        $this->node->appendChild($ideVinculo);
+        $evtAvPrevio->appendChild($ideVinculo);
+
         $infoAvPrevio = $this->dom->createElement("infoAvPrevio");
-        if (! empty($this->std->infoavprevio->detavprevio)) {
+
+
+        if (isset($this->std->infoavprevio->detavprevio)) {
+
             $detAvPrevio = $this->dom->createElement("detAvPrevio");
+
             $this->dom->addChild(
-                $detAvPrevio,
-                "dtAvPrv",
-                $this->std->infoavprevio->detavprevio->dtavprv,
-                true
+              $detAvPrevio,
+              "dtAvPrv",
+              $this->std->infoavprevio->detavprevio->dtavprv,
+              true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "dtPrevDeslig",
-                $this->std->infoavprevio->detavprevio->dtprevdeslig,
-                true
+              $detAvPrevio,
+              "dtPrevDeslig",
+              $this->std->infoavprevio->detavprevio->dtprevdeslig,
+              true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "tpAvPrevio",
-                $this->std->infoavprevio->detavprevio->tpavprevio,
-                true
+              $detAvPrevio,
+              "tpAvPrevio",
+              $this->std->infoavprevio->detavprevio->tpavprevio,
+              true
             );
             $this->dom->addChild(
-                $detAvPrevio,
-                "observacao",
-                ! empty($this->std->infoavprevio->detavprevio->observacao) ?
-                    $this->std->infoavprevio->detavprevio->observacao : null,
-                false
+              $detAvPrevio,
+              "observacao",
+              ! empty($this->std->infoavprevio->detavprevio->observacao) ? $this->std->infoavprevio->detavprevio->observacao : null,
+              false
             );
+
             $infoAvPrevio->appendChild($detAvPrevio);
         }
+
+        $evtAvPrevio->appendChild($infoAvPrevio);
+
         if (! empty($this->std->infoavprevio->cancavprevio)) {
             $cancAvPrevio = $this->dom->createElement("cancAvPrevio");
             $this->dom->addChild(
@@ -105,8 +138,7 @@ trait TraitS2250
             $this->dom->addChild(
                 $cancAvPrevio,
                 "observacao",
-                ! empty($this->std->infoavprevio->cancavprevio->observacao) ?
-                    $this->std->infoavprevio->cancavprevio->observacao : null,
+                ! empty($this->std->infoavprevio->cancavprevio->observacao) ? $this->std->infoavprevio->cancavprevio->observacao : null,
                 false
             );
             $this->dom->addChild(
@@ -117,10 +149,9 @@ trait TraitS2250
             );
             $infoAvPrevio->appendChild($cancAvPrevio);
         }
-        $this->node->appendChild($infoAvPrevio);
-        $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
+
+        $eSocial->appendChild($evtAvPrevio);
+        $this->sign($eSocial);
     }
     
     /**

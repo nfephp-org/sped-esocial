@@ -9,9 +9,23 @@ trait TraitS1270
      */
     protected function toNode250()
     {
+        $evtid          = FactoryId::build(
+            $this->tpInsc,
+            $this->nrInsc,
+            $this->date,
+            $this->sequencial
+        );
+
+        $evtContratAvNP = $this->dom->createElement("evtContratAvNP");
+
+        $att            = $this->dom->createAttribute('Id');
+
+        $att->value     = $evtid;
+
+        $evtContratAvNP->appendChild($att);
+
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -55,6 +69,7 @@ trait TraitS1270
             $this->verProc,
             true
         );
+
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         if (isset($this->std->remunavnp)) {
@@ -134,8 +149,8 @@ trait TraitS1270
                 $this->node->appendChild($remunAvNP);
             }
         }
+
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
     

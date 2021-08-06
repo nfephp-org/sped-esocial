@@ -33,27 +33,28 @@ trait TraitS1040
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
+        $ideFuncao =  $this->std->idefuncao;
         $ide = $this->dom->createElement("ideFuncao");
         $this->dom->addChild(
             $ide,
             "codFuncao",
-            $this->std->codfuncao,
+            $ideFuncao->codfuncao,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $ideFuncao->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($ideFuncao->fimvalid) ? $ideFuncao->fimvalid : null,
             false
         );
-
-        $dados = null;
+        
+        
         if (!empty($this->std->dadosfuncao)) {
             $da = $this->std->dadosfuncao;
             $dados = $this->dom->createElement("dadosFuncao");
@@ -70,7 +71,7 @@ trait TraitS1040
                 true
             );
         }
-        $nova = null;
+        
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -88,7 +89,7 @@ trait TraitS1040
                 false
             );
         }
-
+        
         $info = $this->dom->createElement("infoFuncao");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -99,12 +100,14 @@ trait TraitS1040
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (!empty($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-
+        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

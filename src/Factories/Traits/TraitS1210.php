@@ -22,7 +22,7 @@ trait TraitS1210
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -56,24 +56,27 @@ trait TraitS1210
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
         $ideBenef = $this->dom->createElement("ideBenef");
         $this->dom->addChild(
             $ideBenef,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $this->std->idebenef->cpfbenef,
             true
         );
-        if (!empty($this->std->deps->vrdeddep)) {
+        
+        if (!empty($this->std->idebenef->deps->vrdeddep)) {
             $deps = $this->dom->createElement("deps");
             $this->dom->addChild(
                 $deps,
                 "vrDedDep",
-                $this->std->deps->vrdeddep,
+                $this->std->idebenef->deps->vrdeddep,
                 true
             );
             $ideBenef->appendChild($deps);
         }
-        foreach ($this->std->infopgto as $pgto) {
+        
+        foreach ($this->std->idebenef->infopgto as $pgto) {
             $infoPgto = $this->dom->createElement("infoPgto");
             $this->dom->addChild(
                 $infoPgto,
@@ -93,6 +96,7 @@ trait TraitS1210
                 $pgto->indresbr,
                 true
             );
+            
             if (!empty($pgto->detpgtofl)) {
                 foreach ($pgto->detpgtofl as $pgtofl) {
                     $detPgtoFl = $this->dom->createElement("detPgtoFl");
@@ -128,7 +132,7 @@ trait TraitS1210
                     );
                     if (!empty($pgtofl->retpgtotot)) {
                         foreach ($pgtofl->retpgtotot as $pg) {
-                            $retPgtoTot = $this->dom->createElement("retPgtoTot");
+                            $retPgtoTot  = $this->dom->createElement("retPgtoTot");
                             $this->dom->addChild(
                                 $retPgtoTot,
                                 "codRubr",
@@ -174,26 +178,26 @@ trait TraitS1210
                                         $pa->cpfbenef,
                                         true
                                     );
-                                    $this->dom->addChild(
-                                        $penAlim,
-                                        "dtNasctoBenef",
-                                        !empty($pa->dtnasctobenef) ? $pa->dtnasctobenef : null,
-                                        false
-                                    );
-                                    $this->dom->addChild(
-                                        $penAlim,
-                                        "nmBenefic",
-                                        $pa->nmbenefic,
-                                        true
-                                    );
-                                    $this->dom->addChild(
-                                        $penAlim,
-                                        "vlrPensao",
-                                        $pa->vlrpensao,
-                                        true
-                                    );
-                                    $retPgtoTot->appendChild($penAlim);
-                                    $penAlim = null;
+                                        $this->dom->addChild(
+                                            $penAlim,
+                                            "dtNasctoBenef",
+                                            !empty($pa->dtnasctobenef) ? $pa->dtnasctobenef : null,
+                                            true
+                                        );
+                                        $this->dom->addChild(
+                                            $penAlim,
+                                            "nmBenefic",
+                                            $pa->nmbenefic,
+                                            true
+                                        );
+                                        $this->dom->addChild(
+                                            $penAlim,
+                                            "vlrPensao",
+                                            $pa->vlrpensao,
+                                            true
+                                        );
+                                        $retPgtoTot->appendChild($penAlim);
+                                        $penAlim = null;
                                 }
                             }
                             $detPgtoFl->appendChild($retPgtoTot);
@@ -381,8 +385,8 @@ trait TraitS1210
                     $this->dom->addChild(
                         $detPgtoFer,
                         "matricula",
-                        !empty($rpt->matricula) ? $rpt->matricula : null,
-                        false
+                        $rpt->matricula,
+                        true
                     );
                     $this->dom->addChild(
                         $detPgtoFer,
@@ -454,7 +458,7 @@ trait TraitS1210
                                         $penAlim,
                                         "dtNasctoBenef",
                                         !empty($xf->dtnasctobenef) ? $xf->dtnasctobenef : null,
-                                        false
+                                        true
                                     );
                                     $this->dom->addChild(
                                         $penAlim,
@@ -516,19 +520,19 @@ trait TraitS1210
                 $this->dom->addChild(
                     $idePais,
                     "codPais",
-                    $pgto->idepgtoext->codpais,
+                    $pgto->idepgtoext->idepais->codpais,
                     true
                 );
                 $this->dom->addChild(
                     $idePais,
                     "indNIF",
-                    $pgto->idepgtoext->indnif,
+                    $pgto->idepgtoext->idepais->indnif,
                     true
                 );
                 $this->dom->addChild(
                     $idePais,
                     "nifBenef",
-                    !empty($pgto->idepgtoext->nifbenef) ? $pgto->idepgtoext->nifbenef : null,
+                    !empty($pgto->idepgtoext->idepais->nifbenef) ? $pgto->idepgtoext->idepais->nifbenef : null,
                     false
                 );
                 $endExt = $this->dom->createElement("endExt");
@@ -575,7 +579,6 @@ trait TraitS1210
             $ideBenef->appendChild($infoPgto);
             $infoPgto = null;
         }
-
         $this->node->appendChild($ideBenef);
         //finalização do xml
         $this->eSocial->appendChild($this->node);

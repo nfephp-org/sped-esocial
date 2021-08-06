@@ -56,61 +56,62 @@ trait TraitS1200
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
         $ide = $this->dom->createElement("ideTrabalhador");
         $this->dom->addChild(
             $ide,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->idetrabalhador->cpftrab,
             true
         );
         $this->dom->addChild(
             $ide,
             "nisTrab",
-            !empty($this->std->nistrab) ? $this->std->nistrab : null,
+            !empty($this->std->idetrabalhador->nistrab) ? $this->std->idetrabalhador->nistrab : null,
             false
         );
-        if (!empty($this->std->infomv)) {
+        
+        if (!empty($this->std->idetrabalhador->infomv)) {
             $info = $this->dom->createElement("infoMV");
             $this->dom->addChild(
                 $info,
                 "indMV",
-                $this->std->infomv->indmv,
+                $this->std->idetrabalhador->infomv->indmv,
                 true
             );
-            if (!empty($this->std->infomv->remunoutrempr)) {
-                foreach ($this->std->infomv->remunoutrempr as $remo) {
-                    $remunOutrEmpr = $this->dom->createElement("remunOutrEmpr");
-                    $this->dom->addChild(
-                        $remunOutrEmpr,
-                        "tpInsc",
-                        $remo->tpinsc,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $remunOutrEmpr,
-                        "nrInsc",
-                        $remo->nrinsc,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $remunOutrEmpr,
-                        "codCateg",
-                        $remo->codcateg,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $remunOutrEmpr,
-                        "vlrRemunOE",
-                        $remo->vlrremunoe,
-                        true
-                    );
-                    $info->appendChild($remunOutrEmpr);
-                }
-                $ide->appendChild($info);
+            foreach ($this->std->idetrabalhador->infomv->remunoutrempr as $remo) {
+                $remunOutrEmpr = $this->dom->createElement("remunOutrEmpr");
+                $this->dom->addChild(
+                    $remunOutrEmpr,
+                    "tpInsc",
+                    $remo->tpinsc,
+                    true
+                );
+                $this->dom->addChild(
+                    $remunOutrEmpr,
+                    "nrInsc",
+                    $remo->nrinsc,
+                    true
+                );
+                $this->dom->addChild(
+                    $remunOutrEmpr,
+                    "codCateg",
+                    $remo->codcateg,
+                    true
+                );
+                $this->dom->addChild(
+                    $remunOutrEmpr,
+                    "vlrRemunOE",
+                    $remo->vlrremunoe,
+                    true
+                );
+                $info->appendChild($remunOutrEmpr);
             }
+            $ide->appendChild($info);
         }
-        if (!empty($this->std->infocomplem)) {
-            $ic = $this->std->infocomplem;
+        
+        if (!empty($this->std->idetrabalhador->infocomplem)) {
+            $ic = $this->std->idetrabalhador->infocomplem;
             $infoComplem = $this->dom->createElement("infoComplem");
             $this->dom->addChild(
                 $infoComplem,
@@ -124,14 +125,26 @@ trait TraitS1200
                 $ic->dtnascto,
                 true
             );
+            $this->dom->addChild(
+                $infoComplem,
+                "codCBO",
+                $ic->codcbo,
+                true
+            );
+            $this->dom->addChild(
+                $infoComplem,
+                "natAtividade",
+                !empty($ic->natatividade) ? $ic->natatividade : null,
+                false
+            );
+            $this->dom->addChild(
+                $infoComplem,
+                "qtdDiasTrab",
+                !empty($ic->qtddiastrab) ? $ic->qtddiastrab : null,
+                false
+            );
             if (!empty($ic->sucessaovinc)) {
                 $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
-                $this->dom->addChild(
-                    $sucessaoVinc,
-                    "tpInscAnt",
-                    $ic->sucessaovinc->tpinscant,
-                    true
-                );
                 $this->dom->addChild(
                     $sucessaoVinc,
                     "cnpjEmpregAnt",
@@ -160,8 +173,9 @@ trait TraitS1200
             }
             $ide->appendChild($infoComplem);
         }
-        if (!empty($this->std->procjudtrab)) {
-            foreach ($this->std->procjudtrab as $proc) {
+        
+        if (!empty($this->std->idetrabalhador->procjudtrab)) {
+            foreach ($this->std->idetrabalhador->procjudtrab as $proc) {
                 $procJudTrab = $this->dom->createElement("procJudTrab");
                 $this->dom->addChild(
                     $procJudTrab,
@@ -179,22 +193,14 @@ trait TraitS1200
                     $procJudTrab,
                     "codSusp",
                     !empty($proc->codsusp) ? $proc->codsusp : null,
-                    false
+                    true
                 );
                 $ide->appendChild($procJudTrab);
             }
         }
-        if (!empty($this->std->infointerm)) {
-            $infoInterm = $this->dom->createElement("infoInterm");
-            $this->dom->addChild(
-                $infoInterm,
-                "qtdDiasInterm",
-                $this->std->infointerm->qtddiasinterm,
-                true
-            );
-            $ide->appendChild($infoInterm);
-        }
+        
         $this->node->appendChild($ide);
+        
         foreach ($this->std->dmdev as $dm) {
             $dmDev = $this->dom->createElement("dmDev");
             $this->dom->addChild(
@@ -209,9 +215,9 @@ trait TraitS1200
                 $dm->codcateg,
                 true
             );
-            if (!empty($dm->ideestablot)) {
+            if (!empty($dm->infoperapur->ideestablot)) {
                 $infoPerApur = $this->dom->createElement("infoPerApur");
-                foreach ($dm->ideestablot as $idsl) {
+                foreach ($dm->infoperapur->ideestablot as $idsl) {
                     $ideEstabLot = $this->dom->createElement("ideEstabLot");
                     $this->dom->addChild(
                         $ideEstabLot,
@@ -291,9 +297,10 @@ trait TraitS1200
                             );
                             $remunPerApur->appendChild($itensRemun);
                         }
-                        if (!empty($rpa->detoper)) {
+                        
+                        if (!empty($rpa->infosaudecolet->detoper)) {
                             $infoSaudeColet = $this->dom->createElement("infoSaudeColet");
-                            foreach ($rpa->detoper as $dop) {
+                            foreach ($rpa->infosaudecolet->detoper as $dop) {
                                 $detOper = $this->dom->createElement("detOper");
                                 $this->dom->addChild(
                                     $detOper,
@@ -363,28 +370,14 @@ trait TraitS1200
                             );
                             $remunPerApur->appendChild($infoAgNocivo);
                         }
-
-                        if (!empty($rpa->infotrabinterm)) {
-                            foreach ($rpa->infotrabinterm as $iti) {
-                                $infoTrabInterm = $this->dom->createElement("infoTrabInterm");
-                                $this->dom->addChild(
-                                    $infoTrabInterm,
-                                    "codConv",
-                                    $iti->codconv,
-                                    true
-                                );
-                                $remunPerApur->appendChild($infoTrabInterm);
-                            }
-                        }
-
                         $ideEstabLot->appendChild($remunPerApur);
                     }
                     $infoPerApur->appendChild($ideEstabLot);
                 }
                 $dmDev->appendChild($infoPerApur);
-                if (!empty($dm->ideadc)) {
+                if (!empty($dm->infoperant->ideadc)) {
                     $infoPerAnt = $this->dom->createElement("infoPerAnt");
-                    foreach ($dm->ideadc as $adc) {
+                    foreach ($dm->infoperant->ideadc as $adc) {
                         $ideADC = $this->dom->createElement("ideADC");
                         $this->dom->addChild(
                             $ideADC,
@@ -514,49 +507,16 @@ trait TraitS1200
                                         );
                                         $remunPerAnt->appendChild($infoAgNocivo);
                                     }
-                                    if (!empty($rpr->infotrabinterm)) {
-                                        foreach ($rpr->infotrabinterm as $iti) {
-                                            $infoTrabInterm = $this->dom->createElement("infoTrabInterm");
-                                            $this->dom->addChild(
-                                                $infoTrabInterm,
-                                                "codConv",
-                                                $iti->codconv,
-                                                true
-                                            );
-                                            $remunPerAnt->appendChild($infoTrabInterm);
-                                        }
-                                    }
                                     $ideEstabLot->appendChild($remunPerAnt);
                                 }
                                 $idePeriodo->appendChild($ideEstabLot);
                             }
                             $ideADC->appendChild($idePeriodo);
                         }
+                        
                         $infoPerAnt->appendChild($ideADC);
                     }
                     $dmDev->appendChild($infoPerAnt);
-                }
-                if (!empty($dm->infocomplcont)) {
-                    $infoComplCont = $this->dom->createElement("infoComplCont");
-                    $this->dom->addChild(
-                        $infoComplCont,
-                        "codCBO",
-                        $dm->infocomplcont->codcbo,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $infoComplCont,
-                        "natAtividade",
-                        !empty($dm->infocomplcont->natatividade) ? $dm->infocomplcont->natatividade : null,
-                        false
-                    );
-                    $this->dom->addChild(
-                        $infoComplCont,
-                        "qtdDiasTrab",
-                        !empty($dm->infocomplcont->qtddiastrab) ? $dm->infocomplcont->qtddiastrab : null,
-                        false
-                    );
-                    $dmDev->appendChild($infoComplCont);
                 }
             }
             $this->node->appendChild($dmDev);

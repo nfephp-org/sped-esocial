@@ -175,8 +175,6 @@ abstract class Factory
         //convert all data fields to lower case
         $this->std = $this->propertiesToLower($std);
         //validate input data with schema
-        //convert all data fields to lower case
-        $this->std = $this->propertiesToLower($std);
         if (!isset($stdConf->validaJsonSchema) || $stdConf->validaJsonSchema === true) {
             //validate input data with schema
             $this->validInputData($this->std);

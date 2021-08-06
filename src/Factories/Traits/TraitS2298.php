@@ -9,104 +9,118 @@ trait TraitS2298
      */
     protected function toNode250()
     {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
-        $ideEvento = $this->dom->createElement("ideEvento");
+        $ideEvento = $this->dom->createElement('ideEvento');
+
         $this->dom->addChild(
             $ideEvento,
-            "indRetif",
+            'indRetif',
             $this->std->indretif,
             true
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            'nrRecibo',
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "tpAmb",
+            'tpAmb',
             $this->tpAmb,
             true
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "procEmi",
+            'procEmi',
             $this->procEmi,
             true
         );
+
         $this->dom->addChild(
             $ideEvento,
-            "verProc",
+            'verProc',
             $this->verProc,
             true
         );
+
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        //nodes do evento
-        $ideVinculo = $this->dom->createElement("ideVinculo");
+
+        $ideVinculo = $this->dom->createElement('ideVinculo');
+
         $this->dom->addChild(
             $ideVinculo,
-            "cpfTrab",
-            $this->std->cpftrab,
+            'cpfTrab',
+            $this->std->idevinculo->cpftrab,
             true
         );
+
         $this->dom->addChild(
             $ideVinculo,
-            "nisTrab",
-            $this->std->nistrab,
+            'nisTrab',
+            $this->std->idevinculo->nistrab,
             true
         );
+
         $this->dom->addChild(
             $ideVinculo,
-            "matricula",
-            $this->std->matricula,
+            'matricula',
+            $this->std->idevinculo->matricula,
             true
         );
+
         $this->node->appendChild($ideVinculo);
 
-        $infoReintegr = $this->dom->createElement("infoReintegr");
+        $infoReintegr = $this->dom->createElement('infoReintegr');
+
         $this->dom->addChild(
             $infoReintegr,
-            "tpReint",
-            $this->std->tpreint,
+            'tpReint',
+            $this->std->inforeintegr->tpreint,
             true
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "nrProcJud",
-            ! empty($this->std->nrprocjud) ? $this->std->nrprocjud : null,
+            'nrProcJud',
+            !empty($this->std->inforeintegr->nrprocjud) ? $this->std->inforeintegr->nrprocjud : null,
             false
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "nrLeiAnistia",
-            ! empty($this->std->nrleianistia) ? $this->std->nrleianistia : null,
+            'nrLeiAnistia',
+            !empty($this->std->inforeintegr->nrleianistia) ? $this->std->inforeintegr->nrleianistia : null,
             false
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "dtEfetRetorno",
-            $this->std->dtefetretorno,
+            'dtEfetRetorno',
+            $this->std->inforeintegr->dtefetretorno,
             true
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "dtEfeito",
-            $this->std->dtefeito,
+            'dtEfeito',
+            $this->std->inforeintegr->dtefeito,
             true
         );
+
         $this->dom->addChild(
             $infoReintegr,
-            "indPagtoJuizo",
-            $this->std->indpagtojuizo,
+            'indPagtoJuizo',
+            $this->std->inforeintegr->indpagtojuizo,
             true
         );
+
         $this->node->appendChild($infoReintegr);
-        //finalização do xml
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
     

@@ -37,28 +37,29 @@ trait TraitS1010
         $infoRubrica = $this->dom->createElement("infoRubrica");
         //tag comum a todos os modos
         $ideRubrica = $this->dom->createElement("ideRubrica");
+        $stdIdeRubrica = $this->std->iderubrica;
         $this->dom->addChild(
             $ideRubrica,
             "codRubr",
-            $this->std->codrubr,
+            $stdIdeRubrica->codrubr,
             true
         );
         $this->dom->addChild(
             $ideRubrica,
             "ideTabRubr",
-            $this->std->idetabrubr,
+            $stdIdeRubrica->idetabrubr,
             true
         );
         $this->dom->addChild(
             $ideRubrica,
             "iniValid",
-            $this->std->inivalid,
+            $stdIdeRubrica->inivalid,
             true
         );
         $this->dom->addChild(
             $ideRubrica,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($stdIdeRubrica->fimvalid) ? $stdIdeRubrica->fimvalid : null,
             false
         );
         //seleção do modo
@@ -71,7 +72,7 @@ trait TraitS1010
         }
         $node->appendChild($ideRubrica);
 
-        if (!empty($this->std->dadosrubrica) && $this->std->modo != 'EXC') {
+        if (! empty($this->std->dadosrubrica)) {
             $dadosRubrica = $this->dom->createElement("dadosRubrica");
             $this->dom->addChild(
                 $dadosRubrica,
@@ -200,16 +201,16 @@ trait TraitS1010
             $node->appendChild($dadosRubrica);
         }
         if (! empty($this->std->novavalidade) && $this->std->modo == 'ALT') {
-            $newVal = $this->std->novavalidade;
+            $newVal       = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
-                $novaValidade,
+                $ideRubrica,
                 "iniValid",
                 $newVal->inivalid,
                 true
             );
             $this->dom->addChild(
-                $novaValidade,
+                $ideRubrica,
                 "fimValid",
                 ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false

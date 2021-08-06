@@ -32,26 +32,27 @@ trait TraitS1050
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
         $ide = $this->dom->createElement("ideHorContratual");
         $this->dom->addChild(
             $ide,
             "codHorContrat",
-            $this->std->codhorcontrat,
+            $this->std->idehorcontratual->codhorcontrat,
             true
         );
         $this->dom->addChild(
             $ide,
             "iniValid",
-            $this->std->inivalid,
+            $this->std->idehorcontratual->inivalid,
             true
         );
         $this->dom->addChild(
             $ide,
             "fimValid",
-            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            ! empty($this->std->idehorcontratual->fimvalid) ? $this->std->idehorcontratual->fimvalid : null,
             false
         );
-        $dados = '';
+        
         if (!empty($this->std->dadoshorcontratual)) {
             $da = $this->std->dadoshorcontratual;
             $dados = $this->dom->createElement("dadosHorContratual");
@@ -79,8 +80,8 @@ trait TraitS1050
                 $da->perhorflexivel,
                 true
             );
-            if (!empty($da->horariointervalo)) {
-                foreach ($da->horariointervalo as $inter) {
+            if (!empty($da->horarioIntervalo)) {
+                foreach ($da->horarioIntervalo as $inter) {
                     $intervalo = $this->dom->createElement("horarioIntervalo");
                     $this->dom->addChild(
                         $intervalo,
@@ -110,6 +111,7 @@ trait TraitS1050
                 }
             }
         }
+        
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -127,6 +129,7 @@ trait TraitS1050
                 false
             );
         }
+        
         $info = $this->dom->createElement("infoHorContratual");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -144,6 +147,7 @@ trait TraitS1050
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
+        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

@@ -20,7 +20,7 @@ trait TraitS2206
         $this->dom->addChild(
             $ideEvento,
             "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
             false
         );
         $this->dom->addChild(
@@ -42,60 +42,62 @@ trait TraitS2206
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
+
         $this->dom->addChild(
             $ideVinculo,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->idevinculo->cpftrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "nisTrab",
-            $this->std->nistrab,
+            $this->std->idevinculo->nistrab,
             true
         );
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            $this->std->matricula,
+            $this->std->idevinculo->matricula,
             true
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $altContratual = $this->dom->createElement("altContratual");
+
         $this->dom->addChild(
             $altContratual,
             "dtAlteracao",
-            $this->std->dtalteracao,
+            $this->std->altcontratual->dtalteracao,
             true
         );
         $this->dom->addChild(
             $altContratual,
             "dtEf",
-            !empty($this->std->dtef) ? $this->std->dtef : null,
+            !empty($this->std->altcontratual->dtef) ? $this->std->altcontratual->dtef : null,
             false
         );
+
         $this->dom->addChild(
             $altContratual,
             "dscAlt",
-            !empty($this->std->dscalt) ? $this->std->dscalt : null,
+            !empty($this->std->altcontratual->dscalt) ? $this->std->altcontratual->dscalt : null,
             false
         );
-        
+
         $vinculo = $this->dom->createElement("vinculo");
         $this->dom->addChild(
             $vinculo,
             "tpRegPrev",
-            $this->std->tpregprev,
+            $this->std->altcontratual->vinculo->tpregprev,
             true
         );
         $altContratual->appendChild($vinculo);
-
         $infoRegimeTrab = $this->dom->createElement("infoRegimeTrab");
-        if (!empty($this->std->infoceletista)) {
-            $ct = $this->std->infoceletista;
+        if (!empty($this->std->altcontratual->inforegimetrab->infoceletista)) {
+            $ct = $this->std->altcontratual->inforegimetrab->infoceletista;
             $infoCeletista = $this->dom->createElement("infoCeletista");
             $this->dom->addChild(
                 $infoCeletista,
@@ -121,6 +123,7 @@ trait TraitS2206
                 $ct->cnpjsindcategprof,
                 true
             );
+
             if (!empty($ct->trabtemp)) {
                 $trabTemp = $this->dom->createElement("trabTemp");
                 $this->dom->addChild(
@@ -131,6 +134,7 @@ trait TraitS2206
                 );
                 $infoCeletista->appendChild($trabTemp);
             }
+
             if (!empty($ct->aprend)) {
                 $aprend = $this->dom->createElement("aprend");
                 $this->dom->addChild(
@@ -147,22 +151,23 @@ trait TraitS2206
                 );
                 $infoCeletista->appendChild($aprend);
             }
+
             $infoRegimeTrab->appendChild($infoCeletista);
-        } elseif (!empty($this->std->infoestatutario)) {
-            $ct = $this->std->infoestatutario;
+        } elseif (!empty($this->std->altcontratual->inforegimetrab->infoestatutario)) {
+            $ct = $this->std->altcontratual->inforegimetrab->infoestatutario;
             $infoEstatutario = $this->dom->createElement("infoEstatutario");
             $this->dom->addChild(
                 $infoEstatutario,
                 "tpPlanRP",
-                $ct->tpPlanRP,
+                $ct->tpplanrp,
                 true
             );
             $infoRegimeTrab->appendChild($infoEstatutario);
         }
         $altContratual->appendChild($infoRegimeTrab);
-        
+
         $infoContrato = $this->dom->createElement("infoContrato");
-        $ct = $this->std->infocontrato;
+        $ct = $this->std->altcontratual->infocontrato;
         $this->dom->addChild(
             $infoContrato,
             "codCargo",
@@ -193,23 +198,24 @@ trait TraitS2206
             !empty($ct->dtingrcarr) ? $ct->dtingrcarr : null,
             false
         );
+
         $remuneracao = $this->dom->createElement("remuneracao");
         $this->dom->addChild(
             $remuneracao,
             "vrSalFx",
-            $ct->vrsalfx,
+            $ct->remuneracao->vrsalfx,
             true
         );
         $this->dom->addChild(
             $remuneracao,
             "undSalFixo",
-            $ct->undsalfixo,
+            $ct->remuneracao->undsalfixo,
             true
         );
         $this->dom->addChild(
             $remuneracao,
             "dscSalVar",
-            !empty($ct->dscsalvar) ? $ct->dscsalvar : null,
+            !empty($ct->remuneracao->dscsalvar) ? $ct->remuneracao->dscsalvar : null,
             false
         );
         $infoContrato->appendChild($remuneracao);
@@ -217,26 +223,28 @@ trait TraitS2206
         $this->dom->addChild(
             $duracao,
             "tpContr",
-            $ct->tpcontr,
+            $ct->duracao->tpcontr,
             true
         );
         $this->dom->addChild(
             $duracao,
             "dtTerm",
-            !empty($ct->dtterm) ? $ct->dtterm : null,
+            !empty($ct->duracao->dtterm) ? $ct->duracao->dtterm : null,
             false
         );
+
         $this->dom->addChild(
             $duracao,
-            "objDet",
-            !empty($ct->objdet) ? $ct->objdet : null,
+            'objDet',
+            $ct->duracao->objdet ?? null,
             false
         );
+
         $infoContrato->appendChild($duracao);
-        
+
         $localTrabalho = $this->dom->createElement("localTrabalho");
-        if (!empty($this->std->localtrabgeral)) {
-            $tg = $this->std->localtrabgeral;
+        if (!empty($this->std->altcontratual->infocontrato->localtrabalho->localtrabgeral)) {
+            $tg = $this->std->altcontratual->infocontrato->localtrabalho->localtrabgeral;
             $localTrabGeral = $this->dom->createElement("localTrabGeral");
             $this->dom->addChild(
                 $localTrabGeral,
@@ -257,8 +265,8 @@ trait TraitS2206
                 false
             );
             $localTrabalho->appendChild($localTrabGeral);
-        } elseif (!empty($this->std->localtrabdom)) {
-            $tg = $this->std->localtrabdom;
+        } elseif (!empty($this->std->altcontratual->infocontrato->localtrabalho->localtrabdom)) {
+            $tg = $this->std->altcontratual->infocontrato->localtrabalho->localtrabdom;
             $localTrabDom = $this->dom->createElement("localTrabDom");
             $this->dom->addChild(
                 $localTrabDom,
@@ -311,9 +319,9 @@ trait TraitS2206
             $localTrabalho->appendChild($localTrabDom);
         }
         $infoContrato->appendChild($localTrabalho);
-        
-        if (!empty($this->std->horcontratual)) {
-            $hc = $this->std->horcontratual;
+
+        if (!empty($this->std->altcontratual->infocontrato->horcontratual)) {
+            $hc = $this->std->altcontratual->infocontrato->horcontratual;
             $horContratual = $this->dom->createElement("horContratual");
             $this->dom->addChild(
                 $horContratual,
@@ -359,9 +367,9 @@ trait TraitS2206
             }
             $infoContrato->appendChild($horContratual);
         }
-        
-        if (!empty($this->std->filiacaosindical)) {
-            foreach ($this->std->filiacaosindical as $fs) {
+
+        if (!empty($this->std->altcontratual->infocontrato->filiacaosindical)) {
+            foreach ($this->std->altcontratual->infocontrato->filiacaosindical as $fs) {
                 $filiacaoSindical = $this->dom->createElement("filiacaoSindical");
                 $this->dom->addChild(
                     $filiacaoSindical,
@@ -372,20 +380,20 @@ trait TraitS2206
                 $infoContrato->appendChild($filiacaoSindical);
             }
         }
-        
-        if (!empty($this->std->alvarajudicial)) {
+
+        if (!empty($this->std->altcontratual->infocontrato->alvarajudicial)) {
             $alvaraJudicial = $this->dom->createElement("alvaraJudicial");
             $this->dom->addChild(
                 $alvaraJudicial,
                 "nrProcJud",
-                $this->std->alvarajudicial->nrprocjud,
+                $this->std->altcontratual->infocontrato->alvarajudicial->nrprocjud,
                 true
             );
             $infoContrato->appendChild($alvaraJudicial);
         }
-        
-        if (!empty($this->std->observacoes)) {
-            foreach ($this->std->observacoes as $obs) {
+
+        if (!empty($this->std->altcontratual->infocontrato->observacoes)) {
+            foreach ($this->std->altcontratual->infocontrato->observacoes as $obs) {
                 $observacoes = $this->dom->createElement("observacoes");
                 $this->dom->addChild(
                     $observacoes,
@@ -396,17 +404,18 @@ trait TraitS2206
                 $infoContrato->appendChild($observacoes);
             }
         }
-        
-        if (!empty($this->std->servpubl)) {
+
+        if (!empty($this->std->altcontratual->infocontrato->servpubl)) {
             $servPubl = $this->dom->createElement("servPubl");
             $this->dom->addChild(
                 $servPubl,
                 "mtvAlter",
-                $this->std->servpubl->mtvalter,
+                $this->std->altcontratual->infocontrato->servpubl->mtvalter,
                 true
             );
             $infoContrato->appendChild($servPubl);
         }
+
         $altContratual->appendChild($infoContrato);
         $this->node->appendChild($altContratual);
         //finalização do xml

@@ -10,6 +10,7 @@ trait TraitS2190
     protected function toNode250()
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
         //o idEvento pode variar de evento para evento
         //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
@@ -32,30 +33,31 @@ trait TraitS2190
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
+
         //tag deste evento em particular
         $infoRegPrelim = $this->dom->createElement("infoRegPrelim");
         $this->dom->addChild(
             $infoRegPrelim,
             "cpfTrab",
-            $this->std->cpftrab,
+            $this->std->inforegprelim->cpftrab,
             true
         );
         $this->dom->addChild(
             $infoRegPrelim,
             "dtNascto",
-            $this->std->dtnascto,
+            $this->std->inforegprelim->dtnascto,
             true
         );
         $this->dom->addChild(
             $infoRegPrelim,
             "dtAdm",
-            $this->std->dtadm,
+            $this->std->inforegprelim->dtadm,
             true
         );
         $this->node->appendChild($infoRegPrelim);
+
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
     

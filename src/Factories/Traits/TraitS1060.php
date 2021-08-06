@@ -32,7 +32,7 @@ trait TraitS1060
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-
+        
         $ide = $this->dom->createElement("ideAmbiente");
         $this->dom->addChild(
             $ide,
@@ -56,13 +56,6 @@ trait TraitS1060
         if (!empty($this->std->dadosambiente)) {
             $da = $this->std->dadosambiente;
             $dados = $this->dom->createElement("dadosAmbiente");
-            //incluso em 2.5.0
-            $this->dom->addChild(
-                $dados,
-                "nmAmb",
-                !empty($da->nmamb) ? $da->nmamb : null,
-                !empty($da->nmamb) ? true : false
-            );
             $this->dom->addChild(
                 $dados,
                 "dscAmb",
@@ -78,22 +71,25 @@ trait TraitS1060
             $this->dom->addChild(
                 $dados,
                 "tpInsc",
-                !empty($da->tpinsc) ? $da->tpinsc : null,
-                false
+                $da->tpinsc,
+                true
             );
             $this->dom->addChild(
                 $dados,
                 "nrInsc",
-                !empty($da->nrinsc) ? $da->nrinsc : null,
-                false
+                $da->nrinsc,
+                true
             );
-            //incluso em 2.5.0
-            $this->dom->addChild(
-                $dados,
-                "codLotacao",
-                !empty($da->codlotacao) ? $da->codlotacao : null,
-                false
-            );
+            foreach ($this->std->dadosambiente->fatorrisco as $ftr) {
+                $fator = $this->dom->createElement("fatorRisco");
+                $this->dom->addChild(
+                    $fator,
+                    "codFatRis",
+                    $ftr->codfatris,
+                    true
+                );
+                $dados->appendChild($fator);
+            }
         }
         $nova = null;
         if (!empty($this->std->novavalidade)) {
@@ -113,6 +109,7 @@ trait TraitS1060
                 false
             );
         }
+        
         $info = $this->dom->createElement("infoAmbiente");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -134,6 +131,7 @@ trait TraitS1060
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
+        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
