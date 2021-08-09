@@ -2,6 +2,8 @@
 
 namespace NFePHP\eSocial\Factories\Traits;
 
+use NFePHP\eSocial\Common\FactoryId;
+
 trait TraitS2220
 {
     /**
