@@ -302,32 +302,34 @@ trait TraitS1005
 
         //tag deste evento em particular
         $infoEstab = $this->dom->createElement("infoEstab");
-
+// var_dump($this);
+// die();
         //tag comum a todos os modos
         $ideEstab = $this->dom->createElement("ideEstab");
+        $stdIdeEstab = $this->std->ideestab;
         $this->dom->addChild(
             $ideEstab,
             "tpInsc",
-            $this->std->tpinsc,
+            $stdIdeEstab->tpinsc,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "nrInsc",
-            $this->std->nrinsc,
+            $stdIdeEstab->nrinsc,
             true
         );
         $this->dom->addChild(
             $ideEstab,
             "iniValid",
-            $this->std->inivalid,
+            $stdIdeEstab->inivalid,
             true
         );
         if ($this->std->modo !== 'INC') {
             $this->dom->addChild(
                 $ideEstab,
                 "fimValid",
-                !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+                !empty($stdIdeEstab->fimvalid) ? $stdIdeEstab->fimvalid : null,
                 false
             );
         }
