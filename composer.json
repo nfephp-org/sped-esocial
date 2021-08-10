@@ -33,7 +33,7 @@
         "ext-simplexml": "*",
         "ext-xml": "*",
         "nfephp-org/sped-common" : "^5.0",
-        "justinrainbow/json-schema": "^5.2"
+        "justinrainbow/json-schema": "^5.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.4",
