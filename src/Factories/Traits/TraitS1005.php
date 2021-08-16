@@ -302,8 +302,7 @@ trait TraitS1005
 
         //tag deste evento em particular
         $infoEstab = $this->dom->createElement("infoEstab");
-// var_dump($this);
-// die();
+
         //tag comum a todos os modos
         $ideEstab = $this->dom->createElement("ideEstab");
         $stdIdeEstab = $this->std->ideestab;
