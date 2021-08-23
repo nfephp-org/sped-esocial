@@ -647,6 +647,44 @@ class Tools extends ToolsBase
 
                 continue;
 
+            } catch (\Exception $exception) {
+                $evtEsocialId = $evt->evtid;
+
+                //Retorna o Evento_id que é utilizado no find.
+                $eventoFila = EventoFila::where('evento_esocial_id', '=', $evtEsocialId)->first();
+                $eventoInvalido = Evento::find($eventoFila->evento_id);
+
+                //Atualiza o status do evento.
+                Evento::where('id', '=', $eventoInvalido->id)->update(['status' => '7']);
+
+                //Retira da evento_fila, fazendo com que a mesma não fique trancada por causa de 1 ocorrência.
+                $eventoFila->delete();
+
+                // Remove todas as ocorrências do evento
+                EventoOcorrencia::where('evento_id', '=', $eventoInvalido->id)->delete();
+
+                // Recupera o nome do campo para adicionar uma nova ocorrência
+                $campo = substr($exception->getMessage(), strpos($exception->getMessage(), '$', 0) + 1);
+                
+                $mensagemErro = "Erro ao processar as informações para envio no eSocial.<br>";
+                $mensagemErro .= "Consulte o manual para preenchimento correto das informações.";
+                $mensagemErro .= "<br><br>";
+                $mensagemErro .= "Mensagem técnica:<br>";
+                $mensagemErro .= $exception->getMessage();
+
+                $this->saveOcorrencias(
+                    [
+                        (object) [
+                            'codigo' => $exception->getCode(),
+                            'tipo' => 1,
+                            'descricao' => $mensagemErro,
+                            'localizacao' => sprintf("/eSocial/%s/IDENTIFICADOR_GRUPO/%s", $evt->getEventName(), $campo)
+                        ],
+                    ],
+                    $eventoInvalido
+                );
+                continue;
+
             }
             $xml .= $xmlEvento;
 
