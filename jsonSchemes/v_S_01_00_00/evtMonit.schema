@@ -24,16 +24,16 @@
                     "maxLength": 11,
                     "minLength": 11
                 },
-                "nistrab": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
-                },
                 "matricula": {
                     "required": false,
                     "type": ["string","null"],
                     "maxLength": 30
+                },
+                "codCateg": {
+                    "required": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 999
                 }
             }
         },
