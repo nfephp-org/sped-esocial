@@ -261,8 +261,8 @@
             <xs:documentation>Incidência para o IRRF</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
-            <xs:length value="2"/>
-            <xs:pattern value="\d{2}"/>
+            <xs:minLength value="2"/>
+            <xs:maxLength value="4"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
