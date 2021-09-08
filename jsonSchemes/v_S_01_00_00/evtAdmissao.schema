@@ -58,11 +58,6 @@
             "maxLength": 2,
             "pattern": "^(01|02|03|04|05|06|07|08|09|10|11|12)$"
         },
-        "indpriempr": {
-            "required": true,
-            "type": "string",
-            "pattern": "S|N"
-        },
         "nmsoc": {
             "required": false,
             "type": ["string","null"],
@@ -747,6 +742,16 @@
                               "type": ["string","null"],
                               "maxLength": 30
                         },
+                        "nmCargo": {
+                              "required": false,
+                              "type": ["string","null"],
+                              "maxLength": 80
+                        },
+                        "cboCargo": {
+                              "required": false,
+                              "type": ["string","null"],
+                              "maxLength": 80
+                        },
                         "codcateg": {
                               "required": true,
                               "type": "integer",
@@ -893,6 +898,17 @@
                                     "type": "integer",
                                     "minimum": 0,
                                     "maximum": 3
+                                },
+                                "dscjorn": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 0,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "required": true,
+                                        "type": "string",
+                                        "maxLength": 255                                      
+                                    }
                                 },
                                 "horario": {
                                     "required": false,
