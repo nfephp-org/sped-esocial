@@ -2072,12 +2072,8 @@ trait TraitS2200
                 false
             );            
             if (isset($hc->dscjorn)) {
-                 foreach ($hc->dscjorn as $key =>  $item) {
-                    if($key == 0 ){
-                        $dj = $this->dom->createElement("dscJorn",$item);    
-                        $horContratual->appendChild($dj);
-                    }                    
-                 }
+               $dj = $this->dom->createElement("dscJorn",$hc->dscjorn[0]);    
+               $horContratual->appendChild($dj);
             }                
             //encerra horContratual
             $contrato->appendChild($horContratual);            
