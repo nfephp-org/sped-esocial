@@ -150,10 +150,18 @@ $std->vinculo->infoestatutario->dtiniAbono = '2017-02-01';
 
 $std->vinculo->infoestatutario->infodecjud = new \stdClass();
 $std->vinculo->infoestatutario->infodecjud->nrprocjud = "12345678901234567890";
-
+            
 $std->vinculo->infocontrato = new \stdClass();
 $std->vinculo->infocontrato->codcargo = 'wwww';
 $std->vinculo->infocontrato->codfuncao = 'wwww';
+$std->vinculo->infocontrato->nmcargo = 'ksksksks';
+$std->vinculo->infocontrato->cbocargo = '000000';
+$std->vinculo->infocontrato->dtingrcargo = '2017-02-01';
+$std->vinculo->infocontrato->nmFuncao = 'ksksks';
+$std->vinculo->infocontrato->cbofuncao = '222222';
+$std->vinculo->infocontrato->codcateg = '222222';
+$std->vinculo->infocontrato->acumcargo = 'N';
+
 $std->vinculo->infocontrato->codcateg = 101;
 $std->vinculo->infocontrato->codcarreira = 'wwww';
 $std->vinculo->infocontrato->dtingrcarr = '2017-01-01';
