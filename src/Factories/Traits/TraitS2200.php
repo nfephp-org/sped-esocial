@@ -1243,12 +1243,6 @@ trait TraitS2200
             $this->std->cpftrab,
             true
         );
-        // $this->dom->addChild(
-        //     $trabalhador,
-        //     "nisTrab",
-        //     $this->std->nistrab,
-        //     false
-        // );
         $this->dom->addChild(
             $trabalhador,
             "nmTrab",
@@ -1285,7 +1279,6 @@ trait TraitS2200
             ! empty($this->std->nmsoc) ? $this->std->nmsoc : null,
             false
         );
-
         //nascimento (obrigatorio)
         $nascimento = $this->dom->createElement("nascimento");
         $this->dom->addChild(
@@ -1293,13 +1286,7 @@ trait TraitS2200
             "dtNascto",
             $this->std->dtnascto,
             true
-        );
-        // $this->dom->addChild(
-        //     $nascimento,
-        //     "codMunic",
-        //     ! empty($this->std->codmunic) ? $this->std->codmunic : null,
-        //     false
-        // );
+        );        
         $this->dom->addChild(
             $nascimento,
             "uf",
