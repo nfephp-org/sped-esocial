@@ -1200,7 +1200,10 @@ trait TraitS2200
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
-     {
+     {  
+
+        //Em desenvolvimento
+        
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
@@ -1286,13 +1289,7 @@ trait TraitS2200
             "dtNascto",
             $this->std->dtnascto,
             true
-        );        
-        $this->dom->addChild(
-            $nascimento,
-            "uf",
-            ! empty($this->std->uf) ? $this->std->uf : null,
-            false
-        );
+        );                
         $this->dom->addChild(
             $nascimento,
             "paisNascto",
@@ -1318,184 +1315,6 @@ trait TraitS2200
             false
         );
         $trabalhador->appendChild($nascimento);
-
-        // documentos (obrig)
-        //$documentos = $this->dom->createElement("documentos");
-        //CTPS (Opc)
-        if (isset($this->std->ctps)) {
-            $doc = $this->std->ctps;
-            $ctps = $this->dom->createElement("CTPS");
-            $this->dom->addChild(
-                $ctps,
-                "nrCtps",
-                $doc->nrctps,
-                true
-            );
-            $this->dom->addChild(
-                $ctps,
-                "serieCtps",
-                $doc->seriectps,
-                true
-            );
-            $this->dom->addChild(
-                $ctps,
-                "ufCtps",
-                $doc->ufctps,
-                true
-            );
-            //$documentos->appendChild($ctps);
-        }
-        //RIC (Opc)
-        if (isset($this->std->ric)) {
-            $doc = $this->std->ric;
-            $ric = $this->dom->createElement("RIC");
-            $this->dom->addChild(
-                $ric,
-                "nrRic",
-                $doc->nrric,
-                true
-            );
-            $this->dom->addChild(
-                $ric,
-                "orgaoEmissor",
-                $doc->orgaoemissor,
-                true
-            );
-            $this->dom->addChild(
-                $ric,
-                "dtExped",
-                ! empty($doc->dtexped) ? $doc->dtexped : null,
-                false
-            );
-            //$documentos->appendChild($ric);
-        }
-        //RG
-        if (isset($this->std->rg)) {
-            $doc = $this->std->rg;
-            $rg = $this->dom->createElement("RG");
-            $this->dom->addChild(
-                $rg,
-                "nrRg",
-                $doc->nrrg,
-                true
-            );
-            $this->dom->addChild(
-                $rg,
-                "orgaoEmissor",
-                $doc->orgaoemissor,
-                true
-            );
-            $this->dom->addChild(
-                $rg,
-                "dtExped",
-                ! empty($doc->dtexped) ? $doc->dtexped : null,
-                false
-            );
-            //$documentos->appendChild($rg);
-        }
-        //RNE (Opc)
-        if (isset($this->std->rne)) {
-            $doc = $this->std->rne;
-            $rne = $this->dom->createElement("RNE");
-            $this->dom->addChild(
-                $rne,
-                "nrRne",
-                $doc->nrrne,
-                true
-            );
-            $this->dom->addChild(
-                $rne,
-                "orgaoEmissor",
-                $doc->orgaoemissor,
-                true
-            );
-            $this->dom->addChild(
-                $rne,
-                "dtExped",
-                ! empty($doc->dtexped) ? $doc->dtexped : null,
-                false
-            );
-            $this->dom->addChild(
-                $rne,
-                "dtValid",
-                ! empty($doc->dtvalid) ? $doc->dtvalid : null,
-                false
-            );
-            //$documentos->appendChild($rne);
-        }
-        //OC (Opc)
-        if (isset($this->std->oc)) {
-            $doc = $this->std->oc;
-            $oc = $this->dom->createElement("OC");
-            $this->dom->addChild(
-                $oc,
-                "nrOc",
-                $doc->nroc,
-                true
-            );
-            $this->dom->addChild(
-                $oc,
-                "orgaoEmissor",
-                $doc->orgaoemissor,
-                true
-            );
-            $this->dom->addChild(
-                $oc,
-                "dtExped",
-                ! empty($doc->dtexped) ? $doc->dtexped : null,
-                false
-            );
-            $this->dom->addChild(
-                $oc,
-                "dtValid",
-                ! empty($doc->dtvalid) ? $doc->dtvalid : null,
-                false
-            );
-            //$documentos->appendChild($oc);
-        }
-        //CNH (Ops)
-        if (isset($this->std->cnh)) {
-            $doc = $this->std->cnh;
-            $cnh = $this->dom->createElement("CNH");
-            $this->dom->addChild(
-                $cnh,
-                "nrRegCnh",
-                $doc->nrregcnh,
-                true
-            );
-            $this->dom->addChild(
-                $cnh,
-                "dtExped",
-                ! empty($doc->dtexped) ? $doc->dtexped : null,
-                false
-            );
-            $this->dom->addChild(
-                $cnh,
-                "ufCnh",
-                $doc->ufcnh,
-                true
-            );
-            $this->dom->addChild(
-                $cnh,
-                "dtValid",
-                $doc->dtvalid,
-                true
-            );
-            $this->dom->addChild(
-                $cnh,
-                "dtPriHab",
-                ! empty($doc->dtprihab) ? $doc->dtprihab : null,
-                false
-            );
-            $this->dom->addChild(
-                $cnh,
-                "categoriaCnh",
-                $doc->categoriacnh,
-                true
-            );
-            //$documentos->appendChild($cnh);
-        }
-        //$trabalhador->appendChild($documentos);
 
         //Endereço (obrigatorio)
         $endereco = $this->dom->createElement("endereco");
@@ -1764,12 +1583,6 @@ trait TraitS2200
                 ! empty($doc->emailprinc) ? $doc->emailprinc : null,
                 false
             );
-            $this->dom->addChild(
-                $contato,
-                "emailAlternat",
-                ! empty($doc->emailalternat) ? $doc->emailalternat : null,
-                false
-            );
             $trabalhador->appendChild($contato);
         }
         //encerra trabalhador
@@ -1799,12 +1612,6 @@ trait TraitS2200
         );
         $this->dom->addChild(
             $vinculo,
-            "nrRecInfPrelim",
-            ! empty($vin->nrrecinfprelim) ? $vin->nrrecinfprelim : null,
-            false
-        );
-        $this->dom->addChild(
-            $vinculo,
             "cadIni",
             $vin->cadini,
             true
@@ -1831,6 +1638,12 @@ trait TraitS2200
                 "indAdmissao",
                 $std->indadmissao,
                 true
+            );
+            $this->dom->addChild(
+                $celetista,
+                "nrProcTrab",
+                $std->nrproctrab,
+                false
             );
             $this->dom->addChild(
                 $celetista,
@@ -1993,6 +1806,24 @@ trait TraitS2200
                 ! empty($std->tpplanrp) ? $std->tpplanrp : null,
                 false
             );
+            $this->dom->addChild(
+                $estatutario,
+                "indTetoRGPS",
+                $std->indtetorgps,
+                false
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "indAbonoPerm",
+                $std->indabonoperm,
+                false
+            );
+            $this->dom->addChild(
+                $estatutario,
+                "dtIniAbono",
+                $std->dtiniabono,
+                false
+            );
             //infoDecJud (opcional)
             if (isset($std->infodecjud)) {
                 $infoDecJud = $this->dom->createElement("infoDecJud");
@@ -2023,7 +1854,6 @@ trait TraitS2200
             ! empty($std->nmcargo) ? $std->nmcargo : null,
             false
         );
-
         $this->dom->addChild(
             $contrato,
             "CBOCargo",
@@ -2052,6 +1882,30 @@ trait TraitS2200
             $contrato,
             "dtIngrCarr",
             ! empty($std->dtingrcarr) ? $std->dtingrcarr : null,
+            false
+        );
+        $this->dom->addChild(
+            $contrato,
+            "dtIngrCargo",
+            ! empty($std->dtingrcargo) ? $std->dtingrcargo : null,
+            false
+        );
+        $this->dom->addChild(
+            $contrato,
+            "nmFuncao",
+            ! empty($std->nmfuncao) ? $std->nmfuncao : null,
+            false
+        );
+        $this->dom->addChild(
+            $contrato,
+            "CBOFuncao",
+            ! empty($std->cbofuncao) ? $std->cbofuncao : null,
+            false
+        );
+        $this->dom->addChild(
+            $contrato,
+            "acumCargo",
+            ! empty($std->acumcargo) ? $std->acumcargo : null,
             false
         );
         //remuneracao (obrigatorio)
@@ -2184,8 +2038,7 @@ trait TraitS2200
         $contrato->appendChild($localTrabalho);
 
         //horContratual (opcional)
-        if (isset($std->horcontratual)) {
-            //dd($std);
+        if (isset($std->horcontratual)) {            
             $hc = $std->horcontratual;
             $horContratual = $this->dom->createElement("horContratual");
             $this->dom->addChild(
@@ -2209,19 +2062,17 @@ trait TraitS2200
             $this->dom->addChild(
                 $horContratual,
                 "horNoturno",
-                ! empty($hc->hornoturno) ? $hc->hornoturno : null,
+                ! empty($hc->hornoturno) ? $hc->hornoturno : 'N',
                 false
-            );
-            //dscrjorn
-             if (isset($hc->dscjorn)) {
+            );            
+            if (isset($hc->dscjorn)) {
                  foreach ($hc->dscjorn as $key =>  $item) {
                     if($key == 0 ){
                         $dj = $this->dom->createElement("dscJorn",$item);    
                         $horContratual->appendChild($dj);
                     }                    
                  }
-             }
-                
+            }                
             //encerra horContratual
             $contrato->appendChild($horContratual);            
         }
@@ -2360,9 +2211,7 @@ trait TraitS2200
         $this->node->appendChild($vinculo);
         //finalização do xml
         $this->eSocial->appendChild($this->node);        
-        // $this->xml = $this->dom->saveXML($this->eSocial);
-        // dd($this->xml);
-        // exit;
+        // $this->xml = $this->dom->saveXML($this->eSocial);        
         $this->sign();
     }
 }
