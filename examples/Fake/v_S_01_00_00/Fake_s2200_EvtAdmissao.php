@@ -194,9 +194,8 @@ $std->vinculo->infocontrato->horcontratual->tpjornada = 9;
 $std->vinculo->infocontrato->horcontratual->dsctpjorn = 'kjsksjsjs';
 $std->vinculo->infocontrato->horcontratual->tmpparc = 0;
 
-$std->vinculo->infocontrato->horcontratual->horario[0] = new \stdClass();
-$std->vinculo->infocontrato->horcontratual->horario[0]->dia = 1;
-$std->vinculo->infocontrato->horcontratual->horario[0]->codhorcontrat = 'sssss';
+$std->vinculo->infocontrato->horcontratual->dscjorn[0] = new \stdClass();
+$std->vinculo->infocontrato->horcontratual->dscjorn[0] = 'descricao da jornada de trabalho'
 
 $std->vinculo->infocontrato->filiacaosindical[0] = new \stdClass();
 $std->vinculo->infocontrato->filiacaosindical[0]->cnpjsindtrab = '12345678901234';
