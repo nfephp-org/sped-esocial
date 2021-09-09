@@ -1203,7 +1203,7 @@ trait TraitS2200
      {  
 
         //Em desenvolvimento
-        
+
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
@@ -1641,8 +1641,8 @@ trait TraitS2200
             );
             $this->dom->addChild(
                 $celetista,
-                "nrProcTrab",
-                $std->nrproctrab,
+                "nrProcTrab",                
+                ! empty($std->nrproctrab) ? $std->nrproctrab : null,
                 false
             );
             $this->dom->addChild(
