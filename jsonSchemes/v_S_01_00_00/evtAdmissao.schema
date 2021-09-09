@@ -284,8 +284,7 @@
                     "sexodep": {
                         "required": false,
                         "type": ["string","null"],
-                        "maxLength": 11,
-                        "minLength": 11
+                         "maxLength": 1
                     },
                     "depirrf": {
                         "required": true,

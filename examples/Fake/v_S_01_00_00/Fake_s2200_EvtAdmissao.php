@@ -33,7 +33,6 @@ $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
 $std->cpftrab = '11111111111';
-$std->nistrab = '11111111111';
 $std->nmtrab = 'JOSE DA SILVA';
 $std->sexo = 'M';
 $std->racacor = 5;
@@ -42,40 +41,11 @@ $std->grauinstr = '07';
 $std->indpriempr = 'N';
 $std->nmsoc = 'Chiquinho';
 $std->dtnascto = '1980-01-01';
-$std->codmunic = '1234567';
-$std->uf = 'AC';
 $std->paisnascto = '105'; // 105 = Brasil
 $std->paisnac = '105';
 $std->nmmae = 'Fulana de Tal';
 $std->nmpai = 'Ciclano de Tal';
 
-$std->ctps = new \stdClass();
-$std->ctps->nrctps = '12012315';
-$std->ctps->seriectps = '500';
-$std->ctps->ufctps = 'SP';
-
-$std->ric = new \stdClass();
-$std->ric->nrric = '15150505';
-$std->ric->orgaoemissor = 'SSP';
-$std->ric->dtexped = '2015-01-01';
-
-$std->rg = new \stdClass();
-$std->rg->nrrg = '11111111';
-$std->rg->orgaoemissor = 'SSP';
-$std->rg->dtexped = '2015-01-01';
-
-$std->oc = new \stdClass();
-$std->oc->nroc = '12315861';
-$std->oc->orgaoemissor = 'SSP';
-$std->oc->dtexped = '2015-01-01';
-
-$std->cnh = new \stdClass();
-$std->cnh->nrregcnh = '1231531';
-$std->cnh->dtexped = '2015-01-01';
-$std->cnh->ufcnh = 'SP';
-$std->cnh->dtvalid = '2019-01-01';
-$std->cnh->dtprihab = '2015-01-01';
-$std->cnh->categoriacnh = 'AB';
 
 $std->endereco = new \stdClass();
 $std->endereco->brasil = new \stdClass();
@@ -117,6 +87,7 @@ $std->dependente[0]->tpdep = '01';
 $std->dependente[0]->nmdep = 'WATSON';
 $std->dependente[0]->dtnascto = '2015-01-01';
 $std->dependente[0]->cpfdep = '12345678985';
+$std->dependente[0]->sexodep = 'M';
 $std->dependente[0]->depirrf = 'N';
 $std->dependente[0]->depsf = 'N';
 $std->dependente[0]->inctrab = 'N';
@@ -126,27 +97,25 @@ $std->aposentadoria->trabaposent = 'N';
 
 $std->contato = new \stdClass();
 $std->contato->foneprinc = '1155555555';
-$std->contato->fonealternat = '11999999999';
 $std->contato->emailprinc = 'beltrano@mail.com.br';
-$std->contato->emailalternat = 'ciclano@mail.com.br';
 
 $std->vinculo = new \stdClass();
 $std->vinculo->matricula = '1020304050';
 $std->vinculo->tpregtrab = 1;
 $std->vinculo->tpregprev = 1;
-$std->vinculo->nrrecinfprelim = '12345678901234556';
 $std->vinculo->cadini = 'N';
 
-/*
-  $std->vinculo->infoceletista = new \stdClass();
-  $std->vinculo->infoceletista->dtadm = '2017-08-08';
-  $std->vinculo->infoceletista->tpadmissao = 1;
-  $std->vinculo->infoceletista->indadmissao = 1;
-  $std->vinculo->infoceletista->tpregjor = 1;
-  $std->vinculo->infoceletista->natatividade = 1;
-  $std->vinculo->infoceletista->cnpjsindcategprof = '77721644000101';
-  $std->vinculo->infoceletista->opcfgts = 1;
-  $std->vinculo->infoceletista->dtopcfgts = '2017-01-01';
+$std->vinculo->infoceletista = new \stdClass();
+$std->vinculo->infoceletista->dtadm = '2017-08-08';
+$std->vinculo->infoceletista->tpadmissao = 1;
+$std->vinculo->infoceletista->indadmissao = 1;
+$std->vinculo->infoceletista->nrproctrab = '11223344556677889900';
+$std->vinculo->infoceletista->tpregjor = 1;
+$std->vinculo->infoceletista->natatividade = 1;
+$std->vinculo->infoceletista->cnpjsindcategprof = '77721644000101';
+$std->vinculo->infoceletista->dtopcfgts = '2017-01-01';
+
+/* 
 
   $std->vinculo->infoceletista->trabtemporario = new \stdClass();
   $std->vinculo->infoceletista->trabtemporario->hipleg = 1;
@@ -175,6 +144,9 @@ $std->vinculo->infoestatutario->dtnomeacao = '2017-01-01';
 $std->vinculo->infoestatutario->dtposse = '2017-02-01';
 $std->vinculo->infoestatutario->dtexercicio = '2017-02-01';
 $std->vinculo->infoestatutario->tpplanrp = 2;
+$std->vinculo->infoestatutario->indtetorgps = 'N';
+$std->vinculo->infoestatutario->indabonoperm = 'N';
+$std->vinculo->infoestatutario->dtiniAbono = '2017-02-01';
 
 $std->vinculo->infoestatutario->infodecjud = new \stdClass();
 $std->vinculo->infoestatutario->infodecjud->nrprocjud = "12345678901234567890";

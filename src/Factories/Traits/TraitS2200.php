@@ -543,6 +543,12 @@ trait TraitS2200
                 );
                 $this->dom->addChild(
                     $dependente,
+                    "sexoDep",
+                    ! empty($dep->sexodep) ? $dep->sexodep : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $dependente,
                     "depIRRF",
                     $dep->depirrf,
                     true
