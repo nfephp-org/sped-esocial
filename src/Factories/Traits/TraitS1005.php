@@ -458,12 +458,12 @@ trait TraitS1005
                     }
                     $infoTrab->appendChild($infoApr);
                 }
-                if (!empty($this->std->dadosestab->infotrab->infopdc)) {
+                if (!empty($this->std->dadosestab->infotrab->infopcd)) {
                     $infoPCD = $this->dom->createElement("infoPCD");
                     $this->dom->addChild(
                         $infoPCD,
                         "nrProcJud",
-                        $this->std->dadosestab->infotrab->infopdc->nrprocjud,
+                        $this->std->dadosestab->infotrab->infopcd->nrprocjud,
                         true
                     );
                     $infoTrab->appendChild($infoPCD);

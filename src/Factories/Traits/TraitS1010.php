@@ -341,6 +341,14 @@ trait TraitS1010
             );
             $this->dom->addChild(
                 $dadosRubrica,
+                "codIncCPRP",
+                ! empty($this->std->dadosrubrica->codinccprp)
+                    ? $this->std->dadosrubrica->codinccprp
+                    : null,
+                false
+            );
+            $this->dom->addChild(
+                $dadosRubrica,
                 "observacao",
                 ! empty($this->std->dadosrubrica->observacao)
                     ? $this->std->dadosrubrica->observacao

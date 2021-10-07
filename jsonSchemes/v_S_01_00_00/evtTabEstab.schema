@@ -162,7 +162,7 @@
                                 }
                             }
                         },
-                        "infopdc": {
+                        "infopcd": {
                             "required": false,
                             "type": ["object","null"],
                             "properties": {
