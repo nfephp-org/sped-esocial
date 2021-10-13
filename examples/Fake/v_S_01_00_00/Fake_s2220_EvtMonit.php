@@ -34,7 +34,6 @@ $std->indretif = 1;
 
 $std->idevinculo = new \stdClass();
 $std->idevinculo->cpftrab = '11111111111';
-$std->idevinculo->nistrab = '11111111111';
 $std->idevinculo->matricula = '11111111111';
 
 $std->exmedocup = new \stdClass();
@@ -62,7 +61,7 @@ $std->exmedocup->respmonit = new \stdClass();
 $std->exmedocup->respmonit->cpfresp = '12345678901';
 $std->exmedocup->respmonit->nmresp= 'Fulano de Tal';
 $std->exmedocup->respmonit->nrcrm = '12345678';
-$std->exmedocup->respmonit->ufcrm = 'AC';  
+$std->exmedocup->respmonit->ufcrm = 'AC';
 
 try {
     //carrega a classe responsavel por lidar com os certificados

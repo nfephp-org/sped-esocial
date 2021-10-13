@@ -9,10 +9,10 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-2220 sem alterações da 2.4.1 => 2.4.2
+//S-2220 versão inicial e-social simplificado v1.0.0
 
 $evento = 'evtMonit';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtMonit",
@@ -40,16 +40,16 @@ $jsonSchema = '{
                     "maxLength": 11,
                     "minLength": 11
                 },
-                "nistrab": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
-                },
                 "matricula": {
                     "required": false,
                     "type": ["string","null"],
                     "maxLength": 30
+                },
+                "codCateg": {
+                    "required": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 999
                 }
             }
         },
@@ -172,16 +172,14 @@ $jsonSchema = '{
     }
 }';
 
-
-
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
 
 $std->idevinculo = new \stdClass();
 $std->idevinculo->cpftrab = '11111111111';
-$std->idevinculo->nistrab = '11111111111';
 $std->idevinculo->matricula = '11111111111';
+$std->idevinculo->codCateg = '111';
 
 $std->exmedocup = new \stdClass();
 $std->exmedocup->tpexameocup = 1;
@@ -208,8 +206,7 @@ $std->exmedocup->respmonit = new \stdClass();
 $std->exmedocup->respmonit->cpfresp = '12345678901';
 $std->exmedocup->respmonit->nmresp= 'Fulano de Tal';
 $std->exmedocup->respmonit->nrcrm = '12345678';
-$std->exmedocup->respmonit->ufcrm = 'AC';   
-
+$std->exmedocup->respmonit->ufcrm = 'AC';
     
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
