@@ -31,11 +31,10 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = '1234567890';
+$std->nrrecibo = '1.1.1234567890123456789';
 
 $std->idevinculo = new \stdClass();
 $std->idevinculo->cpftrab = '11111111111';
-$std->idevinculo->nistrab = '11111111111';
 $std->idevinculo->matricula = '11111111111';
 
 //Opcional 1 ou Opcional 2 ou Opcional 3
@@ -46,15 +45,9 @@ $std->iniafastamento->infomesmomtv = 'N';
 $std->iniafastamento->tpacidtransit = 3;
 $std->iniafastamento->observacao = 'blablablabla';
 
-$std->iniafastamento->infoatestado[0] = new \stdClass();
-$std->iniafastamento->infoatestado[0]->codcid = '0101';
-$std->iniafastamento->infoatestado[0]->qtddiasafast = 120;
-
-$std->iniafastamento->infoatestado[0]->emitente = new \stdClass();
-$std->iniafastamento->infoatestado[0]->emitente->nmemit = 'NOME DO EMITENTE';
-$std->iniafastamento->infoatestado[0]->emitente->ideoc = 1;
-$std->iniafastamento->infoatestado[0]->emitente->nroc = '11111111111111';
-$std->iniafastamento->infoatestado[0]->emitente->ufoc = 'SP';
+$std->iniafastamento->peraquis = new \stdClass();
+$std->iniafastamento->peraquis->dtinicio = '2016-08-21';
+$std->iniafastamento->peraquis->dtfim = '2017-08-20';
 
 $std->iniafastamento->infocessao = new \stdClass();
 $std->iniafastamento->infocessao->cnpjcess = '11111111111111';
@@ -63,6 +56,10 @@ $std->iniafastamento->infocessao->infonus = 1;
 $std->iniafastamento->infomandsind = new \stdClass();
 $std->iniafastamento->infomandsind->cnpjsind = '11111111111111';
 $std->iniafastamento->infomandsind->infonusremun = 1;
+
+$std->iniafastamento->infomandelet = new \stdClass();
+$std->iniafastamento->infomandelet->cnpjmandelet = '11111111111111';
+$std->iniafastamento->infomandelet->indremuncargo = 'N';
 
 //Opcional 2
 $std->inforetif = new \stdClass();
