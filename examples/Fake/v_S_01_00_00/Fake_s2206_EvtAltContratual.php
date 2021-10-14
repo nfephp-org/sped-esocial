@@ -32,9 +32,8 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->nrrecibo = '1.1.1234567890123456789';
 $std->cpftrab = '12345678901';
-$std->nistrab = '12345678901';
 $std->matricula = '12345678901';
 $std->dtalteracao = '2017-11-11';
 $std->dtef = '2017-11-11';
@@ -46,69 +45,62 @@ $std->infoceletista->tpregjor = 1;
 $std->infoceletista->natatividade = 2;
 $std->infoceletista->dtbase = 11;
 $std->infoceletista->cnpjsindcategprof = '12345678901234';
-$std->infoceletista->trabtemp = new \stdClass();
-$std->infoceletista->trabtemp->justprorr = 'kss kj s ljslkjsk slkjsl slksjlksjslkjs ';
+$std->infoceletista->trabtemporario = new \stdClass();
+$std->infoceletista->trabtemporario->justprorr = 'kss kj s ljslkjsk slkjsl slksjlksjslkjs ';
 $std->infoceletista->aprend = new \stdClass();
 $std->infoceletista->aprend->tpinsc = 1;
 $std->infoceletista->aprend->nrinsc = '12345678901234';
 
 $std->infoestatutario = new \stdClass();
 $std->infoestatutario->tpplanrp = 1;
+$std->infoestatutario->indtetorgps = 'S';
+$std->infoestatutario->indabonoperm = 'S';
 
 $std->infocontrato = new \stdClass();
-$std->infocontrato->codcargo = 'xxxx';
-$std->infocontrato->codfuncao = 'ffff';
+$std->infocontrato->nmcargo = 'Melhor cargo do país';
+$std->infocontrato->cbocargo = '123456';
+$std->infocontrato->nmfuncao = 'Melhor função de todas';
+$std->infocontrato->cbofuncao = '654321';
+$std->infocontrato->acumcargo = 'S';
 $std->infocontrato->codcateg = 101;
-$std->infocontrato->codcarreira = 'carreirax';
-$std->infocontrato->dtingrcarr = '2000-10-10';
-$std->infocontrato->vrsalfx = 2589.55;
-$std->infocontrato->undsalfixo = 4;
-$std->infocontrato->dscsalvar = 'kjkjskjskjksjksjksjksjs';
-$std->infocontrato->tpcontr = 2;
-$std->infocontrato->dtterm = '2018-02-22';
-$std->infocontrato->objdet = 'lslsksk';
+$std->infocontrato->vrsalfx = 2547.56;
+$std->infocontrato->undsalfixo = 7;
+$std->infocontrato->dscsalvar = 'ksksksksk';
+$std->infocontrato->tpcontr = 1;
+$std->infocontrato->dtterm = '2018-01-01';
+$std->infocontrato->objdet = 'ksksks';
 
-$std->localtrabgeral = new \stdClass();
-$std->localtrabgeral->tpinsc = 3; //1,3,ou 4
-$std->localtrabgeral->nrinsc = '12345678901234';
-$std->localtrabgeral->desccomp = 'çaçlks sçaçlsskjsjksh ksjh sjh';
+$std->infocontrato->localtrabgeral = new \stdClass();
+$std->infocontrato->localtrabgeral->tpinsc = 1;
+$std->infocontrato->localtrabgeral->nrinsc = '12345678901234';
+$std->infocontrato->localtrabgeral->desccomp = 'lkdldkldkldk';
 
-$std->localtrabdom = new \stdClass();
-$std->localtrabdom->tplograd = 'A';
-$std->localtrabdom->dsclograd = 'sei la 2';
-$std->localtrabdom->nrlograd = '25n';
-$std->localtrabdom->complemento = 'por cima';
-$std->localtrabdom->bairro = 'si de baixo';
-$std->localtrabdom->cep = '04598777';
-$std->localtrabdom->codmunic = 3512458;
-$std->localtrabdom->uf = 'AL';
+$std->infocontrato->localtempdom = new \stdClass();
+$std->infocontrato->localtempdom->tplograd = 'AV';
+$std->infocontrato->localtempdom->dsclograd = 'sm,sm,sms,ms,ms';
+$std->infocontrato->localtempdom->nrlograd = '27272';
+$std->infocontrato->localtempdom->complemento = 'sjsksjhsh';
+$std->infocontrato->localtempdom->bairro = 'sjhsj';
+$std->infocontrato->localtempdom->cep = '99999999';
+$std->infocontrato->localtempdom->codmunic = '1234567';
+$std->infocontrato->localtempdom->uf = 'AC';
 
-$std->horcontratual = new \stdClass();
-$std->horcontratual->qtdhrssem = 46.25;
-$std->horcontratual->tpjornada = 1;
-$std->horcontratual->dsctpjorn = 'kslksçksçlksçlsk';
-$std->horcontratual->tmpparc = 0;
+$std->infocontrato->horcontratual = new \stdClass();
+$std->infocontrato->horcontratual->qtdhrssem = 99.50;
+$std->infocontrato->horcontratual->tpjornada = 9;
+$std->infocontrato->horcontratual->dsctpjorn = 'kjsksjsjs';
+$std->infocontrato->horcontratual->tmpparc = 0;
+$std->infocontrato->horcontratual->hornoturno = 'N';
+$std->infocontrato->horcontratual->dscjorn = 'De 2a a 6a feira, das 8:00 às 12:00 e das 13:00 às 17:00 e no sábado das 8:00 às 12:00';
 
-$std->horcontratual->horario[1] = new \stdClass();
-$std->horcontratual->horario[1]->dia = 1;
-$std->horcontratual->horario[1]->codhorcontrat = 'sss';
+$std->infocontrato->alvarajudicial = new \stdClass();
+$std->infocontrato->alvarajudicial->nrprocjud = '12345678901234567890';
 
-$std->filiacaosindical[1] = new \stdClass();
-$std->filiacaosindical[1]->cnpjsindtrab = '12345678901234';
-$std->filiacaosindical[2] = new \stdClass();
-$std->filiacaosindical[2]->cnpjsindtrab = '01234567890123';
+$std->infocontrato->observacoes[0] = new \stdClass();
+$std->infocontrato->observacoes[0]->observacao = 'kjskjsksksj';
 
-$std->alvarajudicial = new \stdClass();
-$std->alvarajudicial->nrprocjud = '12345678901234567890';
-
-$std->observacoes[1] = new \stdClass();
-$std->observacoes[1]->observacao = 'lkslslkslksls ls lks lskls slks lsk lskls s';
-$std->observacoes[2] = new \stdClass();
-$std->observacoes[2]->observacao = 'uoeiueouoiueoiueieu eue eue euoeueiueoieu eu';
-
-
-$std->servpubl = new \stdClass();
-$std->servpubl->mtvalter = 8;
+$std->infocontrato->treicap[0] = new \stdClass();
+$std->infocontrato->treicap[0]->codtreicap = 1001;
 
 try {
     //carrega a classe responsavel por lidar com os certificados
