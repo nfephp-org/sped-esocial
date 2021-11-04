@@ -14,12 +14,6 @@
             "minimum": 1,
             "maximum": 2
         },
-        "indapuracao": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2
-        },
         "perapur": {
             "required": true,
             "type": "string",
@@ -45,7 +39,7 @@
                             "indcomerc": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^(2|3|8|9)$"
+                                "pattern": "^(2|3|7|8|9)$"
                             },
                             "vrtotcom": {
                                 "required": true,
