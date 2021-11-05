@@ -17,6 +17,7 @@
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_REMUN_ANUAL_DEZEMBRO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_VALIDA_FAP</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_FECHAMENTO_FOPAG</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -67,7 +68,22 @@
                                                     </xs:enumeration>
                                                 </xs:restriction>
                                             </xs:simpleType>
-                                        </xs:element>                                      
+                                        </xs:element>
+                                        <xs:element name="transDCTFWeb" minOccurs="0">
+                                            <xs:simpleType>
+                                                <xs:annotation>
+                                                    <xs:documentation>Solicitação de transmissão imediata da DCTFWeb.</xs:documentation>
+                                                    <xs:documentation>Validação: Não informar se {perApur}(1299_ideEvento_perApur) &lt; [2021-10]. Preenchimento obrigatório se {perApur}(1299_ideEvento_perApur) >= [2021-10] e ({classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [04] ou {indGuia}(1299_ideEvento_indGuia) estiver informado).</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="S">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Sim</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>                                        
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
