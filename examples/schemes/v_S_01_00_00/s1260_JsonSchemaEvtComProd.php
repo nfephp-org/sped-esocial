@@ -35,12 +35,6 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 2
         },
-        "indapuracao": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2
-        },
         "perapur": {
             "required": true,
             "type": "string",
@@ -66,7 +60,7 @@ $jsonSchema = '{
                             "indcomerc": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^(2|3|8|9)$"
+                                "pattern": "^(2|3|7|8|9)$"
                             },
                             "vrtotcom": {
                                 "required": true,
@@ -187,7 +181,6 @@ $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = '123456';
-$std->indapuracao = 1;
 $std->perapur = '2017-08';
 
 $std->estabelecimento = new \stdClass();

@@ -59,7 +59,7 @@
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Preencher com o número de inscrição no CAEPF do estabelecimento rural.</xs:documentation>
-                                                                <xs:documentation>Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005). Se {indGuia}(1260_ideEvento_indGuia) estiver preenchido, o número de inscrição deve possuir {tpCaepf}(1005_infoEstab_inclusao_dadosEstab_infoCaepf_tpCaepf) em S-1005 = [3].</xs:documentation>
+                                                                <xs:documentation>Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005).</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:string">
                                                                 <xs:pattern value="\d{14}" />

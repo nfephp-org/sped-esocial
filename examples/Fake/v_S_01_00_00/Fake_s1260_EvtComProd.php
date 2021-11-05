@@ -32,7 +32,6 @@ $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = '123456';
-$std->indapuracao = 1;
 $std->perapur = '2017-08';
 
 $std->estabelecimento = new \stdClass();
