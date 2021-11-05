@@ -123,10 +123,11 @@
                                                             <xs:documentation>Validação: Preenchimento obrigatório se {codAgNoc}(./codAgNoc) = [01.01.001, 01.02.001, 01.03.001, 01.04.001, 01.05.001, 01.06.001, 01.07.001, 01.08.001, 01.09.001, 01.10.001, 01.12.001, 01.13.001, 01.14.001, 01.15.001, 01.16.001, 01.17.001, 01.18.001, 05.01.001].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
-                                                    <xs:element name="tpAval">
+                                                    <xs:element name="tpAval" minOccurs="0">
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Tipo de avaliação do agente nocivo.</xs:documentation>
+                                                                <xs:documentation>Validação: Não informar se {codAgNoc}(./codAgNoc) = [09.01.001].</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:byte">
                                                                 <xs:enumeration value="1">
@@ -341,10 +342,11 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="epcEpi">
+                                                    <xs:element name="epcEpi" minOccurs="0">
                                                         <xs:annotation>
                                                             <xs:documentation>EPC e EPI</xs:documentation>
                                                             <xs:documentation>DESCRICAO_COMPLETA:Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI.</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: N (se {codAgNoc}(../codAgNoc) = [09.01.001]); O (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -374,7 +376,7 @@
                                                                 </xs:element>
                                                                 <xs:element name="eficEpc" type="TS_sim_nao" minOccurs="0">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>Os EPCs são eficazes na neutralização dos riscos ao trabalhador?</xs:documentation>
+                                                                        <xs:documentation>Os EPCs são eficazes na neutralização do risco ao trabalhador?</xs:documentation>
                                                                         <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {utilizEPC}(./utilizEPC) = [2].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
@@ -402,6 +404,12 @@
                                                                         </xs:restriction>
                                                                     </xs:simpleType>
                                                                 </xs:element>
+                                                                <xs:element name="eficEpi" type="TS_sim_nao" minOccurs="0">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Os EPIs são eficazes na neutralização do risco ao trabalhador?</xs:documentation>
+                                                                        <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {utilizEPI}(./utilizEPI) = [2].</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
                                                                 <xs:element name="epi" minOccurs="0" maxOccurs="50">
                                                                     <xs:annotation>
                                                                         <xs:documentation>EPI.</xs:documentation>
@@ -419,11 +427,6 @@
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Descrição do EPI.</xs:documentation>
                                                                                     <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {docAval}(./docAval) não for informado.</xs:documentation>
-                                                                                </xs:annotation>
-                                                                            </xs:element>
-                                                                            <xs:element name="eficEpi" type="TS_sim_nao">
-                                                                                <xs:annotation>
-                                                                                    <xs:documentation>O EPI é eficaz na neutralização do risco ao trabalhador?</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -476,10 +479,11 @@
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="respReg" maxOccurs="9">
+                                        <xs:element name="respReg" maxOccurs="99">
                                             <xs:annotation>
                                                 <xs:documentation>Responsável pelos registros ambientais</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA:Informações relativas ao responsável pelos registros ambientais.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {cpfResp}</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>

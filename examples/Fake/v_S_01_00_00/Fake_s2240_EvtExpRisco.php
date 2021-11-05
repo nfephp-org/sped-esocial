@@ -33,63 +33,51 @@ $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = null;
 $std->cpftrab = '12345678901';
-$std->nistrab = '12345678901';
 $std->matricula = '002zcbv';
 $std->codcateg = '111';
-$std->dtcondicao = '2016-02-01';
+$std->dtinicondicao = '2016-02-01';
 
-$std->infoamb[0] = new \stdClass();
-$std->infoamb[0]->codamb = 'abcdefg';
+$std->infoamb = new \stdClass();
+$std->infoamb->localamb = 1;
+$std->infoamb->dscsetor = 'Administrativo';
+$std->infoamb->tpinsc = 1;
+$std->infoamb->nrinsc = '12345678901234';
 
-$std->infoamb[1] = new \stdClass();
-$std->infoamb[1]->codamb = 'xxxxx';
+$std->dscativdes = 'lkskslkslsklsks  lsk slsklsk';
 
-$std->infoativ = new \stdClass();
-$std->infoativ->dscativdes = 'lkskslkslsklsks  lsk slsklsk';
-$std->infoativ->ativpericinsal[0] = new \stdClass();
-$std->infoativ->ativpericinsal[0]->codativ = '22.111';
+$std->agnoc[0] = new \stdClass();
+$std->agnoc[0]->codagnoc = '01.01.012';
+$std->agnoc[0]->dscagnoc = 'Cair um meteoro na cabeça';
+$std->agnoc[0]->tpaval = 1;
+$std->agnoc[0]->intconc = 20;
+$std->agnoc[0]->limtol = 22.34;
+$std->agnoc[0]->unmed = 15;
+$std->agnoc[0]->tecmedicao = 'dosimetro Geiger- Muller de halogenio';
 
-$std->fatrisco[0] = new \stdClass();
-$std->fatrisco[0]->codfatris = '01.01.012';
-$std->fatrisco[0]->dscfatrisc = 'Cair um meteoro na cabeça';
-$std->fatrisco[0]->tpaval = 1;
-$std->fatrisco[0]->intconc = 20;
-$std->fatrisco[0]->limtol = 22.34;
-$std->fatrisco[0]->unmed = 47;
-$std->fatrisco[0]->tecmedicao = 'dosimetro Geiger- Muller de halogenio';
-$std->fatrisco[0]->insalubridade = 'N';
-$std->fatrisco[0]->periculosidade = 'N';
-$std->fatrisco[0]->aposentesp = 'N';
+$std->agnoc[0]->epcepi = new \stdClass();
+$std->agnoc[0]->epcepi->utilizepc = 1; // 0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado.
+$std->agnoc[0]->epcepi->eficepc = 'S';
+$std->agnoc[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
+$std->agnoc[0]->epcepi->eficepi = 'S';
 
-$std->fatrisco[0]->epcepi = new \stdClass();
-$std->fatrisco[0]->epcepi->utilizepc = 1; // 0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado.
-$std->fatrisco[0]->epcepi->eficepc = 'S';
-$std->fatrisco[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
-
-$std->fatrisco[0]->epcepi->epi[0] = new \stdClass();
-$std->fatrisco[0]->epcepi->epi[0]->caepi = '111xxx';
-$std->fatrisco[0]->epcepi->epi[0]->dscepi = 'macacao';
-$std->fatrisco[0]->epcepi->epi[0]->eficepi = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->medprotecao = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->condfuncto = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->usoinint = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->przvalid = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->periodictroca = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->higienizacao = 'S';
+$std->agnoc[0]->epcepi->epi[0] = new \stdClass();
+$std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
+$std->agnoc[0]->epcepi->epi[0]->dscePI = 'macacao';
+$std->agnoc[0]->epcepi->epi[0]->medprotecao = 'S';
+$std->agnoc[0]->epcepi->epi[0]->condfuncto = 'S';
+$std->agnoc[0]->epcepi->epi[0]->usoinint = 'S';
+$std->agnoc[0]->epcepi->epi[0]->przvalid = 'S';
+$std->agnoc[0]->epcepi->epi[0]->periodictroca = 'S';
+$std->agnoc[0]->epcepi->epi[0]->higienizacao = 'S';
 
 $std->respreg[0] = new \stdClass();
 $std->respreg[0]->cpfresp = '12345678901';
-$std->respreg[0]->nisresp = '12345678901';
-$std->respreg[0]->nmresp = 'Fulano de Tal';
 $std->respreg[0]->ideoc = 4;
 $std->respreg[0]->dscoc = 'bla bla bla';
 $std->respreg[0]->nroc = '12345678901234';
 $std->respreg[0]->ufoc = 'SP';
 
-$std->obs = new \stdClass();
-$std->obs->meterg = 'slksjlskjs lks lksj s';
-$std->obs->obscompl = 'kslksj s sljsljs ks';
-
+$std->obscompl = 'kslksj s sljsljs ks';
 
 try {
     //carrega a classe responsavel por lidar com os certificados
