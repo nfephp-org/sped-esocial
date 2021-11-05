@@ -9,21 +9,10 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-2240 sem alterações da 2.4.1 => 2.4.2
-//S-2240 
-//Grupo {ativPericInsal} – alterada ocorrência.
-//Campo {dtIniCondicao} – alterada descrição.
-//Campo {limTol} – incluída validação.
-//Campo {unMed} – alterada descrição dos valores [14, 37] e incluídos valores [45, 46, 47].
-//Campo {eficEpc} – alterada ocorrência.
-//Campo {ideOC} – excluído valor [2] e incluído valor [4].
-//Campo {dscOC} – alterada validação.
-//Campo {metErg} – incluída validação.
-//Campo {observacao} – alterado nome (para {obsCompl}) e incluída validação.
-//alteração 2.5 descFatRisc
+//S-2240 versão inicial e-social simplificado v1.0.0
 
 $evento = 'evtExpRisco';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtExpRisco",
@@ -44,16 +33,11 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{11}$"
-        },
-        "nistrab": {
-            "required": false,
-            "type": ["string","null"],
             "pattern": "^[0-9]{11}$"
         },
         "matricula": {
@@ -66,57 +50,45 @@ $jsonSchema = '{
             "type": ["string","null"],
             "pattern": "^[0-9]{3}$"
         },
-        "dtcondicao": {
+        "dtinicondicao": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "infoamb": {
             "required": true,
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 99,
-            "items": {
-                "required": true,
-                "type": "object",
-                "properties": {
-                    "codamb": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 30
-                    }
-                }
-            }
-        },
-        "infoativ": {
-            "required": true,
             "type": "object",
             "properties": {
-                "dscativdes": {
+                "localamb": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "dscsetor": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 999
+                    "maxLength": 100
                 },
-                "ativpericinsal": {
+                "tpinsc": {
                     "required": true,
-                    "type": "array",
-                    "minItems": 1,
-                    "maxItems": 99,
-                    "items": {
-                        "required": true,
-                        "type": "object",
-                        "properties": {
-                            "codativ": {
-                                "required": true,
-                                "type": "string",
-                                "pattern": "^([0-9]{2}.[0-9]{3})$"
-                            }
-                        }
-                    }    
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 4
+                },
+                "nrinsc": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{8,14}$"
                 }
             }
         },
-        "fatrisco": {
+        "dscativdes": {
+            "required": true,
+            "type": "string",
+            "maxLength": 999
+        },
+        "agnoc": {
             "required": true,
             "type": "array",
             "minItems": 1,
@@ -125,18 +97,18 @@ $jsonSchema = '{
                 "required": true,
                 "type": "object",
                 "properties": {
-                    "codfatris": {
+                    "codagnoc": {
                         "required": true,
                         "type": "string",
                         "pattern": "^([0-9][0-9.]*[0-9])$"
                     },
-                    "dscfatrisc": {
+                    "dscagnoc": {
                         "required": false,
                         "type": ["string","null"],
-                        "pattern": "^.{2,999}$"
+                        "maxLength": 999
                     },
                     "tpaval": {
-                        "required": true,
+                        "required": false,
                         "type": "integer",
                         "minimum": 1,
                         "maximum": 2
@@ -153,27 +125,12 @@ $jsonSchema = '{
                         "required": false,
                         "type": ["integer","null"],
                         "minimum": 1,
-                        "maximum": 47
+                        "maximum": 30
                     },
                     "tecmedicao": {
                         "required": false,
                         "type": ["string","null"],
                         "maxLength": 40
-                    },
-                    "insalubridade": {
-                        "required": false,
-                        "type": ["string","null"],
-                        "pattern": "^(S|N)$"
-                    },
-                    "periculosidade": {
-                        "required": false,
-                        "type": ["string","null"],
-                        "pattern": "^(S|N)$"
-                    },
-                    "aposentesp": {
-                        "required": false,
-                        "type": ["string","null"],
-                        "pattern": "^(S|N)$"
                     },
                     "epcepi": {
                         "required": true,
@@ -196,6 +153,11 @@ $jsonSchema = '{
                                 "minimum": 0,
                                 "maximum": 2
                             },
+                            "eficepi": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(S|N)$"
+                            },
                             "epi": {
                                 "required": false,
                                 "type": ["array","null"],
@@ -205,20 +167,15 @@ $jsonSchema = '{
                                     "required": true,
                                     "type": "object",
                                     "properties": {
-                                        "caepi": {
+                                        "docaval": {
                                             "required": false,
                                             "type": ["string","null"],
-                                            "maxLength": 20
+                                            "maxLength": 255
                                         },
                                         "dscepi": {
                                             "required": false,
                                             "type": ["string","null"],
                                             "maxLength": 999
-                                        },
-                                        "eficepi": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
                                         },
                                         "medprotecao": {
                                             "required": true,
@@ -272,16 +229,6 @@ $jsonSchema = '{
                         "type": "string",
                         "pattern": "^[0-9]{11}$"
                     },
-                    "nisresp": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^[0-9]{11}$"
-                    },
-                    "nmresp": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^.{1,70}$"
-                    },
                     "ideoc": {
                         "required": true,
                         "type": "integer",
@@ -306,21 +253,10 @@ $jsonSchema = '{
                 }
             }    
         },
-        "obs": {
+        "obscompl": {
             "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "meterg": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^.{2,999}$"
-                },
-                "obscompl": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^.{2,999}$"
-                }
-            }
+            "type": ["string","null"],
+            "pattern": "^.{2,999}$"
         }
     }    
 }';
@@ -330,64 +266,51 @@ $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = null;
 $std->cpftrab = '12345678901';
-$std->nistrab = '12345678901';
 $std->matricula = '002zcbv';
 $std->codcateg = '111';
-$std->dtcondicao = '2016-02-01';
+$std->dtinicondicao = '2016-02-01';
 
-$std->infoamb[0] = new \stdClass();
-$std->infoamb[0]->codamb = 'abcdefg';
+$std->infoamb = new \stdClass();
+$std->infoamb->localamb = 1;
+$std->infoamb->dscsetor = 'Administrativo';
+$std->infoamb->tpinsc = 1;
+$std->infoamb->nrinsc = '12345678901234';
 
-$std->infoamb[1] = new \stdClass();
-$std->infoamb[1]->codamb = 'xxxxx';
+$std->dscativdes = 'lkskslkslsklsks  lsk slsklsk';
 
-$std->infoativ = new \stdClass();
-$std->infoativ->dscativdes = 'lkskslkslsklsks  lsk slsklsk';
-$std->infoativ->ativpericinsal[0] = new \stdClass();
-$std->infoativ->ativpericinsal[0]->codativ = '22.111';
+$std->agnoc[0] = new \stdClass();
+$std->agnoc[0]->codagnoc = '01.01.012';
+$std->agnoc[0]->dscagnoc = 'Cair um meteoro na cabeça';
+$std->agnoc[0]->tpaval = 1;
+$std->agnoc[0]->intconc = 20;
+$std->agnoc[0]->limtol = 22.34;
+$std->agnoc[0]->unmed = 15;
+$std->agnoc[0]->tecmedicao = 'dosimetro Geiger- Muller de halogenio';
 
-$std->fatrisco[0] = new \stdClass();
-$std->fatrisco[0]->codfatris = '01.01.012';
-$std->fatrisco[0]->dscfatrisc = 'Cair um meteoro na cabeça';
-$std->fatrisco[0]->tpaval = 1;
-$std->fatrisco[0]->intconc = 20;
-$std->fatrisco[0]->limtol = 22.34;
-$std->fatrisco[0]->unmed = 47;
-$std->fatrisco[0]->tecmedicao = 'dosimetro Geiger- Muller de halogenio';
-$std->fatrisco[0]->insalubridade = 'N';
-$std->fatrisco[0]->periculosidade = 'N';
-$std->fatrisco[0]->aposentesp = 'N';
+$std->agnoc[0]->epcepi = new \stdClass();
+$std->agnoc[0]->epcepi->utilizepc = 1; // 0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado.
+$std->agnoc[0]->epcepi->eficepc = 'S';
+$std->agnoc[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
+$std->agnoc[0]->epcepi->eficepi = 'S';
 
-$std->fatrisco[0]->epcepi = new \stdClass();
-$std->fatrisco[0]->epcepi->utilizepc = 1; // 0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado.
-$std->fatrisco[0]->epcepi->eficepc = 'S';
-$std->fatrisco[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
-
-$std->fatrisco[0]->epcepi->epi[0] = new \stdClass();
-$std->fatrisco[0]->epcepi->epi[0]->caepi = '111xxx';
-$std->fatrisco[0]->epcepi->epi[0]->dscepi = 'macacao';
-$std->fatrisco[0]->epcepi->epi[0]->eficepi = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->medprotecao = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->condfuncto = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->usoinint = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->przvalid = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->periodictroca = 'S';
-$std->fatrisco[0]->epcepi->epi[0]->higienizacao = 'S';
+$std->agnoc[0]->epcepi->epi[0] = new \stdClass();
+$std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
+$std->agnoc[0]->epcepi->epi[0]->dscePI = 'macacao';
+$std->agnoc[0]->epcepi->epi[0]->medprotecao = 'S';
+$std->agnoc[0]->epcepi->epi[0]->condfuncto = 'S';
+$std->agnoc[0]->epcepi->epi[0]->usoinint = 'S';
+$std->agnoc[0]->epcepi->epi[0]->przvalid = 'S';
+$std->agnoc[0]->epcepi->epi[0]->periodictroca = 'S';
+$std->agnoc[0]->epcepi->epi[0]->higienizacao = 'S';
 
 $std->respreg[0] = new \stdClass();
 $std->respreg[0]->cpfresp = '12345678901';
-$std->respreg[0]->nisresp = '12345678901';
-$std->respreg[0]->nmresp = 'Fulano de Tal';
 $std->respreg[0]->ideoc = 4;
 $std->respreg[0]->dscoc = 'bla bla bla';
 $std->respreg[0]->nroc = '12345678901234';
 $std->respreg[0]->ufoc = 'SP';
 
-$std->obs = new \stdClass();
-$std->obs->meterg = 'slksjlskjs lks lksj s';
-$std->obs->obscompl = 'kslksj s sljsljs ks';
-
-
+$std->obscompl = 'kslksj s sljsljs ks';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
