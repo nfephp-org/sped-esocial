@@ -126,8 +126,10 @@ trait TraitS2190
         $this->dom->addChild(
             $infoRegPrelim,
             "natAtividade",
-            $this->std->inforegprelim->natatividade,
-            true
+            !empty($this->std->inforegprelim->natatividade)
+            ? $this->std->inforegprelim->natatividade
+            : 1,
+            false
         );
         $this->node->appendChild($infoRegPrelim);
 
@@ -159,8 +161,10 @@ trait TraitS2190
         $this->dom->addChild(
             $infoRegCTPS,
             "dtTerm",
-            $this->std->inforegctps->dtterm,
-            true
+            !empty($this->std->inforegctps->dtterm)
+            ? $this->std->inforegctps->dtterm
+            : null,
+            false
         );
         $this->node->appendChild($infoRegCTPS);
 
