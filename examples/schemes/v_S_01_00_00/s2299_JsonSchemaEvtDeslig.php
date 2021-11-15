@@ -8,25 +8,10 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-2299
-//Campo {cpfDep} – alterada validação da alínea a). ok
-//Campo {codSusp} – alteradas ocorrência e validação.ok
-//Grupo {ideADC} – inserido campo {dtEfAcConv} como chave.ok
-//Campos {ideEstabLot/tpInsc} – alterada validação.ok
-//Criado o grupo {observacoes}.pk
-//Criado o grupo {procCS} e respectivo campo.ok
-//Grupo {consigFGTS} – alteradas ocorrência e condição.ok
-//Campo {dtDeslig} – alterada validação.ok
-//Campo {qtdDiasInterm} – criado.ok
-//Campo {observacao} – alterados registro pai, ocorrência e descrição.ok
-//Campo {nrCertObito} – alterada validação.ok
-//Campo {idConsig} – excluído.ok
-//Campo {insConsig} – alterada ocorrência e excluída validação.ok
-//Campo {nrContr} – alterados ocorrência e tamanho e excluída validação.ok
-//Grupo {verbasResc} – alterada condição.
+//S-2299 versão inicial e-social simplificado v1.0.0
 
 $evento  = 'evtDeslig';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtDeslig",
@@ -47,14 +32,15 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "maximum": 1
         },
         "cpftrab": {
-            "required": true,
-            "type": "string",
-            "pattern": "^[0-9]{11}$"
-        },
-        "nistrab": {
             "required": true,
             "type": "string",
             "pattern": "^[0-9]{11}$"
@@ -72,7 +58,12 @@ $jsonSchema = '{
         "dtdeslig": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
+        },
+        "dtavprv": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/data"
         },
         "indpagtoapi": {
             "required": true,
@@ -82,11 +73,11 @@ $jsonSchema = '{
         "dtprojfimapi": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "pensalim": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 0,
             "maximum": 3
         },
@@ -98,27 +89,26 @@ $jsonSchema = '{
             "required": false,
             "type": ["number","null"]
         },
-        "nrcertobito": {
-            "required": false,
-            "type": ["string","null"],
-            "pattern": "^[0-9]{32}$"
-        },
         "nrproctrab": {
             "required": false,
             "type": ["string","null"],
             "pattern": "^.{20}$"
         },
-        "indcumprparc": {
-            "required": true,
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 4
-        },
-        "qtddiasinterm": {
-            "required": false,
-            "type": ["integer","null"],
-            "minimum": 0,
-            "maximum": 31
+        "infoInterm": {
+            "type": ["array", "null"],
+            "minItems": 0,
+            "maxItems": 31,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "dia": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 31
+                    }
+                }
+            }
         },
         "observacoes": {
             "required": false,
@@ -140,13 +130,13 @@ $jsonSchema = '{
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "tpinscsuc": {
+                "tpinsc": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 2
                 },
-                "cnpjsucessora": {
+                "nrinsc": {
                     "required": true,
                     "type": "string",
                     "pattern": "^[0-9]{14}$"
@@ -251,80 +241,15 @@ $jsonSchema = '{
                                                                 "required": false,
                                                                 "type": ["number","null"]
                                                             },
-                                                            "vrunit": {
-                                                                "required": false,
-                                                                "type": ["number","null"]
-                                                            },
                                                             "vrrubr": {
                                                                 "required": true,
                                                                 "type": "number"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "infosaudecolet": {
-                                                    "required": false,
-                                                    "type": ["object","null"],
-                                                    "properties": {
-                                                        "detoper": {
-                                                            "required": true,
-                                                            "type": "array",
-                                                            "minItems": 1,
-                                                            "maxItems": 99,
-                                                            "items": {
-                                                                "required": true,
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "cnpjoper": {
-                                                                        "required": true,
-                                                                        "type": "string",
-                                                                        "pattern": "^[0-9]{14}"
-                                                                    },
-                                                                    "regans": {
-                                                                        "required": true,
-                                                                        "type": "string",
-                                                                        "maxLength": 6
-                                                                    },
-                                                                    "vrpgtit": {
-                                                                        "required": true,
-                                                                        "type": "number"
-                                                                    },
-                                                                    "detplano": {
-                                                                        "required": false,
-                                                                        "type": ["array","null"],
-                                                                        "minItems": 0,
-                                                                        "maxItems": 99,
-                                                                        "items": {
-                                                                            "type": "object",
-                                                                            "properties": {
-                                                                                "tpdep": {
-                                                                                    "required": true,
-                                                                                    "type": "string",
-                                                                                    "pattern": "^[0-9]{2}$"
-                                                                                },
-                                                                                "cpfdep": {
-                                                                                    "required": false,
-                                                                                    "type": ["string","null"],
-                                                                                    "pattern": "^[0-9]{11}$"
-                                                                                },
-                                                                                "nmdep": {
-                                                                                    "required": true,
-                                                                                    "type": "string",
-                                                                                    "maxLength": 70
-                                                                                },
-                                                                                "dtnascto": {
-                                                                                    "required": true,
-                                                                                    "type": "string",
-                                                                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                                                                                },
-                                                                                "vlrpgdep": {
-                                                                                    "required": true,
-                                                                                    "type": "number"
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
+                                                            },
+                                                            "indapurir": {
+                                                                "required": false,
+                                                                "type": ["integer","null"],
+                                                                "minimum": 0,
+                                                                "maximum": 1
                                                             }
                                                         }
                                                     }
@@ -373,22 +298,12 @@ $jsonSchema = '{
                                                 "dtacconv": {
                                                     "required": true,
                                                     "type": "string",
-                                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                                    "$ref": "#/definitions/data"
                                                 },
                                                 "tpacconv": {
                                                     "required": true,
                                                     "type": "string",
-                                                    "pattern": "^(A|B|C|D|E)$"
-                                                },
-                                                "compacconv": {
-                                                    "required": false,
-                                                    "type": ["string","null"],
-                                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
-                                                },
-                                                "dtefacconv": {
-                                                    "required": false,
-                                                    "type": ["string","null"],
-                                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                                    "pattern": "^(A|B|C|D|E|G|H)$"
                                                 },
                                                 "dsc": {
                                                     "required": true,
@@ -458,13 +373,15 @@ $jsonSchema = '{
                                                                                         "required": false,
                                                                                         "type": ["number","null"]
                                                                                     },
-                                                                                    "vrunit": {
-                                                                                        "required": false,
-                                                                                        "type": ["number","null"]
-                                                                                    },
                                                                                     "vrrubr": {
                                                                                         "required": true,
                                                                                         "type": "number"
+                                                                                    },
+                                                                                    "indapurir": {
+                                                                                        "required": false,
+                                                                                        "type": ["integer","null"],
+                                                                                        "minimum": 0,
+                                                                                        "maximum": 1
                                                                                     }
                                                                                 }
                                                                             }
@@ -503,22 +420,6 @@ $jsonSchema = '{
                                         }
                                     }
                                 }
-                            },
-                            "infotrabinterm": {
-                                "required": false,
-                                "type": ["array","null"],
-                                "minItems": 0,
-                                "maxItems": 99,
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "codconv": {
-                                            "required": true,
-                                            "type": "string",
-                                            "maxLength": 30
-                                        }
-                                    }
-                                }
                             }
                         }
                     }
@@ -543,8 +444,8 @@ $jsonSchema = '{
                                 "pattern": "^.{20}$"
                             },
                             "codsusp": {
-                                "required": false,
-                                "type": ["string","null"],
+                                "required": true,
+                                "type": "string",
                                 "pattern": "^[0-9]{1,14}$"
                             }
                         }
@@ -613,7 +514,7 @@ $jsonSchema = '{
                 "dtfimquar": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 }
             }
         },
@@ -621,7 +522,7 @@ $jsonSchema = '{
             "required": false,
             "type": ["array","null"],
             "minItems": 0,
-            "maxItems": 9,
+            "maxItems": 99,
             "items": {
                 "type": "object",
                 "properties": {
@@ -646,9 +547,9 @@ $jsonSchema = '{
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->nrrecibo = '1.1.1234567890123456789';
+$std->indguia = 1;
 $std->cpftrab = '99999999999';
-$std->nistrab = '11111111111';
 $std->matricula = '1234infomv56788-56478ABC';
 $std->mtvdeslig = '02';
 $std->dtdeslig = '2017-11-25';
@@ -657,17 +558,16 @@ $std->dtprojfimapi = '2017-11-25';
 $std->pensalim = 2;
 $std->percaliment = 22;
 $std->vralim = 1234.45;
-$std->nrcertobito = '12345678901234567890123456789012';
 $std->nrproctrab = '12345678901234567890';
-$std->indcumprparc = 2;
-$std->qtddiasinterm = 12;
+$std->infoInterm[0] = new \stdClass();
+$std->infoInterm[0]->dia = 12;
 
 $std->observacoes[0] = new \stdClass();
 $std->observacoes[0]->observacao = 'observacao';
 
 $std->sucessaovinc = new \stdClass();
-$std->sucessaovinc->tpinscsuc = 1;
-$std->sucessaovinc->cnpjsucessora = '12345678901234';
+$std->sucessaovinc->tpinsc = 1;
+$std->sucessaovinc->nrinsc = '12345678901234';
 
 $std->transftit = new \stdClass();
 $std->transftit->cpfsubstituto = '12345678901';
@@ -690,20 +590,8 @@ $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->codrubr =
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->idetabrubr = '12345678';
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->qtdrubr = 25.45;
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->fatorrubr = 1.56;
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->vrunit = 20.15;
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->vrrubr = 200.56;
-
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet = new \stdClass();
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1] = new \stdClass();
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->cnpjoper = '12345678901234';
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->regans = '123456';
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->vrpgtit = 986.49;
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1] = new \stdClass();
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->tpdep = '01';
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->cpfdep = '12345678901';
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->nmdep = 'Fulano de Tal';
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->dtnascto = '2005-06-05';
-$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infosaudecolet->detoper[1]->detplano[1]->vlrpgdep = 199.41;
+$std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->detverbas[1]->indapurir = 0;
 
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infoagnocivo = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperapur->ideestablot[1]->infoagnocivo->grauexp = 2;
@@ -715,8 +603,6 @@ $std->verbasresc->dmdev[1]->infoperant = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->dtacconv = '2017-04-02';
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->tpacconv = 'A';
-$std->verbasresc->dmdev[1]->infoperant->ideadc[1]->compacconv = '2017-04';
-$std->verbasresc->dmdev[1]->infoperant->ideadc[1]->dtefacconv = '2017-06-02';
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->dsc = 'kksksks k skjskjskjs sk';
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->perref = '2017-01';
@@ -730,17 +616,14 @@ $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1]->idetabrubr = '12345678';
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1]->qtdrubr = 25.45;
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1]->fatorrubr = 1.56;
-$std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1]->vrunit = 20.15;
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1]->vrrubr = 200.56;
+$std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->detverbas[1]->indapurir = 0;
 
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->infoagnocivo = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->infoagnocivo->grauexp = 2;
 
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->infosimples = new \stdClass();
 $std->verbasresc->dmdev[1]->infoperant->ideadc[1]->ideperiodo[1]->ideestablot[1]->infosimples->indsimples = 1;
-
-$std->verbasresc->dmdev[1]->infotrabinterm[1] = new \stdClass();
-$std->verbasresc->dmdev[1]->infotrabinterm[1]->codconv = 'ksksksksksk';
 
 $std->verbasresc->procjudtrab[1] = new \stdClass();
 $std->verbasresc->procjudtrab[1]->tptrib = 3;
@@ -765,7 +648,6 @@ $std->quarentena->dtfimquar = '2018-12-20';
 $std->consigfgts[0] = new \stdClass();
 $std->consigfgts[0]->insconsig = '12345';
 $std->consigfgts[0]->nrcontr = '123456789012345';
-
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
