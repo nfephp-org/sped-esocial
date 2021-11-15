@@ -52,6 +52,11 @@
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "^(S)$"
+                },
+                "transDCTFWeb": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
                 }
             }
         }    

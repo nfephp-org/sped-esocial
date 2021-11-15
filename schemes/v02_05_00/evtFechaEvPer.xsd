@@ -211,8 +211,19 @@
                           <xs:documentation>Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:string">
-                          <xs:length value="7"/>
-                          <xs:pattern value="[2]{1}\d{3}-(1[0-2]|0[1-9])"/>
+                          <xs:minLength value="4"/>
+                          <xs:maxLength value="7"/>
+                          <xs:pattern value="[2]{1}\d{3}-(1[0-2]|0[1-9])|[2]{1}\d{3}$"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="indExcApur1250" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:annotation>
+                          <xs:documentation>Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.</xs:documentation>
+                        </xs:annotation>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[S]"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>

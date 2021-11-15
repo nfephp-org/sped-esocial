@@ -102,6 +102,11 @@ $jsonSchema = '{
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                },
+                "indexcapur1250": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
                 }
             }
         }
@@ -127,7 +132,7 @@ $std->infofech->evtcomprod = 'N';
 $std->infofech->evtcontratavnp = 'N';
 $std->infofech->evtinfocomplper = 'N';
 $std->infofech->compsemmovto = '2019-12';
-
+$std->infofech->indexcapur1250 = 'S';
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

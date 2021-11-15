@@ -48,6 +48,7 @@ $std->infofech->evtcomprod = 'N';
 $std->infofech->evtcontratavnp = 'N';
 $std->infofech->evtinfocomplper = 'N';
 $std->infofech->compsemmovto = '2019-12';
+$std->infofech->indexcapur1250 = 'S';
 
 try {
     //carrega a classe responsavel por lidar com os certificados

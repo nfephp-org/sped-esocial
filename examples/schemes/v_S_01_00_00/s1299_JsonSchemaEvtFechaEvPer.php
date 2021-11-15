@@ -68,6 +68,11 @@ $jsonSchema = '{
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "^(S)$"
+                },
+                "transDCTFWeb": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
                 }
             }
         }    
@@ -114,6 +119,11 @@ $std->infofech->indexcapur1250 = 'S'; //opcional
 //Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.
 //Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Preenchimento obrigatório caso o
 //campo tenha sido informado em fechamento anterior do mesmo período de apuração
+
+$std->infofech->transdctfweb = 'S'; //opcional
+// Solicitação de transmissão imediata da DCTFWeb.
+// Não informar se perApur < [2021-10]. Preenchimento obrigatório se perApur >= [2021-10] e
+// (classTrib em S-1000 = [04] ou indGuia estiver informado).
 
 
 // Schema must be decoded before it can be used for validation
