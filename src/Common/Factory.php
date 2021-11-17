@@ -62,6 +62,10 @@ abstract class Factory
     /**
      * @var string
      */
+    public $definitions;
+    /**
+     * @var string
+     */
     public $evtid;
     /**
      * @var string
@@ -103,7 +107,11 @@ abstract class Factory
      * @var Certificate | null
      */
     protected $certificate;
-
+     /**
+     * @var string
+     */
+    protected $method_name;
+    
     /**
      * Constructor
      * @param string $config
@@ -118,7 +126,7 @@ abstract class Factory
         $date = ''
     ) {
         //set properties from config
-        $stdConf    = json_decode($config);
+        $stdConf = json_decode($config);
         $this->date = new DateTime();
         if (! empty($date)) {
             $this->date = new DateTime($date);
@@ -136,24 +144,44 @@ abstract class Factory
                 'Você deve passar os parâmetros num stdClass.'
             );
         }
+        if ($this->layout == 'S.1.0.0' && $this->evtAlias == 'S-2400') {
+            $this->evtName = 'evtCdBenefIn';
+        }
+        //constroi o nome do método construtor baseado na versão
+        $this->method_name = 'toNode'
+            . str_replace('.', '', $this->layout);
         $this->jsonschema = realpath(
             __DIR__
             ."/../../jsonSchemes/$this->layoutStr/"
             .$this->evtName
             .".schema"
         );
-        $this->schema     = realpath(
+        $this->schema = realpath(
             __DIR__
             ."/../../schemes/$this->layoutStr/"
             .$this->evtName
             .".xsd"
         );
+        $this->definitions = realpath(
+            __DIR__
+            ."/../../jsonSchemes/definitions.schema"
+        );
+        if (empty($this->schema)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                    . 'corretamente no config.'
+            );
+        }
         //convert all data fields to lower case
         $this->std = $this->propertiesToLower($std);
+        //validate input data with schema
         if (!isset($stdConf->validaJsonSchema) || $stdConf->validaJsonSchema === true) {
             //validate input data with schema
             $this->validInputData($this->std);
         }
+        // var_dump($this->std);
+        // $this->validInputData($this->std);
+        
         //Adding forgotten or unnecessary fields.
         //This is done for standardization purposes.
         //Fields with no value will not be included by the builder.
@@ -168,10 +196,20 @@ abstract class Factory
      */
     protected function strLayoutVer($layout)
     {
-        $fils = explode('.', $layout);
-        $str  = 'v';
-        foreach ($fils as $fil) {
-            $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
+        //v_S_01_00_00
+        //v02_05_00
+        if (substr($layout, 0, 1) == 'S') {
+            $str  = 'v_S_';
+            $fils = explode('.', substr($layout, 2, strlen($layout)-1));
+            foreach ($fils as $fil) {
+                $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
+            }
+        } else {
+            $fils = explode('.', $layout);
+            $str  = 'v';
+            foreach ($fils as $fil) {
+                $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
+            }
         }
         return substr($str, 0, -1);
     }
@@ -201,7 +239,6 @@ abstract class Factory
             $nk           = strtolower($key);
             $clone->{$nk} = $value;
         }
-
         return $clone;
     }
 
@@ -216,17 +253,16 @@ abstract class Factory
         if (! is_file($this->jsonschema)) {
             return true;
         }
-        $validator = new JsonValid();
-        $validator->check($data, (object) ['$ref' => 'file://'.$this->jsonschema]);
-        if (! $validator->isValid()) {
-            $msg = "JSON does not validate. Violations:\n";
-            foreach ($validator->getErrors() as $error) {
-                $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']);
-            }
-            throw new \RuntimeException($msg);
+        $errors = JsonValidation::validate($data, $this->jsonschema, $this->definitions);
+        if (empty($errors)) {
+            return true;
         }
-
-        return true;
+        $msg = '';
+        foreach ($errors as $key => $error) {
+            $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']). ";";
+        }
+        $msg = substr($msg, 0, strlen($msg)-2);
+        throw new \Exception($msg);
     }
 
     /**
@@ -272,7 +308,7 @@ abstract class Factory
             $this->node->appendChild($ideEmpregador);
         }
     }
-
+    
     /**
      * Returns alias for event
      * @return string
@@ -284,13 +320,13 @@ abstract class Factory
 
     /**
      * Returns Certificate::class
-     * @return Certificate
+     * @return Certificate|null
      */
     public function getCertificate()
     {
         return $this->certificate;
     }
-
+    
     /**
      * Set Certificate::class
      * @param Certificate $certificate
@@ -306,13 +342,24 @@ abstract class Factory
      */
     public function toXML()
     {
+        $this->init();
         if (empty($this->xml)) {
             $this->toNode();
         }
         return $this->clearXml($this->xml);
     }
 
-    abstract protected function toNode();
+    /**
+     * Node constructor
+     */
+    protected function toNode()
+    {
+        $method_name = $this->method_name;
+        if (!method_exists($this, $method_name)) {
+            throw new \Exception("Erro interno método {$method_name} não localizado.");
+        }
+        return $this->$method_name();
+    }
 
     /**
      * Remove XML declaration from XML string
@@ -343,29 +390,16 @@ abstract class Factory
      */
     public function toJson()
     {
-        if (empty($this->xml)) {
-            $this->toNode();
-        }
-        //a assinatura só faz sentido no XML, os demais formatos
-        //não devem conter dados da assinatura
-        $xml = Signer::removeSignature($this->xml);
-        $dom = new \DOMDocument();
-        $dom->loadXML($xml);
-        $sxml = simplexml_load_string($dom->saveXML());
-        return str_replace(
-            '@attributes',
-            'attributes',
-            json_encode($sxml, JSON_PRETTY_PRINT)
-        );
+        return json_encode($this->std);
     }
 
     /**
-     * Convert xml to stdClass
+     * Returns stdClass
      * @return stdClass
      */
     public function toStd()
     {
-        return json_decode($this->toJson());
+        return $this->std;
     }
 
     /**

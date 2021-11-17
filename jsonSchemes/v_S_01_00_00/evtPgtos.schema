@@ -1,0 +1,523 @@
+{
+    "title": "evtPgtos",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 1,
+            "maxLength": 40
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+        },
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
+        },
+        "deps": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "vrdeddep": {
+                    "required": true,
+                    "type": "number"
+                }
+            }
+        },
+        "infopgto": {
+            "required": true,
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 60,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "dtpgto": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    },
+                    "tppgto": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9
+                    },
+                    "indresbr": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 1,
+                        "pattern": "S|N"
+                    },
+                    "detpgtofl": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 0,
+                        "maxItems": 200,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "perref": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+                                },
+                                "idedmdev": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 30
+                                },
+                                "indpgtott": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 1,
+                                    "pattern": "S|N"
+                                },
+                                "vrliq": {
+                                    "required": true,
+                                    "type": "number"
+                                },
+                                "nrrecarq": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 40
+                                },
+                                "retpgtotot": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 0,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "codrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 30
+                                            },
+                                            "idetabrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 8
+                                            },
+                                            "qtdrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "fatorrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrunit": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrrubr": {
+                                                "required": true,
+                                                "type": "number"
+                                            },
+                                            "penalim": {
+                                                "required": false,
+                                                "type": ["array","null"],
+                                                "minItems": 0,
+                                                "maxItems": 99,
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "cpfbenef": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "pattern": "[0-9]{11}"
+                                                        },
+                                                        "dtnasctobenef": {
+                                                            "required": false,
+                                                            "type": ["string","null"],
+                                                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                                        },
+                                                        "nmbenefic": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "maxLength": 70
+                                                        },
+                                                        "vlrpensao": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                }    
+                                            }
+                                        }
+                                    }    
+                                },
+                                "infopgtoparc": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 0,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "matricula": {
+                                                "required": false,
+                                                "type": ["string","null"],
+                                                "maxLength": 30
+                                            },
+                                            "codrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 30
+                                            },
+                                            "idetabrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 8
+                                            },
+                                            "qtdrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "fatorrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrunit": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrrubr": {
+                                                "required": true,
+                                                "type": "number"
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        }    
+                    },
+                    "detpgtobenpr": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "perref": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+                            },
+                            "idedmdev": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 30
+                            },
+                            "indpgtott": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 1,
+                                "pattern": "S|N"
+                            },
+                            "vrliq": {
+                                "required": true,
+                                "type": "number"
+                            },
+                            "retpgtotot": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "codrubr": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 30
+                                        },
+                                        "idetabrubr": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 8
+                                        },
+                                        "qtdrubr": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "fatorrubr": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "vrunit": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "vrrubr": {
+                                            "required": true,
+                                            "type": "number"
+                                        }
+                                    }
+                                }    
+                            },
+                            "infopgtoparc": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "codrubr": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 30
+                                        },
+                                        "idetabrubr": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 8
+                                        },
+                                        "qtdrubr": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "fatorrubr": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "vrunit": {
+                                            "required": false,
+                                            "type": ["number","null"]
+                                        },
+                                        "vrrubr": {
+                                            "required": true,
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "detpgtofer": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 0,
+                        "maxItems": 5,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codcateg": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 101,
+                                    "maximum": 999
+                                },
+                                "matricula": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 30
+                                },
+                                "dtinigoz": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                },
+                                "qtdias": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 99
+                                },
+                                "vrliq": {
+                                    "required": true,
+                                    "type": "number"
+                                },
+                                "detrubrfer": {
+                                    "required": true,
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "codrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 30
+                                            },
+                                            "idetabrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "maxLength": 8
+                                            },
+                                            "qtdrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "fatorrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrunit": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrrubr": {
+                                                "required": true,
+                                                "type": "number"
+                                            },
+                                            "penalim": {
+                                                "required": false,
+                                                "type": ["array","null"],
+                                                "minItems": 0,
+                                                "maxItems": 99,
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "cpfbenef": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "pattern": "[0-9]{11}"
+                                                        },
+                                                        "dtnasctobenef": {
+                                                            "required": false,
+                                                            "type": ["string","null"],
+                                                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                                        },
+                                                        "nmbenefic": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "maxLength": 70
+                                                        },
+                                                        "vlrpensao": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                }
+                                            }    
+                                        }
+                                    }    
+                                }
+                            }
+                        }    
+                    },
+                    "detpgtoant": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 0,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codcateg": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 101,
+                                    "maximum": 999
+                                },
+                                "infopgtoant": {
+                                    "required": true,
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tpbcirrf": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "[0-9]{2}"
+                                            },
+                                            "vrbcirrf": {
+                                                "required": true,
+                                                "type": "number"
+                                            }
+                                        }
+                                    }    
+                                }
+                            }
+                        }    
+                    },
+                    "idepgtoext": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "codpais": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "[0-9]{3}"
+                            },
+                            "indnif": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 3
+                            },
+                            "nifbenef": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "maxLength": 20
+                            },
+                            "endext": {
+                                "required": true,
+                                "type": "object",
+                                "properties": {
+                                    "dsclograd": {
+                                        "required": true,
+                                        "type": "string",
+                                        "maxLength": 80
+                                    },
+                                    "nrlograd": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 10
+                                    },
+                                    "complem": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 30
+                                    },
+                                    "bairro": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 60
+                                    },
+                                    "nmcid": {
+                                        "required": true,
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "codpostal": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }    
+        }
+    }    
+}

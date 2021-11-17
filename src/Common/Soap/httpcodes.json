@@ -250,3 +250,4 @@
     "means": "A maioria dos browsers assumem que os servidores de rede suportam vers\u00f5es 1.x do protocolo HTTP. Na pr\u00e1tica, as vers\u00f5es muito antigas como a 0.9 s\u00e3o pouco utilizadas atualmente, n\u00e3o apenas porque eles fornecem pouca seguran\u00e7a e desempenho mais baixo do que as vers\u00f5es mais recentes do protocolo. Ent\u00e3o, se acontecer esse erro no seu navegador de rede, a \u00fanica op\u00e7\u00e3o \u00e9 fazer o upgrade do software do servidor de rede. Se a vers\u00e3o da solicita\u00e7\u00e3o 1.x falhar, pode ser porque o servidor de rede est\u00e1 suportando vers\u00f5es incorretas do protocolo 1.x, em vez de n\u00e3o suport\u00e1-las"
   }
 }
+

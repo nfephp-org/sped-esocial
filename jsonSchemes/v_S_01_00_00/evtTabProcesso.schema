@@ -1,0 +1,129 @@
+{
+    "title": "evtTabProcesso",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "tpproc": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+        },
+        "nrproc": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/proc16172021"
+        },
+        "inivalid": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/periodo"
+        },
+        "fimvalid": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/periodo"
+        },
+        "modo": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/modo"
+        },
+        "dadosproc": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "indautoria": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "indmatproc": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 7
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^.{1,255}$"
+                },
+                "dadosprocjud": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "ufvara": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
+                        },
+                        "codmunic": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{7}$"
+                        },
+                        "idvara": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{1,4}$"
+                        }
+                    }
+                },
+                "infosusp": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "codsusp": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{1,14}$"
+                            },
+                            "indsusp": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^0[1-9]{1}|1[0-4]{1}|90|92$"
+                            },
+                            "dtdecisao": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/data"
+                            },
+                            "inddeposito": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(S|N)$"
+                            }
+                        }
+                    }
+                }    
+            }
+        },
+        "novavalidade": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/periodo"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/periodo"
+                }
+            }    
+        }
+    }
+}

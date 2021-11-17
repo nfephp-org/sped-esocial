@@ -1,0 +1,205 @@
+{
+    "title": "evtCdBenefAlt",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "dtalteracao": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "dadosbenef": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "nmbenefic": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^.{2,70}$"
+                },
+                "sexo": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(M|F)$"
+                },
+                "racacor": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 6
+                },
+                "estciv": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "incfismen": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },
+                "endereco": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "brasil": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "tplograd": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,4}$"
+                                },
+                                "dsclograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,100}$"
+                                },
+                                "nrlograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,10}$"
+                                },
+                                "complemento": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,30}$"
+                                },
+                                "bairro": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,90}$"
+                                },
+                                "cep": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{8}$"
+                                },
+                                "codmunic": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{7}$"
+                                },
+                                "uf": {
+                                    "required": true,
+                                    "type": "string",
+                                    "$ref": "#/definitions/siglauf"
+                                }
+                            }
+                        },
+                        "exterior": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "paisresid": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{3}$"
+                                },
+                                "dsclograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,100}$"
+                                },
+                                "nrlograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,10}$"
+                                },
+                                "complemento": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,30}$"
+                                },
+                                "bairro": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,90}$"
+                                },
+                                "nmcid": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{2,50}$"
+                                },
+                                "codpostal": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{4,12}$"
+                                }
+                            }
+                        }
+                    }
+                },
+                "dependente": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "tpdep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^0[1-9]{1}|1[0-2]{1}|99$"
+                            },
+                            "nmdep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^.{2,70}$"
+                            },
+                            "dtnascto": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/data"
+                            },
+                            "cpfdep": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^[0-9]{11}$"
+                            },
+                            "sexodep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(M|F)$"
+                            },
+                            "depirrf": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(S|N)$"
+                            },
+                            "incfismen": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(S|N)$"
+                            }
+                        }
+                    }
+                }    
+            }
+        }
+    }
+}

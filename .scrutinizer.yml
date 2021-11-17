@@ -24,8 +24,6 @@ tools:
 
 build:
     dependencies:
-        before:
-            - "sudo composer self-update"
         override:
             - "composer install --no-interaction --prefer-dist"
     tests:

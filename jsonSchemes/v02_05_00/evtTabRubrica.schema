@@ -65,7 +65,7 @@
                     "required": true,
                     "type": "string",
                     "minLength": 2,
-                    "maxLength": 2,
+                    "maxLength": 4,
                     "pattern": "^[0-9]"
                },
                 "codincfgts": {

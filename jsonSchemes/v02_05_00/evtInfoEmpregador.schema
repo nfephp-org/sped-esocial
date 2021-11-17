@@ -15,7 +15,7 @@
         },
         "ideperiodo": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "inivalid": {
                     "required": true,
@@ -31,7 +31,7 @@
         },
         "infocadastro": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nmrazao": {
                     "required": true,
@@ -56,7 +56,7 @@
                 },
                 "indconstr": {
                     "required": false,
-                    "type": "integer",
+                    "type": ["integer","null"],
                     "minimum": 0,
                     "maximum": 1
                 },
@@ -71,6 +71,11 @@
                     "type": ["integer","null"],
                     "minimum": 1,
                     "maximum": 2
+                },
+                "indporte": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
                 },
                 "indoptregeletron": {
                     "required": true,
@@ -98,7 +103,7 @@
         },
         "dadosisencao": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "ideminlei": {
                     "required": true,
@@ -175,7 +180,7 @@
         },
         "infoop": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nrsiafi": {
                     "required": true,
@@ -186,7 +191,7 @@
         },
         "infoefr": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "ideefr": {
                     "required": true,
@@ -203,7 +208,7 @@
         },
         "infoente": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "nmente": {
                     "required": true,
@@ -240,7 +245,7 @@
         },
         "infoorginternacional": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indacordoisenmulta": {
                     "required": true,
@@ -252,7 +257,7 @@
         },
         "softwarehouse": {
             "required": false,
-            "type": "array",
+            "type": ["array","null"],
             "minItems": 0,
             "maxItems": 99,
             "items": {
@@ -289,7 +294,7 @@
         },        
         "situacaopj": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indsitpj": {
                     "required": true,
@@ -301,7 +306,7 @@
         },
         "situacaopf": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indsitpf": {
                     "required": true,
@@ -313,7 +318,7 @@
         },
         "novavalidade": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "inivalid": {
                     "required": true,

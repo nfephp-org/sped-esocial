@@ -1,5 +1,7 @@
 # EvtCadInicial
 
+## EVENTO DESCONTINUADO na versão 2.5.0 !!
+
 ## Evento
  *evtCadInicial*
 

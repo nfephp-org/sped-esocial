@@ -4,10 +4,11 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtComProd Event S-1260 constructor
+ * Read for 2.5.0 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @category  library
+ * @package   NFePHP\eSocial
+ * @copyright NFePHP Copyright (c) 2018
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -27,278 +28,39 @@ class EvtComProd extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtComProd';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1260';
-
     /**
      * Parameters patterns
      *
      * @var array
      */
     protected $parameters = [];
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS1260;
 
     /**
      * Constructor
      *
      * @param string $config
      * @param stdClass $std
-     * @param Certificate $certificate
+     * @param Certificate $certificate | null
+     * @param string $date
      */
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null,
+        $date = ''
     ) {
-        parent::__construct($config, $std, $certificate);
-    }
-
-    /**
-     * Node constructor
-     */
-    protected function toNode()
-    {
-        $evtid = FactoryId::build(
-            $this->tpInsc,
-            $this->nrInsc,
-            $this->date,
-            $this->sequencial
-        );
-
-        $evtComProd = $this->dom->createElement("evtComProd");
-
-        $att = $this->dom->createAttribute('Id');
-
-        $att->value = $evtid;
-
-        $evtComProd->appendChild($att);
-
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "indRetif",
-            $this->std->indretif,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "nrRecibo",
-            $this->std->nrrecibo,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "indApuracao",
-            $this->std->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "perApur",
-            $this->std->perapur,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-
-        $infoComProd = $this->dom->createElement("infoComProd");
-
-        $ideEstabel = $this->dom->createElement("ideEstabel");
-
-        $this->dom->addChild(
-            $ideEstabel,
-            "nrInscEstabRural",
-            $this->std->estabelecimento->nrinscestabrural,
-            true
-        );
-
-        $tpComerc = $this->dom->createElement("tpComerc");
-
-        $this->dom->addChild(
-            $tpComerc,
-            "indComerc",
-            $this->std->estabelecimento->indcomerc,
-            true
-        );
-
-        $this->dom->addChild(
-            $tpComerc,
-            "vrTotCom",
-            $this->std->estabelecimento->vrtotcom,
-            true
-        );
-
-        if (isset($this->std->estabelecimento->ideadquir)) {
-            foreach ($this->std->estabelecimento->ideadquir as $adquir) {
-                $ideAdquir = $this->dom->createElement("ideAdquir");
-
-                $this->dom->addChild(
-                    $ideAdquir,
-                    "tpInsc",
-                    $adquir->tpinsc,
-                    true
-                );
-
-                $this->dom->addChild(
-                    $ideAdquir,
-                    "nrInsc",
-                    $adquir->nrinsc,
-                    true
-                );
-
-                $this->dom->addChild(
-                    $ideAdquir,
-                    "vrComerc",
-                    $adquir->vrcomerc,
-                    true
-                );
-
-                if (isset($adquir->nfs)) {
-                    foreach ($adquir->nfs as $nf) {
-                        $nfs = $this->dom->createElement("nfs");
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "serie",
-                            !empty($nf->serie) ? $nf->serie : null,
-                            false
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "nrDocto",
-                            $nf->nrdocto,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "dtEmisNF",
-                            $nf->dtemisnf,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vlrBruto",
-                            $nf->vlrbruto,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrCPDescPR",
-                            $nf->vrcpdescpr,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrRatDescPR",
-                            $nf->vrratdescpr,
-                            true
-                        );
-
-                        $this->dom->addChild(
-                            $nfs,
-                            "vrSenarDesc",
-                            $nf->vrsenardesc,
-                            true
-                        );
-
-                        $ideAdquir->appendChild($nfs);
-                    }
-                }
-
-                $tpComerc->appendChild($ideAdquir);
-            }
-        }
-
-        if (isset($this->std->infoprocjud)) {
-            foreach ($this->std->infoprocjud as $procjud) {
-                $infoProcJud = $this->dom->createElement("infoProcJud");
-
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "tpProc",
-                    $procjud->tpproc,
-                    true
-                );
-
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "nrProc",
-                    $procjud->nrproc,
-                    true
-                );
-
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "codSusp",
-                    $procjud->codsusp,
-                    true
-                );
-
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "vrCPSusp",
-                    !empty($procjud->vrcpsusp) ? $procjud->vrcpsusp : null,
-                    false
-                );
-
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "vrRatSusp",
-                    !empty($procjud->vrratsusp) ? $procjud->vrratsusp : null,
-                    false
-                );
-
-                $this->dom->addChild(
-                    $infoProcJud,
-                    "vrSenarSusp",
-                    !empty($procjud->vrsenarsusp) ? $procjud->vrsenarsusp : null,
-                    false
-                );
-
-                $tpComerc->appendChild($infoProcJud);
-            }
-        }
-
-
-        $ideEstabel->appendChild($tpComerc);
-
-        $infoComProd->appendChild($ideEstabel);
-
-        $this->node->appendChild($infoComProd);
-
-
-        $this->eSocial->appendChild($this->node);
-        $this->sign();
+        parent::__construct($config, $std, $certificate, $date);
     }
 }

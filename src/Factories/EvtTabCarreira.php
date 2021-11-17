@@ -4,9 +4,9 @@ namespace NFePHP\eSocial\Factories;
 
 /**
  * Class eSocial EvtTabCarreira Event S-1035 constructor
+ * READ for 2.5.0 layout
  *
- * @category  NFePHP
- * @package   NFePHPSocial
+ * @category  library
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -27,27 +27,27 @@ class EvtTabCarreira extends Factory implements FactoryInterface
      * @var int
      */
     public $sequencial;
-
     /**
      * @var string
      */
     protected $evtName = 'evtTabCarreira';
-
     /**
      * @var string
      */
     protected $evtAlias = 'S-1035';
-
     /**
      * Parameters patterns
      *
      * @var array
      */
     protected $parameters = [];
+    
+    //Trait que contêm os métodos construtores das versões diferentes ainda ativas
+    //quando uma versão for desativada o metodo correspondente pode e deve ser removido
+    use Traits\TraitS1035;
 
     /**
      * Constructor
-     *
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate
@@ -55,9 +55,10 @@ class EvtTabCarreira extends Factory implements FactoryInterface
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate
+        Certificate $certificate = null,
+        $date = ''
     ) {
-        parent::__construct($config, $std, $certificate);
+        parent::__construct($config, $std, $certificate, $date);
     }
 
     /**
@@ -88,7 +89,7 @@ class EvtTabCarreira extends Factory implements FactoryInterface
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ide = $this->dom->createElement("ideCarreira");
         $this->dom->addChild(
             $ide,
@@ -105,10 +106,9 @@ class EvtTabCarreira extends Factory implements FactoryInterface
         $this->dom->addChild(
             $ide,
             "fimValid",
-            ! empty($this->std->fimvalid) ? $this->std->fimvalid : null,
+            !empty($this->std->fimvalid) ? $this->std->fimvalid : null,
             false
         );
-        
         if (!empty($this->std->dadoscarreira)) {
             $da = $this->std->dadoscarreira;
             $dados = $this->dom->createElement("dadosCarreira");
@@ -137,7 +137,6 @@ class EvtTabCarreira extends Factory implements FactoryInterface
                 true
             );
         }
-        
         if (!empty($this->std->novavalidade)) {
             $nova = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
@@ -155,7 +154,6 @@ class EvtTabCarreira extends Factory implements FactoryInterface
                 false
             );
         }
-        
         $info = $this->dom->createElement("infoCarreira");
         //seleção do modo
         if ($this->std->modo == 'INC') {
@@ -166,12 +164,13 @@ class EvtTabCarreira extends Factory implements FactoryInterface
             $node = $this->dom->createElement("alteracao");
             $node->appendChild($ide);
             $node->appendChild($dados);
-            $node->appendChild($nova);
+            if (isset($nova)) {
+                $node->appendChild($nova);
+            }
         } else {
             $node = $this->dom->createElement("exclusao");
             $node->appendChild($ide);
         }
-        
         $info->appendChild($node);
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);

@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                  xmlns:tns="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0"
-                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
-                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
-                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
-                  name="WsConsultarIdentificadoresEventos"
-                  targetNamespace="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0">
+<wsdl:definitions name="WsConsultarIdentificadoresEventos" targetNamespace="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
     <wsp:Policy wsu:Id="BasicHttpBinding_ServicoConsultarIdentificadoresEventos_policy">
         <wsp:ExactlyOne>
             <wsp:All>
@@ -33,87 +26,9 @@
         </wsp:ExactlyOne>
     </wsp:Policy>
     <wsdl:types>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-                   targetNamespace="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0">
-            <xs:element name="ConsultarIdentificadoresEventosTabela">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="1" name="consultaEventosTabela">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:any/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="ConsultarIdentificadoresEventosTabelaResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="1" name="ConsultarIdentificadoresEventosTabelaResult">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:any/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="ConsultarIdentificadoresEventosTrabalhador">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="1" name="consultaEventosTrabalhador">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:any/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="ConsultarIdentificadoresEventosTrabalhadorResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="1" name="ConsultarIdentificadoresEventosTrabalhadorResult">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:any/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="ConsultarIdentificadoresEventosEmpregador">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="1" name="consultaEventosEmpregador">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:any/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="ConsultarIdentificadoresEventosEmpregadorResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="1" name="ConsultarIdentificadoresEventosEmpregadorResult">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:any/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        </xs:schema>
+        <xsd:schema targetNamespace="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/Imports">
+            <xsd:import schemaLocation="https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/dwlcirurgico/WsConsultarIdentificadoresEventos.svc?xsd=xsd0" namespace="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0"/>
+        </xsd:schema>
     </wsdl:types>
     <wsdl:message name="ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTabela_InputMessage">
         <wsdl:part name="parameters" element="tns:ConsultarIdentificadoresEventosTabela"/>
@@ -124,8 +39,7 @@
     <wsdl:message name="ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_InputMessage">
         <wsdl:part name="parameters" element="tns:ConsultarIdentificadoresEventosTrabalhador"/>
     </wsdl:message>
-    <wsdl:message
-            name="ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_OutputMessage">
+    <wsdl:message name="ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_OutputMessage">
         <wsdl:part name="parameters" element="tns:ConsultarIdentificadoresEventosTrabalhadorResponse"/>
     </wsdl:message>
     <wsdl:message name="ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosEmpregador_InputMessage">
@@ -136,38 +50,23 @@
     </wsdl:message>
     <wsdl:portType name="ServicoConsultarIdentificadoresEventos">
         <wsdl:operation name="ConsultarIdentificadoresEventosTabela">
-            <wsdl:input
-                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTabela"
-                    message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTabela_InputMessage"/>
-            <wsdl:output
-                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTabelaResponse"
-                    message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTabela_OutputMessage"/>
+            <wsdl:input wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTabela" message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTabela_InputMessage"/>
+            <wsdl:output wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTabelaResponse" message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTabela_OutputMessage"/>
         </wsdl:operation>
         <wsdl:operation name="ConsultarIdentificadoresEventosTrabalhador">
-            <wsdl:input
-                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTrabalhador"
-                    message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_InputMessage"/>
-            <wsdl:output
-                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTrabalhadorResponse"
-                    message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_OutputMessage"/>
+            <wsdl:input wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTrabalhador" message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_InputMessage"/>
+            <wsdl:output wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTrabalhadorResponse" message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosTrabalhador_OutputMessage"/>
         </wsdl:operation>
         <wsdl:operation name="ConsultarIdentificadoresEventosEmpregador">
-            <wsdl:input
-                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosEmpregador"
-                    message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosEmpregador_InputMessage"/>
-            <wsdl:output
-                    wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosEmpregadorResponse"
-                    message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosEmpregador_OutputMessage"/>
+            <wsdl:input wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosEmpregador" message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosEmpregador_InputMessage"/>
+            <wsdl:output wsaw:Action="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosEmpregadorResponse" message="tns:ServicoConsultarIdentificadoresEventos_ConsultarIdentificadoresEventosEmpregador_OutputMessage"/>
         </wsdl:operation>
     </wsdl:portType>
-    <wsdl:binding name="BasicHttpBinding_ServicoConsultarIdentificadoresEventos"
-                  type="tns:ServicoConsultarIdentificadoresEventos">
+    <wsdl:binding name="BasicHttpBinding_ServicoConsultarIdentificadoresEventos" type="tns:ServicoConsultarIdentificadoresEventos">
         <wsp:PolicyReference URI="#BasicHttpBinding_ServicoConsultarIdentificadoresEventos_policy"/>
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="ConsultarIdentificadoresEventosTabela">
-            <soap:operation
-                    soapAction="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTabela"
-                    style="document"/>
+            <soap:operation soapAction="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTabela" style="document"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -176,9 +75,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="ConsultarIdentificadoresEventosTrabalhador">
-            <soap:operation
-                    soapAction="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTrabalhador"
-                    style="document"/>
+            <soap:operation soapAction="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosTrabalhador" style="document"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -187,9 +84,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="ConsultarIdentificadoresEventosEmpregador">
-            <soap:operation
-                    soapAction="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosEmpregador"
-                    style="document"/>
+            <soap:operation soapAction="http://www.esocial.gov.br/servicos/empregador/consulta/identificadores-eventos/v1_0_0/ServicoConsultarIdentificadoresEventos/ConsultarIdentificadoresEventosEmpregador" style="document"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -199,9 +94,8 @@
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="WsConsultarIdentificadoresEventos">
-        <wsdl:port name="BasicHttpBinding_ServicoConsultarIdentificadoresEventos"
-                   binding="tns:BasicHttpBinding_ServicoConsultarIdentificadoresEventos">
-            <soap:address location="endereco_ambiente_acessar_consulta"/>
+        <wsdl:port name="BasicHttpBinding_ServicoConsultarIdentificadoresEventos" binding="tns:BasicHttpBinding_ServicoConsultarIdentificadoresEventos">
+            <soap:address location="https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/dwlcirurgico/WsConsultarIdentificadoresEventos.svc"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

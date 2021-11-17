@@ -3,12 +3,17 @@
 
 *sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
-# Em desenvolvimento Não tente usar !!!
+## Layout 2.5.0 (válido para uso até 09/03/2022, com alterações em eventos e outras regras com cronograma variado)
+
+[VIDE NOTA ORIENTATIVA](https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/nota-orientativa-s-1-0-01-2021.pdf)
+
+## Layout S-1.0 (a partir de 10/05/2021) - EM IMPLEMENTAÇÃO
+
+### *Esta API ainda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
 
 *Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
 
 [![Chat][ico-gitter]][link-gitter]
-
 
 [![Latest Stable Version][ico-stable]][link-packagist]
 [![Build Status][ico-travis]][link-travis]
@@ -44,7 +49,6 @@ Fase 4: Julho/18: Substituição da GFIP (Guia de Informações à Previdência 
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
- 
 
 **Etapa 2 - Demais empresas privadas, incluindo Simples, MEIs e pessoas físicas (que possuam empregados)**
 
@@ -58,26 +62,71 @@ Fase 4: Janeiro/19: Substituição da GFIP (Guia de informações à Previdênci
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
- 
 
 **Etapa 3 - Entes Públicos**
 
-Fase 1: Janeiro/19 - Apenas informações relativas aos órgãos, ou seja, cadastros dos empregadores e tabelas
+_Atualizada pela [Portaria Conjunta ERFB/SEPRT nº 76, de 22 de outubro de 2020](https://www.in.gov.br/en/web/dou/-/portaria-conjunta-n-76-de-22-de-outubro-de-2020-284694569)_
 
-Fase 2: Março/19: Nesta fase, entes passam a ser obrigadas a enviar informações relativas aos servidores e seus vínculos com os órgãos (eventos não periódicos) Ex: admissões, afastamentos e desligamentos
+Fase 1: Jun/21 - Apenas informações relativas aos órgãos, ou seja, cadastros dos empregadores e tabelas
 
-Fase 3: Maio/19: Torna-se obrigatório o envio das folhas de pagamento
+Fase 2: Set/21: Nesta fase, entes passam a ser obrigadas a enviar informações relativas aos servidores e seus vínculos com os órgãos (eventos não periódicos) Ex: admissões, afastamentos e desligamentos
 
-Fase 4: Julho/19: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada
+Fase 3: Jan/22: Torna-se obrigatório o envio das folhas de pagamento
 
-Fase 5: Julho/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
+Fase 4: Jul/22: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada. Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
-
-**Liberação da fase de Testes: 01/07/2017**
 
 **Empresas do SIMPLES NACIONAL : a definir**
 
 [CAIXA Nº 761 DE 12/04/2017](https://www.legisweb.com.br/legislacao/?id=342289)
+
+
+## Donations
+
+**Estamos em busca de *doadores* e *patrocinadores* para ajudar a financiar parte do desenvolvimento deste pacote e de outros pacotes, aqueles que estiverem interessados por favor entrem em contato com o autor pelo email linux.rlm@gmail.com**
+
+Este é um projeto totalmente *OpenSource*, para usá-lo, copia-lo e modificá-lo você não paga absolutamente nada. Porém para continuarmos a mantê-lo de forma adequada é necessária alguma contribuição seja feita, seja auxiliando na codificação, na documentação, na realização de testes e identificação de falhas e BUGs.
+
+Mas também, caso você ache que qualquer informação obtida aqui, lhe foi útil e que isso vale de algum dinheiro e está disposto a doar algo, sinta-se livre para enviar qualquer quantia, seja diretamente ao autor ou através do PayPal e do PagSeguro.
+
+<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=linux%2erlm%40gmail%2ecom&lc=BR&item_name=NFePHP%20OpenSource%20API&item_number=nfephp&currency_code=BRL&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest">
+<img alt="Doar com Paypal" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_donateCC_LG.gif"/></a>
+
+<a target="_blank" href="https://pag.ae/bkXPq4">
+<img alt="Doar PagSeguro" src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/120x53-doar.gif"/></a>
+
+## Agradecimentos à contribuição de:
+
+- **Rodrigo Traleski** da [Actuary](http://www.actuary.com.br/v3/)
+
+> Sem a qual esse projeto não existiria.
+
+## Faseamento detalhado por Eventos
+
+### Fase 1
+**Cadastros do empregador e tabelas:**
+
+
+### Fase 2
+**Dados dos trabalhadores e seus vínculos com as empresas (eventos não periódicos):**
+
+
+
+### Fase 3
+**Folha de Pagamento (eventos periódicos):**
+
+
+### Fase 4
+**Substituição da GFIP (Guia de informações à Previdência Social) e compensação cruzada:**
+
+O DCTF Web (Declaração de Débitos e Créditos Tributários Federais) substituirá a GFIP e que será gerada pelo eSocial, EFD-Reinf e SERO (Serviço Eletrônico de Aferição de Obras), com apuração automática dos débitos (contribuição previdenciária, contribuição para outras entidades e fundos, IRRF) e, quando for o caso, dos créditos (salário-família, salário-maternidade e retenções sobre notas fiscais).
+
+Não haverá geração automática da DCTF Web sem que tenha sido transmitida a apuração (eSocial, EFD-Reinf, SERO). Também não será possível a inclusão manual de débitos ou de deduções/retenções;
+
+Deverá ser transmitida até o dia 15 do mês subsequente ao de ocorrência dos fatos geradores.
+
+### Fase 5
+**Dados de segurança e saúde do trabalhador:**
 
 
 ## CONCEITO DO e-SOCIAL
@@ -139,6 +188,7 @@ as organizações permanecem obrigadas a submeter os empregados aos exames previ
 Em todos os tipos de exame ocupacional, será obrigatório o registro no eSocial, através do evento atestado de saúde ocupacional S-2280, com o detalhamento do médico responsável, número do registro (CRM), exames realizados etc.
 
 ## Contribuindo
+
 Este é um projeto totalmente *OpenSource*, para usa-lo e modifica-lo você não paga absolutamente nada. Porém para continuarmos a mante-lo é necessário qua alguma contribuição seja feita, seja auxiliando na codificação, na documentação ou na realização de testes e identificação de falhas e BUGs.
 
 **Este pacote esta listado no [Packgist](https://packagist.org/) foi desenvolvido para uso do [Composer](https://getcomposer.org/), portanto não será explicitada nenhuma alternativa de instalação.**

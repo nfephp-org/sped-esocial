@@ -5,8 +5,8 @@ namespace NFePHP\eSocial\Common\Soap;
 /**
  * Soap base class
  *
- * @category  NFePHP
- * @package   NFePHP\Common\Soap\SoapBase
+ * @category  library
+ * @package   NFePHP\eSocial
  * @copyright NFePHP Copyright (c) 2017
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
@@ -28,152 +28,126 @@ abstract class SoapBase implements SoapInterface
      * @var string
      */
     public $responseHead;
-
     /**
      * @var string
      */
     public $responseBody;
-
     /**
      * @var string
      */
     public $requestHead;
-
     /**
      * @var string
      */
     public $requestBody;
-
     /**
      * @var string
      */
     public $soaperror;
-
+    /**
+     * @var int
+     */
+    public $soaperror_code;
     /**
      * @var array
      */
     public $soapinfo = [];
-
     /**
      * @var int
      */
     public $waitingTime = 45;
-
     /**
      * @var int
      */
     protected $soapprotocol = self::SSL_DEFAULT;
-
     /**
      * @var int
      */
     protected $soaptimeout = 20;
-
     /**
      * @var string
      */
     protected $proxyIP;
-
     /**
      * @var string
      */
     protected $proxyPort;
-
     /**
      * @var string
      */
     protected $proxyUser;
-
     /**
      * @var string
      */
     protected $proxyPass;
-
     /**
      * @var array
      */
     protected $prefixes = [1 => 'soapenv', 2 => 'soap'];
-
     /**
      * @var Certificate
      */
     protected $certificate;
-
     /**
      * @var LoggerInterface
      */
     protected $logger;
-
     /**
      * @var string
      */
     protected $tempdir;
-
     /**
      * @var string
      */
     protected $certsdir;
-
     /**
      * @var string
      */
     protected $debugdir;
-
     /**
      * @var string
      */
     protected $prifile;
-
     /**
      * @var string
      */
     protected $pubfile;
-
     /**
      * @var string
      */
     protected $certfile;
-
     /**
      * @var string
      */
     protected $casefaz;
-
     /**
      * @var bool
      */
     protected $disablesec = false;
-
     /**
      * @var bool
      */
     protected $disableCertValidation = false;
-
     /**
      * @var \League\Flysystem\Adapter\Local
      */
     protected $adapter;
-
     /**
      * @var \League\Flysystem\Filesystem
      */
     protected $filesystem;
-
     /**
      * @var string
      */
     protected $temppass = '';
-
     /**
      * @var bool
      */
     protected $encriptPrivateKey = true;
-
     /**
      * @var bool
      */
     protected $debugmode = false;
-
     /**
      * Constructor
      *
@@ -188,7 +162,6 @@ abstract class SoapBase implements SoapInterface
         $this->certificate = $this->checkCertValidity($certificate);
         $this->setTemporaryFolder(sys_get_temp_dir().'/sped/');
     }
-
     /**
      * Check if certificate is valid
      *
@@ -203,16 +176,15 @@ abstract class SoapBase implements SoapInterface
             return $certificate;
         }
         if (! empty($certificate)) {
-            if ($certificate->isExpired()) {
-                throw new RuntimeException(
-                    'The validity of the certificate has expired.'
+            if ($certificate->isExpired()) {                
+                // throw new RuntimeException(
+                throw new \ErrorException(
+                    'A validade do certificado está expirada.'
                 );
             }
         }
-
         return $certificate;
     }
-
     /**
      * Set another temporayfolder for saving certificates for SOAP utilization
      *
@@ -223,7 +195,6 @@ abstract class SoapBase implements SoapInterface
         $this->tempdir = $folderRealPath;
         $this->setLocalFolder($folderRealPath);
     }
-
     /**
      * Set Local folder for flysystem
      *
@@ -234,7 +205,6 @@ abstract class SoapBase implements SoapInterface
         $this->adapter    = new Local($folder);
         $this->filesystem = new Filesystem($this->adapter);
     }
-
     /**
      * Destructor
      * Clean temporary files
@@ -243,7 +213,6 @@ abstract class SoapBase implements SoapInterface
     {
         $this->removeTemporarilyFiles();
     }
-
     /**
      * Delete all files in folder
      */
@@ -260,10 +229,10 @@ abstract class SoapBase implements SoapInterface
         //como o DFe podem ser mais longos, dependendo a forma que o aplicativo
         //utilize a API. Outra solução para remover arquivos "perdidos" pode ser
         //encontrada oportunamente.
-        $dt           = new \DateTime();
-        $tint         = new \DateInterval("PT".$this->waitingTime."M");
+        $dt = new \DateTime();
+        $tint = new \DateInterval("PT".$this->waitingTime."M");
         $tint->invert = true;
-        $tsLimit      = $dt->add($tint)->getTimestamp();
+        $tsLimit = $dt->add($tint)->getTimestamp();
         foreach ($contents as $item) {
             if ($item['type'] == 'file') {
                 if ($item['path'] == $this->prifile
@@ -281,7 +250,6 @@ abstract class SoapBase implements SoapInterface
             }
         }
     }
-
     /**
      * Disables the security checking of host and peer certificates
      *
@@ -290,10 +258,8 @@ abstract class SoapBase implements SoapInterface
     public function disableSecurity($flag = false)
     {
         $this->disablesec = $flag;
-
         return $this->disablesec;
     }
-
     /**
      * ONlY for tests
      *
@@ -304,10 +270,8 @@ abstract class SoapBase implements SoapInterface
     public function disableCertValidation($flag = true)
     {
         $this->disableCertValidation = $flag;
-
         return $this->disableCertValidation;
     }
-
     /**
      * Load path to CA and enable to use on SOAP
      *
@@ -319,7 +283,6 @@ abstract class SoapBase implements SoapInterface
             $this->casefaz = $capath;
         }
     }
-
     /**
      * Set option to encript private key before save in filesystem
      * for an additional layer of protection
@@ -332,7 +295,6 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->encriptPrivateKey = $encript;
     }
-
     /**
      * Set debug mode, this mode will save soap envelopes in temporary directory
      *
@@ -344,7 +306,6 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->debugmode = $value;
     }
-
     /**
      * Set certificate class for SSL comunications
      *
@@ -354,7 +315,6 @@ abstract class SoapBase implements SoapInterface
     {
         $this->certificate = $this->checkCertValidity($certificate);
     }
-
     /**
      * Set logger class
      *
@@ -364,7 +324,6 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->logger = $logger;
     }
-
     /**
      * Set timeout for communication
      *
@@ -374,7 +333,6 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->soaptimeout = $timesecs;
     }
-
     /**
      * Set security protocol
      *
@@ -386,7 +344,6 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->soapprotocol = $protocol;
     }
-
     /**
      * Set prefixes
      *
@@ -398,7 +355,6 @@ abstract class SoapBase implements SoapInterface
     {
         return $this->prefixes = $prefixes;
     }
-
     /**
      * Set proxy parameters
      *
@@ -414,7 +370,6 @@ abstract class SoapBase implements SoapInterface
         $this->proxyUser = $user;
         $this->proxyPass = $password;
     }
-
     /**
      * Send message to webservice
      */
@@ -425,7 +380,6 @@ abstract class SoapBase implements SoapInterface
         $envelope,
         $parameters
     );
-
     /**
      * Temporarily saves the certificate keys for use cURL or SoapClient
      */
@@ -437,11 +391,11 @@ abstract class SoapBase implements SoapInterface
             );
         }
         $this->certsdir = $this->certificate->getCnpj().'/certs/';
-        $this->prifile  = $this->certsdir.Strings::randomString(10).'.pem';
-        $this->pubfile  = $this->certsdir.Strings::randomString(10).'.pem';
+        $this->prifile = $this->certsdir.Strings::randomString(10).'.pem';
+        $this->pubfile = $this->certsdir.Strings::randomString(10).'.pem';
         $this->certfile = $this->certsdir.Strings::randomString(10).'.pem';
-        $ret            = true;
-        $private        = $this->certificate->privateKey;
+        $ret = true;
+        $private = $this->certificate->privateKey;
         if ($this->encriptPrivateKey) {
             //cria uma senha temporária ALEATÓRIA para salvar a chave primaria
             //portanto mesmo que localizada e identificada não estará acessível
@@ -472,7 +426,6 @@ abstract class SoapBase implements SoapInterface
             );
         }
     }
-
     /**
      * Save request envelope and response for debug reasons
      *
@@ -505,7 +458,6 @@ abstract class SoapBase implements SoapInterface
             );
         }
     }
-
     /**
      * Mount soap envelope
      *
@@ -529,8 +481,8 @@ abstract class SoapBase implements SoapInterface
         $envelope   .= ">";
         $soapheader = "<$prefix:Header/>";
         if (! empty($header)) {
-            $ns         = ! empty($header->namespace) ? $header->namespace : '';
-            $name       = $header->name;
+            $ns = ! empty($header->namespace) ? $header->namespace : '';
+            $name = $header->name;
             $soapheader = "<$prefix:Header>";
             $soapheader .= "<$name xmlns=\"$ns\">";
             foreach ($header->data as $key => $value) {
@@ -541,7 +493,6 @@ abstract class SoapBase implements SoapInterface
         $envelope .= $soapheader;
         $envelope .= "<$prefix:Body>$request</$prefix:Body>"
             ."</$prefix:Envelope>";
-
         return $envelope;
     }
 }
