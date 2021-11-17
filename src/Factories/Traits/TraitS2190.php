@@ -73,6 +73,18 @@ trait TraitS2190
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
             "tpAmb",
             $this->tpAmb,
             true
@@ -131,43 +143,45 @@ trait TraitS2190
             : 1,
             false
         );
+        if (isset($this->std->inforegprelim->inforegctps) && !empty($this->std->inforegprelim->inforegctps)) {
+            $infoRegCTPS = $this->dom->createElement("infoRegCTPS");
+            $infoCtps = $this->std->inforegprelim->inforegctps[0]; 
+            $this->dom->addChild(
+                $infoRegCTPS,
+                "CBOCargo",
+                $infoCtps->cbocargo,
+                true
+            );
+            $this->dom->addChild(
+                $infoRegCTPS,
+                "vrSalFx",
+                $infoCtps->vrsalfx,
+                true
+            );
+            $this->dom->addChild(
+                $infoRegCTPS,
+                "undSalFixo",
+                $infoCtps->undsalfixo,
+                true
+            );
+            $this->dom->addChild(
+                $infoRegCTPS,
+                "tpContr",
+                $infoCtps->tpcontr,
+                true
+            );
+            $this->dom->addChild(
+                $infoRegCTPS,
+                "dtTerm",
+                !empty($infoCtps->dtterm)
+                ? $infoCtps->dtterm
+                : null,
+                false
+            );
+            $infoRegPrelim->appendChild($infoRegCTPS);
+        }
         $this->node->appendChild($infoRegPrelim);
-
-        $infoRegCTPS = $this->dom->createElement("infoRegCTPS");
-        $this->dom->addChild(
-            $infoRegCTPS,
-            "CBOCargo",
-            $this->std->inforegctps->cbocargo,
-            true
-        );
-        $this->dom->addChild(
-            $infoRegCTPS,
-            "vrSalFx",
-            $this->std->inforegctps->vrsalfx,
-            true
-        );
-        $this->dom->addChild(
-            $infoRegCTPS,
-            "undSalFixo",
-            $this->std->inforegctps->undsalfixo,
-            true
-        );
-        $this->dom->addChild(
-            $infoRegCTPS,
-            "tpContr",
-            $this->std->inforegctps->tpcontr,
-            true
-        );
-        $this->dom->addChild(
-            $infoRegCTPS,
-            "dtTerm",
-            !empty($this->std->inforegctps->dtterm)
-            ? $this->std->inforegctps->dtterm
-            : null,
-            false
-        );
-        $this->node->appendChild($infoRegCTPS);
-
+       
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         $this->sign();
