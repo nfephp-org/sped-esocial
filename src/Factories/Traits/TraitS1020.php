@@ -11,7 +11,7 @@ trait TraitS1020
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+        //entÃ£o cada factory individualmente terÃ¡ de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -207,7 +207,7 @@ trait TraitS1020
     {
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
+        //entÃ£o cada factory individualmente terÃ¡ de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -351,19 +351,19 @@ trait TraitS1020
                 $dados->appendChild($parcial);
             }
 
-            if (!empty($da->dadosOpPort)) {
+            if (!empty($da->dadosopport)) {
                 $dadosOpPort = $this->dom->createElement("dadosOpPort");
                 $this->dom->addChild(
                     $dadosOpPort,
-                    "aliqrat",
-                    $da->dadosOpPort->aliqrat,
-                    empty($da->dadosOpPort->aliqrat) ? $da->dadosOpPort->aliqrat : null,
+                    "aliqRat",
+                    $da->dadosopport->aliqrat,
+                    !empty($da->dadosopport->aliqrat) ? $da->dadosopport->aliqrat : null,
                     false
                 );
                 $this->dom->addChild(
                     $dadosOpPort,
                     "fap",
-                    empty($da->dadosOpPort->fap) ? $da->dadosOpPort->fap : null,
+                    !empty($da->dadosopport->fap) ? $da->dadosopport->fap : null,
                     false
                 );
                 $dados->appendChild($dadosOpPort);
