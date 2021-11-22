@@ -32,7 +32,8 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "maxLength": 40,
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
             "required": true,
@@ -76,7 +77,7 @@ $jsonSchema = '{
         "dtnascto": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "paisnascto": {
             "required": true,
@@ -203,7 +204,7 @@ $jsonSchema = '{
                 }
             }
         },
-        "deficiencia": {
+        "infodeficiencia": {
             "required": false,
             "type": ["object","null"],
             "properties": {
@@ -270,7 +271,7 @@ $jsonSchema = '{
                     "dtnascto": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        "$ref": "#/definitions/data"
                     },
                     "cpfdep": {
                         "required": false,
@@ -278,15 +279,15 @@ $jsonSchema = '{
                         "maxLength": 11,
                         "minLength": 11
                     },
-                    "depsf": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "S|N"
-                    },
                     "sexodep": {
                         "required": false,
                         "type": ["string","null"],
                         "pattern": "M|F"
+                    },
+                    "depirrf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
                     },
                     "depsf": {
                         "required": true,
@@ -350,7 +351,7 @@ $jsonSchema = '{
                         "dtadm": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "tpadmissao": {
                             "required": true,
@@ -395,7 +396,7 @@ $jsonSchema = '{
                         "dtopcfgts": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "trabtemporario": {
                             "required": false,
@@ -479,7 +480,7 @@ $jsonSchema = '{
                         "dtexercicio": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "tpplanrp": {
                             "required": false,
@@ -500,7 +501,7 @@ $jsonSchema = '{
                         "dtiniabono": {
                             "required": false,
                             "type": ["string", "null"],
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         }
                     }    
                 },
@@ -521,7 +522,7 @@ $jsonSchema = '{
                         "dtingrcargo": {
                             "required": false,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "nmfuncao": {
                               "required": false,
@@ -568,7 +569,7 @@ $jsonSchema = '{
                         "dtterm": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "clauassec": {
                             "required": false,
@@ -751,7 +752,7 @@ $jsonSchema = '{
                         "dttransf": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "observacao": {
                             "required": false,
@@ -777,7 +778,7 @@ $jsonSchema = '{
                         "dttransf": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         }
                     }
                 },
@@ -798,7 +799,7 @@ $jsonSchema = '{
                         "dtaltcpf": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "observacao": {
                             "required": false,
@@ -814,7 +815,7 @@ $jsonSchema = '{
                         "dtiniafast": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "codmotafast": {
                              "required": true,
@@ -830,7 +831,7 @@ $jsonSchema = '{
                         "dtdeslig": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         }
                     }
                 },
@@ -841,7 +842,7 @@ $jsonSchema = '{
                         "dtinicessao": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         }
                     }
                 }
@@ -853,7 +854,7 @@ $jsonSchema = '{
 $std = new \stdClass();
 $std->sequencial = 1;
 $std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
+$std->nrrecibo = '1.1.1234567890123456789';
 $std->cpftrab = '11111111111';
 $std->nmtrab = 'JOSE DA SILVA';
 $std->sexo = 'M';
