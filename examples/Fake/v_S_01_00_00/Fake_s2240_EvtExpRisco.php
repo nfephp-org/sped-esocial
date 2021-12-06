@@ -62,7 +62,7 @@ $std->agnoc[0]->epcepi->eficepi = 'S';
 
 $std->agnoc[0]->epcepi->epi[0] = new \stdClass();
 $std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
-$std->agnoc[0]->epcepi->epi[0]->dscePI = 'macacao';
+$std->agnoc[0]->epcepi->epi[0]->dscepi = 'macacao';
 $std->agnoc[0]->epcepi->epi[0]->medprotecao = 'S';
 $std->agnoc[0]->epcepi->epi[0]->condfuncto = 'S';
 $std->agnoc[0]->epcepi->epi[0]->usoinint = 'S';
