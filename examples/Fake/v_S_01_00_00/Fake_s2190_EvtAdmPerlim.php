@@ -35,6 +35,15 @@ $std->cpfTrab = '00232133417';
 $std->dtNascto = '1931-02-12';
 $std->dtAdm = '2017-02-12';
 
+$std->matricula = '0000001';
+$std->codcateg = '100';
+$std->natatividade = '1';
+$std->cbocargo = '000001';
+$std->vrsalfx = '100.0';
+$std->undsalfixo = '5';
+$std->tpcontr = '1';
+$std->dtterm = '2021-12-31';
+
 try {
     //carrega a classe responsavel por lidar com os certificados
     $content = file_get_contents('expired_certificate.pfx');

@@ -64,6 +64,109 @@ trait TraitS2190
      */
     protected function toNodeS100()
     {
-        throw new \Exception("TODO !!");
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        //tag deste evento em particular
+        $infoRegPrelim = $this->dom->createElement("infoRegPrelim");
+        $this->dom->addChild(
+            $infoRegPrelim,
+            "cpfTrab",
+            $this->std->cpftrab,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegPrelim,
+            "dtNascto",
+            $this->std->dtnascto,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegPrelim,
+            "dtAdm",
+            $this->std->dtadm,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegPrelim,
+            "matricula",
+            $this->std->matricula,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegPrelim,
+            "codCateg",
+            $this->std->codcateg,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegPrelim,
+            "natAtividade",
+            $this->std->natatividade,
+            true
+        );
+        $infoRegCTPS = $this->dom->createElement("infoRegCTPS");
+        
+        $this->dom->addChild(
+            $infoRegCTPS,
+            "CBOCargo",
+            $this->std->cbocargo,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegCTPS,
+            "vrSalFx",
+            $this->std->vrsalfx,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegCTPS,
+            "undSalFixo",
+            $this->std->undsalfixo,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegCTPS,
+            "tpContr",
+            $this->std->tpcontr,
+            true
+        );
+        $this->dom->addChild(
+            $infoRegCTPS,
+            "dtTerm",
+            $this->std->dtterm,
+            true
+        );
+        
+        $infoRegPrelim->appendChild($infoRegCTPS);
+        $this->node->appendChild($infoRegPrelim);
+        
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        
+        $this->sign();
+        // throw new \Exception("TODO !!");
     }
 }
