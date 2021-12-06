@@ -31,9 +31,21 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 //carrega os dados do envento
 $std = new \stdClass();
 $std->sequencial = 1;
-$std->cpfTrab = '00232133417';
-$std->dtNascto = '1931-02-12';
-$std->dtAdm = '2017-02-12';
+$std->indretif = 1;
+$std->nrrecibo = "1.7.1234567890123456789";
+$std->cpftrab = '00232133417';
+$std->dtnascto = '1931-02-12';
+$std->dtadm = '2017-02-12';
+$std->matricula = "abs1234";
+$std->codcateg = "101";
+$std->natatividade = 1;
+
+$std->inforegctps = new \stdClass();
+$std->inforegctps->cbocargo = "263105";
+$std->inforegctps->vrsalfx = "2500";
+$std->inforegctps->undsalfixo = 3;
+$std->inforegctps->tpcontr = 1;
+$std->inforegctps->dtterm = null;
 
 try {
     //carrega a classe responsavel por lidar com os certificados
