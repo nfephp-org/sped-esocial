@@ -18,7 +18,7 @@ $config = [
     //versão do webservice
     'empregador' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF
-        'nrInsc' => '999999999', //numero do documento
+        'nrInsc' => '99999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
     'transmissor' => [
@@ -28,11 +28,11 @@ $config = [
 ];
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
-//carrega os dados do envento
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indapuracao = 2;
-$std->perapur = '2017-08';
+//$std->sequencial = 1; //Opcional
+$std->indapuracao = 2; //Obrigatório 
+$std->indguia = 1; //Opcional
+$std->perapur = '2017-08'; //Obrigatório 
 
 try {
     //carrega a classe responsavel por lidar com os certificados

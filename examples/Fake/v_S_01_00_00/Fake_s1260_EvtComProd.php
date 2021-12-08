@@ -17,8 +17,8 @@ $config = [
     'serviceVersion' => '1.5.0',
     //versão do webservice
     'empregador' => [
-        'tpInsc' => 1, //1-CNPJ, 2-CPF
-        'nrInsc' => '99999999', //numero do documento
+        'tpInsc' => 2, //1-CNPJ, 2-CPF
+        'nrInsc' => '99999999999', //numero do documento
         'nmRazao' => 'Razao Social',
     ],
     'transmissor' => [
@@ -29,36 +29,45 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '123456';
-$std->perapur = '2017-08';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = "1.7.1234567890123456789"; //Obrigatório caso indretif = 2
+$std->perapur = '2017-08'; //Obrigatório
+$std->indguia = 1; //Opcional
 
-$std->estabelecimento = new \stdClass();
-$std->estabelecimento->nrinscestabrural = '12345678901234';
+//Identificação do estabelecimento que comercializou a produção.
+$std->estabelecimento = new \stdClass(); //Obrigatório
+$std->estabelecimento->nrinscestabrural = '12345678901234'; //Obrigatório
 
-$std->estabelecimento->tpcomerc[0] = new \stdClass();
-$std->estabelecimento->tpcomerc[0]->indcomerc = '2';
-$std->estabelecimento->tpcomerc[0]->vrtotcom = 1500.00;
+//Valor total da comercialização por "tipo" de comercialização
+$std->estabelecimento->tpcomerc[0] = new \stdClass(); //Obrigatório
+$std->estabelecimento->tpcomerc[0]->indcomerc = '2'; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->vrtotcom = 1500.00; //Obrigatório
 
-$std->estabelecimento->tpcomerc[0]->ideadquir[0] = new \stdClass();
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->tpinsc = '1';
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nrinsc = '12345678';
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->vrcomerc = 1500.22;
+//Identificação dos adquirentes da produção.
+$std->estabelecimento->tpcomerc[0]->ideadquir[0] = new \stdClass(); //Opcional
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->tpinsc = '1'; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nrinsc = '12345678901234'; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->vrcomerc = 1500.22; //Obrigatório
 
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0] = new \stdClass();
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->serie = '12345';
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->nrdocto = '1111111111111111111';
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->dtemisnf = '2017-08-23';
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vlrbruto = 1500.44;
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrcpdescpr = 1500.55;
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrratdescpr = 1500.66;
-$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrsenardesc = 1500.77;
+//Detalhamento das notas fiscais relativas à comercialização
+//de produção com o adquirente identificado no grupo superior.
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0] = new \stdClass(); //Opcional
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->serie = '12345'; //Opcional
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->nrdocto = '1111111111111111111'; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->dtemisnf = '2017-08-23'; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vlrbruto = 1500.44; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrcpdescpr = 1500.55; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrratdescpr = 1500.66; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->ideadquir[0]->nfs[0]->vrsenardesc = 1500.77; //Obrigatório
 
-$std->estabelecimento->tpcomerc[0]->infoprocjud[0] = new \stdClass();
-$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->tpproc = 1;
-$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->nrproc = '111111111111111111';
-$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->codsusp = '11111111111111';
+//Informações de processos judiciais com decisão/sentença
+//favorável ao contribuinte e relativos à contribuição
+//incidente sobre a comercialização.
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0] = new \stdClass(); //Opcional
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->tpproc = 1; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->nrproc = '12345678901234567'; //Obrigatório
+$std->estabelecimento->tpcomerc[0]->infoprocjud[0]->codsusp = '11111111111111'; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados

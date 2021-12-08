@@ -678,7 +678,7 @@ trait TraitS2299
             $infoDeslig,
             "dtAvPrv",
             !empty($this->std->dtavprv) ? $this->std->dtavprv : null,
-            true
+            false
         );
         $this->dom->addChild(
             $infoDeslig,
@@ -695,8 +695,8 @@ trait TraitS2299
         $this->dom->addChild(
             $infoDeslig,
             "pensAlim",
-            $this->std->pensalim,
-            true
+            !empty($this->std->pensalim) ? $this->std->pensalim : null,
+            false
         );
         $this->dom->addChild(
             $infoDeslig,
@@ -721,9 +721,9 @@ trait TraitS2299
             foreach ($this->std->infointerm as $interm) {
                 $this->dom->addChild(
                     $infoInterm,
-                    "observacao",
+                    "dia",
                     $interm->dia,
-                    false
+                    true
                 );
             }
             $infoDeslig->appendChild($infoInterm);
@@ -735,23 +735,24 @@ trait TraitS2299
                     $observacoes,
                     "observacao",
                     $obs->observacao,
-                    false
+                    true
                 );
             }
             $infoDeslig->appendChild($observacoes);
         }
         if (!empty($this->std->sucessaovinc)) {
             $sucessaoVinc = $this->dom->createElement("sucessaoVinc");
+            $svinc = $this->std->sucessaovinc;
             $this->dom->addChild(
                 $sucessaoVinc,
                 "tpInsc",
-                !empty($this->std->sucessaovinc->tpinsc) ? $this->std->sucessaovinc->tpinsc : null,
-                false
+                $svinc->tpinsc,
+                true
             );
             $this->dom->addChild(
                 $sucessaoVinc,
                 "nrInsc",
-                $this->std->sucessaovinc->nrinsc,
+                $svinc->nrinsc,
                 true
             );
             $infoDeslig->appendChild($sucessaoVinc);

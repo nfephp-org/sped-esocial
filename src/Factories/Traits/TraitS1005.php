@@ -353,10 +353,14 @@ trait TraitS1005
             $this->dom->addChild(
                 $aliqGilrat,
                 "aliqRat",
-                ! empty($this->std->dadosestab->aliqgilrat->aliqrat) ? $this->std->dadosestab->aliqgilrat->aliqrat : null,
+                ! empty($this->std->dadosestab->aliqgilrat->aliqrat)
+                    ? $this->std->dadosestab->aliqgilrat->aliqrat
+                    : null,
                 false
             );
-            $fap = !empty($this->std->dadosestab->aliqgilrat->fap) ? $this->std->dadosestab->aliqgilrat->fap : null;
+            $fap = !empty($this->std->dadosestab->aliqgilrat->fap)
+                ? $this->std->dadosestab->aliqgilrat->fap
+                : null;
             if ($fap) {
                 $fap = number_format($fap, 4, '.', '');
             }

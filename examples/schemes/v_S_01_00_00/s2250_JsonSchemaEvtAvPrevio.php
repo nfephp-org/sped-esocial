@@ -13,7 +13,7 @@ use JsonSchema\Validator;
 //Campo {tpAvPrevio} – incluído novo valor válido.
 
 $evento = 'evtAvPrevio';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtAvPrevio",

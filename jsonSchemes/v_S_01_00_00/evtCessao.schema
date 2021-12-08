@@ -1,5 +1,5 @@
 {
-    "title": "evtFechaEvPer",
+    "title": "evtCessao",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -8,57 +8,59 @@
             "minimum": 1,
             "maximum": 99999
         },
-        "indapuracao": {
+        "indretif": {
             "required": true,
             "type": "integer",
             "minimum": 1,
             "maximum": 2
         },
-        "perapur": {
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpftrab": {
             "required": true,
             "type": "string",
-            "$ref": "#/definitions/periodo"
+            "pattern": "^[0-9]{11}$"
         },
-        "indguia": {
+        "matricula": {
             "required": false,
-            "type": ["integer","null"],
-            "minimum": 1,
-            "maximum": 1
+            "type": ["string","null"],
+            "minLength": 1,
+            "maxLength": 30
         },
-        "infofech": {
+        "inicessao": {
+            "required": false,
             "type": "object",
             "properties": {
-                "evtremun": {
+                "dtinicessao": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "cnpjcess": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{14}$"
+                },
+                "respremun": {
                     "required": true,
                     "type": "string",
                     "pattern": "^(S|N)$"
-                },
-                "evtcomprod": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "evtcontratavnp": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "evtinfocomplper": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "indexcapur1250": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(S)$"
-                },
-                "transDCTFWeb": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(S)$"
                 }
             }
-        }    
+        },
+        "fimcessao": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dttermcessao": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                }
+            }
+        }
     }
 }

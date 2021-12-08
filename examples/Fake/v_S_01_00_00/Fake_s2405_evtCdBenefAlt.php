@@ -29,7 +29,7 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1;
 $std->indretif = 1; //obrigatório
 $std->nrrecibo = '1.4.1234567890123456789'; //opcional
 $std->cpfbenef = '12345678901'; //obrigatório

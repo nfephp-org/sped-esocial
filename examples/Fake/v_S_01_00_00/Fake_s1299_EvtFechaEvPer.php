@@ -30,7 +30,7 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 //carrega os dados do envento
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1; //Opcional
 $std->indapuracao = 1; //obrigatorio
 //Indicativo de período de apuração. 1 - Mensal 2 - Anual (13° salário)
 

@@ -9,22 +9,18 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2300
-//Campo {cpfDep} – alterada validação da alínea a).
-//Campo {racaCor} – alterada descrição dos valores [2, 3, 4].
-//Campo {dtChegada} – alterada ocorrência e inserida validação.
-//Grupos {cargoFuncao} – alterada condição.
-//Grupos {remuneracao} – alterada condição.
+//versão S_1.00
 
 $evento  = 'evtTSVInicio';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtTSVInicio",
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -37,22 +33,17 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
             "required": true,
             "type": "string",
             "pattern": "^[0-9]{11}$"
         },
-        "nistrab": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 11
-        },
         "nmtrab": {
             "required": true,
             "type": "string",
-            "minLength": 3,
+            "minLength": 2,
             "maxLength": 70
         },
         "sexo": {
@@ -75,28 +66,18 @@ $jsonSchema = '{
         "grauinstr": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{2}$"
+            "pattern": "^(01|02|03|04|05|06|07|08|09|10|11|12)$"
         },
         "nmsoc": {
             "required": false,
             "type": ["string","null"],
-            "minLength": 3,
+            "minLength": 2,
             "maxLength": 70
         },
         "dtnascto": {
             "required": true,
             "type": "string",
             "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-        },
-        "codmunic": {
-            "required": false,
-            "type": ["string","null"],
-            "pattern": "^[0-9]{7}$"
-        },
-        "uf": {
-            "required": false,
-            "type": ["string","null"],
-            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
         },
         "paisnascto": {
             "required": true,
@@ -108,297 +89,115 @@ $jsonSchema = '{
             "type": "string",
             "pattern": "^[0-9]{3}$"
         },
-        "nmmae": {
-            "required": false,
-            "type": ["string","null"],
-            "minLength": 3,
-            "maxLength": 70
-        },
-        "nmpai": {
-            "required": false,
-            "type": ["string","null"],
-            "minLength": 3,
-            "maxLength": 70
-        },
-        "ctps": {
-            "required": false,
-            "type": ["object","null"],
+        "endereco": {
+            "required": true,
+            "type": "object",
             "properties": {
-                "nrctps": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 11
+                "brasil": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "tplograd": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 4
+                        },
+                        "dsclograd": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 100
+                        },
+                        "nrlograd": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 10
+                        },
+                        "complemento": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 30
+                        },
+                        "bairro": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 90
+                        },
+                        "cep": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{8}$"
+                        },
+                        "codmunic": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{7}"
+                        },
+                        "uf": {
+                            "required": true,
+                            "type": "string",
+                            "$ref": "#/definitions/siglauf"
+                        }
+                    }
                 },
-                "seriectps": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 5
-                },
-                "ufctps": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
+                "exterior": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "paisresid": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{3}"
+                        },
+                        "dsclograd": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 100
+                        },
+                        "nrlograd": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 10
+                        },
+                        "complemento": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 30
+                        },
+                        "bairro": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 90
+                        },
+                        "nmcid": {
+                            "required": true,
+                            "type": "string",
+                            "maxLength": 50
+                        },
+                        "codpostal": {
+                            "required": true,
+                            "type": ["string","null"],
+                            "minLength": 4,
+                            "maxLength": 12
+                        }
+                    }
                 }
             }
         },
-        "ric": {
+        "trabimig": {
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "nrric": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 20
-                },
-                "dtexped": {
+                "tmpresid": {
                     "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "rg": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrrg": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 14
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
                 },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "rne": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrrne": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "oc": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nroc": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "dtvalid": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "cnh": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrregcnh": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 12
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "ufcnh": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
-                },
-                "dtvalid": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "dtprihab": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "categoriacnh": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(A|B|C|D|E|AB|AC|AD|AE)$"
-                }
-            }
-        },
-        "brasil": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "tplograd": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 4
-                },
-                "dsclograd": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 80
-                },
-                "nrlograd": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 10
-                },
-                "complemento": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 30
-                },
-                "bairro": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 60
-                },
-                "cep": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{8}$"
-                },
-                "codmunic": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{7}$"
-                },
-                "uf": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
-                }
-            }
-        },
-        "exterior": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "paisresid": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{3}$"
-                },
-                "dsclograd": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 80
-                },
-                "nrlograd": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 10
-                },
-                "complemento": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 30
-                },
-                "bairro": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 60
-                },
-                "nmcid": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 50
-                },
-                "codpostal": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "minLength": 1,
-                    "maxLength": 12
-                }
-            }
-        },
-        "trabestrangeiro": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "dtchegada": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "classtrabestrang": {
+                "conding": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 12
-                },
-                "casadobr": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "filhosbr": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
+                    "maximum": 7
                 }
             }
         },
@@ -439,7 +238,7 @@ $jsonSchema = '{
                 "observacao": {
                     "required": false,
                     "type": ["string","null"],
-                    "minLength": 3,
+                    "minLength": 1,
                     "maxLength": 255
                 }
             }
@@ -455,12 +254,12 @@ $jsonSchema = '{
                     "tpdep": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^[0-9]{2}$"
+                        "pattern": "^0[1-7]{1}|09|1[0-2]{1}|99$"
                     },
                     "nmdep": {
                         "required": true,
                         "type": "string",
-                        "minLength": 3,
+                        "minLength": 2,
                         "maxLength": 70
                     },
                     "dtnascto": {
@@ -500,65 +299,71 @@ $jsonSchema = '{
                     "type": ["string","null"],
                     "pattern": "^[0-9]{10,13}$"
                 },
-                "fonealternat": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^[0-9]{10,13}$"
-                },
                 "emailprinc": {
                     "required": false,
                     "type": ["string","null"],
-                    "format": "email"
-                },
-                "emailalternat": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "format": "email"
+                    "minLength": 6,
+                    "maxLength": 60
                 }
             }
         },
-        "infotsvinicio": {
+        "cadini": {
             "required": true,
-            "type": "object",
-            "properties": {
-                "cadini": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
-                "codcateg": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^[0-9]{3}$"
-                },
-                "dtinicio": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "natatividade": {
-                    "required": false,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 2
-                }
-            }
+            "type": "string",
+            "pattern": "^(S|N)$"
         },
-        "cargofuncao": {
+        "matricula": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 1,
+            "maxLength": 30
+        },
+        "codcateg": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{3}$"
+        },
+        "dtinicio": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "nrproctrab": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{20}$"
+        },
+        "natatividade": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 2
+        },
+        "cargoduncao": {
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "codcargo": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 30
-                },
-                "codfuncao": {
+                "nmcargo": {
                     "required": false,
                     "type": ["string","null"],
                     "minLength": 1,
-                    "maxLength": 30
+                    "maxLength": 100
+                },
+                "cbocargo": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{6}$"
+                },
+                "nmfuncao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 1,
+                    "maxLength": 100
+                },
+                "cbofuncao": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{6}$"
                 }
             }
         },
@@ -579,8 +384,8 @@ $jsonSchema = '{
                 "dscsalvar": {
                     "required": false,
                     "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 255
+                    "minLength": 1,
+                    "maxLength": 999
                 }
             }
         },
@@ -588,12 +393,6 @@ $jsonSchema = '{
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "opcfgts": {
-                    "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 2
-                },
                 "dtopcfgts": {
                     "required": false,
                     "type": ["string","null"],
@@ -610,10 +409,16 @@ $jsonSchema = '{
                     "type": "string",
                     "pattern": "^[0-9]{3}$"
                 },
-                "cnpjorigem": {
+                "tpinsc": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "nrinsc": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{14}$"
+                    "pattern": "^[0-9]{11,14}"
                 },
                 "dtadmorig": {
                     "required": false,
@@ -625,6 +430,18 @@ $jsonSchema = '{
                     "type": ["string","null"],
                     "minLength": 1,
                     "maxLength": 30
+                },
+                "tpregtrab": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "tpregprev": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 3
                 }
             }
         },
@@ -664,8 +481,25 @@ $jsonSchema = '{
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 3
+                }
+            }
+        },
+        "infomandelet": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "indremuncargo": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S|N)$"
                 },
-                "infonus": {
+                "tpregtrab": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "tpregprev": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
@@ -691,18 +525,14 @@ $jsonSchema = '{
                 "areaatuacao": {
                     "required": false,
                     "type": ["string","null"],
-                    "minLength": 3,
-                    "maxLength": 50
+                    "minLength": 1,
+                    "maxLength": 100
                 },
                 "nrapol": {
                     "required": false,
                     "type": ["string","null"],
                     "minLength": 1,
                     "maxLength": 30
-                },
-                "vlrbolsa": {
-                    "required": false,
-                    "type": ["number","null"]
                 },
                 "dtprevterm": {
                     "required": true,
@@ -719,16 +549,16 @@ $jsonSchema = '{
                             "pattern": "^[0-9]{14}$"
                         },
                         "nmrazao": {
-                            "required": true,
-                            "type": "string",
-                            "minLength": 3,
+                            "required": false,
+                            "type": ["string","null"],
+                            "minLength": 1,
                             "maxLength": 100
                         },
                         "dsclograd": {
                             "required": false,
                             "type": ["string","null"],
                             "minLength": 1,
-                            "maxLength": 80
+                            "maxLength": 100
                         },
                         "nrlograd": {
                             "required": false,
@@ -740,7 +570,7 @@ $jsonSchema = '{
                             "required": false,
                             "type": ["string","null"],
                             "minLength": 1,
-                            "maxLength": 60
+                            "maxLength": 90
                         },
                         "cep": {
                             "required": false,
@@ -755,76 +585,19 @@ $jsonSchema = '{
                         "uf": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
+                            "$ref": "#/definitions/siglauf"
                         }
                     }
                 },
-                "ageintegracao": {
+                "cnpjagntinteg": {
                     "required": false,
-                    "type": ["object","null"],
-                    "properties": {
-                        "cnpjagntinteg": {
-                            "required": true,
-                            "type": "string",
-                            "pattern": "^[0-9]{14}$"
-                        },
-                        "nmrazao": {
-                            "required": true,
-                            "type": "string",
-                            "minLength": 3,
-                            "maxLength": 100
-                        },
-                        "dsclograd": {
-                            "required": true,
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 80
-                        },
-                        "nrlograd": {
-                            "required": true,
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 10
-                        },
-                        "bairro": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "minLength": 1,
-                            "maxLength": 60
-                        },
-                        "cep": {
-                            "required": true,
-                            "type": "string",
-                            "pattern": "^[0-9]{8}$"
-                        },
-                        "codmunic": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "pattern": "^[0-9]{7}$"
-                        },
-                        "uf": {
-                            "required": true,
-                            "type": "string",
-                            "pattern": "^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"
-                        }
-                    }
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{14}$"
                 },
-                "supervisorestagio": {
+                "cpfsupervisor": {
                     "required": false,
-                    "type": ["object","null"],
-                    "properties": {
-                        "cpfsupervisor": {
-                            "required": true,
-                            "type": "string",
-                            "pattern": "^[0-9]{11}$"
-                        },
-                        "nmsuperv": {
-                            "required": true,
-                            "type": "string",
-                            "minLength": 3,
-                            "maxLength": 70
-                        }
-                    }
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{11}$"
                 }
             }
         },
@@ -837,6 +610,12 @@ $jsonSchema = '{
                     "type": "string",
                     "pattern": "^[0-9]{11}$"
                 },
+                "matricant": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 1,
+                    "maxLength": 30
+                },
                 "dtaltcpf": {
                     "required": true,
                     "type": "string",
@@ -845,6 +624,7 @@ $jsonSchema = '{
                 "observacao": {
                     "required": false,
                     "type": ["string","null"],
+                    "minLength": 1,
                     "maxLength": 255
                 }
             }
@@ -880,186 +660,161 @@ $jsonSchema = '{
 }';
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
-$std->cpftrab = '12345678901';
-$std->nistrab = '1234';
-$std->nmtrab = 'Fulano de Tal';
-$std->sexo = 'M';
-$std->racacor = 2;
-$std->estciv = 3;
-$std->grauinstr = '03';
-$std->nmsoc = 'Fulano de Tal';
-$std->dtnascto = '1996-06-11';
-$std->codmunic = '1234567';
-$std->uf = 'AC';
-$std->paisnascto = '105';
-$std->paisnac = '105';
-$std->nmmae = 'Maria de Tal';
-$std->nmpai = "Joao de Tal";
-//documentos
-$std->ctps = new \stdClass();
-$std->ctps->nrctps = '11215454';
-$std->ctps->seriectps = '011';
-$std->ctps->ufctps = 'AC';
+//$std->sequencial = 1;
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = '1.1.1234567890123456789'; //Opcional
 
-$std->ric = new \stdClass();
-$std->ric->nrric = '28282828';
-$std->ric->orgaoemissor = 'sslkjslkjslksj';
-$std->ric->dtexped = '2011-07-07';
+//Informações do trabalhador.
+$std->cpftrab = '12345678901'; //Obrigatório
+$std->nmtrab = 'Fulano de Tal'; //Obrigatório
+$std->sexo = 'M'; //Obrigatório
+$std->racacor = 2; //Obrigatório
+$std->estciv = 3; //Opcional
+$std->grauinstr = '03'; //Obrigatório
+$std->nmsoc = null; //Opcional
+$std->dtnascto = '1996-06-11'; //Obrigatório
+$std->paisnascto = '105'; //Obrigatório
+$std->paisnac = '105'; //Obrigatório
 
-$std->rg = new \stdClass();
-$std->rg->nrrg = '1234567';
-$std->rg->orgaoemissor = 'sslkslkslks';
-$std->rg->dtexped = '2011-06-06';
+$std->endereco = new \stdClass(); //Obrigatório
+//Endereço no Brasil.
+$std->endereco->brasil = new \stdClass(); //Opcional
+$std->endereco->brasil->tplograd = 'R'; //Opcional
+$std->endereco->brasil->dsclograd = 'Av. Paulista'; //Obrigatório
+$std->endereco->brasil->nrlograd = '1850'; //Obrigatório
+$std->endereco->brasil->complemento = "apto 123"; //Opcional
+$std->endereco->brasil->bairro = 'Bela Vista'; //Opcional
+$std->endereco->brasil->cep = '01311200'; //Obrigatório
+$std->endereco->brasil->codmunic  = '3550308'; //Obrigatório
+$std->endereco->brasil->uf = 'SP'; //Obrigatório
 
-$std->rne = new \stdClass();
-$std->rne->nrrne = '8829822982982';
-$std->rne->orgaoemissor = 'slkslsklsklsk';
-$std->rne->dtexped = '2011-08-08';
+//Endereço no exterior.
+$std->endereco->exterior = new \stdClass(); //Opcional
+$std->endereco->exterior->paisresid = '108'; //Obrigatório
+$std->endereco->exterior->dsclograd = '5 Av'; //Obrigatório
+$std->endereco->exterior->nrlograd = '2222'; //Obrigatório
+$std->endereco->exterior->complemento = 'Apto 200'; //Opcional
+$std->endereco->exterior->bairro = 'Manhattan'; //Opcional
+$std->endereco->exterior->nmcid = 'New York'; //Obrigatório
+$std->endereco->exterior->codpostal  = null; //Opcional
 
-$std->oc = new \stdClass();
-$std->oc->nroc = '1929282882828';
-$std->oc->orgaoemissor = 'lslslsls';
-$std->oc->dtexped = '2011-10-10';
-$std->oc->dtvalid = '2022-10-10';
+//Informações do trabalhador imigrante.
+$std->trabimig = new \stdClass(); //Opcional
+$std->trabimig->tmpresid = 1; //Opcional
+$std->trabimig->conding = 1; //Obrigatório
 
-$std->cnh = new \stdClass();
-$std->cnh->nrregcnh = '123456789012';
-$std->cnh->dtexped = '2017-05-05';
-$std->cnh->ufcnh = 'AC';
-$std->cnh->dtvalid = '2022-05-05';
-$std->cnh->dtprihab = '2011-01-01';
-$std->cnh->categoriacnh = 'AB';
+//Pessoa com deficiência.
+$std->infodeficiencia = new \stdClass(); //Opcional
+$std->infodeficiencia->deffisica = 'N'; //Obrigatório
+$std->infodeficiencia->defvisual = 'N'; //Obrigatório
+$std->infodeficiencia->defauditiva = 'N'; //Obrigatório
+$std->infodeficiencia->defmental = 'N'; //Obrigatório
+$std->infodeficiencia->defintelectual = 'N'; //Obrigatório
+$std->infodeficiencia->reabreadap = 'N'; //Obrigatório
+$std->infodeficiencia->observacao = 'lkslkslkslkslkslks'; //Opcional
 
-//endereço
-$std->brasil = new \stdClass();
-$std->brasil->tplograd = 'av';
-$std->brasil->dsclograd = 'slkslkslkslsk';
-$std->brasil->nrlograd = 'sksks';
-$std->brasil->complemento = 'owpososomsmm';
-$std->brasil->bairro = 'sksksksk';
-$std->brasil->cep = '12345678';
-$std->brasil->codmunic = '1234567';
-$std->brasil->uf = 'AC';
+//Informações dos dependentes.
+$std->dependente[1]  = new \stdClass(); //Opcional
+$std->dependente[1]->tpdep = '01'; //Obrigatório
+$std->dependente[1]->nmdep = 'Fulaninho de Tal'; //Obrigatório
+$std->dependente[1]->dtnascto = '2016-11-25'; //Obrigatório
+$std->dependente[1]->cpfdep = '12345678901'; //Opcional
+$std->dependente[1]->depirrf = 'N'; //Obrigatório
+$std->dependente[1]->depsf = 'N'; //Obrigatório
+$std->dependente[1]->inctrab = 'N'; //Obrigatório
 
-$std->exterior = new \stdClass();
-$std->exterior->paisresid = '158';
-$std->exterior->dsclograd = 'kkssjksjsk';
-$std->exterior->nrlograd = '1112sss';
-$std->exterior->complemento = 'lslslsls';
-$std->exterior->bairro = 'lslslsl';
-$std->exterior->nmcid = 'slkskslks';
-$std->exterior->codpostal = '1234';
+//Informações de contato.
+$std->contato = new \stdClass(); //Opcional
+$std->contato->foneprinc = '1234567890'; //Opcional 
+$std->contato->emailprinc = 'ele@mail.com'; //Opcional
 
-$std->trabestrangeiro = new \stdClass();
-$std->trabestrangeiro->dtchegada = '2015-11-11';
-$std->trabestrangeiro->classtrabestrang = 12;
-$std->trabestrangeiro->casadobr = 'N';
-$std->trabestrangeiro->filhosbr = 'N';
+//Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE - Início.
+$std->cadini = 'S'; //Obrigatório
+$std->matricula = '123456789'; //Opcional
+$std->codcateg = '101'; //Obrigatório
+$std->dtinicio = '2017-05-12'; //Obrigatório
+$std->nrproctrab = null; //Opcional
+$std->natatividade = 2; //Opcional
 
-$std->infodeficiencia = new \stdClass();
-$std->infodeficiencia->deffisica = 'N';
-$std->infodeficiencia->defvisual = 'N';
-$std->infodeficiencia->defauditiva = 'N';
-$std->infodeficiencia->defmental = 'N';
-$std->infodeficiencia->defintelectual = 'N';
-$std->infodeficiencia->reabreadap = 'N';
-$std->infodeficiencia->observacao = 'lkslkslkslkslkslks';
+//Grupo que apresenta o cargo e/ou função ocupada pelo TSVE.
+$std->cargofuncao = new \stdClass(); //Opcional
+$std->cargofuncao->nmcargo = 'lalalaloaoaoa'; //Opcional
+$std->cargofuncao->cbocargo = '263105'; //Opcional 
+$std->cargofuncao->nmfuncao = 'ksksksksk sk'; //Opcional
+$std->cargofuncao->cbofuncao = '263105'; //Opcional
 
-$std->dependente[1]  = new \stdClass();
-$std->dependente[1]->tpdep = '01';
-$std->dependente[1]->nmdep = 'Fulaninho de Tal';
-$std->dependente[1]->dtnascto = '2016-11-25';
-$std->dependente[1]->cpfdep = '12345678901';
-$std->dependente[1]->depirrf = 'N';
-$std->dependente[1]->depsf = 'N';
-$std->dependente[1]->inctrab = 'N';
+//Informações da remuneração e periodicidade de pagamento.
+$std->remuneracao = new \stdClass(); //Opcional
+$std->remuneracao->vrsalfx = 1200.00; //Obrigatório
+$std->remuneracao->undsalfixo = 7; //Obrigatório
+$std->remuneracao->dscsalvar = 'lkklslskksl s lks lsklsks '; //Opcional
 
-$std->contato = new \stdClass();
-$std->contato->foneprinc = '1234567890';
-$std->contato->fonealternat = '0912345678';
-$std->contato->emailprinc = 'ele@mail.com';
-$std->contato->emailalternat = 'ela@email.com.br';
+//Informações do Fundo de Garantia do Tempo de Serviço - FGTS.
+$std->fgts = new \stdClass(); //Opcional
+$std->fgts->dtopcfgts = '2017-05-12'; //Obrigatório
 
-$std->infotsvinicio = new \stdClass();
-$std->infotsvinicio->cadini = 'S';
-$std->infotsvinicio->codcateg = '101';
-$std->infotsvinicio->dtinicio = '2017-05-12';
-$std->infotsvinicio->natatividade = 2;
+//Informações relativas ao dirigente sindical.
+$std->infodirigentesindical = new \stdClass(); //Opcional
+$std->infodirigentesindical->categorig = '001'; //Obrigatório
+$std->infodirigentesindical->tpinsc = 1; //Opcional
+$std->infodirigentesindical->nrinsc = '12345678901234'; //Opcional
+$std->infodirigentesindical->dtadmorig = '2017-05-12'; //Opcional
+$std->infodirigentesindical->matricorig = 'ytuytuystyst'; //Opcional
+$std->infodirigentesindical->tpregtrab = 1; //Opcional
+$std->infodirigentesindical->tpregprev = 2; //Obrigatório
 
-$std->cargofuncao = new \stdClass();
-$std->cargofuncao->codcargo = 'oaoaoa';
-$std->cargofuncao->codfuncao = 'ksksksksk sk';
+//Informações relativas ao trabalhador cedido/em exercício em outro órgão, preenchidas exclusivamente
+//pelo cessionário/órgão de destino.
+$std->infotrabcedido = new \stdClass(); //Opcional
+$std->infotrabcedido->categorig = '001'; //Obrigatório
+$std->infotrabcedido->cnpjcednt = '12345678901234'; //Obrigatório
+$std->infotrabcedido->matricced = 'lksçkçslksl'; //Obrigatório
+$std->infotrabcedido->dtadmced = '2017-05-12'; //Obrigatório
+$std->infotrabcedido->tpregtrab = 2; //Obrigatório
+$std->infotrabcedido->tpregprev = 3; //Obrigatório
 
-$std->remuneracao = new \stdClass();
-$std->remuneracao->vrsalfx = 1200.00;
-$std->remuneracao->undsalfixo = 7;
-$std->remuneracao->dscsalvar = 'lkklslskksl s lks lsklsks ';
+//Informações relativas a servidor público exercente de mandato eletivo.
+$std->infomandelet = new \stdClass(); //Opcional
+$std->infomandelet->indremuncargo = 'S'; //Opcional
+$std->infomandelet->tpregtrab = 2; //Obrigatório
+$std->infomandelet->tpregprev = 3; //Obrigatório
 
-$std->fgts = new \stdClass();
-$std->fgts->opcfgts = 1;
-$std->fgts->dtopcfgts = '2017-05-12';
+//Informações relativas ao estagiário.
+$std->infoestagiario = new \stdClass(); //Opcional
+$std->infoestagiario->natestagio = 'N'; //Obrigatório
+$std->infoestagiario->nivestagio = 8; //Obrigatório
+$std->infoestagiario->areaatuacao = 'ksksksksk'; //Opcional
+$std->infoestagiario->nrapol = 'kak228282828'; //Opcional
+$std->infoestagiario->dtprevterm = '2017-12-31'; //Obrigatório
 
-$std->infodirigentesindical = new \stdClass();
-$std->infodirigentesindical->categorig = '001';
-$std->infodirigentesindical->cnpjorigem = '12345678901234';
-$std->infodirigentesindical->dtadmorig = '2017-05-12';
-$std->infodirigentesindical->matricorig = 'ytuytuystyst';
+$std->infoestagiario->instensino = new \stdClass(); //Obrigatório
+$std->infoestagiario->instensino->cnpjinstensino = '12345678901234'; //Opcional
+$std->infoestagiario->instensino->nmrazao = 'dlkdldkldkd'; //Opcional
+$std->infoestagiario->instensino->dsclograd = 'lslsppopapap'; //Opcional
+$std->infoestagiario->instensino->nrlograd = '12244'; //Opcional
+$std->infoestagiario->instensino->bairro = 'kakakaka'; //Opcional
+$std->infoestagiario->instensino->cep = '12345678'; //Opcional
+$std->infoestagiario->instensino->codmunic = '1234567'; //Opcional
+$std->infoestagiario->instensino->uf = 'AC'; //Opcional
 
-$std->infotrabcedido = new \stdClass();
-$std->infotrabcedido->categorig = '001';
-$std->infotrabcedido->cnpjcednt = '12345678901234';
-$std->infotrabcedido->matricced = 'lksçkçslksl';
-$std->infotrabcedido->dtadmced = '2017-05-12';
-$std->infotrabcedido->tpregtrab = 2;
-$std->infotrabcedido->tpregprev = 3;
-$std->infotrabcedido->infonus = 3;
+$std->infoestagiario->cnpjagntinteg = '12345678901234'; //Opcional
+$std->infoestagiario->cpfsupervisor = '12345678901';  //Opcional
 
-$std->infoestagiario = new \stdClass();
-$std->infoestagiario->natestagio = 'N';
-$std->infoestagiario->nivestagio = 8;
-$std->infoestagiario->areaatuacao = 'ksksksksk';
-$std->infoestagiario->nrapol = 'kak228282828';
-$std->infoestagiario->vlrbolsa = 1200.00;
-$std->infoestagiario->dtprevterm = '2017-12-31';
+//Informações de mudança de CPF do trabalhador.
+$std->mudancacpf = new \stdClass(); //Opcional
+$std->mudancacpf->cpfant = '12345678901'; //Obrigatório
+$std->mudancacpf->matriant = 'ABC1234'; //Opcional
+$std->mudancacpf->dtaltcpf = '2018-11-10'; //Obrigatório
+$std->mudancacpf->observacao = 'bla bla bla'; //Opcional
 
-$std->infoestagiario->instensino = new \stdClass();
-$std->infoestagiario->instensino->cnpjinstensino = '12345678901234';
-$std->infoestagiario->instensino->nmrazao = 'dlkdldkldkd';
-$std->infoestagiario->instensino->dsclograd = 'lslsppopapap';
-$std->infoestagiario->instensino->nrlograd = '12244';
-$std->infoestagiario->instensino->bairro = 'kakakaka';
-$std->infoestagiario->instensino->cep = '12345678';
-$std->infoestagiario->instensino->codmunic = '1234567';
-$std->infoestagiario->instensino->uf = 'AC';
+//Informações de afastamento do TSVE
+$std->afastamento = new \stdClass(); //Opcional
+$std->afastamento->dtiniafast = '2017-06-01'; //Obrigatório
+$std->afastamento->codmotafast = '01'; //Obrigatório
 
-$std->infoestagiario->ageintegracao = new \stdClass();
-$std->infoestagiario->ageintegracao->cnpjagntinteg = '12345678901234';
-$std->infoestagiario->ageintegracao->nmrazao = 'mamaamamamam';
-$std->infoestagiario->ageintegracao->dsclograd = 'oaoaoaoao';
-$std->infoestagiario->ageintegracao->nrlograd = 'msmsmsmsms';
-$std->infoestagiario->ageintegracao->bairro = 'lslslslsl';
-$std->infoestagiario->ageintegracao->cep = '12345678';
-$std->infoestagiario->ageintegracao->codmunic = '1234567';
-$std->infoestagiario->ageintegracao->uf = 'AC';
-
-$std->infoestagiario->supervisorestagio = new \stdClass();
-$std->infoestagiario->supervisorestagio->cpfsupervisor = '12345678901';
-$std->infoestagiario->supervisorestagio->nmsuperv = 'lksklskslkslkslk slkslkslkskslk';
-
-$std->mudancacpf = new \stdClass();
-$std->mudancacpf->cpfant = '12345678901';
-$std->mudancacpf->dtaltcpf = '2018-11-10';
-$std->mudancacpf->observacao = 'bla bla bla';
-
-$std->afastamento = new \stdClass();
-$std->afastamento->dtiniafast = '2017-06-01';
-$std->afastamento->codmotafast = '01';
-
-$std->termino = new \stdClass();
-$std->termino->dtterm = '2017-12-31';
+//Informação do término do TSVE.
+$std->termino = new \stdClass(); //Opcional
+$std->termino->dtterm = '2017-12-31'; //Obrigatório
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

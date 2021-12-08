@@ -31,7 +31,7 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 //campos OBRIGATORIOS
 $std = new \stdClass();
-$std->sequencial = 1; //numero sequencial
+//$std->sequencial = 1; //numero sequencial
 $std->modo = 'INC'; //INC inclusão, ALT alteração EXC exclusão
 
 $std->ideperiodo = new \stdClass();
@@ -86,8 +86,8 @@ try {
     $xml = Event::evtInfoEmpregador(
         $configJson,
         $std,
-        $certificate,
-        '2017-08-03 10:37:00' //opcional data e hora
+        $certificate
+        //'2017-08-03 10:37:00' //opcional data e hora
     )->toXml();
       
     header('Content-type: text/xml; charset=UTF-8');

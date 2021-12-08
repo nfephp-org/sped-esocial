@@ -29,121 +29,136 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = 'abcdefghijklmnopq';
-$std->indapuracao = 2;
-$std->perapur = '2017-12';
-$std->cpftrab = '12345678901';
-$std->nistrab = '10987654321';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = '1.1.1234567890123456789'; //Obrigatório APENAS se indretif = 2
+$std->indapuracao = 2; //Obrigatorio
+$std->perapur = '2017-12'; //Obrigatório
+$std->indguia = 1; //Opcional
+$std->cpftrab = '12345678901'; //Obrigatório
 
-$std->infomv = new \stdClass();
-$std->infomv->indmv = 1;
-/*
-$std->infomv->remunoutrempr[0] = new \stdClass();
-$std->infomv->remunoutrempr[0]->tpinsc = 1;
-$std->infomv->remunoutrempr[0]->nrinsc = '12345678901234';
-$std->infomv->remunoutrempr[0]->codcateg = 901;
-$std->infomv->remunoutrempr[0]->vlrremunoe = 2345.09;
-*/
-$std->infocomplem = new \stdClass();
-$std->infocomplem->nmtrab = 'Fulano de Tal';
-$std->infocomplem->dtnascto = '1985-02-14';
+//Grupo preenchido exclusivamente em caso de trabalhador
+//que possua outros vínculos/atividades nos quais já tenha
+//ocorrido desconto de contribuição previdenciária.
+$std->infomv = new \stdClass(); //Opcional
+$std->infomv->indmv = 1; //Obrigatório
 
-$std->infocomplem->sucessaovinc = new \stdClass();
-$std->infocomplem->sucessaovinc->tpinscant = 1; //incluso 2.5.0
-$std->infocomplem->sucessaovinc->cnpjempregant = '12345678901234';
-$std->infocomplem->sucessaovinc->matricant = 'jkdjkjdkjdjkd';
-$std->infocomplem->sucessaovinc->dtadm = '2017-06-07';
-$std->infocomplem->sucessaovinc->observacao = 'nao obrigatorio';
+//nformações relativas ao trabalhador que possui vínculo
+//empregatício com outra(s) empresa(s)
+$std->infomv->remunoutrempr[0] = new \stdClass(); //Obrigatório
+$std->infomv->remunoutrempr[0]->tpinsc = 1; //Obrigatório
+$std->infomv->remunoutrempr[0]->nrinsc = '12345678901234'; //Obrigatório
+$std->infomv->remunoutrempr[0]->codcateg = 901; //Obrigatório
+$std->infomv->remunoutrempr[0]->vlrremunoe = 2345.09; //Obrigatório
 
-$std->procjudtrab[0] = new \stdClass();
-$std->procjudtrab[0]->tptrib = 2;
-$std->procjudtrab[0]->nrprocjud = '12345678901234567890';
-$std->procjudtrab[0]->codsusp = '12345678901234';
+///Grupo preenchido quando o evento de remuneração se
+//referir a trabalhador cuja categoria não está sujeita ao
+//evento de admissão ou ao evento TSVE - Início
+$std->infocomplem = new \stdClass(); //Opcional
+$std->infocomplem->nmtrab = 'Fulano de Tal'; ///Obrigatório
+$std->infocomplem->dtnascto = '1985-02-14'; //Obrigatório
 
-$std->infointerm = new \stdClass();
-$std->infointerm->qtddiasinterm = 10;
+//Informações da sucessão de vínculo trabalhista.
+$std->infocomplem->sucessaovinc = new \stdClass(); //Opcional
+$std->infocomplem->sucessaovinc->tpinsc = 1; //Obrigatório
+$std->infocomplem->sucessaovinc->nrinsc = "12345678901234"; //Obrigatório
+$std->infocomplem->sucessaovinc->matricant = 'jkdjkjdkjdjkd'; //Opcional
+$std->infocomplem->sucessaovinc->dtadm = '2017-06-07'; //Obrigatório
+$std->infocomplem->sucessaovinc->observacao = 'nao obrigatorio'; //Opcional
 
-$std->dmdev[0] = new \stdClass();
-$std->dmdev[0]->idedmdev = 'kjdkjdkjdkdj';
-$std->dmdev[0]->codcateg = 101;
+//Informações sobre a existência de processos judiciais do
+//trabalhador com decisão favorável quanto à não incidência
+//de contribuições sociais e/ou Imposto de Renda.
+$std->procjudtrab[0] = new \stdClass(); //Opcional
+$std->procjudtrab[0]->tptrib = 2; //Obrigatório
+$std->procjudtrab[0]->nrprocjud = '12345678901234567890'; //Obrigatório
+$std->procjudtrab[0]->codsusp = '12345678901234'; //Obrigatório
 
-$std->dmdev[0]->ideestablot[0] = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->tpinsc = 2;
-$std->dmdev[0]->ideestablot[0]->nrinsc = '12345678901234';
-$std->dmdev[0]->ideestablot[0]->codlotacao = 'qlkjakljwj';
-$std->dmdev[0]->ideestablot[0]->qtddiasav = 20;
+//Informações relativas ao trabalho intermitente
+$std->infointerm[0] = new \stdClass(); //Opcional
+$std->infointerm[0]->dia = 10; //Obrigatório
 
-$std->dmdev[0]->ideestablot[0]->remunperapur[0] = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->matricula = 'kjsksjksjskjsk';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->indsimples = 1;
+//Identificação de cada um dos demonstrativos de valores devidos ao trabalhador.
+$std->dmdev[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->idedmdev = 'kjdkjdkjdkdj'; //Obrigatório
+$std->dmdev[0]->codcateg = 101; //Obrigatório
 
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0] = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->codrubr = 'ksksksks';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->idetabrubr = 'j2j2j';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->qtdrubr = 150.30;
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->fatorrubr = 1.20;
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->vrunit = 123.90;
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->vrrubr = 123.90;
+//Identificação do estabelecimento e da lotação nos quais o
+//trabalhador possui remuneração no período de apuração
+$std->dmdev[0]->ideestablot[0] = new \stdClass(); //Opcional
+$std->dmdev[0]->ideestablot[0]->tpinsc = 2; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->nrinsc = '12345678901234'; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->codlotacao = 'qlkjakljwj'; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->qtddiasav = 20; //Opcional
 
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0] = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->cnpjoper = '12345678901234';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->regans = 'asdfgh';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->vrpgtit = 1234.50;
+//Informações relativas à remuneração do trabalhador no período de apuração.
+$std->dmdev[0]->ideestablot[0]->remunperapur[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->matricula = 'kjsksjksjskjsk'; //Opcional
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->indsimples = 1; //Opcional
 
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0] = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->tpdep = '01';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->cpfdep = '12345678901';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->nmdep = 'Maria Maria de Tal';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->dtnascto = '1991-09-15';
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->detoper[0]->detplano[0]->vlrpgdep = 912.68;
+//Rubricas que compõem a remuneração do trabalhador.
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->codrubr = 'ksksksks'; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->idetabrubr = 'j2j2j'; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->qtdrubr = 150.30; //Opcional
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->fatorrubr = 1.20; //Opcional
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->vrunit = 123.90; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->vrrubr = 123.90; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->itensremun[0]->indapurir = 0; //Opcional
 
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo->grauexp = 1;
+//Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança
+//da contribuição adicional para financiamento dos benefícios de aposentadoria especial.
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo = new \stdClass(); //Opcional
+$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infoagnocivo->grauexp = 4; //Obrigatório
 
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infotrabinterm[0] = new \stdClass();
-$std->dmdev[0]->ideestablot[0]->remunperapur[0]->infotrabinterm[0]->codconv = 'lkkjskjsj';
+//Identificação do instrumento ou situação ensejadora da
+//remuneração relativa a períodos de apuração anteriores
+$std->dmdev[0]->ideadc[0] = new \stdClass(); //Opcional
+$std->dmdev[0]->ideadc[0]->dtacconv = '2016-12-10';  //Opcional
+$std->dmdev[0]->ideadc[0]->tpacconv = 'A'; //Obrigatório
+$std->dmdev[0]->ideadc[0]->dsc = 'descricao'; //Obrigatório
+$std->dmdev[0]->ideadc[0]->remunsuc = 'S'; //Obrigatório
 
+//Identificação do período ao qual se referem as diferenças
+//de remuneração.
+$std->dmdev[0]->ideadc[0]->ideperiodo[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->perref = '2017-01'; //Obrigatório
 
-$std->dmdev[0]->ideadc[0] = new \stdClass();
-$std->dmdev[0]->ideadc[0]->dtacconv = '2016-12-10';
-$std->dmdev[0]->ideadc[0]->tpacconv = 'A';
-$std->dmdev[0]->ideadc[0]->compacconv = '2017-01';
-$std->dmdev[0]->ideadc[0]->dtefacconv = '2017-10-12';
-$std->dmdev[0]->ideadc[0]->dsc = 'descricao';
-$std->dmdev[0]->ideadc[0]->remunsuc = 'S';
+//dentificação do estabelecimento e da lotação ao qual se
+//referem as diferenças de remuneração do mês identificado
+//no grupo superior.
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->tpinsc = 1; //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->nrinsc = '12345678901234'; //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->codlotacao = 'ksjskjkjskjjs'; //Obrigatório
 
-$std->dmdev[0]->ideadc[0]->ideperiodo[0] = new \stdClass();
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->perref = '2017-01';
+//Informações relativas à remuneração do trabalhador em períodos anteriores. 
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->matricula = 'kjskjskjskjs'; //Opcional
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->indsimples = 1; //Opcional
 
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0] = new \stdClass();
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->tpinsc = 1;
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->nrinsc = '12345678901234';
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->codlotacao = 'ksjskjkjskjjs';
+//Rubricas que compõem a remuneração do trabalhador.
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->codrubr = 'aaaaa'; //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->idetabrubr = 'bbbbb'; //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->qtdrubr = 12.65; //Opcional
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->fatorrubr = 2.99; //Opcional
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->vrunit = 123.02; //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->vrrubr = 169.99; //Obrigatório
 
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0] = new \stdClass();
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->matricula = 'kjskjskjskjs';
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->indsimples = 1;
+//Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança
+//da contribuição adicional para financiamento dos benefícios de aposentadoria especial.
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo = new \stdClass(); //Opcional
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo->grauexp = 2;  //Obrigatório
 
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0] = new \stdClass();
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->codrubr = 'aaaaa';
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->idetabrubr = 'bbbbb';
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->qtdrubr = 12.65;
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->fatorrubr = 2.99;
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->vrunit = 123.02;
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->itensremun[0]->vrrubr = 169.99;
-
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo = new \stdClass();
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infoagnocivo->grauexp = 2;
-
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infotrabinterm[0] = new \stdClass();
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->infotrabinterm[0]->codconv = 'lkkjskjsj';
-
-$std->dmdev[0]->infocomplcont = new \stdClass();
-$std->dmdev[0]->infocomplcont->codcbo = '123456';
-$std->dmdev[0]->infocomplcont->natatividade = 1;
-$std->dmdev[0]->infocomplcont->qtddiastrab = 14;
+//Grupo preenchido exclusivamente quando o evento de
+//remuneração se referir a trabalhador cuja categoria não
+//estiver obrigada ao evento de início de TSVE e se não
+//houver evento S-2300 correspondente.
+$std->dmdev[0]->infocomplcont = new \stdClass(); //Opcional
+$std->dmdev[0]->infocomplcont->codcbo = '123456'; //Obrigatório
+$std->dmdev[0]->infocomplcont->natatividade = 1; //Obrigatório
+$std->dmdev[0]->infocomplcont->qtddiastrab = 14; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados

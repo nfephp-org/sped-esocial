@@ -219,14 +219,12 @@ trait TraitS1260
             $this->std->indretif,
             true
         );
-        if( $this->std->indretif == 2 ){
-			$this->dom->addChild(
-				$ideEvento,
-				"nrRecibo",
-				$this->std->nrrecibo,
-				true
-			);
-		}
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) && ($this->std->indretif == 2) ? $this->std->nrrecibo : null,
+            false
+        );
         $this->dom->addChild(
             $ideEvento,
             "perApur",
@@ -237,7 +235,7 @@ trait TraitS1260
             $ideEvento,
             "indGuia",
             $this->std->indguia,
-            true
+            false
         );
         $this->dom->addChild(
             $ideEvento,

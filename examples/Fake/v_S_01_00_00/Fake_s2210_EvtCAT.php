@@ -30,7 +30,7 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = '1.1.1234567890123456789';
 

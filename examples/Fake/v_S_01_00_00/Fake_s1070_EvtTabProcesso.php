@@ -29,7 +29,7 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1; //Opcional
 $std->tpproc = 1;
 $std->nrproc = '1234567890123456';
 $std->inivalid = '2017-01';

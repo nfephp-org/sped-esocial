@@ -29,50 +29,22 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '1234567890';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = '1.1.1234567890123456789'; //Obrigatório APENAS se indretif = 2
 
-$std->idevinculo = new \stdClass();
-$std->idevinculo->cpftrab = '11111111111';
-$std->idevinculo->nistrab = '11111111111';
-$std->idevinculo->matricula = '11111111111';
+$std->cpftrab = '11111111111'; //Obrigatório
+$std->matricula = '11111111111'; //Obrigatório
 
-//Opcional 1 ou Opcional 2 ou Opcional 3
-$std->iniafastamento = new \stdClass();
-$std->iniafastamento->dtiniafast = '2017-08-21';
-$std->iniafastamento->codmotafast = '01';
-$std->iniafastamento->infomesmomtv = 'N';
-$std->iniafastamento->tpacidtransit = 3;
-$std->iniafastamento->observacao = 'blablablabla';
+//Informações da cessão/exercício em outro órgão
+$std->inicessao = new \stdClass(); //Opcional
+$std->inicessao->dtinicessao = '2017-08-21'; //Obrigatório
+$std->inicessao->cnpjcess = '12345678901234'; //Obrigatório
+$std->inicessao->respremun = 'N'; //Obrigatório
 
-$std->iniafastamento->infoatestado[0] = new \stdClass();
-$std->iniafastamento->infoatestado[0]->codcid = '0101';
-$std->iniafastamento->infoatestado[0]->qtddiasafast = 120;
-
-$std->iniafastamento->infoatestado[0]->emitente = new \stdClass();
-$std->iniafastamento->infoatestado[0]->emitente->nmemit = 'NOME DO EMITENTE';
-$std->iniafastamento->infoatestado[0]->emitente->ideoc = 1;
-$std->iniafastamento->infoatestado[0]->emitente->nroc = '11111111111111';
-$std->iniafastamento->infoatestado[0]->emitente->ufoc = 'SP';
-
-$std->iniafastamento->infocessao = new \stdClass();
-$std->iniafastamento->infocessao->cnpjcess = '11111111111111';
-$std->iniafastamento->infocessao->infonus = 1;
-
-$std->iniafastamento->infomandsind = new \stdClass();
-$std->iniafastamento->infomandsind->cnpjsind = '11111111111111';
-$std->iniafastamento->infomandsind->infonusremun = 1;
-
-//Opcional 2
-$std->inforetif = new \stdClass();
-$std->inforetif->origretif = 1;
-$std->inforetif->tpproc = 1;
-$std->inforetif->nrproc = '1234567890';
-
-//Opcional 3
-$std->fimafastamento = new \stdClass();
-$std->fimafastamento->dttermafast = '2017-08-21';
+//Informação de término da cessão/exercício em outro órgão.
+$std->fimcessao = new \stdClass(); //Opcional
+$std->fimcessao->dttermcessao = '2019-08-21'; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados
@@ -81,11 +53,10 @@ try {
     $certificate = Certificate::readPfx($content, $password);
 
     //cria o evento e retorna o XML assinado
-    $xml = Event::evtAfastTemp(
+    $xml = Event::evtCessao(
         $configJson,
         $std,
-        $certificate,
-        '2017-08-03 10:37:00' //opcional data e hora
+        $certificate
     )->toXml();
 
     header('Content-type: text/xml; charset=UTF-8');
