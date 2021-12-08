@@ -3,8 +3,8 @@
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -13,6 +13,11 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
         },
         "perapur": {
             "required": true,
@@ -61,7 +66,7 @@
                                         "nrinsc": {
                                             "required": true,
                                             "type": "string",
-                                            "pattern": "^[0-9]{8,15}$"
+                                            "pattern": "^([0-9]{11}|[0-9]{14})$"
                                         },
                                         "vrcomerc": {
                                             "required": true,
@@ -125,7 +130,7 @@
                                         "nrproc": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 21
+                                            "pattern": "^([0-9]{17}|[0-9]{20}|[0-9]{21})$"
                                         },
                                         "codsusp": {
                                             "required": true,

@@ -29,186 +29,162 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = 'ABJBAJBJAJBAÇÇAAKJ';
-$std->cpftrab = '12345678901';
-$std->nistrab = '1234';
-$std->nmtrab = 'Fulano de Tal';
-$std->sexo = 'M';
-$std->racacor = 2;
-$std->estciv = 3;
-$std->grauinstr = '03';
-$std->nmsoc = 'Fulano de Tal';
-$std->dtnascto = '1996-06-11';
-$std->codmunic = '1234567';
-$std->uf = 'AC';
-$std->paisnascto = '105';
-$std->paisnac = '105';
-$std->nmmae = 'Maria de Tal';
-$std->nmpai = "Joao de Tal";
-//documentos
-$std->ctps = new \stdClass();
-$std->ctps->nrctps = '11215454';
-$std->ctps->seriectps = '011';
-$std->ctps->ufctps = 'AC';
+//$std->sequencial = 1;
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = '1.1.1234567890123456789'; //Opcional
 
-$std->ric = new \stdClass();
-$std->ric->nrric = '28282828';
-$std->ric->orgaoemissor = 'sslkjslkjslksj';
-$std->ric->dtexped = '2011-07-07';
+//Informações do trabalhador.
+$std->cpftrab = '12345678901'; //Obrigatório
+$std->nmtrab = 'Fulano de Tal'; //Obrigatório
+$std->sexo = 'M'; //Obrigatório
+$std->racacor = 2; //Obrigatório
+$std->estciv = 3; //Opcional
+$std->grauinstr = '03'; //Obrigatório
+$std->nmsoc = null; //Opcional
+$std->dtnascto = '1996-06-11'; //Obrigatório
+$std->paisnascto = '105'; //Obrigatório
+$std->paisnac = '105'; //Obrigatório
 
-$std->rg = new \stdClass();
-$std->rg->nrrg = '1234567';
-$std->rg->orgaoemissor = 'sslkslkslks';
-$std->rg->dtexped = '2011-06-06';
+$std->endereco = new \stdClass(); //Obrigatório
+//Endereço no Brasil.
+$std->endereco->brasil = new \stdClass(); //Opcional
+$std->endereco->brasil->tplograd = 'R'; //Opcional
+$std->endereco->brasil->dsclograd = 'Av. Paulista'; //Obrigatório
+$std->endereco->brasil->nrlograd = '1850'; //Obrigatório
+$std->endereco->brasil->complemento = "apto 123"; //Opcional
+$std->endereco->brasil->bairro = 'Bela Vista'; //Opcional
+$std->endereco->brasil->cep = '01311200'; //Obrigatório
+$std->endereco->brasil->codmunic  = '3550308'; //Obrigatório
+$std->endereco->brasil->uf = 'SP'; //Obrigatório
 
-$std->rne = new \stdClass();
-$std->rne->nrrne = '8829822982982';
-$std->rne->orgaoemissor = 'slkslsklsklsk';
-$std->rne->dtexped = '2011-08-08';
+//Endereço no exterior.
+$std->endereco->exterior = new \stdClass(); //Opcional
+$std->endereco->exterior->paisresid = '108'; //Obrigatório
+$std->endereco->exterior->dsclograd = '5 Av'; //Obrigatório
+$std->endereco->exterior->nrlograd = '2222'; //Obrigatório
+$std->endereco->exterior->complemento = 'Apto 200'; //Opcional
+$std->endereco->exterior->bairro = 'Manhattan'; //Opcional
+$std->endereco->exterior->nmcid = 'New York'; //Obrigatório
+$std->endereco->exterior->codpostal  = null; //Opcional
 
-$std->oc = new \stdClass();
-$std->oc->nroc = '1929282882828';
-$std->oc->orgaoemissor = 'lslslsls';
-$std->oc->dtexped = '2011-10-10';
-$std->oc->dtvalid = '2022-10-10';
+//Informações do trabalhador imigrante.
+$std->trabimig = new \stdClass(); //Opcional
+$std->trabimig->tmpresid = 1; //Opcional
+$std->trabimig->conding = 1; //Obrigatório
 
-$std->cnh = new \stdClass();
-$std->cnh->nrregcnh = '123456789012';
-$std->cnh->dtexped = '2017-05-05';
-$std->cnh->ufcnh = 'AC';
-$std->cnh->dtvalid = '2022-05-05';
-$std->cnh->dtprihab = '2011-01-01';
-$std->cnh->categoriacnh = 'AB';
+//Pessoa com deficiência.
+$std->infodeficiencia = new \stdClass(); //Opcional
+$std->infodeficiencia->deffisica = 'N'; //Obrigatório
+$std->infodeficiencia->defvisual = 'N'; //Obrigatório
+$std->infodeficiencia->defauditiva = 'N'; //Obrigatório
+$std->infodeficiencia->defmental = 'N'; //Obrigatório
+$std->infodeficiencia->defintelectual = 'N'; //Obrigatório
+$std->infodeficiencia->reabreadap = 'N'; //Obrigatório
+$std->infodeficiencia->observacao = 'lkslkslkslkslkslks'; //Opcional
 
-//endereço
-$std->brasil = new \stdClass();
-$std->brasil->tplograd = 'av';
-$std->brasil->dsclograd = 'slkslkslkslsk';
-$std->brasil->nrlograd = 'sksks';
-$std->brasil->complemento = 'owpososomsmm';
-$std->brasil->bairro = 'sksksksk';
-$std->brasil->cep = '12345678';
-$std->brasil->codmunic = '1234567';
-$std->brasil->uf = 'AC';
+//Informações dos dependentes.
+$std->dependente[1]  = new \stdClass(); //Opcional
+$std->dependente[1]->tpdep = '01'; //Obrigatório
+$std->dependente[1]->nmdep = 'Fulaninho de Tal'; //Obrigatório
+$std->dependente[1]->dtnascto = '2016-11-25'; //Obrigatório
+$std->dependente[1]->cpfdep = '12345678901'; //Opcional
+$std->dependente[1]->depirrf = 'N'; //Obrigatório
+$std->dependente[1]->depsf = 'N'; //Obrigatório
+$std->dependente[1]->inctrab = 'N'; //Obrigatório
 
-$std->exterior = new \stdClass();
-$std->exterior->paisresid = '158';
-$std->exterior->dsclograd = 'kkssjksjsk';
-$std->exterior->nrlograd = '1112sss';
-$std->exterior->complemento = 'lslslsls';
-$std->exterior->bairro = 'lslslsl';
-$std->exterior->nmcid = 'slkskslks';
-$std->exterior->codpostal = '1234';
+//Informações de contato.
+$std->contato = new \stdClass(); //Opcional
+$std->contato->foneprinc = '1234567890'; //Opcional 
+$std->contato->emailprinc = 'ele@mail.com'; //Opcional
 
-$std->trabestrangeiro = new \stdClass();
-$std->trabestrangeiro->dtchegada = '2015-11-11';
-$std->trabestrangeiro->classtrabestrang = 12;
-$std->trabestrangeiro->casadobr = 'N';
-$std->trabestrangeiro->filhosbr = 'N';
+//Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE - Início.
+$std->cadini = 'S'; //Obrigatório
+$std->matricula = '123456789'; //Opcional
+$std->codcateg = '101'; //Obrigatório
+$std->dtinicio = '2017-05-12'; //Obrigatório
+$std->nrproctrab = null; //Opcional
+$std->natatividade = 2; //Opcional
 
-$std->infodeficiencia = new \stdClass();
-$std->infodeficiencia->deffisica = 'N';
-$std->infodeficiencia->defvisual = 'N';
-$std->infodeficiencia->defauditiva = 'N';
-$std->infodeficiencia->defmental = 'N';
-$std->infodeficiencia->defintelectual = 'N';
-$std->infodeficiencia->reabreadap = 'N';
-$std->infodeficiencia->observacao = 'lkslkslkslkslkslks';
+//Grupo que apresenta o cargo e/ou função ocupada pelo TSVE.
+$std->cargofuncao = new \stdClass(); //Opcional
+$std->cargofuncao->nmcargo = 'lalalaloaoaoa'; //Opcional
+$std->cargofuncao->cbocargo = '263105'; //Opcional 
+$std->cargofuncao->nmfuncao = 'ksksksksk sk'; //Opcional
+$std->cargofuncao->cbofuncao = '263105'; //Opcional
 
-$std->dependente[1]  = new \stdClass();
-$std->dependente[1]->tpdep = '01';
-$std->dependente[1]->nmdep = 'Fulaninho de Tal';
-$std->dependente[1]->dtnascto = '2016-11-25';
-$std->dependente[1]->cpfdep = '12345678901';
-$std->dependente[1]->depirrf = 'N';
-$std->dependente[1]->depsf = 'N';
-$std->dependente[1]->inctrab = 'N';
+//Informações da remuneração e periodicidade de pagamento.
+$std->remuneracao = new \stdClass(); //Opcional
+$std->remuneracao->vrsalfx = 1200.00; //Obrigatório
+$std->remuneracao->undsalfixo = 7; //Obrigatório
+$std->remuneracao->dscsalvar = 'lkklslskksl s lks lsklsks '; //Opcional
 
-$std->contato = new \stdClass();
-$std->contato->foneprinc = '1234567890';
-$std->contato->fonealternat = '0912345678';
-$std->contato->emailprinc = 'ele@mail.com';
-$std->contato->emailalternat = 'ela@email.com.br';
+//Informações do Fundo de Garantia do Tempo de Serviço - FGTS.
+$std->fgts = new \stdClass(); //Opcional
+$std->fgts->dtopcfgts = '2017-05-12'; //Obrigatório
 
-$std->infotsvinicio = new \stdClass();
-$std->infotsvinicio->cadini = 'S';
-$std->infotsvinicio->codcateg = '101';
-$std->infotsvinicio->dtinicio = '2017-05-12';
-$std->infotsvinicio->natatividade = 2;
+//Informações relativas ao dirigente sindical.
+$std->infodirigentesindical = new \stdClass(); //Opcional
+$std->infodirigentesindical->categorig = '001'; //Obrigatório
+$std->infodirigentesindical->tpinsc = 1; //Opcional
+$std->infodirigentesindical->nrinsc = '12345678901234'; //Opcional
+$std->infodirigentesindical->dtadmorig = '2017-05-12'; //Opcional
+$std->infodirigentesindical->matricorig = 'ytuytuystyst'; //Opcional
+$std->infodirigentesindical->tpregtrab = 1; //Opcional
+$std->infodirigentesindical->tpregprev = 2; //Obrigatório
 
-$std->cargofuncao = new \stdClass();
-$std->cargofuncao->codcargo = 'oaoaoa';
-$std->cargofuncao->codfuncao = 'ksksksksk sk';
+//Informações relativas ao trabalhador cedido/em exercício em outro órgão, preenchidas exclusivamente
+//pelo cessionário/órgão de destino.
+$std->infotrabcedido = new \stdClass(); //Opcional
+$std->infotrabcedido->categorig = '001'; //Obrigatório
+$std->infotrabcedido->cnpjcednt = '12345678901234'; //Obrigatório
+$std->infotrabcedido->matricced = 'lksçkçslksl'; //Obrigatório
+$std->infotrabcedido->dtadmced = '2017-05-12'; //Obrigatório
+$std->infotrabcedido->tpregtrab = 2; //Obrigatório
+$std->infotrabcedido->tpregprev = 3; //Obrigatório
 
-$std->remuneracao = new \stdClass();
-$std->remuneracao->vrsalfx = 1200.00;
-$std->remuneracao->undsalfixo = 7;
-$std->remuneracao->dscsalvar = 'lkklslskksl s lks lsklsks ';
+//Informações relativas a servidor público exercente de mandato eletivo.
+$std->infomandelet = new \stdClass(); //Opcional
+$std->infomandelet->indremuncargo = 'S'; //Opcional
+$std->infomandelet->tpregtrab = 2; //Obrigatório
+$std->infomandelet->tpregprev = 3; //Obrigatório
 
-$std->fgts = new \stdClass();
-$std->fgts->opcfgts = 1;
-$std->fgts->dtopcfgts = '2017-05-12';
+//Informações relativas ao estagiário.
+$std->infoestagiario = new \stdClass(); //Opcional
+$std->infoestagiario->natestagio = 'N'; //Obrigatório
+$std->infoestagiario->nivestagio = 8; //Obrigatório
+$std->infoestagiario->areaatuacao = 'ksksksksk'; //Opcional
+$std->infoestagiario->nrapol = 'kak228282828'; //Opcional
+$std->infoestagiario->dtprevterm = '2017-12-31'; //Obrigatório
 
-$std->infodirigentesindical = new \stdClass();
-$std->infodirigentesindical->categorig = '001';
-$std->infodirigentesindical->cnpjorigem = '12345678901234';
-$std->infodirigentesindical->dtadmorig = '2017-05-12';
-$std->infodirigentesindical->matricorig = 'ytuytuystyst';
+$std->infoestagiario->instensino = new \stdClass(); //Obrigatório
+$std->infoestagiario->instensino->cnpjinstensino = '12345678901234'; //Opcional
+$std->infoestagiario->instensino->nmrazao = 'dlkdldkldkd'; //Opcional
+$std->infoestagiario->instensino->dsclograd = 'lslsppopapap'; //Opcional
+$std->infoestagiario->instensino->nrlograd = '12244'; //Opcional
+$std->infoestagiario->instensino->bairro = 'kakakaka'; //Opcional
+$std->infoestagiario->instensino->cep = '12345678'; //Opcional
+$std->infoestagiario->instensino->codmunic = '1234567'; //Opcional
+$std->infoestagiario->instensino->uf = 'AC'; //Opcional
 
-$std->infotrabcedido = new \stdClass();
-$std->infotrabcedido->categorig = '001';
-$std->infotrabcedido->cnpjcednt = '12345678901234';
-$std->infotrabcedido->matricced = 'lksçkçslksl';
-$std->infotrabcedido->dtadmced = '2017-05-12';
-$std->infotrabcedido->tpregtrab = 2;
-$std->infotrabcedido->tpregprev = 3;
-$std->infotrabcedido->infonus = 3;
+$std->infoestagiario->cnpjagntinteg = '12345678901234'; //Opcional
+$std->infoestagiario->cpfsupervisor = '12345678901';  //Opcional
 
-$std->infoestagiario = new \stdClass();
-$std->infoestagiario->natestagio = 'N';
-$std->infoestagiario->nivestagio = 8;
-$std->infoestagiario->areaatuacao = 'ksksksksk';
-$std->infoestagiario->nrapol = 'kak228282828';
-$std->infoestagiario->vlrbolsa = 1200.00;
-$std->infoestagiario->dtprevterm = '2017-12-31';
+//Informações de mudança de CPF do trabalhador.
+$std->mudancacpf = new \stdClass(); //Opcional
+$std->mudancacpf->cpfant = '12345678901'; //Obrigatório
+$std->mudancacpf->matriant = 'ABC1234'; //Opcional
+$std->mudancacpf->dtaltcpf = '2018-11-10'; //Obrigatório
+$std->mudancacpf->observacao = 'bla bla bla'; //Opcional
 
-$std->infoestagiario->instensino = new \stdClass();
-$std->infoestagiario->instensino->cnpjinstensino = '12345678901234';
-$std->infoestagiario->instensino->nmrazao = 'dlkdldkldkd';
-$std->infoestagiario->instensino->dsclograd = 'lslsppopapap';
-$std->infoestagiario->instensino->nrlograd = '12244';
-$std->infoestagiario->instensino->bairro = 'kakakaka';
-$std->infoestagiario->instensino->cep = '12345678';
-$std->infoestagiario->instensino->codmunic = '1234567';
-$std->infoestagiario->instensino->uf = 'AC';
+//Informações de afastamento do TSVE
+$std->afastamento = new \stdClass(); //Opcional
+$std->afastamento->dtiniafast = '2017-06-01'; //Obrigatório
+$std->afastamento->codmotafast = '01'; //Obrigatório
 
-$std->infoestagiario->ageintegracao = new \stdClass();
-$std->infoestagiario->ageintegracao->cnpjagntinteg = '12345678901234';
-$std->infoestagiario->ageintegracao->nmrazao = 'mamaamamamam';
-$std->infoestagiario->ageintegracao->dsclograd = 'oaoaoaoao';
-$std->infoestagiario->ageintegracao->nrlograd = 'msmsmsmsms';
-$std->infoestagiario->ageintegracao->bairro = 'lslslslsl';
-$std->infoestagiario->ageintegracao->cep = '12345678';
-$std->infoestagiario->ageintegracao->codmunic = '1234567';
-$std->infoestagiario->ageintegracao->uf = 'AC';
+//Informação do término do TSVE.
+$std->termino = new \stdClass(); //Opcional
+$std->termino->dtterm = '2017-12-31'; //Obrigatório
 
-$std->infoestagiario->supervisorestagio = new \stdClass();
-$std->infoestagiario->supervisorestagio->cpfsupervisor = '12345678901';
-$std->infoestagiario->supervisorestagio->nmsuperv = 'lksklskslkslkslk slkslkslkskslk';
-
-$std->mudancacpf = new \stdClass();
-$std->mudancacpf->cpfant = '12345678901';
-$std->mudancacpf->dtaltcpf = '2018-11-10';
-$std->mudancacpf->observacao = 'bla bla bla';
-
-$std->afastamento = new \stdClass();
-$std->afastamento->dtiniafast = '2017-06-01';
-$std->afastamento->codmotafast = '01';
-
-$std->termino = new \stdClass();
-$std->termino->dtterm = '2017-12-31';
 
 try {
     //carrega a classe responsavel por lidar com os certificados

@@ -29,9 +29,9 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1;
 $std->indretif = 1;
-
+$std->nrrecibo = "1.7.1234567890123456789";
 $std->cpfbenef = '11111111111';
 $std->nmbenefic = 'NOME';
 $std->dtnascto = '1987-01-01';

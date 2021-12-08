@@ -16,7 +16,7 @@ use JsonSchema\Validator;
 //S-2205 sem alterações de 02_04_02 para 02_05_00
 
 $evento  = 'evtAltCadastral';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtAltCadastral",

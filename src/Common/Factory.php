@@ -117,18 +117,18 @@ abstract class Factory
      * @param string $config
      * @param stdClass $std
      * @param Certificate $certificate | null
-     * @param string $date
+     * @param string|null $date
      */
     public function __construct(
         $config,
         stdClass $std,
         Certificate $certificate = null,
-        $date = ''
+        $date = null
     ) {
         //set properties from config
         $stdConf = json_decode($config);
         $this->date = new DateTime();
-        if (! empty($date)) {
+        if (!empty($date)) {
             $this->date = new DateTime($date);
         }
         $this->tpAmb = $stdConf->tpAmb;
@@ -270,7 +270,7 @@ abstract class Factory
                 $this->tpInsc,
                 $this->nrInsc,
                 $this->date,
-                $this->std->sequencial
+                $this->std->sequencial ?? null
             );
             $this->node = $this->dom->createElement($this->evtName);
             $att = $this->dom->createAttribute('Id');

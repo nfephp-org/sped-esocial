@@ -18,8 +18,8 @@ $jsonSchema = '{
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -32,7 +32,7 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
             "required": true,
@@ -108,7 +108,7 @@ $jsonSchema = '{
                         "dsclograd": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 80
+                            "maxLength": 100
                         },
                         "nrlograd": {
                             "required": true,
@@ -123,22 +123,22 @@ $jsonSchema = '{
                         "bairro": {
                             "required": false,
                             "type": ["string","null"],
-                            "maxLength": 60
+                            "maxLength": 90
                         },
                         "cep": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 8
+                            "pattern": "^[0-9]{8}$"
                         },
                         "codmunic": {
                             "required": true,
                             "type": "integer",
-                            "maxLength": 7
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 2
+                            "$ref": "#/definitions/siglauf"
                         }
                     }
                 },
@@ -154,7 +154,7 @@ $jsonSchema = '{
                         "dsclograd": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 80
+                            "maxLength": 100
                         },
                         "nrlograd": {
                             "required": true,
@@ -169,7 +169,7 @@ $jsonSchema = '{
                         "bairro": {
                             "required": false,
                             "type": ["string","null"],
-                            "maxLength": 60
+                            "maxLength": 90
                         },
                         "nmcid": {
                             "required": true,
@@ -179,6 +179,7 @@ $jsonSchema = '{
                         "codpostal": {
                             "required": true,
                             "type": "string",
+                            "minLength": 4,
                             "maxLength": 12
                         }
                     }
@@ -275,8 +276,7 @@ $jsonSchema = '{
                     "cpfdep": {
                         "required": false,
                         "type": ["string","null"],
-                        "maxLength": 11,
-                        "minLength": 11
+                        "pattern": "^[0-9]{11}$"
                     },
                     "depsf": {
                         "required": true,

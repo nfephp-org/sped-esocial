@@ -29,7 +29,7 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1;
 $std->nrrecarqbase = 'ljdkdjdlkjdlkdjkdjdkjdkjdkdjk';
 $std->perapur = '2017-08';
 $std->cpftrab = '99999999999';

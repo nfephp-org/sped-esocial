@@ -13,15 +13,15 @@ use JsonSchema\Validator;
 //S-1298 sem alterações da 2.4.2 => 2.5.0
 
 $evento = 'evtReabreEvPer';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtReabreEvPer",
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -30,6 +30,12 @@ $jsonSchema = '{
             "type": "integer",
             "minimum": 1,
             "maximum": 2
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
         },
         "perapur": {
             "required": true,
@@ -40,9 +46,10 @@ $jsonSchema = '{
 }';
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indapuracao = 2;
-$std->perapur = '2017-08';
+//$std->sequencial = 1; //Opcional
+$std->indapuracao = 2; //Obrigatório 
+$std->indguia = 1; //Opcional
+$std->perapur = '2017-08'; //Obrigatório 
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

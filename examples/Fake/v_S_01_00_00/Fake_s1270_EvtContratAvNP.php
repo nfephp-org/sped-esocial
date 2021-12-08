@@ -29,9 +29,9 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1; //Opcional
 $std->indretif = 1;
-$std->nrrecibo = '1231513';
+$std->nrrecibo = "1.7.1234567890123456789"; //Obrigatório caso indretif = 2
 $std->indapuracao = 1;
 $std->perapur = '2017-08';
 

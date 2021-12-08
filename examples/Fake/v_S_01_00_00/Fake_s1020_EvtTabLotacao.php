@@ -29,7 +29,7 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1; //Opcional
 $std->codlotacao = 'assistente';
 $std->inivalid = '2017-01';
 $std->fimvalid = '2017-12';

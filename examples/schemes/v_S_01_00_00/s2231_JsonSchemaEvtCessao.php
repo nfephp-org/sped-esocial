@@ -9,14 +9,13 @@ use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
-//S-1280 sem alterações da 2.4.1 => 2.4.2
-//S-1280 sem alterações da 2.4.2 => 2.5.0
+//S-2231 versão inicial S_01_00_00
 
-$evento = 'evtInfoComplPer';
+$evento = 'evtCessao';
 $version = 'S_01_00_00';
 
 $jsonSchema = '{
-    "title": "evtInfoComplPer",
+    "title": "evtCessao",
     "type": "object",
     "properties": {
         "sequencial": {
@@ -33,63 +32,49 @@ $jsonSchema = '{
         },
         "nrrecibo": {
             "required": false,
-            "type": "string",
+            "type": ["string","null"],
             "$ref": "#/definitions/recibo"
         },
-        "indapuracao": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2
-        },
-        "perapur": {
+        "cpftrab": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+            "pattern": "^[0-9]{11}$"
         },
-        "infosubstpatr": {
+        "matricula": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 1,
+            "maxLength": 30
+        },
+        "inicessao": {
             "required": false,
             "type": "object",
             "properties": {
-                "indsubstpatr": {
+                "dtinicessao": {
                     "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 2
+                    "type": "string",
+                    "$ref": "#/definitions/data"
                 },
-                "percpedcontrib": {
-                     "required": true,
-                     "type": "number"
+                "cnpjcess": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{14}$"
+                },
+                "respremun": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
                 }
             }
         },
-        "infosubstpatropport": {
-            "required": false,
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 9999,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "cnpjopportuario": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^[0-9]{14}$"
-                    }
-                }
-            }
-        },
-        "infoativconcom": {
+        "fimcessao": {
             "required": false,
             "type": "object",
             "properties": {
-                "fatormes": {
-                     "required": true,
-                     "type": "number"
-                },
-                "fator13": {
-                     "required": true,
-                     "type": "number"
+                "dttermcessao": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
                 }
             }
         }
@@ -97,23 +82,22 @@ $jsonSchema = '{
 }';
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '1111111111111';
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = '1.1.1234567890123456789'; //Obrigatório APENAS se indretif = 2
 
-$std->infosubstpatr = new \stdClass();
-$std->infosubstpatr->indsubstpatr = 1;
-$std->infosubstpatr->percpedcontrib = 1;
+$std->cpftrab = '11111111111'; //Obrigatório
+$std->matricula = '11111111111'; //Obrigatório
 
-$std->infosubstpatropport[0] = new \stdClass();
-$std->infosubstpatropport[0]->cnpjopportuario = '11111111111111';
+//Informações da cessão/exercício em outro órgão
+$std->inicessao = new \stdClass(); //Opcional
+$std->inicessao->dtinicessao = '2017-08-21'; //Obrigatório
+$std->inicessao->cnpjcess = '12345678901234'; //Obrigatório
+$std->inicessao->respremun = 'N'; //Obrigatório
 
-$std->infoativconcom = new \stdClass();
-$std->infoativconcom->fatormes = 1.11;
-$std->infoativconcom->fator13 = 0.22;
-
+//Informação de término da cessão/exercício em outro órgão.
+$std->fimcessao = new \stdClass(); //Opcional
+$std->fimcessao->dttermcessao = '2019-08-21'; //Obrigatório
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

@@ -27,8 +27,8 @@ $jsonSchema = '{
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -41,8 +41,7 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "minLength": 1,
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "indapuracao": {
             "required": true,

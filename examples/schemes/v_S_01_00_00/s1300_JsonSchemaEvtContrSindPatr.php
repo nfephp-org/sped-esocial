@@ -13,7 +13,7 @@ use JsonSchema\Validator;
 //S-1300 sem alterações da 2.4.2 => 2.5.0
 
 $evento = 'evtContrSindPatr';
-$version = '02_05_00';
+$version = 'S_01_00_00';
 
 $jsonSchema = '{
     "title": "evtContrSindPatr",

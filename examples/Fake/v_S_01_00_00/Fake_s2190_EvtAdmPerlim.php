@@ -30,7 +30,7 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 //carrega os dados do envento
 $std = new \stdClass();
-$std->sequencial = 1;
+//$std->sequencial = 1; //Opcional
 $std->indretif = 1;
 $std->nrrecibo = "1.7.1234567890123456789";
 $std->cpftrab = '00232133417';
