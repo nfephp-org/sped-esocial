@@ -238,8 +238,7 @@ $jsonSchema = '{
                                         "tpinsc": {
                                             "required": true,
                                             "type": "integer",
-                                            "minumum": 1,
-                                            "maximum": 4
+                                            "pattern": "^(1|3|4)$"
                                         },
                                         "nrinsc": {
                                             "required": true,
@@ -390,8 +389,7 @@ $jsonSchema = '{
                                                                 "tpinsc": {
                                                                     "required": true,
                                                                     "type": "integer",
-                                                                    "minimum": 1,
-                                                                    "maximum": 4
+                                                                    "pattern": "^(1|3|4)$"
                                                                 },
                                                                 "nrinsc": {
                                                                     "required": true,
@@ -424,9 +422,8 @@ $jsonSchema = '{
                             "properties": {
                                 "tpinsc": {
                                     "required": true,
-                                    "type": "integer",
-                                    "minimum": 1,
-                                    "maximum": 4
+                                    "type": "string",
+                                    "pattern": "^(1|3|4)$"
                                 },
                                 "nrinsc": {
                                     "required": true,
@@ -660,8 +657,7 @@ $jsonSchema = '{
                                                         "tpinsc": {
                                                             "required": true,
                                                             "type": "integer",
-                                                            "minimum": 1,
-                                                            "maximum": 3
+                                                            "pattern": "^(1|3|4)$"
                                                         },
                                                         "nrinsc": {
                                                             "required": true,
@@ -859,7 +855,7 @@ $std->dmdev[0]->codcateg = 101; //Obrigatório
 //Identificação do estabelecimento e da lotação nos quais o
 //trabalhador possui remuneração no período de apuração
 $std->dmdev[0]->ideestablot[0] = new \stdClass(); //Opcional
-$std->dmdev[0]->ideestablot[0]->tpinsc = 2; //Obrigatório
+$std->dmdev[0]->ideestablot[0]->tpinsc = "1"; //Obrigatório
 $std->dmdev[0]->ideestablot[0]->nrinsc = '12345678901234'; //Obrigatório
 $std->dmdev[0]->ideestablot[0]->codlotacao = 'qlkjakljwj'; //Obrigatório
 $std->dmdev[0]->ideestablot[0]->qtddiasav = 20; //Opcional
@@ -901,7 +897,7 @@ $std->dmdev[0]->ideadc[0]->ideperiodo[0]->perref = '2017-01'; //Obrigatório
 //referem as diferenças de remuneração do mês identificado
 //no grupo superior.
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0] = new \stdClass(); //Obrigatório
-$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->tpinsc = 1; //Obrigatório
+$std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->tpinsc = "1"; //Obrigatório
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->nrinsc = '12345678901234'; //Obrigatório
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->codlotacao = 'ksjskjkjskjjs'; //Obrigatório
 
