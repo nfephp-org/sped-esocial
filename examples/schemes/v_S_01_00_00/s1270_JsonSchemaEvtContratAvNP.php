@@ -45,7 +45,7 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "maximum": 1
+            "$ref": "#/definitions/periodo"
         },
         "remunavnp": {
             "required": true,
