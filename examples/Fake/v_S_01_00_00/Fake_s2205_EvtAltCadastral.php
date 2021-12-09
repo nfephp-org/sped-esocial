@@ -30,116 +30,71 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 //carrega os dados do envento
 $std = new \stdClass();
-//$std->sequencial = 1;
+//$std->sequencial = 1; //Opcional
 $std->indretif = 1;
-$std->nrrecibo = "1.7.1234567890123456789";
+$std->nrrecibo = '1.1.1234567890123456789'; //Obrigatório caso indretif = 2
 $std->cpftrab = '12345678901';
 $std->dtalteracao = '2017-11-11';
-
-$std->nistrab = '12345678901';
 $std->nmtrab = 'Fulano de Tal';
 $std->sexo = 'M';
 $std->racacor = 1;
 $std->estciv = 1;
 $std->grauinstr = '10';
 $std->nmsoc = null;
+$std->paisnac = '105';
 
-$std->nascimento = new \stdClass();
-$std->nascimento->dtnascto = '1982-11-02';
-$std->nascimento->codmunic = '1234567';
-$std->nascimento->uf = 'SP';
-$std->nascimento->paisnascto = '090';
-$std->nascimento->paisnac = '105';
-$std->nascimento->nmmae = 'Fulana de Tal';
-$std->nascimento->nmpai = 'Ciclano de Tal';
+$std->endereco = new \stdClass(); //Obrigatório
+//Endereço no Brasil.
+$std->endereco->brasil = new \stdClass(); //Opcional
+$std->endereco->brasil->tplograd = 'R'; //Opcional
+$std->endereco->brasil->dsclograd = 'Av. Paulista'; //Obrigatório
+$std->endereco->brasil->nrlograd = '1850'; //Obrigatório
+$std->endereco->brasil->complemento = "apto 123"; //Opcional
+$std->endereco->brasil->bairro = 'Bela Vista'; //Opcional
+$std->endereco->brasil->cep = '01311200'; //Obrigatório
+$std->endereco->brasil->codmunic  = '3550308'; //Obrigatório
+$std->endereco->brasil->uf = 'SP'; //Obrigatório
 
-$std->ctps = new \stdClass();
-$std->ctps->nrctps = '12345678901';
-$std->ctps->seriectps = '12345';
-$std->ctps->ufctps = 'SP';
+//Endereço no exterior.
+$std->endereco->exterior = new \stdClass(); //Opcional
+$std->endereco->exterior->paisresid = '108'; //Obrigatório
+$std->endereco->exterior->dsclograd = '5 Av'; //Obrigatório
+$std->endereco->exterior->nrlograd = '2222'; //Obrigatório
+$std->endereco->exterior->complemento = 'Apto 200'; //Opcional
+$std->endereco->exterior->bairro = 'Manhattan'; //Opcional
+$std->endereco->exterior->nmcid = 'New York'; //Obrigatório
+$std->endereco->exterior->codpostal  = null; //Opcional
 
-$std->ric = new \stdClass();
-$std->ric->nrric = '12345678901234';
-$std->ric->orgaoemissor = 'LSLSLLSLLLSLSL';
-//$std->ric->dtexped = '2000-12-21';
+//Informações do trabalhador imigrante.
+$std->trabimig = new \stdClass(); //Opcional
+$std->trabimig->tmpresid = 1; //Opcional
+$std->trabimig->conding = 1; //Obrigatório
 
-$std->rg = new \stdClass();
-$std->rg->nrrg = '12345678901234';
-$std->rg->orgaoemissor = 'jdjdjqjeiiei';
-//$std->rg->dtexped = '1998-01-25';
+//Pessoa com deficiência.
+$std->infodeficiencia = new \stdClass(); //Opcional
+$std->infodeficiencia->deffisica = 'N'; //Obrigatório
+$std->infodeficiencia->defvisual = 'N'; //Obrigatório
+$std->infodeficiencia->defauditiva = 'N'; //Obrigatório
+$std->infodeficiencia->defmental = 'N'; //Obrigatório
+$std->infodeficiencia->defintelectual = 'N'; //Obrigatório
+$std->infodeficiencia->reabreadap = 'N'; //Obrigatório
+$std->infodeficiencia->infocota = 'N'; //Opcional 
+$std->infodeficiencia->observacao = 'lkslkslkslkslkslks'; //Opcional
 
-$std->rne = new \stdClass();
-$std->rne->nrrne = '12345678901234';
-$std->rne->orgaoemissor = 'lslslsllslllslslls';
-$std->rne->dtexped = '2010-10-10';
+//Informações dos dependentes.
+$std->dependente[1]  = new \stdClass(); //Opcional
+$std->dependente[1]->tpdep = '01'; //Obrigatório
+$std->dependente[1]->nmdep = 'Fulaninho de Tal'; //Obrigatório
+$std->dependente[1]->dtnascto = '2016-11-25'; //Obrigatório
+$std->dependente[1]->cpfdep = '12345678901'; //Opcional
+$std->dependente[1]->depirrf = 'N'; //Obrigatório
+$std->dependente[1]->depsf = 'N'; //Obrigatório
+$std->dependente[1]->inctrab = 'N'; //Obrigatório
 
-$std->oc = new \stdClass();
-$std->oc->nroc = '12345678901234';
-$std->oc->orgaoemissor = 'lklklk3iosiosislk';
-//$std->oc->dtexped = '2011-11-06';
-$std->oc->dtvalid = '2018-11-06';
-
-$std->cnh = new \stdClass();
-$std->cnh->nrregcnh = '123456789012';
-//$std->cnh->dtexped = '2013-12-05';
-$std->cnh->ufcnh = 'SP';
-$std->cnh->dtvalid = '2018-12-05';
-//$std->cnh->dtprihab = '1999-05-28';
-$std->cnh->categoriacnh = 'AE';
-
-$std->brasil = new \stdClass();
-$std->brasil->tplograd = 'VRT';
-$std->brasil->dsclograd = 'sei la';
-$std->brasil->nrlograd = '123';
-$std->brasil->complemento = 'fundos';
-$std->brasil->bairro = 'fora da vila';
-$std->brasil->cep = '99999999';
-$std->brasil->codmunic = 1545648;
-$std->brasil->uf = 'SP';
-
-
-$std->exterior = new \stdClass();
-$std->exterior->paisresid = 'ALB';
-$std->exterior->dsclograd = 'ksksksksksks';
-$std->exterior->nrlograd = '235 /1';
-$std->exterior->complemento = 'lkslsklk';
-$std->exterior->bairro = 'lksksksksksks';
-$std->exterior->nmcid = 'Voskow';
-$std->exterior->codpostal = '123456789012';
-
-$std->trabestrangeiro = new \stdClass();
-$std->trabestrangeiro->dtchegada = '2000-01-01';
-$std->trabestrangeiro->classtrabestrang = 3;
-$std->trabestrangeiro->casadobr = 'N';
-$std->trabestrangeiro->filhosbr = 'N';
-
-$std->infodeficiencia = new \stdClass();
-$std->infodeficiencia->deffisica = 'N';
-$std->infodeficiencia->defvisual = 'N';
-$std->infodeficiencia->defauditiva = 'N';
-$std->infodeficiencia->defmental = 'S';
-$std->infodeficiencia->defintelectual = 'N';
-$std->infodeficiencia->reabreadap = 'N';
-$std->infodeficiencia->infocota = 'N';
-$std->infodeficiencia->observacao = 'qualquer coisa lorem ipsum';
-
-$std->dependente[1] = new \stdClass();
-$std->dependente[1]->tpdep = '03';
-$std->dependente[1]->nmdep = '123 de oliveira 4';
-$std->dependente[1]->dtnascto = '2005-06-08';
-$std->dependente[1]->cpfdep = '12345678901';
-$std->dependente[1]->depirrf = 'N';
-$std->dependente[1]->depsf = 'N';
-$std->dependente[1]->inctrab = 'N';
-
-$std->aposentadoria = new \stdClass();
-$std->aposentadoria->trabaposent = 'N';
-
-$std->contato = new \stdClass();
-$std->contato->foneprinc = '888888888';
-$std->contato->fonealternat = '55555555';
-$std->contato->emailprinc = 'ciclano@email.com.br';
-$std->contato->emailalternat = 'fulano@mail.com';
+//Informações de contato.
+$std->contato = new \stdClass(); //Opcional
+$std->contato->foneprinc = '1234567890'; //Opcional 
+$std->contato->emailprinc = 'ele@mail.com'; //Opcional
 
 try {
     //carrega a classe responsavel por lidar com os certificados

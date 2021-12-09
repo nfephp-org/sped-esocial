@@ -77,7 +77,7 @@ $jsonSchema = '{
         "dtnascto": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "paisnascto": {
             "required": true,
@@ -265,7 +265,7 @@ $jsonSchema = '{
                     "dtnascto": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        "$ref": "#/definitions/data"
                     },
                     "cpfdep": {
                         "required": false,
@@ -326,7 +326,7 @@ $jsonSchema = '{
         "dtinicio": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "nrproctrab": {
             "required": false,
@@ -396,7 +396,7 @@ $jsonSchema = '{
                 "dtopcfgts": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 }
             }
         },
@@ -423,7 +423,7 @@ $jsonSchema = '{
                 "dtadmorig": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "matricorig": {
                     "required": false,
@@ -468,7 +468,7 @@ $jsonSchema = '{
                 "dtadmced": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "tpregtrab": {
                     "required": true,
@@ -537,7 +537,7 @@ $jsonSchema = '{
                 "dtprevterm": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "instensino": {
                     "required": true,
@@ -619,7 +619,7 @@ $jsonSchema = '{
                 "dtaltcpf": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "observacao": {
                     "required": false,
@@ -636,7 +636,7 @@ $jsonSchema = '{
                 "dtiniafast": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "codmotafast": {
                     "required": true,
@@ -652,7 +652,7 @@ $jsonSchema = '{
                 "dtterm": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 }
             }
         }

@@ -40,7 +40,7 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+            "$ref": "#/definitions/periodo"
         }
     }
 }';

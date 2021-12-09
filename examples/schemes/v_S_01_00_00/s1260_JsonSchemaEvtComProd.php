@@ -42,7 +42,7 @@ $jsonSchema = '{
         "perapur": {
             "required": true,
             "type": "string",
-            "maxLength": 7
+            "$ref": "#/definitions/periodo"
         },
         "estabelecimento": {
             "required": true,

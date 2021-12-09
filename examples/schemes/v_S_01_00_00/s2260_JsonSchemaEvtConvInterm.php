@@ -34,7 +34,7 @@ $jsonSchema = '{
         "nrrecibo": {
             "required": false,
             "type": "string",
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "idevinculo": {
             "required": true,
@@ -69,17 +69,17 @@ $jsonSchema = '{
                 "dtinicio": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "dtfim": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "dtprevpgto": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "$ref": "#/definitions/data"
                 },
                 "jornada": {
                     "required": true,
