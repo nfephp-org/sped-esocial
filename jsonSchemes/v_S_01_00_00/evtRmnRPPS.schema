@@ -3,8 +3,8 @@
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -17,7 +17,7 @@
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "indapuracao": {
             "required": true,
@@ -28,53 +28,53 @@
         "perapur": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])([-](0?[1-9]|1[0-2]))?$"
+            "$ref": "#/definitions/periodo"
         },
-        "idetrabalhador": {
+        "cpftrab": {
             "required": true,
-            "type": "object",
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "infocomplem": {
+            "required": false,
+            "type": ["object","null"],
             "properties": {
-                "cpftrab": {
+                "nmtrab": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 11,
-                    "minLength": 11
+                    "minLength": 2,
+                    "maxLength": 70
                 },
-                "nistrab": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "maxLength": 11,
-                    "minLength": 11
+                "dtnascto": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
                 },
-                "qtddepfp": {
+                "sucessaovinc": {
                     "required": false,
-                    "type": ["integer","null"],
-                    "maxLength": 2
-                },
-                "procjudtrab": {
-                    "required": false,
-                    "type": ["array","null"],
-                    "minItems": 0,
-                    "maxItems": 99,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "tptrib": {
-                                "required": true,
-                                "type": "integer",
-                                "minumum": 1,
-                                "maximum": 4
-                            },
-                            "nrprocjud": {
-                                "required": true,
-                                "type": "string",
-                                "pattern": "^.{20}$"
-                            },
-                            "codsusp": {
-                                "required": false,
-                                "type": ["string","null"],
-                                "pattern": "^[0-9]{14}$"
-                            }
+                    "type": ["object","null"],
+                    "properties": {
+                        "cnpjorgaoant": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "matricant": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "minLength": 1,
+                            "maxLength": 30
+                        },
+                        "dtexercicio": {
+                            "required": true,
+                            "type": "string",   
+                            "$ref": "#/definitions/data"
+                        },
+                        "observacao": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "minLength": 1,
+                            "maxLength": 255
                         }
                     }
                 }
@@ -84,24 +84,33 @@
             "required": true,
             "type": "array",
             "minItems": 1,
-            "maxItems": 99,
+            "maxItems": 999,
             "items": {
                 "type": "object",
                 "properties": {
                     "idedmdev": {
                         "required": true,
                         "type": "string",
+                        "minLength": 1,
                         "maxLength": 30
+                    },
+                    "codcateg": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{3}$"
                     },
                     "infoperapur": {
                         "required": false,
-                        "type": ["object","null"],
+                        "type": [
+                            "object",
+                            "null"
+                        ],
                         "properties": {
                             "ideestab": {
                                 "required": true,
                                 "type": "array",
                                 "minItems": 1,
-                                "maxItems": 24,
+                                "maxItems": 500,
                                 "items": {
                                     "type": "object",
                                     "properties": {
@@ -109,33 +118,29 @@
                                             "required": true,
                                             "type": "integer",
                                             "minimum": 1,
-                                            "maximum": 2
+                                            "maximum": 1
                                         },
                                         "nrinsc": {
                                             "required": true,
                                             "type": "string",
-                                            "minLength": 8,
-                                            "maxLength": 15,
-                                            "pattern": "^[0-9]"
+                                            "pattern": "^[0-9]{14}$"
                                         },
                                         "remunperapur": {
                                             "required": true,
                                             "type": "array",
                                             "minItems": 1,
-                                            "maxItems": 10,
+                                            "maxItems": 8,
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
                                                     "matricula": {
                                                         "required": false,
-                                                        "type": ["string","null"],
+                                                        "type": [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                                        "minLength": 1,
                                                         "maxLength": 30
-                                                    },
-                                                    "codcateg": {
-                                                        "required": true,
-                                                        "type": "integer",
-                                                        "minimum": 101,
-                                                        "maximum": 905
                                                     },
                                                     "itensremun": {
                                                         "required": true,
@@ -144,99 +149,36 @@
                                                         "maxItems": 200,
                                                         "items": {
                                                             "type": "object",
-                                                            "properties": {                                       
+                                                            "properties": {
                                                                 "codrubr": {
                                                                     "required": true,
                                                                     "type": "string",
+                                                                    "minLength": 1,
                                                                     "maxLength": 30
                                                                 },
                                                                 "idetabrubr": {
                                                                     "required": true,
                                                                     "type": "string",
+                                                                    "minLength": 1,
                                                                     "maxLength": 8
                                                                 },
                                                                 "qtdrubr": {
                                                                     "required": false,
-                                                                    "type": ["number","null"],
-                                                                    "maximum": 9999.99
-                                                                },
-                                                                "fatorrubr": {
-                                                                    "required": false,
                                                                     "type": ["number","null"]
                                                                 },
-                                                                "vrunit": {
+                                                                "fatorrubr": {
                                                                     "required": false,
                                                                     "type": ["number","null"]
                                                                 },
                                                                 "vrrubr": {
                                                                     "required": true,
                                                                     "type": "number"
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-                                                    "infosaudecolet": {
-                                                        "required": false,
-                                                        "type": ["object","null"],
-                                                        "properties": {
-                                                            "detoper": {
-                                                                "required": true,
-                                                                "type": "array",
-                                                                "minItems": 1,
-                                                                "maxItems": 99,
-                                                                "items": {
-                                                                    "type": "object",
-                                                                    "properties": {                                       
-                                                                        "cnpjoper": {
-                                                                            "required": true,
-                                                                            "type": "string",
-                                                                            "maxLength": 14
-                                                                        },
-                                                                        "regans": {
-                                                                            "required": true,
-                                                                            "type": "string",
-                                                                            "maxLength": 6
-                                                                        },
-                                                                        "vrpgtit": {
-                                                                            "required": true,
-                                                                            "type": "number"
-                                                                        },
-                                                                        "detplano": {
-                                                                            "required": false,
-                                                                            "type": ["array","null"],
-                                                                            "minItems": 0,
-                                                                            "maxItems": 99,
-                                                                            "items": {
-                                                                                "type": "object",
-                                                                                "properties": {                                       
-                                                                                    "tpdep": {
-                                                                                        "required": true,
-                                                                                        "type": "string",
-                                                                                        "maxLength": 2
-                                                                                    },
-                                                                                    "cpfdep": {
-                                                                                        "required": false,
-                                                                                        "type": ["string","null"],
-                                                                                        "maxLength": 11
-                                                                                    },
-                                                                                    "nmdep": {
-                                                                                        "required": true,
-                                                                                        "type": "string",
-                                                                                        "maxLength": 70
-                                                                                    },
-                                                                                    "dtnascto": {
-                                                                                        "required": true,
-                                                                                        "type": "string",
-                                                                                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                                                                                    },
-                                                                                    "vlrpgdep": {
-                                                                                        "required": true,
-                                                                                        "type": "number"
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
+                                                                },
+                                                                "indapurir": {
+                                                                    "required": true,
+                                                                    "type": "integer",
+                                                                    "minimum": 0,
+                                                                    "maximum": 1
                                                                 }
                                                             }
                                                         }
@@ -253,106 +195,94 @@
                         "required": false,
                         "type": ["object","null"],
                         "properties": {
-                            "ideadc": {
+                            "remunorgsuc": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^(S|N)$"
+                            },
+                            "ideperiodo": {
                                 "required": true,
                                 "type": "array",
                                 "minItems": 1,
-                                "maxItems": 8,
+                                "maxItems": 180,
                                 "items": {
                                     "type": "object",
                                     "properties": {
-                                        "dtlei": {
+                                        "perref": {
                                             "required": true,
                                             "type": "string",
-                                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                            "$ref": "#/definitions/periodo"
                                         },
-                                        "nrlei": {
-                                            "required": true,
-                                            "type": "string",
-                                            "maxLength": 12
-                                        },
-                                        "dtef": {
-                                            "required": false,
-                                            "type": ["string","null"],
-                                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                                        },
-                                        "ideperiodo": {
+                                        "ideestab": {
                                             "required": true,
                                             "type": "array",
                                             "minItems": 1,
-                                            "maxItems": 200,
+                                            "maxItems": 500,
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "perref": {
+                                                    "tpinsc": {
+                                                        "required": true,
+                                                        "type": "integer",
+                                                        "minimum": 1,
+                                                        "maximum": 1
+                                                    },
+                                                    "nrinsc": {
                                                         "required": true,
                                                         "type": "string",
-                                                        "maxLength": 7
+                                                        "pattern": "^[0-9]{14}$"
                                                     },
-                                                    "ideestab": {
+                                                    "remumperant": {
                                                         "required": true,
                                                         "type": "array",
                                                         "minItems": 1,
-                                                        "maxItems": 24,
+                                                        "maxItems": 8,
                                                         "items": {
                                                             "type": "object",
                                                             "properties": {
-                                                                "remunperant": {
+                                                                "matricula": {
+                                                                    "required": false,
+                                                                    "type": ["string","null"],
+                                                                    "minLength": 1,
+                                                                    "maxLength": 30
+                                                                },
+                                                                "itensremum": {
                                                                     "required": true,
                                                                     "type": "array",
                                                                     "minItems": 1,
-                                                                    "maxItems": 10,
+                                                                    "maxItems": 200,
                                                                     "items": {
                                                                         "type": "object",
                                                                         "properties": {
-                                                                            "matricula": {
-                                                                                "required": false,
-                                                                                "type": ["string","null"],
+                                                                            "codrubr": {
+                                                                                "required": true,
+                                                                                "type": "string",
+                                                                                "minLength": 1,
                                                                                 "maxLength": 30
                                                                             },
-                                                                            "codcateg": {
+                                                                            "idetabrubr": {
+                                                                                "required": true,
+                                                                                "type": "string",
+                                                                                "minLength": 1,
+                                                                                "maxLength": 8
+                                                                            },
+                                                                            "qtdrubr": {
+                                                                                "required": false,
+                                                                                "type": ["number","null"]
+                                                                            },
+                                                                            "fatorrubr": {
+                                                                                "required": false,
+                                                                                "type": ["number","null"]
+                                                                            },
+                                                                            "vrrubr": {
+                                                                                "required": true,
+                                                                                "type": "number"
+                                                                            },
+                                                                            "indapurir": {
                                                                                 "required": true,
                                                                                 "type": "integer",
-                                                                                "minimum": 101,
-                                                                                "maximum": 905
-                                                                            },
-                                                                            "itensremun": {
-                                                                                "required": true,
-                                                                                "type": "array",
-                                                                                "minItems": 1,
-                                                                                "maxItems": 200,
-                                                                                "items": {
-                                                                                    "type": "object",
-                                                                                    "properties": {                                       
-                                                                                        "codrubr": {
-                                                                                            "required": true,
-                                                                                            "type": "string",
-                                                                                            "maxLength": 30
-                                                                                        },
-                                                                                        "idetabrubr": {
-                                                                                            "required": true,
-                                                                                            "type": "string",
-                                                                                            "maxLength": 8
-                                                                                        },
-                                                                                        "qtdrubr": {
-                                                                                            "required": false,
-                                                                                            "type": ["number","null"],
-                                                                                            "maximum": 9999.99
-                                                                                        },
-                                                                                        "fatorrubr": {
-                                                                                            "required": false,
-                                                                                            "type": ["number","null"]
-                                                                                        },
-                                                                                        "vrunit": {
-                                                                                            "required": false,
-                                                                                            "type": ["number","null"]
-                                                                                        },
-                                                                                        "vrrubr": {
-                                                                                            "required": true,
-                                                                                            "type": "number"
-                                                                                        }
-                                                                                    }
-                                                                                }
+                                                                                "minimum": 0,
+                                                                                "maximum": 1
                                                                             }
                                                                         }
                                                                     }

@@ -177,36 +177,42 @@ $jsonSchema = '{
                                             "type": ["string","null"],
                                             "maxLength": 999
                                         },
-                                        "medprotecao": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "condfuncto": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "usoinint": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "przvalid": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "periodictroca": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "higienizacao": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        }
+                                        "epicompl": {
+                                            "required": false,
+                                            "type": ["object","null"],
+                                            "properties": {
+                                               "medprotecao": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^(S|N)$"
+                                                },
+                                                "condfuncto": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^(S|N)$"
+                                                },
+                                                "usoinint": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^(S|N)$"
+                                                },
+                                                "przvalid": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^(S|N)$"
+                                                },
+                                                "periodictroca": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^(S|N)$"
+                                                },
+                                                "higienizacao": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^(S|N)$"
+                                                }
+                                            }
+                                        }    
                                     }
                                 }
                             }    
@@ -296,12 +302,15 @@ $std->agnoc[0]->epcepi->eficepi = 'S';
 $std->agnoc[0]->epcepi->epi[0] = new \stdClass();
 $std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
 $std->agnoc[0]->epcepi->epi[0]->dscePI = 'macacao';
-$std->agnoc[0]->epcepi->epi[0]->medprotecao = 'S';
-$std->agnoc[0]->epcepi->epi[0]->condfuncto = 'S';
-$std->agnoc[0]->epcepi->epi[0]->usoinint = 'S';
-$std->agnoc[0]->epcepi->epi[0]->przvalid = 'S';
-$std->agnoc[0]->epcepi->epi[0]->periodictroca = 'S';
-$std->agnoc[0]->epcepi->epi[0]->higienizacao = 'S';
+$std->agnoc[0]->epcepi->epi[0]->eficepi = 'S';
+
+$std->agnoc[0]->epcepi->epi[0]->epicompl = new \stdClass(); //opcional
+$std->agnoc[0]->epcepi->epi[0]->epicompl->medprotecao = 'S';
+$std->agnoc[0]->epcepi->epi[0]->epicompl->condfuncto = 'S';
+$std->agnoc[0]->epcepi->epi[0]->epicompl->usoinint = 'S';
+$std->agnoc[0]->epcepi->epi[0]->epicompl->przvalid = 'S';
+$std->agnoc[0]->epcepi->epi[0]->epicompl->periodictroca = 'S';
+$std->agnoc[0]->epcepi->epi[0]->epicompl->higienizacao = 'S';
 
 $std->respreg[0] = new \stdClass();
 $std->respreg[0]->cpfresp = '12345678901';
