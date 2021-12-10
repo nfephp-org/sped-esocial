@@ -30,21 +30,29 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 //$std->sequencial = 1; //Opcional
-$std->indretif = 1;
-$std->nrrecibo = "1.7.1234567890123456789"; //Obrigatório caso indretif = 2
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = null; //Obrigatório apenas se indretif = 2
+$std->indapuracao = 1; //Obrigatório
+$std->perapur = '2017-08'; //Obrigatório
+$std->indguia = 1; //Opcional
 
-$std->infosubstpatr = new \stdClass();
-$std->infosubstpatr->indsubstpatr = 1;
-$std->infosubstpatr->percpedcontrib = 1;
+//Grupo preenchido exclusivamente por empresa enquadrada nos arts. 7o a 9o da Lei 12.546/2011,
+// conforme classificação tributária indicada no evento S-1000.
+$std->infosubstpatr = new \stdClass(); //Opcional
+$std->infosubstpatr->indsubstpatr = 1; //Obrigatório
+$std->infosubstpatr->percpedcontrib = 2.50; //Obrigatório
 
-$std->infosubstpatropport[0] = new \stdClass();
-$std->infosubstpatropport[0]->cnpjopportuario = '11111111111111';
+//Grupo preenchido exclusivamente pelo Órgão Gestor de Mão de Obra - OGMO (classTrib em S-1000 = [09]), 
+//listando apenas seus códigos de lotação com operadores portuários enquadrados nos arts. 7o a 9o
+//da Lei 12.546/2011.
+$std->infosubstpatropport[0] = new \stdClass(); //Opcional
+$std->infosubstpatropport[0]->codlotacao = '11111111111111'; //Obrigatório
 
-$std->infoativconcom = new \stdClass();
-$std->infoativconcom->fatormes = 1.11;
-$std->infoativconcom->fator13 = 0.22;
+//Grupo preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação
+//previdenciária substituída e não substituída.
+$std->infoativconcom = new \stdClass();  //Opcional
+$std->infoativconcom->fatormes = 1.11; //Obrigatório
+$std->infoativconcom->fator13 = 0.22; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados
