@@ -48,8 +48,8 @@ trait TraitS2220
         $this->dom->addChild(
             $ideVinculo,
             "nisTrab",
-            $this->std->idevinculo->nistrab,
-            true
+            !empty($this->std->idevinculo->nistrab) ? $this->std->idevinculo->nistrab : null,
+            false
         );
         $this->dom->addChild(
             $ideVinculo,
