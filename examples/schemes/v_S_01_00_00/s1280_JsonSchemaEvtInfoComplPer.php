@@ -33,7 +33,7 @@ $jsonSchema = '{
         },
         "nrrecibo": {
             "required": false,
-            "type": "string",
+            "type": ["string","null"],
             "$ref": "#/definitions/recibo"
         },
         "indapuracao": {
@@ -47,9 +47,15 @@ $jsonSchema = '{
             "type": "string",
             "$ref": "#/definitions/periodo"
         },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
+        },
         "infosubstpatr": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "indsubstpatr": {
                     "required": true,
@@ -65,23 +71,24 @@ $jsonSchema = '{
         },
         "infosubstpatropport": {
             "required": false,
-            "type": "array",
+            "type": ["array","null"],
             "minItems": 0,
             "maxItems": 9999,
             "items": {
                 "type": "object",
                 "properties": {
-                    "cnpjopportuario": {
+                    "codlotacao": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^[0-9]{14}$"
+                        "minLength": 1,
+                        "maxLength": 30
                     }
                 }
             }
         },
         "infoativconcom": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "fatormes": {
                      "required": true,
@@ -97,22 +104,30 @@ $jsonSchema = '{
 }';
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '1111111111111';
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = null; //Obrigatório apenas se indretif = 2
+$std->indapuracao = 1; //Obrigatório
+$std->perapur = '2017-08'; //Obrigatório
+$std->indguia = 1; //Opcional
 
-$std->infosubstpatr = new \stdClass();
-$std->infosubstpatr->indsubstpatr = 1;
-$std->infosubstpatr->percpedcontrib = 1;
+//Grupo preenchido exclusivamente por empresa enquadrada nos arts. 7o a 9o da Lei 12.546/2011,
+// conforme classificação tributária indicada no evento S-1000.
+$std->infosubstpatr = new \stdClass(); //Opcional
+$std->infosubstpatr->indsubstpatr = 1; //Obrigatório
+$std->infosubstpatr->percpedcontrib = 2.50; //Obrigatório
 
-$std->infosubstpatropport[0] = new \stdClass();
-$std->infosubstpatropport[0]->cnpjopportuario = '11111111111111';
+//Grupo preenchido exclusivamente pelo Órgão Gestor de Mão de Obra - OGMO (classTrib em S-1000 = [09]), 
+//listando apenas seus códigos de lotação com operadores portuários enquadrados nos arts. 7o a 9o
+//da Lei 12.546/2011.
+$std->infosubstpatropport[0] = new \stdClass(); //Opcional
+$std->infosubstpatropport[0]->codlotacao = '11111111111111'; //Obrigatório
 
-$std->infoativconcom = new \stdClass();
-$std->infoativconcom->fatormes = 1.11;
-$std->infoativconcom->fator13 = 0.22;
+//Grupo preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação
+//previdenciária substituída e não substituída.
+$std->infoativconcom = new \stdClass();  //Opcional
+$std->infoativconcom->fatormes = 1.11; //Obrigatório
+$std->infoativconcom->fator13 = 0.22; //Obrigatório
 
 
 // Schema must be decoded before it can be used for validation
