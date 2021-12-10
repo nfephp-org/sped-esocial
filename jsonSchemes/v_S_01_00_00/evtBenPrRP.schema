@@ -14,6 +14,17 @@
             "minimum": 1,
             "maximum": 2
         },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
         "perapur": {
             "required": true,
             "type": "string",
@@ -28,48 +39,155 @@
         "dmdev": {
             "required": true,
             "type": "array",
-            "minItems": 0,
-            "maxItems": 99,
+            "minItems": 1,
+            "maxItems": 999,
             "items": {
                 "type": "object",
                 "properties": {
-                    "tpbenef": {
-                        "required": true,
-                        "type": "integer",
-                        "maxLength": 2
-                    },
-                    "nrbenefic": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 20
-                    },
                     "idedmdev": {
                         "required": true,
                         "type": "string",
+                        "minLength": 1,
                         "maxLength": 30
                     },
-                    "itens": {
+                    "nrbeneficio": {
                         "required": true,
-                        "type": "array",
-                        "minItems": 0,
-                        "maxItems": 99,
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "codrubr": {
-                                    "required": true,
-                                    "type": "string",
-                                    "maxLength": 30
-                                },
-                                "idetabrubr": {
-                                    "required": true,
-                                    "type": "string",
-                                    "maxLength": 8
-                                },
-                                "vrrubr": {
-                                    "required": true,
-                                    "type": "integer",
-                                    "maxLength": 14
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 20
+                    },
+                    "infoperapur": {
+                        "required": false,
+                        "type": "object",
+                        "properties": {
+                            "ideestab": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 500,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 1
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^[0-9]{14}$"
+                                        },
+                                        "itensremun": {
+                                           "codrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 30
+                                            },
+                                            "idetabrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 8
+                                            },
+                                            "qtdrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "fatorrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrrubr": {
+                                                "required": true,
+                                                "type": "number"
+                                            },
+                                            "indapurir": {
+                                                "required": true,
+                                                "type": "integer",
+                                                "minimum": 0,
+                                                "maximum": 1
+                                            }
+                                        }
+                                    }
+                                }    
+                            }
+                        }
+                    },
+                    "infoperaant": {
+                        "required": false,
+                        "type": "object",
+                        "properties": {
+                            "ideperiodo": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 180,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "perref": {
+                                            "required": true,
+                                            "type": "string",
+                                            "$ref": "#/definitions/periodo"
+                                        },
+                                        "ideestab": {
+                                            "required": true,
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "maxItems": 500,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "tpinsc": {
+                                                        "required": true,
+                                                        "type": "integer",
+                                                        "minimum": 1,
+                                                        "maximum": 1
+                                                    },
+                                                    "nrinsc": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "pattern": "^[0-9]{14}$"
+                                                    },
+                                                    "itensremun": {
+                                                        "codrubr": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "minLength": 1,
+                                                            "maxLength": 30
+                                                        },
+                                                        "idetabrubr": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "minLength": 1,
+                                                            "maxLength": 8
+                                                        },
+                                                        "qtdrubr": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "fatorrubr": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vrrubr": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        },
+                                                        "indapurir": {
+                                                            "required": true,
+                                                            "type": "integer",
+                                                            "minimum": 0,
+                                                            "maximum": 1
+                                                        }
+                                                    }
+                                                }
+                                            }    
+                                        }
+                                    }
                                 }
                             }
                         }

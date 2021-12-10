@@ -136,7 +136,7 @@ abstract class Factory
         $this->layout = $stdConf->eventoVersion;
         $this->tpInsc = $stdConf->empregador->tpInsc;
         $this->nrInsc = $stdConf->empregador->nrInsc;
-        $this->nmRazao = $stdConf->empregador->nmRazao;
+        $this->nmRazao = $stdConf->empregador->nmRazao ?? null;
         $this->layoutStr = $this->strLayoutVer($this->layout);
         $this->certificate = $certificate;
         if (empty($std) || ! is_object($std)) {

@@ -20,7 +20,7 @@ $config = [
     'empregador' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF
         'nrInsc' => '99999999', //numero do documento
-        'nmRazao' => 'Razao Social',
+        //'nmRazao' => 'Razao Social', //Opcional
     ],
     'transmissor' => [
         'tpInsc' => 1, //1-CNPJ, 2-CPF

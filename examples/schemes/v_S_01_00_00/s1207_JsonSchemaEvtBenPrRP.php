@@ -31,6 +31,17 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 2
         },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
         "perapur": {
             "required": true,
             "type": "string",
@@ -45,48 +56,155 @@ $jsonSchema = '{
         "dmdev": {
             "required": true,
             "type": "array",
-            "minItems": 0,
-            "maxItems": 99,
+            "minItems": 1,
+            "maxItems": 999,
             "items": {
                 "type": "object",
                 "properties": {
-                    "tpbenef": {
-                        "required": true,
-                        "type": "integer",
-                        "maxLength": 2
-                    },
-                    "nrbenefic": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 20
-                    },
                     "idedmdev": {
                         "required": true,
                         "type": "string",
+                        "minLength": 1,
                         "maxLength": 30
                     },
-                    "itens": {
+                    "nrbeneficio": {
                         "required": true,
-                        "type": "array",
-                        "minItems": 0,
-                        "maxItems": 99,
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "codrubr": {
-                                    "required": true,
-                                    "type": "string",
-                                    "maxLength": 30
-                                },
-                                "idetabrubr": {
-                                    "required": true,
-                                    "type": "string",
-                                    "maxLength": 8
-                                },
-                                "vrrubr": {
-                                    "required": true,
-                                    "type": "integer",
-                                    "maxLength": 14
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 20
+                    },
+                    "infoperapur": {
+                        "required": false,
+                        "type": "object",
+                        "properties": {
+                            "ideestab": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 500,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 1
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^[0-9]{14}$"
+                                        },
+                                        "itensremun": {
+                                           "codrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 30
+                                            },
+                                            "idetabrubr": {
+                                                "required": true,
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 8
+                                            },
+                                            "qtdrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "fatorrubr": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vrrubr": {
+                                                "required": true,
+                                                "type": "number"
+                                            },
+                                            "indapurir": {
+                                                "required": true,
+                                                "type": "integer",
+                                                "minimum": 0,
+                                                "maximum": 1
+                                            }
+                                        }
+                                    }
+                                }    
+                            }
+                        }
+                    },
+                    "infoperaant": {
+                        "required": false,
+                        "type": "object",
+                        "properties": {
+                            "ideperiodo": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 180,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "perref": {
+                                            "required": true,
+                                            "type": "string",
+                                            "$ref": "#/definitions/periodo"
+                                        },
+                                        "ideestab": {
+                                            "required": true,
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "maxItems": 500,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "tpinsc": {
+                                                        "required": true,
+                                                        "type": "integer",
+                                                        "minimum": 1,
+                                                        "maximum": 1
+                                                    },
+                                                    "nrinsc": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "pattern": "^[0-9]{14}$"
+                                                    },
+                                                    "itensremun": {
+                                                        "codrubr": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "minLength": 1,
+                                                            "maxLength": 30
+                                                        },
+                                                        "idetabrubr": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "minLength": 1,
+                                                            "maxLength": 8
+                                                        },
+                                                        "qtdrubr": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "fatorrubr": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vrrubr": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        },
+                                                        "indapurir": {
+                                                            "required": true,
+                                                            "type": "integer",
+                                                            "minimum": 0,
+                                                            "maximum": 1
+                                                        }
+                                                    }
+                                                }
+                                            }    
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -98,26 +216,55 @@ $jsonSchema = '{
 }';
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '1111111111111111111111';
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
-$std->cpfbenef = '11111111111';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1;  //Obrigatório
+$std->nrrecibo = null; //Opcional
+$std->indapuracao = 1;  //Obrigatório
+$std->perapur = '2017-08';  //Obrigatório
+$std->cpfbenef = '11111111111';  //Obrigatório
 
-$dmdev[0] = new \stdClass();
-$dmdev[0]->tpbenef = 1;
-$dmdev[0]->nrbenefic = '11111111111111111111';
-$dmdev[0]->idedmdev = '11111111111111111111';
+//dentificação de cada um dos demonstrativos de valores devidos ao beneficiário.
+$std->dmdev[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->idedmdev = '11111111111111111111'; //Obrigatório
+$std->dmdev[0]->nrbeneficio = '11111111111111111111'; //Obrigatório
 
-$itens[0] = new \stdClass();
-$itens[0]->codrubr = '11111111111111111111';
-$itens[0]->idetabrubr = '11111111';
-$itens[0]->vrrubr = 1500;
+//Informações relativas ao período de apuração.
+$std->dmdev[0]->infoperapur = new \stdClass(); //Opcional
 
-$dmdev[0]->itens = $itens;
+//Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.
+$std->dmdev[0]->infoperapur->ideestab[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->tpinsc = 1; //Obrigatório e igual a 1
+$std->dmdev[0]->infoperapur->ideestab[0]->nrinsc = "12345678901234"; //Obrigatório
 
-$std->dmdev = $dmdev;
+//Rubricas que compõem o provento ou pensão do beneficiário.
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->codrubr = "slkjskjskj"; //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->idetabrubr = "kkkk"; //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->qtdrubr = 1; //Opcional
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->fatorrubr = 2.2; //Opcional
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->vrrubr = 100; //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->indapurir = 0; //Obrigatório
+
+//Grupo destinado às informações relativas a períodos anteriores. Somente preencher esse grupo se houver
+//proventos ou pensões retroativos. 
+$std->dmdev[0]->infoperant = new \stdClass(); //Opcional
+
+$std->dmdev[0]->infoperant->ideperiodo[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->perref = '2011-10'; //Obrigatório
+
+//Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->tpinsc = 1; //Obrigatório e igual a 1
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->nrinsc = "12345678901234"; //Obrigatório
+
+//Rubricas que compõem o provento ou pensão do beneficiário.
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->codrubr = "slkjskjskj"; //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->idetabrubr = "kkkk"; //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->qtdrubr = 1; //Opcional
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->fatorrubr = 2.2; //Opcional
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->vrrubr = 100; //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->indapurir = 0; //Obrigatório
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
