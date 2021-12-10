@@ -30,22 +30,22 @@ $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
 //$std->sequencial = 1; //Opcional
-$std->indretif = 1;
-$std->nrrecibo = "1.7.1234567890123456789"; //Obrigatório caso indretif = 2
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = null; //Obrigatório apenas se inderetif = 2
+$std->perapur = '2017-08'; //Obrigatório
+$std->indguia = 1; //Opcional
 
-$std->remunavnp[0] = new \stdClass();
-$std->remunavnp[0]->tpinsc = 1;
-$std->remunavnp[0]->nrinsc = '11111111111111';
-$std->remunavnp[0]->codlotacao = '11111111111111';
-$std->remunavnp[0]->vrbccp00 = 1500.11;
-$std->remunavnp[0]->vrbccp15 = 1500.22;
-$std->remunavnp[0]->vrbccp20 = 1500.33;
-$std->remunavnp[0]->vrbccp25 = 1500.44;
-$std->remunavnp[0]->vrbccp13 = 1500.55;
-$std->remunavnp[0]->vrbcfgts = 1500.66;
-$std->remunavnp[0]->vrdesccp = 1500.77;
+$std->remunavnp[0] = new \stdClass(); //Obrigatório
+$std->remunavnp[0]->tpinsc = "1"; //Obrigatório
+$std->remunavnp[0]->nrinsc = '11111111111111'; //Obrigatório
+$std->remunavnp[0]->codlotacao = '11111111111111'; //Obrigatório
+$std->remunavnp[0]->vrbccp00 = 1500.11; //Obrigatório
+$std->remunavnp[0]->vrbccp15 = 1500.22; //Obrigatório
+$std->remunavnp[0]->vrbccp20 = 1500.33; //Obrigatório
+$std->remunavnp[0]->vrbccp25 = 1500.44; //Obrigatório
+$std->remunavnp[0]->vrbccp13 = 1500.55; //Obrigatório
+$std->remunavnp[0]->vrbcfgts = 1500.66; //Obrigatório
+$std->remunavnp[0]->vrdesccp = 1500.77; //Obrigatório
 
 
 try {
