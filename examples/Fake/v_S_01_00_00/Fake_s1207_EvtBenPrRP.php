@@ -29,27 +29,55 @@ $config = [
 $configJson = json_encode($config, JSON_PRETTY_PRINT);
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '1111111111111111111111';
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
-$std->cpfbenef = '11111111111';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1;  //Obrigatório
+$std->nrrecibo = null; //Opcional
+$std->indapuracao = 1;  //Obrigatório
+$std->perapur = '2017-08';  //Obrigatório
+$std->cpfbenef = '11111111111';  //Obrigatório
 
-$dmdev[0] = new \stdClass();
-$dmdev[0]->tpbenef = 1;
-$dmdev[0]->nrbenefic = '11111111111111111111';
-$dmdev[0]->idedmdev = '11111111111111111111';
+//dentificação de cada um dos demonstrativos de valores devidos ao beneficiário.
+$std->dmdev[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->idedmdev = '11111111111111111111'; //Obrigatório
+$std->dmdev[0]->nrbeneficio = '11111111111111111111'; //Obrigatório
 
-$itens[0] = new \stdClass();
-$itens[0]->codrubr = '11111111111111111111';
-$itens[0]->idetabrubr = '11111111';
-$itens[0]->vrrubr = 1500;
+//Informações relativas ao período de apuração.
+$std->dmdev[0]->infoperapur = new \stdClass(); //Opcional
 
-$dmdev[0]->itens = $itens;
+//Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.
+$std->dmdev[0]->infoperapur->ideestab[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->tpinsc = 1; //Obrigatório e igual a 1
+$std->dmdev[0]->infoperapur->ideestab[0]->nrinsc = "12345678901234"; //Obrigatório
 
-$std->dmdev = $dmdev;
+//Rubricas que compõem o provento ou pensão do beneficiário.
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->codrubr = "slkjskjskj"; //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->idetabrubr = "kkkk"; //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->qtdrubr = 1; //Opcional
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->fatorrubr = 2.2; //Opcional
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->vrrubr = 100; //Obrigatório
+$std->dmdev[0]->infoperapur->ideestab[0]->itensremun[0]->indapurir = 0; //Obrigatório
 
+//Grupo destinado às informações relativas a períodos anteriores. Somente preencher esse grupo se houver
+//proventos ou pensões retroativos. 
+$std->dmdev[0]->infoperant = new \stdClass(); //Opcional
+
+$std->dmdev[0]->infoperant->ideperiodo[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->perref = '2011-10'; //Obrigatório
+
+//Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->tpinsc = 1; //Obrigatório e igual a 1
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->nrinsc = "12345678901234"; //Obrigatório
+
+//Rubricas que compõem o provento ou pensão do beneficiário.
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0] = new \stdClass(); //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->codrubr = "slkjskjskj"; //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->idetabrubr = "kkkk"; //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->qtdrubr = 1; //Opcional
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->fatorrubr = 2.2; //Opcional
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->vrrubr = 100; //Obrigatório
+$std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->itensremun[0]->indapurir = 0; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados

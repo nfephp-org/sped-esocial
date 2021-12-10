@@ -214,7 +214,7 @@ trait TraitS1202
             $ideTrabalhador->appendChild($info);
         }
         $this->node->appendChild($ideTrabalhador);
-        foreach($this->std->dmdev as $dm) {
+        foreach ($this->std->dmdev as $dm) {
             $dmdev = $this->dom->createElement("dmDev");
             $this->dom->addChild(
                 $dmdev,
@@ -230,7 +230,7 @@ trait TraitS1202
             );
             if (!empty($dm->infoperapur)) {
                 $perapur = $this->dom->createElement("infoPerApur");
-                foreach($dm->infoperapur->ideestab as $est) {
+                foreach ($dm->infoperapur->ideestab as $est) {
                     $ideestab = $this->dom->createElement("ideEstab");
                     $this->dom->addChild(
                         $ideestab,
@@ -244,7 +244,7 @@ trait TraitS1202
                         $est->nrinsc,
                         true
                     );
-                    foreach($est->remunperapur as $rem) {
+                    foreach ($est->remunperapur as $rem) {
                         $remum = $this->dom->createElement("remunPerApur");
                         $this->dom->addChild(
                             $remum,
@@ -252,7 +252,7 @@ trait TraitS1202
                             !empty($rem->matricula) ? $rem->matricula : null,
                             false
                         );
-                        foreach($rem->itensremun as $item) {
+                        foreach ($rem->itensremun as $item) {
                             $itemremum = $this->dom->createElement("itensRemun");
                             $this->dom->addChild(
                                 $itemremum,
@@ -290,7 +290,7 @@ trait TraitS1202
                                 $item->indapurir,
                                 true
                             );
-                            $remum->appendChild($itemremum );
+                            $remum->appendChild($itemremum);
                         }
                         $ideestab->appendChild($remum);
                     }
@@ -306,7 +306,7 @@ trait TraitS1202
                     $dm->infoperant->remunorgsuc,
                     true
                 );
-                foreach($dm->infoperant->ideperiodo as $per) {
+                foreach ($dm->infoperant->ideperiodo as $per) {
                     $ide = $this->dom->createElement("idePeriodo");
                     $this->dom->addChild(
                         $ide,
@@ -314,7 +314,7 @@ trait TraitS1202
                         $per->perref,
                         true
                     );
-                    foreach($per->ideestab as $estab) {
+                    foreach ($per->ideestab as $estab) {
                         $iest = $this->dom->createElement("ideEstab");
                         $this->dom->addChild(
                             $iest,
@@ -328,7 +328,7 @@ trait TraitS1202
                             $estab->nrinsc,
                             true
                         );
-                        foreach($estab->remumperant as $rpa) {
+                        foreach ($estab->remumperant as $rpa) {
                             $rempa = $this->dom->createElement("remunPerAnt");
                             $this->dom->addChild(
                                 $rempa,
@@ -336,7 +336,7 @@ trait TraitS1202
                                 !empty($rpa->matricula) ? $rpa->matricula : null,
                                 false
                             );
-                            foreach($rem->itensremun as $item) {
+                            foreach ($rem->itensremun as $item) {
                                 $itemrpa = $this->dom->createElement("itensRemun");
                                 $this->dom->addChild(
                                     $itemrpa,
@@ -374,8 +374,8 @@ trait TraitS1202
                                     $item->indapurir,
                                     true
                                 );
-                                $rempa->appendChild($itemrpa );
-                        }
+                                $rempa->appendChild($itemrpa);
+                            }
                             $iest->appendChild($rempa);
                         }
                         $ide->appendChild($iest);
