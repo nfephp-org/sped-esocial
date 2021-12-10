@@ -7,7 +7,7 @@
 
 [VIDE NOTA ORIENTATIVA](https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/nota-orientativa-s-1-0-01-2021.pdf)
 
-## Layout S-1.0 (a partir de 10/05/2021) - EM IMPLEMENTAÇÃO
+## Layout S-1.0 (a partir de 10/05/2021)
 
 ### *Esta API ainda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
 
@@ -16,9 +16,7 @@
 [![Chat][ico-gitter]][link-gitter]
 
 [![Latest Stable Version][ico-stable]][link-packagist]
-[![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![License][ico-license]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
