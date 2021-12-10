@@ -33,19 +33,19 @@ $jsonSchema = '{
         },
         "nrrecibo": {
             "required": false,
-            "type": "string",
+            "type": ["string","null"],
             "$ref": "#/definitions/recibo"
-        },
-        "indapuracao": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2
         },
         "perapur": {
             "required": true,
             "type": "string",
             "$ref": "#/definitions/periodo"
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
         },
         "remunavnp": {
             "required": true,
@@ -57,24 +57,18 @@ $jsonSchema = '{
                 "properties": {
                     "tpinsc": {
                         "required": true,
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 2
-                    },
-                    "tpinsc": {
-                        "required": true,
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 4
+                        "type": "string",
+                        "pattern": "^(1|3|4)$"
                     },
                     "nrinsc": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^[0-9]{8,14}$"
+                        "pattern": "^[0-9]{12}|[0-9]{14}$"
                     },
                     "codlotacao": {
                         "required": true,
                         "type": "string",
+                        "minLength": 1,
                         "maxLength": 30
                     },
                     "vrbccp00": {
@@ -112,23 +106,23 @@ $jsonSchema = '{
 }';
 
 $std = new \stdClass();
-$std->sequencial = 1;
-$std->indretif = 1;
-$std->nrrecibo = '1231513';
-$std->indapuracao = 1;
-$std->perapur = '2017-08';
+//$std->sequencial = 1; //Opcional
+$std->indretif = 1; //Obrigatório
+$std->nrrecibo = null; //Obrigatório apenas se inderetif = 2
+$std->perapur = '2017-08'; //Obrigatório
+$std->indguia = 1; //Opcional
 
-$std->remunavnp[0] = new \stdClass();
-$std->remunavnp[0]->tpinsc = 1;
-$std->remunavnp[0]->nrinsc = '11111111111111';
-$std->remunavnp[0]->codlotacao = '11111111111111';
-$std->remunavnp[0]->vrbccp00 = 1500.11;
-$std->remunavnp[0]->vrbccp15 = 1500.22;
-$std->remunavnp[0]->vrbccp20 = 1500.33;
-$std->remunavnp[0]->vrbccp25 = 1500.44;
-$std->remunavnp[0]->vrbccp13 = 1500.55;
-$std->remunavnp[0]->vrbcfgts = 1500.66;
-$std->remunavnp[0]->vrdesccp = 1500.77;
+$std->remunavnp[0] = new \stdClass(); //Obrigatório
+$std->remunavnp[0]->tpinsc = "1"; //Obrigatório
+$std->remunavnp[0]->nrinsc = '11111111111111'; //Obrigatório
+$std->remunavnp[0]->codlotacao = '11111111111111'; //Obrigatório
+$std->remunavnp[0]->vrbccp00 = 1500.11; //Obrigatório
+$std->remunavnp[0]->vrbccp15 = 1500.22; //Obrigatório
+$std->remunavnp[0]->vrbccp20 = 1500.33; //Obrigatório
+$std->remunavnp[0]->vrbccp25 = 1500.44; //Obrigatório
+$std->remunavnp[0]->vrbccp13 = 1500.55; //Obrigatório
+$std->remunavnp[0]->vrbcfgts = 1500.66; //Obrigatório
+$std->remunavnp[0]->vrdesccp = 1500.77; //Obrigatório
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
