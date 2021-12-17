@@ -500,8 +500,8 @@ trait TraitS2240
                 $this->dom->addChild(
                     $epcEpi,
                     "eficEpi",
-                    $ag->epcepi->eficepi,
-                    true
+                    isset($ag->epcepi->eficepi) ? $ag->epcepi->eficepi : null,
+                    false
                 );
 
                 if (!empty($ag->epcepi->epi)) {
