@@ -30,6 +30,11 @@ $jsonSchema = '{
             "minimum": 1,
             "maximum": 2
         },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
         "idevinculo": {
             "required": true,
             "type": "object",
