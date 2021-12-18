@@ -154,9 +154,45 @@ $jsonSchema = '{
                                 "maximum": 2
                             },
                             "eficepi": {
-                                "required": true,
-                                "type": "string",
+                                "required": false,
+                                "type": ["string", "null"],
                                 "pattern": "^(S|N)$"
+                            },
+                            "epiCompl": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "properties": {
+                                    "medprotecao": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "condfuncto": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "usoinint": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "przvalid": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "periodictroca": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "higienizacao": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    }
+                                }
                             },
                             "epi": {
                                 "required": false,
@@ -176,43 +212,7 @@ $jsonSchema = '{
                                             "required": false,
                                             "type": ["string","null"],
                                             "maxLength": 999
-                                        },
-                                        "epicompl": {
-                                            "required": false,
-                                            "type": ["object","null"],
-                                            "properties": {
-                                               "medprotecao": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^(S|N)$"
-                                                },
-                                                "condfuncto": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^(S|N)$"
-                                                },
-                                                "usoinint": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^(S|N)$"
-                                                },
-                                                "przvalid": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^(S|N)$"
-                                                },
-                                                "periodictroca": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^(S|N)$"
-                                                },
-                                                "higienizacao": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^(S|N)$"
-                                                }
-                                            }
-                                        }    
+                                        }
                                     }
                                 }
                             }    

@@ -500,66 +500,71 @@ trait TraitS2240
                 $this->dom->addChild(
                     $epcEpi,
                     "eficEpi",
-                    $ag->epcepi->eficepi,
-                    true
+                    isset($ag->epcepi->eficepi) ? $ag->epcepi->eficepi : null,
+                    false
                 );
 
                 if (!empty($ag->epcepi->epi)) {
                     foreach ($ag->epcepi->epi as $e) {
                         $epi = $this->dom->createElement("epi");
-                        $this->dom->addChild(
-                            $epi,
-                            "docAval",
-                            isset($e->docaval) ? $e->docaval : null,
-                            false
-                        );
-                        $this->dom->addChild(
-                            $epi,
-                            "dscEPI",
-                            isset($e->dscepi) ? $e->dscepi : null,
-                            false
-                        );
+                        if(isset($e->docaval)) {
+                            $this->dom->addChild(
+                                $epi,
+                                "docAval",
+                                isset($e->docaval) ? $e->docaval : null,
+                                false
+                            );
+                        } else {
+                            $this->dom->addChild(
+                                $epi,
+                                "dscEPI",
+                                isset($e->dscepi) ? $e->dscepi : null,
+                                false
+                            );
+                        }
                         $epcEpi->appendChild($epi);
-
-                        $epiCompl = $this->dom->createElement("epiCompl");
-                        $this->dom->addChild(
-                            $epiCompl,
-                            "medProtecao",
-                            $e->medprotecao,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $epiCompl,
-                            "condFuncto",
-                            $e->condfuncto,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $epiCompl,
-                            "usoInint",
-                            $e->usoinint,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $epiCompl,
-                            "przValid",
-                            $e->przvalid,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $epiCompl,
-                            "periodicTroca",
-                            $e->periodictroca,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $epiCompl,
-                            "higienizacao",
-                            $e->higienizacao,
-                            true
-                        );
-                        $epcEpi->appendChild($epiCompl);
                     }
+                }
+
+                if ($ag->epcepi->epicompl) {                    
+                    $epiCompl = $this->dom->createElement("epiCompl");
+                    $this->dom->addChild(
+                        $epiCompl,
+                        "medProtecao",
+                        $ag->epcepi->epicompl->medprotecao,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $epiCompl,
+                        "condFuncto",
+                        $ag->epcepi->epicompl->condfuncto,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $epiCompl,
+                        "usoInint",
+                        $ag->epcepi->epicompl->usoinint,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $epiCompl,
+                        "przValid",
+                        $ag->epcepi->epicompl->przvalid,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $epiCompl,
+                        "periodicTroca",
+                        $ag->epcepi->epicompl->periodictroca,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $epiCompl,
+                        "higienizacao",
+                        $ag->epcepi->epicompl->higienizacao,
+                        true
+                    );
+                    $epcEpi->appendChild($epiCompl);
                 }
                 $agNoc->appendChild($epcEpi);
             }
