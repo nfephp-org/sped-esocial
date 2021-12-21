@@ -1608,12 +1608,15 @@ trait TraitS2200
                 $std->indadmissao,
                 true
             );
-            $this->dom->addChild(
-                $celetista,
-                "nrProcTrab",
-                !empty($std->nrproctrab) ? $std->nrproctrab : null,
-                true
-            );
+            // Processo judicial obrigatorio e exclusivo quando indadmissao = 3
+            if (! empty($std->nrproctrab)) {
+                $this->dom->addChild(
+                    $celetista,
+                    "nrProcTrab",
+                    $std->nrproctrab,
+                    true
+                );
+            }
              $this->dom->addChild(
                  $celetista,
                  "tpRegJor",
