@@ -241,8 +241,8 @@ $jsonSchema = '{
                     "pattern": "^(S|N)$"
                 },
                 "infocota": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "pattern": "^(S|N)$"
                 },
                 "observacao": {

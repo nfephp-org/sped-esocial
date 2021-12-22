@@ -1469,8 +1469,8 @@ trait TraitS2200
             $this->dom->addChild(
                 $deficiencia,
                 "infoCota",
-                $def->infocota,
-                true
+                !empty($def->infocota) ? $def->infocota : null,
+                false
             );
             $this->dom->addChild(
                 $deficiencia,
