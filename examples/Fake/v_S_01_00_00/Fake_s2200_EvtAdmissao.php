@@ -74,7 +74,7 @@ $std->infodeficiencia->defauditiva = 'N';
 $std->infodeficiencia->defmental = 'N';
 $std->infodeficiencia->defintelectual = 'N';
 $std->infodeficiencia->reabreadap = 'N';
-$std->infodeficiencia->infocota = 'N'; //Opcional
+//$std->infodeficiencia->infocota = 'N'; //Opcional
 $std->infodeficiencia->observacao = 'slsklskslkslkslkssklsklsjksjskjs'; //Opcional
 
 $std->dependente[0] = new \stdClass(); //Opcional

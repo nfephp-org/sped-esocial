@@ -507,7 +507,7 @@ trait TraitS2240
                 if (!empty($ag->epcepi->epi)) {
                     foreach ($ag->epcepi->epi as $e) {
                         $epi = $this->dom->createElement("epi");
-                        if(isset($e->docaval)) {
+                        if (isset($e->docaval)) {
                             $this->dom->addChild(
                                 $epi,
                                 "docAval",
@@ -526,7 +526,7 @@ trait TraitS2240
                     }
                 }
 
-                if ($ag->epcepi->epicompl) {                    
+                if ($ag->epcepi->epicompl) {
                     $epiCompl = $this->dom->createElement("epiCompl");
                     $this->dom->addChild(
                         $epiCompl,
