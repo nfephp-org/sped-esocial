@@ -169,7 +169,6 @@ $std->vinculo->infocontrato->localtempdom->uf = 'AC';
 $std->vinculo->infocontrato->horcontratual = new \stdClass();
 $std->vinculo->infocontrato->horcontratual->qtdhrssem = 99.50;
 $std->vinculo->infocontrato->horcontratual->tpjornada = 9;
-$std->vinculo->infocontrato->horcontratual->dsctpjorn = 'kjsksjsjs';
 $std->vinculo->infocontrato->horcontratual->tmpparc = 0;
 $std->vinculo->infocontrato->horcontratual->hornoturno = 'N'; //Opcional
 $std->vinculo->infocontrato->horcontratual->dscjorn = 'De 2a a 6a feira, das 8:00 às 12:00 e das 13:00 às 17:00 e no sábado das 8:00 às 12:00';
