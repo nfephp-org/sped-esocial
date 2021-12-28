@@ -299,18 +299,19 @@ $std->agnoc[0]->epcepi->eficepc = 'S';
 $std->agnoc[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
 $std->agnoc[0]->epcepi->eficepi = 'S';
 
-$std->agnoc[0]->epcepi->epi[0] = new \stdClass();
-$std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
-$std->agnoc[0]->epcepi->epi[0]->dscePI = 'macacao';
-$std->agnoc[0]->epcepi->epi[0]->eficepi = 'S';
+$std->agnoc[0]->epcepi->epiCompl = new \stdClass();
+$std->agnoc[0]->epcepi->epiCompl->medprotecao = 'S';
+$std->agnoc[0]->epcepi->epiCompl->condfuncto = 'S';
+$std->agnoc[0]->epcepi->epiCompl->usoinint = 'S';
+$std->agnoc[0]->epcepi->epiCompl->przvalid = 'S';
+$std->agnoc[0]->epcepi->epiCompl->periodictroca = 'S';
+$std->agnoc[0]->epcepi->epiCompl->higienizacao = 'S';
 
-$std->agnoc[0]->epcepi->epi[0]->epicompl = new \stdClass(); //opcional
-$std->agnoc[0]->epcepi->epi[0]->epicompl->medprotecao = 'S';
-$std->agnoc[0]->epcepi->epi[0]->epicompl->condfuncto = 'S';
-$std->agnoc[0]->epcepi->epi[0]->epicompl->usoinint = 'S';
-$std->agnoc[0]->epcepi->epi[0]->epicompl->przvalid = 'S';
-$std->agnoc[0]->epcepi->epi[0]->epicompl->periodictroca = 'S';
-$std->agnoc[0]->epcepi->epi[0]->epicompl->higienizacao = 'S';
+// ou docacal (número do CA) ou descepi deve ser fornecido,
+// os dois juntos gera rejeição 
+$std->agnoc[0]->epcepi->epi[0] = new \stdClass();
+//$std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
+$std->agnoc[0]->epcepi->epi[0]->dscepi = 'macacao';
 
 $std->respreg[0] = new \stdClass();
 $std->respreg[0]->cpfresp = '12345678901';
