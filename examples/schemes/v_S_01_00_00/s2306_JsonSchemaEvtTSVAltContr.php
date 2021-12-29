@@ -55,8 +55,8 @@ $jsonSchema = '{
                     "pattern": "^.{1,30}$"
                 },
                 "codcateg": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "pattern": "^[0-9]{3}$"
                 }
             }
