@@ -1359,7 +1359,7 @@ trait TraitS2300
         $this->dom->addChild(
             $infoTSVInicio,
             "natAtividade",
-            !empty($ii->natatividade) ? $ii->natatividade : null,
+            !empty($this->std->natatividade) ? $this->std->natatividade : null,
             false
         );
         $infoComplementares = null;
