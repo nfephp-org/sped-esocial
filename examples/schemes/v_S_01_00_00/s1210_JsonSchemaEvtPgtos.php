@@ -49,8 +49,8 @@ $jsonSchema = '{
             "$ref": "#/definitions/periodo"
         },
         "indguia": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 1
         },

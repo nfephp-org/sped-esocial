@@ -851,7 +851,7 @@ trait TraitS1200
                             $this->dom->addChild(
                                 $itensRemun,
                                 "indApurIR",
-                                !empty($itemr->indapurir) ? $itemr->indapurir : null,
+                                isset($itemr->indapurir) ? $itemr->indapurir : null,
                                 false
                             );
                             $remunPerApur->appendChild($itensRemun);
