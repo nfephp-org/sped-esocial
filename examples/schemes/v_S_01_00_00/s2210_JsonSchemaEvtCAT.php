@@ -81,13 +81,13 @@ $jsonSchema = '{
             "maximum": 3
         },
         "hracid": {
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": ["string","null"],
             "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$"
         },
         "hrstrabantesacid": {
-            "required": true,
-            "type": "string",
+            "required": false,
+            "type": ["string","null"],
             "pattern": "^([0-9]{2}[0-5][0-9])$"
         },
         "tpcat": {

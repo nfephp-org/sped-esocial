@@ -158,9 +158,9 @@ $jsonSchema = '{
                                 "type": ["string", "null"],
                                 "pattern": "^(S|N)$"
                             },
-                            "epiCompl": {
+                            "epicompl": {
                                 "required": false,
-                                "type": ["string","null"],
+                                "type": ["object","null"],
                                 "properties": {
                                     "medprotecao": {
                                         "required": true,

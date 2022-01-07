@@ -35,6 +35,7 @@ $std->nrrecibo = "1.7.1234567890123456789";
 $std->idevinculo = new \stdClass();
 $std->idevinculo->cpftrab = '11111111111';
 $std->idevinculo->matricula = '11111111111';
+$std->idevinculo->codcateg = '111';
 
 $std->exmedocup = new \stdClass();
 $std->exmedocup->tpexameocup = 1;

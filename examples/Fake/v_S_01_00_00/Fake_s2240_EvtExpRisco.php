@@ -60,13 +60,13 @@ $std->agnoc[0]->epcepi->eficepc = 'S';
 $std->agnoc[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
 $std->agnoc[0]->epcepi->eficepi = 'S';
 
-
-$std->agnoc[0]->epcepi->epiCompl->medprotecao = 'S';
-$std->agnoc[0]->epcepi->epiCompl->condfuncto = 'S';
-$std->agnoc[0]->epcepi->epiCompl->usoinint = 'S';
-$std->agnoc[0]->epcepi->epiCompl->przvalid = 'S';
-$std->agnoc[0]->epcepi->epiCompl->periodictroca = 'S';
-$std->agnoc[0]->epcepi->epiCompl->higienizacao = 'S';
+$std->agnoc[0]->epcepi->epicompl = new \stdClass();
+$std->agnoc[0]->epcepi->epicompl->medprotecao = 'S';
+$std->agnoc[0]->epcepi->epicompl->condfuncto = 'S';
+$std->agnoc[0]->epcepi->epicompl->usoinint = 'S';
+$std->agnoc[0]->epcepi->epicompl->przvalid = 'S';
+$std->agnoc[0]->epcepi->epicompl->periodictroca = 'S';
+$std->agnoc[0]->epcepi->epicompl->higienizacao = 'S';
 
 // ou docacal (número do CA) ou descepi deve ser fornecido,
 // os dois juntos gera rejeição 
