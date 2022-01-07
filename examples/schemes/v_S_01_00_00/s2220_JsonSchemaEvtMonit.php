@@ -50,7 +50,7 @@ $jsonSchema = '{
                     "type": ["string","null"],
                     "maxLength": 30
                 },
-                "codCateg": {
+                "codcateg": {
                     "required": false,
                     "type": "integer",
                     "minimum": 0,

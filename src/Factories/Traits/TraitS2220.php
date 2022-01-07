@@ -379,6 +379,12 @@ trait TraitS2220
             !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
             false
         );
+        $this->dom->addChild(
+            $ideVinculo,
+            "codCateg",
+            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+            false
+        );
         $this->node->appendChild($ideVinculo);
         
         $exMedOcup = $this->dom->createElement("exMedOcup");

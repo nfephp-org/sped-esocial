@@ -34,7 +34,7 @@
                     "type": ["string","null"],
                     "maxLength": 30
                 },
-                "codCateg": {
+                "codcateg": {
                     "required": false,
                     "type": "integer",
                     "minimum": 0,
@@ -129,7 +129,7 @@
                             "maxLength": 2
                         }
                     }
-                }
+                }  
             },
             "respmonit": {
                 "required": true,
