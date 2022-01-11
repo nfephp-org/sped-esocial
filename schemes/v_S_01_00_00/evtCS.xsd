@@ -170,7 +170,7 @@
                                                         <xs:annotation>
                                                             <xs:documentation>Informações do estabelecimento</xs:documentation>
                                                             <xs:documentation>DESCRICAO_COMPLETA:Informações relativas a cada estabelecimento, necessárias à apuração das contribuições sociais.</xs:documentation>
-                                                            <xs:documentation>CONDICAO_GRUPO: N (se {ideEstab/tpInsc}(../tpInsc) = [2] OU (se {ideEstab/tpInsc}(../tpInsc) = [3] e se tratar de empregador doméstico)); O (nos demais casos)</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: N (se {ideEstab/tpInsc}(../tpInsc) = [2] OU (se {ideEstab/tpInsc}(../tpInsc) = [3] e se tratar de empregador doméstico) OU se não existir informação em S-1200, S-1270, S-2299 ou S-2399 relativas ao estabelecimento); O (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -189,7 +189,11 @@
                                                                 <xs:element name="fap" type="TS_fap" minOccurs="0">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Fator Acidentário de Prevenção - FAP.</xs:documentation>
-                                                                        <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]. Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente.</xs:documentation>
+                                                                        <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]. Deve corresponder ao FAP estabelecido para a empresa pelo órgão governamental competente, exceto se:</xs:documentation>
+                                                                        <xs:documentation>a) {ideEstab/tpInsc}(5011_infoCS_ideEstab_tpInsc) = [4]; ou</xs:documentation>
+                                                                        <xs:documentation>b) {ideEstab/tpInsc}(5011_infoCS_ideEstab_tpInsc) = [1] e se houver informação de {procAdmJudFap}(1005_infoEstab_inclusao_dadosEstab_aliqGilrat_procAdmJudFap) em S-1005; ou</xs:documentation>
+                                                                        <xs:documentation>c) {ideEstab/tpInsc}(5011_infoCS_ideEstab_tpInsc) = [1] e o estabalecimento não for encontrado na tabela FAP referente ao ano de {perApur}(5011_ideEvento_perApur).</xs:documentation>
+                                                                        <xs:documentation>Caso haja alguma exceção acima, retornar o FAP declarado no evento S-1005.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="aliqRatAjust" minOccurs="0">
@@ -206,11 +210,48 @@
                                                                         </xs:restriction>
                                                                     </xs:simpleType>
                                                                 </xs:element>
+                                                                <xs:element name="infoEstabRef" minOccurs="0">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Informações de RAT e FAP de referência</xs:documentation>
+                                                                        <xs:documentation>DESCRICAO_COMPLETA: Informações de RAT e FAP de referência, nos casos de processo administrativo ou judicial que altere a(s) alíquota(s).</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: OC (se houver informação de {procAdmJudRat}(1005_infoEstab_inclusao_dadosEstab_aliqGilrat_procAdmJudRat) em S-1005 ou de {procAdmJudFap}(1005_infoEstab_inclusao_dadosEstab_aliqGilrat_procAdmJudFap) em S-1005); N (nos demais casos)</xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="aliqRat" type="TS_aliqRat">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Retornar a alíquota RAT definida na legislação vigente.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Deve corresponder à alíquota definida na legislação vigente para o código CNAE informado em S-1005.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="fap" type="TS_fap" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Fator Acidentário de Prevenção - FAP estabelecido pelo órgão governamental competente.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]. Deve corresponder ao FAP estabelecido para a empresa pelo órgão governamental competente.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="aliqRatAjust" minOccurs="0">
+                                                                                <xs:simpleType>
+                                                                                    <xs:annotation>
+                                                                                        <xs:documentation>Alíquota de referência - RAT após ajuste pelo FAP.</xs:documentation>
+                                                                                        <xs:documentation>Validação: Informação obrigatória e exclusiva se {ideEmpregador/tpInsc}(5011_ideEmpregador_tpInsc) = [1]. Deve corresponder ao resultado da multiplicação dos campos {infoEstabRef/aliqRat}(./aliqRat) e {infoEstabRef/fap}(./fap).</xs:documentation>
+                                                                                    </xs:annotation>
+                                                                                    <xs:restriction base="xs:decimal">
+                                                                                        <xs:totalDigits value="5" />
+                                                                                        <xs:fractionDigits value="4" />
+                                                                                        <xs:minInclusive value="0.5" />
+                                                                                        <xs:maxInclusive value="6" />
+                                                                                    </xs:restriction>
+                                                                                </xs:simpleType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
                                                                 <xs:element name="infoComplObra" minOccurs="0">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações complementares relativas a obras</xs:documentation>
                                                                         <xs:documentation>DESCRICAO_COMPLETA:Informações complementares relativas a obras de construção civil.</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {indConstr}(5011_infoCS_infoContrib_infoPJ_indConstr) = [1] e {ideEstab/tpInsc}(../../tpInsc) = [4]); N (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: O (se houver informação de {infoObra}(1005_infoEstab_inclusao_dadosEstab_infoObra) em S-1005); N (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>

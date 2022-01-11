@@ -27,7 +27,7 @@
                         <xs:sequence>
                             <xs:element name="ideEvento" type="T_ideEvento_trab_jud" />
                             <xs:element name="ideEmpregador" type="T_ideEmpregador" />
-                            <xs:element name="ideVinculo" type="T_ideVinculo" />
+                            <xs:element name="ideVinculo" type="T_ideVinculo_baixa" />
                             <xs:element name="infoBaixa">
                                 <xs:annotation>
                                     <xs:documentation>Informações relativas à baixa judicial do vínculo.</xs:documentation>

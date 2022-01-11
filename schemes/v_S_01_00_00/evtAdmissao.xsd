@@ -21,7 +21,6 @@
                         <xs:documentation>REGRA:REGRA_EMPREGADO_DOMESTICO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
-                        <xs:documentation>REGRA:REGRA_EVENTO_IMPACTO_FOPAG</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVETRAB_VALIDA_OPCAO_FGTS</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXTEMP_DOMESTICO</xs:documentation>
@@ -286,7 +285,7 @@
                                                                     <xs:element name="nrProcTrab" minOccurs="0" type="TS_nrProcJud">
                                                                         <xs:annotation>
                                                                             <xs:documentation>Número que identifica o processo trabalhista, quando a admissão se der por decisão judicial.</xs:documentation>
-                                                                            <xs:documentation>Validação: Não informar se {indAdmissao}(./indAdmissao) = [1, 2]. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos.</xs:documentation>
+                                                                            <xs:documentation>Validação: Informação obrigatória e exclusiva se {indAdmissao}(./indAdmissao) = [3]. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
                                                                     <xs:element name="tpRegJor" type="TS_tpRegJor" />
