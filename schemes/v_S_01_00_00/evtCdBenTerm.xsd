@@ -46,7 +46,7 @@
                                                     <xs:documentation>Motivo da cessação do benefício.</xs:documentation>
                                                     <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 26.</xs:documentation>
                                                 </xs:annotation>
-                                                <xs:restriction base="xs:byte">
+                                                <xs:restriction base="xs:string">
                                                     <xs:pattern value="\d{2}" />
                                                 </xs:restriction>
                                             </xs:simpleType>

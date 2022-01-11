@@ -135,12 +135,14 @@
                                                                 <xs:element name="obsProc" minOccurs="0" type="TS_texto_999">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Observação sobre o procedimento diagnóstico realizado.</xs:documentation>
+                                                                        <xs:documentation>Validação: Preenchimento obrigatório se {procRealizado}(./procRealizado) = [0583, 0998, 0999, 1128, 1230, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 9999].</xs:documentation> 
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="ordExame">
+                                                                <xs:element name="ordExame" minOccurs="0">
                                                                     <xs:simpleType>
                                                                         <xs:annotation>
                                                                             <xs:documentation>Ordem do exame.</xs:documentation>
+                                                                            <xs:documentation>Validação: Preenchimento obrigatório se {procRealizado}(./procRealizado) = [0281].</xs:documentation>
                                                                         </xs:annotation>
                                                                         <xs:restriction base="xs:byte">
                                                                             <xs:enumeration value="1">

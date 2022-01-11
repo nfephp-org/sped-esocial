@@ -673,6 +673,22 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="T_ideVinculo_baixa">
+        <xs:annotation>
+            <xs:documentation>Informações de identificação do trabalhador e do vínculo.</xs:documentation>
+            <xs:documentation>CHAVE_GRUPO: {cpfTrab}, {matricula}</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cpfTrab" type="TS_cpfTrab" />
+            <xs:element name="matricula" type="TS_codigo_esocial">
+                <xs:annotation>
+                    <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
+                    <xs:documentation>Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2190 ou S-2200 do respectivo vínculo trabalhista.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
     <!-- Grupo {ideTrabSemVinculo} -->
 
     <xs:complexType name="T_ideTrabSemVinculo">
@@ -1993,9 +2009,9 @@
     <xs:simpleType name="TS_tpInsc_EstabLot">
         <xs:annotation>
             <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.</xs:documentation>
-            <xs:documentation>Validação: Se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [21], deve ser igual a [3, 4].</xs:documentation>
-            <xs:documentation>Se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [22], deve ser igual a [3, 4] e, se for igual a [3] e não se tratar de empregado doméstico, o CAEPF deve constar na Tabela S-1005 como sendo de segurado especial.</xs:documentation>
-            <xs:documentation>Nos demais casos ({classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 diferente de [21, 22]), deve ser igual a [1, 4].</xs:documentation>
+            <xs:documentation>Validação: Se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [21, 22], deve ser igual a [3, 4].</xs:documentation>
+            <xs:documentation>Se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [04], deve ser igual a [1].</xs:documentation>
+            <xs:documentation>Nos demais casos ({classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 diferente de [04, 21, 22]), deve ser igual a [1, 4].</xs:documentation>
         </xs:annotation>
         <xs:restriction base="TS_tpInsc_1_3_4" />
     </xs:simpleType>
@@ -3130,7 +3146,7 @@
     <!-- Campo {tpBeneficio} -->
     
     <xs:simpleType name="TS_tpBeneficio">
-        <xs:restriction base="xs:integer">
+        <xs:restriction base="xs:string">
             <xs:pattern value="\d{4}" />
         </xs:restriction>
     </xs:simpleType>
@@ -3412,7 +3428,7 @@
     <!-- Campo hora -->
 
     <xs:simpleType name="TS_hora">
-        <xs:restriction base="xs:integer">
+        <xs:restriction base="xs:string">
             <xs:pattern value="\d{4}" />
             <xs:pattern value="(([0-1][0-9]|2[0-3])[0-5][0-9])" />
         </xs:restriction>

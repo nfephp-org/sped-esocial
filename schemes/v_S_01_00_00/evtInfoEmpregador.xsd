@@ -34,7 +34,7 @@
                                         <xs:element name="nrInsc" type="TS_nrInsc_8_11_14">
                                             <xs:annotation>
                                                 <xs:documentation>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}(./tpInsc).</xs:documentation>
-                                                <xs:documentation>Validação: Se {tpInsc}(./tpInsc) for igual a [1], deve ser um número de CNPJ válido. Neste caso, deve ser informada apenas a raiz/base (8 posições), exceto se natureza jurídica do declarante for igual a 101-5, 104-0, 107-4, 110-4, 113-9, 116-3, 125-2, 128-7 ou 134-1, situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).</xs:documentation>
+                                                <xs:documentation>Validação: Se {tpInsc}(./tpInsc) for igual a [1], deve ser um número de CNPJ válido. Neste caso, deve ser informada apenas a raiz/base (8 posições), exceto se a natureza jurídica do declarante for igual a 101-5, 104-0, 107-4, 116-3 ou 134-1, situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).</xs:documentation>
                                                 <xs:documentation>Se {tpInsc}(./tpInsc) for igual a [2], deve ser um CPF válido.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
@@ -199,12 +199,12 @@
             <xs:element name="indOptRegEletron">
                 <xs:simpleType>
                     <xs:annotation>
-                        <xs:documentation>Indica se houve opção pelo registro eletrônico de empregados.</xs:documentation>
+                        <xs:documentation>Indica se houve opção pelo registro eletrônico de empregados. Caso o declarante seja órgão público sem empregados regidos pela CLT, informar [0].</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:byte">
                         <xs:enumeration value="0">
                             <xs:annotation>
-                                <xs:documentation>Não optou pelo registro eletrônico de empregados</xs:documentation>
+                                <xs:documentation>Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="1">

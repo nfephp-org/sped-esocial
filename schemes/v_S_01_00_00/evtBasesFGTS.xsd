@@ -44,6 +44,18 @@
                                                 <xs:documentation>Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
+                                        <xs:element name="classTrib" minOccurs="0">
+                                            <xs:simpleType>
+                                                <xs:annotation>
+                                                    <xs:documentation>Preencher com o código correspondente à classificação tributária do contribuinte, conforme Tabela 08.</xs:documentation>
+                                                    <xs:documentation>Evento de origem: S-1000.</xs:documentation>
+                                                    <xs:documentation>Validação: Retornar somente se for igual a [04, 22].</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="\d{2}" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
                                         <xs:element name="ideEstab" maxOccurs="unbounded">
                                             <xs:annotation>
                                                 <xs:documentation>Identificação do estabelecimento</xs:documentation>

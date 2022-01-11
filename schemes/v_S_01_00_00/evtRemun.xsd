@@ -196,7 +196,7 @@
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Grau de exposição a agentes nocivos</xs:documentation>
                                                                                     <xs:documentation>DESCRICAO_COMPLETA:Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</xs:documentation>
-                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX, 731, 734, 738]); N (nos demais casos)</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX, 731, 734, 738] ou se {codCateg}(1200_dmDev_codCateg) = [4XX] com {categOrig} em S-2300 = [1XX, 2XX, 3XX, 731, 734, 738]); N (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -217,7 +217,7 @@
                                                 <xs:documentation>c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho;</xs:documentation>
                                                 <xs:documentation>d) verbas de natureza salarial ou não salarial devidas após o desligamento.</xs:documentation>
                                                 <xs:documentation>OBS.: As informações previstas acima podem se referir ao período de apuração definido em {perApur}(1200_ideEvento_perApur) ou a períodos anteriores a {perApur}(1200_ideEvento_perApur).</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: N (se {indApuracao}(1200_ideEvento_indApuracao) = [2] ou {codCateg}(1200_dmDev_codCateg) for diferente de [1XX, 2XX, 3XX, 721, 722, 901]); O (se não existir o grupo {infoPerApur}(1200_dmDev_infoPerApur) e {indApuracao}(1200_ideEvento_indApuracao) = [1]); OC (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: N (se {indApuracao}(1200_ideEvento_indApuracao) = [2] ou {codCateg}(1200_dmDev_codCateg) for diferente de [1XX, 2XX, 3XX, 4XX, 721, 722, 901]); O (se não existir o grupo {infoPerApur}(1200_dmDev_infoPerApur) e {indApuracao}(1200_ideEvento_indApuracao) = [1]); OC (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -299,7 +299,7 @@
                                                                                                         <xs:annotation>
                                                                                                             <xs:documentation>Grau de exposição a agentes nocivos</xs:documentation>
                                                                                                             <xs:documentation>DESCRICAO_COMPLETA:Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</xs:documentation>
-                                                                                                            <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX]); N (nos demais casos)</xs:documentation>
+                                                                                                            <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX] ou se {codCateg}(1200_dmDev_codCateg) = [4XX] com {categOrig} em S-2300 = [1XX, 2XX, 3XX]); N (nos demais casos)</xs:documentation>
                                                                                                         </xs:annotation>
                                                                                                     </xs:element>
                                                                                                 </xs:sequence>
