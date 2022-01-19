@@ -526,7 +526,7 @@ trait TraitS2240
                     }
                 }
 
-                if ($ag->epcepi->epicompl) {
+                if (!empty($ag->epcepi->epicompl)) {
                     $epiCompl = $this->dom->createElement("epiCompl");
                     $this->dom->addChild(
                         $epiCompl,
