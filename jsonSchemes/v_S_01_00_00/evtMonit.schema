@@ -132,8 +132,8 @@
                 }  
             },
             "respmonit": {
-                "required": true,
-                "type": "object",
+                "required": false,
+                "type": ["object","null"],
                 "properties": {
                     "cpfresp": {
                         "required": false,

@@ -148,8 +148,8 @@ $jsonSchema = '{
                 }  
             },
             "respmonit": {
-                "required": true,
-                "type": "object",
+                "required": false,
+                "type": ["object","null"],
                 "properties": {
                     "cpfresp": {
                         "required": false,
@@ -212,7 +212,7 @@ $std->exmedocup->respmonit->cpfresp = '12345678901';
 $std->exmedocup->respmonit->nmresp= 'Fulano de Tal';
 $std->exmedocup->respmonit->nrcrm = '12345678';
 $std->exmedocup->respmonit->ufcrm = 'AC';
-    
+  
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
 if (empty($jsonSchemaObject)) {
