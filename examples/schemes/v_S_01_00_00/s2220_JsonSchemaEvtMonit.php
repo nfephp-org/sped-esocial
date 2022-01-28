@@ -59,93 +59,101 @@ $jsonSchema = '{
             }
         },
         "exmedocup": {
-            "tpexameocup": {
-                "required": true,
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 9
-            },
-            "aso": {
-                "dtaso": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "tpexameocup": {
                     "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9
                 },
-                "resaso": {
-                     "required": true,
-                     "type": "integer",
-                     "minumum": 1,
-                     "maximum": 2
-                },
-                "exame": {
-                    "required": true,
-                    "type": "array",
-                    "minItems": 1,
-                    "maxItems": 99,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "dtexm": {
-                                "required": true,
-                                "type": "string",
-                                "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                            },
-                            "procrealizado": {
-                                "required": false,
-                                "type": ["string","null"],
-                                "pattern": "^[0-9]{4}$"
-                            },
-                            "obsproc": {
-                                "required": false,
-                                "type": ["string","null"],
-                                "maxLength": 200
-                            },
-                            "ordexame": {
-                                "required": true,
-                                "type": "integer",
-                                "minimum": 1,
-                                "maximum": 2
-                            },
-                            "indresult": {
-                                "required": false,
-                                "type": ["integer","null"],
-                                "minimum": 1,
-                                "maximum": 4
-                            }
-                        }
-                    }
-                },
-                "medico": {
+                "aso": {
                     "required": true,
                     "type": "object",
                     "properties": {
-                        "cpfmed": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "pattern": "^[0-9]{11}$"
+                        "dtaso": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
                         },
-                        "nismed": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "pattern": "^[0-9]{11}$"
+                        "resaso": {
+                            "required": true,
+                            "type": "integer",
+                            "minumum": 1,
+                            "maximum": 2
                         },
-                        "nmmed": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "maxLength": 70
+                        "exame": {
+                            "required": true,
+                            "type": "array",
+                            "minItems": 1,
+                            "maxItems": 99,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "dtexm": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                    },
+                                    "procrealizado": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^[0-9]{4}$"
+                                    },
+                                    "obsproc": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "maxLength": 200
+                                    },
+                                    "ordexame": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 2
+                                    },
+                                    "indresult": {
+                                        "required": false,
+                                        "type": ["integer","null"],
+                                        "minimum": 1,
+                                        "maximum": 4
+                                    }
+                                }
+                            }
                         },
-                        "nrcrm": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "maxLength": 8
-                        },
-                        "ufcrm": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "maxLength": 2
+                        "medico": {
+                            "required": true,
+                            "type": "object",
+                            "properties": {
+                                "cpfmed": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{11}$"
+                                },
+                                "nismed": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{11}$"
+                                },
+                                "nmmed": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 70
+                                },
+                                "nrcrm": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 8
+                                },
+                                "ufcrm": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 2
+                                }
+                            }
                         }
-                    }
-                }  
+                    }    
+                }   
             },
             "respmonit": {
                 "required": false,
@@ -195,7 +203,7 @@ $std->exmedocup->aso->resaso = 1;
 
 $std->exmedocup->aso->exame[0] = new \stdClass();
 $std->exmedocup->aso->exame[0]->dtexm = '2017-08-18';
-$std->exmedocup->aso->exame[0]->procrealizado = 1010;
+$std->exmedocup->aso->exame[0]->procrealizado = '1010';
 $std->exmedocup->aso->exame[0]->obsproc = 'observação do exame';
 $std->exmedocup->aso->exame[0]->ordexame = 1;
 $std->exmedocup->aso->exame[0]->indresult = 1;
@@ -212,7 +220,7 @@ $std->exmedocup->respmonit->cpfresp = '12345678901';
 $std->exmedocup->respmonit->nmresp= 'Fulano de Tal';
 $std->exmedocup->respmonit->nrcrm = '12345678';
 $std->exmedocup->respmonit->ufcrm = 'AC';
-  
+
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
 if (empty($jsonSchemaObject)) {
@@ -238,9 +246,9 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
     $std,
-    $jsonSchemaObject,
-    Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $jsonSchemaObject
 );
+//Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 
 if ($jsonValidator->isValid()) {
     echo "The supplied JSON validates against the schema.<br/>";
