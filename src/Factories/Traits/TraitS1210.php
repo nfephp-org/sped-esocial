@@ -609,20 +609,8 @@ trait TraitS1210
         );
         $this->dom->addChild(
             $ideEvento,
-            "indApuracao",
-            $this->std->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
             "perApur",
             $this->std->perapur,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "indGuia",
-            1,
             true
         );
         $this->dom->addChild(
