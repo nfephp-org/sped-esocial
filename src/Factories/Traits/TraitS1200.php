@@ -566,12 +566,6 @@ trait TraitS1200
         );
         $this->dom->addChild(
             $ideEvento,
-            "indGuia",
-            1,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
             "tpAmb",
             $this->tpAmb,
             true

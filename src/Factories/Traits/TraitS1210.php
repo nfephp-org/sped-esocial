@@ -591,6 +591,96 @@ trait TraitS1210
      */
     protected function toNodeS100()
     {
-        throw new \Exception("TODO !!");
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "perApur",
+            $this->std->perapur,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        
+        $ideBenef = $this->dom->createElement("ideBenef");
+        $this->dom->addChild(
+            $ideBenef,
+            "cpfBenef",
+            $this->std->idebenef->cpfbenef,
+            true
+        );
+        
+        foreach ($this->std->idebenef->infopgto as $pgto) {
+            $infoPgto = $this->dom->createElement("infoPgto");
+            $this->dom->addChild(
+                $infoPgto,
+                "dtPgto",
+                $pgto->dtpgto,
+                true
+            );
+            $this->dom->addChild(
+                $infoPgto,
+                "tpPgto",
+                $pgto->tppgto,
+                true
+            );
+            $this->dom->addChild(
+                $infoPgto,
+                "perRef",
+                !empty($pgto->perref) ? $pgto->perref : null,
+                false
+            );
+            $this->dom->addChild(
+                $infoPgto,
+                "ideDmDev",
+                $pgto->idedmdev,
+                true
+            );
+            $this->dom->addChild(
+                $infoPgto,
+                "vrLiq",
+                $pgto->vrliq,
+                true
+            );
+
+            $ideBenef->appendChild($infoPgto);
+            $infoPgto = null;
+        }
+        $this->node->appendChild($ideBenef);
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
