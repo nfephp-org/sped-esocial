@@ -142,12 +142,14 @@ trait TraitS1299
             $this->std->perapur,
             true
         );
-        $this->dom->addChild(
-            $ideEvento,
-            "indGuia",
-            $this->std->indguia,
-            false
-        );
+        if (!empty($this->std->indguia)) {
+            $this->dom->addChild(
+                $ideEvento,
+                "indGuia",
+                $this->std->indguia,
+                false
+            );
+        }
         $this->dom->addChild(
             $ideEvento,
             "tpAmb",
@@ -194,12 +196,24 @@ trait TraitS1299
             $fech->evtinfocomplper,
             true
         );
-        $this->dom->addChild(
-            $infoFech,
-            "indExcApur1250",
-            ($fech->indexcapur1250 == 'S') ? $fech->indexcapur1250 : null, //aceita somente S
-            false
-        );
+        if (!empty($fech->indexcapur1250)) {
+            $this->dom->addChild(
+                $infoFech,
+                "indExcApur1250",
+                ($fech->indexcapur1250 == 'S') ? $fech->indexcapur1250 : null, //aceita somente S
+                false
+            );
+        }
+
+        if (!empty($fech->transdctfweb)) {
+            $this->dom->addChild(
+                $infoFech,
+                "transDCTFWeb",
+                ($fech->transdctfweb == 'S') ? $fech->transdctfweb : null, //aceita somente S
+                false
+            );
+        }
+
         $this->node->appendChild($infoFech);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
