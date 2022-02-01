@@ -806,12 +806,14 @@ trait TraitS1200
                                 $itemr->vrrubr,
                                 true
                             );
-                            $this->dom->addChild(
-                                $itensRemun,
-                                "indApurIR",
-                                !empty($itemr->indapurir) ? $itemr->indapurir : 0,
-                                false
-                            );
+                            if (!empty($itemr->indapurir) || (isset($itemr->indapurir) && $itemr->indapurir === 0)) {
+                                $this->dom->addChild(
+                                    $itensRemun,
+                                    "indApurIR",
+                                    !empty($itemr->indapurir) ? $itemr->indapurir : 0,
+                                    false
+                                );
+                            }
                             $remunPerApur->appendChild($itensRemun);
                         }
                         
