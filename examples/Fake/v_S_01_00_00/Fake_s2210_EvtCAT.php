@@ -34,9 +34,6 @@ $std = new \stdClass();
 $std->indretif = 1;
 $std->nrrecibo = '1.1.1234567890123456789';
 
-$std->tpinsc = 1;
-$std->nrinsc = '12345678901234';
-
 $std->cpftrab = '12345678901';
 $std->matricula = '9292kkk';
 $std->codcateg = '123';

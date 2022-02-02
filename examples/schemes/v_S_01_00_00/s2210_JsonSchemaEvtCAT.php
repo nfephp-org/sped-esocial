@@ -42,17 +42,6 @@ $jsonSchema = '{
             "type": ["string","null"],
             "$ref": "#/definitions/recibo"
         },
-        "tpinsc": {
-            "required": true,
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 2
-        },
-        "nrinsc": {
-            "required": true,
-            "type": "string",
-            "pattern": "^[0-9]{8,14}$"
-        },
         "cpftrab": {
             "required": true,
             "type": "string",
@@ -345,8 +334,8 @@ $std->sequencial = 1;
 $std->indretif = 1;
 $std->nrrecibo = '1.1.1234567890123456789';
 
-$std->tpinsc = 1;
-$std->nrinsc = '12345678901234';
+//$std->tpinsc = 1;
+//$std->nrinsc = '12345678901234';
 
 $std->cpftrab = '12345678901';
 $std->matricula = '9292kkk';
