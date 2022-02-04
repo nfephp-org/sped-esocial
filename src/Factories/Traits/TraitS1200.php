@@ -189,8 +189,8 @@ trait TraitS1200
             $infoInterm = $this->dom->createElement("infoInterm");
             $this->dom->addChild(
                 $infoInterm,
-                "dia",
-                $this->std->infointerm->dia,
+                "qtdDiasInterm",
+                $this->std->infointerm->qtddiasinterm,
                 true
             );
             $ide->appendChild($infoInterm);
