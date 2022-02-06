@@ -30,7 +30,7 @@
                             <xs:element name="exMedOcup">
                                 <xs:annotation>
                                     <xs:documentation>Informações do exame médico ocupacional.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {tpExameOcup}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {tpExameOcup*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -78,14 +78,14 @@
                                             <xs:annotation>
                                                 <xs:documentation>ASO</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA:Detalhamento das informações do Atestado de Saúde Ocupacional - ASO.</xs:documentation>
-                                                <xs:documentation>CHAVE_GRUPO: {dtAso}</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {dtAso*}</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
                                                     <xs:element name="dtAso" type="xs:date">
                                                         <xs:annotation>
                                                             <xs:documentation>Data de emissão do ASO.</xs:documentation>
-                                                            <xs:documentation>Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial. Se {tpExameOcup}(../tpExameOcup) for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="resAso" minOccurs="0">
@@ -118,7 +118,7 @@
                                                                 <xs:element name="dtExm" type="xs:date">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Data do exame realizado.</xs:documentation>
-                                                                        <xs:documentation>Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em {dtAso}(../dtAso).</xs:documentation>
+                                                                        <xs:documentation>Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em {dtAso}(../dtAso). Se {tpExameOcup}(../../tpExameOcup) for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="procRealizado">
@@ -135,12 +135,14 @@
                                                                 <xs:element name="obsProc" minOccurs="0" type="TS_texto_999">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Observação sobre o procedimento diagnóstico realizado.</xs:documentation>
+                                                                        <xs:documentation>Validação: Preenchimento obrigatório se {procRealizado}(./procRealizado) = [0583, 0998, 0999, 1128, 1230, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 9999].</xs:documentation> 
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="ordExame">
+                                                                <xs:element name="ordExame" minOccurs="0">
                                                                     <xs:simpleType>
                                                                         <xs:annotation>
                                                                             <xs:documentation>Ordem do exame.</xs:documentation>
+                                                                            <xs:documentation>Validação: Preenchimento obrigatório se {procRealizado}(./procRealizado) = [0281].</xs:documentation>
                                                                         </xs:annotation>
                                                                         <xs:restriction base="xs:byte">
                                                                             <xs:enumeration value="1">
