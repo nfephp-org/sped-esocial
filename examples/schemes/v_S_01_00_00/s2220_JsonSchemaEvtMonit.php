@@ -107,8 +107,8 @@ $jsonSchema = '{
                                         "maxLength": 200
                                     },
                                     "ordexame": {
-                                        "required": true,
-                                        "type": "integer",
+                                        "required": false,
+                                        "type": ["integer","null"],
                                         "minimum": 1,
                                         "maximum": 2
                                     },

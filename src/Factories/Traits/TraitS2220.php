@@ -103,8 +103,8 @@ trait TraitS2220
                     $this->dom->addChild(
                         $exame,
                         "ordExame",
-                        $exa->ordexame,
-                        true
+                        !empty($exa->ordexame) ? $exa->ordexame : null,
+                        false
                     );
                     $this->dom->addChild(
                         $exame,
@@ -249,8 +249,8 @@ trait TraitS2220
             $this->dom->addChild(
                 $exame,
                 "ordExame",
-                $exa->ordexame,
-                true
+                !empty($exa->ordexame) ? $exa->ordexame : null,
+                false
             );
             $this->dom->addChild(
                 $exame,
@@ -434,8 +434,8 @@ trait TraitS2220
             $this->dom->addChild(
                 $exame,
                 "ordExame",
-                $exa->ordexame,
-                true
+                !empty($exa->ordexame) ? $exa->ordexame : null,
+                false
             );
             $this->dom->addChild(
                 $exame,
