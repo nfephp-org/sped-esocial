@@ -77,12 +77,14 @@ trait TraitS2230
             $this->std->idevinculo->nistrab,
             true
         );
-        $this->dom->addChild(
-            $ideVinculo,
-            "matricula",
-            $this->std->idevinculo->matricula,
-            true
-        );
+        if (isset($this->std->idevinculo->matricula) && !empty($this->std->idevinculo->matricula)){
+            $this->dom->addChild(
+                $ideVinculo,
+                "matricula",
+                $this->std->idevinculo->matricula,
+                false
+            );
+        }
         $this->dom->addChild(
             $ideVinculo,
             "codCateg",
