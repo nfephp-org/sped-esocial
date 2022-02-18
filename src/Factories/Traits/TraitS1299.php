@@ -126,7 +126,7 @@ trait TraitS1299
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -151,7 +151,7 @@ trait TraitS1299
         $this->dom->addChild(
             $ideEvento,
             "indGuia",
-            $this->std->indguia,
+            !empty($this->std->indguia) ? $this->std->indguia : null,
             false
         );
         $this->dom->addChild(
