@@ -3,8 +3,8 @@
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -17,16 +17,11 @@
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{11}$"
-        },
-        "nistrab": {
-            "required": false,
-            "type": ["string","null"],
             "pattern": "^[0-9]{11}$"
         },
         "matricula": {
@@ -39,57 +34,45 @@
             "type": ["string","null"],
             "pattern": "^[0-9]{3}$"
         },
-        "dtcondicao": {
+        "dtinicondicao": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+            "$ref": "#/definitions/data"
         },
         "infoamb": {
             "required": true,
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 99,
-            "items": {
-                "required": true,
-                "type": "object",
-                "properties": {
-                    "codamb": {
-                        "required": true,
-                        "type": "string",
-                        "maxLength": 30
-                    }
-                }
-            }
-        },
-        "infoativ": {
-            "required": true,
             "type": "object",
             "properties": {
-                "dscativdes": {
+                "localamb": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "dscsetor": {
                     "required": true,
                     "type": "string",
-                    "maxLength": 999
+                    "maxLength": 100
                 },
-                "ativpericinsal": {
+                "tpinsc": {
                     "required": true,
-                    "type": "array",
-                    "minItems": 1,
-                    "maxItems": 99,
-                    "items": {
-                        "required": true,
-                        "type": "object",
-                        "properties": {
-                            "codativ": {
-                                "required": true,
-                                "type": "string",
-                                "pattern": "^([0-9]{2}.[0-9]{3})$"
-                            }
-                        }
-                    }    
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 4
+                },
+                "nrinsc": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{8,14}$"
                 }
             }
         },
-        "fatrisco": {
+        "dscativdes": {
+            "required": true,
+            "type": "string",
+            "maxLength": 999
+        },
+        "agnoc": {
             "required": true,
             "type": "array",
             "minItems": 1,
@@ -98,18 +81,18 @@
                 "required": true,
                 "type": "object",
                 "properties": {
-                    "codfatris": {
+                    "codagnoc": {
                         "required": true,
                         "type": "string",
                         "pattern": "^([0-9][0-9.]*[0-9])$"
                     },
-                    "dscfatrisc": {
+                    "dscagnoc": {
                         "required": false,
                         "type": ["string","null"],
-                        "pattern": "^.{2,999}$"
+                        "maxLength": 999
                     },
                     "tpaval": {
-                        "required": true,
+                        "required": false,
                         "type": "integer",
                         "minimum": 1,
                         "maximum": 2
@@ -126,27 +109,12 @@
                         "required": false,
                         "type": ["integer","null"],
                         "minimum": 1,
-                        "maximum": 47
+                        "maximum": 30
                     },
                     "tecmedicao": {
                         "required": false,
                         "type": ["string","null"],
                         "maxLength": 40
-                    },
-                    "insalubridade": {
-                        "required": false,
-                        "type": ["string","null"],
-                        "pattern": "^(S|N)$"
-                    },
-                    "periculosidade": {
-                        "required": false,
-                        "type": ["string","null"],
-                        "pattern": "^(S|N)$"
-                    },
-                    "aposentesp": {
-                        "required": false,
-                        "type": ["string","null"],
-                        "pattern": "^(S|N)$"
                     },
                     "epcepi": {
                         "required": true,
@@ -169,6 +137,47 @@
                                 "minimum": 0,
                                 "maximum": 2
                             },
+                            "eficepi": {
+                                "required": false,
+                                "type": ["string", "null"],
+                                "pattern": "^(S|N)$"
+                            },
+                            "epicompl": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "medprotecao": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "condfuncto": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "usoinint": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "przvalid": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "periodictroca": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "higienizacao": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    }
+                                }
+                            },
                             "epi": {
                                 "required": false,
                                 "type": ["array","null"],
@@ -178,50 +187,15 @@
                                     "required": true,
                                     "type": "object",
                                     "properties": {
-                                        "caepi": {
+                                        "docaval": {
                                             "required": false,
                                             "type": ["string","null"],
-                                            "maxLength": 20
+                                            "maxLength": 255
                                         },
                                         "dscepi": {
                                             "required": false,
                                             "type": ["string","null"],
                                             "maxLength": 999
-                                        },
-                                        "eficepi": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "medprotecao": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "condfuncto": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "usoinint": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "przvalid": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "periodictroca": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
-                                        },
-                                        "higienizacao": {
-                                            "required": true,
-                                            "type": "string",
-                                            "pattern": "^(S|N)$"
                                         }
                                     }
                                 }
@@ -244,16 +218,6 @@
                         "required": true,
                         "type": "string",
                         "pattern": "^[0-9]{11}$"
-                    },
-                    "nisresp": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^[0-9]{11}$"
-                    },
-                    "nmresp": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "^.{1,70}$"
                     },
                     "ideoc": {
                         "required": true,
@@ -279,21 +243,10 @@
                 }
             }    
         },
-        "obs": {
+        "obscompl": {
             "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "meterg": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^.{2,999}$"
-                },
-                "obscompl": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^.{2,999}$"
-                }
-            }
+            "type": ["string","null"],
+            "pattern": "^.{2,999}$"
         }
     }    
 }
