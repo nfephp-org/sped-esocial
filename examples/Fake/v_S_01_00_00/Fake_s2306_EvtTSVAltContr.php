@@ -68,7 +68,6 @@ $std->estagiario->natestagio = 'O';
 $std->estagiario->nivestagio = 1;
 $std->estagiario->areaatuacao = 'ATUACAO';
 $std->estagiario->nrapol = '12345681';
-$std->estagiario->vlrbolsa = 1500;
 $std->estagiario->dtprevterm = '2017-08-25';
 
 $std->estagiario->instensino = new \stdClass();
