@@ -388,8 +388,8 @@ trait TraitS2399
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "codCateg",
-            $this->std->codcateg,
-            true
+            !empty($this->std->codcateg) ? $this->std->codcateg : null,
+            false
         );
         $this->node->appendChild($ideTrabSemVinculo);
         

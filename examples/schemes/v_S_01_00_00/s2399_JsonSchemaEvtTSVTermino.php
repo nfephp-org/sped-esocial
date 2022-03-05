@@ -54,8 +54,8 @@ $jsonSchema = '{
             "pattern": "^.{1,30}$"
         },
         "codcateg": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 100,
             "maximum": 999
         },
