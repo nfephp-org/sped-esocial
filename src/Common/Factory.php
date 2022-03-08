@@ -341,7 +341,7 @@ abstract class Factory
     {
         $method_name = $this->method_name;
         if (!method_exists($this, $method_name)) {
-            throw new Exception("Erro interno método {$method_name} não localizado.");
+            throw new \Exception("Erro interno método {$method_name} não localizado.");
         }
         return $this->$method_name();
     }
