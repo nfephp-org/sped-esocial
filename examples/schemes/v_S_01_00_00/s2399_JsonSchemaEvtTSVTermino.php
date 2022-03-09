@@ -298,7 +298,6 @@ $std->percaliment = 10.00;
 $std->vralim = 600.23;
 $std->nrproctrab = "12345678901234567890";
 $std->novocpf = "12345678901";
-
     
 $std->verbasresc = new \stdClass();
 $std->verbasresc->dmdev[1] = new \stdClass();
