@@ -315,18 +315,18 @@ trait TraitS2230
                 ! empty($this->std->iniafastamento->observacao) ? $this->std->iniafastamento->observacao : null,
                 false
             );
-            if (! empty($this->std->peraquis)) {
+            if (! empty($this->std->iniafastamento->peraquis)) {
                 $perAquis = $this->dom->createElement("perAquis");
                 $this->dom->addChild(
                     $perAquis,
                     "dtInicio",
-                    $this->std->peraquis->dtinicio,
+                    $this->std->iniafastamento->peraquis->dtinicio,
                     true
                 );
                 $this->dom->addChild(
                     $perAquis,
                     "dtFim",
-                    $this->std->peraquis->dtfim,
+                    $this->std->iniafastamento->peraquis->dtfim,
                     true
                 );
                 $iniAfastamento->appendChild($perAquis);
