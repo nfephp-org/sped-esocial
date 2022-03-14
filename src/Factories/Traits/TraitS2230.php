@@ -315,66 +315,66 @@ trait TraitS2230
                 ! empty($this->std->iniafastamento->observacao) ? $this->std->iniafastamento->observacao : null,
                 false
             );
-            if (! empty($this->std->peraquis)) {
+            if (! empty($this->std->iniafastamento->peraquis)) {
                 $perAquis = $this->dom->createElement("perAquis");
                 $this->dom->addChild(
                     $perAquis,
                     "dtInicio",
-                    $this->std->peraquis->dtinicio,
+                    $this->std->iniafastamento->peraquis->dtinicio,
                     true
                 );
                 $this->dom->addChild(
                     $perAquis,
                     "dtFim",
-                    $this->std->peraquis->dtfim,
+                    $this->std->iniafastamento->peraquis->dtfim,
                     true
                 );
                 $iniAfastamento->appendChild($perAquis);
             }
-            if (! empty($this->std->infocessao)) {
+            if (! empty($this->std->iniafastamento->infocessao)) {
                 $infoCessao = $this->dom->createElement("infoCessao");
                 $this->dom->addChild(
                     $infoCessao,
                     "cnpjCess",
-                    $this->std->infocessao->cnpjcess,
+                    $this->std->iniafastamento->infocessao->cnpjcess,
                     true
                 );
                 $this->dom->addChild(
                     $infoCessao,
                     "infOnus",
-                    $this->std->infocessao->infonus,
+                    $this->std->iniafastamento->infocessao->infonus,
                     true
                 );
                 $iniAfastamento->appendChild($infoCessao);
             }
-            if (! empty($this->std->infomandsind)) {
+            if (! empty($this->std->iniafastamento->infomandsind)) {
                 $infoMandSind = $this->dom->createElement("infoMandSind");
                 $this->dom->addChild(
                     $infoMandSind,
                     "cnpjSind",
-                    $this->std->infomandsind->cnpjsind,
+                    $this->std->iniafastamento->infomandsind->cnpjsind,
                     true
                 );
                 $this->dom->addChild(
                     $infoMandSind,
                     "infOnusRemun",
-                    $this->std->infomandsind->infonusremun,
+                    $this->std->iniafastamento->infomandsind->infonusremun,
                     true
                 );
                 $iniAfastamento->appendChild($infoMandSind);
             }
-            if (! empty($this->std->infomandelet)) {
+            if (! empty($this->std->iniafastamento->infomandelet)) {
                 $infoMandElet = $this->dom->createElement("infoMandElet");
                 $this->dom->addChild(
                     $infoMandElet,
                     "cnpjMandElet",
-                    $this->std->infomandelet->cnpjmandelet,
+                    $this->std->iniafastamento->infomandelet->cnpjmandelet,
                     true
                 );
                 $this->dom->addChild(
                     $infoMandElet,
                     "indRemunCargo",
-                    $this->std->infomandelet->indremuncargo,
+                    $this->std->iniafastamento->infomandelet->indremuncargo,
                     true
                 );
                 $iniAfastamento->appendChild($infoMandElet);
