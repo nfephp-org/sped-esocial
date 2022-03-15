@@ -1766,7 +1766,7 @@ trait TraitS2200
 
         $this->dom->addChild(
             $contrato,
-            "cboCargo",
+            "CBOCargo",
             !empty($this->std->vinculo->infocontrato->cbocargo) ? $this->std->vinculo->infocontrato->cbocargo : null,
             false
         );
