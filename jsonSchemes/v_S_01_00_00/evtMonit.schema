@@ -85,7 +85,7 @@
                                 "maxLength": 200
                             },
                             "ordexame": {
-                                "required": true,
+                                "required": false,
                                 "type": "integer",
                                 "minimum": 1,
                                 "maximum": 2
@@ -129,7 +129,7 @@
                             "maxLength": 2
                         }
                     }
-                }  
+                }
             },
             "respmonit": {
                 "required": true,
