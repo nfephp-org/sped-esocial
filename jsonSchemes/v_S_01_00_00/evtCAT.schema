@@ -19,6 +19,17 @@
             "type": ["string","null"],
             "$ref": "#/definitions/recibo"
         },
+        "tpinsc": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrinsc": {
+            "required": false,
+            "type": "string",
+            "pattern": "^[0-9]{8,14}$"
+        },
         "cpftrab": {
             "required": true,
             "type": "string",

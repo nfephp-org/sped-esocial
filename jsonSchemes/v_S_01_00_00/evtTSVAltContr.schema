@@ -34,8 +34,8 @@
                     "pattern": "^.{1,30}$"
                 },
                 "codcateg": {
-                    "required": false,
-                    "type": ["string","null"],
+                    "required": true,
+                    "type": "string",
                     "pattern": "^[0-9]{3}$"
                 }
             }
