@@ -1195,7 +1195,7 @@ trait TraitS2200
         //$this->xml = $this->dom->saveXML($this->eSocial);;
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -1804,7 +1804,7 @@ trait TraitS2200
             $std->codcateg,
             true
         );
-        if ($std->remuneracao) {
+        if (isset($std->remuneracao)) {
             $rem = $std->remuneracao;
             $remuneracao = $this->dom->createElement("remuneracao");
             $this->dom->addChild(
@@ -1827,7 +1827,7 @@ trait TraitS2200
             );
             $contrato->appendChild($remuneracao);
         }
-        if ($std->duracao) {
+        if (isset($std->duracao)) {
             $dur = $std->duracao;
             $duracao = $this->dom->createElement("duracao");
             $this->dom->addChild(
