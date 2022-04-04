@@ -397,20 +397,20 @@ trait TraitS2230
                 false
             );
 
-            if (isset($this->std->infoafastamento->iniafastamento->perAquis)) {
+            if (isset($this->std->infoafastamento->iniafastamento->peraquis)) {
                 $perAquis = $this->dom->createElement("perAquis");
 
                 $this->dom->addChild(
                     $perAquis,
                     "dtInicio",
-                    $this->std->infoafastamento->iniafastamento->perAquis->dtInicio,
+                    $this->std->infoafastamento->iniafastamento->peraquis->dtinicio,
                     true
                 );
 
                 $this->dom->addChild(
                     $perAquis,
                     "dtFim",
-                    !empty($this->std->infoafastamento->iniafastamento->perAquis) ? $$this->std->infoafastamento->iniafastamento->perAquis : null,
+                    !empty($this->std->infoafastamento->iniafastamento->peraquis->dtfim) ? $this->std->infoafastamento->iniafastamento->peraquis->dtfim : null,
                     false
                 );
 
