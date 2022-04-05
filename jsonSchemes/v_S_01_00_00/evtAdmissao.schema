@@ -3,8 +3,8 @@
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -17,14 +17,9 @@
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "maxLength": 40
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
-            "required": true,
-            "type": "string",
-            "pattern": "^[0-9]{11}"
-        },
-        "nistrab": {
             "required": true,
             "type": "string",
             "pattern": "^[0-9]{11}"
@@ -32,12 +27,13 @@
         "nmtrab": {
             "required": true,
             "type": "string",
+            "minLength": 2,
             "maxLength": 70
         },
         "sexo": {
             "required": true,
             "type": "string",
-            "pattern": "M|F"
+            "pattern": "^(M|F)$"
         },
         "racacor": {
             "required": true,
@@ -58,11 +54,6 @@
             "maxLength": 2,
             "pattern": "^(01|02|03|04|05|06|07|08|09|10|11|12)$"
         },
-        "indpriempr": {
-            "required": true,
-            "type": "string",
-            "pattern": "S|N"
-        },
         "nmsoc": {
             "required": false,
             "type": ["string","null"],
@@ -71,189 +62,17 @@
         "dtnascto": {
             "required": true,
             "type": "string",
-            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-        },
-        "codmunic": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 7
-        },
-        "uf": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 2
+            "$ref": "#/definitions/data"
         },
         "paisnascto": {
             "required": true,
             "type": "string",
-            "minLength": 3,
-            "maxLength": 3,
             "pattern": "^[0-9]{3}$"
         },
         "paisnac": {
             "required": true,
             "type": "string",
-            "minLength": 3,
-            "maxLength": 3,
             "pattern": "^[0-9]{3}$"
-        },
-        "nmmae": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 70
-        },
-        "nmpai": {
-            "required": false,
-            "type": ["string","null"],
-            "maxLength": 70
-        },
-        "ctps": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrctps": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 11
-                },
-                "seriectps": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 5
-                },
-                "ufctps": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 2
-                }
-            }
-        },
-        "nrric": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrric": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "rg": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrrg": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 2,
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "rne": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrrne": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "oc": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nroc": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 14
-                },
-                "orgaoemissor": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 20
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "dtvalid": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                }
-            }
-        },
-        "cnh": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "nrregcnh": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 12
-                },
-                "dtexped": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "ufcnh": {
-                    "required": true,
-                    "type": "string",
-                    "maxLength": 2
-                },
-                "dtvalid": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "dtprihab": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-               "categoriacnh": {
-                    "required": true,
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 2
-                }
-            }
         },
         "endereco": {
             "required": true,
@@ -264,14 +83,14 @@
                     "type": ["object","null"],
                     "properties": {
                         "tplograd": {
-                            "required": true,
-                            "type": "string",
+                            "required": false,
+                            "type": ["string", "null"],
                             "maxLength": 4
                         },
                         "dsclograd": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 80
+                            "maxLength": 100
                         },
                         "nrlograd": {
                             "required": true,
@@ -286,22 +105,22 @@
                         "bairro": {
                             "required": false,
                             "type": ["string","null"],
-                            "maxLength": 60
+                            "maxLength": 90
                         },
                         "cep": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 8
+                            "pattern": "^[0-9]{8}$"
                         },
                         "codmunic": {
                             "required": true,
-                            "type": "integer",
-                            "maxLength": 7
+                            "type": "string",
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 2
+                            "$ref": "#/definitions/siglauf"
                         }
                     }
                 },
@@ -312,66 +131,63 @@
                         "paisresid": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 3
+                            "pattern": "^[0-9]{3}$"
                         },
                         "dsclograd": {
                             "required": true,
                             "type": "string",
-                            "maxLength": 80
+                            "minLength": 1,
+                            "maxLength": 100
                         },
                         "nrlograd": {
                             "required": true,
                             "type": "string",
+                            "minLength": 1,
                             "maxLength": 10
                         },
                         "complemento": {
                             "required": false,
                             "type": ["string","null"],
+                            "minLength": 1,
                             "maxLength": 30
                         },
                         "bairro": {
                             "required": false,
                             "type": ["string","null"],
-                            "maxLength": 60
+                            "minLength": 1,
+                            "maxLength": 90
                         },
                         "nmcid": {
                             "required": true,
                             "type": "string",
+                            "minLength": 2,
                             "maxLength": 50
                         },
                         "codpostal": {
-                            "required": true,
-                            "type": "string",
+                            "required": false,
+                            "type": ["string","null"],
+                            "minLength": 4,
                             "maxLength": 12
                         }
                     }
                 }
             }
         },
-        "trabestrangeiro": {
+        "trabimig": {
             "required": false,
             "type": "object",
             "properties": {
-                "dtchegada": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                },
-                "classtrabestrang": {
+                "tmpresid": {
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 12
+                    "maximum": 2
                 },
-                "casadobr": {
+                "conding": {
                     "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
-                },
-                "filhosbr": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 7
                 }
             }
         },
@@ -382,41 +198,41 @@
                 "deffisica": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defvisual": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defauditiva": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defmental": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "defintelectual": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "reabreadap": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "infocota": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S|N)$"
                 },
                 "observacao": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 255
                 }
             }
@@ -432,50 +248,44 @@
                     "tpdep": {
                         "required": true,
                         "type": "string",
-                        "maxLength": 2
+                        "pattern": "^0[1-7]{1}|09|1[0-2]{1}|99$"
                     },
                     "nmdep": {
                         "required": true,
                         "type": "string",
+                        "minLength": 2,
                         "maxLength": 70
                     },
                     "dtnascto": {
                         "required": true,
                         "type": "string",
-                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                        "$ref": "#/definitions/data"
                     },
                     "cpfdep": {
                         "required": false,
                         "type": ["string","null"],
-                        "maxLength": 11,
-                        "minLength": 11
-                    },
-                    "depirrf": {
-                        "required": true,
-                        "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^[0-9]{11}$"
                     },
                     "depsf": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
+                    },
+                    "sexodep": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^(M|F)$"
+                    },
+                    "depsf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
                     },
                     "inctrab": {
                         "required": true,
                         "type": "string",
-                        "pattern": "S|N"
+                        "pattern": "^(S|N)$"
                     }
-                }
-            }
-        },
-        "aposentadoria": {
-            "required": false,
-            "type": ["object","null"],
-            "properties": {
-                "trabaposent": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "S|N"
                 }
             }
         },
@@ -486,21 +296,12 @@
                 "foneprinc": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 13
-                },
-                "fonealternat": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "maxLength": 13
+                    "pattern": "^[0-9]{10,13}$"
                 },
                 "emailprinc": {
                     "required": false,
                     "type": ["string","null"],
-                    "maxLength": 60
-                },
-                "emailalternat": {
-                    "required": false,
-                    "type": ["string","null"],
+                    "minLength": 6,
                     "maxLength": 60
                 }
             }
@@ -512,6 +313,7 @@
                 "matricula": {
                     "required": true,
                     "type": "string",
+                    "minLength": 1,
                     "maxLength": 30
                 },
                 "tpregtrab": {
@@ -526,15 +328,10 @@
                     "minimum": 1,
                     "maximum": 3
                 },
-                "nrrecinfprelim": {
-                    "required": false,
-                    "type": ["string","null"],
-                    "maxLength": 40
-                },
                 "cadini": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "infoceletista": {
                     "required": false,
@@ -543,7 +340,7 @@
                         "dtadm": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "tpadmissao": {
                             "required": true,
@@ -556,6 +353,11 @@
                             "type": "integer",
                             "minimum": 1,
                             "maximum": 3
+                        },
+                        "nrproctrab": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "maxLength": 20
                         },
                         "tpregjor": {
                             "required": true,
@@ -580,16 +382,10 @@
                             "type": "string",
                             "pattern": "^[0-9]{14}$"
                         },
-                        "opcfgts": {
-                            "required": true,
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 2
-                        },
                         "dtopcfgts": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "trabtemporario": {
                             "required": false,
@@ -604,15 +400,10 @@
                                 "justcontr": {
                                     "required": true,
                                     "type": "string",
+                                    "minLength": 1,
                                     "maxLength": 999
                                 },
-                                "tpinclcontr": {
-                                    "required": true,
-                                    "type": "integer",
-                                    "minimum": 1,
-                                    "maximum": 3
-                                },
-                                "idetomadorserv": {
+                                "ideestabvinc": {
                                     "required": true,
                                     "type": "object",
                                     "properties": {
@@ -625,24 +416,7 @@
                                         "nrinsc": {
                                             "required": true,
                                             "type": "string",
-                                            "pattern": "^[0-9]{11,14}$"
-                                        },
-                                        "ideestabvinc": {
-                                            "required": false,
-                                            "type": "object",
-                                            "properties": {
-                                                "tpinsc": {
-                                                    "required": true,
-                                                    "type": "integer",
-                                                    "minimum": 1,
-                                                    "maximum": 2
-                                                },
-                                                "nrinsc": {
-                                                    "required": true,
-                                                    "type": "string",
-                                                    "pattern": "^[0-9]{11,14}$"
-                                                }
-                                            }
+                                            "pattern": "^([0-9]{11}|[0-9]{14})$"
                                         }
                                     }
                                 },
@@ -677,7 +451,7 @@
                                 "nrinsc": {
                                     "required": true,
                                     "type": "string",
-                                    "pattern": "^[0-9]{11,14}$"
+                                    "pattern": "^([0-9]{11}|[0-9]{14})$"
                                 }
                             }
                         }
@@ -687,49 +461,37 @@
                     "required": false,
                     "type": "object",
                     "properties": {
-                        "indprovim": {
-                            "required": true,
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 2
-                        },
                         "tpprov": {
                             "required": true,
                             "type": "integer",
                             "minimum": 1,
                             "maximum": 99
                         },
-                        "dtnomeacao": {
-                            "required": true,
-                            "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                        },
-                        "dtposse": {
-                            "required": true,
-                            "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                        },
                         "dtexercicio": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "tpplanrp": {
                             "required": false,
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 2
+                            "type": ["integer","null"],
+                            "minimum": 0,
+                            "maximum": 3
                         },
-                        "infodecjud": {
+                        "indtetorgps": {
                             "required": false,
-                            "type": ["object","null"],
-                            "properties": {
-                                "nrprocjud": {
-                                    "required": false,
-                                    "type": "string",
-                                    "pattern": "^.{20}$"
-                                }
-                            }
+                            "type": ["string", "null"],
+                            "pattern": "^(S|N)$"
+                        },
+                        "indabonoperm": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "pattern": "^(S|N)$"
+                        },
+                        "dtiniabono": {
+                            "required": false,
+                            "type": ["string", "null"],
+                            "$ref": "#/definitions/data"
                         }
                     }    
                 },
@@ -737,15 +499,35 @@
                     "required": true,
                     "type": "object",
                     "properties": {
-                        "codcargo": {
+                        "nmcargo": {
                               "required": false,
                               "type": ["string","null"],
-                              "maxLength": 30
+                              "maxLength": 100
                         },
-                        "codfuncao": {
+                        "cbocargo": {
                               "required": false,
                               "type": ["string","null"],
-                              "maxLength": 30
+                              "pattern": "^[0-9]{6}$"
+                        },
+                        "dtingrcargo": {
+                            "required": false,
+                            "type": "string",
+                            "$ref": "#/definitions/data"
+                        },
+                        "nmfuncao": {
+                              "required": false,
+                              "type": ["string","null"],
+                              "maxLength": 100
+                        },
+                        "cbofuncao": {
+                              "required": false,
+                              "type": ["string","null"],
+                              "pattern": "^[0-9]{6}$"
+                        },
+                        "acumcargo": {
+                              "required": false,
+                              "type": ["string","null"],
+                              "pattern": "^(S|N)$"
                         },
                         "codcateg": {
                               "required": true,
@@ -753,51 +535,53 @@
                               "minimum": 101,
                               "maximum": 905
                         },
-                        "codcarreira": {
-                              "required": false,
-                              "type": ["string","null"],
-                              "maxLength": 30
-                        },
-                        "dtingrcarr": {
+                        "remuneracao": {
                             "required": false,
-                            "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                        },
-                        "vrsalfx": {
-                            "required": true,
-                            "type": "number"
-                        },
-                        "undsalfixo": {
-                            "required": true,
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 7
-                        },
-                        "dscsalvar": {
+                            "type": ["object","null"],
+                            "properties": {
+                                "vrsalfx": {
+                                    "required": true,
+                                    "type": "number"
+                                },
+                                "undsalfixo": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 7
+                                },
+                                "dscsalvar": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "maxLength": 255
+                                }
+                            }
+                        },    
+                        "duracao": {
                             "required": false,
-                            "type": ["string","null"],
-                            "maxLength": 255
-                        },
-                        "tpcontr": {
-                            "required": true,
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 2
-                        },
-                        "dtterm": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
-                        },
-                        "clauassec": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "pattern": "^(S|N)$"
-                        },
-                        "objdet": {
-                            "required": false,
-                            "type": ["string","null"],
-                            "pattern": "^.{1,255}$"
+                            "type": ["object","null"],
+                            "properties": {
+                                "tpcontr": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 2
+                                },
+                                "dtterm": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "$ref": "#/definitions/data"
+                                },
+                                "clauassec": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^(S|N)$"
+                                },
+                                "objdet": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,255}$"
+                                }
+                            }
                         },
                         "localtrabgeral": {
                             "required": false,
@@ -805,35 +589,35 @@
                             "properties": {
                                 "tpinsc": {
                                     "required": true,
-                                    "type": "integer",
-                                    "minimum": 1,
-                                    "maximum": 2
+                                    "type": "string",
+                                    "pattern": "^(1|3|4)$"
                                 },
                                 "nrinsc": {
                                     "required": true,
                                     "type": "string",
-                                    "pattern": "^[0-9]{11,14}$"
+                                    "pattern": "^([0-9]{11}|[0-9]{14})$"
                                 },
                                 "desccomp": {
                                       "required": false,
                                       "type": ["string","null"],
+                                      "minLength": 1,
                                       "maxLength": 80
                                 }
                             }
                         },
-                        "localtrabdom": {
+                        "localtempdom": {
                             "required": false,
                             "type": ["object","null"],
                             "properties": {
                                 "tplograd": {
-                                    "required": true,
-                                    "type": "string",
+                                    "required": false,
+                                    "type": ["string", "null"],
                                     "maxLength": 4
                                 },
                                 "dsclograd": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 80
+                                    "maxLength": 100
                                 },
                                 "nrlograd": {
                                     "required": true,
@@ -848,7 +632,7 @@
                                 "bairro": {
                                     "required": false,
                                     "type": ["string","null"],
-                                    "maxLength": 60
+                                    "maxLength": 90
                                 },
                                 "cep": {
                                     "required": true,
@@ -863,7 +647,7 @@
                                 "uf": {
                                     "required": true,
                                     "type": "string",
-                                    "maxLength": 2
+                                    "$ref": "#/definitions/siglauf"
                                 }
                             }
                         },
@@ -880,13 +664,8 @@
                                 "tpjornada": {
                                     "required": true,
                                     "type": "integer",
-                                    "minimum": 1,
+                                    "minimum": 2,
                                     "maximum": 9
-                                },
-                                "dsctpjorn": {
-                                      "required": false,
-                                      "type": "string",
-                                      "maxLength": 100
                                 },
                                 "tmpparc": {
                                     "required": true,
@@ -894,43 +673,16 @@
                                     "minimum": 0,
                                     "maximum": 3
                                 },
-                                "horario": {
+                                "hornoturno": {
                                     "required": false,
-                                    "type": ["array","null"],
-                                    "minItems": 0,
-                                    "maxItems": 99,
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "dia": {
-                                                "required": true,
-                                                "type": "integer",
-                                                "minimum": 1,
-                                                "maximum": 8
-                                            },
-                                            "codhorcontrat": {
-                                                "required": true,
-                                                "type": "string",
-                                                "maxLength": 30
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "filiacaosindical": {
-                            "required": false,
-                            "type": ["array","null"],
-                            "minItems": 0,
-                            "maxItems": 1,
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "cnpjsindtrab": {
-                                        "required": true,
-                                        "type": "string",
-                                        "pattern": "^[0-9]{14}$"
-                                    }
+                                    "type": ["string", "null"],
+                                    "pattern": "^(S|N)$"
+                                },
+                                "dscjorn": {
+                                    "required": true,
+                                    "type": ["string", "null"],
+                                    "minLength": 1,
+                                    "maxLength": 999
                                 }
                             }
                         },
@@ -956,7 +708,25 @@
                                     "observacao": {
                                         "required": true,
                                         "type": "string",
+                                        "minLength": 1,
                                         "maxLength": 255
+                                    }
+                                }    
+                            }
+                        },
+                        "treicap": {
+                            "required": false,
+                            "type": ["array","null"],
+                            "minItems": 0,
+                            "maxItems": 99,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "codtreicap": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 9999
                                     }
                                 }    
                             }
@@ -967,30 +737,31 @@
                     "required": false,
                     "type": ["object","null"],
                     "properties": {
-                        "tpinscant": {
-                            "required": true,
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 5
-                        },
-                        "cnpjempregant": {
+                        "tpinsc": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{14}$"
+                            "pattern": "^(1|2|5|6)$"
+                        },
+                        "nrinsc": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^([0-9]{8}|[0-9]{11}|[0-9]{12}|[0-9]{14})$"
                         },
                         "matricant": {
                               "required": false,
                               "type": ["string","null"],
+                              "minLength": 1,
                               "maxLength": 30
                         },
                         "dttransf": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "observacao": {
                             "required": false,
                             "type": ["string","null"],
+                            "minLength": 1,
                             "maxLength": 255
                         }
                     }
@@ -1007,12 +778,40 @@
                         "matricant": {
                               "required": false,
                               "type": ["string","null"],
+                              "minLength": 1,
                               "maxLength": 30
                         },
                         "dttransf": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
+                        }
+                    }
+                },
+                "mudancacpf": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "cpfant": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{11}$"
+                        },
+                        "matricant": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "minLength": 1,
+                            "maxLength": 30
+                        },
+                        "dtaltcpf": {
+                            "required": true,
+                            "type": "string",
+                            "$ref": "#/definitions/data"
+                        },
+                        "observacao": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 255
                         }
                     }
                 },
@@ -1023,7 +822,7 @@
                         "dtiniafast": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
                         },
                         "codmotafast": {
                              "required": true,
@@ -1039,7 +838,18 @@
                         "dtdeslig": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                            "$ref": "#/definitions/data"
+                        }
+                    }
+                },
+                "cessao": {
+                    "required": false,
+                    "type": ["object","null"],
+                    "properties": {
+                        "dtinicessao": {
+                            "required": true,
+                            "type": "string",
+                            "$ref": "#/definitions/data"
                         }
                     }
                 }
