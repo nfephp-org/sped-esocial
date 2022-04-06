@@ -671,8 +671,8 @@ $jsonSchema = '{
                             "type": ["object","null"],
                             "properties": {
                                 "qtdhrssem": {
-                                    "required": true,
-                                    "type": "number",
+                                    "required": false,
+                                    "type": ["number", "null"],
                                     "minimum": 0.1,
                                     "maximum": 99.99
                                 },

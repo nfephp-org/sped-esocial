@@ -1941,12 +1941,14 @@ trait TraitS2200
         if (isset($std->horcontratual)) {
             $hc = $std->horcontratual;
             $horContratual = $this->dom->createElement("horContratual");
-            $this->dom->addChild(
-                $horContratual,
-                "qtdHrsSem",
-                $hc->qtdhrssem,
-                true
-            );
+            if (! empty($hc->qtdhrssem)) {
+                $this->dom->addChild(
+                    $horContratual,
+                    "qtdHrsSem",
+                    $hc->qtdhrssem,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $horContratual,
                 "tpJornada",
