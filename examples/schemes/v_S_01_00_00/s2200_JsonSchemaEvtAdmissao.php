@@ -1012,7 +1012,7 @@ $std->vinculo->infocontrato->localtempdom->codmunic = '1234567';
 $std->vinculo->infocontrato->localtempdom->uf = 'AC';
 
 $std->vinculo->infocontrato->horcontratual = new \stdClass();
-$std->vinculo->infocontrato->horcontratual->qtdhrssem = 99.50;
+$std->vinculo->infocontrato->horcontratual->qtdhrssem = 99.50; //Opcional
 $std->vinculo->infocontrato->horcontratual->tpjornada = 9;
 $std->vinculo->infocontrato->horcontratual->dsctpjorn = 'kjsksjsjs';
 $std->vinculo->infocontrato->horcontratual->tmpparc = 0;
