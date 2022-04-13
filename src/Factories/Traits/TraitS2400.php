@@ -394,59 +394,59 @@ trait TraitS2400
         $this->dom->addChild(
             $beneficiario,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $this->std->beneficiario->cpfbenef,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "nmBenefic",
-            $this->std->nmbenefic,
+            $this->std->beneficiario->nmbenefic,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "dtNascto",
-            $this->std->dtnascto,
+            $this->std->beneficiario->dtnascto,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "dtInicio",
-            $this->std->dtinicio,
+            $this->std->beneficiario->dtinicio,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "sexo",
-            !empty($this->std->sexo) ? $this->std->sexo : null,
+            !empty($this->std->beneficiario->sexo) ? $this->std->beneficiario->sexo : null,
             false
         );
         $this->dom->addChild(
             $beneficiario,
             "racaCor",
-            $this->std->racacor,
+            $this->std->beneficiario->racacor,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "estCiv",
-            !empty($this->std->estciv) ? $this->std->estciv : null,
+            !empty($this->std->beneficiario->estciv) ? $this->std->beneficiario->estciv : null,
             false
         );
         $this->dom->addChild(
             $beneficiario,
             "incFisMen",
-            $this->std->incfismen,
+            $this->std->beneficiario->incfismen,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "dtIncFisMen",
-            !empty($this->std->dtincfismen) ? $this->std->dtincfismen : null,
+            !empty($this->std->beneficiario->dtincfismen) ? $this->std->beneficiario->dtincfismen : null,
             false
         );
         $endereco = $this->dom->createElement("endereco");
-        $end = $this->std->endereco;
+        $end = $this->std->beneficiario->endereco;
         if (!empty($end->brasil)) {
             $brasil = $this->dom->createElement("brasil");
             $this->dom->addChild(
@@ -546,7 +546,7 @@ trait TraitS2400
         }
         $beneficiario->appendChild($endereco);
         
-        foreach ($this->std->dependente as $dep) {
+        foreach ($this->std->beneficiario->dependente as $dep) {
             $dependente = $this->dom->createElement("dependente");
             $this->dom->addChild(
                 $dependente,
