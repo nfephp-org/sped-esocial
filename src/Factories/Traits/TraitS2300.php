@@ -1603,7 +1603,7 @@ trait TraitS2300
                     $ens->cnpjinstensino,
                     false
                 );
-            else{
+            }else{
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",
