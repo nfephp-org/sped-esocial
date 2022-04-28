@@ -187,7 +187,7 @@
                         },
                         "nmrazao": {
                             "required": false,
-                            "type": "string",
+                            "type": ["string","null"],
                             "maxLength": 100
                         },
                         "dsclograd": {
