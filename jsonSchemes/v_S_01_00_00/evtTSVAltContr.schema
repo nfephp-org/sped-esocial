@@ -181,8 +181,8 @@
                     "type": "object",
                     "properties": {
                         "cnpjinstensino": {
-                            "required": true,
-                            "type": "string",
+                            "required": false,
+                            "type": ["string","null"],
                             "pattern": "^[0-9]{14}$"
                         },
                         "nmrazao": {
