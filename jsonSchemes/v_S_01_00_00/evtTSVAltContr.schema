@@ -186,7 +186,7 @@
                             "pattern": "^[0-9]{14}$"
                         },
                         "nmrazao": {
-                            "required": true,
+                            "required": false,
                             "type": "string",
                             "maxLength": 100
                         },
