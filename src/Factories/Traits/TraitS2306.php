@@ -505,13 +505,14 @@ trait TraitS2306
             );
             $ens = $estag->instensino;
             $instEnsino = $this->dom->createElement("instEnsino");
-            $this->dom->addChild(
-                $instEnsino,
-                "cnpjInstEnsino",
-                !empty($ens->cnpjinstensino) ? $ens->cnpjinstensino : null,
-                false
-            );
-            if(empty($ens->cnpjinstensino)){
+            if(!empty($ens->cnpjinstensino)){
+                $this->dom->addChild(
+                    $instEnsino,
+                    "cnpjInstEnsino",
+                    $ens->cnpjinstensino,
+                    false
+                );
+            }else{
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",
