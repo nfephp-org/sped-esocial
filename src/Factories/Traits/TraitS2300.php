@@ -1596,17 +1596,18 @@ trait TraitS2300
             );
             $ens = $est->instensino;
             $instEnsino = $this->dom->createElement("instEnsino");
-            $this->dom->addChild(
-                $instEnsino,
-                "cnpjInstEnsino",
-                !empty($ens->cnpjinstensino) ? $ens->cnpjinstensino : null,
-                false
-            );
-            if(empty($ens->cnpjinstensino)){
+            if(!empty($ens->cnpjinstensino)){
+                $this->dom->addChild(
+                    $instEnsino,
+                    "cnpjInstEnsino",
+                    $ens->cnpjinstensino,
+                    false
+                );
+            else{
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",
-                    empty($ens->nmrazao) ? $ens->nmrazao : null,
+                    !empty($ens->nmrazao) ? $ens->nmrazao : null,
                     false
                 );
                 $this->dom->addChild(
