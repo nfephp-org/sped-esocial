@@ -564,7 +564,7 @@
                                     "required": true,
                                     "type": "integer",
                                     "minimum": 1,
-                                    "maximum": 2
+                                    "maximum": 3
                                 },
                                 "dtterm": {
                                     "required": false,
@@ -656,8 +656,8 @@
                             "type": ["object","null"],
                             "properties": {
                                 "qtdhrssem": {
-                                    "required": true,
-                                    "type": "number",
+                                    "required": false,
+                                    "type": ["number", "null"],
                                     "minimum": 0.1,
                                     "maximum": 99.99
                                 },

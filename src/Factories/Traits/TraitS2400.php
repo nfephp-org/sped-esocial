@@ -546,51 +546,54 @@ trait TraitS2400
         }
         $beneficiario->appendChild($endereco);
         
-        foreach ($this->std->dependente as $dep) {
-            $dependente = $this->dom->createElement("dependente");
-            $this->dom->addChild(
-                $dependente,
-                "tpDep",
-                $dep->tpdep,
-                true
-            );
-            $this->dom->addChild(
-                $dependente,
-                "nmDep",
-                $dep->nmdep,
-                true
-            );
-            $this->dom->addChild(
-                $dependente,
-                "dtNascto",
-                $dep->dtnascto,
-                true
-            );
-            $this->dom->addChild(
-                $dependente,
-                "cpfDep",
-                !empty($dep->cpfdep) ? $dep->cpfdep : null,
-                false
-            );
-            $this->dom->addChild(
-                $dependente,
-                "sexoDep",
-                !empty($dep->sexodep) ? $dep->sexodep : null,
-                false
-            );
-            $this->dom->addChild(
-                $dependente,
-                "depIRRF",
-                $dep->depirrf,
-                true
-            );
-            $this->dom->addChild(
-                $dependente,
-                "incFisMen",
-                $dep->incfismen,
-                true
-            );
-            $beneficiario->appendChild($dependente);
+        //dependentes (opcional)
+        if (isset($this->std->dependente)) {
+            foreach ($this->std->dependente as $dep) {
+                $dependente = $this->dom->createElement("dependente");
+                $this->dom->addChild(
+                    $dependente,
+                    "tpDep",
+                    $dep->tpdep,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "nmDep",
+                    $dep->nmdep,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "dtNascto",
+                    $dep->dtnascto,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "cpfDep",
+                    !empty($dep->cpfdep) ? $dep->cpfdep : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "sexoDep",
+                    !empty($dep->sexodep) ? $dep->sexodep : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "depIRRF",
+                    $dep->depirrf,
+                    true
+                );
+                $this->dom->addChild(
+                    $dependente,
+                    "incFisMen",
+                    $dep->incfismen,
+                    true
+                );
+                $beneficiario->appendChild($dependente);
+            }
         }
         
         $this->node->appendChild($beneficiario);
