@@ -54,7 +54,7 @@ trait TraitS2220
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
+            isset($this->std->idevinculo->matricula) ? htmlspecialchars($this->std->idevinculo->matricula) : null,
             false
         );
         $this->node->appendChild($ideVinculo);
@@ -103,8 +103,8 @@ trait TraitS2220
                     $this->dom->addChild(
                         $exame,
                         "ordExame",
-                        !empty($exa->ordexame) ? $exa->ordexame : null,
-                        false
+                        $exa->ordexame,
+                        true
                     );
                     $this->dom->addChild(
                         $exame,
@@ -249,8 +249,8 @@ trait TraitS2220
             $this->dom->addChild(
                 $exame,
                 "ordExame",
-                !empty($exa->ordexame) ? $exa->ordexame : null,
-                false
+                $exa->ordexame,
+                true
             );
             $this->dom->addChild(
                 $exame,
@@ -378,13 +378,7 @@ trait TraitS2220
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
-            false
-        );
-        $this->dom->addChild(
-            $ideVinculo,
-            "codCateg",
-            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+            isset($this->std->idevinculo->matricula) ? htmlspecialchars($this->std->idevinculo->matricula) : null,
             false
         );
         $this->node->appendChild($ideVinculo);
@@ -434,8 +428,8 @@ trait TraitS2220
             $this->dom->addChild(
                 $exame,
                 "ordExame",
-                !empty($exa->ordexame) ? $exa->ordexame : null,
-                false
+                $exa->ordexame,
+                true
             );
             $this->dom->addChild(
                 $exame,

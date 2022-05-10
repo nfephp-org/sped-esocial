@@ -695,7 +695,7 @@ trait TraitS2299
         $this->dom->addChild(
             $infoDeslig,
             "pensAlim",
-            isset($this->std->pensalim) ? $this->std->pensalim : null,
+            !empty($this->std->pensalim) ? $this->std->pensalim : null,
             false
         );
         $this->dom->addChild(

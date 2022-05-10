@@ -807,7 +807,7 @@
                                     "required": true,
                                     "type": "integer",
                                     "minimum": 1,
-                                    "maximum": 4
+                                    "maximum": 2
                                 },
                                 "nrinsc": {
                                     "required": true,

@@ -60,7 +60,7 @@ trait TraitS2240
         $this->dom->addChild(
             $ide,
             "matricula",
-            !empty($this->std->matricula) ? $this->std->matricula : null,
+            !empty($this->std->matricula) ? htmlspecialchars($this->std->matricula) : null,
             false
         );
         $this->dom->addChild(
@@ -376,7 +376,7 @@ trait TraitS2240
         $this->dom->addChild(
             $ide,
             "matricula",
-            !empty($this->std->matricula) ? $this->std->matricula : null,
+            isset($this->std->matricula) ? htmlspecialchars($this->std->matricula) : null,
             false
         );
         $this->dom->addChild(
@@ -455,13 +455,13 @@ trait TraitS2240
             $this->dom->addChild(
                 $agNoc,
                 "intConc",
-                isset($ag->intconc) ? $ag->intconc : null,
+                isset($ag->intconc) ? number_format($ag->intconc,4,'.','') : null,
                 false
             );
             $this->dom->addChild(
                 $agNoc,
                 "limTol",
-                isset($ag->limtol) ? $ag->limtol : null,
+                isset($ag->limtol) ? number_format($ag->limtol,4,'.','') : null,
                 false
             );
             $this->dom->addChild(
@@ -526,7 +526,7 @@ trait TraitS2240
                     }
                 }
 
-                if (!empty($ag->epcepi->epicompl)) {
+                if (isset($ag->epcepi->epicompl)) {
                     $epiCompl = $this->dom->createElement("epiCompl");
                     $this->dom->addChild(
                         $epiCompl,

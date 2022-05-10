@@ -73,8 +73,8 @@ trait TraitS1298
         $this->dom->addChild(
             $ideEvento,
             "indGuia",
-            !empty($this->std->indguia) ? $this->std->indguia : null,
-            false
+            $this->std->indguia,
+            true
         );
         $this->dom->addChild(
             $ideEvento,

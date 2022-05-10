@@ -62,8 +62,8 @@ trait TraitS2306
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "codCateg",
-            !empty($this->std->trabsemvinculo->codcateg) ? $this->std->trabsemvinculo->codcateg : null,
-            false
+            $this->std->trabsemvinculo->codcateg,
+            true
         );
         $this->node->appendChild($ideTrabSemVinculo);
         $infoTSVAlteracao = $this->dom->createElement("infoTSVAlteracao");
