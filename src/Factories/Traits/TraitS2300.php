@@ -1602,48 +1602,50 @@ trait TraitS2300
                 !empty($ens->cnpjinstensino) ? $ens->cnpjinstensino : null,
                 false
             );
-            $this->dom->addChild(
-                $instEnsino,
-                "nmRazao",
-                empty($ens->nmrazao) ? $ens->nmrazao : null,
-                false
-            );
-            $this->dom->addChild(
-                $instEnsino,
-                "dscLograd",
-                !empty($ens->dsclograd) ? $ens->dsclograd : null,
-                false
-            );
-            $this->dom->addChild(
-                $instEnsino,
-                "nrLograd",
-                !empty($ens->nrlograd) ? $ens->nrlograd : null,
-                false
-            );
-            $this->dom->addChild(
-                $instEnsino,
-                "bairro",
-                !empty($ens->bairro) ? $ens->bairro : null,
-                false
-            );
-            $this->dom->addChild(
-                $instEnsino,
-                "cep",
-                !empty($ens->cep) ? $ens->cep : null,
-                false
-            );
-            $this->dom->addChild(
-                $instEnsino,
-                "codMunic",
-                !empty($ens->codmunic) ? $ens->codmunic : null,
-                false
-            );
-            $this->dom->addChild(
-                $instEnsino,
-                "uf",
-                !empty($ens->uf) ? $ens->uf : null,
-                false
-            );
+            if(empty($ens->cnpjinstensino)){
+                $this->dom->addChild(
+                    $instEnsino,
+                    "nmRazao",
+                    empty($ens->nmrazao) ? $ens->nmrazao : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instEnsino,
+                    "dscLograd",
+                    !empty($ens->dsclograd) ? $ens->dsclograd : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instEnsino,
+                    "nrLograd",
+                    !empty($ens->nrlograd) ? $ens->nrlograd : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instEnsino,
+                    "bairro",
+                    !empty($ens->bairro) ? $ens->bairro : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instEnsino,
+                    "cep",
+                    !empty($ens->cep) ? $ens->cep : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instEnsino,
+                    "codMunic",
+                    !empty($ens->codmunic) ? $ens->codmunic : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instEnsino,
+                    "uf",
+                    !empty($ens->uf) ? $ens->uf : null,
+                    false
+                );
+            }
             $infoEstagiario->appendChild($instEnsino);
 
             if (!empty($est->cnpjagntinteg)) {
