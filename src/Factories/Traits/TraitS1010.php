@@ -332,6 +332,12 @@ trait TraitS1010
             );
             $this->dom->addChild(
                 $dadosRubrica,
+                "codIncCPRP",
+                $this->std->dadosrubrica->codinccprp,
+                true
+            );
+            $this->dom->addChild(
+                $dadosRubrica,
                 "tetoRemun",
                 ! empty($this->std->dadosrubrica->tetoremun)
                     ? $this->std->dadosrubrica->tetoremun
