@@ -3,12 +3,12 @@
 namespace NFePHP\eSocial\Factories;
 
 /**
- * Class eSocial EvtAfastTemp Event S-2230 constructor
- * Read for 2.5.0 layout
+ * Class eSocial EvtCessao Event S-2231 constructor
+ * Read for S.1.0 layout
  *
  * @category  library
  * @package   NFePHP\eSocial
- * @copyright NFePHP Copyright (c) 2017
+ * @copyright NFePHP Copyright (c) 2021
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -22,7 +22,7 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtAfastTemp extends Factory implements FactoryInterface
+class EvtCessao extends Factory implements FactoryInterface
 {
     /**
      * @var int
@@ -31,7 +31,7 @@ class EvtAfastTemp extends Factory implements FactoryInterface
     /**
      * @var string
      */
-    protected $evtName = 'evtCessaoExercicio';
+    protected $evtName = 'evtCessao';
     /**
      * @var string
      */
