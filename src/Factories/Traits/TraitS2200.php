@@ -905,7 +905,7 @@ trait TraitS2200
         $this->dom->addChild(
             $duracao,
             'objDet',
-            $this->std->vinculo->infocontrato->duracao->objdet ?? null,
+            !empty($this->std->vinculo->infocontrato->duracao->objdet) ? $this->std->vinculo->infocontrato->duracao->objdet : null,
             false
         );
         $contrato->appendChild($duracao);
@@ -1153,7 +1153,7 @@ trait TraitS2200
             $this->dom->addChild(
                 $mudancaCPF,
                 'observacao',
-                $this->std->vinculo->mudancacpf->observacao ?? null,
+                !empty($this->std->vinculo->mudancacpf->observacao) ? $this->std->vinculo->mudancacpf->observacao : null,
                 false
             );
 
