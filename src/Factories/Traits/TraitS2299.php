@@ -694,12 +694,14 @@ trait TraitS2299
             !empty($this->std->infodeslig->dtprojfimapi) ? $this->std->infodeslig->dtprojfimapi : null,
             false
         );
-        $this->dom->addChild(
-            $infoDeslig,
-            "pensAlim",
-            !empty($this->std->infodeslig->pensalim) ? $this->std->infodeslig->pensalim : null,
-            false
-        );
+        if ((isset($this->std->infodeslig->pensalim) && $this->std->infodeslig->pensalim === 0) || !empty($this->std->infodeslig->pensalim)) {
+            $this->dom->addChild(
+                $infoDeslig,
+                "pensAlim",
+                $this->std->infodeslig->pensalim,
+                true
+            );
+        }
         $this->dom->addChild(
             $infoDeslig,
             "percAliment",
@@ -863,6 +865,15 @@ trait TraitS2299
                                 $dv->vrrubr,
                                 true
                             );
+                            if ((isset($dv->indapurir) && $dv->indapurir === 0) || !empty($dv->indapurir)) {
+                                $this->dom->addChild(
+                                    $detVerbas,
+                                    "indApurIR",
+                                    $dv->indapurir,
+                                    true
+                                );
+                            }
+
                             $ideEstabLot->appendChild($detVerbas);
                         }
 
@@ -976,7 +987,14 @@ trait TraitS2299
                                         $adv->vrrubr,
                                         true
                                     );
-
+                                    if ($adv->indapurir === 0 || !empty($adv->indapurir)) {
+                                        $this->dom->addChild(
+                                            $dmdetVerbas,
+                                            "indApurIR",
+                                            $adv->indapurir,
+                                            true
+                                        );
+                                    }                            
                                     $dmideEstabLot->appendChild($dmdetVerbas);
                                 }
 
