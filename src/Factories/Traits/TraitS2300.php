@@ -959,7 +959,8 @@ trait TraitS2300
             $this->dom->addChild(
                 $mudancaCPF,
                 'observacao',
-                $this->std->infotsvinicio->mudancacpf->observacao ?? null,
+                $this->std->infotsvinicio->mudancacpf->observacao
+                ? $this->std->infotsvinicio->mudancacpf->observacao : null,
                 false
             );
 
