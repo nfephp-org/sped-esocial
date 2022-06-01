@@ -236,7 +236,7 @@ trait TraitS2206
         $this->dom->addChild(
             $duracao,
             'objDet',
-            $ct->duracao->objdet ?? null,
+            !empty($ct->duracao->objdet) ? $ct->duracao->objdet : null,
             false
         );
 

@@ -733,7 +733,7 @@ class Tools extends ToolsBase
             . "</eSocial>";
         //validar a requisição conforme o seu respectivo XSD
         $date = new \DateTime();
-        $nomeArquivo = date("d-m-Y") . "-" . $nomeEvento . "-" . date("his") . "-". $date->getTimestamp() . ".xml";
+        $nomeArquivo = date("d-m-Y") . "-" . $nomeEvento . "-" . date("his") . "-". $date->getTimestamp() . "-" . md5(uniqid(rand(), true)) . ".xml";
         file_put_contents($path . $nomeArquivo, print_r($request, true));
         
         Validator::isValid(
