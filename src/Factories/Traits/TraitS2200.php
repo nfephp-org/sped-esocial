@@ -1848,7 +1848,7 @@ trait TraitS2200
             $this->dom->addChild(
                 $duracao,
                 'objDet',
-                $this->std->vinculo->infocontrato->duracao->objdet ?? null,
+                !empty($this->std->vinculo->infocontrato->duracao->objdet) ? $this->std->vinculo->infocontrato->duracao->objdet : null,
                 false
             );
             $contrato->appendChild($duracao);
