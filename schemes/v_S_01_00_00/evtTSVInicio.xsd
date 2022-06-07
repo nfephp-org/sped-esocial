@@ -351,6 +351,34 @@
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
+                                                                <xs:element name="categOrig" type="TS_codCateg">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Preencher com o código correspondente à categoria de origem do servidor.</xs:documentation>
+                                                                        <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 01, diferente de [304].</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="cnpjOrig" type="TS_cnpj">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Informar o CNPJ do órgão público de origem.</xs:documentation>
+                                                                        <xs:documentation>REGRA:REGRA_VALIDA_CNPJ</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="matricOrig" type="TS_codigo_esocial">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Preencher com a matrícula do servidor no órgão público de origem.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="dtExercOrig">
+                                                                    <xs:simpleType>
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>Preencher com a data de exercício do servidor no órgão público de origem.</xs:documentation>
+                                                                            <xs:documentation>Validação: Deve ser uma data anterior a {dtInicio}(2300_infoTSVInicio_dtInicio) e igual ou posterior a 01/01/1890.</xs:documentation>
+                                                                        </xs:annotation>
+                                                                        <xs:restriction base="xs:date">
+                                                                            <xs:minInclusive value="1890-01-01" />
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
                                                                 <xs:element name="indRemunCargo" minOccurs="0" type="TS_indRemunCargo" />
                                                                 <xs:element name="tpRegTrab" type="TS_tpRegTrab">
                                                                     <xs:annotation>
