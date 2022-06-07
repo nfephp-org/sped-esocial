@@ -229,10 +229,32 @@ trait TraitS2230
                 $iniAfastamento->appendChild($infoMandSind);
             }
 
+            if (!empty($this->std->infoafastamento->iniafastamento->infomandelet)) {
+                $infoMandElet = $this->dom->createElement("infoMandElet");
+
+                $this->dom->addChild(
+                    $infoMandElet,
+                    "cnpjMandElet",
+                    $this->std->infoafastamento->iniafastamento->infomandelet->cnpjmandelet,
+                    true
+                );
+
+                if (!empty($this->std->infoafastamento->iniafastamento->infomandelet->indremuncargo)) {
+                    $this->dom->addChild(
+                        $infoMandElet,
+                        "indRemunCargo",
+                        $this->std->infoafastamento->iniafastamento->infomandelet->indremuncargo,
+                        true
+                    );
+                }
+
+                $iniAfastamento->appendChild($infoMandElet);
+            }
+
             $infoAfastamento->appendChild($iniAfastamento);
         }
 
-        if (! empty($this->std->inforetif)) {
+        if (!empty($this->std->inforetif)) {
             $infoRetif = $this->dom->createElement("infoRetif");
 
             $this->dom->addChild(
@@ -259,7 +281,7 @@ trait TraitS2230
             $infoAfastamento->appendChild($infoRetif);
         }
 
-        if (! empty($this->std->infoafastamento->fimafastamento)) {
+        if (!empty($this->std->infoafastamento->fimafastamento)) {
             $fimAfastamento = $this->dom->createElement("fimAfastamento");
             $this->dom->addChild(
                 $fimAfastamento,
@@ -274,12 +296,233 @@ trait TraitS2230
         $this->eSocial->appendChild($this->node);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
     {
-        throw new \Exception("TODO !!");
+        $evtid = FactoryId::build(
+            $this->tpInsc,
+            $this->nrInsc,
+            $this->date,
+            $this->sequencial
+        );
+
+        $evtAfastTemp = $this->dom->createElement("evtAfastTemp");
+
+        $att = $this->dom->createAttribute('Id');
+
+        $att->value = $evtid;
+
+        $evtAfastTemp->appendChild($att);
+
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $evtAfastTemp->appendChild($ideEvento);
+
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+
+        $ideVinculo = $this->dom->createElement("ideVinculo");
+
+        $this->dom->addChild(
+            $ideVinculo,
+            "cpfTrab",
+            $this->std->idevinculo->cpftrab,
+            true
+        );
+
+        if (isset($this->std->idevinculo->matricula) && !empty($this->std->idevinculo->matricula)){
+            $this->dom->addChild(
+                $ideVinculo,
+                "matricula",
+                $this->std->idevinculo->matricula,
+                false
+            );
+        }
+        $this->dom->addChild(
+            $ideVinculo,
+            "codCateg",
+            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+            false
+        );
+        $this->node->appendChild($ideVinculo);
+
+        $infoAfastamento = $this->dom->createElement("infoAfastamento");
+
+        if (!empty($this->std->infoafastamento->iniafastamento)) {
+            $iniAfastamento = $this->dom->createElement("iniAfastamento");
+
+            $this->dom->addChild(
+                $iniAfastamento,
+                "dtIniAfast",
+                $this->std->infoafastamento->iniafastamento->dtiniafast,
+                true
+            );
+
+            $this->dom->addChild(
+                $iniAfastamento,
+                "codMotAfast",
+                $this->std->infoafastamento->iniafastamento->codmotafast,
+                true
+            );
+
+            $this->dom->addChild(
+                $iniAfastamento,
+                "infoMesmoMtv",
+                !empty($this->std->infoafastamento->iniafastamento->infomesmomtv) ? $this->std->infoafastamento->iniafastamento->infomesmomtv : null,
+                false
+            );
+
+            $this->dom->addChild(
+                $iniAfastamento,
+                "tpAcidTransito",
+                !empty($this->std->infoafastamento->iniafastamento->tpacidtransito) ? $this->std->infoafastamento->iniafastamento->tpacidtransito : null,
+                false
+            );
+
+            $this->dom->addChild(
+                $iniAfastamento,
+                "observacao",
+                !empty($this->std->infoafastamento->iniafastamento->observacao) ? $this->std->infoafastamento->iniafastamento->observacao : null,
+                false
+            );
+
+            if (isset($this->std->infoafastamento->iniafastamento->peraquis)) {
+                $perAquis = $this->dom->createElement("perAquis");
+
+                $this->dom->addChild(
+                    $perAquis,
+                    "dtInicio",
+                    $this->std->infoafastamento->iniafastamento->peraquis->dtinicio,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $perAquis,
+                    "dtFim",
+                    !empty($this->std->infoafastamento->iniafastamento->peraquis->dtfim) ? $this->std->infoafastamento->iniafastamento->peraquis->dtfim : null,
+                    false
+                );
+
+                $iniAfastamento->appendChild($perAquis);
+
+            }
+
+            if (!empty($this->std->infoafastamento->iniafastamento->infocessao)) {
+                $infoCessao = $this->dom->createElement("infoCessao");
+
+                $this->dom->addChild(
+                    $infoCessao,
+                    "cnpjCess",
+                    $this->std->infoafastamento->iniafastamento->infocessao->cnpjcess,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $infoCessao,
+                    "infOnus",
+                    $this->std->infoafastamento->iniafastamento->infocessao->infonus,
+                    true
+                );
+
+                $iniAfastamento->appendChild($infoCessao);
+            }
+
+            if (!empty($this->std->infoafastamento->iniafastamento->infomandsind)) {
+                $infoMandSind = $this->dom->createElement("infoMandSind");
+
+                $this->dom->addChild(
+                    $infoMandSind,
+                    "cnpjSind",
+                    $this->std->infoafastamento->iniafastamento->infomandsind->cnpjsind,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $infoMandSind,
+                    "infOnusRemun",
+                    $this->std->infoafastamento->iniafastamento->infomandsind->infonusremun,
+                    true
+                );
+
+                $iniAfastamento->appendChild($infoMandSind);
+            }
+
+            $infoAfastamento->appendChild($iniAfastamento);
+        }
+
+        if (!empty($this->std->inforetif)) {
+            $infoRetif = $this->dom->createElement("infoRetif");
+
+            $this->dom->addChild(
+                $infoRetif,
+                "origRetif",
+                $this->std->inforetif->origretif,
+                true
+            );
+
+            $this->dom->addChild(
+                $infoRetif,
+                "tpProc",
+                $this->std->inforetif->tpproc,
+                true
+            );
+
+            $this->dom->addChild(
+                $infoRetif,
+                "nrProc",
+                ! empty($this->std->inforetif->nrproc) ? $this->std->inforetif->nrproc : null,
+                false
+            );
+
+            $infoAfastamento->appendChild($infoRetif);
+        }
+
+        if (!empty($this->std->infoafastamento->fimafastamento)) {
+            $fimAfastamento = $this->dom->createElement("fimAfastamento");
+            $this->dom->addChild(
+                $fimAfastamento,
+                "dtTermAfast",
+                $this->std->infoafastamento->fimafastamento->dttermafast,
+                true
+            );
+            $infoAfastamento->appendChild($fimAfastamento);
+        }
+        $this->node->appendChild($infoAfastamento);
+
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
