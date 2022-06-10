@@ -89,9 +89,6 @@ trait TraitS3000
      */
     protected function toNodeS100()
     {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
         $ideEvento = $this->dom->createElement("ideEvento");
         $this->dom->addChild(
             $ideEvento,
@@ -111,6 +108,8 @@ trait TraitS3000
             $this->verProc,
             true
         );
+
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         $this->node->insertBefore($ideEvento, $ideEmpregador);
 
         $infoExclusao = $this->dom->createElement("infoExclusao");
@@ -126,35 +125,36 @@ trait TraitS3000
             $this->std->infoexclusao->nrrecevt,
             true
         );
-        if (!empty($this->std->idetrabalhador)) {
+        if (!empty($this->std->infoexclusao->idetrabalhador)) {
             $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
             $this->dom->addChild(
                 $ideTrabalhador,
                 "cpfTrab",
-                $this->std->idetrabalhador->cpftrab,
+                $this->std->infoexclusao->idetrabalhador->cpftrab,
                 true
             );
             $infoExclusao->appendChild($ideTrabalhador);
         }
-        if (!empty($this->std->idefolhapagto)) {
+
+        if (!empty($this->std->infoexclusao->idefolhapagto)) {
             $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
             $this->dom->addChild(
                 $ideFolhaPagto,
                 "indApuracao",
-                $this->std->idefolhapagto->indapuracao,
+                $this->std->infoexclusao->idefolhapagto->indapuracao,
                 true
             );
             $this->dom->addChild(
                 $ideFolhaPagto,
                 "perApur",
-                $this->std->idefolhapagto->perapur,
+                $this->std->infoexclusao->idefolhapagto->perapur,
                 true
             );
             $infoExclusao->appendChild($ideFolhaPagto);
         }
+
         $this->node->appendChild($infoExclusao);
         $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
 }
