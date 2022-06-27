@@ -477,7 +477,7 @@ trait TraitS2240
                 false
             );
 
-            if ($ag->codagnoc != '09.01.001') {
+            if (!empty($ag->epcepi)) {
                 $epcEpi = $this->dom->createElement("epcEpi");
                 $this->dom->addChild(
                     $epcEpi,

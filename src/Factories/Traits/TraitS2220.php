@@ -375,12 +375,21 @@ trait TraitS2220
             $this->std->idevinculo->cpftrab,
             true
         );
-        $this->dom->addChild(
-            $ideVinculo,
-            "matricula",
-            isset($this->std->idevinculo->matricula) ? htmlspecialchars($this->std->idevinculo->matricula) : null,
-            false
-        );
+        if(!empty($this->std->idevinculo->matricula)) {
+            $this->dom->addChild(
+                $ideVinculo,
+                "matricula",
+                isset($this->std->idevinculo->matricula) ? htmlspecialchars($this->std->idevinculo->matricula) : null,
+                false
+            );
+        }else {
+            $this->dom->addChild(
+                $ideVinculo,
+                "codCateg",
+                isset($this->std->idevinculo->codcateg) ? htmlspecialchars($this->std->idevinculo->codcateg) : null,
+                false
+            );
+        }
         $this->node->appendChild($ideVinculo);
         
         $exMedOcup = $this->dom->createElement("exMedOcup");
