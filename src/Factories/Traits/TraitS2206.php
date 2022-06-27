@@ -154,7 +154,7 @@ trait TraitS2206
             $this->dom->addChild(
                 $infoEstatutario,
                 "tpPlanRP",
-                $ct->tpPlanRP,
+                $ct->tpplanrp,
                 true
             );
             $infoRegimeTrab->appendChild($infoEstatutario);
@@ -558,7 +558,7 @@ trait TraitS2206
             $this->dom->addChild(
                 $infoEstatutario,
                 "tpPlanRP",
-                $ct->tpPlanRP,
+                $ct->tpplanrp,
                 true
             );
             $this->dom->addChild(

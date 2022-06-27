@@ -221,7 +221,7 @@ trait TraitS2230
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -326,8 +326,13 @@ trait TraitS2230
                 $this->dom->addChild(
                     $perAquis,
                     "dtFim",
+<<<<<<< HEAD
                     $this->std->peraquis->dtfim,
                     true
+=======
+                    $this->std->iniafastamento->peraquis->dtfim ?? null,
+                    false
+>>>>>>> bb46a464555bdc322d388e730d7339de81a6b034
                 );
                 $iniAfastamento->appendChild($perAquis);
             }
@@ -374,8 +379,13 @@ trait TraitS2230
                 $this->dom->addChild(
                     $infoMandElet,
                     "indRemunCargo",
+<<<<<<< HEAD
                     $this->std->infomandelet->indremuncargo,
                     true
+=======
+                    $this->std->iniafastamento->infomandelet->indremuncargo ?? null,
+                    false
+>>>>>>> bb46a464555bdc322d388e730d7339de81a6b034
                 );
                 $iniAfastamento->appendChild($infoMandElet);
             }
@@ -392,8 +402,8 @@ trait TraitS2230
             $this->dom->addChild(
                 $infoRetif,
                 "tpProc",
-                $this->std->inforetif->tpproc,
-                true
+                $this->std->inforetif->tpproc ?? null,
+                false
             );
             $this->dom->addChild(
                 $infoRetif,
