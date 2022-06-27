@@ -712,12 +712,14 @@ trait TraitS2205
         if (!empty($this->std->endereco->brasil)) {
             $ct = $this->std->endereco->brasil;
             $brasil = $this->dom->createElement("brasil");
-            $this->dom->addChild(
-                $brasil,
-                "tpLograd",
-                $ct->tplograd,
-                true
-            );
+            if (! empty($ct->tplograd)) {
+                $this->dom->addChild(
+                    $brasil,
+                    "tpLograd",
+                    $ct->tplograd,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $brasil,
                 "dscLograd",

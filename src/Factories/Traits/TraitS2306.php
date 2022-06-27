@@ -511,7 +511,7 @@ trait TraitS2306
                 !empty($ens->cnpjinstensino) ? $ens->cnpjinstensino : null,
                 false
             );
-            if(empty($ens->cnpjinstensino)){
+            if (empty($ens->cnpjinstensino)) {
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",

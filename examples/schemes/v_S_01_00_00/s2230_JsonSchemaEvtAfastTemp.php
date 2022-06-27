@@ -51,14 +51,14 @@ $jsonSchema = '{
                 },
                 "codcateg": {
                     "required": false,
-                    "type": "integer",
+                    "type": ["integer","null"],
                     "maxLength": 3
                 }
             }
         },
         "iniafastamento": {
             "required": false,
-            "type": "object",
+            "type": ["object","null"],
             "properties": {
                 "dtiniafast": {
                     "required": true,
@@ -72,18 +72,18 @@ $jsonSchema = '{
                 },
                 "infomesmomtv": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "pattern": "^(S|N)$"
                 },
                 "tpacidtransito": {
                     "required": false,
-                    "type": "integer",
+                    "type": ["integer","null"],
                     "minumum": 1,
                     "maximum": 3
                 },
                 "observacao": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 255
                 },
                 "peraquis": {
@@ -97,7 +97,7 @@ $jsonSchema = '{
                         },
                         "dtfim": {
                             "required": false,
-                            "type": "string",
+                            "type": ["string","null"],
                             "$ref": "#/definitions/data"
                         }
                     }
@@ -147,7 +147,7 @@ $jsonSchema = '{
                         },
                         "indremuncargo": {
                             "required": false,
-                            "type": "string",
+                            "type": ["string","null"],
                             "pattern": "S|N"
                         }
                     }
@@ -165,14 +165,14 @@ $jsonSchema = '{
                     "maximum": 3
                 },
                 "tpproc": {
-                    "required": true,
-                    "type": "integer",
+                    "required": false,
+                    "type": ["integer","null"],
                     "minumum": 1,
-                    "maximum": 2
+                    "maximum": 3
                 },
                 "nrproc": {
                     "required": false,
-                    "type": "string",
+                    "type": ["string","null"],
                     "maxLength": 21
                 }
             }
