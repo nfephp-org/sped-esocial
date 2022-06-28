@@ -33,13 +33,13 @@
         "matricula": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^.{1,30}$"
+            "minLength": 1,
+            "maxLength": 30
         },
         "codcateg": {
             "required": false,
-            "type": ["integer","null"],
-            "minimum": 100,
-            "maximum": 999
+            "type": "string",
+            "pattern": "^[0-9]{3}$"
         },
         "dtterm": {
             "required": true,
