@@ -1458,12 +1458,14 @@ trait TraitS2200
                 true
             );
 
-            $this->dom->addChild(
-                $deficiencia,
-                "infoCota",
-                $this->std->trabalhador->infodeficiencia->infocota,
-                true
-            );
+            if (isset($this->std->trabalhador->infodeficiencia->infocota) && !empty($this->std->trabalhador->infodeficiencia->infocota)) {
+                $this->dom->addChild(
+                    $deficiencia,
+                    "infoCota",
+                    $this->std->trabalhador->infodeficiencia->infocota,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $deficiencia,
                 "observacao",
