@@ -86,13 +86,13 @@ trait TraitS2420
         $this->dom->addChild(
             $infoBenTermino,
             "cnpjOrgaoSuc",
-            $this->std->cnpjorgaosuc,
+            !empty($this->std->cnpjorgaosuc) ? $this->std->cnpjorgaosuc : null,
             false
         );
         $this->dom->addChild(
             $infoBenTermino,
             "novoCPF",
-            $this->std->novocpf,
+            !empty($this->std->novocpf) ?$this->std->novocpf : null,
             false
         );
         $this->node->appendChild($infoBenTermino);
