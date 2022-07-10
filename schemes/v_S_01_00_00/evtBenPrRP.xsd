@@ -32,7 +32,7 @@
                             <xs:element name="ideBenef">
                                 <xs:annotation>
                                     <xs:documentation>Identificação do beneficiário.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {cpfBenef}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfBenef*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -81,7 +81,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Informações relativas a períodos anteriores</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA:Grupo destinado às informações relativas a períodos anteriores. Somente preencher esse grupo se houver proventos ou pensões retroativos.</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: O (se não existir o grupo {infoPerApur}(1207_dmDev_infoPerApur)); OC (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: O (se não existir o grupo {infoPerApur}(1207_dmDev_infoPerApur) e {indApuracao}(1207_ideEvento_indApuracao) = [1]); N (se {indApuracao}(1207_ideEvento_indApuracao) = [2]); OC (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
