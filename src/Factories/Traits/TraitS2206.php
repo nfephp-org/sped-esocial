@@ -509,11 +509,11 @@ trait TraitS2206
             $this->std->altcontratual->vinculo->tpregprev,
             true
         );
-        //var_dump($vinculo);exit;
+     
         $altContratual->appendChild($vinculo);
         
         $infoRegimeTrab = $this->dom->createElement("infoRegimeTrab");
-        //var_dump($this->std->altcontratual->vinculo);exit;
+       
         if (!empty($this->std->altcontratual->vinculo->inforegimetrab->infoceletista)) {
             $ct = $this->std->altcontratual->vinculo->inforegimetrab->infoceletista;
             $infoCeletista = $this->dom->createElement("infoCeletista");
@@ -619,7 +619,6 @@ trait TraitS2206
             $this->dom->addChild(
                 $infoContrato,
                 "nmFuncao",
-                $infoc->nmfuncao,
                 !empty($infoc->nmfuncao) ? $infoc->nmfuncao : null,
                 false
             );
