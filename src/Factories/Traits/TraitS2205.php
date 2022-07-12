@@ -232,7 +232,7 @@ trait TraitS2205
             if (is_null($documentos)) {
                 $documentos = $this->dom->createElement("documentos");
             }
-            
+
             if (!empty($ct->nrrne)) {
                 $RNE = $this->dom->createElement("RNE");
                 $this->dom->addChild(
@@ -298,7 +298,7 @@ trait TraitS2205
             }
             if (!empty($ct->nrregcnh)) {
                 $CNH = $this->dom->createElement("CNH");
-            
+
                 $this->dom->addChild(
                     $CNH,
                     "nrRegCnh",
@@ -644,12 +644,363 @@ trait TraitS2205
         $this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
     {
-        throw new \Exception("TODO !!");
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        $ideEvento = $this->dom->createElement("ideEvento");
+
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "cpfTrab",
+            $this->std->idetrabalhador->cpftrab,
+            true
+        );
+        $this->node->appendChild($ideTrabalhador);
+        $alteracao = $this->dom->createElement("alteracao");
+        $this->dom->addChild(
+            $alteracao,
+            "dtAlteracao",
+            $this->std->alteracao->dtalteracao,
+            true
+        );
+        $dadosTrabalhador = $this->dom->createElement("dadosTrabalhador");
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "nmTrab",
+            $this->std->alteracao->dadostrabalhador->nmtrab,
+            true
+        );
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "sexo",
+            $this->std->alteracao->dadostrabalhador->sexo,
+            true
+        );
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "racaCor",
+            $this->std->alteracao->dadostrabalhador->racacor,
+            true
+        );
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "estCiv",
+            !empty($this->std->alteracao->dadostrabalhador->estciv) ? $this->std->alteracao->dadostrabalhador->estciv : null,
+            false
+        );
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "grauInstr",
+            $this->std->alteracao->dadostrabalhador->grauinstr,
+            true
+        );
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "nmSoc",
+            !empty($this->std->alteracao->dadostrabalhador->nmsoc) ? $this->std->alteracao->dadostrabalhador->nmsoc : null,
+            false
+        );
+        $this->dom->addChild(
+            $dadosTrabalhador,
+            "paisNac",
+            $this->std->alteracao->dadostrabalhador->nascimento->paisnac,
+            true
+        );
+
+        $endereco = $this->dom->createElement("endereco");
+        if (!empty($this->std->alteracao->dadostrabalhador->endereco->brasil)) {
+
+            $ct = $this->std->alteracao->dadostrabalhador->endereco->brasil;
+            $brasil = $this->dom->createElement("brasil");
+            $this->dom->addChild(
+                $brasil,
+                "tpLograd",
+                !empty($ct->tplograd) ? $ct->tplograd : null,
+                false
+            );
+            $this->dom->addChild(
+                $brasil,
+                "dscLograd",
+                $ct->dsclograd,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "nrLograd",
+                $ct->nrlograd,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "complemento",
+                !empty($ct->complemento) ? $ct->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $brasil,
+                "bairro",
+                !empty($ct->bairro) ? $ct->bairro : null,
+                false
+            );
+            $this->dom->addChild(
+                $brasil,
+                "cep",
+                $ct->cep,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "codMunic",
+                $ct->codmunic,
+                true
+            );
+            $this->dom->addChild(
+                $brasil,
+                "uf",
+                $ct->uf,
+                true
+            );
+            $endereco->appendChild($brasil);
+        } elseif (!empty($this->std->alteracao->dadostrabalhador->exterior)) {
+            $ct = $this->std->alteracao->dadostrabalhador->exterior;
+            $exterior = $this->dom->createElement("exterior");
+            $this->dom->addChild(
+                $exterior,
+                "paisResid",
+                $ct->paisresid,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "dscLograd",
+                $ct->dsclograd,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "nrLograd",
+                $ct->nrlograd,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "complemento",
+                !empty($ct->complemento) ? $ct->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $exterior,
+                "bairro",
+                !empty($ct->bairro) ? $ct->bairro : null,
+                false
+            );
+            $this->dom->addChild(
+                $exterior,
+                "nmCid",
+                $ct->nmcid,
+                true
+            );
+            $this->dom->addChild(
+                $exterior,
+                "codPostal",
+                !empty($ct->codpostal) ? $ct->codpostal : null,
+                false
+            );
+            $endereco->appendChild($exterior);
+        }
+        $dadosTrabalhador->appendChild($endereco);
+
+        if (!empty($this->std->alteracao->dadostrabalhador->trabimig)) {
+            $ct = $this->std->alteracao->dadostrabalhador->trabimig;
+            $trabImig = $this->dom->createElement("trabImig");
+            if (!empty($ct->dtchegada)) {
+                $this->dom->addChild(
+                    $trabImig,
+                    "tmpResid",
+                    !empty($ct->tmpresid) ? $ct->tmpresid : null,
+                    true
+                );
+                $this->dom->addChild(
+                    $trabImig,
+                    "condIng",
+                    $ct->conding,
+                    true
+                );
+                $dadosTrabalhador->appendChild($trabImig);
+            }
+        }
+
+        if (!empty($this->std->alteracao->dadostrabalhador->infodeficiencia)) {
+            $ct = $this->std->alteracao->dadostrabalhador->infodeficiencia;
+            $infoDeficiencia = $this->dom->createElement("infoDeficiencia");
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "defFisica",
+                $ct->deffisica,
+                true
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "defVisual",
+                $ct->defvisual,
+                true
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "defAuditiva",
+                $ct->defauditiva,
+                true
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "defMental",
+                $ct->defmental,
+                true
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "defIntelectual",
+                $ct->defintelectual,
+                true
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "reabReadap",
+                $ct->reabreadap,
+                true
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "infoCota",
+                !empty($ct->infocota) ? $ct->infocota : null,
+                false
+            );
+            $this->dom->addChild(
+                $infoDeficiencia,
+                "observacao",
+                !empty($ct->observacao) ? $ct->observacao : null,
+                false
+            );
+            $dadosTrabalhador->appendChild($infoDeficiencia);
+        }
+
+        if (!empty($this->std->alteracao->dadostrabalhador->dependente)) {
+            foreach ($this->std->alteracao->dadostrabalhador->dependente as $dep) {
+                if (!empty($dep->cpfdep)) {
+                    $dependente = $this->dom->createElement("dependente");
+                    $this->dom->addChild(
+                        $dependente,
+                        "tpDep",
+                        $dep->tpdep,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "nmDep",
+                        $dep->nmdep,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "dtNascto",
+                        $dep->dtnascto,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "cpfDep",
+                        !empty($dep->cpfdep) ? $dep->cpfdep : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "sexoDep",
+                        !empty($dep->sexodep) ? $dep->sexodep : null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "depIRRF",
+                        $dep->depirrf,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "depSF",
+                        $dep->depsf,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $dependente,
+                        "incTrab",
+                        $dep->inctrab,
+                        true
+                    );
+                    $dadosTrabalhador->appendChild($dependente);
+                }
+            }
+        }
+
+        if (!empty($this->std->alteracao->dadostrabalhador->contato)) {
+            $ct = $this->std->alteracao->dadostrabalhador->contato;
+            $contato = $this->dom->createElement("contato");
+            $this->dom->addChild(
+                $contato,
+                "fonePrinc",
+                !empty($ct->foneprinc) ? $ct->foneprinc : null,
+                false
+            );
+            $this->dom->addChild(
+                $contato,
+                "emailPrinc",
+                !empty($ct->emailprinc) ? $ct->emailprinc : null,
+                false
+            );
+            $dadosTrabalhador->appendChild($contato);
+        }
+
+        $alteracao->appendChild($dadosTrabalhador);
+
+        $this->node->appendChild($alteracao);
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        $this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
