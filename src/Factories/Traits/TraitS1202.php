@@ -662,15 +662,17 @@ trait TraitS1202
                 }
                 $dmdev->appendChild($perapur);
             }
-            if (!empty($dm->infoperant)) {
+
+            if (!empty($this->std->dmdev->infoperant)) {
                 $perant = $this->dom->createElement("infoPerAnt");
+                $dminfoperant = $this->std->dmdev->infoperant;
                 $this->dom->addChild(
                     $perant,
                     "remunOrgSuc",
-                    $dm->infoperant->remunorgsuc,
+                    $dminfoperant->remunorgsuc,
                     true
                 );
-                foreach ($dm->dmdev->infoperant->ideperiodo as $per) {
+                foreach ($dminfoperant->ideperiodo as $per) {
                     $ide = $this->dom->createElement("idePeriodo");
                     $this->dom->addChild(
                         $ide,
