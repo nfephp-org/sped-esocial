@@ -32,14 +32,14 @@ $std = new \stdClass();
 //$std->sequencial = 1;
 
 $std->infoexclusao = new \stdClass();
-$std->infoexclusao->tpevento = 'S-1200';
+$std->infoexclusao->tpevento = 'S-1210';
 $std->infoexclusao->nrrecevt = '1.9.1234567890123456789';
 
 $std->idetrabalhador = new \stdClass();
 $std->idetrabalhador->cpftrab = '11111111111';
 
 $std->idefolhapagto = new \stdClass();
-$std->idefolhapagto->indapuracao = 1;
+//$std->idefolhapagto->indapuracao = 1;
 $std->idefolhapagto->perapur = '2017-08';
 
 
