@@ -141,8 +141,8 @@ trait TraitS3000
             $this->dom->addChild(
                 $ideFolhaPagto,
                 "indApuracao",
-                $this->std->idefolhapagto->indapuracao,
-                true
+                $this->std->idefolhapagto->indapuracao ?? null,
+                false
             );
             $this->dom->addChild(
                 $ideFolhaPagto,
