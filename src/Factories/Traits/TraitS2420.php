@@ -59,13 +59,13 @@ trait TraitS2420
         $this->dom->addChild(
             $ideBeneficio,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $this->std->idebeneficio->cpfbenef,
             true
         );
         $this->dom->addChild(
             $ideBeneficio,
             "nrBeneficio",
-            $this->std->nrbeneficio,
+            $this->std->idebeneficio->nrbeneficio,
             true
         );
         $this->node->appendChild($ideBeneficio);
@@ -74,27 +74,31 @@ trait TraitS2420
         $this->dom->addChild(
             $infoBenTermino,
             "dtTermBeneficio",
-            $this->std->dttermbeneficio,
+            $this->std->infobentermino->dttermbeneficio,
             true
         );
         $this->dom->addChild(
             $infoBenTermino,
             "mtvTermino",
-            $this->std->mtvtermino,
+            $this->std->infobentermino->mtvtermino,
             true
         );
-        $this->dom->addChild(
-            $infoBenTermino,
-            "cnpjOrgaoSuc",
-            $this->std->cnpjorgaosuc,
-            false
-        );
-        $this->dom->addChild(
-            $infoBenTermino,
-            "novoCPF",
-            $this->std->novocpf,
-            false
-        );
+        if (isset($this->std->infobentermino->cnpjorgaosuc) && !empty($this->std->infobentermino->cnpjorgaosuc)) {
+            $this->dom->addChild(
+                $infoBenTermino,
+                "cnpjOrgaoSuc",
+                $this->std->infobentermino->cnpjorgaosuc,
+                false
+            );
+        }
+        if (isset($this->std->infobentermino->novocpf) && !empty($this->std->infobentermino->novocpf)) {
+            $this->dom->addChild(
+                $infoBenTermino,
+                "novoCPF",
+                $this->std->infobentermino->novocpf,
+                false
+            );
+        }
         $this->node->appendChild($infoBenTermino);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
