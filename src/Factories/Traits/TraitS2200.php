@@ -1728,12 +1728,17 @@ trait TraitS2200
                 $this->std->vinculo->inforegimetrab->infoestatutario->dtexercicio,
                 true
             );
-            $this->dom->addChild(
-                $estatutario,
-                "tpPlanRP",
-                !empty($this->std->vinculo->inforegimetrab->infoestatutario->tpplanrp) ? $this->std->vinculo->inforegimetrab->infoestatutario->tpplanrp : null,
-                false
-            );
+            if (!empty($this->std->vinculo->inforegimetrab->infoestatutario->tpplanrp)
+                || (isset($this->std->vinculo->inforegimetrab->infoestatutario->tpplanrp) 
+                    && $this->std->vinculo->inforegimetrab->infoestatutario->tpplanrp == 0)
+            ) {
+                $this->dom->addChild(
+                    $estatutario,
+                    "tpPlanRP",
+                    $this->std->vinculo->inforegimetrab->infoestatutario->tpplanrp,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $estatutario,
                 "indTetoRGPS",
