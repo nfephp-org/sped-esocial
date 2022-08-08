@@ -58,7 +58,7 @@ trait TraitS2405
         $this->dom->addChild(
             $ideBenef,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $this->std->idebenef->cpfbenef,
             true
         );
         $this->node->appendChild($ideBenef);
@@ -66,43 +66,43 @@ trait TraitS2405
         $this->dom->addChild(
             $alteracao,
             "dtAlteracao",
-            $this->std->dtalteracao,
+            $this->std->alteracao->dtalteracao,
             true
         );
         $dadosBenef = $this->dom->createElement("dadosBenef");
         $this->dom->addChild(
             $dadosBenef,
             "nmBenefic",
-            $this->std->dadosbenef->nmbenefic,
+            $this->std->alteracao->dadosbenef->nmbenefic,
             true
         );
         $this->dom->addChild(
             $dadosBenef,
             "sexo",
-            $this->std->dadosbenef->sexo,
+            $this->std->alteracao->dadosbenef->sexo,
             true
         );
         $this->dom->addChild(
             $dadosBenef,
             "racaCor",
-            $this->std->dadosbenef->racacor,
+            $this->std->alteracao->dadosbenef->racacor,
             true
         );
         $this->dom->addChild(
             $dadosBenef,
             "estCiv",
-            !empty($this->std->dadosbenef->estciv) ? $this->std->dadosbenef->estciv : null,
+            !empty($this->std->alteracao->dadosbenef->estciv) ? $this->std->alteracao->dadosbenef->estciv : null,
             false
         );
         $this->dom->addChild(
             $dadosBenef,
             "incFisMen",
-            $this->std->dadosbenef->incfismen,
+            $this->std->alteracao->dadosbenef->incfismen,
             true
         );
         $endereco = $this->dom->createElement("endereco");
-        if (!empty($this->std->dadosbenef->endereco->brasil)) {
-            $end = $this->std->dadosbenef->endereco->brasil;
+        if (!empty($this->std->alteracao->dadosbenef->endereco->brasil)) {
+            $end = $this->std->alteracao->dadosbenef->endereco->brasil;
             $brasil = $this->dom->createElement("brasil");
             $this->dom->addChild(
                 $brasil,
@@ -153,8 +153,8 @@ trait TraitS2405
                 true
             );
             $endereco->appendChild($brasil);
-        } elseif (!empty($this->std->dadosbenef->endereco->exterior)) {
-            $end = $this->std->dadosbenef->endereco->exterior;
+        } elseif (!empty($this->std->alteracao->dadosbenef->endereco->exterior)) {
+            $end = $this->std->alteracao->dadosbenef->endereco->exterior;
             $exterior = $this->dom->createElement("exterior");
             $this->dom->addChild(
                 $exterior,
@@ -201,8 +201,8 @@ trait TraitS2405
             $endereco->appendChild($exterior);
         }
         $dadosBenef->appendChild($endereco);
-        if (!empty($this->std->dadosbenef->dependente)) {
-            foreach ($this->std->dadosbenef->dependente as $num => $dep) {
+        if (!empty($this->std->alteracao->dadosbenef->dependente)) {
+            foreach ($this->std->alteracao->dadosbenef->dependente as $num => $dep) {
                 $dependente = $this->dom->createElement("dependente");
                 $this->dom->addChild(
                     $dependente,
@@ -254,6 +254,6 @@ trait TraitS2405
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         $this->xml = $this->dom->saveXML($this->eSocial);
-        //$this->sign();
+        $this->sign();
     }
 }
