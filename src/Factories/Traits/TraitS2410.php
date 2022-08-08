@@ -59,19 +59,19 @@ trait TraitS2410
         $this->dom->addChild(
             $beneficiario,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $this->std->beneficiario->cpfbenef,
             true
         );
         $this->dom->addChild(
             $beneficiario,
             "matricula",
-            !empty($this->std->matricula) ? $this->std->matricula : null,
+            !empty($this->std->beneficiario->matricula) ? $this->std->beneficiario->matricula : null,
             false
         );
         $this->dom->addChild(
             $beneficiario,
             "cnpjOrigem",
-            !empty($this->std->cnpjorigem) ? $this->std->cnpjorigem : null,
+            !empty($this->std->beneficiario->cnpjorigem) ? $this->std->beneficiario->cnpjorigem : null,
             false
         );
         $this->node->appendChild($beneficiario);
@@ -80,56 +80,60 @@ trait TraitS2410
         $this->dom->addChild(
             $infoBenInicio,
             "cadIni",
-            $this->std->cadini,
+            $this->std->infobeninicio->cadini,
             true
         );
         $this->dom->addChild(
             $infoBenInicio,
             "indSitBenef",
-            !empty($this->std->indsitbenef) ? $this->std->indsitbenef : null,
+            !empty($this->std->infobeninicio->indsitbenef) ? $this->std->infobeninicio->indsitbenef : null,
             false
         );
         $this->dom->addChild(
             $infoBenInicio,
             "nrBeneficio",
-            $this->std->nrbeneficio,
+            $this->std->infobeninicio->nrbeneficio,
             true
         );
         $this->dom->addChild(
             $infoBenInicio,
             "dtIniBeneficio",
-            $this->std->dtinibeneficio,
+            $this->std->infobeninicio->dtinibeneficio,
             true
         );
         $this->dom->addChild(
             $infoBenInicio,
             "dtPublic",
-            !empty($this->std->dtpublic) ? $this->std->dtpublic : null,
+            !empty($this->std->infobeninicio->dtpublic) ? $this->std->infobeninicio->dtpublic : null,
             false
         );
         $dadosBeneficio = $this->dom->createElement("dadosBeneficio");
+       
         $this->dom->addChild(
             $dadosBeneficio,
             "tpBeneficio",
-            $this->std->tpbeneficio,
+            $this->std->infobeninicio->dadosbeneficio->tpbeneficio,
             true
         );
+      
         $this->dom->addChild(
             $dadosBeneficio,
             "tpPlanRP",
-            $this->std->tpplanrp,
+            $this->std->infobeninicio->dadosbeneficio->tpplanrp,
             true
         );
+      
         $this->dom->addChild(
             $dadosBeneficio,
             "dsc",
-            !empty($this->std->dsc) ? $this->std->dsc : null,
+            !empty($this->std->infobeninicio->dadosbeneficio->dsc) ? $this->std->infobeninicio->dadosbeneficio->dsc : null,
             false
         );
+        
         $this->dom->addChild(
             $dadosBeneficio,
             "indDecJud",
-            !empty($this->std->inddecjud) ? $this->std->inddecjud : null,
+            !empty($this->std->infobeninicio->dadosbeneficio->inddecjud) ? $this->std->infobeninicio->dadosbeneficio->inddecjud : null,
             false
         );
         
@@ -159,6 +163,7 @@ trait TraitS2410
             }
             $dadosBeneficio->appendChild($infoPenMorte);
         }
+     
         $infoBenInicio->appendChild($dadosBeneficio);
         
         if (!empty($this->std->sucessaobenef)) {
