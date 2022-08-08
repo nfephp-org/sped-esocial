@@ -127,6 +127,7 @@ class Tools
             'S-5011',
             'S-5012',
             'S-5013',
+            'S-2410',
         ],
         3 => [ //EVENTOS PERIÓDICOS grupo [3]
             'S-1200',
