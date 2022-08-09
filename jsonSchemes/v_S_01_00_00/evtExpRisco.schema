@@ -215,7 +215,7 @@
                 "type": "object",
                 "properties": {
                     "cpfresp": {
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "pattern": "^[0-9]{11}$"
                     },
