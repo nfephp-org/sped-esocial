@@ -59,13 +59,13 @@ trait TraitS2416
         $this->dom->addChild(
             $ideBeneficio,
             "cpfBenef",
-            $this->std->cpfbenef,
+            $this->std->idebeneficio->cpfbenef,
             true
         );
         $this->dom->addChild(
             $ideBeneficio,
             "nrBeneficio",
-            $this->std->nrbeneficio,
+            $this->std->idebeneficio->nrbeneficio,
             true
         );
         $this->node->appendChild($ideBeneficio);
@@ -74,60 +74,64 @@ trait TraitS2416
         $this->dom->addChild(
             $infoBenAlteracao,
             "dtAltBeneficio",
-            $this->std->dtaltbeneficio,
+            $this->std->infobenalteracao->dtaltbeneficio,
             true
         );
         $dadosBeneficio = $this->dom->createElement("dadosBeneficio");
         $this->dom->addChild(
             $dadosBeneficio,
             "tpBeneficio",
-            $this->std->tpbeneficio,
+            $this->std->infobenalteracao->dadosbeneficio->tpbeneficio,
             true
         );
         $this->dom->addChild(
             $dadosBeneficio,
             "tpPlanRP",
-            $this->std->tpplanrp,
+            $this->std->infobenalteracao->dadosbeneficio->tpplanrp,
             true
         );
-        $this->dom->addChild(
-            $dadosBeneficio,
-            "dsc",
-            !empty($this->std->dsc) ? $this->std->dsc : null,
-            false
-        );
+        if (isset($this->std->infobenalteracao->dadosbeneficio->dsc)) {
+            $this->dom->addChild(
+                $dadosBeneficio,
+                "dsc",
+                !empty($this->std->infobenalteracao->dadosbeneficio->dsc) ? $this->std->infobenalteracao->dadosbeneficio->dsc : null,
+                false
+            );
+        }
         $this->dom->addChild(
             $dadosBeneficio,
             "indSuspensao",
-            $this->std->indsuspensao,
+            $this->std->infobenalteracao->dadosbeneficio->indsuspensao,
             true
         );
-        if (!empty($this->std->infopenmorte)) {
+        if (!empty($this->std->infobenalteracao->dadosbeneficio->infopenmorte)) {
             $infoPenMorte = $this->dom->createElement("infoPenMorte");
             $this->dom->addChild(
                 $infoPenMorte,
                 "tpPenMorte",
-                $this->std->infopenmorte->tppenmorte,
+                $this->std->infobenalteracao->dadosbeneficio->infopenmorte->tppenmorte,
                 true
             );
             $dadosBeneficio->appendChild($infoPenMorte);
         }
-        if (!empty($this->std->suspensao)) {
+        if (!empty($this->std->infobenalteracao->dadosbeneficio->suspensao)) {
             $suspensao = $this->dom->createElement("suspensao");
             $this->dom->addChild(
                 $suspensao,
                 "mtvSuspensao",
-                $this->std->suspensao->mtvsuspensao,
+                $this->std->infobenalteracao->dadosbeneficio->suspensao->mtvsuspensao,
                 true
             );
-            $this->dom->addChild(
-                $suspensao,
-                "dscSuspensao",
-                !empty($this->std->suspensao->dscssuspensao)
-                    ? $this->std->suspensao->dscssuspensao
-                    : null,
-                false
-            );
+            if (isset($this->std->infobenalteracao->dadosbeneficio->suspensao->dscssuspensao)) {
+                $this->dom->addChild(
+                    $suspensao,
+                    "dscSuspensao",
+                    !empty($this->std->infobenalteracao->dadosbeneficio->suspensao->dscssuspensao)
+                        ? $this->std->infobenalteracao->dadosbeneficio->suspensao->dscssuspensao
+                        : null,
+                    false
+                );
+            }
             $dadosBeneficio->appendChild($suspensao);
         }
         $infoBenAlteracao->appendChild($dadosBeneficio);
