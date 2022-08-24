@@ -487,7 +487,7 @@
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="cpfResp" type="TS_cpf">
+                                                    <xs:element name="cpfResp" minOccurs="0" type="TS_cpf">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com o CPF do responsável pelos registros ambientais.</xs:documentation>
                                                             <xs:documentation>Validação: Deve ser um CPF válido.</xs:documentation>
