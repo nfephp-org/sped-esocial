@@ -64,12 +64,14 @@ trait TraitS3000
 
         if (!empty($this->std->infoexclusao->idefolhapagto)) {
             $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
-            $this->dom->addChild(
-                $ideFolhaPagto,
-                "indApuracao",
-                $this->std->infoexclusao->idefolhapagto->indapuracao,
-                true
-            );
+            if (isset($this->std->infoexclusao->idefolhapagto->indapuracao) && !empty($this->std->infoexclusao->idefolhapagto->indapuracao)) {
+                $this->dom->addChild(
+                    $ideFolhaPagto,
+                    "indApuracao",
+                    $this->std->infoexclusao->idefolhapagto->indapuracao,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $ideFolhaPagto,
                 "perApur",
@@ -138,12 +140,14 @@ trait TraitS3000
 
         if (!empty($this->std->infoexclusao->idefolhapagto)) {
             $ideFolhaPagto = $this->dom->createElement("ideFolhaPagto");
-            $this->dom->addChild(
-                $ideFolhaPagto,
-                "indApuracao",
-                $this->std->infoexclusao->idefolhapagto->indapuracao,
-                true
-            );
+            if (isset($this->std->infoexclusao->idefolhapagto->indapuracao) && !empty($this->std->infoexclusao->idefolhapagto->indapuracao)) {
+                $this->dom->addChild(
+                    $ideFolhaPagto,
+                    "indApuracao",
+                    $this->std->infoexclusao->idefolhapagto->indapuracao,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $ideFolhaPagto,
                 "perApur",
