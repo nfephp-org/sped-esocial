@@ -45,8 +45,8 @@ $jsonSchema = '{
             "type": "object",
             "properties": {
                 "indapuracao": {
-                    "required": true,
-                    "type": "integer",
+                    "required": false,
+                    "type": ["integer","null"],
                     "minimum": 1,
                     "maximum": 2
                 },

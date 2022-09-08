@@ -804,7 +804,7 @@ $jsonSchema = '{
                             "required": true,
                             "type": "integer",
                             "minimum": 1,
-                            "maximum": 2
+                            "maximum": 3
                         },
                         "dtterm": {
                             "required": false,
