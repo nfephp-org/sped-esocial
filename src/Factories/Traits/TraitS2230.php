@@ -371,12 +371,15 @@ trait TraitS2230
                 false
             );
         }
-        $this->dom->addChild(
-            $ideVinculo,
-            "codCateg",
-            !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
-            false
-        );
+        if (!empty($this->std->idevinculo->codcateg)) {
+            $this->std->idevinculo->codcateg = (int) $this->std->idevinculo->codcateg;
+            $this->dom->addChild(
+                $ideVinculo,
+                "codCateg",
+                $this->std->idevinculo->codcateg,
+                false
+            );
+        }
         $this->node->appendChild($ideVinculo);
 
         $infoAfastamento = $this->dom->createElement("infoAfastamento");
