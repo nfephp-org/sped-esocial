@@ -137,26 +137,26 @@ trait TraitS2410
             false
         );
         
-        if (!empty($this->std->infobeninicio->infopenmorte)) {
+        if (!empty($this->std->infobeninicio->dadosbeneficio->infopenmorte)) {
             $infoPenMorte = $this->dom->createElement("infoPenMorte");
             $this->dom->addChild(
                 $infoPenMorte,
                 "tpPenMorte",
-                $this->std->infobeninicio->infopenmorte->tppenmorte,
+                $this->std->infobeninicio->dadosbeneficio->infopenmorte->tppenmorte,
                 true
             );
-            if (!empty($this->std->infobeninicio->infopenmorte->instpenmorte)) {
+            if (!empty($this->std->infobeninicio->dadosbeneficio->infopenmorte->instpenmorte)) {
                 $instPenMorte = $this->dom->createElement("instPenMorte");
                 $this->dom->addChild(
                     $instPenMorte,
                     "cpfInst",
-                    $this->std->infobeninicio->infopenmorte->instpenmorte->cpfinst,
+                    $this->std->infobeninicio->dadosbeneficio->infopenmorte->instpenmorte->cpfinst,
                     true
                 );
                 $this->dom->addChild(
                     $instPenMorte,
                     "dtInst",
-                    $this->std->infobeninicio->infopenmorte->instpenmorte->dtinst,
+                    $this->std->infobeninicio->dadosbeneficio->infopenmorte->instpenmorte->dtinst,
                     true
                 );
                 $infoPenMorte->appendChild($instPenMorte);
