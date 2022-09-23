@@ -183,11 +183,11 @@ $jsonSchema = '{
                       "maximum": 905
                 },
                 "vrsalfx": {
-                    "required": true,
+                    "required": false,
                     "type": "number"
                 },
                 "undsalfixo": {
-                    "required": true,
+                    "required": false,
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 7
@@ -198,7 +198,7 @@ $jsonSchema = '{
                     "maxLength": 255
                 },
                 "tpcontr": {
-                    "required": true,
+                    "required": false,
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 2
