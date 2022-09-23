@@ -254,6 +254,6 @@ trait TraitS2405
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         $this->xml = $this->dom->saveXML($this->eSocial);
-        //$this->sign();
+        $this->sign();
     }
 }
