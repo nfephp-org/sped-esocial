@@ -465,6 +465,12 @@
                                                         "vrrubr": {
                                                             "required": false,
                                                             "type": ["number","null"]
+                                                        },
+                                                        "indapurir": {
+                                                            "required": false,
+                                                            "type": ["integer","null"],
+                                                            "minumum": 0,
+                                                            "maximum": 3
                                                         }
                                                     }
                                                 }
