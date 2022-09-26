@@ -974,6 +974,12 @@ trait TraitS1200
                                         $irem->vrrubr,
                                         true
                                     );
+                                    $this->dom->addChild(
+                                        $itensRemun,
+                                        "indApurIR",
+                                        isset($irem->indapurir) ? $irem->indapurir : null,
+                                        false
+                                    );
                                     $remunPerAnt->appendChild($itensRemun);
                                 }
                                 if (!empty($rpr->infoagnocivo)) {
