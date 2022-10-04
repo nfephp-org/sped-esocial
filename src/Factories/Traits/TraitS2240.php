@@ -582,31 +582,32 @@ trait TraitS2240
                     true
                 );
             }
-            
-            $this->dom->addChild(
-                $respReg,
-                "ideOC",
-                $r->ideoc,
-                true
-            );
-            $this->dom->addChild(
-                $respReg,
-                "dscOC",
-                !empty($r->dscoc) ? $r->dscoc : null,
-                false
-            );
-            $this->dom->addChild(
-                $respReg,
-                "nrOC",
-                $r->nroc,
-                true
-            );
-            $this->dom->addChild(
-                $respReg,
-                "ufOC",
-                $r->ufoc,
-                true
-            );
+            if (isset($this->std->agnoc[0]) && $this->std->agnoc[0]->codagnoc != '09.01.001') {
+                $this->dom->addChild(
+                    $respReg,
+                    "ideOC",
+                    $r->ideoc,
+                    true
+                );
+                $this->dom->addChild(
+                    $respReg,
+                    "dscOC",
+                    !empty($r->dscoc) ? $r->dscoc : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $respReg,
+                    "nrOC",
+                    $r->nroc,
+                    true
+                );
+                $this->dom->addChild(
+                    $respReg,
+                    "ufOC",
+                    $r->ufoc,
+                    true
+                );
+            }
             $info->appendChild($respReg);
         }
 
