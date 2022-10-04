@@ -594,20 +594,18 @@ trait TraitS2240
                 !empty($r->dscoc) ? $r->dscoc : null,
                 false
             );
-            if (isset($this->std->agnoc[0]) && $this->std->agnoc[0]->codagnoc != '09.01.001') {
-                $this->dom->addChild(
-                    $respReg,
-                    "nrOC",
-                    $r->nroc,
-                    true
-                );
-                $this->dom->addChild(
-                    $respReg,
-                    "ufOC",
-                    $r->ufoc,
-                    true
-                );
-            }
+            $this->dom->addChild(
+                $respReg,
+                "nrOC",
+                $r->nroc,
+                true
+            );
+            $this->dom->addChild(
+                $respReg,
+                "ufOC",
+                $r->ufoc,
+                true
+            );
             $info->appendChild($respReg);
         }
 
