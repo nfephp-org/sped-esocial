@@ -17,6 +17,7 @@
                         <xs:documentation>REGRA:REGRA_EMPREGADO_DOMESTICO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_EVENTO_POSTERIOR_CAT_OBITO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXTEMP_DOMESTICO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXTEMP_REINTEGRACAO</xs:documentation>
@@ -34,7 +35,7 @@
                             <xs:element name="altContratual">
                                 <xs:annotation>
                                     <xs:documentation>Alteração de dados contratuais.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {dtAlteracao}, {dtEf}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {dtAlteracao*}, {dtEf*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -66,9 +67,10 @@
                                             <xs:complexType>
                                                 <xs:sequence>
                                                     <xs:element name="tpRegPrev" type="TS_tpRegPrev" />
-                                                    <xs:element name="infoRegimeTrab">
+                                                    <xs:element name="infoRegimeTrab" minOccurs="0">
                                                         <xs:annotation>
                                                             <xs:documentation>Informações do regime trabalhista.</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: N (se {tpRegPrev}(2206_altContratual_vinculo_tpRegPrev) = [1] e {tpRegTrab}(2200_vinculo_tpRegTrab) em S-2200 = [2]); O (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
