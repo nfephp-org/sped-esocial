@@ -41,7 +41,7 @@
                             <xs:element name="trabalhador">
                                 <xs:annotation>
                                     <xs:documentation>Informações pessoais do trabalhador.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -156,7 +156,7 @@
                                 <xs:annotation>
                                     <xs:documentation>Informações do vínculo.</xs:documentation>
                                     <xs:documentation>DESCRICAO_COMPLETA:Grupo de informações do vínculo.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {matricula}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {matricula*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -232,7 +232,7 @@
                                                                                 </xs:enumeration>
                                                                                 <xs:enumeration value="2">
                                                                                     <xs:annotation>
-                                                                                        <xs:documentation>Transferência de empresa do mesmo grupo econômico</xs:documentation>
+                                                                                        <xs:documentation>Transferência de empresa do mesmo grupo econômico ou transferência entre órgãos do mesmo Ente Federativo</xs:documentation>
                                                                                     </xs:annotation>
                                                                                 </xs:enumeration>
                                                                                 <xs:enumeration value="3">
@@ -255,6 +255,11 @@
                                                                                         <xs:documentation>Mudança de CPF</xs:documentation>
                                                                                     </xs:annotation>
                                                                                 </xs:enumeration>
+                                                                                <xs:enumeration value="7">
+                                                                                    <xs:annotation>
+                                                                                        <xs:documentation>Transferência quando a empresa sucedida é considerada inapta por inexistência de fato</xs:documentation>
+                                                                                    </xs:annotation>
+                                                                                </xs:enumeration>                                                                                
                                                                             </xs:restriction>
                                                                         </xs:simpleType>
                                                                     </xs:element>
@@ -396,7 +401,7 @@
                                                                             <xs:annotation>
                                                                                 <xs:documentation>Preencher com o tipo de provimento.</xs:documentation>
                                                                                 <xs:documentation>Validação: Os valores [3, 5, 6, 7, 8, 9] só são permitidos se a natureza jurídica do declarante for Administração Pública (grupo [1]).</xs:documentation>
-                                                                                <xs:documentation>Se {codCateg}(2200_vinculo_infoContrato_codCateg) = [302], deve ser preenchido com [2].</xs:documentation>
+                                                                                <xs:documentation>Se {codCateg}(2200_vinculo_infoContrato_codCateg) = [302], deve ser preenchido com [2, 5, 8, 10].</xs:documentation>
                                                                             </xs:annotation>
                                                                             <xs:restriction base="xs:byte">
                                                                                 <xs:enumeration value="1">
@@ -416,7 +421,7 @@
                                                                                 </xs:enumeration>
                                                                                 <xs:enumeration value="5">
                                                                                     <xs:annotation>
-                                                                                        <xs:documentation>Redistribuição</xs:documentation>
+                                                                                        <xs:documentation>Redistribuição ou Reforma Administrativa</xs:documentation>
                                                                                     </xs:annotation>
                                                                                 </xs:enumeration>
                                                                                 <xs:enumeration value="6">
@@ -442,6 +447,11 @@
                                                                                 <xs:enumeration value="10">
                                                                                     <xs:annotation>
                                                                                         <xs:documentation>Mudança de CPF</xs:documentation>
+                                                                                    </xs:annotation>
+                                                                                </xs:enumeration>
+                                                                                <xs:enumeration value="11">
+                                                                                    <xs:annotation>
+                                                                                        <xs:documentation>Estabilizados - Art. 19 do ADCT</xs:documentation>
                                                                                     </xs:annotation>
                                                                                 </xs:enumeration>
                                                                                 <xs:enumeration value="99">
@@ -622,7 +632,7 @@
                                         <xs:element name="sucessaoVinc" minOccurs="0">
                                             <xs:annotation>
                                                 <xs:documentation>Grupo de informações da sucessão de vínculo trabalhista/estatutário.</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: O (se {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [2, 3, 4] ou {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) = [5, 8]); N (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: O (se {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [2, 3, 4, 7] ou {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) = [5, 8]); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
