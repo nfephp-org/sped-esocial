@@ -412,33 +412,33 @@ trait TraitS2306
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "cpfTrab",
-            $this->std->trabsemvinculo->cpftrab,
+            $this->std->idetrabsemvinculo->cpftrab,
             true
         );
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "matricula",
-            !empty($this->std->trabsemvinculo->matricula) ? $this->std->trabsemvinculo->matricula : null,
+            !empty($this->std->idetrabsemvinculo->matricula) ? $this->std->idetrabsemvinculo->matricula : null,
             false
         );
         $this->dom->addChild(
             $ideTrabSemVinculo,
             "codCateg",
-            $this->std->trabsemvinculo->codcateg,
-            true
+            !empty($this->std->idetrabsemvinculo->codcateg) ? $this->std->idetrabsemvinculo->codcateg : null,
+            false
         );
         $this->node->appendChild($ideTrabSemVinculo);
         $infoTSVAlteracao = $this->dom->createElement("infoTSVAlteracao");
         $this->dom->addChild(
             $infoTSVAlteracao,
             "dtAlteracao",
-            $this->std->tsvalteracao->dtalteracao,
+            $this->std->infotsvalteracao->dtalteracao,
             true
         );
         $this->dom->addChild(
             $infoTSVAlteracao,
             "natAtividade",
-            !empty($this->std->tsvalteracao->natatividade) ? $this->std->tsvalteracao->natatividade : null,
+            !empty($this->std->infotsvalteracao->natatividade) ? $this->std->infotsvalteracao->natatividade : null,
             false
         );
         $infoComplementares = null;
