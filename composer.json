@@ -34,7 +34,7 @@
         "ext-xml": "*",
         "nfephp-org/sped-common" : "^5.0",
         "justinrainbow/json-schema": "^5.2",
-        "league/flysystem": "^1.0"
+        "league/flysystem": "^1.0|^3.8"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.4",
