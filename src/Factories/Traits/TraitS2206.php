@@ -552,6 +552,9 @@ trait TraitS2206
                 $infoCeletista->appendChild($aprend);
             }
             $infoRegimeTrab->appendChild($infoCeletista);
+
+            $vinculo->appendChild($infoRegimeTrab);
+
         } elseif (!empty($this->std->infoestatutario)) {
             $ct = $this->std->infoestatutario;
             $infoEstatutario = $this->dom->createElement("infoEstatutario");
@@ -574,8 +577,9 @@ trait TraitS2206
                 false
             );
             $infoRegimeTrab->appendChild($infoEstatutario);
+
+            $vinculo->appendChild($infoRegimeTrab);
         }
-        $vinculo->appendChild($infoRegimeTrab);
 
         $infoContrato = $this->dom->createElement("infoContrato");
         $ct = $this->std->infocontrato;

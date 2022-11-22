@@ -526,7 +526,7 @@ $jsonSchema = '{
                         },
                         "dtingrcargo": {
                             "required": false,
-                            "type": "string",
+                            "type": ["string","null"],
                             "$ref": "#/definitions/data"
                         },
                         "nmfuncao": {
