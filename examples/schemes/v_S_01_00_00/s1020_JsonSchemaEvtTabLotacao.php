@@ -27,8 +27,7 @@ $jsonSchema = '{
         "codlotacao": {
             "required": true,
             "type": "string",
-            "maxLength": 30,
-            "pattern": "^(?!eSocial)"
+            "maxLength": 30
         },
         "inivalid": {
             "required": true,
@@ -101,7 +100,7 @@ $jsonSchema = '{
                             "codsusp": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^[0-9]{1,14}"
+                                "pattern": "^[0-9]{1,14}$"
                             }
                         }
                     }
@@ -119,7 +118,7 @@ $jsonSchema = '{
                         "nrinsccontrat": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{11,14}"
+                            "pattern": "^[0-9]{11,14}$"
                         },
                         "tpinscprop": {
                             "required": false,
@@ -130,7 +129,7 @@ $jsonSchema = '{
                         "nrinscprop": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^[0-9]{11,14}"
+                            "pattern": "^[0-9]{11,14}$"
                         }
                     }
                 },
@@ -168,7 +167,7 @@ $jsonSchema = '{
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
                 }
-            }    
+            }
         }
     }
 }';

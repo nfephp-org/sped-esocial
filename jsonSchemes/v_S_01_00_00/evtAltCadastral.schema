@@ -109,7 +109,7 @@
                         "codmunic": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{7}"
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": true,
@@ -125,7 +125,7 @@
                         "paisresid": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{3}"
+                            "pattern": "^[0-9]{3}$"
                         },
                         "dsclograd": {
                             "required": true,

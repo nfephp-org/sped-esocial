@@ -59,7 +59,7 @@ $jsonSchema = '{
         "codcateg": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{3}"
+            "pattern": "^[0-9]{3}$"
         },
         "natatividade": {
             "required": false,

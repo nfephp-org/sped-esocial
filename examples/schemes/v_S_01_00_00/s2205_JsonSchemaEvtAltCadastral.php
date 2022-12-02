@@ -129,7 +129,7 @@ $jsonSchema = '{
                         "codmunic": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{7}"
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": true,
@@ -145,7 +145,7 @@ $jsonSchema = '{
                         "paisresid": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{3}"
+                            "pattern": "^[0-9]{3}$"
                         },
                         "dsclograd": {
                             "required": true,
@@ -368,7 +368,7 @@ $std->infodeficiencia->defauditiva = 'N'; //Obrigatório
 $std->infodeficiencia->defmental = 'N'; //Obrigatório
 $std->infodeficiencia->defintelectual = 'N'; //Obrigatório
 $std->infodeficiencia->reabreadap = 'N'; //Obrigatório
-$std->infodeficiencia->infocota = 'N'; //Opcional 
+$std->infodeficiencia->infocota = 'N'; //Opcional
 $std->infodeficiencia->observacao = 'lkslkslkslkslkslks'; //Opcional
 
 //Informações dos dependentes.
@@ -383,7 +383,7 @@ $std->dependente[1]->inctrab = 'N'; //Obrigatório
 
 //Informações de contato.
 $std->contato = new \stdClass(); //Opcional
-$std->contato->foneprinc = '1234567890'; //Opcional 
+$std->contato->foneprinc = '1234567890'; //Opcional
 $std->contato->emailprinc = 'ele@mail.com'; //Opcional
 
 // Schema must be decoded before it can be used for validation
