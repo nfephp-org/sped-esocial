@@ -67,7 +67,7 @@ $jsonSchema = '{
         "mtvdesligtsv": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^[0-9]{2}"
+            "pattern": "^[0-9]{2}$"
         },
         "pensalim": {
             "required": false,
@@ -86,12 +86,12 @@ $jsonSchema = '{
         "nrproctrab": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^.{20}"
+            "pattern": "^.{20}$"
         },
         "novocpf": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^[0-9]{11}"
+            "pattern": "^[0-9]{11}$"
         },
         "verbasresc": {
             "required": false,
@@ -175,7 +175,7 @@ $jsonSchema = '{
                                                         "maximum": 1
                                                     }
                                                 }
-                                            }    
+                                            }
                                         },
                                         "infosimples": {
                                             "required": false,
@@ -220,7 +220,7 @@ $jsonSchema = '{
                                 "pattern": "^[0-9]{1,14}$"
                             }
                         }
-                    }   
+                    }
                 },
                 "infomv": {
                     "required": false,
@@ -262,7 +262,7 @@ $jsonSchema = '{
                                         "type": "number"
                                     }
                                 }
-                            }   
+                            }
                         }
                     }
                 }
@@ -298,7 +298,7 @@ $std->percaliment = 10.00;
 $std->vralim = 600.23;
 $std->nrproctrab = "12345678901234567890";
 $std->novocpf = "12345678901";
-    
+
 $std->verbasresc = new \stdClass();
 $std->verbasresc->dmdev[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->idedmdev = 'ksksksksksksksk';

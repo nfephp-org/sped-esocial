@@ -103,7 +103,7 @@ $jsonSchema = '{
                         "indtreinant": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^S|N$"
+                            "pattern": "^(S|N)$"
                         },
                         "ideprofresp": {
                             "required": true,
@@ -146,7 +146,7 @@ $jsonSchema = '{
                                         "maximum": 2
                                     }
                                 }
-                            }    
+                            }
                         }
                     }
                 }
@@ -181,7 +181,7 @@ $std->treicap->infocomplem->ideprofresp[0]->cpfprof = '12345678901';
 $std->treicap->infocomplem->ideprofresp[0]->nmprof = 'Beltrano de Tal';
 $std->treicap->infocomplem->ideprofresp[0]->tpprof = 1; //1-2
 $std->treicap->infocomplem->ideprofresp[0]->formprof = 'bla bla bla';
-$std->treicap->infocomplem->ideprofresp[0]->codcbo = '123456'; 
+$std->treicap->infocomplem->ideprofresp[0]->codcbo = '123456';
 $std->treicap->infocomplem->ideprofresp[0]->nacprof = 1; //1-2
 
 

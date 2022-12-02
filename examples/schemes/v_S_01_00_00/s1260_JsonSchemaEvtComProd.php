@@ -155,8 +155,7 @@ $jsonSchema = '{
                                         "codsusp": {
                                             "required": true,
                                             "type": "string",
-                                            "maxLength": 14,
-                                            "pattern": "^[0-9]"
+                                            "pattern": "^[0-9]{1,14}$"
                                         },
                                         "vrcpsusp": {
                                             "required": false,
@@ -174,7 +173,7 @@ $jsonSchema = '{
                                 }
                             }
                         }
-                    }    
+                    }
                 }
             }
         }

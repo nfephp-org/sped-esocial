@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors|On');
+ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
 use JsonSchema\Constraints\Constraint;
@@ -146,7 +146,7 @@ $jsonSchema = '{
                         "paisresid": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{3}"
+                            "pattern": "^[0-9]{3}$"
                         },
                         "dsclograd": {
                             "required": true,
@@ -418,7 +418,7 @@ $jsonSchema = '{
                 "nrinsc": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{11,14}"
+                    "pattern": "^[0-9]{11,14}$"
                 },
                 "dtadmorig": {
                     "required": false,
@@ -580,7 +580,7 @@ $jsonSchema = '{
                         "codmunic": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^[0-9]{7}"
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": false,
@@ -641,7 +641,7 @@ $jsonSchema = '{
                 "codmotafast": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}"
+                    "pattern": "^[0-9]{2}$"
                 }
             }
         },
@@ -725,7 +725,7 @@ $std->dependente[1]->inctrab = 'N'; //Obrigatório
 
 //Informações de contato.
 $std->contato = new \stdClass(); //Opcional
-$std->contato->foneprinc = '1234567890'; //Opcional 
+$std->contato->foneprinc = '1234567890'; //Opcional
 $std->contato->emailprinc = 'ele@mail.com'; //Opcional
 
 //Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE - Início.
@@ -739,7 +739,7 @@ $std->natatividade = 2; //Opcional
 //Grupo que apresenta o cargo e/ou função ocupada pelo TSVE.
 $std->cargofuncao = new \stdClass(); //Opcional
 $std->cargofuncao->nmcargo = 'lalalaloaoaoa'; //Opcional
-$std->cargofuncao->cbocargo = '263105'; //Opcional 
+$std->cargofuncao->cbocargo = '263105'; //Opcional
 $std->cargofuncao->nmfuncao = 'ksksksksk sk'; //Opcional
 $std->cargofuncao->cbofuncao = '263105'; //Opcional
 

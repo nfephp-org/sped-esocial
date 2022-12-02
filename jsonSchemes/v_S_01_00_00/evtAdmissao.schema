@@ -22,7 +22,7 @@
         "cpftrab": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{11}"
+            "pattern": "^[0-9]{11}$"
         },
         "nmtrab": {
             "required": true,
@@ -455,7 +455,7 @@
                                 }
                             }
                         }
-                    }    
+                    }
                 },
                 "infoestatutario": {
                     "required": false,
@@ -493,7 +493,7 @@
                             "type": ["string", "null"],
                             "$ref": "#/definitions/data"
                         }
-                    }    
+                    }
                 },
                 "infocontrato": {
                     "required": true,
@@ -555,7 +555,7 @@
                                     "maxLength": 255
                                 }
                             }
-                        },    
+                        },
                         "duracao": {
                             "required": false,
                             "type": ["object","null"],
@@ -711,7 +711,7 @@
                                         "minLength": 1,
                                         "maxLength": 255
                                     }
-                                }    
+                                }
                             }
                         },
                         "treicap": {
@@ -728,10 +728,10 @@
                                         "minimum": 1,
                                         "maximum": 9999
                                     }
-                                }    
+                                }
                             }
                         }
-                    }    
+                    }
                 },
                 "sucessaovinc": {
                     "required": false,
@@ -853,7 +853,7 @@
                         }
                     }
                 }
-            }    
-        }        
+            }
+        }
     }
 }

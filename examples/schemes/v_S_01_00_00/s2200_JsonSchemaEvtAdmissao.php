@@ -37,7 +37,7 @@ $jsonSchema = '{
         "cpftrab": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{11}"
+            "pattern": "^[0-9]{11}$"
         },
         "nmtrab": {
             "required": true,
@@ -470,7 +470,7 @@ $jsonSchema = '{
                                 }
                             }
                         }
-                    }    
+                    }
                 },
                 "infoestatutario": {
                     "required": false,
@@ -508,7 +508,7 @@ $jsonSchema = '{
                             "type": ["string", "null"],
                             "$ref": "#/definitions/data"
                         }
-                    }    
+                    }
                 },
                 "infocontrato": {
                     "required": true,
@@ -570,7 +570,7 @@ $jsonSchema = '{
                                     "maxLength": 255
                                 }
                             }
-                        },    
+                        },
                         "duracao": {
                             "required": false,
                             "type": ["object","null"],
@@ -726,7 +726,7 @@ $jsonSchema = '{
                                         "minLength": 1,
                                         "maxLength": 255
                                     }
-                                }    
+                                }
                             }
                         },
                         "treicap": {
@@ -743,10 +743,10 @@ $jsonSchema = '{
                                         "minimum": 1,
                                         "maximum": 9999
                                     }
-                                }    
+                                }
                             }
                         }
-                    }    
+                    }
                 },
                 "sucessaovinc": {
                     "required": false,
@@ -868,8 +868,8 @@ $jsonSchema = '{
                         }
                     }
                 }
-            }    
-        }        
+            }
+        }
     }
 }';
 
@@ -957,7 +957,7 @@ $std->vinculo->infoceletista->trabtemporario = new \stdClass(); //Opcional
 $std->vinculo->infoceletista->trabtemporario->hipleg = 1;
 $std->vinculo->infoceletista->trabtemporario->justcontr = 'jwkjwkjwkjwk';
 
-$std->vinculo->infoceletista->trabtemporario->ideestabvinc = new \stdClass(); 
+$std->vinculo->infoceletista->trabtemporario->ideestabvinc = new \stdClass();
 $std->vinculo->infoceletista->trabtemporario->ideestabvinc->tpinsc = 2; //1 pu 2
 $std->vinculo->infoceletista->trabtemporario->ideestabvinc->nrinsc = '12345678901234';
 

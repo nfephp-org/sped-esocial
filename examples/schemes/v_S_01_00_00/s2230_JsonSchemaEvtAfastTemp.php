@@ -148,7 +148,7 @@ $jsonSchema = '{
                         "indremuncargo": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "S|N"
+                            "pattern": "^(S|N)$"
                         }
                     }
                 }

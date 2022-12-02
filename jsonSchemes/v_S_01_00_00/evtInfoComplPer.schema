@@ -19,6 +19,12 @@
             "type": ["string","null"],
             "$ref": "#/definitions/recibo"
         },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
         "perapur": {
             "required": true,
             "type": "string",
