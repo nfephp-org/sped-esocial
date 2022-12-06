@@ -54,7 +54,7 @@ trait TraitS2220
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            isset($this->std->idevinculo->matricula) ? htmlspecialchars($this->std->idevinculo->matricula) : null,
+            isset($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
             false
         );
         $this->node->appendChild($ideVinculo);
@@ -379,7 +379,7 @@ trait TraitS2220
             $this->dom->addChild(
                 $ideVinculo,
                 "matricula",
-                isset($this->std->idevinculo->matricula) ? htmlspecialchars($this->std->idevinculo->matricula) : null,
+                isset($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
                 false
             );
         }else {
