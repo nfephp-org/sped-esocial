@@ -280,7 +280,7 @@ trait TraitS2210
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            isset($this->std->matricula) ? htmlspecialchars($this->std->matricula) : null,
+            isset($this->std->matricula) ? $this->std->matricula : null,
             false
         );
         $this->dom->addChild(
@@ -532,7 +532,7 @@ trait TraitS2210
         $this->dom->addChild(
             $ideVinculo,
             "matricula",
-            isset($this->std->matricula) ? htmlspecialchars($this->std->matricula) : null,
+            isset($this->std->matricula) ? $this->std->matricula : null,
             false
         );
         $this->dom->addChild(
