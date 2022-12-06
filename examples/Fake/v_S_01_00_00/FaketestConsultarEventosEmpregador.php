@@ -10,7 +10,7 @@ use NFePHP\eSocial\Common\FakePretty;
 use NFePHP\eSocial\Tools;
 
 $config = [
-    'tpAmb' => 2,
+    'tpAmb' => 1,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
     'verProc' => 'S_1.0.0',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.

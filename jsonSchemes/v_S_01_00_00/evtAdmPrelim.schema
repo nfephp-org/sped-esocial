@@ -3,8 +3,8 @@
     "type": "object",
     "properties": {
         "sequencial": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "minimum": 1,
             "maximum": 99999
         },
@@ -17,7 +17,7 @@
         "nrrecibo": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^[1]{1}.[0-9]{1}.[0-9]{19}$"
+            "$ref": "#/definitions/recibo"
         },
         "cpftrab": {
             "required": true,
@@ -43,7 +43,7 @@
         "codcateg": {
             "required": true,
             "type": "string",
-            "pattern": "^[0-9]{3}"
+            "pattern": "^[0-9]{3}$"
         },
         "natatividade": {
             "required": false,

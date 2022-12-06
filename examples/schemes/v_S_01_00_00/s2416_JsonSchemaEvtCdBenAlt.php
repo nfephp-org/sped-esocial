@@ -59,7 +59,7 @@ $jsonSchema = '{
             "required": true,
             "type": "integer",
             "minimum": 0,
-            "maximum": 3 
+            "maximum": 3
         },
         "dsc": {
             "required": false,
@@ -69,7 +69,7 @@ $jsonSchema = '{
         "indsuspensao": {
             "required": true,
             "type": "string",
-            "pattern": "^S|N$"
+            "pattern": "^(S|N)$"
         },
         "infopenmorte": {
             "required": false,
@@ -79,7 +79,7 @@ $jsonSchema = '{
                     "required": true,
                     "type": "integer",
                     "minimum": 1,
-                    "maximum": 2 
+                    "maximum": 2
                 }
             }
         },
@@ -90,7 +90,7 @@ $jsonSchema = '{
                 "mtvsuspensao": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^01|99$"
+                    "pattern": "^(01|99)$"
                 },
                 "dscSuspensao": {
                     "required": false,
@@ -99,7 +99,7 @@ $jsonSchema = '{
                 }
             }
         }
-        
+
     }
 }';
 

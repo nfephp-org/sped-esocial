@@ -610,7 +610,7 @@ $jsonSchema = '{
                                 "tpacconv": {
                                     "required": true,
                                     "type": "string",
-                                    "pattern": "A|B|C|D|E|F"
+                                    "pattern": "^(A|B|C|D|E|F|G|H)$"
                                 },
                                 "compacconv": {
                                     "required": false,
@@ -631,7 +631,7 @@ $jsonSchema = '{
                                     "required": true,
                                     "type": "string",
                                     "maxLength": 1,
-                                    "pattern": "S|N"
+                                    "pattern": "^(S|N)$"
                                 },
                                 "ideperiodo": {
                                     "required": true,
@@ -772,9 +772,7 @@ $jsonSchema = '{
                             "codcbo": {
                                 "required": true,
                                 "type": "string",
-                                "minLength": 4,
-                                "maxLength": 6,
-                                "pattern": "^[0-9]"
+                                "pattern": "^[0-9]{4,6}$"
                             },
                             "natatividade": {
                                 "required": false,
@@ -901,7 +899,7 @@ $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->tpinsc = "1"; //Obriga
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->nrinsc = '12345678901234'; //Obrigatório
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->codlotacao = 'ksjskjkjskjjs'; //Obrigatório
 
-//Informações relativas à remuneração do trabalhador em períodos anteriores. 
+//Informações relativas à remuneração do trabalhador em períodos anteriores.
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0] = new \stdClass(); //Obrigatório
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->matricula = 'kjskjskjskjs'; //Opcional
 $std->dmdev[0]->ideadc[0]->ideperiodo[0]->ideestablot[0]->remunperant[0]->indsimples = 1; //Opcional

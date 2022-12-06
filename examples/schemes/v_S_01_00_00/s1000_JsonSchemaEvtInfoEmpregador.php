@@ -42,7 +42,7 @@ $jsonSchema = '{
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
                 }
-            }    
+            }
         },
         "infocadastro": {
             "required": false,
@@ -91,7 +91,7 @@ $jsonSchema = '{
                 "cnpjefr": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{14}"
+                    "pattern": "^[0-9]{14}$"
                 }
             }
         },
@@ -166,7 +166,7 @@ $jsonSchema = '{
                     "required": false,
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
-                }            
+                }
             }
         }
     }
@@ -203,7 +203,7 @@ $std->dadosisencao = new \stdClass();
 $std->dadosisencao->ideminlei = 'seila';//Sigla e nome do Ministério ou Lei que concedeu o Certificado
 $std->dadosisencao->nrcertif = '987654321';//Número do Certificado de Entidade Beneficente de Assistência Social, número da portaria de concessão do Certificado, ou, no caso de concessão através de Lei específica, o número da Lei.
 $std->dadosisencao->dtemiscertif = '2016-11-04';//Data de Emissão do Certificado/publicação da Lei
-$std->dadosisencao->dtvenccertif = '2018-11-03';//Data de Vencimento do Certificado 
+$std->dadosisencao->dtvenccertif = '2018-11-03';//Data de Vencimento do Certificado
 $std->dadosisencao->nrprotrenov = null;//Protocolo pedido renovação
 $std->dadosisencao->dtprotrenov = null;//Data do protocolo de renovação
 $std->dadosisencao->dtdou = null;//Preencher com a data de publicação no Diário Oficial da União

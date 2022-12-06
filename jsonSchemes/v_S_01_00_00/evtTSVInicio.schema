@@ -130,7 +130,7 @@
                         "paisresid": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{3}"
+                            "pattern": "^[0-9]{3}$"
                         },
                         "dsclograd": {
                             "required": true,
@@ -402,7 +402,7 @@
                 "nrinsc": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{11,14}"
+                    "pattern": "^[0-9]{11,14}$"
                 },
                 "dtadmorig": {
                     "required": false,
@@ -564,7 +564,7 @@
                         "codmunic": {
                             "required": false,
                             "type": ["string","null"],
-                            "pattern": "^[0-9]{7}"
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": false,
@@ -625,7 +625,7 @@
                 "codmotafast": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{2}"
+                    "pattern": "^[0-9]{2}$"
                 }
             }
         },

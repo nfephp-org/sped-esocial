@@ -77,7 +77,7 @@
                 "cnpjsindcategprof": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{8,14}$" 
+                    "pattern": "^[0-9]{8,14}$"
                 },
                 "trabtemporario": {
                     "required": false,
@@ -117,18 +117,18 @@
                 "tpplanrp": {
                     "required": true,
                     "type": "integer",
-                    "minimum": 0,
-                    "maximum": 3
+                    "minimum": 1,
+                    "maximum": 2
                 },
                 "indtetorgps": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "indabonoperm": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 }
             }
         },
@@ -159,7 +159,7 @@
                 "acumcargo": {
                       "required": false,
                       "type": ["string","null"],
-                      "pattern": "S|N"
+                      "pattern": "^(S|N)$"
                 },
                 "codcateg": {
                       "required": true,
@@ -291,7 +291,7 @@
                         "hornoturno": {
                             "required": false,
                             "type": ["string", "null"],
-                            "pattern": "S|N"
+                            "pattern": "^(S|N)$"
                         },
                         "dscjorn": {
                             "required": true,
@@ -324,7 +324,7 @@
                                 "type": "string",
                                 "maxLength": 255
                             }
-                        }    
+                        }
                     }
                 },
                 "treicap": {
@@ -341,10 +341,10 @@
                                 "minimum": 1,
                                 "maximum": 9999
                             }
-                        }    
+                        }
                     }
                 }
-            }    
+            }
         }
     }
 }

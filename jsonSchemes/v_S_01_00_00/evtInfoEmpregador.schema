@@ -27,7 +27,7 @@
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
                 }
-            }    
+            }
         },
         "infocadastro": {
             "required": false,
@@ -76,7 +76,7 @@
                 "cnpjefr": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{14}"
+                    "pattern": "^[0-9]{14}$"
                 }
             }
         },
@@ -151,7 +151,7 @@
                     "required": false,
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
-                }            
+                }
             }
         }
     }

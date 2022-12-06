@@ -181,12 +181,12 @@
                     "type": "object",
                     "properties": {
                         "cnpjinstensino": {
-                            "required": false,
+                            "required": true,
                             "type": "string",
                             "pattern": "^[0-9]{14}$"
                         },
                         "nmrazao": {
-                            "required": false,
+                            "required": true,
                             "type": "string",
                             "maxLength": 100
                         },

@@ -92,7 +92,7 @@ $jsonSchema = '{
                 "cnpjsindcategprof": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{8,14}$" 
+                    "pattern": "^[0-9]{8,14}$"
                 },
                 "trabtemporario": {
                     "required": false,
@@ -138,12 +138,12 @@ $jsonSchema = '{
                 "indtetorgps": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 },
                 "indabonoperm": {
                     "required": true,
                     "type": "string",
-                    "pattern": "S|N"
+                    "pattern": "^(S|N)$"
                 }
             }
         },
@@ -174,7 +174,7 @@ $jsonSchema = '{
                 "acumcargo": {
                       "required": false,
                       "type": ["string","null"],
-                      "pattern": "S|N"
+                      "pattern": "^(S|N)$"
                 },
                 "codcateg": {
                       "required": true,
@@ -306,7 +306,7 @@ $jsonSchema = '{
                         "hornoturno": {
                             "required": false,
                             "type": ["string", "null"],
-                            "pattern": "S|N"
+                            "pattern": "^(S|N)$"
                         },
                         "dscjorn": {
                             "required": true,
@@ -339,7 +339,7 @@ $jsonSchema = '{
                                 "type": "string",
                                 "maxLength": 255
                             }
-                        }    
+                        }
                     }
                 },
                 "treicap": {
@@ -356,10 +356,10 @@ $jsonSchema = '{
                                 "minimum": 1,
                                 "maximum": 9999
                             }
-                        }    
+                        }
                     }
                 }
-            }    
+            }
         }
     }
 }';

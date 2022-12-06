@@ -117,7 +117,7 @@
                         "maxLength": 40
                     },
                     "epcepi": {
-                        "required": false,
+                        "required": true,
                         "type": "object",
                         "properties": {
                             "utilizepc": {

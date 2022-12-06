@@ -465,12 +465,6 @@
                                                         "vrrubr": {
                                                             "required": false,
                                                             "type": ["number","null"]
-                                                        },
-                                                        "indapurir": {
-                                                            "required": false,
-                                                            "type": ["integer","null"],
-                                                            "minumum": 0,
-                                                            "maximum": 3
                                                         }
                                                     }
                                                 }
@@ -589,7 +583,7 @@
                                 "tpacconv": {
                                     "required": true,
                                     "type": "string",
-                                    "pattern": "A|B|C|D|E|F"
+                                    "pattern": "^(A|B|C|D|E|F|G|H)$"
                                 },
                                 "compacconv": {
                                     "required": false,
@@ -610,7 +604,7 @@
                                     "required": true,
                                     "type": "string",
                                     "maxLength": 1,
-                                    "pattern": "S|N"
+                                    "pattern": "^(S|N)$"
                                 },
                                 "ideperiodo": {
                                     "required": true,
@@ -751,9 +745,7 @@
                             "codcbo": {
                                 "required": true,
                                 "type": "string",
-                                "minLength": 4,
-                                "maxLength": 6,
-                                "pattern": "^[0-9]"
+                                "pattern": "^[0-9]{4,6}$"
                             },
                             "natatividade": {
                                 "required": false,

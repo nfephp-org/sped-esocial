@@ -28,14 +28,12 @@ $jsonSchema = '{
         "codrubr": {
             "required": true,
             "type": "string",
-            "maxLength": 30,
-            "pattern": "^(?!eSocial)"
+            "maxLength": 30
         },
         "idetabrubr": {
             "required": true,
             "type": "string",
-            "maxLength": 8,
-            "pattern": "^(?!eSocial)"
+            "maxLength": 8
         },
         "inivalid": {
             "required": true,
@@ -131,10 +129,10 @@ $jsonSchema = '{
                             "codsusp": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^[0-9]{1,14}"
+                                "pattern": "^[0-9]{1,14}$"
                             }
                         }
-                    }    
+                    }
                 },
                 "ideprocessoirrf": {
                     "required": false,
@@ -152,10 +150,10 @@ $jsonSchema = '{
                             "codsusp": {
                                 "required": true,
                                 "type": "string",
-                                "pattern": "^[0-9]{1,14}"
+                                "pattern": "^[0-9]{1,14}$"
                             }
                         }
-                    }    
+                    }
                 },
                 "ideprocessofgts": {
                     "required": false,
@@ -171,7 +169,7 @@ $jsonSchema = '{
                                 "$ref": "#/definitions/string20"
                             }
                         }
-                    }    
+                    }
                 }
             }
         },
@@ -189,7 +187,7 @@ $jsonSchema = '{
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
                 }
-            }    
+            }
         }
     }
 }';
