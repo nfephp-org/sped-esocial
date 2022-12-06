@@ -60,7 +60,7 @@ trait TraitS2240
         $this->dom->addChild(
             $ide,
             "matricula",
-            !empty($this->std->matricula) ? htmlspecialchars($this->std->matricula) : null,
+            !empty($this->std->matricula) ? $this->std->matricula : null,            
             false
         );
         $this->dom->addChild(
@@ -376,7 +376,7 @@ trait TraitS2240
         $this->dom->addChild(
             $ide,
             "matricula",
-            isset($this->std->matricula) ? htmlspecialchars($this->std->matricula) : null,
+            isset($this->std->matricula) ? $this->std->matricula : null,
             false
         );
         $this->dom->addChild(
