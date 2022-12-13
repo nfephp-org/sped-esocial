@@ -375,7 +375,7 @@ trait TraitS2220
             $this->std->idevinculo->cpftrab,
             true
         );
-        if(!empty($this->std->idevinculo->matricula)) {
+        if(isset($this->std->idevinculo->matricula) && $this->std->idevinculo->matricula != null) {
             $this->dom->addChild(
                 $ideVinculo,
                 "matricula",
