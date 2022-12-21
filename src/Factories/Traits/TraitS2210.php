@@ -483,6 +483,7 @@ trait TraitS2210
         $cat->appendChild($ideLocalAcid);
     }
     
+
     /**
      * builder for version S.1.0.0
      */
@@ -609,6 +610,18 @@ trait TraitS2210
             "obsCAT",
             !empty($this->std->obscat) ? $this->std->obscat : null,
             false
+        );
+        $this->dom->addChild(
+            $cat,
+            "ultDiaTrab",
+            !empty($this->std->ultdiatrab) ? $this->std->ultdiatrab : null,
+            true
+        );        
+        $this->dom->addChild(
+            $cat,
+            "houveAfast",
+            !empty($this->std->houveafast) ? $this->std->houveafast : null,
+            true
         );
         $localAcidente = $this->dom->createElement("localAcidente");
         $this->dom->addChild(
