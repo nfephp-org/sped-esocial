@@ -31,8 +31,7 @@
                 },
                 "matricula": {
                     "required": false,
-                    "type": ["string","null"],
-                    "maxLength": 30
+                    "type": ["string","null"]
                 },
                 "codCateg": {
                     "required": false,
