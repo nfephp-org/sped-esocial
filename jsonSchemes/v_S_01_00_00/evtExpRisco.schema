@@ -117,7 +117,7 @@
                         "maxLength": 40
                     },
                     "epcepi": {
-                        "required": true,
+                        "required": false,
                         "type": "object",
                         "properties": {
                             "utilizepc": {
@@ -199,10 +199,10 @@
                                         }
                                     }
                                 }
-                            }    
+                            }
                         }
                     }
-                }    
+                }
             }
         },
         "respreg": {
@@ -241,12 +241,12 @@
                         "pattern": "^.{2}$"
                     }
                 }
-            }    
+            }
         },
         "obscompl": {
             "required": false,
             "type": ["string","null"],
             "pattern": "^.{2,999}$"
         }
-    }    
+    }
 }
