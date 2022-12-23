@@ -118,7 +118,7 @@
                     },
                     "epcepi": {
                         "required": false,
-                        "type": "object",
+                        "type": ["object","null"],
                         "properties": {
                             "utilizepc": {
                                "required": true,
