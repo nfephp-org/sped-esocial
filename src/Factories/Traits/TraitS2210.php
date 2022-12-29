@@ -4,221 +4,6 @@ namespace NFePHP\eSocial\Factories\Traits;
 
 trait TraitS2210
 {
-    /**
-     * builder for version 2.5.0
-     */
-    protected function toNode250()
-    {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "indRetif",
-            $this->std->indretif,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "nrRecibo",
-            ! empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
-            false
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-
-        $this->tagVinculo();
-
-        $cat = $this->tagCAT();
-
-        $localAcidente = $this->tagLocalAcidente($cat);
-
-        if (!empty($this->std->idelocalacid)) {
-            $this->tagIdeLocalAcid($localAcidente);
-        }
-
-
-
-        foreach ($this->std->parteatingida as $pa) {
-            $parteAtingida = $this->dom->createElement("parteAtingida");
-            $this->dom->addChild(
-                $parteAtingida,
-                "codParteAting",
-                $pa->codparteating,
-                true
-            );
-            $this->dom->addChild(
-                $parteAtingida,
-                "lateralidade",
-                $pa->lateralidade,
-                true
-            );
-            $cat->appendChild($parteAtingida);
-        }
-
-        foreach ($this->std->agentecausador as $pa) {
-            $agenteCausador = $this->dom->createElement("agenteCausador");
-            $this->dom->addChild(
-                $agenteCausador,
-                "codAgntCausador",
-                $pa->codagntcausador,
-                true
-            );
-            $cat->appendChild($agenteCausador);
-        }
-        if (!empty($this->std->atestado)) {
-            $pa = $this->std->atestado;
-            $atestado = $this->dom->createElement("atestado");
-            $this->dom->addChild(
-                $atestado,
-                "codCNES",
-                !empty($pa->codcnes) ? $pa->codcnes : null,
-                false
-            );
-            $this->dom->addChild(
-                $atestado,
-                "dtAtendimento",
-                $pa->dtatendimento,
-                true
-            );
-            $this->dom->addChild(
-                $atestado,
-                "hrAtendimento",
-                $pa->hratendimento,
-                true
-            );
-            $this->dom->addChild(
-                $atestado,
-                "indInternacao",
-                $pa->indinternacao,
-                true
-            );
-            $this->dom->addChild(
-                $atestado,
-                "durTrat",
-                $pa->durtrat,
-                true
-            );
-            $this->dom->addChild(
-                $atestado,
-                "indAfast",
-                $pa->indafast,
-                true
-            );
-            $this->dom->addChild(
-                $atestado,
-                "dscLesao",
-                !empty($pa->dsclesao) ? $pa->dsclesao : null,
-                false
-            );
-            $this->dom->addChild(
-                $atestado,
-                "dscCompLesao",
-                !empty($pa->dsccomplesao) ? $pa->dsccomplesao : null,
-                false
-            );
-            $this->dom->addChild(
-                $atestado,
-                "diagProvavel",
-                !empty($pa->diagprovavel) ? $pa->diagprovavel : null,
-                false
-            );
-            $this->dom->addChild(
-                $atestado,
-                "codCID",
-                $pa->codcid,
-                true
-            );
-            $this->dom->addChild(
-                $atestado,
-                "observacao",
-                !empty($pa->observacao) ? $pa->observacao : null,
-                false
-            );
-            $emitente = $this->dom->createElement("emitente");
-            $this->dom->addChild(
-                $emitente,
-                "nmEmit",
-                $pa->nmemit,
-                true
-            );
-            $this->dom->addChild(
-                $emitente,
-                "ideOC",
-                $pa->ideoc,
-                true
-            );
-            if ($this->layoutStr == 'v02_05_00') {
-                $this->dom->addChild(
-                    $emitente,
-                    "nrOC",
-                    $pa->nroc,
-                    true
-                );
-            } else {
-                $this->dom->addChild(
-                    $emitente,
-                    "nrOc",
-                    $pa->nroc,
-                    true
-                );
-            }
-            $this->dom->addChild(
-                $emitente,
-                "ufOC",
-                !empty($pa->ufoc) ? $pa->ufoc : null,
-                true
-            );
-            $atestado->appendChild($emitente);
-            $cat->appendChild($atestado);
-        }
-        if (!empty($this->std->catorigem)) {
-            $pa = $this->std->catorigem;
-            $catOrigem = $this->dom->createElement("catOrigem");
-            $this->dom->addChild(
-                $catOrigem,
-                "dtCatOrig",
-                !empty($pa->dtcatorig) ? $pa->dtcatorig : null,
-                false
-            );
-            if ($this->layoutStr != 'v02_05_00') {
-                $this->dom->addChild(
-                    $catOrigem,
-                    "nrCatOrig",
-                    !empty($pa->nrcatorig) ? $pa->nrcatorig : null,
-                    false
-                );
-            } else {
-                $this->dom->addChild(
-                    $catOrigem,
-                    "nrRecCatOrig",
-                    !empty($pa->nrreccatorig) ? $pa->nrreccatorig : null,
-                    false
-                );
-            }
-            $cat->appendChild($catOrigem);
-        }
-        $this->node->appendChild($cat);
-        $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
-    }
 
     protected function tagRegistrador(\DOMElement $ideEmpregador)
     {
@@ -483,7 +268,6 @@ trait TraitS2210
         $cat->appendChild($ideLocalAcid);
     }
     
-
     /**
      * builder for version S.1.0.0
      */
@@ -611,18 +395,19 @@ trait TraitS2210
             !empty($this->std->obscat) ? $this->std->obscat : null,
             false
         );
+    /*  entra em producao dia 16/01/2023       
         $this->dom->addChild(
             $cat,
             "ultDiaTrab",
             !empty($this->std->ultdiatrab) ? $this->std->ultdiatrab : null,
-            true
+            false
         );        
         $this->dom->addChild(
             $cat,
             "houveAfast",
             !empty($this->std->houveafast) ? $this->std->houveafast : null,
-            true
-        );
+            false
+        ); */
         $localAcidente = $this->dom->createElement("localAcidente");
         $this->dom->addChild(
             $localAcidente,
