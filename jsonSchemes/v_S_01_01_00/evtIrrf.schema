@@ -1,0 +1,55 @@
+{
+    "title": "evtIrrf",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^([0-9]{4}-(0[1-9]{1}|1[0-2]{1}))$"
+        },
+        "infoirrf": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "nrrecarqbase": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 40,
+                    "minLength": 1
+                },
+                "indexistinfo": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
+                }
+            }
+        },
+        "infocrcontrib": {
+            "required": false,
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 9,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tpcr": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{6}$"
+                    },
+                    "vrcr": {
+                        "required": true,
+                        "type": "number"
+                    }
+                }    
+            }
+        }
+    }
+}

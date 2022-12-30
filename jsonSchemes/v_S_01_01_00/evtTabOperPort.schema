@@ -1,0 +1,73 @@
+{
+    "title": "evtTabOperPort",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "cnpjopportuario": {
+            "required": true,
+            "type": "string",
+            "maxLength": 14,
+            "pattern": "^[0-9]"
+        },
+        "inivalid": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+        },
+        "fimvalid": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+        },
+        "modo": {
+            "required": true,
+            "type": "string",
+            "pattern": "INC|ALT|EXC"
+        },
+        "dadosoperportuario": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "aliqrat" : {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
+                },
+                "fap": {
+                    "required": true,
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 2
+                },
+                "aliqratajust": {
+                    "required": true,
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 6
+                }
+            }
+        },
+        "novavalidade": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])$"
+                }
+            }    
+        }
+    }
+}

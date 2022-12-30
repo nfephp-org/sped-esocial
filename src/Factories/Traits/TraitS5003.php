@@ -262,4 +262,12 @@ trait TraitS5003
     {
         throw new \Exception("TODO !!");
     }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        throw new \Exception("TODO !!");
+    }
 }

@@ -1,0 +1,252 @@
+{
+    "title": "evtExpRisco",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "matricula": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 30
+        },
+        "codcateg": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{3}$"
+        },
+        "dtinicondicao": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "infoamb": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "localamb": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "dscsetor": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "tpinsc": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 4
+                },
+                "nrinsc": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{8,14}$"
+                }
+            }
+        },
+        "dscativdes": {
+            "required": true,
+            "type": "string",
+            "maxLength": 999
+        },
+        "agnoc": {
+            "required": true,
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 999,
+            "items": {
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "codagnoc": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^([0-9][0-9.]*[0-9])$"
+                    },
+                    "dscagnoc": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "maxLength": 999
+                    },
+                    "tpaval": {
+                        "required": false,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 2
+                    },
+                    "intconc": {
+                        "required": false,
+                        "type": ["number","null"]
+                    },
+                    "limtol": {
+                        "required": false,
+                        "type": ["number","null"]
+                    },
+                    "umed": {
+                        "required": false,
+                        "type": ["integer","null"],
+                        "minimum": 1,
+                        "maximum": 30
+                    },
+                    "tecmedicao": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "maxLength": 40
+                    },
+                    "epcepi": {
+                        "required": true,
+                        "type": "object",
+                        "properties": {
+                            "utilizepc": {
+                               "required": true,
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 2
+                            },
+                            "eficepc": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^(S|N)$"
+                            },
+                            "utilizepi": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 2
+                            },
+                            "eficepi": {
+                                "required": false,
+                                "type": ["string", "null"],
+                                "pattern": "^(S|N)$"
+                            },
+                            "epicompl": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "medprotecao": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "condfuncto": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "usoinint": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "przvalid": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "periodictroca": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    },
+                                    "higienizacao": {
+                                        "required": true,
+                                        "type": "string",
+                                        "pattern": "^(S|N)$"
+                                    }
+                                }
+                            },
+                            "epi": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 50,
+                                "items": {
+                                    "required": true,
+                                    "type": "object",
+                                    "properties": {
+                                        "docaval": {
+                                            "required": false,
+                                            "type": ["string","null"],
+                                            "maxLength": 255
+                                        },
+                                        "dscepi": {
+                                            "required": false,
+                                            "type": ["string","null"],
+                                            "maxLength": 999
+                                        }
+                                    }
+                                }
+                            }    
+                        }
+                    }
+                }    
+            }
+        },
+        "respreg": {
+            "required": true,
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 9,
+            "items": {
+                "required": true,
+                "type": "object",
+                "properties": {
+                    "cpfresp": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^[0-9]{11}$"
+                    },
+                    "ideoc": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9
+                    },
+                    "dscoc": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^.{1,20}$"
+                    },
+                    "nroc": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 14
+                    },
+                    "ufoc": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^.{2}$"
+                    }
+                }
+            }    
+        },
+        "obscompl": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{2,999}$"
+        }
+    }    
+}

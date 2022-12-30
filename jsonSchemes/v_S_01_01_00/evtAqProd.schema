@@ -1,0 +1,220 @@
+{
+    "title": "evtAqProd",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 40
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "pattern": "^((19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2]))|(19[0-9][0-9]|2[0-9][0-9][0-9])$"
+        },
+        "ideestabadquir": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "tpinscadq": {
+                    "required": true,
+                    "type": "integer",
+                    "minumum": 1,
+                    "maximum": 3
+                },
+                "nrinscadq": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{14}"
+                },
+                "tpaquis": {
+                    "required": true,
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 6,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "indaquis": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 6
+                            },
+                            "vlrtotaquis": {
+                                "required": true,
+                                "type": "number"
+                            },
+                            "ideprodutor": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 14999,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinscprod": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "nrinscprod": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^[0-9]{11,14}$"
+                                        },
+                                        "vlrbruto": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "vrcpdescpr": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "vrratdescpr": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "vrsenardesc": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "indopccp": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "nfs": {
+                                            "required": false,
+                                            "type": "array",
+                                            "minItems": 0,
+                                            "maxItems": 9999,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "serie": {
+                                                        "required": false,
+                                                        "type": ["string","null"],
+                                                        "maxLength": 5
+                                                    },
+                                                    "nrdocto": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "maxLength": 20
+                                                    },
+                                                    "dtemisnf": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                                                    },
+                                                    "vlrbruto": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    },
+                                                    "vrcpdescpr": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    },
+                                                    "vrsenardesc": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "infoprocjud": {
+                                            "required": false,
+                                            "type": "array",
+                                            "minItems": 0,
+                                            "maxItems": 10,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "nrprocjud": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "maxLength": 20
+                                                    },
+                                                    "codsusp": {
+                                                        "required": true,
+                                                        "type": "string",
+                                                        "maxLength": 14
+                                                    },
+                                                    "vrcpnret": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    },
+                                                    "vrratnret": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    },
+                                                    "vrsenarnret": {
+                                                        "required": true,
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "infoprocj": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 20,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "nrprocjud": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 20
+                                        },
+                                        "codsusp": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 14
+                                        },
+                                        "vrcpnret": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "vrratnret": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "vrsenarnret": {
+                                            "required": true,
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }    
+            }
+        }    
+    }
+}

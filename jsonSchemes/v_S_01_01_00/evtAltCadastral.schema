@@ -1,0 +1,535 @@
+{
+    "title": "evtAltCadastral",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 40
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "dtalteracao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "nistrab": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{11}$"
+        },
+        "nmtrab": {
+            "required": true,
+            "type": "string",
+            "maxLength": 70
+        },
+        "sexo": {
+            "required": true,
+            "type": "string",
+            "pattern": "M|F"
+        },
+        "racacor": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6
+        },
+        "estciv": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 5
+        },
+        "grauinstr": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{2}$"
+        },
+        "nmsoc": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 70
+        },
+        "nascimento": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "dtnascto": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "codmunic": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{7}$"
+                },
+                "uf": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "paisnascto": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 3
+                },
+                "paisnac": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 3
+                },
+                "nmmae": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 70
+                },
+                "nmpai": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 70
+                }
+            }
+        },
+        "ctps": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "nrctps": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 11,
+                    "pattern": "^[0-9]"
+                },
+                "seriectps": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5,
+                    "pattern": "^[0-9]"
+                },
+                "ufctps": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                }
+            }
+        },
+        "ric": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "nrric": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 14
+                },
+                "orgaoemissor": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 20
+                },
+                "dtexped": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                }
+            }
+        },
+        "rg": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "nrrg": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 14
+                },
+                "orgaoemissor": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 20
+                },
+                "dtexped": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                }
+            }
+        },
+        "rne": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "nrrne": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 14
+                },
+                "orgaoemissor": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 20
+                },
+                "dtexped": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                }
+            }
+        },
+        "oc": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "nroc": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 14
+                },
+                "orgaoemissor": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 20
+                },
+                "dtexped": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "dtvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                }
+            }
+        },
+        "cnh": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "nrregcnh": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 12
+                },
+                "dtexped": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "ufcnh": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "dtvalid": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "dtprihab": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "categoriacnh": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "A|B|C|D|E|AB|AC|AD|AE"
+                }
+            }
+        },
+        "brasil": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "tplograd": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4
+                },
+                "dsclograd": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                },
+                "nrlograd": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                },
+                "complemento": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 30
+                },
+                "bairro": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 60
+                },
+                "cep": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{8}$"
+                },
+                "codmunic": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 9999999
+                },
+                "uf": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                }
+            }
+        },
+        "exterior": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "paisresid": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "dsclograd": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                },
+                "nrlograd": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                },
+                "complemento": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 30
+                },
+                "bairro": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 60
+                },
+                "nmcid": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 50
+                },
+                "codpostal": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 4,
+                    "maxLength": 12
+                }
+            }
+        },
+        "trabestrangeiro": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "dtchegada": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "classtrabestrang": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                },
+                "casadobr": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "filhosbr": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                }
+            }
+        },
+        "infodeficiencia": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "deffisica": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defvisual": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defauditiva": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defmental": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "defintelectual": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "reabreadap": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                },
+                "infocota": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "S|N"
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 6,
+                    "maxLength": 255
+                }
+            }
+        },
+        "dependente": {
+            "required": false,
+            "type": ["array","null"],
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tpdep": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "pattern": "^[0-9]"
+                    },
+                    "nmdep": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 70
+                    },
+                    "dtnascto": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                    },
+                    "cpfdep": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "minLength": 11,
+                        "maxLength": 11,
+                        "pattern": "^[0-9]"
+                    },
+                    "depirrf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "depsf": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    },
+                    "inctrab": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "S|N"
+                    }
+                }
+            }
+        },
+        "aposentadoria": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "trabaposent": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "S|N"
+                }
+            }
+        },
+        "contato": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "foneprinc": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 8,
+                    "maxLength": 13
+                },
+                "fonealternat": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 8,
+                    "maxLength": 13
+                },
+                "emailprinc": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 6,
+                    "maxLength": 60
+                },
+                "emailalternat": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "minLength": 6,
+                    "maxLength": 60
+                }
+            }
+        }
+    }
+}

@@ -520,4 +520,200 @@ trait TraitS2220
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    /**
+     * TODO
+     */
+    protected function toNodeS110()
+    {
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+        $ideVinculo = $this->dom->createElement("ideVinculo");
+        $this->dom->addChild(
+            $ideVinculo,
+            "cpfTrab",
+            $this->std->idevinculo->cpftrab,
+            true
+        );
+        if (isset($this->std->idevinculo->matricula)) {
+            $this->dom->addChild(
+                $ideVinculo,
+                "matricula",
+                !empty($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
+                false
+            );
+        }
+        if (isset($this->std->idevinculo->codcateg)) {
+            $this->dom->addChild(
+                $ideVinculo,
+                "codCateg",
+                !empty($this->std->idevinculo->codcateg) ? $this->std->idevinculo->codcateg : null,
+                false
+            );
+        }
+        $this->node->appendChild($ideVinculo);
+        
+        $exMedOcup = $this->dom->createElement("exMedOcup");
+        $this->dom->addChild(
+            $exMedOcup,
+            "tpExameOcup",
+            $this->std->exmedocup->tpexameocup,
+            true
+        );
+        $stdaso = $this->std->exmedocup->aso;
+        $aso = $this->dom->createElement("aso");
+        $this->dom->addChild(
+            $aso,
+            "dtAso",
+            $stdaso->dtaso,
+            true
+        );
+        if (isset($stdaso->resaso)) {
+            $this->dom->addChild(
+                $aso,
+                "resAso",
+                $stdaso->resaso,
+                true
+            );
+        }
+
+        foreach ($this->std->exmedocup->aso->exame as $exa) {
+            $exame = $this->dom->createElement("exame");
+            $this->dom->addChild(
+                $exame,
+                "dtExm",
+                $exa->dtexm,
+                true
+            );
+            $this->dom->addChild(
+                $exame,
+                "procRealizado",
+                $exa->procrealizado,
+                true
+            );
+            if (isset($exa->obsproc)) {
+                $this->dom->addChild(
+                    $exame,
+                    "obsProc",
+                    !empty($exa->obsproc) ? $exa->obsproc : null,
+                    false
+                );
+            }
+            if (isset($exa->ordexame)) {
+                $this->dom->addChild(
+                    $exame,
+                    "ordExame",
+                    $exa->ordexame,
+                    true
+                );
+            }
+            if (isset($exa->indresult)) {
+                $this->dom->addChild(
+                    $exame,
+                    "indResult",
+                    !empty($exa->indresult) ? $exa->indresult : null,
+                    false
+                );
+            }
+            $aso->appendChild($exame);
+        }
+
+        $stdmed = $this->std->exmedocup->aso->medico;
+        $medico = $this->dom->createElement("medico");
+        $this->dom->addChild(
+            $medico,
+            "nmMed",
+            $stdmed->nmmed,
+            true
+        );
+        $this->dom->addChild(
+            $medico,
+            "nrCRM",
+            $stdmed->nrcrm,
+            true
+        );
+        $this->dom->addChild(
+            $medico,
+            "ufCRM",
+            $stdmed->ufcrm,
+            true
+        );
+        $aso->appendChild($medico);
+        $exMedOcup->appendChild($aso);
+
+        if (isset($this->std->exmedocup->respmonit) && !empty($this->std->exmedocup->respmonit)) {
+            $stdmon = $this->std->exmedocup->respmonit;
+            $monit = $this->dom->createElement("respMonit");
+            if (isset($stdmon->cpfresp)) {
+                $this->dom->addChild(
+                    $monit,
+                    "cpfResp",
+                    !empty($stdmon->cpfresp) ? $stdmon->cpfresp : null,
+                    false
+                );
+            }
+            $this->dom->addChild(
+                $monit,
+                "nmResp",
+                $stdmon->nmresp,
+                true
+            );
+            $this->dom->addChild(
+                $monit,
+                "nrCRM",
+                $stdmon->nrcrm,
+                true
+            );
+            $this->dom->addChild(
+                $monit,
+                "ufCRM",
+                $stdmon->ufcrm,
+                true
+            );
+            $exMedOcup->appendChild($monit);
+        }
+        $this->node->appendChild($exMedOcup);
+        
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
+    }
 }
