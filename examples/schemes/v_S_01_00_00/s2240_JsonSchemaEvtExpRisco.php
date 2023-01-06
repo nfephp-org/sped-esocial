@@ -133,8 +133,8 @@ $jsonSchema = '{
                         "maxLength": 40
                     },
                     "epcepi": {
-                        "required": true,
-                        "type": "object",
+                        "required": false,
+                        "type": ["object","null"],
                         "properties": {
                             "utilizepc": {
                                "required": true,
@@ -215,10 +215,10 @@ $jsonSchema = '{
                                         }
                                     }
                                 }
-                            }    
+                            }
                         }
                     }
-                }    
+                }
             }
         },
         "respreg": {
@@ -257,14 +257,14 @@ $jsonSchema = '{
                         "pattern": "^.{2}$"
                     }
                 }
-            }    
+            }
         },
         "obscompl": {
             "required": false,
             "type": ["string","null"],
             "pattern": "^.{2,999}$"
         }
-    }    
+    }
 }';
 
 $std = new \stdClass();
@@ -308,7 +308,7 @@ $std->agnoc[0]->epcepi->epiCompl->periodictroca = 'S';
 $std->agnoc[0]->epcepi->epiCompl->higienizacao = 'S';
 
 // ou docacal (número do CA) ou descepi deve ser fornecido,
-// os dois juntos gera rejeição 
+// os dois juntos gera rejeição
 $std->agnoc[0]->epcepi->epi[0] = new \stdClass();
 //$std->agnoc[0]->epcepi->epi[0]->docaval = '111xxx';
 $std->agnoc[0]->epcepi->epi[0]->dscepi = 'macacao';
