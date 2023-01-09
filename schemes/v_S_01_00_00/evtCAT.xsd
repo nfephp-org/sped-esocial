@@ -173,6 +173,14 @@
                                                 <xs:documentation>Observação.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
+                                        <xs:element name="ultDiaTrab" minOccurs="0" type="xs:date">
+                                            <xs:annotation>
+                                                <xs:documentation>Data do ultimo dia de trabalho.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="houveAfast" minOccurs="0" type="TS_sim_nao">
+                                            <xs:annotation>
+                                                <xs:documentation>Se houve afastamento.</xs:documentation>
                                         <xs:element name="localAcidente">
                                             <xs:annotation>
                                                 <xs:documentation>Local do acidente.</xs:documentation>
