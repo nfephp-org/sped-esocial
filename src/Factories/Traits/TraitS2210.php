@@ -477,19 +477,7 @@ trait TraitS2210
             !empty($this->std->cat->obscat) ? $this->std->cat->obscat : null,
             false
         );
-        $this->dom->addChild(
-            $cat,
-            "ultDiaTrab",
-            !empty($this->std->cat->ultdiatrab) ? $this->std->cat->ultdiatrab : null,
-            false
-        );
-
-        $this->dom->addChild(
-            $cat,
-            "houveAfast",
-            !empty($this->std->cat->houveafast) ? $this->std->cat->houveafast : null,
-            false
-        );
+       
         $localAcidente = $this->dom->createElement("localAcidente");
         $local = $this->std->cat->localacidente;
         $this->dom->addChild(
@@ -844,6 +832,18 @@ trait TraitS2210
             $cat,
             "obsCAT",
             !empty($this->std->cat->obscat) ? $this->std->cat->obscat : null,
+            false
+        );
+        $this->dom->addChild(
+            $cat,
+            "ultDiaTrab",
+            !empty($this->std->cat->ultdiatrab) ? $this->std->cat->ultdiatrab : null,
+            false
+        );
+        $this->dom->addChild(
+            $cat,
+            "houveAfast",
+            !empty($this->std->cat->houveafast) ? $this->std->cat->houveafast : null,
             false
         );
         $localAcidente = $this->dom->createElement("localAcidente");
