@@ -370,6 +370,18 @@ trait TraitS2210
                 false
             );
         }
+        $this->dom->addChild(
+            $cat,
+            "ultDiaTrab",
+            $this->std->ultdiatrab,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "houveAfast",
+            $this->std->houveafast,
+            true
+        );
         return $cat;
     }
 
@@ -609,6 +621,18 @@ trait TraitS2210
             "obsCAT",
             !empty($this->std->obscat) ? $this->std->obscat : null,
             false
+        );
+        $this->dom->addChild(
+            $cat,
+            "ultDiaTrab",
+            $this->std->ultdiatrab,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "houveAfast",
+            $this->std->houveafast,
+            true
         );
         $localAcidente = $this->dom->createElement("localAcidente");
         $this->dom->addChild(
