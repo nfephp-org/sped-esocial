@@ -117,6 +117,16 @@ $jsonSchema = '{
             "minLength": 1,
             "maxLength": 999
         },
+        "ultdiatrab": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "houveafast": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(S|N)$"
+        },
         "tplocal": {
             "required": true,
             "type": "integer",
