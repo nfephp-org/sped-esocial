@@ -52,7 +52,8 @@ $std->codsitgeradora = '123456789';
 
 $std->iniciatcat = 3;
 $std->obscat = 'lksjlskjlskjslkjslkjslkjslksjl';
-
+$std->ultdiatrab = '2023-01-01';
+$std->houveafast = 'S';
 $std->tplocal = 9;
 $std->dsclocal = 'klçkdçldkdlkdlk';
 $std->tplograd = 'AAAA';

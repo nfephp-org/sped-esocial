@@ -155,6 +155,18 @@ trait TraitS2210
                 false
             );
         }
+        $this->dom->addChild(
+            $cat,
+            "ultDiaTrab",
+            $this->std->ultdiatrab,
+            true
+        );
+        $this->dom->addChild(
+            $cat,
+            "houveAfast",
+            $this->std->houveafast,
+            true
+        );
         return $cat;
     }
 
@@ -395,19 +407,18 @@ trait TraitS2210
             !empty($this->std->obscat) ? $this->std->obscat : null,
             false
         );
-    /*  entra em producao dia 16/01/2023       
         $this->dom->addChild(
             $cat,
             "ultDiaTrab",
-            !empty($this->std->ultdiatrab) ? $this->std->ultdiatrab : null,
-            false
-        );        
+            $this->std->ultdiatrab,
+            true
+        );
         $this->dom->addChild(
             $cat,
             "houveAfast",
-            !empty($this->std->houveafast) ? $this->std->houveafast : null,
-            false
-        ); */
+            $this->std->houveafast,
+            true
+        );
         $localAcidente = $this->dom->createElement("localAcidente");
         $this->dom->addChild(
             $localAcidente,

@@ -117,7 +117,7 @@
                     },
                     "epcepi": {
                         "required": false,
-                        "type": "object",
+                        "type": ["object","null"],
                         "properties": {
                             "utilizepc": {
                                "required": true,
@@ -198,10 +198,10 @@
                                         }
                                     }
                                 }
-                            }    
+                            }
                         }
                     }
-                }    
+                }
             }
         },
         "respreg": {
@@ -240,12 +240,12 @@
                         "pattern": "^.{2}$"
                     }
                 }
-            }    
+            }
         },
         "obscompl": {
             "required": false,
             "type": ["string","null"],
             "pattern": "^.{2,999}$"
         }
-    }    
+    }
 }
