@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns="http://www.esocial.gov.br/schema/evt/evtExcProcTrab/v_S_01_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtExcProcTrab/v_S_01_01_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="tipos.xsd" />
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+    <xs:element name="eSocial">
+        <xs:annotation>
+            <xs:documentation>S-3500 - Exclusão de Eventos - Processo Trabalhista</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="evtExcProcTrab">
+                    <xs:annotation>
+                        <xs:documentation>Evento Exclusão</xs:documentation>
+                        <xs:documentation>DESCRICAO_COMPLETA:Evento Exclusão de Eventos - Processo Trabalhista.</xs:documentation>
+                        <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ideEvento" type="T_ideEvento_exclusao_proc_trab" />
+                            <xs:element name="ideEmpregador" type="T_ideEmpregador_exclusao" />
+                            <xs:element name="infoExclusao">
+                                <xs:annotation>
+                                    <xs:documentation>Informação do evento que será excluído</xs:documentation>
+                                    <xs:documentation>DESCRICAO_COMPLETA:Grupo que identifica o evento objeto da exclusão.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tpEvento">
+                                            <xs:simpleType>
+                                                <xs:annotation>
+                                                    <xs:documentation>Preencher com o tipo de evento (S-2500 ou S-2501).</xs:documentation>
+                                                    <xs:documentation>Validação: Deve ser igual a [S-2500, S-2501].</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:length value="6" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="nrRecEvt" type="TS_nrRecibo">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o número do recibo do evento que será excluído.</xs:documentation>
+                                                <xs:documentation>Validação: O recibo deve ser relativo ao mesmo tipo de evento indicado em {tpEvento}(./tpEvento).</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ideProcTrab">
+                                            <xs:annotation>
+                                                <xs:documentation>Identificação do processo, do trabalhador e do período de apuração.</xs:documentation>
+                                                <xs:documentation>DESCRICAO_COMPLETA:Identificação do processo, do trabalhador e do período a que se refere o evento que será excluído.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nrProcTrab" type="TS_nrProcTrab">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Número do processo trabalhista, da ata ou número de identificação da conciliação.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve ser o mesmo número do processo informado no evento objeto da exclusão.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="cpfTrab" type="TS_cpf" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Preencher com o número do CPF do trabalhador.</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpEvento}(../tpEvento) = [S-2500]. Deve ser o mesmo CPF informado no evento S-2500 objeto da exclusão.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="perApurPgto" type="TS_periodo_mensal" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença.</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpEvento}(../tpEvento) = [S-2501]. Deve ser o mesmo período informado no evento S-2501 objeto da exclusão.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Id" use="required" type="TS_Id" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ds:Signature" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
