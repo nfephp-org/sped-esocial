@@ -1,0 +1,144 @@
+{
+    "title": "evtConvInterm",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": "string",
+            "maxLength": 40
+        },
+        "idevinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "nistrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "matricula": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 30
+                }
+            }
+        },
+        "infoconvinterm": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "codconv": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^.{1,30}$"
+                },
+                "dtinicio": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "dtfim": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "dtprevpgto": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                },
+                "jornada": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "codhorcontrat": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "pattern": "^.{1,30}$"
+                        },
+                        "dscjornada": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "pattern": "^.{1,999}$"
+                        }
+                    }
+                },
+                "localtrab": {
+                    "required": true,
+                    "type": "object",
+                    "properties": {
+                        "indlocal": {
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 2
+                        },
+                        "localtrabinterm": {
+                            "required": false,
+                            "type": ["object","null"],
+                            "properties": {
+                                "tplograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,4}$"
+                                },
+                                "dsclograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,100}$"
+                                },
+                                "nrlograd": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{1,10}$"
+                                },
+                                "complem": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,30}$"
+                                },
+                                "bairro": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,90}$"
+                                },
+                                "cep": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{8}$"
+                                },
+                                "codmunic": {
+                                    "required": true,
+                                     "type": "string",
+                                     "pattern": "^[0-9]{7}$"
+                                },
+                                "uf": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^.{2}$"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

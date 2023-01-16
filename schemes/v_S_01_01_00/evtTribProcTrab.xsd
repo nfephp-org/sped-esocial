@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns="http://www.esocial.gov.br/schema/evt/evtTribProcTrab/v_S_01_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtTribProcTrab/v_S_01_01_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="tipos.xsd" />
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+    <xs:element name="eSocial">
+        <xs:annotation>
+            <xs:documentation>S-5501 - Informações Consolidadas de Tributos Decorrentes de Processo Trabalhista</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="evtTribProcTrab">
+                    <xs:annotation>
+                        <xs:documentation>Evento Informações Consolidadas de Tributos Decorrentes de Processo Trabalhista.</xs:documentation>
+                        <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ideEvento">
+                                <xs:annotation>
+                                    <xs:documentation>Informações de identificação do evento.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nrRecArqBase" type="TS_nrRecArqBase">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-2501 ou S-3500).</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideEmpregador">
+                                <xs:annotation>
+                                    <xs:documentation>Informações de identificação do empregador ou do contribuinte que prestou a informação.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {tpInsc*}, {nrInsc*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tpInsc" type="TS_tpInsc_1_2">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do empregador ou contribuinte que prestou a informação, conforme Tabela 05.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="nrInsc" type="TS_nrInsc_8_11_14">
+                                            <xs:annotation>
+                                                <xs:documentation>Informar o número de inscrição do empregador ou contribuinte que prestou a informação, de acordo com o tipo de inscrição indicado no campo {ideEmpregador/tpInsc}(./tpInsc) e conforme informado em S-1000.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideProc">
+                                <xs:annotation>
+                                    <xs:documentation>Identificação do processo.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {nrProcTrab*}, {perApur*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nrProcTrab" type="TS_nrProcTrab">
+                                            <xs:annotation>
+                                                <xs:documentation>Número do processo trabalhista, da ata ou número de identificação da conciliação.</xs:documentation>
+                                                <xs:documentation>Validação: a) Se o evento de origem for S-2501, retornar o campo {nrProcTrab}(2501_ideProc_nrProcTrab) desse evento;</xs:documentation>
+                                                <xs:documentation>b) Se o evento de origem for S-3500, retornar o campo {nrProcTrab}(2501_ideProc_nrProcTrab) do evento S-2501 objeto da exclusão.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>                                        
+                                        <xs:element name="perApur" type="TS_periodo_mensal">
+                                            <xs:annotation>
+                                                <xs:documentation>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença.</xs:documentation>
+                                                <xs:documentation>Validação: a) Se o evento de origem for S-2501, retornar o campo {perApurPgto}(2501_ideProc_perApurPgto) desse evento;</xs:documentation>
+                                                <xs:documentation>b) Se o evento de origem for S-3500, retornar o campo {perApurPgto}(2501_ideProc_perApurPgto) do evento S-2501 objeto da exclusão.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="infoTributos" maxOccurs="999">
+                                            <xs:annotation>
+                                                <xs:documentation>Identificação do período e da base de cálculo dos tributos referentes ao processo trabalhista.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {perRef}</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="perRef" type="TS_periodo_mensal">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
+                                                            <xs:documentation>Validação: a) Se o evento de origem for S-2501, retornar o campo {perRef}(2501_ideTrab_calcTrib_perRef) desse evento;</xs:documentation>
+                                                            <xs:documentation>b) Se o evento de origem for S-3500, retornar o campo {perRef}(2501_ideTrab_calcTrib_perRef) do evento S-2501 objeto da exclusão.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="infoCRContrib" minOccurs="0" maxOccurs="99">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações das contribuições sociais referentes ao processo trabalhista.</xs:documentation>
+                                                            <xs:documentation>DESCRICAO_COMPLETA:Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por {perRef}(../perRef) e por Código de Receita - CR.</xs:documentation>
+                                                            <xs:documentation>CHAVE_GRUPO: {tpCR}</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="tpCR">
+                                                                    <xs:simpleType>
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.</xs:documentation>
+                                                                            <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 29.</xs:documentation>
+                                                                        </xs:annotation>
+                                                                        <xs:restriction base="xs:integer">
+                                                                            <xs:pattern value="\d{6}" />
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="vrCR" type="TS_valorMonetario_positivo">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Valor correspondente ao Código de Receita - CR.</xs:documentation>
+                                                                        <xs:documentation>Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</xs:documentation>
+                                                                        <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="infoCRIRRF" minOccurs="0" maxOccurs="99">
+                                            <xs:annotation>
+                                                <xs:documentation>Informações de IRRF referentes ao processo trabalhista.</xs:documentation>
+                                                <xs:documentation>DESCRICAO_COMPLETA:Informações de Imposto de Renda Retido na Fonte, consolidadas por Código de Receita - CR.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {tpCR}</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="tpCR">
+                                                        <xs:simpleType>
+                                                            <xs:annotation>
+                                                                <xs:documentation>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte.</xs:documentation>
+                                                                <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 29.</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:integer">
+                                                                <xs:pattern value="\d{6}" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="vrCR" type="TS_valorMonetario_positivo">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Valor correspondente ao Código de Receita - CR.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</xs:documentation>
+                                                            <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Id" use="required" type="TS_Id_retorno" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ds:Signature" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

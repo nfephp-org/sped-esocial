@@ -1,0 +1,81 @@
+{
+    "title": "evtBenPrRP",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "maxLength": 7
+        },
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
+        },
+        "dmdev": {
+            "required": true,
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tpbenef": {
+                        "required": true,
+                        "type": "integer",
+                        "maxLength": 2
+                    },
+                    "nrbenefic": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 20
+                    },
+                    "idedmdev": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 30
+                    },
+                    "itens": {
+                        "required": true,
+                        "type": "array",
+                        "minItems": 0,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codrubr": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 30
+                                },
+                                "idetabrubr": {
+                                    "required": true,
+                                    "type": "string",
+                                    "maxLength": 8
+                                },
+                                "vrrubr": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "maxLength": 14
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
