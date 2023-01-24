@@ -703,6 +703,19 @@ trait TraitS1000
                 !empty($cad->cnpjefr) ? $cad->cnpjefr : null,
                 false
             );
+
+            $this->dom->addChild(
+                $infoCadastro,
+                "dtTrans11096",
+                !empty($cad->dttrans11096) ? $cad->dttrans11096 : null,
+                false
+            );
+            $this->dom->addChild(
+                $infoCadastro,
+                "indTribFolhaPisCofins",
+                !empty($cad->indtribfolhapiscofins) ? $cad->indtribfolhapiscofins : null,
+                false
+            );
         }
         if (isset($this->std->dadosisencao) && !empty($infoCadastro)) {
             $cad  = $this->std->dadosisencao;
