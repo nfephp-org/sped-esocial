@@ -78,12 +78,12 @@
                     "type": ["string","null"],
                     "pattern": "^[0-9]{14}"
                 },
-                "dtTrans11096": {
+                "dttrans11096": {
                     "required": false,
                     "type": ["string","null"],
                     "$ref": "#/definitions/data"
                 },
-                "indTribFolhaPisCofins": {
+                "indtribfolhapiscofins": {
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "S"
