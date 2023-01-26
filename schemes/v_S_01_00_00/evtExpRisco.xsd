@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <xs:schema xmlns="http://www.esocial.gov.br/schema/evt/evtExpRisco/v_S_01_00_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtExpRisco/v_S_01_00_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:include schemaLocation="tipos.xsd" />
     <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
@@ -15,6 +15,7 @@
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_EVENTO_POSTERIOR_CAT_OBITO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXTEMP_REINTEGRACAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_GERAL_VALIDA_DADOS_TABCONTRIB</xs:documentation>
@@ -32,7 +33,7 @@
                                 <xs:annotation>
                                     <xs:documentation>Ambiente de trabalho, atividades desempenhadas e exposição a agentes nocivos</xs:documentation>
                                     <xs:documentation>DESCRICAO_COMPLETA:Informações sobre o ambiente de trabalho, atividades desempenhadas e exposição a agentes nocivos.</xs:documentation>                        
-                                    <xs:documentation>CHAVE_GRUPO: {dtIniCondicao}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {dtIniCondicao*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -127,7 +128,7 @@
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Tipo de avaliação do agente nocivo.</xs:documentation>
-                                                                <xs:documentation>Validação: Não informar se {codAgNoc}(./codAgNoc) = [09.01.001].</xs:documentation>
+                                                                <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {codAgNoc}(./codAgNoc) for diferente de [09.01.001].</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:byte">
                                                                 <xs:enumeration value="1">
@@ -487,16 +488,17 @@
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="cpfResp" minOccurs="0" type="TS_cpf">
+                                                    <xs:element name="cpfResp" type="TS_cpf">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com o CPF do responsável pelos registros ambientais.</xs:documentation>
                                                             <xs:documentation>Validação: Deve ser um CPF válido.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
-                                                    <xs:element name="ideOC">
+                                                    <xs:element name="ideOC" minOccurs="0">
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Órgão de classe ao qual o responsável pelos registros ambientais está vinculado.</xs:documentation>
+                                                                <xs:documentation>Validação: Preenchimento obrigatório se {codAgNoc}(../agNoc_codAgNoc) for diferente de [09.01.001].</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:byte">
                                                                 <xs:enumeration value="1">
@@ -530,10 +532,11 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="nrOC">
+                                                    <xs:element name="nrOC" minOccurs="0">
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Número de inscrição no órgão de classe.</xs:documentation>
+                                                                <xs:documentation>Validação: Preenchimento obrigatório se {codAgNoc}(../agNoc_codAgNoc) for diferente de [09.01.001].</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:string">
                                                                 <xs:minLength value="1" />
@@ -542,9 +545,10 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="ufOC" type="TS_uf">
+                                                    <xs:element name="ufOC" type="TS_uf" minOccurs="0">
                                                         <xs:annotation>
                                                             <xs:documentation>Sigla da Unidade da Federação - UF do órgão de classe.</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório se {codAgNoc}(../agNoc_codAgNoc) for diferente de [09.01.001].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>
