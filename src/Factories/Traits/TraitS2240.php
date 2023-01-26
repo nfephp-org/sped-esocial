@@ -573,15 +573,13 @@ trait TraitS2240
         foreach ($this->std->respreg as $r) {
             $respReg = $this->dom->createElement("respReg");
 
-            if(!empty($r->cpfresp)){
-                $this->dom->addChild(
-                    $respReg,
-                    "cpfResp",
-                    $r->cpfresp,
-                    true
-                );
-            }
-            if(!empty($r->ideOC)){
+            $this->dom->addChild(
+                $respReg,
+                "cpfResp",
+                $r->cpfresp,
+                true
+            );
+            if(!empty($r->ideoc)){
                 $this->dom->addChild(
                     $respReg,
                     "ideOC",
