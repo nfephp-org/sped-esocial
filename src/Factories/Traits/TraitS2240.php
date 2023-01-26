@@ -570,7 +570,6 @@ trait TraitS2240
             }
             $info->appendChild($agNoc);
         }
-
         foreach ($this->std->respreg as $r) {
             $respReg = $this->dom->createElement("respReg");
 
@@ -582,30 +581,32 @@ trait TraitS2240
                     true
                 );
             }
-            $this->dom->addChild(
-                $respReg,
-                "ideOC",
-                $r->ideoc,
-                true
-            );
-            $this->dom->addChild(
-                $respReg,
-                "dscOC",
-                !empty($r->dscoc) ? $r->dscoc : null,
-                false
-            );
-            $this->dom->addChild(
-                $respReg,
-                "nrOC",
-                $r->nroc,
-                true
-            );
-            $this->dom->addChild(
-                $respReg,
-                "ufOC",
-                $r->ufoc,
-                true
-            );
+            if(!empty($r->ideOC)){
+                $this->dom->addChild(
+                    $respReg,
+                    "ideOC",
+                    $r->ideoc,
+                    true
+                );
+                $this->dom->addChild(
+                    $respReg,
+                    "dscOC",
+                    !empty($r->dscoc) ? $r->dscoc : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $respReg,
+                    "nrOC",
+                    $r->nroc,
+                    true
+                );
+                $this->dom->addChild(
+                    $respReg,
+                    "ufOC",
+                    $r->ufoc,
+                    true
+                );
+            }
             $info->appendChild($respReg);
         }
 
