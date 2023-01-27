@@ -42,7 +42,7 @@ trait TraitS2206
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
             $ideVinculo,
@@ -63,7 +63,7 @@ trait TraitS2206
             true
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $altContratual = $this->dom->createElement("altContratual");
         $this->dom->addChild(
             $altContratual,
@@ -83,7 +83,7 @@ trait TraitS2206
             !empty($this->std->dscalt) ? $this->std->dscalt : null,
             false
         );
-        
+
         $vinculo = $this->dom->createElement("vinculo");
         $this->dom->addChild(
             $vinculo,
@@ -160,7 +160,7 @@ trait TraitS2206
             $infoRegimeTrab->appendChild($infoEstatutario);
         }
         $altContratual->appendChild($infoRegimeTrab);
-        
+
         $infoContrato = $this->dom->createElement("infoContrato");
         $ct = $this->std->infocontrato;
         $this->dom->addChild(
@@ -233,7 +233,7 @@ trait TraitS2206
             false
         );
         $infoContrato->appendChild($duracao);
-        
+
         $localTrabalho = $this->dom->createElement("localTrabalho");
         if (!empty($this->std->localtrabgeral)) {
             $tg = $this->std->localtrabgeral;
@@ -311,7 +311,7 @@ trait TraitS2206
             $localTrabalho->appendChild($localTrabDom);
         }
         $infoContrato->appendChild($localTrabalho);
-        
+
         if (!empty($this->std->horcontratual)) {
             $hc = $this->std->horcontratual;
             $horContratual = $this->dom->createElement("horContratual");
@@ -359,7 +359,7 @@ trait TraitS2206
             }
             $infoContrato->appendChild($horContratual);
         }
-        
+
         if (!empty($this->std->filiacaosindical)) {
             foreach ($this->std->filiacaosindical as $fs) {
                 $filiacaoSindical = $this->dom->createElement("filiacaoSindical");
@@ -372,7 +372,7 @@ trait TraitS2206
                 $infoContrato->appendChild($filiacaoSindical);
             }
         }
-        
+
         if (!empty($this->std->alvarajudicial)) {
             $alvaraJudicial = $this->dom->createElement("alvaraJudicial");
             $this->dom->addChild(
@@ -383,7 +383,7 @@ trait TraitS2206
             );
             $infoContrato->appendChild($alvaraJudicial);
         }
-        
+
         if (!empty($this->std->observacoes)) {
             foreach ($this->std->observacoes as $obs) {
                 $observacoes = $this->dom->createElement("observacoes");
@@ -396,7 +396,7 @@ trait TraitS2206
                 $infoContrato->appendChild($observacoes);
             }
         }
-        
+
         if (!empty($this->std->servpubl)) {
             $servPubl = $this->dom->createElement("servPubl");
             $this->dom->addChild(
@@ -414,7 +414,7 @@ trait TraitS2206
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -828,5 +828,13 @@ trait TraitS2206
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

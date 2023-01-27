@@ -240,6 +240,14 @@ trait TraitS1250
     }
 
     /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
+    }
+
+    /**
      * Grandes altereções de estrutura na tag tpAquis
      * @param DOMElement $ideEstabAdquir
      * @param stdClass $tpaquis
@@ -346,7 +354,7 @@ trait TraitS1250
         }
     }
 
-    
+
     /**
      * builder for version S.1.0.0
      */

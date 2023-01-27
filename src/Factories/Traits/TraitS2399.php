@@ -63,7 +63,7 @@ trait TraitS2399
             true
         );
         $this->node->appendChild($ideTrabSemVinculo);
-        
+
         $infoTSVTermino = $this->dom->createElement("infoTSVTermino");
         $this->dom->addChild(
             $infoTSVTermino,
@@ -332,7 +332,7 @@ trait TraitS2399
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -371,7 +371,7 @@ trait TraitS2399
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideTrabSemVinculo = $this->dom->createElement("ideTrabSemVinculo");
         $this->dom->addChild(
             $ideTrabSemVinculo,
@@ -392,7 +392,7 @@ trait TraitS2399
             false
         );
         $this->node->appendChild($ideTrabSemVinculo);
-        
+
         $infoTSVTermino = $this->dom->createElement("infoTSVTermino");
         $this->dom->addChild(
             $infoTSVTermino,
@@ -440,7 +440,7 @@ trait TraitS2399
             );
             $infoTSVTermino->appendChild($mudancaCPF);
         }
-        
+
         if (!empty($this->std->verbasresc)) {
             $vr = $this->std->verbasresc;
             $verbasResc = $this->dom->createElement("verbasResc");
@@ -512,7 +512,7 @@ trait TraitS2399
                         );
                         $ideEstabLot->appendChild($detVerbas);
                     }
-                    
+
                     if (!empty($el->infosimples)) {
                         $infoSimples = $this->dom->createElement("infoSimples");
                         $this->dom->addChild(
@@ -523,13 +523,13 @@ trait TraitS2399
                         );
                         $ideEstabLot->appendChild($infoSimples);
                     }
-                    
+
                     $dmDev->appendChild($ideEstabLot);
                 }
-                
+
                 $verbasResc->appendChild($dmDev);
             }
-            
+
             if (!empty($this->std->verbasresc->procjudtrab)) {
                 foreach ($this->std->verbasresc->procjudtrab as $pj) {
                     $procJudTrab = $this->dom->createElement("procJudTrab");
@@ -594,7 +594,7 @@ trait TraitS2399
             }
             $infoTSVTermino->appendChild($verbasResc);
         }
-        
+
         if (!empty($this->std->quarentena)) {
             $quarentena = $this->dom->createElement("quarentena");
             $this->dom->addChild(
@@ -605,10 +605,18 @@ trait TraitS2399
             );
             $infoTSVTermino->appendChild($quarentena);
         }
-        
+
         $this->node->appendChild($infoTSVTermino);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

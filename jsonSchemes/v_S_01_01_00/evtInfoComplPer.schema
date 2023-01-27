@@ -1,0 +1,99 @@
+{
+    "title": "evtInfoComplPer",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/periodo"
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
+        },
+        "infosubstpatr": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "indsubstpatr": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "percpedcontrib": {
+                     "required": true,
+                     "type": "number"
+                }
+            }
+        },
+        "infosubstpatropport": {
+            "required": false,
+            "type": ["array","null"],
+            "minItems": 0,
+            "maxItems": 9999,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "codlotacao": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 30
+                    }
+                }
+            }
+        },
+        "infoativconcom": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "fatormes": {
+                     "required": true,
+                     "type": "number"
+                },
+                "fator13": {
+                     "required": true,
+                     "type": "number"
+                }
+            }
+        },
+        "infoperctransf11096": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "perctransf": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                }
+            }
+        }
+    }
+}

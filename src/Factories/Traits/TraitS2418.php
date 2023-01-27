@@ -11,7 +11,7 @@ trait TraitS2418
     {
         throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão 2.5.0 !!");
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -54,7 +54,7 @@ trait TraitS2418
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideBeneficio = $this->dom->createElement("ideBeneficio");
         $this->dom->addChild(
             $ideBeneficio,
@@ -69,7 +69,7 @@ trait TraitS2418
             true
         );
         $this->node->appendChild($ideBeneficio);
-        
+
         $infoReativ = $this->dom->createElement("infoReativ");
         $this->dom->addChild(
             $infoReativ,
@@ -88,5 +88,13 @@ trait TraitS2418
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

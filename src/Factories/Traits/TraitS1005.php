@@ -176,7 +176,7 @@ trait TraitS1005
                 );
                 $dadosEstab->appendChild($infoObra);
             }
-            
+
             $infoTrab = $this->dom->createElement("infoTrab");
             $this->dom->addChild(
                 $infoTrab,
@@ -270,7 +270,7 @@ trait TraitS1005
         $this->eSocial->appendChild($this->node);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -498,5 +498,13 @@ trait TraitS1005
         $this->node->appendChild($infoEstab);
         $this->eSocial->appendChild($this->node);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

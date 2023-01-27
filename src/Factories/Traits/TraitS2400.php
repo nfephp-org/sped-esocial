@@ -60,9 +60,9 @@ trait TraitS2400
             true
         );
         $this->node->appendChild($ideBenef);
-        
+
         $dadosBenef = $this->dom->createElement("dadosBenef");
-        
+
         $dadosNasc = $this->dom->createElement("dadosNasc");
         $diben = $this->std->idebenef->dadosbenef->dadosnasc;
         $this->dom->addChild(
@@ -347,13 +347,12 @@ trait TraitS2400
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
     {
-        
         $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
         //o idEvento pode variar de evento para evento
         //então cada factory individualmente terá de construir o seu
@@ -389,7 +388,7 @@ trait TraitS2400
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $beneficiario = $this->dom->createElement("beneficiario");
         $this->dom->addChild(
             $beneficiario,
@@ -545,7 +544,7 @@ trait TraitS2400
             $endereco->appendChild($exterior);
         }
         $beneficiario->appendChild($endereco);
-        
+
         //dependentes (opcional)
         if (isset($this->std->dependente)) {
             foreach ($this->std->dependente as $dep) {
@@ -595,11 +594,19 @@ trait TraitS2400
                 $beneficiario->appendChild($dependente);
             }
         }
-        
+
         $this->node->appendChild($beneficiario);
-        
+
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

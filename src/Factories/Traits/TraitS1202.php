@@ -4,7 +4,7 @@ namespace NFePHP\eSocial\Factories\Traits;
 
 trait TraitS1202
 {
-    
+
     /**
      * builder for version 2.5.0
      */
@@ -106,7 +106,7 @@ trait TraitS1202
         $this->sign();
     }
 
-    
+
         /**
      * builder for version S.1.0.0
      */
@@ -167,7 +167,7 @@ trait TraitS1202
             $this->std->cpftrab,
             true
         );
-        
+
         if (!empty($this->std->infocomplem)) {
             $info = $this->dom->createElement("infoComplem");
             $this->dom->addChild(
@@ -391,7 +391,15 @@ trait TraitS1202
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
+    }
+
     /**
      * Add ProcJud to ideTrabalhador
      * @param \DOMElement $node

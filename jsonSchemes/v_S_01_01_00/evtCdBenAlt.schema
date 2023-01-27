@@ -1,0 +1,88 @@
+{
+    "title": "evtCdBenAlt",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "nrbeneficio": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,20}$"
+        },
+        "dtaltbeneficio": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "tpbeneficio": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-1]{1}[0-9]{3}$"
+        },
+        "tpplanrp": {
+            "required": true,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+        },
+        "dsc": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{1,255}$"
+        },
+        "indsuspensao": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(S|N)$"
+        },
+        "infopenmorte": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "tppenmorte": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                }
+            }
+        },
+        "suspensao": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "mtvsuspensao": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(01|99)$"
+                },
+                "dscSuspensao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^.{1,255}$"
+                }
+            }
+        }
+
+    }
+}

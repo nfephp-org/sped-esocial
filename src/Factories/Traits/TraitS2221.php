@@ -44,7 +44,7 @@ trait TraitS2221
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
         $ide = $this->std->idevinculo;
         $this->dom->addChild(
@@ -72,7 +72,7 @@ trait TraitS2221
             false
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $toxic = $this->dom->createElement("toxicologico");
         $tox = $this->std->toxicologico;
         $this->dom->addChild(
@@ -123,12 +123,20 @@ trait TraitS2221
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
     {
         throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão S_1.0 !!");
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

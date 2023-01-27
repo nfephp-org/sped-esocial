@@ -326,7 +326,7 @@ trait TraitS2205
         if (!is_null($documentos)) {
             $trabalhador->appendChild($documentos);
         }
-        
+
         $endereco = $this->dom->createElement("endereco");
         if (!empty($this->std->brasil)) {
             $ct = $this->std->brasil;
@@ -428,7 +428,7 @@ trait TraitS2205
             $endereco->appendChild($exterior);
         }
         $trabalhador->appendChild($endereco);
-        
+
         if (!empty($this->std->trabestrangeiro)) {
             $ct = $this->std->trabestrangeiro;
             $trabEstrangeiro = $this->dom->createElement("trabEstrangeiro");
@@ -458,7 +458,7 @@ trait TraitS2205
             );
             $trabalhador->appendChild($trabEstrangeiro);
         }
-        
+
         if (!empty($this->std->infodeficiencia)) {
             $ct = $this->std->infodeficiencia;
             $infoDeficiencia = $this->dom->createElement("infoDeficiencia");
@@ -512,7 +512,7 @@ trait TraitS2205
             );
             $trabalhador->appendChild($infoDeficiencia);
         }
-        
+
         if (!empty($this->std->dependente)) {
             foreach ($this->std->dependente as $dep) {
                 $dependente = $this->dom->createElement("dependente");
@@ -561,7 +561,7 @@ trait TraitS2205
                 $trabalhador->appendChild($dependente);
             }
         }
-        
+
         if (!empty($this->std->aposentadoria)) {
             $aposentadoria = $this->dom->createElement("aposentadoria");
             $this->dom->addChild(
@@ -572,7 +572,7 @@ trait TraitS2205
             );
             $trabalhador->appendChild($aposentadoria);
         }
-        
+
         if (!empty($this->std->contato)) {
             $ct = $this->std->contato;
             $contato = $this->dom->createElement("contato");
@@ -602,16 +602,16 @@ trait TraitS2205
             );
             $trabalhador->appendChild($contato);
         }
-        
+
         $alteracao->appendChild($trabalhador);
-        
+
         $this->node->appendChild($alteracao);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);;
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -951,13 +951,21 @@ trait TraitS2205
             );
             $trabalhador->appendChild($contato);
         }
-        
+
         $alteracao->appendChild($trabalhador);
-        
+
         $this->node->appendChild($alteracao);
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);;
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }
