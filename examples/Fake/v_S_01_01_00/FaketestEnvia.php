@@ -40,6 +40,7 @@ try {
     //desativa a validação da validade do certificado
     //estamos usando um certificado vencido nesse teste
     $soap->disableCertValidation(true);
+    $soap->loadCertificate($certificate);
 
     //campos OBRIGATORIOS
     $std = new \stdClass();
