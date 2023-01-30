@@ -554,7 +554,6 @@ trait TraitS2206
             $infoRegimeTrab->appendChild($infoCeletista);
 
             $vinculo->appendChild($infoRegimeTrab);
-
         } elseif (!empty($this->std->infoestatutario)) {
             $ct = $this->std->infoestatutario;
             $infoEstatutario = $this->dom->createElement("infoEstatutario");

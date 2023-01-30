@@ -60,6 +60,11 @@ $jsonSchema = '{
                     "type": "string",
                     "$ref": "#/definitions/cnae"
                 },
+                "cnpjresp": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{14}"
+                },
                 "aliqgilrat": {
                     "required": false,
                     "type": ["object","null"],
@@ -251,6 +256,13 @@ $std->dadosestab->cnaeprep = "1234567";
 //referente à atividade econômica preponderante do
 //estabelecimento.
 //Validação: Deve ser um número existente na tabela CNAE.
+
+$std->dadosestab->cnpjresp = '12345678901234';
+//Preencher com o CNPJ responsável pela inscrição no cadastro de obras da RFB.
+//Preenchimento obrigatório e exclusivo por Pessoa Jurídica e
+// se {ideEstab/tpInsc}(1005_infoEstab_inclusao_ideEstab_tpInsc) = [4].
+// Informação obrigatória se {iniValid}(1005_infoEstab_inclusao_ideEstab_iniValid) >= [2022-04].
+//Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.
 
 $std->dadosestab->aliqgilrat = new \stdClass();
 $std->dadosestab->aliqgilrat->aliqrat = 1;

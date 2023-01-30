@@ -83,6 +83,63 @@ $std->dmdev[0] = new \stdClass(); //Obrigatório
 $std->dmdev[0]->idedmdev = 'kjdkjdkjdkdj'; //Obrigatório
 $std->dmdev[0]->codcateg = 101; //Obrigatório
 
+$std->dmdev[0]->indrra = 'S';
+//Indicativo de Rendimentos Recebidos Acumuladamente - RRA.
+//Somente preencher este campo se for um demonstrativo de RRA.
+//O campo apenas pode ser informado se {perApur}(/ideEvento_perApur) >= [2023-03]
+// (se {indApuracao}(/ideEvento_indApuracao) = [1])
+// ou se {perApur}(/ideEvento_perApur) >= [2023]
+// (se {indApuracao}(/ideEvento_indApuracao) = [2]).
+$std->dmdev[0]->inforra = new \stdClass(); //Opcional
+//Informações complementares de RRA.
+//Informações complementares relativas a Rendimentos Recebidos Acumuladamente - RRA.
+//se {indRRA}(../indRRA) = [S]); N nos demais casos
+$std->dmdev[0]->inforra->tpprocrra = 1; //Obrigatório
+// 1 - Administrativo
+// 2 - Judicial
+$std->dmdev[0]->inforra->nrprocrra = '12345678901234567890'; //Opcional
+//Informar o número do processo/requerimento administrativo/judicial.
+//Informação obrigatória se {tpProcRRA}(./tpProcRRA) = [2] e opcional se {tpProcRRA}(./tpProcRRA) = [1].
+// Deve ser número de processo válido e
+//a) Se {tpProcRRA}(./tpProcRRA) = [1], deve possuir 17 (dezessete) ou 21 (vinte e um) algarismos;
+//b) Se {tpProcRRA}(./tpProcRRA) = [2], deve possuir 20 (vinte) algarismos.
+
+$std->dmdev[0]->inforra->descrra = 'bla bla bla'; //Obrigatório
+//Descrição dos Rendimentos Recebidos Acumuladamente - RRA.
+
+$std->dmdev[0]->inforra->qtdmesesrra = 111.3; //Obrigatório
+//Número de meses relativo aos Rendimentos Recebidos Acumuladamente - RRA. de 0 até 999.9
+
+$std->dmdev[0]->inforra->despprocjud = new \stdClass(); //Opcional
+//Despesas com processo judicial. Detalhamento das despesas com processo judicial.
+
+$std->dmdev[0]->inforra->despprocjud->vlrdespcustas = 1000;  //Obrigatório
+//Preencher com o valor das despesas com custas judiciais.
+
+$std->dmdev[0]->inforra->despprocjud->vlrdespadvogados = 1543.12; //obrigatório
+//Preencher com o valor total das despesas com advogado(s).
+
+$std->dmdev[0]->inforra->ideadv[0]  = new \stdClass(); //Opcional
+//Identificação dos advogados.
+$std->dmdev[0]->inforra->ideadv[0]->tpinsc = 1;
+//Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+//1 CNPJ
+//2 CPF
+//3 CAEPF (Cadastro de Atividade Econômica de Pessoa Física)
+//4 CNO (Cadastro Nacional de Obra)
+//5 CGC
+//6 CEI
+$std->dmdev[0]->inforra->ideadv[0]->nrinsc = '12345678901';
+//Informar o número de inscrição do advogado.
+//Deve ser um número de inscrição válido, de acordo com o tipo de inscrição indicado no campo {ideAdv/tpInsc}(./tpInsc),
+//considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.
+//Se {ideAdv/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e, no caso de declarante pessoa jurídica,
+//ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(/ideEmpregador_nrInsc) tiver
+//14 (catorze) algarismos).
+//Se {ideAdv/tpInsc}(./tpInsc) = [2], deve possuir 11 (onze) algarismos e, no caso de declarante pessoa física, ser
+//diferente do CPF do empregador.
+$std->dmdev[0]->inforra->ideadv[0]->vlradv = 1543.12;
+
 //Identificação do estabelecimento e da lotação nos quais o
 //trabalhador possui remuneração no período de apuração
 $std->dmdev[0]->ideestablot[0] = new \stdClass(); //Opcional

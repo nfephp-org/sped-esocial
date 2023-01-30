@@ -21,7 +21,10 @@ $jsonSchema = '{
     "properties": {
         "sequencial": {
             "required": false,
-            "type": ["integer","null"],
+            "type": [
+                "integer",
+                "null"
+            ],
             "minimum": 1,
             "maximum": 99999
         },
@@ -33,7 +36,10 @@ $jsonSchema = '{
         },
         "nrrecibo": {
             "required": false,
-            "type": ["string","null"],
+            "type": [
+                "string",
+                "null"
+            ],
             "$ref": "#/definitions/recibo"
         },
         "indapuracao": {
@@ -54,7 +60,10 @@ $jsonSchema = '{
         },
         "infocomplem": {
             "required": false,
-            "type": ["object","null"],
+            "type": [
+                "object",
+                "null"
+            ],
             "properties": {
                 "nmtrab": {
                     "required": true,
@@ -69,7 +78,10 @@ $jsonSchema = '{
                 },
                 "sucessaovinc": {
                     "required": false,
-                    "type": ["object","null"],
+                    "type": [
+                        "object",
+                        "null"
+                    ],
                     "properties": {
                         "cnpjorgaoant": {
                             "required": true,
@@ -78,7 +90,10 @@ $jsonSchema = '{
                         },
                         "matricant": {
                             "required": false,
-                            "type": ["string","null"],
+                            "type": [
+                                "string",
+                                "null"
+                            ],
                             "minLength": 1,
                             "maxLength": 30
                         },
@@ -89,7 +104,10 @@ $jsonSchema = '{
                         },
                         "observacao": {
                             "required": false,
-                            "type": ["string","null"],
+                            "type": [
+                                "string",
+                                "null"
+                            ],
                             "minLength": 1,
                             "maxLength": 255
                         }
@@ -115,6 +133,90 @@ $jsonSchema = '{
                         "required": true,
                         "type": "string",
                         "pattern": "^[0-9]{3}$"
+                    },
+                    "indrra": {
+                        "required": false,
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "pattern": "^(S)$"
+                    },
+                    "inforra": {
+                        "required": false,
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "tpprocrra": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "nrprocrra": {
+                                "required": false,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "pattern": "^([0-9]{17}|[0-9]{20}|[0-9]{21}})$"
+                            },
+                            "descrra": {
+                                "required": true,
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "qtdmesesrra": {
+                                "required": true,
+                                "type": "number"
+                            },
+                            "despprocjud": {
+                                "required": false,
+                                "type": [
+                                    "object",
+                                    "null"
+                                ],
+                                "properties": {
+                                    "vlrdespcustas": {
+                                        "required": true,
+                                        "type": "number"
+                                    },
+                                    "vlrdespadvogados": {
+                                        "required": true,
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "ideadv": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 99,
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                     "tpinsc": {
+                                     "required": true,
+                                                    "type": "integer",
+                                                    "minimum": 1,
+                                                    "maximum": 6
+                                                },
+                                                "nrinsc": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]{11,14}$"
+                                                },
+                                                "vlradv": {
+                                                    "required": true,
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                        }
                     },
                     "infoperapur": {
                         "required": false,
@@ -181,11 +283,17 @@ $jsonSchema = '{
                                                                 },
                                                                 "qtdrubr": {
                                                                     "required": false,
-                                                                    "type": ["number","null"]
+                                                                    "type": [
+                                                                        "number",
+                                                                        "null"
+                                                                    ]
                                                                 },
                                                                 "fatorrubr": {
                                                                     "required": false,
-                                                                    "type": ["number","null"]
+                                                                    "type": [
+                                                                        "number",
+                                                                        "null"
+                                                                    ]
                                                                 },
                                                                 "vrrubr": {
                                                                     "required": true,
@@ -210,7 +318,10 @@ $jsonSchema = '{
                     },
                     "infoperant": {
                         "required": false,
-                        "type": ["object","null"],
+                        "type": [
+                            "object",
+                            "null"
+                        ],
                         "properties": {
                             "remunorgsuc": {
                                 "required": true,
@@ -259,7 +370,10 @@ $jsonSchema = '{
                                                             "properties": {
                                                                 "matricula": {
                                                                     "required": false,
-                                                                    "type": ["string","null"],
+                                                                    "type": [
+                                                                        "string",
+                                                                        "null"
+                                                                    ],
                                                                     "minLength": 1,
                                                                     "maxLength": 30
                                                                 },
@@ -285,11 +399,17 @@ $jsonSchema = '{
                                                                             },
                                                                             "qtdrubr": {
                                                                                 "required": false,
-                                                                                "type": ["number","null"]
+                                                                                "type": [
+                                                                                    "number",
+                                                                                    "null"
+                                                                                ]
                                                                             },
                                                                             "fatorrubr": {
                                                                                 "required": false,
-                                                                                "type": ["number","null"]
+                                                                                "type": [
+                                                                                    "number",
+                                                                                    "null"
+                                                                                ]
                                                                             },
                                                                             "vrrubr": {
                                                                                 "required": true,
@@ -351,6 +471,58 @@ $std->dmdev[0] = new \stdClass(); //Obritatório
 $std->dmdev[0]->idedmdev = '213789'; //Obritatório
 $std->dmdev[0]->codcateg = '103';  //Obritatório
 
+$std->dmdev[0]->indrra = 'S'; //Opcional
+//S se houve Rendimentos Recebidos Acumuladamente - RRA
+$std->dmdev[0]->inforra = new \stdClass(); //Opcional
+//Informações complementares de RRA.
+//Informações complementares relativas a Rendimentos Recebidos Acumuladamente - RRA.
+//se {indRRA}(../indRRA) = [S]); N nos demais casos
+$std->dmdev[0]->inforra->tpprocrra = 1; //Obrigatório
+// 1 - Administrativo
+// 2 - Judicial
+$std->dmdev[0]->inforra->nrprocrra = '12345678901234567890'; //Opcional
+//Informar o número do processo/requerimento administrativo/judicial.
+//Informação obrigatória se {tpProcRRA}(./tpProcRRA) = [2] e opcional se {tpProcRRA}(./tpProcRRA) = [1].
+// Deve ser número de processo válido e
+//a) Se {tpProcRRA}(./tpProcRRA) = [1], deve possuir 17 (dezessete) ou 21 (vinte e um) algarismos;
+//b) Se {tpProcRRA}(./tpProcRRA) = [2], deve possuir 20 (vinte) algarismos.
+
+$std->dmdev[0]->inforra->descrra = 'bla bla bla'; //Obrigatório
+//Descrição dos Rendimentos Recebidos Acumuladamente - RRA.
+
+$std->dmdev[0]->inforra->qtdmesesrra = 111.3; //Obrigatório
+//Número de meses relativo aos Rendimentos Recebidos Acumuladamente - RRA. de 0 até 999.9
+
+$std->dmdev[0]->inforra->despprocjud = new \stdClass(); //Opcional
+//Despesas com processo judicial. Detalhamento das despesas com processo judicial.
+
+$std->dmdev[0]->inforra->despprocjud->vlrdespcustas = 1000;  //Obrigatório
+//Preencher com o valor das despesas com custas judiciais.
+
+$std->dmdev[0]->inforra->despprocjud->vlrdespadvogados = 1543.12; //obrigatório
+//Preencher com o valor total das despesas com advogado(s).
+
+$std->dmdev[0]->inforra->ideadv[0] = new \stdClass(); //Opcional
+//Identificação dos advogados.
+$std->dmdev[0]->inforra->ideadv[0]->tpinsc = 1;
+//Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+//1 CNPJ
+//2 CPF
+//3 CAEPF (Cadastro de Atividade Econômica de Pessoa Física)
+//4 CNO (Cadastro Nacional de Obra)
+//5 CGC
+//6 CEI
+$std->dmdev[0]->inforra->ideadv[0]->nrinsc = '12345678901';
+//Informar o número de inscrição do advogado.
+//Deve ser um número de inscrição válido, de acordo com o tipo de inscrição indicado no campo {ideAdv/tpInsc}(./tpInsc),
+//considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.
+//Se {ideAdv/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e, no caso de declarante pessoa jurídica,
+//ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(/ideEmpregador_nrInsc) tiver
+//14 (catorze) algarismos).
+//Se {ideAdv/tpInsc}(./tpInsc) = [2], deve possuir 11 (onze) algarismos e, no caso de declarante pessoa física, ser
+//diferente do CPF do empregador.
+$std->dmdev[0]->inforra->ideadv[0]->vlradv = 1543.12;
+
 //Informações relativas ao período de apuração.
 $std->dmdev[0]->infoperapur = new \stdClass(); //Opcional
 
@@ -404,7 +576,6 @@ $std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->remumperant[0]->itensrem
 $std->dmdev[0]->infoperant->ideperiodo[0]->ideestab[0]->remumperant[0]->itensremum[0]->indapurir = 0; //Obrigatório
 
 
-
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
 if (empty($jsonSchemaObject)) {
@@ -421,7 +592,7 @@ $schemaStorage = new SchemaStorage();
 // This does two things:
 // 1) Mutates $jsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
 // 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $jsonSchemaObject
-$definitions = realpath(__DIR__."/../../../jsonSchemes/definitions.schema");
+$definitions = realpath(__DIR__ . "/../../../jsonSchemes/definitions.schema");
 $schemaStorage->addSchema("file:{$definitions}", $jsonSchemaObject);
 
 // Provide $schemaStorage to the Validator so that references can be resolved during validation
@@ -429,7 +600,7 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 
 // Do validation (use isValid() and getErrors() to check the result)
 $jsonValidator->validate(
-        $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
+    $std, $jsonSchemaObject, Constraint::CHECK_MODE_COERCE_TYPES  //tenta converter o dado no tipo indicado no schema
 );
 
 if ($jsonValidator->isValid()) {

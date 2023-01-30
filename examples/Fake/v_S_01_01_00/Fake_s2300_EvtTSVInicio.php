@@ -144,6 +144,19 @@ $std->infotrabcedido->tpregprev = 3; //Obrigatório
 
 //Informações relativas a servidor público exercente de mandato eletivo.
 $std->infomandelet = new \stdClass(); //Opcional
+
+$std->infomandelet->categorig = '111'; //Obrigatório
+//Preencher com o código correspondente à categoria de origem do servidor.
+//Deve ser um código válido e existente na Tabela 01, diferente de [304].
+$std->infomandelet->cnpjorig = '12345678901234'; //Obrigatório
+//Informar o CNPJ do órgão público de origem.
+$std->infomandelet->matricorig = 'A1234'; //Obrigatório
+//Preencher com a matrícula do servidor no órgão público de origem.
+$std->infomandelet->dtexercorig = '2023-01-01'; //Obrigatório
+//Preencher com a data de exercício do servidor no órgão público de origem.
+////Deve ser uma data anterior a {dtInicio}(2300_infoTSVInicio_dtInicio) e igual ou posterior a 01/01/1890.
+
+
 $std->infomandelet->indremuncargo = 'S'; //Opcional
 $std->infomandelet->tpregtrab = 2; //Obrigatório
 $std->infomandelet->tpregprev = 3; //Obrigatório

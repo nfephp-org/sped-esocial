@@ -77,8 +77,18 @@ $std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '12345678901234';
 $std->verbasresc->infomv->remunoutrempr[1]->codcateg = 905;
 $std->verbasresc->infomv->remunoutrempr[1]->vlrremunoe = 2598.56;
 
-$std->quarentena = new \stdClass();
-$std->quarentena->dtfimquar = '2018-12-20';
+$std->remunaposterm =  new \stdClass(); //Opcional
+//Indicativo de situação de remuneração após o término.
+//Informação obrigatória se {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2023-01-16].
+$std->remunaposterm->indremun = 1; //Opcional
+// 1 - Quarentena
+// 2 - Término reconhecido judicialmente com data anterior a competências com remunerações já informadas no eSocial
+$std->remunaposterm->dtfimremun = '2023-01-22'; //Obrigatório
+//Preencher com a data final da quarentena a que está sujeito o trabalhador. No caso de término
+//reconhecido judicialmente com data anterior a competências com remunerações já informadas no eSocial,
+//informar o último dia trabalhado.
+//Deve ser uma data posterior a {dtTerm}(2399_infoTSVTermino_dtTerm).
+
 
 try {
     //carrega a classe responsavel por lidar com os certificados

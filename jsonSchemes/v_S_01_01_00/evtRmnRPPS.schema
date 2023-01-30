@@ -4,7 +4,10 @@
     "properties": {
         "sequencial": {
             "required": false,
-            "type": ["integer","null"],
+            "type": [
+                "integer",
+                "null"
+            ],
             "minimum": 1,
             "maximum": 99999
         },
@@ -16,7 +19,10 @@
         },
         "nrrecibo": {
             "required": false,
-            "type": ["string","null"],
+            "type": [
+                "string",
+                "null"
+            ],
             "$ref": "#/definitions/recibo"
         },
         "indapuracao": {
@@ -37,7 +43,10 @@
         },
         "infocomplem": {
             "required": false,
-            "type": ["object","null"],
+            "type": [
+                "object",
+                "null"
+            ],
             "properties": {
                 "nmtrab": {
                     "required": true,
@@ -52,7 +61,10 @@
                 },
                 "sucessaovinc": {
                     "required": false,
-                    "type": ["object","null"],
+                    "type": [
+                        "object",
+                        "null"
+                    ],
                     "properties": {
                         "cnpjorgaoant": {
                             "required": true,
@@ -61,7 +73,10 @@
                         },
                         "matricant": {
                             "required": false,
-                            "type": ["string","null"],
+                            "type": [
+                                "string",
+                                "null"
+                            ],
                             "minLength": 1,
                             "maxLength": 30
                         },
@@ -72,7 +87,10 @@
                         },
                         "observacao": {
                             "required": false,
-                            "type": ["string","null"],
+                            "type": [
+                                "string",
+                                "null"
+                            ],
                             "minLength": 1,
                             "maxLength": 255
                         }
@@ -98,6 +116,90 @@
                         "required": true,
                         "type": "string",
                         "pattern": "^[0-9]{3}$"
+                    },
+                    "indrra": {
+                        "required": false,
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "pattern": "^(S)$"
+                    },
+                    "inforra": {
+                        "required": false,
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "tpprocrra": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "nrprocrra": {
+                                "required": false,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "pattern": "^([0-9]{17}|[0-9]{20}|[0-9]{21}})$"
+                            },
+                            "descrra": {
+                                "required": true,
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "qtdmesesrra": {
+                                "required": true,
+                                "type": "number"
+                            },
+                            "despprocjud": {
+                                "required": false,
+                                "type": [
+                                    "object",
+                                    "null"
+                                ],
+                                "properties": {
+                                    "vlrdespcustas": {
+                                        "required": true,
+                                        "type": "number"
+                                    },
+                                    "vlrdespadvogados": {
+                                        "required": true,
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "ideadv": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 99,
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                     "tpinsc": {
+                                     "required": true,
+                                                    "type": "integer",
+                                                    "minimum": 1,
+                                                    "maximum": 6
+                                                },
+                                                "nrinsc": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]{11,14}$"
+                                                },
+                                                "vlradv": {
+                                                    "required": true,
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                        }
                     },
                     "infoperapur": {
                         "required": false,
@@ -164,11 +266,17 @@
                                                                 },
                                                                 "qtdrubr": {
                                                                     "required": false,
-                                                                    "type": ["number","null"]
+                                                                    "type": [
+                                                                        "number",
+                                                                        "null"
+                                                                    ]
                                                                 },
                                                                 "fatorrubr": {
                                                                     "required": false,
-                                                                    "type": ["number","null"]
+                                                                    "type": [
+                                                                        "number",
+                                                                        "null"
+                                                                    ]
                                                                 },
                                                                 "vrrubr": {
                                                                     "required": true,
@@ -193,7 +301,10 @@
                     },
                     "infoperant": {
                         "required": false,
-                        "type": ["object","null"],
+                        "type": [
+                            "object",
+                            "null"
+                        ],
                         "properties": {
                             "remunorgsuc": {
                                 "required": true,
@@ -242,7 +353,10 @@
                                                             "properties": {
                                                                 "matricula": {
                                                                     "required": false,
-                                                                    "type": ["string","null"],
+                                                                    "type": [
+                                                                        "string",
+                                                                        "null"
+                                                                    ],
                                                                     "minLength": 1,
                                                                     "maxLength": 30
                                                                 },
@@ -268,11 +382,17 @@
                                                                             },
                                                                             "qtdrubr": {
                                                                                 "required": false,
-                                                                                "type": ["number","null"]
+                                                                                "type": [
+                                                                                    "number",
+                                                                                    "null"
+                                                                                ]
                                                                             },
                                                                             "fatorrubr": {
                                                                                 "required": false,
-                                                                                "type": ["number","null"]
+                                                                                "type": [
+                                                                                    "number",
+                                                                                    "null"
+                                                                                ]
                                                                             },
                                                                             "vrrubr": {
                                                                                 "required": true,

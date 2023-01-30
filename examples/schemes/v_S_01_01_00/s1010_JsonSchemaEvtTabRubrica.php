@@ -88,7 +88,7 @@ $jsonSchema = '{
                 "codinccprp": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^(00|11|12|31|32|91)$"
+                    "pattern": "^(00|11|12|31|32|91|92)$"
                 },
                 "tetoremun": {
                     "required": false,

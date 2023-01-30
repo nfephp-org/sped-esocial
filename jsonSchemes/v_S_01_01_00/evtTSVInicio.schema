@@ -472,6 +472,27 @@
             "required": false,
             "type": ["object","null"],
             "properties": {
+                "categorig": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{3}$"
+                },
+                "cnpjorig": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{14}$"
+                },
+                "matricorig": {
+                    "required": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 30
+                },
+                "dtexercorig": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
                 "indremuncargo": {
                     "required": false,
                     "type": ["string","null"],

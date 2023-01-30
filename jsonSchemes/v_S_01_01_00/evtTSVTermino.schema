@@ -93,6 +93,11 @@
                                 "minLength": 1,
                                 "maxLength": 30
                             },
+                            "indrra": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^(S)$"
+                            },
                             "ideestablot": {
                                 "required": true,
                                 "type": "array",
@@ -250,11 +255,17 @@
                 }
             }
         },
-        "quarentena": {
+        "remunaposterm": {
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "dtfimquar": {
+                "indremun": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "dtfimremun": {
                     "required": true,
                     "type": "string",
                     "$ref": "#/definitions/data"

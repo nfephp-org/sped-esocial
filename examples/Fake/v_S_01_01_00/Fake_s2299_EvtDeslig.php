@@ -169,12 +169,12 @@ $std->verbasresc->proccs->nrprocjud = '12345678901234567890'; //Obrigatório
 //Informações sobre a "quarentena" remunerada de
 //trabalhador desligado ou outra situação de desligamento
 //com data anterior.
-$std->verbasresc->remunaposdeslig =  new \stdClass(); //Opcional
-$std->verbasresc->remunaposdeslig->indremun = 1; //Opcional
+$std->remunaposdeslig =  new \stdClass(); //Opcional
+$std->remunaposdeslig->indremun = 1; //Opcional
 // 1 - Quarentena
 // 2 - Desligamento reconhecido judicialmente com data anterior a competências com remunerações já informadas no eSocial
 // 3 - Aposentadoria de servidor com data anterior a competências com remunerações já informadas no eSocial
-$std->verbasresc->remunaposdeslig->dtfimremun = '2023-01-22'; //Obrigatório
+$std->remunaposdeslig->dtfimremun = '2023-01-22'; //Obrigatório
 
 
 //Informações sobre operação de crédito consignado com garantia de FGTS.

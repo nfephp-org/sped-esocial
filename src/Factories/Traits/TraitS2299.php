@@ -1589,18 +1589,18 @@ trait TraitS2299
             }
             $infoDeslig->appendChild($verbasResc);
         }
-        if (!empty($this->std->verbasresc->remunaposdeslig)) {
+        if (!empty($this->std->remunaposdeslig)) {
             $quarentena = $this->dom->createElement("remunAposDeslig");
             $this->dom->addChild(
                 $quarentena,
                 "indRemun",
-                $this->std->verbasresc->remunaposdeslig->indremun ?? null,
+                $this->std->remunaposdeslig->indremun ?? null,
                 false
             );
             $this->dom->addChild(
                 $quarentena,
                 "dtFimRemun",
-                $this->std->verbasresc->remunaposdeslig->dtfimremun,
+                $this->std->remunaposdeslig->dtfimremun,
                 true
             );
             $infoDeslig->appendChild($quarentena);

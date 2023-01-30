@@ -109,6 +109,11 @@ $jsonSchema = '{
                                 "minLength": 1,
                                 "maxLength": 30
                             },
+                            "indrra": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^(S)$"
+                            },
                             "ideestablot": {
                                 "required": true,
                                 "type": "array",
@@ -266,11 +271,17 @@ $jsonSchema = '{
                 }
             }
         },
-        "quarentena": {
+        "remunaposterm": {
             "required": false,
             "type": ["object","null"],
             "properties": {
-                "dtfimquar": {
+                "indremun": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "dtfimremun": {
                     "required": true,
                     "type": "string",
                     "$ref": "#/definitions/data"
@@ -300,6 +311,10 @@ $std->novocpf = "12345678901";
 $std->verbasresc = new \stdClass();
 $std->verbasresc->dmdev[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->idedmdev = 'ksksksksksksksk';
+$std->verbasresc->dmdev[1]->indrra = 'S'; //Opcional
+//Indicativo de Rendimentos Recebidos Acumuladamente - RRA.
+//Somente preencher este campo se for um demonstrativo de RRA.
+//O campo apenas pode ser informado se o mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2023-03].
 
 $std->verbasresc->dmdev[1]->ideestablot[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->ideestablot[1]->tpinsc = 1;
@@ -329,8 +344,17 @@ $std->verbasresc->infomv->remunoutrempr[1]->nrinsc = '12345678901234';
 $std->verbasresc->infomv->remunoutrempr[1]->codcateg = 905;
 $std->verbasresc->infomv->remunoutrempr[1]->vlrremunoe = 2598.56;
 
-$std->quarentena = new \stdClass();
-$std->quarentena->dtfimquar = '2018-12-20';
+$std->remunaposterm =  new \stdClass(); //Opcional
+//Indicativo de situação de remuneração após o término.
+//Informação obrigatória se {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2023-01-16].
+$std->remunaposterm->indremun = 1; //Opcional
+// 1 - Quarentena
+// 2 - Término reconhecido judicialmente com data anterior a competências com remunerações já informadas no eSocial
+$std->remunaposterm->dtfimremun = '2023-01-22'; //Obrigatório
+//Preencher com a data final da quarentena a que está sujeito o trabalhador. No caso de término
+//reconhecido judicialmente com data anterior a competências com remunerações já informadas no eSocial,
+//informar o último dia trabalhado.
+//Deve ser uma data posterior a {dtTerm}(2399_infoTSVTermino_dtTerm).
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

@@ -43,6 +43,11 @@
                     "type": "string",
                     "$ref": "#/definitions/cnae"
                 },
+                "cnpjresp": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{14}"
+                },
                 "aliqgilrat": {
                     "required": false,
                     "type": ["object","null"],
