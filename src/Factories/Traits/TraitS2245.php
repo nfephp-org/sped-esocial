@@ -70,7 +70,7 @@ trait TraitS2245
             false
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $t = $this->std->treicap;
         $treiCap = $this->dom->createElement("treiCap");
         $this->dom->addChild(
@@ -118,7 +118,7 @@ trait TraitS2245
                 $i->indtreinant,
                 true
             );
-            
+
             foreach ($i->ideprofresp as $p) {
                 $ideProfResp = $this->dom->createElement("ideProfResp");
                 $this->dom->addChild(
@@ -166,12 +166,20 @@ trait TraitS2245
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
     {
         throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão S_1.0 !!");
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

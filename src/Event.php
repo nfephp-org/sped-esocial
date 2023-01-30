@@ -34,6 +34,7 @@ class Event
         'evttabequipamento' => Factories\EvtTabEquipamento::class,
         'evtafasttemp' => Factories\EvtAfastTemp::class,
         'evtexclusao' => Factories\EvtExclusao::class,
+        'evtexcproctrab' => Factories\EvtExcProcTrab::class,
         'evttabcargo' => Factories\EvtTabCargo::class,
         'evtaltcadastral' => Factories\EvtAltCadastral::class,
         'evtexprisco' => Factories\EvtExpRisco::class,

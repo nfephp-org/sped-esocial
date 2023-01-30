@@ -1,0 +1,158 @@
+{
+    "title": "evtInfoEmpregador",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "modo": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/modo"
+        },
+        "ideperiodo": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/periodo"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/periodo"
+                }
+            }
+        },
+        "infocadastro": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "classtrib": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 2
+                },
+                "indcoop": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 0,
+                    "maximum": 3
+                },
+                "indconstr": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "inddesfolha": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "indopccp": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "indporte": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
+                },
+                "indoptregeletron": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "cnpjefr": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{14}$"
+                }
+            }
+        },
+        "dadosisencao": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "ideminlei": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 70
+                },
+                "nrcertif": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 40
+                },
+                "dtemiscertif": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "dtvenccertif": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "nrprotrenov": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 40
+                },
+                "dtprotrenov": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/data"
+                },
+                "dtdou": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/data"
+                },
+                "pagdou": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "maximum": 99999
+                }
+            }
+        },
+        "infoorginternacional": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "indacordoisenmulta": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "novavalidade": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "inivalid": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/periodo"
+                },
+                "fimvalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/periodo"
+                }
+            }
+        }
+    }
+}

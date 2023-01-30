@@ -1,0 +1,58 @@
+{
+    "title": "evtBaixa",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "matricula": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{1,30}$"
+        },
+        "mtvdeslig": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(11|12|13|25|28|29|30|34|36)$"
+        },
+        "dtdeslig": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "dtprojfimapi": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/data"
+        },
+        "nrproctrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{20}$"
+        },
+        "observacao": {
+            "required": false,
+            "type": ["string","null"],
+            "maxLength": 255
+        }
+    }
+}

@@ -289,7 +289,7 @@ trait TraitS2306
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -581,16 +581,24 @@ trait TraitS2306
             }
             $infoComplementares->appendChild($infoEstagiario);
         }
-        
+
         if (!empty($infoComplementares)) {
             $infoTSVAlteracao->appendChild($infoComplementares);
         }
-        
+
         $this->node->appendChild($infoTSVAlteracao);
-        
+
         $this->node->appendChild($infoTSVAlteracao);
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

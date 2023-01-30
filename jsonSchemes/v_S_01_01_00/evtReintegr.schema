@@ -1,0 +1,60 @@
+{
+    "title": "evtReintegr",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "matricula": {
+            "required": true,
+            "type": "string",
+            "maxLength": 30
+        },
+        "tpreint": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9
+        },
+        "nrprocjud": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^.{20}$"
+        },
+        "nrleianistia": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 5,
+            "maxLength": 13
+        },
+        "dtefetretorno": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "dtefeito": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        }
+    }
+}

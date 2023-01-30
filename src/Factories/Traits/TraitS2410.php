@@ -11,7 +11,7 @@ trait TraitS2410
     {
         throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão 2.5.0 !!");
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -54,7 +54,7 @@ trait TraitS2410
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $beneficiario = $this->dom->createElement("beneficiario");
         $this->dom->addChild(
             $beneficiario,
@@ -75,7 +75,7 @@ trait TraitS2410
             false
         );
         $this->node->appendChild($beneficiario);
-        
+
         $infoBenInicio = $this->dom->createElement("infoBenInicio");
         $this->dom->addChild(
             $infoBenInicio,
@@ -132,7 +132,7 @@ trait TraitS2410
             !empty($this->std->inddecjud) ? $this->std->inddecjud : null,
             false
         );
-        
+
         if (!empty($this->std->infopenmorte)) {
             $infoPenMorte = $this->dom->createElement("infoPenMorte");
             $this->dom->addChild(
@@ -160,7 +160,7 @@ trait TraitS2410
             $dadosBeneficio->appendChild($infoPenMorte);
         }
         $infoBenInicio->appendChild($dadosBeneficio);
-        
+
         if (!empty($this->std->sucessaobenef)) {
             $sucessaoBenef = $this->dom->createElement("sucessaoBenef");
             $this->dom->addChild(
@@ -190,7 +190,7 @@ trait TraitS2410
             );
             $infoBenInicio->appendChild($sucessaoBenef);
         }
-        
+
         if (!empty($this->std->mudancacpf)) {
             $mudancaCPF = $this->dom->createElement("mudancaCPF");
             $this->dom->addChild(
@@ -220,7 +220,7 @@ trait TraitS2410
             );
             $infoBenInicio->appendChild($mudancaCPF);
         }
-        
+
         if (!empty($this->std->infobentermino)) {
             $infoBenTermino = $this->dom->createElement("infoBenTermino");
             $this->dom->addChild(
@@ -237,12 +237,20 @@ trait TraitS2410
             );
             $infoBenInicio->appendChild($infoBenTermino);
         }
-        
+
         $this->node->appendChild($infoBenInicio);
-        
+
         //finalização do xml
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

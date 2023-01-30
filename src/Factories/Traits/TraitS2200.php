@@ -1848,13 +1848,13 @@ trait TraitS2200
                 ! empty($dur->clauassec) ? $dur->clauassec : null,
                 false
             );
-            if((int)$dur->tpcontr == 3){
+            if ((int)$dur->tpcontr == 3) {
                 $this->dom->addChild(
-                $duracao,
-                "objDet",
-                ! empty($dur->objdet) ? $dur->objdet : null,
-                false
-            );
+                    $duracao,
+                    "objDet",
+                    ! empty($dur->objdet) ? $dur->objdet : null,
+                    false
+                );
             }
             $contrato->appendChild($duracao);
         }
@@ -2161,5 +2161,13 @@ trait TraitS2200
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }
