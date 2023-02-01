@@ -46,7 +46,7 @@ $std->exmedocup->aso->resaso = 1;
 
 $std->exmedocup->aso->exame[0] = new \stdClass();
 $std->exmedocup->aso->exame[0]->dtexm = '2017-08-18';
-$std->exmedocup->aso->exame[0]->procrealizado = 1010;
+$std->exmedocup->aso->exame[0]->procrealizado = '1010';
 $std->exmedocup->aso->exame[0]->obsproc = 'observação do exame';
 $std->exmedocup->aso->exame[0]->ordexame = 1;
 $std->exmedocup->aso->exame[0]->indresult = 1;
