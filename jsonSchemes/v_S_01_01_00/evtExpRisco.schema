@@ -39,6 +39,11 @@
             "type": "string",
             "$ref": "#/definitions/data"
         },
+        "dtfimcondicao": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/data"
+        },
         "infoamb": {
             "required": true,
             "type": "object",
@@ -89,7 +94,7 @@
                     "dscagnoc": {
                         "required": false,
                         "type": ["string","null"],
-                        "maxLength": 999
+                        "maxLength": 100
                     },
                     "tpaval": {
                         "required": false,
@@ -141,6 +146,23 @@
                                 "required": false,
                                 "type": ["string", "null"],
                                 "pattern": "^(S|N)$"
+                            },
+                            "epi": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 50,
+                                "items": {
+                                    "required": true,
+                                    "type": "object",
+                                    "properties": {
+                                        "docaval": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 255
+                                        }
+                                    }
+                                }
                             },
                             "epicompl": {
                                 "required": false,

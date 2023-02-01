@@ -55,6 +55,11 @@ $jsonSchema = '{
             "type": "string",
             "$ref": "#/definitions/data"
         },
+        "dtfimcondicao": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/data"
+        },
         "infoamb": {
             "required": true,
             "type": "object",
@@ -105,7 +110,7 @@ $jsonSchema = '{
                     "dscagnoc": {
                         "required": false,
                         "type": ["string","null"],
-                        "maxLength": 999
+                        "maxLength": 100
                     },
                     "tpaval": {
                         "required": false,
@@ -157,6 +162,23 @@ $jsonSchema = '{
                                 "required": false,
                                 "type": ["string", "null"],
                                 "pattern": "^(S|N)$"
+                            },
+                            "epi": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 50,
+                                "items": {
+                                    "required": true,
+                                    "type": "object",
+                                    "properties": {
+                                        "docaval": {
+                                            "required": true,
+                                            "type": "string",
+                                            "maxLength": 255
+                                        }
+                                    }
+                                }
                             },
                             "epicompl": {
                                 "required": false,
@@ -275,6 +297,12 @@ $std->cpftrab = '12345678901';
 $std->matricula = '002zcbv';
 $std->codcateg = '111';
 $std->dtinicondicao = '2016-02-01';
+$std->dtfimcondicao = '2023-01-22';
+//Informar a data em que o trabalhador terminou as atividades nas condições descritas.
+//Preenchimento obrigatório e exclusivo para trabalhador avulso (código de categoria no RET igual a [2XX])
+//e se {dtIniCondicao}(./dtIniCondicao) for igual ou posterior a [2023-01-16].
+//Se informada, deve ser uma data válida, igual ou posterior a {dtIniCondicao}(./dtIniCondicao) e
+//igual ou anterior a {dtTerm}(2399_infoTSVTermino_dtTerm) de S-2399, se existente.
 
 $std->infoamb = new \stdClass();
 $std->infoamb->localamb = 1;
@@ -298,6 +326,8 @@ $std->agnoc[0]->epcepi->utilizepc = 1; // 0 - Não se aplica; 1 - Não utilizado
 $std->agnoc[0]->epcepi->eficepc = 'S';
 $std->agnoc[0]->epcepi->utilizepi = 1; //0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado
 $std->agnoc[0]->epcepi->eficepi = 'S';
+$std->agnoc[0]->epcepi->epi[0] = new \stdClass();
+$std->agnoc[0]->epcepi->epi[0]->docaval = 'blablabla';
 
 $std->agnoc[0]->epcepi->epiCompl = new \stdClass();
 $std->agnoc[0]->epcepi->epiCompl->medprotecao = 'S';
