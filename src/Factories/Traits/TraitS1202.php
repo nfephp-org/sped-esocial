@@ -663,9 +663,9 @@ trait TraitS1202
                 $dmdev->appendChild($perapur);
             }
 
-            if (!empty($this->std->dmdev->infoperant)) {
+            if (!empty($dm->infoperant)) {
                 $perant = $this->dom->createElement("infoPerAnt");
-                $dminfoperant = $this->std->dmdev->infoperant;
+                $dminfoperant = $dm->infoperant;
                 $this->dom->addChild(
                     $perant,
                     "remunOrgSuc",
@@ -694,7 +694,7 @@ trait TraitS1202
                             $estab->nrinsc,
                             true
                         );
-                        foreach ($estab->remumperant as $rpa) {
+                        foreach ($estab->remunperant as $rpa) {
                             $rempa = $this->dom->createElement("remunPerAnt");
                             $this->dom->addChild(
                                 $rempa,
@@ -702,7 +702,7 @@ trait TraitS1202
                                 !empty($rpa->matricula) ? $rpa->matricula : null,
                                 false
                             );
-                            foreach ($rem->itensremun as $item) {
+                            foreach ($rpa->itensremun as $item) {
                                 $itemrpa = $this->dom->createElement("itensRemun");
                                 $this->dom->addChild(
                                     $itemrpa,
