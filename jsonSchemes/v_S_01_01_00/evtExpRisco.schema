@@ -191,11 +191,6 @@
                                             "required": false,
                                             "type": ["string","null"],
                                             "maxLength": 255
-                                        },
-                                        "dscepi": {
-                                            "required": false,
-                                            "type": ["string","null"],
-                                            "maxLength": 999
                                         }
                                     }
                                 }
