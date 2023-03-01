@@ -811,13 +811,6 @@ trait TraitS2240
                                 isset($e->docaval) ? $e->docaval : null,
                                 false
                             );
-                        } else {
-                            $this->dom->addChild(
-                                $epi,
-                                "dscEPI",
-                                isset($e->dscepi) ? $e->dscepi : null,
-                                false
-                            );
                         }
                         $epcEpi->appendChild($epi);
                     }
