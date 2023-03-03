@@ -282,6 +282,12 @@ trait TraitS1299
         );
         $this->dom->addChild(
             $infoFech,
+            "evtPgtos",
+            $fech->evtpgtos,
+            true
+        );
+        $this->dom->addChild(
+            $infoFech,
             "evtComProd",
             $fech->evtcomprod,
             true
@@ -312,6 +318,15 @@ trait TraitS1299
                 $infoFech,
                 "transDCTFWeb",
                 ($fech->transdctfweb == 'S') ? $fech->transdctfweb : null, //aceita somente S
+                false
+            );
+        }
+
+        if (!empty($fech->naovalid)) {
+            $this->dom->addChild(
+                $infoFech,
+                "naoValid",
+                ($fech->naovalid == 'S') ? $fech->naovalid : null, //aceita somente S
                 false
             );
         }
