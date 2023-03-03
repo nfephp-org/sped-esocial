@@ -33,6 +33,11 @@
                     "type": "string",
                     "pattern": "^(S|N)$"
                 },
+                "evtpgtos": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },
                 "evtcomprod": {
                     "required": true,
                     "type": "string",
@@ -49,6 +54,16 @@
                     "pattern": "^(S|N)$"
                 },
                 "indexcapur1250": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
+                },
+                "transdctfweb": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
+                },
+                "naovalid": {
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "^(S)$"
