@@ -2067,7 +2067,6 @@
         <xs:annotation>
             <xs:documentation>Indicativo de Rendimentos Recebidos Acumuladamente - RRA.</xs:documentation>
             <xs:documentation>Somente preencher este campo se for um demonstrativo de RRA.</xs:documentation>
-            <xs:documentation>Validação: O campo apenas pode ser informado se {perApur}(/ideEvento_perApur) >= [2023-03] (se {indApuracao}(/ideEvento_indApuracao) = [1]) ou se {perApur}(/ideEvento_perApur) >= [2023] (se {indApuracao}(/ideEvento_indApuracao) = [2]).</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="S">
@@ -2350,6 +2349,11 @@
             <xs:enumeration value="H">
                 <xs:annotation>
                     <xs:documentation>Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Sentença judicial (exceto reclamatória trabalhista)</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
@@ -3040,8 +3044,8 @@
    
     <xs:simpleType name="TS_tpRegPrev">
         <xs:annotation>
-            <xs:documentation>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).</xs:documentation>
-            <xs:documentation>Validação: Se {codCateg}(./infoContrato_codCateg) = [104], deve ser preenchido com [1]. Se {codCateg}(./infoContrato_codCateg) = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2].</xs:documentation>
+            <xs:documentation>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares das Forças Armadas).</xs:documentation>
+            <xs:documentation>Validação: Se {codCateg}(./infoContrato_codCateg) = [104], deve ser preenchido com [1]. Se {codCateg}(./infoContrato_codCateg) = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2, 4].</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:byte">
             <xs:enumeration value="1">
@@ -3051,7 +3055,35 @@
             </xs:enumeration>
             <xs:enumeration value="2">
                 <xs:annotation>
-                    <xs:documentation>Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</xs:documentation>
+                    <xs:documentation>Regime Próprio de Previdência Social - RPPS</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Regime de Previdência Social no exterior</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TS_tpRegPrev_1_2_3">
+        <xs:annotation>
+            <xs:documentation>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares das Forças Armadas).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:byte">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Regime Geral de Previdência Social - RGPS</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Regime Próprio de Previdência Social - RPPS</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="3">
@@ -3394,6 +3426,15 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!-- Campo {matricula} (S-5001 e S-5003) -->
+
+    <xs:simpleType name="TS_matricula_retorno">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="30" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Campo {CRMen} -->
 
     <xs:simpleType name="TS_CRMen">
@@ -3598,7 +3639,7 @@
     <xs:simpleType name="TS_periodo_mensal">
         <xs:restriction base="xs:string">
             <xs:length value="7" />
-            <xs:pattern value="[2]{1}\d{3}-(1[0-2]|0[1-9])" />
+            <xs:pattern value="([2]\d{3}|19[8-9]\d)-(1[0-2]|0[1-9])" />
         </xs:restriction>
     </xs:simpleType>
 

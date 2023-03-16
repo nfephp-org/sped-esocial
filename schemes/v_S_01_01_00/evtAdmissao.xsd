@@ -111,7 +111,7 @@
                                                     <xs:element name="reabReadap" type="TS_reabReadap" />
                                                     <xs:element name="infoCota" minOccurs="0" type="TS_sim_nao">
                                                         <xs:annotation>
-                                                            <xs:documentation>Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.</xs:documentation>
+                                                            <xs:documentation>Informar se o trabalhador deve ser contabilizado no preenchimento de cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.</xs:documentation>
                                                             <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpRegTrab}(2200_vinculo_tpRegTrab) = [1]. Somente pode ser informado [S] se pelo menos um dos campos a seguir estiver preenchido com [S]: {defFisica}(./defFisica), {defVisual}(./defVisual), {defAuditiva}(./defAuditiva), {defMental}(./defMental), {defIntelectual}(./defIntelectual) e {reabReadap}(./reabReadap).</xs:documentation>
                                                             <xs:documentation>Esta validação não deve ser realizada quando se tratar de evento enviado em versão do leiaute anterior a S-1.0.</xs:documentation>
                                                         </xs:annotation>
@@ -344,8 +344,7 @@
                                                                                 </xs:element>
                                                                                 <xs:element name="ideEstabVinc">
                                                                                     <xs:annotation>
-                                                                                        <xs:documentation>Identificação do estabelecimento ao qual o trabalhador está vinculado</xs:documentation>
-                                                                                        <xs:documentation>DESCRICAO_COMPLETA:Identificação do estabelecimento ao qual o trabalhador temporário está vinculado. Se o local da efetiva prestação do serviço não possuir inscrição, deverá ser informado o CNPJ/CPF ao qual o local da efetiva prestação está vinculado.</xs:documentation>
+                                                                                        <xs:documentation>Identificação do estabelecimento do tomador ao qual o trabalhador temporário está vinculado</xs:documentation>
                                                                                     </xs:annotation>
                                                                                     <xs:complexType>
                                                                                         <xs:sequence>

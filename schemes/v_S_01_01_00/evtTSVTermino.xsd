@@ -157,7 +157,6 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Indicativo de Rendimentos Recebidos Acumuladamente - RRA.</xs:documentation>
                                                                         <xs:documentation>Somente preencher este campo se for um demonstrativo de RRA.</xs:documentation>
-                                                                        <xs:documentation>Validação: O campo apenas pode ser informado se o mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2023-03].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="infoRRA" minOccurs="0" type="T_infoRRA" />
