@@ -919,7 +919,7 @@ trait TraitS2240
 
         $this->node->appendChild($info);
         $this->eSocial->appendChild($this->node);
-        $this->xml = $this->dom->saveXML($this->eSocial);
-        //$this->sign();
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
     }
 }
