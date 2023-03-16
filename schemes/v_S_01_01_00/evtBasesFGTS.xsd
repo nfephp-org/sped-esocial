@@ -132,7 +132,7 @@
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
-                                                                            <xs:element name="matricula" minOccurs="0" type="TS_codigo_esocial">
+                                                                            <xs:element name="matricula" minOccurs="0" type="TS_matricula_retorno">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                                                                                     <xs:documentation>Evento de origem: S-1200, S-2299, S-2399 ou S-3000.</xs:documentation>

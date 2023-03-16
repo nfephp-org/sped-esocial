@@ -18,7 +18,6 @@
                         <xs:documentation>REGRA:REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTO_POSTERIOR_CAT_OBITO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXCLUI_EVENTO_CAT</xs:documentation>
-                        <xs:documentation>REGRA:REGRA_EXISTE_CAT_ORIGEM</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXTEMP_REINTEGRACAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_GERAL_VALIDA_DADOS_TABCONTRIB</xs:documentation>
@@ -532,7 +531,7 @@
                                                             <xs:documentation>Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho, nos casos:</xs:documentation>
                                                             <xs:documentation>a) de CAT de reabertura;</xs:documentation>
                                                             <xs:documentation>b) de óbito, quando houver CAT anterior.</xs:documentation>
-                                                            <xs:documentation>Validação: Deve corresponder ao número do recibo do arquivo relativo à última CAT informada anteriormente, pertencente ao mesmo contrato, desde que {indCatObito}(../indCatObito) da última CAT informada seja igual a [N]. O sistema não efetuará a conferência da informação se {dtAcid}(../dtAcid) for anterior a {sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf), {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf) ou {dtAltCPF}(2200_vinculo_mudancaCPF_dtAltCPF) do evento S-2200.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve corresponder ao número do recibo do arquivo relativo à última CAT informada anteriormente, pertencente ao mesmo contrato, desde que {indCatObito}(../indCatObito) da última CAT informada seja igual a [N]. O sistema não efetuará a conferência da informação se {dtAcid}(../dtAcid) for anterior a {sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf), {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf) ou {dtAltCPF}(2200_vinculo_mudancaCPF_dtAltCPF) do evento S-2200, ou se {dtAcid}(../dtAcid) for anterior a {dtAltCPF}(2300_infoTSVInicio_mudancaCPF) do evento S-2300.</xs:documentation>
                                                             <xs:documentation>OBS.: Quando a data do acidente for anterior à data de obrigatoriedade do empregador ao envio deste evento, a CAT de reabertura e/ou de óbito não devem ser informadas ao eSocial, mantendo-se o procedimento realizado na emissão da CAT original.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>

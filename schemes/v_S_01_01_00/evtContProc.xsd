@@ -55,7 +55,8 @@
                                         <xs:element name="perApurPgto" type="TS_periodo_mensal">
                                             <xs:annotation>
                                                 <xs:documentation>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença.</xs:documentation>
-                                                <xs:documentation>Validação: Deve ser informado no formato AAAA-MM.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um período igual ou posterior ao mês/ano de {dtSent}(2500_infoProcesso_dadosCompl_infoProcJud_dtSent) ou de {dtCCP}(2500_infoProcesso_dadosCompl_infoCCP_dtCCP) existente no evento S-2500 para o processo indicado em {nrProcTrab}(./nrProcTrab).</xs:documentation>
+                                                <xs:documentation>Deve ser informado no formato AAAA-MM.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="obs" minOccurs="0" type="TS_texto_999">
@@ -115,7 +116,7 @@
                                                 <xs:attribute name="perRef" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
-                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab).</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) e igual ou posterior a [2008-12].</xs:documentation>
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="TS_periodo_mensal" />
@@ -170,11 +171,19 @@
                                                 <xs:attribute name="tpCR" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte.</xs:documentation>
-                                                        <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 29.</xs:documentation>
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="xs:integer">
-                                                            <xs:pattern value="\d{6}" />
+                                                            <xs:enumeration value="593656">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>IRRF - Decisão da Justiça do Trabalho</xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:enumeration>
+                                                            <xs:enumeration value="188951">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>IRRF - RRA - Decisão da Justiça do Trabalho</xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:enumeration>
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:attribute>

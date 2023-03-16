@@ -14,10 +14,12 @@
                         <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
                         <xs:documentation>REGRA:REGRA_BASES_PROC_TRAB</xs:documentation>
                         <xs:documentation>REGRA:REGRA_BLOQUEIA_USO_CPF_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB</xs:documentation>
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_MESMO_PROCEMI</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_MUDANCA_CATEG_NAT_ATIV</xs:documentation>
                         <xs:documentation>REGRA:REGRA_UNICIDADE_CONTRATUAL</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_MATRICULA</xs:documentation>
@@ -121,7 +123,10 @@
                                                                 <xs:sequence>
                                                                     <xs:element name="dtSent" type="xs:date">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Data da sentença ou da homologação do acordo do processo judicial.</xs:documentation>
+                                                                            <xs:documentation>Informar a data do(a):</xs:documentation>
+                                                                            <xs:documentation>a) Trânsito em julgado da decisão líquida proferida no processo trabalhista;</xs:documentation>
+                                                                            <xs:documentation>b) Homologação de acordo judicial; ou</xs:documentation>
+                                                                            <xs:documentation>c) Trânsito em julgado da decisão homologatória dos cálculos de liquidação da sentença.</xs:documentation>
                                                                             <xs:documentation>Validação: Deve ser igual ou anterior à data atual.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
@@ -153,7 +158,7 @@
                                                                 <xs:sequence>
                                                                     <xs:element name="dtCCP" type="xs:date">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Data da conciliação.</xs:documentation>
+                                                                            <xs:documentation>Data da celebração do acordo celebrado perante CCP ou Ninter.</xs:documentation>
                                                                             <xs:documentation>Validação: Deve ser igual ou anterior à data atual.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
@@ -221,7 +226,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Informações dos dependentes.</xs:documentation>
                                                 <xs:documentation>CHAVE_GRUPO: {cpfDep}</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: F (se existir contrato com {indContr}(2500_ideTrab_infoContr_indContr) = [S]); OC (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC (se existir contrato com {indContr}(2500_ideTrab_infoContr_indContr) = [N]); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -307,7 +312,7 @@
                                                     </xs:element>
                                                     <xs:element name="indCateg" type="TS_sim_nao">
                                                         <xs:annotation>
-                                                                <xs:documentation>Indicativo se houve reconhecimento de categoria do trabalhador diferente da cadastrada (no eSocial ou na GFIP) pelo declarante.</xs:documentation>
+                                                                <xs:documentation>Indicativo se houve reconhecimento de categoria do trabalhador diferente da informada (no eSocial ou na GFIP) pelo declarante.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="indNatAtiv" type="TS_sim_nao">
@@ -395,7 +400,7 @@
                                                                             </xs:element>
                                                                             <xs:element name="vrSalFx" type="TS_vrSalFx">
                                                                                 <xs:annotation>
-                                                                                    <xs:documentation>Salário base do trabalhador, correspondente à parte fixa da remuneração em {compFim}(2500_ideTrab_infoContr_ideEstab_infoVlr_compFim).</xs:documentation>
+                                                                                    <xs:documentation>Salário base do trabalhador, correspondente à parte fixa da remuneração em {dtRemun}(./dtRemun).</xs:documentation>
                                                                                     <xs:documentation>Validação: Se {undSalFixo}(./undSalFixo) for igual a [7], preencher com 0 (zero).</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
@@ -422,9 +427,9 @@
                                                                                     <xs:documentation>Validação: Se {infoContr/codCateg}(../../codCateg) = [104], deve ser preenchido com [1].</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
-                                                                            <xs:element name="tpRegPrev" type="TS_tpRegPrev">
+                                                                            <xs:element name="tpRegPrev" type="TS_tpRegPrev_1_2_3">
                                                                                 <xs:annotation>
-                                                                                    <xs:documentation>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).</xs:documentation>
+                                                                                    <xs:documentation>Tipo de regime previdenciário.</xs:documentation>
                                                                                     <xs:documentation>Validação: Se {infoContr/codCateg}(../../codCateg) = [104], deve ser preenchido com [1]. Se {infoContr/codCateg}(../../codCateg) = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2].</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>                                                                            
@@ -657,7 +662,7 @@
                                                             <xs:documentation>Informação do novo código de categoria e/ou da nova natureza da atividade.</xs:documentation>
                                                             <xs:documentation>DESCRICAO_COMPLETA:Informação do novo código de categoria e/ou da nova natureza da atividade, no caso de reconhecimento judicial nesse sentido.</xs:documentation>
                                                             <xs:documentation>CHAVE_GRUPO: {dtMudCategAtiv}</xs:documentation>
-                                                            <xs:documentation>CONDICAO_GRUPO: O (se {indCateg}(../indCateg) = [S] ou se {indNatAtiv}(../indNatAtiv) = [S]); N (nos demais casos)</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC (se {indCateg}(../indCateg) = [S] ou se {indNatAtiv}(../indNatAtiv) = [S]); N (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -723,13 +728,16 @@
                                                                 <xs:element name="tpInsc" type="TS_tpInsc_EstabLot">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.</xs:documentation>
+                                                                        <xs:documentation>No caso de empregador doméstico, informar [3] (CAEPF).</xs:documentation>
                                                                         <xs:documentation>Validação: Se {ideEmpregador/tpInsc}(2500_ideEmpregador_tpInsc) = [1], deve ser igual a [1, 4]. Se {ideEmpregador/tpInsc}(2500_ideEmpregador_tpInsc) = [2], deve ser igual a [3, 4].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="nrInsc" type="TS_nrInsc_EstabLot">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo acima.</xs:documentation>
+                                                                        <xs:documentation>No caso de empregador doméstico, informar os 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero). Por exemplo, se o CPF do empregador doméstico for 111111111-99, informar 11111111100000.</xs:documentation>
                                                                         <xs:documentation>Validação: A inscrição informada deve ser compatível com {ideEstab/tpInsc}(./tpInsc) e o número deve constar na base da RFB e pertencer a {ideEmpregador/nrInsc}(2500_ideEmpregador_nrInsc).</xs:documentation>
+                                                                        <xs:documentation>Se o processo for referente a empregado doméstico, a inscrição informada deve ser igual aos 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero).</xs:documentation>
                                                                     </xs:annotation>    
                                                                 </xs:element>
                                                                 <xs:element name="infoVlr">
@@ -817,7 +825,7 @@
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Identificação do período ao qual se referem as bases de cálculo.</xs:documentation>
                                                                                     <xs:documentation>CHAVE_GRUPO: {perRef}</xs:documentation>
-                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {repercProc}(../repercProc) = [1]); N (nos demais casos)</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {repercProc}(../repercProc) = [1]); OC (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
@@ -876,8 +884,8 @@
                                                                                         <xs:element name="infoFGTS" minOccurs="0">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Informações referentes a bases de cálculo de FGTS para geração de guia.</xs:documentation>
-                                                                                                <xs:documentation>DESCRICAO_COMPLETA:Informações referentes a bases de cálculo de FGTS para geração de guia.</xs:documentation>
-                                                                                                <xs:documentation>O grupo somente deve ser preenchido quando o FGTS foi objeto de transação judicial com modificação do valor de FGTS anteriormente declarado (eSocial ou GFIP), acrescida da base complementar declarada no grupo {baseCalculo}(../baseCalculo).</xs:documentation>
+                                                                                                <xs:documentation>DESCRICAO_COMPLETA:Informações referentes a bases de cálculo de FGTS para geração de guia para competências anteriores ao início do FGTS Digital.</xs:documentation>
+                                                                                                <xs:documentation>Informar apenas bases que ainda não foram recolhidas via SEFIP/Conectividade Social.</xs:documentation>
                                                                                                 <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
                                                                                             </xs:annotation>
                                                                                             <xs:complexType>

@@ -129,7 +129,7 @@
                                             <xs:simpleType>
                                                 <xs:annotation>
                                                     <xs:documentation>Código de Receita - CR da contribuição descontada do trabalhador.</xs:documentation>
-                                                    <xs:documentation>Validação: Se {indApuracao}(5001_ideEvento_indApuracao) = [2], deve ser igual a [108221, 108222, 108223, 108224, 108225].</xs:documentation>
+                                                    <xs:documentation>Validação: Se {indApuracao}(5001_ideEvento_indApuracao) = [2], deve ser igual a [108221, 108222, 108223, 108224, 108225, 109921, 109922].</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:restriction base="xs:integer">
                                                     <xs:enumeration value="108201">
@@ -195,6 +195,16 @@
                                                     <xs:enumeration value="109902">
                                                         <xs:annotation>
                                                             <xs:documentation>CP descontada do contribuinte individual, alíquota de 20%</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                    <xs:enumeration value="109921">
+                                                        <xs:annotation>
+                                                            <xs:documentation>CP descontada do contribuinte individual, alíquota de 11% - 13º salário</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                    <xs:enumeration value="109922">
+                                                        <xs:annotation>
+                                                            <xs:documentation>CP descontada do contribuinte individual, alíquota de 20% - 13º salário</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:enumeration>
                                                 </xs:restriction>
@@ -294,7 +304,7 @@
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
-                                                                <xs:element name="matricula" minOccurs="0" type="TS_codigo_esocial">
+                                                                <xs:element name="matricula" minOccurs="0" type="TS_matricula_retorno">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                                                                         <xs:documentation>Evento de origem: S-1200, S-2299 ou S-2399.</xs:documentation>
