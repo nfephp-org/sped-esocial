@@ -455,13 +455,13 @@ trait TraitS2240
             $this->dom->addChild(
                 $agNoc,
                 "intConc",
-                isset($ag->intconc) ? $ag->intconc : null,
+                isset($ag->intconc) ? number_format($ag->intconc,4,'.','') : null,
                 false
             );
             $this->dom->addChild(
                 $agNoc,
                 "limTol",
-                isset($ag->limtol) ? $ag->limtol : null,
+                isset($ag->limtol) ? number_format($ag->limtol,4,'.','') : null,
                 false
             );
             $this->dom->addChild(
