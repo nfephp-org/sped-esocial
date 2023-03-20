@@ -242,7 +242,7 @@
                         "pattern": "^[0-9]{11}$"
                     },
                     "ideoc": {
-                        "required": true,
+                        "required": false,
                         "type": "integer",
                         "minimum": 1,
                         "maximum": 9
@@ -253,7 +253,7 @@
                         "pattern": "^.{1,20}$"
                     },
                     "nroc": {
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "maxLength": 14
                     },
