@@ -206,7 +206,6 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Indicativo de Rendimentos Recebidos Acumuladamente - RRA.</xs:documentation>
                                                                         <xs:documentation>Somente preencher este campo se for um demonstrativo de RRA.</xs:documentation>
-                                                                        <xs:documentation>Validação: O campo apenas pode ser informado se o mês/ano de {dtDeslig}(2299_infoDeslig_dtDeslig) >= [2023-03].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="infoRRA" minOccurs="0" type="T_infoRRA" />
@@ -294,6 +293,11 @@
                                                                                                     <xs:enumeration value="H">
                                                                                                         <xs:annotation>
                                                                                                             <xs:documentation>Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos</xs:documentation>
+                                                                                                        </xs:annotation>
+                                                                                                    </xs:enumeration>
+                                                                                                    <xs:enumeration value="I">
+                                                                                                        <xs:annotation>
+                                                                                                            <xs:documentation>Sentença judicial (exceto reclamatória trabalhista)</xs:documentation>
                                                                                                         </xs:annotation>
                                                                                                     </xs:enumeration>
                                                                                                 </xs:restriction>

@@ -128,13 +128,16 @@
                                                                 <xs:element name="dtInicio" type="xs:date">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Data de início do período aquisitivo de férias.</xs:documentation>
-                                                                        <xs:documentation>Validação: Deve ser igual ou posterior à data de admissão.</xs:documentation>
+                                                                        <xs:documentation>Validação: Deve observar o que segue:</xs:documentation>
+                                                                        <xs:documentation>a) Se o código de categoria no Registro de Eventos Trabalhistas - RET for diferente de [304, 410], deve ser igual ou posterior a {dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm);</xs:documentation>
+                                                                        <xs:documentation>b) Se o código de categoria no RET for igual a [304], deve ser igual ou posterior a {dtExercOrig}(2300_infoTSVInicio_infoComplementares_infoMandElet_dtExercOrig);</xs:documentation>
+                                                                        <xs:documentation>c) Se o código de categoria no RET for igual a [410], deve ser igual ou posterior a {dtAdmCed}(2300_infoTSVInicio_infoComplementares_infoTrabCedido_dtAdmCed).</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="dtFim" minOccurs="0" type="xs:date">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Data de término do período aquisitivo de férias.</xs:documentation>
-                                                                        <xs:documentation>Informar o campo somente se o período aquisitivo for diferente de 1 ano.</xs:documentation>
+                                                                        <xs:documentation>É necessário informar o campo somente se o período aquisitivo for diferente de 1 ano.</xs:documentation>
                                                                         <xs:documentation>Validação: Se informada, deve ser uma data posterior a {dtInicio}(./dtInicio).</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
@@ -332,11 +335,16 @@
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="dtTermAfast" type="xs:date">
+                                                    <xs:element name="dtTermAfast">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a data do término do afastamento do trabalhador.</xs:documentation>
-                                                            <xs:documentation>Validação: Deve ser igual ou posterior à data de início do afastamento do trabalhador.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve ser igual ou posterior à data de início do afastamento do trabalhador e anterior a [9999-12-31].</xs:documentation>
                                                         </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:date">
+                                                                <xs:maxExclusive value="9999-12-31" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
                                                     </xs:element>
                                                 </xs:sequence>
                                             </xs:complexType>
