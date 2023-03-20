@@ -257,12 +257,14 @@ trait TraitS2240
 
         foreach ($this->std->respreg as $r) {
             $respReg = $this->dom->createElement("respReg");
-            $this->dom->addChild(
-                $respReg,
-                "cpfResp",
-                $r->cpfresp,
-                true
-            );
+            if(!empty($r->cpfresp)){
+                $this->dom->addChild(
+                    $respReg,
+                    "cpfResp",
+                    $r->cpfresp,
+                    true
+                );
+            }
             $this->dom->addChild(
                 $respReg,
                 "nisResp",
@@ -278,7 +280,7 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "ideOC",
-                $r->ideoc,
+                !empty($r->ideoc) ? $r->ideoc : null,
                 true
             );
             $this->dom->addChild(
@@ -290,13 +292,13 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "nrOC",
-                $r->nroc,
+                !empty($r->nroc) ? $r->nroc : null,
                 true
             );
             $this->dom->addChild(
                 $respReg,
                 "ufOC",
-                $r->ufoc,
+                !empty($r->ufoc) ? $r->ufoc : null,
                 true
             );
             $info->appendChild($respReg);
