@@ -326,13 +326,8 @@ trait TraitS2230
                 $this->dom->addChild(
                     $perAquis,
                     "dtFim",
-<<<<<<< HEAD
-                    $this->std->peraquis->dtfim,
-                    true
-=======
                     $this->std->iniafastamento->peraquis->dtfim ?? null,
                     false
->>>>>>> bb46a464555bdc322d388e730d7339de81a6b034
                 );
                 $iniAfastamento->appendChild($perAquis);
             }
@@ -379,13 +374,8 @@ trait TraitS2230
                 $this->dom->addChild(
                     $infoMandElet,
                     "indRemunCargo",
-<<<<<<< HEAD
-                    $this->std->infomandelet->indremuncargo,
-                    true
-=======
                     $this->std->iniafastamento->infomandelet->indremuncargo ?? null,
                     false
->>>>>>> bb46a464555bdc322d388e730d7339de81a6b034
                 );
                 $iniAfastamento->appendChild($infoMandElet);
             }
