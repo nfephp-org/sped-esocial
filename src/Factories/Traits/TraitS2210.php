@@ -279,7 +279,7 @@ trait TraitS2210
         );
         $cat->appendChild($ideLocalAcid);
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -318,7 +318,7 @@ trait TraitS2210
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
-        
+
         $ideVinculo = $this->dom->createElement("ideVinculo");
         $this->dom->addChild(
             $ideVinculo,
@@ -339,7 +339,7 @@ trait TraitS2210
             false
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $cat = $this->dom->createElement("cat");
         $this->dom->addChild(
             $cat,
@@ -492,7 +492,7 @@ trait TraitS2210
             !empty($this->std->codpostal) ? $this->std->codpostal : null,
             false
         );
-        
+
         if (!empty($this->std->idelocalacid)) {
             $ide = $this->std->idelocalacid;
             $ideLocalAcid = $this->dom->createElement("ideLocalAcid");
@@ -511,7 +511,7 @@ trait TraitS2210
             $localAcidente->appendChild($ideLocalAcid);
         }
         $cat->appendChild($localAcidente);
-        
+
         $parteAtingida = $this->dom->createElement("parteAtingida");
         $parte = $this->std->parteatingida;
         $this->dom->addChild(
@@ -527,7 +527,7 @@ trait TraitS2210
             true
         );
         $cat->appendChild($parteAtingida);
-        
+
         $agenteCausador = $this->dom->createElement("agenteCausador");
         $this->dom->addChild(
             $agenteCausador,
@@ -536,7 +536,7 @@ trait TraitS2210
             true
         );
         $cat->appendChild($agenteCausador);
-        
+
         if (!empty($this->std->atestado)) {
             $ate = $this->std->atestado;
             $atestado = $this->dom->createElement("atestado");
@@ -628,7 +628,7 @@ trait TraitS2210
             $atestado->appendChild($emitente);
             $cat->appendChild($atestado);
         }
-        
+
         if (!empty($this->std->catorigem)) {
             $catOrigem = $this->dom->createElement("catOrigem");
             $this->dom->addChild(
@@ -643,5 +643,13 @@ trait TraitS2210
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

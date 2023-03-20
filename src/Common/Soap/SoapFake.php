@@ -32,7 +32,7 @@ class SoapFake extends SoapBase implements SoapInterface
     ) {
         parent::__construct($certificate, $logger);
     }
-    
+
     public function send(
         $operation,
         $url,

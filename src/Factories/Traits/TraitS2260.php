@@ -64,7 +64,7 @@ trait TraitS2260
             true
         );
         $this->node->appendChild($ideVinculo);
-        
+
         $i = $this->std->infoconvinterm;
         $info = $this->dom->createElement("infoConvInterm");
         $this->dom->addChild(
@@ -105,7 +105,7 @@ trait TraitS2260
             false
         );
         $info->appendChild($jornada);
-        
+
         $localTrab = $this->dom->createElement("localTrab");
         $this->dom->addChild(
             $localTrab,
@@ -172,12 +172,20 @@ trait TraitS2260
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
     {
         throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão S_1.0 !!");
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

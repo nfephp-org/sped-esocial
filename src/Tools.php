@@ -144,7 +144,7 @@ class Tools extends ToolsBase
         $this->action = "{$this->namespace}/empregador/lote"
             ."/eventos/envio/consulta/retornoProcessamento/$verWsdl"
             ."/ServicoConsultarLoteEventos/ConsultarLoteEventos";
-        
+
         $this->method = "ConsultarLoteEventos";
         $this->uri = $this->urlbase['consulta'];
         $this->envelopeXmlns = [
@@ -160,7 +160,7 @@ class Tools extends ToolsBase
             ."<protocoloEnvio>$protocolo</protocoloEnvio>"
             ."</consultaLoteEventos>"
             ."</eSocial>";
-        
+
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -177,7 +177,7 @@ class Tools extends ToolsBase
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
     }
-    
+
     /**
      * Events Identification employer query
      * @param string $tpEvt
@@ -198,15 +198,15 @@ class Tools extends ToolsBase
         $verWsdl = $this->serviceXsd['WsConsultarIdentificadoresEventos']['version'];
         $this->action = "{$this->namespace}/empregador/consulta/identificadores-eventos/"
         . "$verWsdl/ServicoConsultarIdentificadoresEventos/{$this->method}";
-        
+
         $this->uri = $this->urlbase['identificadores'];
-        
+
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/"
             . "consulta/identificadores-eventos/$verWsdl",
         ];
-        
+
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/consulta/"
             . "identificadores-eventos/empregador/"
             . $operationVersion . "\" "
@@ -222,9 +222,9 @@ class Tools extends ToolsBase
             . "</consultaEvtsEmpregador>"
             . "</consultaIdentificadoresEvts>"
             . "</eSocial>";
-        
+
         $request = $this->sign($request);
-        
+
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -232,7 +232,7 @@ class Tools extends ToolsBase
             ."schemes/comunicacao/$this->serviceStr/"
             ."ConsultaIdentificadoresEventosEmpregador-$operationVersion.xsd"
         );
-        
+
         $body = "<v1:{$this->method}>"
             . "<v1:consultaEventosEmpregador>"
             . $request
@@ -242,7 +242,7 @@ class Tools extends ToolsBase
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
     }
-    
+
     /**
      * Events Identification tables query
      * @param string $tpEvt
@@ -267,13 +267,13 @@ class Tools extends ToolsBase
         . "$verWsdl/ServicoConsultarIdentificadoresEventos/{$this->method}";
 
         $this->uri = $this->urlbase['identificadores'];
-        
+
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/"
             . "consulta/identificadores-eventos/$verWsdl",
         ];
-        
+
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/consulta/"
             . "identificadores-eventos/tabela/"
             . $operationVersion . "\" "
@@ -285,17 +285,17 @@ class Tools extends ToolsBase
             . "</ideEmpregador>"
             . "<consultaEvtsTabela>"
             . "<tpEvt>$tpEvt</tpEvt>";
-        
+
         $request .= !empty($chEvt) ? "<chEvt>$chEvt</chEvt>" : "";
         $request .= !empty($dtIni) ? "<dtIni>$dtIni</dtIni>" : "";
         $request .= !empty($dtFim) ? "<dtFim>$dtFim</dtFim>" : "";
-        
+
         $request .= "</consultaEvtsTabela>"
             . "</consultaIdentificadoresEvts>"
             . "</eSocial>";
-        
+
         $request = $this->sign($request);
-        
+
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -308,12 +308,12 @@ class Tools extends ToolsBase
             .$request
             ."</v1:consultaEventosTabela>"
             ."</v1:{$this->method}>";
-            
+
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
     }
-    
+
     /**
      * Events Identification employee query
      * @param string $cpfTrab
@@ -337,13 +337,13 @@ class Tools extends ToolsBase
         . "$verWsdl/ServicoConsultarIdentificadoresEventos/{$this->method}";
 
         $this->uri = $this->urlbase['identificadores'];
-        
+
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/"
             . "consulta/identificadores-eventos/$verWsdl",
         ];
-        
+
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/consulta/"
             . "identificadores-eventos/trabalhador/"
             . $operationVersion . "\" "
@@ -362,7 +362,7 @@ class Tools extends ToolsBase
             . "</eSocial>";
 
         $request = $this->sign($request);
-        
+
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -370,18 +370,18 @@ class Tools extends ToolsBase
             ."schemes/comunicacao/$this->serviceStr/"
             ."ConsultaIdentificadoresEventosTrabalhador-$operationVersion.xsd"
         );
-        
+
         $body = "<v1:{$this->method}>"
             ."<v1:consultaEventosTrabalhador>"
             .$request
             ."</v1:consultaEventosTrabalhador>"
             ."</v1:{$this->method}>";
-            
+
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
     }
-    
+
     /**
      * Download Event by Id
      * @param array $ids
@@ -402,15 +402,15 @@ class Tools extends ToolsBase
         $verWsdl = $this->serviceXsd['WsSolicitarDownloadEventos']['version'];
         $this->action = "{$this->namespace}/empregador/download/"
         . "solicitacao/$verWsdl/ServicoSolicitarDownloadEventos/{$this->method}";
-        
+
         $this->uri = $this->urlbase['downloads'];
-        
+
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/"
             . "download/solicitacao/$verWsdl",
         ];
-        
+
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/download/"
             . "solicitacao/id/$operationVersion\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
@@ -426,9 +426,9 @@ class Tools extends ToolsBase
         $request .= "</solicDownloadEvtsPorId>"
             . "</download>"
             . "</eSocial>";
-        
+
         $request = $this->sign($request);
-        
+
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -436,18 +436,18 @@ class Tools extends ToolsBase
             ."schemes/comunicacao/$this->serviceStr/"
             ."SolicitacaoDownloadEventosPorId-$operationVersion.xsd"
         );
-        
+
         $body = "<v1:{$this->method}>"
             ."<v1:solicitacao>"
             .$request
             ."</v1:solicitacao>"
             ."</v1:{$this->method}>";
-            
+
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
     }
-    
+
     /**
      * Download Event by receipt number
      * @param array $nrRecs
@@ -468,15 +468,15 @@ class Tools extends ToolsBase
         $verWsdl = $this->serviceXsd['WsSolicitarDownloadEventos']['version'];
         $this->action = "{$this->namespace}/empregador/download/"
         . "solicitacao/$verWsdl/ServicoSolicitarDownloadEventos/{$this->method}";
-        
+
         $this->uri = $this->urlbase['downloads'];
-        
+
         $this->envelopeXmlns = [
             'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
             'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador/"
             . "download/solicitacao/$verWsdl",
         ];
-        
+
         $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/download/"
             . "solicitacao/nrRecibo/$operationVersion\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
@@ -486,17 +486,17 @@ class Tools extends ToolsBase
             . "<nrInsc>{$this->nrInsc}</nrInsc>"
             . "</ideEmpregador>"
             . "<solicDownloadEventosPorNrRecibo>";
-        
+
         foreach ($nrRecs as $nrRec) {
             $request .= "<nrRec>$nrRec</nrRec>";
         }
-        
+
         $request .= "</solicDownloadEventosPorNrRecibo>"
             . "</download>"
             . "</eSocial>";
-        
+
         $request = $this->sign($request);
-        
+
         //validar a requisição conforme o seu respectivo XSD
         Validator::isValid(
             $request,
@@ -504,13 +504,13 @@ class Tools extends ToolsBase
             ."schemes/comunicacao/$this->serviceStr/"
             ."SolicitacaoDownloadEventosPorNrRecibo-$operationVersion.xsd"
         );
-        
+
         $body = "<v1:{$this->method}>"
             ."<v1:solicitacao>"
             .$request
             ."</v1:solicitacao>"
             ."</v1:{$this->method}>";
-            
+
         $this->lastRequest  = $body;
         $this->lastResponse = $this->sendRequest($body);
         return $this->lastResponse;
@@ -536,7 +536,7 @@ class Tools extends ToolsBase
             .$request
             ."</soapenv:Body>"
             ."</soapenv:Envelope>";
-        
+
         $msgSize    = strlen($envelope);
         $parameters = [
             "Content-Type: text/xml;charset=UTF-8",
@@ -643,6 +643,103 @@ class Tools extends ToolsBase
     }
 
     /**
+     * Send batch of signed XML of events
+     * @param  integer $grupo
+     * @param  array $eventos
+     * @return string
+     */
+    public function enviarLoteXmlEventos($grupo, $eventos = [])
+    {
+        if (empty($eventos)) {
+            return '';
+        }
+        $nEvt = count($eventos);
+        if ($nEvt > 50) {
+            throw new InvalidArgumentException(
+                "O numero máximo de eventos em um lote é 50, "
+                ."você está tentando enviar $nEvt eventos !"
+            );
+        }
+        $xml = '';
+        $grp = null;
+        foreach ($eventos as $evt) {
+            $resp = $this->getIdFromXml($evt);
+            if (empty($resp['id'])) {
+                throw new \RuntimeException(
+                    'Falha na localização do ID do evento.'
+                );
+            }
+            if (empty($grp)) {
+                $grp = $resp['grupo'];
+            }
+            if ($grp !== $resp['grupo']) {
+                throw new \RuntimeException('Devem ser enviados em um lote apenas eventos '
+                    . 'pertencentes ao mesmo grupo');
+            }
+            if ($grp !== $grupo) {
+                throw new \RuntimeException('O grupo correto deve ser declarado e não pode diferir'
+                    . 'do grupo dos eventos');
+            }
+            $id = $resp['id'];
+            $xml .= "<evento Id=\"$id\">";
+            $xml .= $evt;
+            $xml .= "</evento>";
+        }
+        $operationVersion = $this->serviceXsd['EnvioLoteEventos']['version'];
+        if (empty($operationVersion)) {
+            throw new \InvalidArgumentException(
+                'Schemas não localizados, verifique de passou as versões '
+                . 'corretamente no config.'
+            );
+        }
+        $verWsdl = $this->serviceXsd['WsEnviarLoteEventos']['version'];
+        $this->method = "EnviarLoteEventos";
+        $this->action = "http://www.esocial.gov.br/servicos/empregador/lote"
+            . "/eventos/envio/"
+            . $verWsdl
+            . "/ServicoEnviarLoteEventos"
+            . "/EnviarLoteEventos";
+        $this->uri = $this->urlbase['envio'];
+        $this->envelopeXmlns = [
+            'xmlns:soapenv' => "http://schemas.xmlsoap.org/soap/envelope/",
+            'xmlns:v1'      => "http://www.esocial.gov.br/servicos/empregador"
+                . "/lote/eventos/envio/$verWsdl",
+        ];
+        $request = "<eSocial xmlns=\"http://www.esocial.gov.br/schema/lote"
+            . "/eventos/envio/$operationVersion\" "
+            . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+            . "<envioLoteEventos grupo=\"$grupo\">"
+            . "<ideEmpregador>"
+            . "<tpInsc>$this->tpInsc</tpInsc>"
+            . "<nrInsc>$this->nrInsc</nrInsc>"
+            . "</ideEmpregador>"
+            . "<ideTransmissor>"
+            . "<tpInsc>$this->transmissortpInsc</tpInsc>"
+            . "<nrInsc>$this->transmissornrInsc</nrInsc>"
+            . "</ideTransmissor>"
+            . "<eventos>"
+            . "$xml"
+            . "</eventos>"
+            . "</envioLoteEventos>"
+            . "</eSocial>";
+        //validar a requisição conforme o seu respectivo XSD
+        Validator::isValid(
+            $request,
+            $this->path
+            . "schemes/comunicacao/$this->serviceStr/"
+            . "EnvioLoteEventos-$operationVersion.xsd"
+        );
+        $body = "<v1:EnviarLoteEventos>"
+            . "<v1:loteEventos>"
+            . $request
+            . "</v1:loteEventos>"
+            . "</v1:EnviarLoteEventos>";
+        $this->lastRequest  = $body;
+        $this->lastResponse = $this->sendRequest($body);
+        return $this->lastResponse;
+    }
+
+    /**
      * Verify the availability of a digital certificate.
      * If available, place it where it is needed
      * @param  FactoryInterface $evento
@@ -665,7 +762,12 @@ class Tools extends ToolsBase
             }
         }
     }
-    
+
+    /**
+     * Sign event
+     * @param string $request
+     * @return string
+     */
     protected function sign($request)
     {
         return str_replace(
@@ -680,5 +782,30 @@ class Tools extends ToolsBase
                 [false, false, null, null]
             )
         );
+    }
+
+    /**
+     * Recover Id and group from XML
+     * @param string $xml
+     * @return array
+     */
+    protected function getIdFromXml($xml)
+    {
+        $possibles = Event::$codes;
+        $dom = new \DOMDocument();
+        $dom->loadXML($xml);
+        $keys = array_keys($possibles);
+        $id = null;
+        $grupo = null;
+        foreach ($keys as $tagname) {
+            if (!empty($dom->getElementsByTagName($tagname)->item(0))) {
+                $tag = $dom->getElementsByTagName($tagname)->item(0);
+                $id = $tag->getAttribute('Id');
+                $code = $possibles[$tagname];
+                $grupo = $this->groupbycode[$code];
+                break;
+            }
+        }
+        return ['id' => $id, 'grupo' => $grupo];
     }
 }

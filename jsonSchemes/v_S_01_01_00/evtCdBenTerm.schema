@@ -1,0 +1,53 @@
+{
+    "title": "evtCdBenTerm",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "nrbeneficio": {
+            "required": true,
+            "type": "string",
+            "pattern": "^.{1,20}$"
+        },
+        "dttermbeneficio": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/data"
+        },
+        "mtvtermino": {
+            "required": true,
+            "type": "string",
+            "pattern": "^0[1-9]{1}|1[0-1]{1}$"
+        },
+        "cnpjorgaosuc": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{14}$"
+        },
+        "novocpf": {
+            "required": false,
+            "type": ["string","null"],
+            "pattern": "^[0-9]{11}$"
+        }
+    }
+}

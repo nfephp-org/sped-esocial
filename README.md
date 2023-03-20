@@ -3,13 +3,14 @@
 
 *sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
 
-## Layout 2.5.0 (válido para uso até 09/03/2022, com alterações em eventos e outras regras com cronograma variado)
 
-[VIDE NOTA ORIENTATIVA](https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/nota-orientativa-s-1-0-01-2021.pdf)
+## Layout S-1.1 (a partir de 19/03/2023) 
 
 ## Layout S-1.0 (a partir de 10/05/2021)
 
-### *Esta API ainda está em fase de desenvolvimento, portanto faça TESTES antes de usar*
+## Layout 2.5.0 (não é mais válido e será removido em breve)
+
+### *Esta biblioteca está em fase de desenvolvimento constante, portanto faça TESTES antes de usar*
 
 *Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
 

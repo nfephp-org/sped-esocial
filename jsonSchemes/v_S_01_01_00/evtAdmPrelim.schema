@@ -1,0 +1,87 @@
+{
+    "title": "evtAdmPrelim",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "dtnascto": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "dtadm": {
+            "required": true,
+            "type": "string",
+            "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+        },
+        "matricula": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+        },
+        "codcateg": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{3}$"
+        },
+        "natatividade": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 2
+        },
+        "inforegctps": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "cbocargo": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{6}$"
+                },
+                "vrsalfx": {
+                    "required": true,
+                    "type": "number"
+                },
+                "undsalfixo": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 7
+                },
+                "tpcontr": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
+                },
+                "dtterm": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(19[0-9][0-9]|2[0-9][0-9][0-9])[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$"
+                }
+            }
+        }
+    }
+}

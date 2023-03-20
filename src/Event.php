@@ -22,7 +22,7 @@ class Event
      * Relationship between the name of the event and its respective class
      * @var array
      */
-    private static $available = [
+    public static $available = [
         'evtadmissao' => Factories\EvtAdmissao::class,
         'evtcs' => Factories\EvtCS::class,
         'evtcessao' => Factories\EvtCessao::class,
@@ -34,6 +34,7 @@ class Event
         'evttabequipamento' => Factories\EvtTabEquipamento::class,
         'evtafasttemp' => Factories\EvtAfastTemp::class,
         'evtexclusao' => Factories\EvtExclusao::class,
+        'evtexcproctrab' => Factories\EvtExcProcTrab::class,
         'evttabcargo' => Factories\EvtTabCargo::class,
         'evtaltcadastral' => Factories\EvtAltCadastral::class,
         'evtexprisco' => Factories\EvtExpRisco::class,
@@ -88,7 +89,7 @@ class Event
      *
      * @var array
      */
-    private static $aliases = [
+    public static $aliases = [
         's2200' => 'evtadmissao',
         's5011' => 'evtcs',
         's2231' => 'evtcessao',
@@ -146,6 +147,45 @@ class Event
         's2416' => 'evtcdbenalt',
         's2418' => 'evtreativben',
         's2420' => 'evtcdbenterm',
+    ];
+
+    public static $codes = [
+        'evtInfoEmpregador' => 'S-1000',
+        'evtTabEstab' => 'S-1005',
+        'evtTabRubrica' => 'S-1010',
+        'evtTabLotacao' => 'S-1020',
+        'evtTabProcesso' => 'S-1070',
+        'evtRemun' => 'S-1200',
+        'evtRmnRPPS' => 'S-1202',
+        'evtBenPrRP' => 'S-1207',
+        'evtPgtos' => 'S-1210',
+        'evtComProd' => 'S-1260',
+        'evtContratAvNP' => 'S-1270',
+        'evtInfoComplPer' => 'S-1280',
+        'evtReabreEvPer' => 'S-1298',
+        'evtFechaEvPer' => 'S-1299',
+        'evtAdmPrelim' => 'S-2190',
+        'evtAdmissao' => 'S-2200',
+        'evtAltCadastral' => 'S-2205',
+        'evtAltContratual' => 'S-2206',
+        'evtCAT' => 'S-2210',
+        'evtMonit' => 'S-2220',
+        'evtAfastTemp' => 'S-2230',
+        'evtCessao' => 'S-2231',
+        'evtExpRisco' => 'S-2240',
+        'evtReintegr' => 'S-2298',
+        'evtDeslig' => 'S-2299',
+        'evtTSVInicio' => 'S-2300',
+        'evtTSVAltContr' => 'S-2306',
+        'evtTSVTermino' => 'S-2399',
+        'evtCdBenefIn ' => 'S-2400',
+        'evtCdBenefAlt' => 'S-2405',
+        'evtCdBenIn' => 'S-2410',
+        'evtCdBenAlt' => 'S-2416',
+        'evtReativBen' => 'S-2418',
+        'evtCdBenTerm' => 'S-2420',
+        'evtExclusao' => 'S-3000',
+        'evtExcProcTrab' => 'S-3500',
     ];
 
     /**

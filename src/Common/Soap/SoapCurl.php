@@ -64,7 +64,7 @@ class SoapCurl extends SoapBase implements SoapInterface
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
             if (! $this->disablesec) {
                 curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 2);
-                if (is_file($this->casefaz)) {
+                if (is_file($this->casefaz ?? '')) {
                     curl_setopt($oCurl, CURLOPT_CAINFO, $this->casefaz);
                 }
             }

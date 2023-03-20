@@ -149,6 +149,8 @@ class Tools
         ],
     ];
 
+    protected $groupbycode = [];
+
     /**
      * Constructor
      * @param string $config
@@ -177,6 +179,11 @@ class Tools
         $this->serviceXsd = XsdSeeker::seek(
             $this->path."schemes/comunicacao/$this->serviceStr/"
         );
+        foreach ($this->grupos as $key => $itens) {
+            foreach ($itens as $item) {
+                $this->groupbycode[$item] = $key;
+            }
+        }
     }
 
     /**

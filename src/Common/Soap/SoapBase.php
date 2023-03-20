@@ -15,10 +15,9 @@ namespace NFePHP\eSocial\Common\Soap;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
 use NFePHP\Common\Certificate;
 use NFePHP\Common\Exception\RuntimeException;
+use NFePHP\Common\Files;
 use NFePHP\Common\Strings;
 use Psr\Log\LoggerInterface;
 
@@ -129,11 +128,7 @@ abstract class SoapBase implements SoapInterface
      */
     protected $disableCertValidation = false;
     /**
-     * @var \League\Flysystem\Adapter\Local
-     */
-    protected $adapter;
-    /**
-     * @var \League\Flysystem\Filesystem
+     * @var Files
      */
     protected $filesystem;
     /**
@@ -175,7 +170,7 @@ abstract class SoapBase implements SoapInterface
         if ($this->disableCertValidation) {
             return $certificate;
         }
-        if (! empty($certificate)) {
+        if (!empty($certificate)) {
             if ($certificate->isExpired()) {
                 throw new RuntimeException(
                     'The validity of the certificate has expired.'
@@ -201,8 +196,7 @@ abstract class SoapBase implements SoapInterface
      */
     protected function setLocalFolder($folder = '')
     {
-        $this->adapter    = new Local($folder);
-        $this->filesystem = new Filesystem($this->adapter);
+        $this->filesystem = new Files($folder);
     }
     /**
      * Destructor
@@ -217,7 +211,10 @@ abstract class SoapBase implements SoapInterface
      */
     public function removeTemporarilyFiles()
     {
-        $contents = $this->filesystem->listContents($this->certsdir, true);
+        if (empty($this->certsdir)) {
+            return;
+        }
+        $contents = $this->filesystem->listContents($this->certsdir);
         //define um limite de $waitingTime min, ou seja qualquer arquivo criado a mais
         //de $waitingTime min será removido
         //NOTA: quando ocorre algum erro interno na execução do script, alguns
@@ -233,7 +230,7 @@ abstract class SoapBase implements SoapInterface
         $tint->invert = true;
         $tsLimit = $dt->add($tint)->getTimestamp();
         foreach ($contents as $item) {
-            if ($item['type'] == 'file') {
+            if ($item['type'] === 'file') {
                 if ($item['path'] == $this->prifile
                     || $item['path'] == $this->pubfile
                     || $item['path'] == $this->certfile
@@ -337,7 +334,7 @@ abstract class SoapBase implements SoapInterface
      *
      * @param  int $protocol
      *
-     * @return type Description
+     * @return int
      */
     public function protocol($protocol = self::SSL_DEFAULT)
     {
@@ -451,7 +448,7 @@ abstract class SoapBase implements SoapInterface
                 $this->debugdir.$time."_".$operation."_res.txt",
                 $response
             );
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new RuntimeException(
                 'Unable to create debug files.'
             );

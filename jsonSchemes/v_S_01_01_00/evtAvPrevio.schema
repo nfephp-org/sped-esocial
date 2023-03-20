@@ -1,0 +1,97 @@
+{
+    "title": "evtAvPrevio",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": "string",
+            "$ref": "#/definitions/recibo"
+        },
+        "idevinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "nistrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "matricula": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 30
+                }
+            }
+        },
+        "infoavprevio": {
+            "required": true,
+            "type": "object",
+            "detavprevio": {
+                "required": false,
+                "type": "object",
+                "properties": {
+                    "dtavprv": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/data"
+                    },
+                    "dtprevdeslig": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/data"
+                    },
+                    "tpavprevio": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 6
+                    },
+                    "observacao": {
+                        "required": false,
+                        "type": "string",
+                        "maxLength": 255
+                    }
+                }
+            },
+            "cancavprevio": {
+                "required": false,
+                "type": "object",
+                "properties": {
+                    "dtcancavprv": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/data"
+                    },
+                    "observacao": {
+                        "required": false,
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "mtvcancavprevio": {
+                        "required": true,
+                        "type": "integer",
+                        "maxLength": 1,
+                        "pattern": "^(1|2|3|9){1}$"
+                    }
+                }
+            }
+        }
+    }
+}

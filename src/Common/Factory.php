@@ -111,7 +111,7 @@ abstract class Factory
      * @var string
      */
     protected $method_name;
-    
+
     /**
      * Constructor
      * @param string $config
@@ -144,32 +144,18 @@ abstract class Factory
                 'Você deve passar os parâmetros num stdClass.'
             );
         }
-        if ($this->layout == 'S.1.0.0' && $this->evtAlias == 'S-2400') {
+        if (($this->layout == 'S.1.0.0' || $this->layout == 'S.1.1.0') && $this->evtAlias == 'S-2400') {
             $this->evtName = 'evtCdBenefIn';
         }
         //constroi o nome do método construtor baseado na versão
-        $this->method_name = 'toNode'
-            . str_replace('.', '', $this->layout);
-        $this->jsonschema = realpath(
-            __DIR__
-            ."/../../jsonSchemes/$this->layoutStr/"
-            .$this->evtName
-            .".schema"
-        );
-        $this->schema = realpath(
-            __DIR__
-            ."/../../schemes/$this->layoutStr/"
-            .$this->evtName
-            .".xsd"
-        );
-        $this->definitions = realpath(
-            __DIR__
-            ."/../../jsonSchemes/definitions.schema"
-        );
-        if (empty($this->schema)) {
+        $this->method_name = 'toNode' . str_replace('.', '', $this->layout);
+        $this->jsonschema = __DIR__ . "/../../jsonSchemes/$this->layoutStr/{$this->evtName}.schema";
+        $this->schema =  realpath(__DIR__ . "/../../") . "/schemes/$this->layoutStr/{$this->evtName}.xsd";
+        $this->definitions = __DIR__ . "/../../jsonSchemes/definitions.schema";
+        if (!is_file($this->schema)) {
             throw new \InvalidArgumentException(
-                'Schemas não localizados, verifique de passou as versões '
-                    . 'corretamente no config.'
+                "Schemas não localizados, verifique de passou as versões "
+                    . "corretamente no config. [{$this->schema}]"
             );
         }
         //convert all data fields to lower case
@@ -293,7 +279,7 @@ abstract class Factory
             $this->node->appendChild($ideEmpregador);
         }
     }
-    
+
     /**
      * Returns alias for event
      * @return string
@@ -311,7 +297,7 @@ abstract class Factory
     {
         return $this->certificate;
     }
-    
+
     /**
      * Set Certificate::class
      * @param Certificate $certificate

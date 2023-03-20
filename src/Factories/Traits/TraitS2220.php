@@ -327,7 +327,7 @@ trait TraitS2220
         }
         $this->node->appendChild($exMedOcup);
     }
-    
+
     /**
      * builder for version S.1.0.0
      */
@@ -391,7 +391,7 @@ trait TraitS2220
             );
         }
         $this->node->appendChild($ideVinculo);
-        
+
         $exMedOcup = $this->dom->createElement("exMedOcup");
         $this->dom->addChild(
             $exMedOcup,
@@ -502,11 +502,19 @@ trait TraitS2220
             $exMedOcup->appendChild($monit);
         }
         $this->node->appendChild($exMedOcup);
-        
+
         //finalização do xml
         $this->eSocial->appendChild($this->node);
-        
+
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.1.0
+     */
+    protected function toNodeS110()
+    {
+        return $this->toNodeS100();
     }
 }

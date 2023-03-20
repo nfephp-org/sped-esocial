@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns="http://www.esocial.gov.br/schema/evt/evtIrrf/v_S_01_01_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtIrrf/v_S_01_01_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="tipos.xsd" />
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+    <xs:element name="eSocial">
+        <xs:annotation>
+            <xs:documentation>S-5012 - Imposto de Renda Retido na Fonte Consolidado por Contribuinte</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="evtIrrf">
+                    <xs:annotation>
+                        <xs:documentation>Evento IRRF Consolidado por Contribuinte.</xs:documentation>
+                        <xs:documentation>DESCRICAO_COMPLETA:Evento Imposto de Renda Retido na Fonte Consolidado por Contribuinte.</xs:documentation>
+                        <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ideEvento" type="T_ideEvento_retorno_mensal" />
+                            <xs:element name="ideEmpregador" type="T_ideEmpregador" />
+                            <xs:element name="infoIRRF">
+                                <xs:annotation>
+                                    <xs:documentation>Informações relativas ao Imposto de Renda.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nrRecArqBase" type="TS_nrRecArqBase" />
+                                        <xs:element name="indExistInfo">
+                                            <xs:simpleType>
+                                                <xs:annotation>
+                                                    <xs:documentation>Indicativo de existência de valores de bases ou de tributos.</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:restriction base="xs:byte">
+                                                    <xs:enumeration value="1">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Há informações de IRRF</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                    <xs:enumeration value="2">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Há movimento, porém não há informações de IRRF</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                    <xs:enumeration value="3">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Não há movimento no período informado em {perApur}(5012_ideEvento_perApur)</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="infoCRMen" minOccurs="0" maxOccurs="50">
+                                            <xs:annotation>
+                                                <xs:documentation>Totalizador do IRRF por CR mensal.</xs:documentation>
+                                                <xs:documentation>DESCRICAO_COMPLETA:Informações consolidadas do IRRF, por Código de Receita - CR mensal.</xs:documentation>
+                                                <xs:documentation>Evento de origem: S-5002.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {CRMen}</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="CRMen" type="TS_CRMen"/>
+                                                    <xs:element name="vrCRMen" type="TS_valorMonetario_positivo">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Valor correspondente ao Código de Receita - CR indicado em {CRMen}(./CRMen).</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="vrCRMenSusp" minOccurs="0" type="TS_valorMonetario">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Valor com exigibilidade suspensa correspondente ao Código de Receita - CR indicado em {CRMen}(./CRMen).</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="infoCRDia" minOccurs="0" maxOccurs="350">
+                                            <xs:annotation>
+                                                <xs:documentation>Totalizador do IRRF por CR diário.</xs:documentation>
+                                                <xs:documentation>DESCRICAO_COMPLETA:Informações consolidadas do IRRF, por Código de Receita - CR diário.</xs:documentation>
+                                                <xs:documentation>Evento de origem: S-5002.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {perApurDia}, {CRDia}</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="perApurDia" type="TS_dia">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Período de apuração diário do Código de Receita - CR.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="CRDia" type="TS_CRDia"/>
+                                                    <xs:element name="vrCRDia" type="TS_valorMonetario_positivo">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Valor relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho pagos a residente, para fins fiscais, no exterior.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="vrCRDiaSusp" minOccurs="0" type="TS_valorMonetario">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Valor que deixou de ser descontado do trabalhador relativo ao Imposto de Renda sobre rendimentos do trabalho pagos a residente, para fins fiscais, no exterior.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>                                        
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Id" use="required" type="TS_Id_retorno" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ds:Signature" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
