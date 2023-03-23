@@ -5,14 +5,6 @@ namespace NFePHP\eSocial\Factories\Traits;
 trait TraitS2231
 {
     /**
-     * builder for version 2.5.0
-     */
-    protected function toNode250()
-    {
-        throw new \Exception("Este evento não existem na versão 2.5");
-    }
-
-    /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
