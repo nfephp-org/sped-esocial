@@ -1404,12 +1404,14 @@ trait TraitS1200
                                             $irem->vrrubr,
                                             true
                                         );
-                                        $this->dom->addChild(
-                                            $itensRemun,
-                                            "indApurIR",
-                                            !empty($itemr->indapurir) ? $itemr->indapurir : null,
-                                            false
-                                        );
+                                        if (!empty($irem->indapurir) || (isset($irem->indapurir) && $irem->indapurir === 0)) {
+                                            $this->dom->addChild(
+                                                $itensRemun,
+                                                "indApurIR",
+                                                !empty($irem->indapurir) ? $irem->indapurir : 0,
+                                                false
+                                            );
+                                        }
                                         $remunPerAnt->appendChild($itensRemun);
                                     }
                                     if (!empty($rpr->infoagnocivo)) {
