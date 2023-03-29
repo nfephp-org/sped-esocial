@@ -1298,7 +1298,11 @@ trait TraitS1200
                     $infoPerApur->appendChild($ideEstabLot);
                 }
                 $dmDev->appendChild($infoPerApur);
-                if (!empty($dm->infoperant->ideadc)) {
+
+            }
+
+            if (isset($dm->infoperant) && !empty($dm->infoperant)) {
+                if (isset($dm->infoperant->ideadc) && !empty($dm->infoperant->ideadc)) {
                     $infoPerAnt = $this->dom->createElement("infoPerAnt");
                     foreach ($dm->infoperant->ideadc as $adc) {
                         $ideADC = $this->dom->createElement("ideADC");
@@ -1429,30 +1433,31 @@ trait TraitS1200
                     }
                     $dmDev->appendChild($infoPerAnt);
                 }
-
-                if (isset($dm->infocomplcont) && !empty($dm->infocomplcont)) {
-                    $infoComplCont = $this->dom->createElement("infoComplCont");
-                    $this->dom->addChild(
-                        $infoComplCont,
-                        "codCBO",
-                        $dm->infocomplcont->codcbo,
-                        true
-                    );
-                    $this->dom->addChild(
-                        $infoComplCont,
-                        "natAtividade",
-                        !empty($dm->infocomplcont->natatividade) ? $dm->infocomplcont->natatividade : null,
-                        false
-                    );
-                    $this->dom->addChild(
-                        $infoComplCont,
-                        "qtdDiasTrab",
-                        !empty($dm->infocomplcont->qtddiastrab) ? $dm->infocomplcont->qtddiastrab : null,
-                        false
-                    );
-                    $dmDev->appendChild($infoComplCont);
-                }
             }
+
+            if (isset($dm->infocomplcont) && !empty($dm->infocomplcont)) {
+                $infoComplCont = $this->dom->createElement("infoComplCont");
+                $this->dom->addChild(
+                    $infoComplCont,
+                    "codCBO",
+                    $dm->infocomplcont->codcbo,
+                    true
+                );
+                $this->dom->addChild(
+                    $infoComplCont,
+                    "natAtividade",
+                    !empty($dm->infocomplcont->natatividade) ? $dm->infocomplcont->natatividade : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $infoComplCont,
+                    "qtdDiasTrab",
+                    !empty($dm->infocomplcont->qtddiastrab) ? $dm->infocomplcont->qtddiastrab : null,
+                    false
+                );
+                $dmDev->appendChild($infoComplCont);
+            }
+            
             $this->node->appendChild($dmDev);
         }
         $this->eSocial->appendChild($this->node);
