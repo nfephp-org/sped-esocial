@@ -458,10 +458,6 @@
                                                             "required": false,
                                                             "type": ["number","null"]
                                                         },
-                                                        "vrunit": {
-                                                            "required": false,
-                                                            "type": ["number","null"]
-                                                        },
                                                         "vrrubr": {
                                                             "required": false,
                                                             "type": ["number","null"]
@@ -684,10 +680,6 @@
                                                                                     "type": ["number","null"]
                                                                                 },
                                                                                 "fatorrubr": {
-                                                                                    "required": false,
-                                                                                    "type": ["number","null"]
-                                                                                },
-                                                                                "vrunit": {
                                                                                     "required": false,
                                                                                     "type": ["number","null"]
                                                                                 },
