@@ -41,6 +41,19 @@ $std->dmdev[0] = new \stdClass(); //Obrigatório
 $std->dmdev[0]->idedmdev = '11111111111111111111'; //Obrigatório
 $std->dmdev[0]->nrbeneficio = '11111111111111111111'; //Obrigatório
 
+$std->dmdev[0]->indrra = 'S'; //S ou null
+$std->dmdev[0]->inforra = new \stdClass(); //Opcional se indRRA for NULL
+$std->dmdev[0]->inforra->tpprocrra = 1; //Obrigatorio 1 -Administrativo  ou 2 - judicial
+$std->dmdev[0]->inforra->nrprocrra = '12345678901234567'; //Obrigatório
+$std->dmdev[0]->inforra->descrra = 'Descrição do RRA'; //Obrigatório até 50 caracteres
+$std->dmdev[0]->inforra->qtdmesesrra = 1; //Obrigatório de 9 atá 999.9
+$std->dmdev[0]->inforra->despprocjud = new \stdClass(); //Opcional
+$std->dmdev[0]->inforra->despprocjud->vlrdespcustas = 100.00; //Obrigatório
+$std->dmdev[0]->inforra->despprocjud->vlrdespadvogados = 5000.00;  //Obrigatório
+$std->dmdev[0]->inforra->ideadv[0] =  new \stdClass(); //Opcional até 1 até 99
+$std->dmdev[0]->inforra->ideadv[0]->tpinsc = 1; //Obrigatório 1-CNPJ ou 2-CPF
+$std->dmdev[0]->inforra->ideadv[0]->nrinsc = '12345678901234'; //Obrigatório
+
 //Informações relativas ao período de apuração.
 $std->dmdev[0]->infoperapur = new \stdClass(); //Opcional
 

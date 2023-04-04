@@ -73,9 +73,79 @@ $jsonSchema = '{
                         "minLength": 1,
                         "maxLength": 20
                     },
+                    "indrra": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^(S)$"
+                    },
+                    "inforra": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "tpprocrra": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "nrprocrra": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{17}|[0-9]{20}|[0-9]{21}$"
+                            },
+                            "descrra": {
+                                "required": true,
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "qtdmesesrra": {
+                                "required": true,
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 999.9
+                            },
+                            "despprocjud": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "vlrdespcustas": {
+                                        "required": true,
+                                        "type": "number"
+                                    },
+                                    "vlrdespadvogados": {
+                                        "required": true,
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "ideadv": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 1,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^([0-9]{11}|[0-9]{14})$"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "infoperapur": {
                         "required": false,
-                        "type": "object",
+                        "type": ["object","null"],
                         "properties": {
                             "ideestab": {
                                 "required": true,
@@ -97,7 +167,7 @@ $jsonSchema = '{
                                             "pattern": "^[0-9]{14}$"
                                         },
                                         "itensremun": {
-                                           "codrubr": {
+                                            "codrubr": {
                                                 "required": true,
                                                 "type": "string",
                                                 "minLength": 1,
@@ -227,6 +297,20 @@ $std->cpfbenef = '11111111111';  //Obrigatório
 $std->dmdev[0] = new \stdClass(); //Obrigatório
 $std->dmdev[0]->idedmdev = '11111111111111111111'; //Obrigatório
 $std->dmdev[0]->nrbeneficio = '11111111111111111111'; //Obrigatório
+
+$std->dmdev[0]->indrra = 'S'; //S ou null
+$std->dmdev[0]->inforra = new \stdClass(); //Opcional se indRRA for NULL
+$std->dmdev[0]->inforra->tpprocrra = 1; //Obrigatorio 1 -Administrativo  ou 2 - judicial
+$std->dmdev[0]->inforra->nrprocrra = '12345678901234567'; //Obrigatório
+$std->dmdev[0]->inforra->descrra = 'Descrição do RRA'; //Obrigatório até 50 caracteres
+$std->dmdev[0]->inforra->qtdmesesrra = 1; //Obrigatório de 9 atá 999.9
+$std->dmdev[0]->inforra->despprocjud = new \stdClass(); //Opcional
+$std->dmdev[0]->inforra->despprocjud->vlrdespcustas = 100.00; //Obrigatório
+$std->dmdev[0]->inforra->despprocjud->vlrdespadvogados = 5000.00;  //Obrigatório
+$std->dmdev[0]->inforra->ideadv[0] =  new \stdClass(); //Opcional até 1 até 99
+$std->dmdev[0]->inforra->ideadv[0]->tpinsc = 1; //Obrigatório 1-CNPJ ou 2-CPF
+$std->dmdev[0]->inforra->ideadv[0]->nrinsc = '12345678901234'; //Obrigatório
+
 
 //Informações relativas ao período de apuração.
 $std->dmdev[0]->infoperapur = new \stdClass(); //Opcional
