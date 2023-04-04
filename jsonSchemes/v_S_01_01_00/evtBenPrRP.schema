@@ -56,9 +56,79 @@
                         "minLength": 1,
                         "maxLength": 20
                     },
+                    "indrra": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^(S)$"
+                    },
+                    "inforra": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "tpprocrra": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "nrprocrra": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{17}|[0-9]{20}|[0-9]{21}$"
+                            },
+                            "descrra": {
+                                "required": true,
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "qtdmesesrra": {
+                                "required": true,
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 999.9
+                            },
+                            "despprocjud": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "vlrdespcustas": {
+                                        "required": true,
+                                        "type": "number"
+                                    },
+                                    "vlrdespadvogados": {
+                                        "required": true,
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "ideadv": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 1,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tpinsc": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 2
+                                        },
+                                        "nrinsc": {
+                                            "required": true,
+                                            "type": "string",
+                                            "pattern": "^([0-9]{11}|[0-9]{14})$"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "infoperapur": {
                         "required": false,
-                        "type": "object",
+                        "type": ["object","null"],
                         "properties": {
                             "ideestab": {
                                 "required": true,
@@ -80,7 +150,7 @@
                                             "pattern": "^[0-9]{14}$"
                                         },
                                         "itensremun": {
-                                           "codrubr": {
+                                            "codrubr": {
                                                 "required": true,
                                                 "type": "string",
                                                 "minLength": 1,
