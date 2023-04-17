@@ -62,12 +62,19 @@ trait TraitS2210
             !empty($this->std->nistrab) ? $this->std->nistrab : null,
             false
         );
-        $this->dom->addChild(
-            $ideVinculo,
-            "matricula",
-            isset($this->std->matricula) ? $this->std->matricula : null,
-            false
-        );
+        if (!empty($this->std->matricula)) {
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
+        }else{
+            $this->dom->addChild(
+               $ide,
+               "matricula",
+               null,
+               false
+            );
+        } 
         $this->dom->addChild(
             $ideVinculo,
             "codCateg",
@@ -326,12 +333,19 @@ trait TraitS2210
             $this->std->cpftrab,
             true
         );
-        $this->dom->addChild(
-            $ideVinculo,
-            "matricula",
-            isset($this->std->matricula) ? $this->std->matricula : null,
-            false
-        );
+        if (!empty($this->std->matricula)) {
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
+        }else{
+            $this->dom->addChild(
+               $ide,
+               "matricula",
+               null,
+               false
+            );
+        } 
         $this->dom->addChild(
             $ideVinculo,
             "codCateg",
