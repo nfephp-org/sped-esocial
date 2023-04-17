@@ -51,12 +51,19 @@ trait TraitS2220
             !empty($this->std->idevinculo->nistrab) ? $this->std->idevinculo->nistrab : null,
             false
         );
-        $this->dom->addChild(
-            $ideVinculo,
-            "matricula",
-            isset($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
-            false
-        );
+        if (!empty($this->std->matricula)) {
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
+        }else{
+            $this->dom->addChild(
+               $ide,
+               "matricula",
+               null,
+               false
+            );
+        } 
         $this->node->appendChild($ideVinculo);
 
         if ($this->layoutStr !== 'v02_05_00') {
@@ -376,12 +383,10 @@ trait TraitS2220
             true
         );
         if(isset($this->std->idevinculo->matricula) && $this->std->idevinculo->matricula != null) {
-            $this->dom->addChild(
-                $ideVinculo,
-                "matricula",
-                isset($this->std->idevinculo->matricula) ? $this->std->idevinculo->matricula : null,
-                false
-            );
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
         }else {
             $this->dom->addChild(
                 $ideVinculo,
