@@ -57,12 +57,19 @@ trait TraitS2240
             !empty($this->std->nistrab) ? $this->std->nistrab : null,
             false
         );
-        $this->dom->addChild(
-            $ide,
-            "matricula",
-            !empty($this->std->matricula) ? $this->std->matricula : null,
-            false
-        );
+        if (!empty($this->std->matricula)) {
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
+        }else{
+            $this->dom->addChild(
+               $ide,
+               "matricula",
+               null,
+               false
+            );
+        } 
         $this->dom->addChild(
             $ide,
             "codCateg",
@@ -375,12 +382,19 @@ trait TraitS2240
             $this->std->cpftrab,
             true
         );
-        $this->dom->addChild(
-            $ide,
-            "matricula",
-            !empty($this->std->matricula) ? $this->std->matricula : null,
-            false
-        );
+        if (!empty($this->std->matricula)) {
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
+        }else{
+            $this->dom->addChild(
+               $ide,
+               "matricula",
+               null,
+               false
+            );
+        } 
         $this->dom->addChild(
             $ide,
             "codCateg",
@@ -676,12 +690,19 @@ trait TraitS2240
             $this->std->cpftrab,
             true
         );
-        $this->dom->addChild(
-            $ide,
-            "matricula",
-            !empty($this->std->matricula) ? $this->std->matricula : null,
-            false
-        );
+        if (!empty($this->std->matricula)) {
+            $matriculaElement = $this->dom->createElement("matricula");
+            $matriculaText = $this->dom->createTextNode($this->std->matricula);
+            $matriculaElement->appendChild($matriculaText);
+            $ide->appendChild($matriculaElement);
+        }else{
+            $this->dom->addChild(
+               $ide,
+               "matricula",
+               null,
+               false
+            );
+        } 
         $this->dom->addChild(
             $ide,
             "codCateg",
