@@ -55,10 +55,10 @@ trait TraitS2220
             $matriculaElement = $this->dom->createElement("matricula");
             $matriculaText = $this->dom->createTextNode($this->std->matricula);
             $matriculaElement->appendChild($matriculaText);
-            $ide->appendChild($matriculaElement);
+            $ideVinculo->appendChild($matriculaElement);
         }else{
             $this->dom->addChild(
-               $ide,
+               $ideVinculo,
                "matricula",
                null,
                false
@@ -386,7 +386,7 @@ trait TraitS2220
             $matriculaElement = $this->dom->createElement("matricula");
             $matriculaText = $this->dom->createTextNode($this->std->matricula);
             $matriculaElement->appendChild($matriculaText);
-            $ide->appendChild($matriculaElement);
+            $ideVinculo->appendChild($matriculaElement);
         }else {
             $this->dom->addChild(
                 $ideVinculo,
