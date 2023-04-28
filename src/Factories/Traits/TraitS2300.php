@@ -1606,7 +1606,7 @@ trait TraitS2300
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",
-                    empty($ens->nmrazao) ? $ens->nmrazao : null,
+                    !empty($ens->nmrazao) ? $ens->nmrazao : null,
                     false
                 );
                 $this->dom->addChild(
@@ -2380,7 +2380,7 @@ trait TraitS2300
                 $this->dom->addChild(
                     $instEnsino,
                     "nmRazao",
-                    empty($ens->nmrazao) ? $ens->nmrazao : null,
+                    !empty($ens->nmrazao) ? $ens->nmrazao : null,
                     false
                 );
                 $this->dom->addChild(
