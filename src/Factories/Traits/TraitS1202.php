@@ -336,7 +336,7 @@ trait TraitS1202
                                 !empty($rpa->matricula) ? $rpa->matricula : null,
                                 false
                             );
-                            foreach ($rem->itensremun as $item) {
+                            foreach ($rpa->itensremum as $item) {
                                 $itemrpa = $this->dom->createElement("itensRemun");
                                 $this->dom->addChild(
                                     $itemrpa,
@@ -698,7 +698,7 @@ trait TraitS1202
                                 !empty($rpa->matricula) ? $rpa->matricula : null,
                                 false
                             );
-                            foreach ($rem->itensremun as $item) {
+                            foreach ($rpa->itensremum as $item) {
                                 $itemrpa = $this->dom->createElement("itensRemun");
                                 $this->dom->addChild(
                                     $itemrpa,
