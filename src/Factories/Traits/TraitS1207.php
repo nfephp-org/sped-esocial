@@ -454,7 +454,7 @@ trait TraitS1207
                     $rra->appendChild($jud);
                 }
                 if (!empty($irra->ideadv)) {
-                    foreach($irra->ideadv as $adv) {
+                    foreach ($irra->ideadv as $adv) {
                         $ideadv = $this->dom->createElement("ideAdv");
                         $this->dom->addChild(
                             $ideadv,
