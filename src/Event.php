@@ -182,7 +182,7 @@ class Event
         'evtTSVInicio' => 'S-2300',
         'evtTSVAltContr' => 'S-2306',
         'evtTSVTermino' => 'S-2399',
-        'evtCdBenefIn ' => 'S-2400',
+        'evtCdBenefIn' => 'S-2400',
         'evtCdBenefAlt' => 'S-2405',
         'evtCdBenIn' => 'S-2410',
         'evtCdBenAlt' => 'S-2416',
