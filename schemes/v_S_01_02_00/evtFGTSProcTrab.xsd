@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns="http://www.esocial.gov.br/schema/evt/evtFGTSProcTrab/v_S_01_02_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtFGTSProcTrab/v_S_01_02_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="tipos.xsd" />
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+    <xs:element name="eSocial">
+        <xs:annotation>
+            <xs:documentation>S-5503 - Informações do FGTS por Trabalhador em Processo Trabalhista</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="evtFGTSProcTrab">
+                    <xs:annotation>
+                        <xs:documentation>Evento Informações do FGTS por Trabalhador em Processo Trabalhista.</xs:documentation>
+                        <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ideEvento">
+                                <xs:annotation>
+                                    <xs:documentation>Informações de identificação do evento.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nrRecArqBase" type="TS_nrRecArqBase">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-2500 ou S-3500).</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="perApur" type="TS_perApur">
+                                            <xs:annotation>
+                                                <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
+                                                <xs:documentation>Origem: mês/ano do campo {dtSent}(2500_infoProcesso_dadosCompl_infoProcJud_dtSent) ou {dtCCP}(2500_infoProcesso_dadosCompl_infoCCP_dtCCP) de S-2500.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideEmpregador">
+                                <xs:annotation>
+                                    <xs:documentation>Informações de identificação do empregador ou do contribuinte que prestou a informação.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {tpInsc*}, {nrInsc*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tpInsc" type="TS_tpInsc_1_2">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do empregador ou contribuinte que prestou a informação, conforme Tabela 05.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="nrInsc" type="TS_nrInsc_8_11_14">
+                                            <xs:annotation>
+                                                <xs:documentation>Informar o número de inscrição do empregador ou contribuinte que prestou a informação, de acordo com o tipo de inscrição indicado no campo {ideEmpregador/tpInsc}(./tpInsc) e conforme informado em S-1000.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideProc">
+                                <xs:annotation>
+                                    <xs:documentation>Identificação do processo.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {nrProcTrab*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="origem" type="TS_origem" />
+                                        <xs:element name="nrProcTrab" type="TS_nrProcTrab">
+                                            <xs:annotation>
+                                                <xs:documentation>Número do processo trabalhista, da ata ou número de identificação da conciliação.</xs:documentation>
+                                                <xs:documentation>Validação: a) Se o evento de origem for S-2500, retornar o campo {nrProcTrab}(2500_infoProcesso_nrProcTrab) desse evento;</xs:documentation>
+                                                <xs:documentation>b) Se o evento de origem for S-3500, retornar o campo {nrProcTrab}(2500_infoProcesso_nrProcTrab) do evento S-2500 objeto da exclusão.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideTrabalhador">
+                                <xs:annotation>
+                                    <xs:documentation>Identificação do trabalhador</xs:documentation>
+                                    <xs:documentation>DESCRICAO_COMPLETA:Grupo que apresenta a identificação básica do trabalhador ao qual se refere o evento de retorno.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="cpfTrab" type="TS_cpfRetorno" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="infoTrabFGTS" maxOccurs="99">
+                                <xs:annotation>
+                                    <xs:documentation>Informações relativas à matrícula e categoria do trabalhador.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {matricula}, {codCateg}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="matricula" type="TS_matricula_retorno" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
+                                                <xs:documentation>Evento de origem: S-2500 ou S-3500.</xs:documentation>
+                                                <xs:documentation>Validação: a) Se o evento de origem for S-2500, retornar a {matricula}(2500_ideTrab_infoContr_matricula) informada nesse evento;</xs:documentation>
+                                                <xs:documentation>b) Se o evento de origem for S-3500, retornar a matrícula informada no evento objeto da exclusão.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="codCateg" type="TS_codCateg" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o código da categoria do trabalhador, conforme Tabela 01.</xs:documentation>
+                                                <xs:documentation>Evento de origem: S-2500 ou S-3500.</xs:documentation>
+                                                <xs:documentation>Validação: Informação obrigatória e exclusiva se o campo {matricula}(./matricula) não for informado. Além disso:</xs:documentation>
+                                                <xs:documentation>a) Se o evento de origem for S-2500, retornar o {codCateg}(2500_ideTrab_infoContr_codCateg) informado nesse evento;</xs:documentation>
+                                                <xs:documentation>b) Se o evento de origem for S-3500, retornar o código de categoria informado no evento objeto da exclusão.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="categOrig" type="TS_codCateg" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido.</xs:documentation>
+                                                <xs:documentation>Origem: campo {infoDirigenteSindical/categOrig}(2300_infoTSVInicio_infoComplementares_infoDirigenteSindical_categOrig) ou {infoTrabCedido/categOrig}(2300_infoTSVInicio_infoComplementares_infoTrabCedido_categOrig) de S-2300.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="infoFGTSProcTrab">
+                                            <xs:annotation>
+                                                <xs:documentation>Informações relativas ao FGTS do processo trabalhista.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="totalFGTS" type="TS_valorMonetario">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Valor total de FGTS a recolher no processo trabalhista.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve corresponder ao somatório dos valores retornados nos campos {dpsFGTSProcTrab}(./ideEstab_basePerRef_dpsFGTSProcTrab), {dpsFGTSSefip}(./ideEstab_basePerRef_dpsFGTSSefip) e {dpsFGTSDecAnt}(./ideEstab_basePerRef_dpsFGTSDecAnt) abaixo.</xs:documentation>
+                                                            <xs:documentation>Se o evento de origem for S-3500, retornar 0 (zero).</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="ideEstab" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Identificação do estabelecimento responsável pelo pagamento ao trabalhador dos valores informados.</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: O (se {totalFGTS}(../totalFGTS) > 0); N (nos demais casos)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="tpInsc" type="TS_tpInsc_EstabLot">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.</xs:documentation>
+                                                                        <xs:documentation>Origem: campo {ideEstab/tpInsc}(2500_ideTrab_infoContr_ideEstab_tpInsc) de S-2500.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="nrInsc" type="TS_nrInsc_EstabLot">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo acima.</xs:documentation>
+                                                                        <xs:documentation>Origem: campo {ideEstab/nrInsc}(2500_ideTrab_infoContr_ideEstab_nrInsc) de S-2500.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="basePerRef" maxOccurs="unbounded">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Informações sobre bases de cálculo e valores do FGTS por período de referência.</xs:documentation>
+                                                                        <xs:documentation>CHAVE_GRUPO: {perRef}, {tpValorProcTrab}</xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="perRef" type="TS_periodo_mensal">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
+                                                                                    <xs:documentation>Origem: campo {perRef}(2500_ideTrab_infoContr_ideEstab_infoVlr_idePeriodo_perRef) de S-2500.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="codCateg" type="TS_codCateg">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Preencher com o código da categoria do trabalhador, conforme Tabela 01.</xs:documentation>
+                                                                                    <xs:documentation>Validação: a) Se {indContr}(2500_ideTrab_infoContr_indContr) em S-2500 = [N], retornar o código informado no campo {infoContr/codCateg}(2500_ideTrab_infoContr_codCateg) do evento S-2500;</xs:documentation>
+                                                                                    <xs:documentation>b) Se {indContr}(2500_ideTrab_infoContr_indContr) em S-2500 = [S]:</xs:documentation>
+                                                                                    <xs:documentation>b1) Se {indCateg}(2500_ideTrab_infoContr_indCateg) em S-2500 = [N], retornar o código de categoria existente no Registro de Eventos Trabalhistas - RET no último dia da competência de referência;</xs:documentation>
+                                                                                    <xs:documentation>b2) Se {indCateg}(2500_ideTrab_infoContr_indCateg) em S-2500 = [S] e o mês/ano de {dtMudCategAtiv}(2500_ideTrab_infoContr_mudCategAtiv_dtMudCategAtiv) de S-2500 for maior que {perRef}(./perRef), retornar o código de categoria existente no RET no último dia da competência de referência;</xs:documentation>
+                                                                                    <xs:documentation>b3) Se {indCateg}(2500_ideTrab_infoContr_indCateg) em S-2500 = [S] e o mês/ano de {dtMudCategAtiv}(2500_ideTrab_infoContr_mudCategAtiv_dtMudCategAtiv) de S-2500 for menor ou igual a {perRef}(./perRef), retornar {mudCategAtiv/codCateg}(2500_ideTrab_infoContr_mudCategAtiv_codCateg) do evento S-2500.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="tpValorProcTrab">
+                                                                                <xs:simpleType>
+                                                                                    <xs:annotation>
+                                                                                        <xs:documentation>Tipo de valor que influi na apuração do FGTS.</xs:documentation>
+                                                                                    </xs:annotation>
+                                                                                    <xs:restriction base="xs:byte">
+                                                                                        <xs:enumeration value="71">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>FGTS Origem Processo Trabalhista: quando {codCateg}(./codCateg) = [101, 102, 104, 105, 106, 111, 201, 202, 301, 302, 303, 304, 306, 307, 309, 310, 312, 721] ou ([401, 410], se {categOrig}(5503_infoTrabFGTS_categOrig) for diferente de [103, 107, 108])</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="72">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>FGTS Origem Processo Trabalhista - Aprendiz/Contrato Verde e Amarelo: quando {codCateg}(./codCateg) = [103, 107, 108] ou ([401, 410], se {categOrig}(5503_infoTrabFGTS_categOrig) = [103, 107, 108])</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="73">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>FGTS Origem Processo Trabalhista - Indenização compensatória do empregado doméstico: quando {codCateg}(./codCateg) = [104]</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                    </xs:restriction>
+                                                                                </xs:simpleType>
+                                                                            </xs:element>
+                                                                            <xs:element name="remFGTSProcTrab" type="TS_valorMonetario">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Valor da base de cálculo de FGTS ainda não declarada, reconhecida no processo trabalhista.</xs:documentation>
+                                                                                    <xs:documentation>Origem: campo {vrBcFGTSProcTrab}(2500_ideTrab_infoContr_ideEstab_infoVlr_idePeriodo_infoFGTS_vrBcFGTSProcTrab) de S-2500.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="dpsFGTSProcTrab" type="TS_valorMonetario_positivo" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador sobre base reconhecida no processo trabalhista.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+                                                                                    <xs:documentation>Deve corresponder à multiplicação de {remFGTSProcTrab}(./remFGTSProcTrab) pela alíquota abaixo:</xs:documentation>
+                                                                                    <xs:documentation>a) Se {tpValorProcTrab}(./tpValorProcTrab) = [71], alíquota de 8%;</xs:documentation>
+                                                                                    <xs:documentation>b) Se {tpValorProcTrab}(./tpValorProcTrab) = [72], alíquota de 2%;</xs:documentation>
+                                                                                    <xs:documentation>c) Se {tpValorProcTrab}(./tpValorProcTrab) = [73], alíquota de 3,2%.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="remFGTSSefip" type="TS_valorMonetario_positivo" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Valor da base de cálculo declarada anteriormente em SEFIP e ainda não recolhida.</xs:documentation>
+                                                                                    <xs:documentation>Origem: campo {vrBcFGTSSefip}(2500_ideTrab_infoContr_ideEstab_infoVlr_idePeriodo_infoFGTS_vrBcFGTSSefip) de S-2500.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="dpsFGTSSefip" type="TS_valorMonetario_positivo" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador sobre base já declarada anteriormente em SEFIP.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+                                                                                    <xs:documentation>Deve corresponder à multiplicação de {remFGTSSefip}(./remFGTSSefip) pela alíquota abaixo:</xs:documentation>
+                                                                                    <xs:documentation>a) Se {tpValorProcTrab}(./tpValorProcTrab) = [71], alíquota de 8%;</xs:documentation>
+                                                                                    <xs:documentation>b) Se {tpValorProcTrab}(./tpValorProcTrab) = [72], alíquota de 2%;</xs:documentation>
+                                                                                    <xs:documentation>c) Se {tpValorProcTrab}(./tpValorProcTrab) = [73], alíquota de 3,2%.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="remFGTSDecAnt" type="TS_valorMonetario_positivo" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Valor da base de cálculo declarada anteriormente no eSocial e ainda não recolhida.</xs:documentation>
+                                                                                    <xs:documentation>Origem: campo {vrBcFGTSDecAnt}(2500_ideTrab_infoContr_ideEstab_infoVlr_idePeriodo_infoFGTS_vrBcFGTSDecAnt) de S-2500.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="dpsFGTSDecAnt" type="TS_valorMonetario_positivo" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador sobre base já declarada anteriormente no eSocial.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+                                                                                    <xs:documentation>Deve corresponder à multiplicação de {remFGTSDecAnt}(./remFGTSDecAnt) pela alíquota abaixo:</xs:documentation>
+                                                                                    <xs:documentation>a) Se {tpValorProcTrab}(./tpValorProcTrab) = [71], alíquota de 8%;</xs:documentation>
+                                                                                    <xs:documentation>b) Se {tpValorProcTrab}(./tpValorProcTrab) = [72], alíquota de 2%;</xs:documentation>
+                                                                                    <xs:documentation>c) Se {tpValorProcTrab}(./tpValorProcTrab) = [73], alíquota de 3,2%.</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Id" use="required" type="TS_Id_retorno" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ds:Signature" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
