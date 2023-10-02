@@ -33,19 +33,19 @@ trait TraitS5001
         $this->dom->addChild(
             $ideEvento,
             "nrRecArqBase",
-            $this->std->nrRecArqBase,
+            $this->std->nrrecarqbase,
             true
         );
         $this->dom->addChild(
             $ideEvento,
             "indApuracao",
-            $this->std->indApuracao,
+            $this->std->indapuracao,
             true
         );
         $this->dom->addChild(
             $ideEvento,
             "perApur",
-            $this->std->perApur,
+            $this->std->perapur,
             true
         );
         $this->node->insertBefore($ideEvento, $ideEmpregador);
@@ -56,5 +56,8 @@ trait TraitS5001
             $this->std->cpftrab,
             true
         );
+        $this->node->appendChild($ide);
+        $this->eSocial->appendChild($this->node);
+        $this->sign();
     }
 }
