@@ -82,6 +82,8 @@ class Event
         'evtfgts' => Factories\EvtFGTS::class,
         'evtbasesfgts' => Factories\EvtBasesFGTS::class,
         'evtbaixa' => Factories\EvtBaixa::class,
+        'evtproctrab' => Factories\EvtProcTrab::class,
+        'evtcontproc' => Factories\EvtContProc::class,
     ];
 
     /**
@@ -147,6 +149,8 @@ class Event
         's2416' => 'evtcdbenalt',
         's2418' => 'evtreativben',
         's2420' => 'evtcdbenterm',
+        's2500' => 'evtproctrab',
+        's2501' => 'evtcontproc',
     ];
 
     public static $codes = [
@@ -178,12 +182,14 @@ class Event
         'evtTSVInicio' => 'S-2300',
         'evtTSVAltContr' => 'S-2306',
         'evtTSVTermino' => 'S-2399',
-        'evtCdBenefIn ' => 'S-2400',
+        'evtCdBenefIn' => 'S-2400',
         'evtCdBenefAlt' => 'S-2405',
         'evtCdBenIn' => 'S-2410',
         'evtCdBenAlt' => 'S-2416',
         'evtReativBen' => 'S-2418',
         'evtCdBenTerm' => 'S-2420',
+        'evtProcTrab' => 'S-2500',
+        'evtContProc' => 'S-2501',
         'evtExclusao' => 'S-3000',
         'evtExcProcTrab' => 'S-3500',
     ];

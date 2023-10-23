@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.esocial.gov.br/schema/evt/evtContProc/v_S_01_02_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtContProc/v_S_01_02_00" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="tipos.xsd" />
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+    <xs:element name="eSocial">
+        <xs:annotation>
+            <xs:documentation>S-2501 - Informações de Tributos Decorrentes de Processo Trabalhista</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="evtContProc">
+                    <xs:annotation>
+                        <xs:documentation>Evento Informações de Tributos Decorrentes de Processo Trabalhista.</xs:documentation>
+                        <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ideEvento" type="T_ideEvento_trab" />
+                            <xs:element name="ideEmpregador">
+                                <xs:annotation>
+                                    <xs:documentation>Informações de identificação do empregador ou do contribuinte que está prestando a informação.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {tpInsc*}, {nrInsc*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tpInsc" type="TS_tpInsc_1_2">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do empregador ou contribuinte que está prestando a informação, conforme Tabela 05.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="nrInsc" type="TS_nrInsc_8_11_14">
+                                            <xs:annotation>
+                                                <xs:documentation>Informar o número de inscrição do empregador ou contribuinte que está prestando a informação, de acordo com o tipo de inscrição indicado no campo {ideEmpregador/tpInsc}(./tpInsc) e conforme informado em S-1000.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideProc">
+                                <xs:annotation>
+                                    <xs:documentation>Identificação do processo.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {nrProcTrab*}, {perApurPgto*}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nrProcTrab" type="TS_nrProcTrab">
+                                            <xs:annotation>
+                                                <xs:documentation>Número do processo trabalhista, da ata ou número de identificação da conciliação.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um número de processo válido e declarado no evento S-2500 para o(s) trabalhador(es) informado(s) em {cpfTrab}(2501_ideTrab_cpfTrab).</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="perApurPgto" type="TS_periodo_mensal">
+                                            <xs:annotation>
+                                                <xs:documentation>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um período igual ou posterior ao mês/ano de {dtSent}(2500_infoProcesso_dadosCompl_infoProcJud_dtSent) ou de {dtCCP}(2500_infoProcesso_dadosCompl_infoCCP_dtCCP) existente no evento S-2500 para o processo indicado em {nrProcTrab}(./nrProcTrab).</xs:documentation>
+                                                <xs:documentation>Deve ser informado no formato AAAA-MM.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="obs" minOccurs="0" type="TS_texto_999">
+                                            <xs:annotation>
+                                                <xs:documentation>Observação referente ao pagamento de parcela prevista no acordo/sentença.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ideTrab" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>Identificação do trabalhador.</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab}</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="calcTrib" minOccurs="0" maxOccurs="999">
+                                            <xs:annotation>
+                                                <xs:documentation>Identificação do período e da base de cálculo dos tributos.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {perRef}</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="infoCRContrib" minOccurs="0" maxOccurs="99">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações das contribuições sociais.</xs:documentation>
+                                                            <xs:documentation>DESCRICAO_COMPLETA:Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por Código de Receita - CR.</xs:documentation>
+                                                            <xs:documentation>CHAVE_GRUPO: {tpCR}</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:attribute name="tpCR" use="required">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 29.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:integer">
+                                                                        <xs:pattern value="\d{6}" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrCR" use="required">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor correspondente ao Código de Receita - CR.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser informado de acordo com a legislação em vigor na competência.</xs:documentation>
+                                                                    <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario_positivo" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="perRef" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) e igual ou posterior a [2008-12].</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="TS_periodo_mensal" />
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="vrBcCpMensal" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Valor da base de cálculo da contribuição previdenciária sobre a remuneração mensal do trabalhador.</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="TS_valorMonetario" />
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="vrBcCp13" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Valor da base de cálculo da contribuição previdenciária sobre a remuneração do trabalhador referente ao 13º salário.</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="TS_valorMonetario" />
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="infoCRIRRF" minOccurs="0" maxOccurs="99">
+                                            <xs:annotation>
+                                                <xs:documentation>Informações de IRRF.</xs:documentation>
+                                                <xs:documentation>DESCRICAO_COMPLETA:Informações de Imposto de Renda, por Código de Receita - CR.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {tpCR}</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="infoIR" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações complementares, vinculadas ao {infoCRIRRF/tpCR}(2501_ideTrab_infoCRIRRF_tpCR), relacionadas a rendimentos tributáveis e a deduções e/ou isenções de acordo com a legislação aplicada ao imposto de renda.</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vrRendTrib" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor do rendimento tributável mensal do Imposto de Renda.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrRendTrib13" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor do rendimento tributável do Imposto de Renda referente ao 13º salário - Tributação exclusiva.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                    <xs:documentation>Não informar se {infoCRIRRF/tpCR}(2501_ideTrab_infoCRIRRF_tpCR) = [188951].</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrRendMoleGrave" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor do rendimento isento por ser portador de moléstia grave atestada por laudo médico.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrRendIsen65" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor de parcela isenta de aposentadoria para beneficiário de 65 anos ou mais.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrJurosMora" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Juros de mora recebidos, devidos pelo atraso no pagamento de remuneração por exercício de emprego, cargo ou função.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrRendIsenNTrib" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor de outros rendimentos isentos ou não tributáveis.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="descIsenNTrib" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Descrição do rendimento isento ou não tributável informado em {vrRendIsenNTrib}(./vrRendIsenNTrib).</xs:documentation>
+                                                                    <xs:documentation>Validação: Somente informar se {vrRendIsenNTrib}(./vrRendIsenNTrib) > 0.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:minLength value="1" />
+                                                                        <xs:maxLength value="60" />
+                                                                        <xs:pattern value=".*[^\s].*" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vrPrevOficial" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor referente à previdência oficial.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_valorMonetario" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="infoRRA" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações complementares de RRA</xs:documentation>
+                                                            <xs:documentation>DESCRICAO_COMPLETA: Informações complementares relativas a Rendimentos Recebidos Acumuladamente - RRA.</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: O (se {infoCRIRRF/tpCR}(../tpCR) = [188951]); N (nos demais casos)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="despProcJud" minOccurs="0">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Detalhamento das despesas com processo judicial.</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="vlrDespCustas">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Preencher com o valor das despesas com custas judiciais.</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_valorMonetario" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrDespAdvogados">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Preencher com o valor total das despesas com advogado(s).</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_valorMonetario" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="ideAdv" minOccurs="0" maxOccurs="99">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Identificação dos advogados.</xs:documentation>
+                                                                        <xs:documentation>CHAVE_GRUPO: {tpInsc}, {nrInsc}</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="tpInsc">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_tpInsc_1_2" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="nrInsc">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Informar o número de inscrição do advogado.</xs:documentation>
+                                                                                <xs:documentation>Validação: Deve ser um número de inscrição válido, de acordo com o tipo de inscrição indicado no campo {ideAdv/tpInsc}(./tpInsc), considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.</xs:documentation>
+                                                                                <xs:documentation>Se {ideAdv/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e, no caso de declarante pessoa jurídica, ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(/ideEmpregador_nrInsc) tiver 14 (catorze) algarismos).</xs:documentation>
+                                                                                <xs:documentation>Se {ideAdv/tpInsc}(./tpInsc) = [2], deve possuir 11 (onze) algarismos e, no caso de declarante pessoa física, ser diferente do CPF do empregador.</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_nrInsc_11_14" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrAdv" use="optional">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Valor da despesa com o advogado, se houver.</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_valorMonetario" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="descRRA">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Descrição dos Rendimentos Recebidos Acumuladamente - RRA.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_descRRA" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="qtdMesesRRA">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Número de meses relativo aos Rendimentos Recebidos Acumuladamente - RRA.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_qtdMesesRRA" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="dedDepen" minOccurs="0" maxOccurs="999">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Dedução do rendimento tributável relativa a dependentes.</xs:documentation>
+                                                            <xs:documentation>CHAVE_GRUPO: {tpRend}, {cpfDep}</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: N (se {infoCRIRRF/tpCR}(../tpCR) = [188951]); OC (nos demais casos)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:attribute name="tpRend">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Tipo de rendimento.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:byte">
+                                                                        <xs:enumeration value="11">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Remuneração mensal</xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:enumeration>
+                                                                        <xs:enumeration value="12">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>13º salário</xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:enumeration>    
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="cpfDep">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Informar o número de inscrição do dependente no CPF.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser um CPF de dependente cadastrado no eSocial (S-2200/S-2205/S-2300 ou no grupo {infoDep}(2501_ideTrab_infoIRComplem_infoDep)).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_cpfDepIR2" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vlrDeducao">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Preencher com o valor da dedução da base de cálculo.</xs:documentation>
+                                                                    <xs:documentation>Validação: O valor informado neste campo deve ser menor ou igual ao valor unitário da dedução por dependente definido na legislação.</xs:documentation>
+                                                                    <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                                                    <xs:documentation>Em caso de inconsistência na validação, o arquivo será aceito, porém com alerta ao contribuinte.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_vlrDedDep" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="penAlim" minOccurs="0" maxOccurs="99">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informação dos beneficiários da pensão alimentícia.</xs:documentation>
+                                                            <xs:documentation>CHAVE_GRUPO: {tpRend}, {cpfDep}</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:attribute name="tpRend">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Tipo de rendimento.</xs:documentation>
+                                                                    <xs:documentation>Validação: Se {infoCRIRRF/tpCR}(../tpCR) = [188951], deve ser igual a [18].</xs:documentation>   
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:byte">
+                                                                        <xs:enumeration value="11">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Remuneração mensal</xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:enumeration>
+                                                                        <xs:enumeration value="12">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>13º salário</xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:enumeration>
+                                                                        <xs:enumeration value="18">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>RRA</xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:enumeration>
+                                                                        <xs:enumeration value="79">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Rendimento isento ou não tributável</xs:documentation>
+                                                                            </xs:annotation>
+                                                                        </xs:enumeration>    
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="cpfDep">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Número do CPF do dependente/beneficiário da pensão alimentícia.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser um CPF de dependente cadastrado no eSocial (S-2200/S-2205/S-2300 ou no grupo {infoDep}(2501_ideTrab_infoIRComplem_infoDep)).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_cpfPenAlim" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vlrPensao">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Valor relativo à dedução do rendimento tributável correspondente a pagamento de pensão alimentícia.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_vlrDedPenAlim" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="infoProcRet" minOccurs="0" maxOccurs="50">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações de processos relacionados a não retenção de tributos ou a depósitos judiciais.</xs:documentation>
+                                                            <xs:documentation>CHAVE_GRUPO: {tpProcRet}, {nrProcRet}, {codSusp}</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: N (se {infoCRIRRF/tpCR}(../tpCR) = [188951]); OC (nos demais casos)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="infoValores" minOccurs="0" maxOccurs="2">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Informações de valores relacionados a não retenção de tributos ou a depósitos judiciais.</xs:documentation>
+                                                                        <xs:documentation>CHAVE_GRUPO: {indApuracao}</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="dedSusp" minOccurs="0" maxOccurs="25">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Detalhamento das deduções com exigibilidade suspensa.</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                                                </xs:annotation>
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="benefPen" minOccurs="0" maxOccurs="99">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Informação das deduções suspensas por dependentes e beneficiários da pensão alimentícia</xs:documentation>
+                                                                                                <xs:documentation>CHAVE_GRUPO: {cpfDep}</xs:documentation>
+                                                                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                            <xs:complexType>
+                                                                                                <xs:attribute name="cpfDep">
+                                                                                                    <xs:annotation>
+                                                                                                        <xs:documentation>Número de inscrição no CPF.</xs:documentation>
+                                                                                                        <xs:documentation>Validação: Deve ser um CPF de dependente cadastrado no eSocial (S-2200/S-2205/S-2300 ou no grupo {infoDep}(2501_ideTrab_infoIRComplem_infoDep)).</xs:documentation>
+                                                                                                    </xs:annotation>
+                                                                                                    <xs:simpleType>
+                                                                                                        <xs:restriction base="TS_cpfDepIR2" />
+                                                                                                    </xs:simpleType>
+                                                                                                </xs:attribute>
+                                                                                                <xs:attribute name="vlrDepenSusp">
+                                                                                                    <xs:annotation>
+                                                                                                        <xs:documentation>Valor da dedução relativa a dependentes ou a pensão alimentícia com exigibilidade suspensa.</xs:documentation>
+                                                                                                        <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+                                                                                                    </xs:annotation>
+                                                                                                    <xs:simpleType>
+                                                                                                        <xs:restriction base="TS_valorMonetario_positivo" />
+                                                                                                    </xs:simpleType>
+                                                                                                </xs:attribute>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:sequence>
+                                                                                    <xs:attribute name="indTpDeducao">
+                                                                                        <xs:annotation>
+                                                                                            <xs:documentation>Indicativo do tipo de dedução.</xs:documentation>
+                                                                                        </xs:annotation>
+                                                                                        <xs:simpleType>
+                                                                                            <xs:restriction base="xs:byte">
+                                                                                                <xs:enumeration value="1">
+                                                                                                    <xs:annotation>
+                                                                                                        <xs:documentation>Previdência oficial</xs:documentation>
+                                                                                                    </xs:annotation>
+                                                                                                </xs:enumeration>
+                                                                                                <xs:enumeration value="5">
+                                                                                                    <xs:annotation>
+                                                                                                        <xs:documentation>Pensão alimentícia</xs:documentation>
+                                                                                                    </xs:annotation>
+                                                                                                </xs:enumeration>
+                                                                                                <xs:enumeration value="7">
+                                                                                                    <xs:annotation>
+                                                                                                        <xs:documentation>Dependentes</xs:documentation>
+                                                                                                    </xs:annotation>
+                                                                                                </xs:enumeration>    
+                                                                                            </xs:restriction>
+                                                                                        </xs:simpleType>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="vlrDedSusp" use="optional">
+                                                                                        <xs:annotation>
+                                                                                            <xs:documentation>Valor da dedução da base de cálculo do imposto de renda com exigibilidade suspensa.</xs:documentation>
+                                                                                            <xs:documentation>Validação: Informação permitida apenas se {vlrRendSusp}(../vlrRendSusp) > 0.</xs:documentation>
+                                                                                            <xs:documentation>Se {indTpDeducao}(./indTpDeducao) = [5, 7], e o grupo {benefPen}(./benefPen) for preenchido, o valor informado neste campo deve ser a soma do(s) campo(s) {vlrDepenSusp}(./benefPen_vlrDepenSusp) do grupo {benefPen}(./benefPen).</xs:documentation>
+                                                                                            <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                                                                            <xs:documentation>O não preenchimento do grupo {benefPen}(./benefPen) indica que o contribuinte declarante não possui as informações detalhadas por dependente/alimentando.</xs:documentation>
+                                                                                        </xs:annotation>
+                                                                                        <xs:simpleType>
+                                                                                            <xs:restriction base="TS_valorMonetario_positivo" />
+                                                                                        </xs:simpleType>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute name="indApuracao">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Indicativo de período de apuração.</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_indApuracao" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrNRetido" use="optional">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Valor da retenção que deixou de ser efetuada em função de processo administrativo ou judicial.</xs:documentation>
+                                                                                <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_vlrNRetido" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrDepJud" use="optional">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Valor do depósito judicial em função de processo administrativo ou judicial.</xs:documentation>
+                                                                                <xs:documentation>Validação: Informação permitida apenas se {indDeposito}(1070_infoProcesso_inclusao_dadosProc_infoSusp_indDeposito) informado em S-1070 for igual a [S].</xs:documentation>
+                                                                                <xs:documentation>Se informado, deve ser maior que 0 (zero).</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_vlrDepJud" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrCmpAnoCal" use="optional">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Valor da compensação relativa ao ano calendário em função de processo judicial.</xs:documentation>
+                                                                                <xs:documentation>Validação: Informação permitida apenas se {tpProcRet}(../tpProcRet) = [2].</xs:documentation>
+                                                                                <xs:documentation>Se informado, deve ser maior que 0 (zero).</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_vlrCmpAnoCal" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrCmpAnoAnt" use="optional">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Valor da compensação relativa a anos anteriores em função de processo judicial.</xs:documentation>
+                                                                                <xs:documentation>Validação: Informação permitida apenas se {tpProcRet}(../tpProcRet) = [2].</xs:documentation>
+                                                                                <xs:documentation>Se informado, deve ser maior que 0 (zero).</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_vlrCmpAnoAnt" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="vlrRendSusp" use="optional">
+                                                                            <xs:annotation>
+                                                                                <xs:documentation>Valor do rendimento com exigibilidade suspensa.</xs:documentation>
+                                                                                <xs:documentation>Validação: Se {indApuracao}(./indApuracao) = [1], não pode ser maior que {vrRendTrib}(2501_ideTrab_infoCRIRRF_infoIR_vrRendTrib). Se {indApuracao}(./indApuracao) = [2], não pode ser maior que {vrRendTrib13}(2501_ideTrab_infoCRIRRF_infoIR_vrRendTrib13).</xs:documentation>
+                                                                                <xs:documentation>Se informado, deve ser maior que 0 (zero).</xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="TS_vlrRendSusp" />
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="tpProcRet">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Preencher com o código correspondente ao tipo de processo.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_tpProc_1_2" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="nrProcRet">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Informar o número do processo administrativo/judicial.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_nrProcRet" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="codSusp" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Código do indicativo da suspensão, atribuído pelo empregador em S-1070.</xs:documentation>
+                                                                    <xs:documentation>Validação: Preenchimento obrigatório se houver informação de {codSusp}(1070_infoProcesso_inclusao_dadosProc_infoSusp_codSusp) em S-1070.</xs:documentation>
+                                                                    <xs:documentation>Se informado, deve constar na Tabela de Processos (S-1070), campo {codSusp}(1070_infoProcesso_inclusao_dadosProc_infoSusp_codSusp), vinculado ao número do processo informado em {nrProcRet}(./nrProcRet).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_codSuspIR" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="tpCR" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte.</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:integer">
+                                                            <xs:enumeration value="593656">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>IRRF - Decisão da Justiça do Trabalho</xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:enumeration>
+                                                            <xs:enumeration value="188951">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>IRRF - RRA - Decisão da Justiça do Trabalho</xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:enumeration>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="vrCR" use="required">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Valor correspondente ao Código de Receita - CR.</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser informado de acordo com a legislação em vigor na competência.</xs:documentation>
+                                                        <xs:documentation>Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="TS_valorMonetario" />
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="infoIRComplem" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Informações relacionadas à retenção na fonte, aos rendimentos tributáveis e não tributáveis, deduções e/ou isenções, etc., de acordo com a legislação aplicada ao imposto de renda.</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="infoDep" minOccurs="0" maxOccurs="999">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações de dependentes não cadastrados pelo S-2200/S-2205/S-2300.</xs:documentation>
+                                                            <xs:documentation>CHAVE_GRUPO: {cpfDep}</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:attribute name="cpfDep">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Número de inscrição no CPF.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser um CPF válido e diferente do CPF do declarante pessoa física ({ideEmpregador/nrInsc}(/ideEmpregador_nrInsc)) e do beneficiário ({cpfTrab}(../../cpfTrab)).</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_cpfDepIR" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="dtNascto" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Preencher com a data de nascimento.</xs:documentation>
+                                                                    <xs:documentation>Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_dtNascto" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="nome" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Nome do dependente.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_nmDep" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="depIRRF" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Somente informar este campo em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_depIRRF_IR" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="tpDep" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Tipo de dependente.</xs:documentation>
+                                                                    <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {depIRRF}(./depIRRF) = [S].</xs:documentation>
+                                                                    <xs:documentation>Deve ser um código válido e existente na Tabela 07.</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_tpDep" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="descrDep" use="optional">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>Informar a descrição da dependência.</xs:documentation>
+                                                                    <xs:documentation>Validação: Informação obrigatória e exclusiva se {tpDep}(./tpDep) = [99].</xs:documentation>
+                                                                </xs:annotation>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="TS_descrDep" />
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="dtLaudo" use="optional">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Data da moléstia grave atribuída pelo laudo.</xs:documentation>
+                                                        <xs:documentation>Validação: Não pode ser anterior ao ano de 1900.</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:date" />
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="cpfTrab" use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>Preencher com o número do CPF do trabalhador.</xs:documentation>
+                                            <xs:documentation>Validação: Deve ser um CPF válido e informado no evento S-2500.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="TS_cpfTrab" />
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Id" use="required" type="TS_Id" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ds:Signature" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

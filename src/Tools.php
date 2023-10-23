@@ -800,6 +800,9 @@ class Tools extends ToolsBase
         foreach ($keys as $tagname) {
             if (!empty($dom->getElementsByTagName($tagname)->item(0))) {
                 $tag = $dom->getElementsByTagName($tagname)->item(0);
+                if (empty($tag->getAttribute('Id'))) {
+                    continue;
+                }
                 $id = $tag->getAttribute('Id');
                 $code = $possibles[$tagname];
                 $grupo = $this->groupbycode[$code];
