@@ -81,6 +81,7 @@ class Event
         'evttoxic' => Factories\EvtToxic::class,
         'evtfgts' => Factories\EvtFGTS::class,
         'evtbasesfgts' => Factories\EvtBasesFGTS::class,
+        'evtanotjud' => Factories\EvtAnotJud::class,
         'evtbaixa' => Factories\EvtBaixa::class,
         'evtproctrab' => Factories\EvtProcTrab::class,
         'evtcontproc' => Factories\EvtContProc::class,
@@ -143,6 +144,7 @@ class Event
         's1295' => 'evttotconting',
         's5003' => 'evtbasesfgts',
         's5013' => 'evtfgts',
+        's8200' => 'evtanotjud',
         's8299' => 'evtbaixa',
         's2405' => 'evtcdbenefalt',
         's2410' => 'evtcdbenin',
@@ -192,6 +194,8 @@ class Event
         'evtContProc' => 'S-2501',
         'evtExclusao' => 'S-3000',
         'evtExcProcTrab' => 'S-3500',
+        'evtAnotJud' => 'S-8200',
+        'evtBaixa' => 'S-8299'
     ];
 
     /**
@@ -201,7 +205,7 @@ class Event
      * @param  array $arguments [config, std, certificate, $date]
      *
      * @return object
-     * @throws InvalidArgumentException
+     * @throws EventsException
      */
     public static function __callStatic($name, $arguments)
     {
