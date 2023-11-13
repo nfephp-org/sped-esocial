@@ -77,6 +77,16 @@
                     "required": false,
                     "type": ["string","null"],
                     "pattern": "^[0-9]{14}$"
+                },
+                "dttrans11096": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/data"
+                },
+                "indtribfolhapiscofins": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
                 }
             }
         },
