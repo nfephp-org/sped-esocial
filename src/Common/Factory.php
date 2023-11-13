@@ -107,7 +107,7 @@ abstract class Factory
      * @var Certificate | null
      */
     protected $certificate;
-     /**
+    /**
      * @var string
      */
     protected $method_name;
@@ -139,7 +139,7 @@ abstract class Factory
         $this->nmRazao = $stdConf->empregador->nmRazao ?? null;
         $this->layoutStr = $this->strLayoutVer($this->layout);
         $this->certificate = $certificate;
-        if (empty($std) || ! is_object($std)) {
+        if (empty($std) || !is_object($std)) {
             throw new \InvalidArgumentException(
                 'Você deve passar os parâmetros num stdClass.'
             );
@@ -176,21 +176,12 @@ abstract class Factory
      */
     protected function strLayoutVer($layout)
     {
-        //v_S_01_00_00
-        //v02_05_00
-        if (substr($layout, 0, 1) == 'S') {
-            $str  = 'v_S_';
-            $fils = explode('.', substr($layout, 2, strlen($layout)-1));
-            foreach ($fils as $fil) {
-                $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
-            }
-        } else {
-            $fils = explode('.', $layout);
-            $str  = 'v';
-            foreach ($fils as $fil) {
-                $str .= str_pad($fil, 2, '0', STR_PAD_LEFT).'_';
-            }
+        $str  = 'v_S_';
+        $fils = explode('.', substr($layout, 2, strlen($layout) - 1));
+        foreach ($fils as $fil) {
+            $str .= str_pad($fil, 2, '0', STR_PAD_LEFT) . '_';
         }
+
         return substr($str, 0, -1);
     }
 
@@ -221,7 +212,7 @@ abstract class Factory
      */
     protected function validInputData($data)
     {
-        if (! is_file($this->jsonschema)) {
+        if (!is_file($this->jsonschema)) {
             return true;
         }
         $errors = JsonValidation::validate($data, $this->jsonschema, $this->definitions);
@@ -230,9 +221,9 @@ abstract class Factory
         }
         $msg = '';
         foreach ($errors as $key => $error) {
-            $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']). ";";
+            $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']) . ";";
         }
-        $msg = substr($msg, 0, strlen($msg)-2);
+        $msg = substr($msg, 0, strlen($msg) - 2);
         throw new \Exception($msg);
     }
 
@@ -380,7 +371,7 @@ abstract class Factory
      */
     public function standardizeProperties(stdClass $data)
     {
-        if (! is_file($this->jsonschema)) {
+        if (!is_file($this->jsonschema)) {
             return $data;
         }
         $jsonSchemaObj = json_decode(file_get_contents($this->jsonschema));
@@ -395,7 +386,7 @@ abstract class Factory
     {
         $xml = $this->dom->saveXML($this->eSocial);
         $xml = Strings::clearXmlString($xml);
-        if (! empty($this->certificate)) {
+        if (!empty($this->certificate)) {
             $xml = Signer::sign(
                 $this->certificate,
                 $xml,
