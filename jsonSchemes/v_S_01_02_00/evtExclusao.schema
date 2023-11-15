@@ -1,0 +1,56 @@
+{
+    "title": "evtExclusao",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "infoexclusao": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "tpevento": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^S-[1-2]{1}[0-9]{3}$"
+                },
+                "nrrecevt": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/recibo"
+                }
+            }
+        },
+        "idefolhapagto": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "indapuracao": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "perapur": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/periodo"
+                }
+            }
+        },
+        "idetrabalhador": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                }
+            }
+        }
+    }
+}

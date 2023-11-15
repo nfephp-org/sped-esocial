@@ -568,4 +568,12 @@ trait TraitS2399
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
+
+    /**
+     * builder for version S.1.2.0
+     */
+    protected function toNodeS120()
+    {
+        return $this->toNodeS110();
+    }
 }
