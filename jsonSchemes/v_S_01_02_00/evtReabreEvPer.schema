@@ -1,0 +1,29 @@
+{
+    "title": "evtReabreEvPer",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/periodo"
+        }
+    }
+}

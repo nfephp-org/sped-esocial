@@ -245,4 +245,12 @@ trait TraitS2410
     {
         return $this->toNodeS100();
     }
+
+    /**
+     * builder for version S.1.2.0
+     */
+    protected function toNodeS120()
+    {
+        return $this->toNodeS100();
+    }
 }
