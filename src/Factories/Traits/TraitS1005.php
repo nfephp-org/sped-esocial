@@ -467,4 +467,13 @@ trait TraitS1005
         $this->eSocial->appendChild($this->node);
         $this->sign();
     }
+
+    /**
+     * builder for version S.1.2.0
+     *
+     */
+    protected function toNodeS120()
+    {
+        return $this->toNodeS110();
+    }
 }
