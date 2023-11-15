@@ -61,8 +61,7 @@ class Event
         'evtcat' => Factories\EvtCAT::class,
         'evtmonit' => Factories\EvtMonit::class,
         'evttabrubrica' => Factories\EvtTabRubrica::class,
-        'evtcdbenprrp' => Factories\EvtCdBenPrRP::class,
-        'evtcdbenefin' => Factories\EvtCdBenPrRP::class, //novo nome para evento S-2400
+        'evtcdbenefin' => Factories\EvtCdBenefIn::class,
         'evtcdbenefalt' => Factories\EvtCdBenefAlt::class,
         'evtcdbenin' => Factories\EvtCdBenIn::class,
         'evtcdbenalt' => Factories\EvtCdBenAlt::class,
@@ -130,7 +129,7 @@ class Event
         's2220' => 'evtmonit',
         's2221' => 'evttoxic',
         's1010' => 'evttabrubrica',
-        's2400' => 'evtcdbenprrp',
+        's2400' => 'evtcdbenefin',
         's1210' => 'evtpgtos',
         's2306' => 'evttsvaltcontr',
         's1260' => 'evtcomprod',

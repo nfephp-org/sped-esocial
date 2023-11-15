@@ -3,8 +3,8 @@
 namespace NFePHP\eSocial\Factories;
 
 /**
- * Class eSocial EvtCdBenPrRP Event S-2400 constructor
- * Read for 2.5.0 layout
+ * Class eSocial EvtCdBenefIn Event S-2400 constructor
+ * Read for S 1.0 or greater
  *
  * @category  library
  * @package   NFePHP\eSocial
@@ -22,7 +22,7 @@ use NFePHP\eSocial\Common\FactoryId;
 use NFePHP\eSocial\Common\FactoryInterface;
 use stdClass;
 
-class EvtCdBenPrRP extends Factory implements FactoryInterface
+class EvtCdBenefIn extends Factory implements FactoryInterface
 {
     /**
      * @var int
@@ -31,7 +31,7 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
     /**
      * @var string
      */
-    protected $evtName = 'evtCdBenPrRP'; //evtCdBenefIn na versão S.1.0
+    protected $evtName = 'evtCdBenefIn'; //evtCdBenefIn na versão S.1.0
     /**
      * @var string
      */
@@ -42,7 +42,7 @@ class EvtCdBenPrRP extends Factory implements FactoryInterface
      * @var array
      */
     protected $parameters = [];
-    
+
     //Trait que contêm os métodos construtores das versões diferentes ainda ativas
     //quando uma versão for desativada o metodo correspondente pode e deve ser removido
     use Traits\TraitS2400;
