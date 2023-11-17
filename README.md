@@ -30,7 +30,7 @@ Este pacote é aderente com os [PSR-1], [PSR-2] e [PSR-4]. Se você observar neg
 
 ## Layout S-1.1 (a partir de 19/03/2023)
 
-## Layout S-1.2 (a partir de 20/11/2023)
+## [Layout S-1.2 (a partir de 20/11/2023)](EVENTOS_S_1_2.md)
 
 ## CRONOGRAMA PREVISTO
 
