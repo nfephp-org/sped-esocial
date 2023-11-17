@@ -1,0 +1,577 @@
+{
+    "title": "evtProcTrab",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "ideresp": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "tpinsc": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2
+                },
+                "nrinsc": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11,14}$"
+                }
+            }
+        },
+        "origem": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrproctrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^([0-9]{15}|[0-9]{20})$"
+        },
+        "obsproctrab": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 1,
+            "maxLength": 999
+        },
+        "infoprocjud": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "dtsent": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "ufvara": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/siglauf"
+                },
+                "codmunic": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{7}$"
+                },
+                "idvara": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{1,4}$"
+                }
+            }
+        },
+        "infoccp": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "dtccp": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "tpccp": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3
+                },
+                "cnpjccp": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^[0-9]{14}$"
+                }
+            }
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "nmtrab": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 2,
+            "maxLength": 70
+        },
+        "dtnascto": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/data"
+        },
+        "infocontr": {
+            "required": true,
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tpcontr": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9
+                    },
+                    "indcontr": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
+                    },
+                    "dtadmorig": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "$ref": "#/definitions/data"
+                    },
+                    "indreint": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^(S|N)$"
+                    },
+                    "indcateg": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
+                    },
+                    "indnatativ": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
+                    },
+                    "indmotdeslig": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N)$"
+                    },
+                    "matricula": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^.{1,30}$"
+                    },
+                    "codcateg": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^[0-9]{3}$"
+                    },
+                    "dtinicio": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "$ref": "#/definitions/data"
+                    },
+                    "infocompl": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "codcbo": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^[0-9]{6}$"
+                            },
+                            "natatividade": {
+                                "required": false,
+                                "type": ["integer","null"],
+                                "minimum": 1,
+                                "maximum": 2
+                            },
+                            "remuneracao": {
+                                "required": false,
+                                "type": ["array","null"],
+                                "minItems": 0,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "dtremun": {
+                                            "required": true,
+                                            "type": "string",
+                                            "$ref": "#/definitions/data"
+                                        },
+                                        "vrsalfx": {
+                                            "required": true,
+                                            "type": "number"
+                                        },
+                                        "undsalfixo": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "minimum": 1,
+                                            "maximum": 7
+                                        },
+                                        "dscsalvar": {
+                                            "required": false,
+                                            "type": ["string","null"],
+                                            "minLength": 1,
+                                            "maxLength": 999
+                                        }
+                                    }
+                                }
+                            },
+                            "infovinc": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "tpregtrab": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 2
+                                    },
+                                    "tpregprev": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 3
+                                    },
+                                    "dtadm": {
+                                        "required": true,
+                                        "type": "string",
+                                        "$ref": "#/definitions/data"
+                                    },
+                                    "tmpparc": {
+                                        "required": false,
+                                        "type": ["integer","null"],
+                                        "minimum": 0,
+                                        "maximum": 3
+                                    },
+                                    "duracao": {
+                                        "required": false,
+                                        "type": ["object","null"],
+                                        "properties": {
+                                            "tpcontr": {
+                                                "required": true,
+                                                "type": "integer",
+                                                "minimum": 1,
+                                                "maximum": 3
+                                            },
+                                            "dtterm": {
+                                                "required": false,
+                                                "type": ["string","null"],
+                                                "$ref": "#/definitions/data"
+                                            },
+                                            "clouassec": {
+                                                "required": false,
+                                                "type": ["string","null"],
+                                                "pattern": "^(S|N)$"
+                                            },
+                                            "objdet": {
+                                                "required": false,
+                                                "type": ["string","null"],
+                                                "minLength": 1,
+                                                "maxLength": 255
+                                            }
+                                        }
+                                    },
+                                    "observacoes": {
+                                        "required": false,
+                                        "type": ["array","null"],
+                                        "minItems": 0,
+                                        "maxItems": 99,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "observacao": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 255
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "sucessaovinc": {
+                                        "required": false,
+                                        "type": ["object","null"],
+                                        "properties": {
+                                            "tpinsc": {
+                                                "required": true,
+                                                "type": "integer",
+                                                "minimum": 1,
+                                                "maximum": 6
+                                            },
+                                            "nrinsc": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{11,14}$"
+                                            },
+                                            "matricant": {
+                                                "required": false,
+                                                "type": ["string","null"],
+                                                "pattern": "^.{1,30}$"
+                                            },
+                                            "dttransf": {
+                                                "required": true,
+                                                "type": "string",
+                                                "$ref": "#/definitions/data"
+                                            }
+                                        }
+                                    },
+                                    "infodeslig": {
+                                        "required": true,
+                                        "type": "object",
+                                        "properties": {
+                                            "dtdeslig": {
+                                                "required": true,
+                                                "type": "string",
+                                                "$ref": "#/definitions/data"
+                                            },
+                                            "mtvdeslig": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{2}$"
+                                            },
+                                            "dtprojfimapi": {
+                                                "required": false,
+                                                "type": ["string","null"],
+                                                "$ref": "#/definitions/data"
+                                            },
+                                            "pensalim": {
+                                                "required": false,
+                                                "type": ["integer","null"],
+                                                "minimum": 0,
+                                                "maximum": 3
+                                            },
+                                            "percaliment": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vralim": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "infoterm": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "dtterm": {
+                                        "required": true,
+                                        "type": "string",
+                                        "$ref": "#/definitions/data"
+                                    },
+                                    "mtvdesligtsv": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^(01|02|03|04|05|06|99)$"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "mudcategativ": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 0,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codcateg": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{3}$"
+                                },
+                                "natatividade": {
+                                    "required": false,
+                                    "type": ["integer","null"],
+                                    "minimum": 1,
+                                    "maximum": 2
+                                },
+                                "dtmudcategativ": {
+                                    "required": true,
+                                    "type": "string",
+                                    "$ref": "#/definitions/data"
+                                }
+                            }
+                        }
+                    },
+                    "uniccontr": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 0,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "matunic": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^.{1,30}$"
+                                },
+                                "codcateg": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{3}$"
+                                },
+                                "dtinicio": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "$ref": "#/definitions/data"
+                                }
+                            }
+                        }
+                    },
+                    "ideestab": {
+                        "required": true,
+                        "type": "object",
+                        "properties": {
+                            "tpinsc": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 4
+                            },
+                            "nrinsc": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{12,14}$"
+                            },
+                            "infovlr": {
+                                "required": true,
+                                "type": "object",
+                                "properties": {
+                                    "compini": {
+                                        "required": true,
+                                        "type": "string",
+                                        "$ref": "#/definitions/periodo"
+                                    },
+                                    "compfim": {
+                                        "required": true,
+                                        "type": "string",
+                                        "$ref": "#/definitions/periodo"
+                                    },
+                                    "indreperc": {
+                                        "required": true,
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 3
+                                    },
+                                    "indensd": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^(S)$"
+                                    },
+                                    "indenabono": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^(S)$"
+                                    },
+                                    "abono": {
+                                        "required": false,
+                                        "type": ["array","null"],
+                                        "minItems": 0,
+                                        "maxItems": 9,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "anobase": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "pattern": "^[0-9]{4}$"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "ideperiodo": {
+                                        "required": false,
+                                        "type": ["array","null"],
+                                        "minItems": 0,
+                                        "maxItems": 999,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "perref": {
+                                                    "required": true,
+                                                    "type": "string",
+                                                    "$ref": "#/definitions/periodo"
+                                                },
+                                                "basecalculo": {
+                                                    "required": false,
+                                                    "type": ["object","null"],
+                                                    "properties": {
+                                                        "vrbccpmensal": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        },
+                                                        "vrbccp13": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "infoagnocivo": {
+                                                            "required": false,
+                                                            "type": ["object","null"],
+                                                            "properties": {
+                                                                "grauexp": {
+                                                                    "required": true,
+                                                                    "type": "integer",
+                                                                    "minimum": 1,
+                                                                    "maximum": 4
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "infofgts": {
+                                                    "required": false,
+                                                    "type": ["object","null"],
+                                                    "properties": {
+                                                        "vrbcfgtsproctrab": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        },
+                                                        "vrbcfgtssefip": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vrbcfgtsdecant": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        }
+                                                    }
+                                                },
+                                                "basemudcateg": {
+                                                    "required": false,
+                                                    "type": ["object","null"],
+                                                    "properties": {
+                                                        "codcateg": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "pattern": "^[0-9]{3}$"
+                                                        },
+                                                        "vrbccprev": {
+                                                            "required": true,
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
