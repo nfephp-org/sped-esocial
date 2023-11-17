@@ -39,7 +39,7 @@
 - S-3000 - Exclusão de Eventos
 - S-3500 - Exclusão de Eventos - Processo Trabalhista
 
-## Eventos retornados pela Receita
+## Eventos retornados pela Receita Federal
 
 - S-5001 - Informações das Contribuições Sociais por Trabalhador
 - S-5002 - Imposto de Renda Retido na Fonte por Trabalhador
@@ -50,7 +50,7 @@
 - S-5501 - Informações Consolidadas de Tributos Decorrentes de Processo Trabalhista
 - S-5503 - Informações do FGTS por Trabalhador em Processo Trabalhista
 
-## Eventos exclusivos do Proder Judiciário
+## Eventos de uso exclusivo do Poder Judiciário
 
 - S-8200 - Anotação Judicial do Vínculo
 - S-8299 - Baixa Judicial do Vínculo
