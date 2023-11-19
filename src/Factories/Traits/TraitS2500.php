@@ -184,7 +184,7 @@ trait TraitS2500
             }
             $idetrab->appendChild($dependente);
         }
-        foreach($this->std->infocontr as $ict) {
+        foreach ($this->std->infocontr as $ict) {
             $infoc = $this->dom->createElement("infoContr");
             $this->dom->addChild(
                 $infoc,
@@ -801,7 +801,7 @@ trait TraitS2500
             $this->std->dtnascto ?? null,
             false
         );
-        foreach($this->std->infocontr as $ictr) {
+        foreach ($this->std->infocontr as $ictr) {
             $infoctr = $this->dom->createElement("infoContr");
             $this->dom->addChild(
                 $infoctr,
@@ -879,7 +879,7 @@ trait TraitS2500
                     false
                 );
                 if (!empty($icl->remuneracao)) {
-                    foreach($icl->remuneracao as $rem) {
+                    foreach ($icl->remuneracao as $rem) {
                         $remu = $this->dom->createElement("remuneracao");
                         $this->dom->addChild(
                             $remu,
@@ -965,7 +965,7 @@ trait TraitS2500
                         $infoVinc->appendChild($duracao);
                     }
                     if (!empty($vinc->observacoes)) {
-                        foreach($vinc->observacoes as $obs) {
+                        foreach ($vinc->observacoes as $obs) {
                             $observacoes = $this->dom->createElement("observacoes");
                             $this->dom->addChild(
                                 $observacoes,
@@ -1065,7 +1065,7 @@ trait TraitS2500
                 }
                 $infoctr->appendChild($icom);
                 if (!empty($ictr->mudcategativ)) {
-                    foreach($ictr->mudcategativ as $mud) {
+                    foreach ($ictr->mudcategativ as $mud) {
                         $mudCategAtiv = $this->dom->createElement("mudCategAtiv");
                         $this->dom->addChild(
                             $mudCategAtiv,

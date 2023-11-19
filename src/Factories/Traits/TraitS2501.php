@@ -83,7 +83,7 @@ trait TraitS2501
         $att = $this->dom->createAttribute('cpfTrab');
         $att->value = $this->std->cpftrab;
         $idetrab->appendChild($att);
-        foreach($this->std->calctrib as $calc) {
+        foreach ($this->std->calctrib as $calc) {
             $calctrib = $this->dom->createElement("calcTrib");
             $att0 = $this->dom->createAttribute('perRef');
             $att0->value = $calc->perref;
@@ -100,7 +100,7 @@ trait TraitS2501
             $att4 = $this->dom->createAttribute('vrRendIRRF13');
             $att4->value = $calc->vrrendirrf13;
             $calctrib->appendChild($att4);
-            foreach($calc->infocrcontrib as $info) {
+            foreach ($calc->infocrcontrib as $info) {
                 $infocont = $this->dom->createElement("infoCRContrib");
                 $att0 = $this->dom->createAttribute('tpCR');
                 $att0->value = $info->tpcr;
@@ -112,7 +112,7 @@ trait TraitS2501
             }
             $idetrab->appendChild($calctrib);
         }
-        foreach($this->std->infocrirrf as $cr) {
+        foreach ($this->std->infocrirrf as $cr) {
             $infoirrf = $this->dom->createElement("infoCRIRRF");
             $att0 = $this->dom->createAttribute('tpCR');
             $att0->value = $cr->tpcr;
@@ -194,7 +194,8 @@ trait TraitS2501
         foreach ($this->std->idetrab as $ide) {
             $idetrab = $this->dom->createElement("ideTrab");
             $this->dom->addAttribute($idetrab, 'cpfTrab', $ide->cpftrab);
-            if (!empty($ide->calctrib)) {}
+            if (!empty($ide->calctrib)) {
+            }
             if (!empty($ide->infocrirrf)) {
                 foreach ($ide->infocrirrf as $cr) {
                     $infocrirrf = $this->dom->createElement("infoCRIRRF");
@@ -226,7 +227,7 @@ trait TraitS2501
                             $inforra->appendChild($despprocjud);
                         }
                         if (!empty($rra->ideadv)) {
-                            foreach($rra->ideadv as $adv) {
+                            foreach ($rra->ideadv as $adv) {
                                 $ideadv = $this->dom->createElement("ideAdv");
                                 $this->dom->addAttribute($ideadv, 'tpInsc', $adv->tpinsc ?? null);
                                 $this->dom->addAttribute($ideadv, 'nrInsc', $adv->nrinsc ?? null);
@@ -246,7 +247,7 @@ trait TraitS2501
                         }
                     }
                     if (!empty($cr->penalim)) {
-                        foreach($cr->penalim as $pen) {
+                        foreach ($cr->penalim as $pen) {
                             $penalim = $this->dom->createElement("penAlim");
                             $this->dom->addAttribute($penalim, 'tpRend', $pen->tprend ?? null);
                             $this->dom->addAttribute($penalim, 'cpfDep', $pen->cpfdep ?? null);
@@ -261,7 +262,7 @@ trait TraitS2501
                             $this->dom->addAttribute($infoprocret, 'nrProcRet', $ret->nrprocret ?? null);
                             $this->dom->addAttribute($infoprocret, 'codSusp', $ret->codsusp ?? null);
                             if (!empty($ret->infovalores)) {
-                                foreach($ret->infovalores as $val) {
+                                foreach ($ret->infovalores as $val) {
                                     $infovalores = $this->dom->createElement("infoValores");
                                     $this->dom->addAttribute($infovalores, 'indApuracao', $val->indapuracao ?? null);
                                     $this->dom->addAttribute($infovalores, 'vlrNRetido', $val->vlrnretido ?? null);
@@ -270,15 +271,23 @@ trait TraitS2501
                                     $this->dom->addAttribute($infovalores, 'vlrCmpAnoAnt', $val->vlrcmpanoant ?? null);
                                     $this->dom->addAttribute($infovalores, 'vlrRendSusp', $val->vlrrendsusp ?? null);
                                     if (!empty($val->dedsusp)) {
-                                        foreach($val->dedsusp as $sus) {
+                                        foreach ($val->dedsusp as $sus) {
                                             $dedsusp = $this->dom->createElement("dedSusp");
-                                            $this->dom->addAttribute($dedsusp, 'indTpDeducao', $sus->indtpdeducao ?? null);
+                                            $this->dom->addAttribute(
+                                                $dedsusp,
+                                                'indTpDeducao',
+                                                $sus->indtpdeducao ?? null
+                                            );
                                             $this->dom->addAttribute($dedsusp, 'vlrDedSusp', $sus->vlrdedsusp ?? null);
                                             if (!empty($sus->benefpen)) {
-                                                foreach($sus->benefpen as $ben) {
+                                                foreach ($sus->benefpen as $ben) {
                                                     $benefpen = $this->dom->createElement("benefPen");
                                                     $this->dom->addAttribute($benefpen, 'cpfDep', $ben->cpfdep ?? null);
-                                                    $this->dom->addAttribute($benefpen, 'vlrDepenSusp', $ben->vlrdepensusp ?? null);
+                                                    $this->dom->addAttribute(
+                                                        $benefpen,
+                                                        'vlrDepenSusp',
+                                                        $ben->vlrdepensusp ?? null
+                                                    );
                                                     $dedsusp->appendChild($benefpen);
                                                 }
                                             }
@@ -298,7 +307,7 @@ trait TraitS2501
                 $infoircomplem = $this->dom->createElement("infoIRComplem");
                 $this->dom->addAttribute($infoircomplem, 'dtLaudo', $ide->infoircomplem->dtlaudo ?? null);
                 if (!empty($ide->infoircomplem->infodep)) {
-                    foreach($ide->infoircomplem->infodep as $dep) {
+                    foreach ($ide->infoircomplem->infodep as $dep) {
                         $infodep = $this->dom->createElement("infoDep");
                         $this->dom->addAttribute($infodep, 'cpfDep', $dep->cpfdep ?? null);
                         $this->dom->addAttribute($infodep, 'dtNascto', $dep->dtnascto ?? null);
