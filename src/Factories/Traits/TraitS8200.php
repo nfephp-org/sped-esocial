@@ -27,5 +27,4 @@ trait TraitS8200
     {
         //sem necessidade de criação do evento pois somente pode ser enviado pelo poder judiciário
     }
-
 }

@@ -473,7 +473,7 @@ trait TraitS1210
                 false
             );
             if (!empty($comp->infodep)) {
-                foreach($comp->infodep as $dep) {
+                foreach ($comp->infodep as $dep) {
                     $infodep = $this->dom->createElement("infoDep");
                     $this->dom->addChild(
                         $infodep,
@@ -525,7 +525,7 @@ trait TraitS1210
                             true
                         );
                         if (!empty($rc->deddepen)) {
-                            foreach($rc->deddepen as $ded) {
+                            foreach ($rc->deddepen as $ded) {
                                 $dpen = $this->dom->createElement("dedDepen");
                                 $this->dom->addChild(
                                     $dpen,
@@ -624,7 +624,7 @@ trait TraitS1210
                                     false
                                 );
                                 if (!empty($infp->infovalores)) {
-                                    foreach($infp->infovalores as $val) {
+                                    foreach ($infp->infovalores as $val) {
                                         $ival = $this->dom->createElement("infoValores");
                                         $this->dom->addChild(
                                             $ival,
@@ -663,7 +663,7 @@ trait TraitS1210
                                             false
                                         );
                                         if (!empty($val->dedsusp)) {
-                                            foreach($val->dedsusp as $susp) {
+                                            foreach ($val->dedsusp as $susp) {
                                                 $dsu = $this->dom->createElement("dedSusp");
                                                 $this->dom->addChild(
                                                     $dsu,
@@ -690,7 +690,7 @@ trait TraitS1210
                                                     false
                                                 );
                                                 if (!empty($susp->benefpen)) {
-                                                    foreach($susp->benefpen as $ben) {
+                                                    foreach ($susp->benefpen as $ben) {
                                                         $bpen = $this->dom->createElement("benefPen");
                                                         $this->dom->addChild(
                                                             $bpen,
@@ -719,7 +719,7 @@ trait TraitS1210
                         $infocomp->appendChild($ircr);
                     }
                     if (!empty($comp->plansaude)) {
-                        foreach($comp->plansaude as $sau) {
+                        foreach ($comp->plansaude as $sau) {
                             $psau = $this->dom->createElement("planSaude");
                             $this->dom->addChild(
                                 $psau,
@@ -740,7 +740,7 @@ trait TraitS1210
                                 true
                             );
                             if (!empty($sau->infodepsau)) {
-                                foreach($sau->infodepsau as $dep) {
+                                foreach ($sau->infodepsau as $dep) {
                                     $idep = $this->dom->createElement("infoDepSau");
                                     $this->dom->addChild(
                                         $idep,
@@ -761,7 +761,7 @@ trait TraitS1210
                         }
                     }
                     if (!empty($comp->inforeembmed)) {
-                        foreach($comp->inforeembmed as $ree) {
+                        foreach ($comp->inforeembmed as $ree) {
                             $iree = $this->dom->createElement("infoReembMed");
                             $this->dom->addChild(
                                 $iree,
@@ -782,7 +782,7 @@ trait TraitS1210
                                 false
                             );
                             if (!empty($ree->detreembtit)) {
-                                foreach($ree->detreembtit as $tit) {
+                                foreach ($ree->detreembtit as $tit) {
                                     $rtit = $this->dom->createElement("detReembTit");
                                     $this->dom->addChild(
                                         $rtit,
@@ -821,7 +821,7 @@ trait TraitS1210
                                         true
                                     );
                                     if (!empty($bdep->detreembdep)) {
-                                        foreach($bdep->detreembdep as $drdep) {
+                                        foreach ($bdep->detreembdep as $drdep) {
                                             $detree = $this->dom->createElement("detReembDep");
                                             $this->dom->addChild(
                                                 $detree,

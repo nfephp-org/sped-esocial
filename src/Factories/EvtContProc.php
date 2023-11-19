@@ -59,5 +59,4 @@ class EvtContProc extends Factory implements FactoryInterface
     ) {
         parent::__construct($config, $std, $certificate, $date);
     }
-
 }
