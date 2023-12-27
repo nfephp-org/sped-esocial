@@ -85,7 +85,7 @@ trait TraitS2231
             $fim = $this->dom->createElement("fimCessao");
             $this->dom->addChild(
                 $fim,
-                "dtTermCesssao",
+                "dtTermCessao",
                 $this->std->fimcessao->dttermcessao,
                 true
             );
