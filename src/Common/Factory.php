@@ -12,6 +12,7 @@ use NFePHP\Common\Signer;
 use NFePHP\Common\Strings;
 use NFePHP\Common\Validator;
 use stdClass;
+use Exception;
 
 abstract class Factory
 {
