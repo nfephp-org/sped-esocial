@@ -1,20 +1,13 @@
-# e-Social
-**Biblioteca PHP para a integração de aplicativo com o projeto [SPED eSocial](http://www.esocial.gov.br/) do Ministério do Trabalho, Receita Federal e Caixa Economica Federal**
+# SPED eSocial
+**Biblioteca PHP para integração de uma aplicação com o [eSocial](http://www.esocial.gov.br/) do Ministério do Trabalho, Receita Federal e Caixa Economica Federal**
 
-*sped-esocial* é um framework que permite a integração de um aplicativo, com os serviços do projeto do MT denominado *eSocial*, com a construção dos eventos em xml e do envio dos lotes de eventos e consultas, através de requisições SOAP, sobre SSL usando certificado digital modelo A1 (PKCS#12), pertencentes a cadeia de certificação Brasileira.
-
-
-## Layout S-1.1 (a partir de 19/03/2023) 
-
-## Layout S-1.0 (a partir de 10/05/2021)
-
-## Layout 2.5.0 (não é mais válido e será removido em breve)
-
-### *Esta biblioteca está em fase de desenvolvimento constante, portanto faça TESTES antes de usar*
-
-*Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
+*sped-esocial* é um framework que oferece a integração de uma aplicação com os serviços do projeto do Ministério do Trabalho conhecido como eSocial. Ele fornece a possibilidade de construir eventos em XML, enviar lotes e realizar consultas através de requisições SOAP com SLL, usando certificado digital modelo A1 (PKCS#12) que pertença à cadeia de certificação Brasileira.
 
 [![Chat][ico-gitter]][link-gitter]
+[![Build Status][ico-travis]][link-travis]
+[![Issues][ico-issues]][link-issues]
+[![Forks][ico-forks]][link-forks]
+[![Stars][ico-stars]][link-stars]
 
 [![Latest Stable Version][ico-stable]][link-packagist]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
@@ -22,9 +15,7 @@
 [![License][ico-license]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-[![Issues][ico-issues]][link-issues]
-[![Forks][ico-forks]][link-forks]
-[![Stars][ico-stars]][link-stars]
+### *Biblioteca em desenvolvimento, TESTE antes de usar*
 
 Este pacote é aderente com os [PSR-1], [PSR-2] e [PSR-4]. Se você observar negligências de conformidade, por favor envie um patch via pull request.
 
@@ -32,7 +23,14 @@ Este pacote é aderente com os [PSR-1], [PSR-2] e [PSR-4]. Se você observar neg
 [PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
 [PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 
-Não deixe de se cadastrar no [grupo de discussão do NFePHP](http://groups.google.com/group/nfephp) para acompanhar o desenvolvimento e participar das discussões e tirar duvidas!
+[Grupo de discussão do NFePHP](http://groups.google.com/group/nfephp) - Para acompanhar o desenvolvimento e participar das discussões e tirar duvidas.
+[Chat do Gitter](https://gitter.im/nfephp-org/sped-esocial) - Para iniciar discussões especificas sobre o desenvolvimento deste pacote.
+
+## Layout S-1.0 (a partir de 10/05/2021)
+
+## Layout S-1.1 (a partir de 19/03/2023)
+
+## [Layout S-1.2 (a partir de 20/11/2023)](EVENTOS_S_1_2.md)
 
 ## CRONOGRAMA PREVISTO
 
@@ -48,7 +46,6 @@ Fase 4: Julho/18: Substituição da GFIP (Guia de Informações à Previdência 
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
-
 **Etapa 2 - Demais empresas privadas, incluindo Simples, MEIs e pessoas físicas (que possuam empregados)**
 
 Fase 1: Julho/18 - Apenas informações relativas às empresas, ou seja, cadastros do empregador e tabelas
@@ -60,7 +57,6 @@ Fase 3: Nov/18: Torna-se obrigatório o envio das folhas de pagamento
 Fase 4: Janeiro/19: Substituição da GFIP (Guia de informações à Previdência Social) e compensação cruzada
 
 Fase 5: Janeiro/19: Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
-
 
 **Etapa 3 - Entes Públicos**
 
@@ -74,11 +70,9 @@ Fase 3: Jan/22: Torna-se obrigatório o envio das folhas de pagamento
 
 Fase 4: Jul/22: Substituição da GFIP (guia de informações à Previdência) e compensação cruzada. Na última fase, deverão ser enviados os dados de segurança e saúde do trabalhador
 
-
 **Empresas do SIMPLES NACIONAL : a definir**
 
 [CAIXA Nº 761 DE 12/04/2017](https://www.legisweb.com.br/legislacao/?id=342289)
-
 
 ## Donations
 
@@ -105,15 +99,11 @@ Mas também, caso você ache que qualquer informação obtida aqui, lhe foi úti
 ### Fase 1
 **Cadastros do empregador e tabelas:**
 
-
 ### Fase 2
 **Dados dos trabalhadores e seus vínculos com as empresas (eventos não periódicos):**
 
-
-
 ### Fase 3
 **Folha de Pagamento (eventos periódicos):**
-
 
 ### Fase 4
 **Substituição da GFIP (Guia de informações à Previdência Social) e compensação cruzada:**
@@ -127,8 +117,7 @@ Deverá ser transmitida até o dia 15 do mês subsequente ao de ocorrência dos 
 ### Fase 5
 **Dados de segurança e saúde do trabalhador:**
 
-
-## CONCEITO DO e-SOCIAL
+## CONCEITO DO ESOCIAL
 
 O eSocial (ou folha de pagamento digital), é a sigla para o Sistema de Escrituração Fiscal Digital das Obrigações Fiscais Previdenciárias e Trabalhistas, e faz parte do Projeto SPED-Sistema Público de Escrituração Digital, lançado em 2007.
 

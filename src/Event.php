@@ -61,8 +61,7 @@ class Event
         'evtcat' => Factories\EvtCAT::class,
         'evtmonit' => Factories\EvtMonit::class,
         'evttabrubrica' => Factories\EvtTabRubrica::class,
-        'evtcdbenprrp' => Factories\EvtCdBenPrRP::class,
-        'evtcdbenefin' => Factories\EvtCdBenPrRP::class, //novo nome para evento S-2400
+        'evtcdbenefin' => Factories\EvtCdBenefIn::class,
         'evtcdbenefalt' => Factories\EvtCdBenefAlt::class,
         'evtcdbenin' => Factories\EvtCdBenIn::class,
         'evtcdbenalt' => Factories\EvtCdBenAlt::class,
@@ -81,6 +80,7 @@ class Event
         'evttoxic' => Factories\EvtToxic::class,
         'evtfgts' => Factories\EvtFGTS::class,
         'evtbasesfgts' => Factories\EvtBasesFGTS::class,
+        'evtanotjud' => Factories\EvtAnotJud::class,
         'evtbaixa' => Factories\EvtBaixa::class,
         'evtproctrab' => Factories\EvtProcTrab::class,
         'evtcontproc' => Factories\EvtContProc::class,
@@ -129,7 +129,7 @@ class Event
         's2220' => 'evtmonit',
         's2221' => 'evttoxic',
         's1010' => 'evttabrubrica',
-        's2400' => 'evtcdbenprrp',
+        's2400' => 'evtcdbenefin',
         's1210' => 'evtpgtos',
         's2306' => 'evttsvaltcontr',
         's1260' => 'evtcomprod',
@@ -143,6 +143,7 @@ class Event
         's1295' => 'evttotconting',
         's5003' => 'evtbasesfgts',
         's5013' => 'evtfgts',
+        's8200' => 'evtanotjud',
         's8299' => 'evtbaixa',
         's2405' => 'evtcdbenefalt',
         's2410' => 'evtcdbenin',
@@ -192,6 +193,8 @@ class Event
         'evtContProc' => 'S-2501',
         'evtExclusao' => 'S-3000',
         'evtExcProcTrab' => 'S-3500',
+        'evtAnotJud' => 'S-8200',
+        'evtBaixa' => 'S-8299'
     ];
 
     /**
@@ -201,7 +204,7 @@ class Event
      * @param  array $arguments [config, std, certificate, $date]
      *
      * @return object
-     * @throws InvalidArgumentException
+     * @throws EventsException
      */
     public static function __callStatic($name, $arguments)
     {

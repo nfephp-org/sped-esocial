@@ -5,14 +5,6 @@ namespace NFePHP\eSocial\Factories\Traits;
 trait TraitS3500
 {
     /**
-     * builder for version 2.5.0
-     */
-    protected function toNode250()
-    {
-        throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão 2.5.0 !!");
-    }
-
-    /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
@@ -86,5 +78,13 @@ trait TraitS3500
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.2.0
+     */
+    protected function toNodeS120()
+    {
+        return $this->toNodeS110();
     }
 }

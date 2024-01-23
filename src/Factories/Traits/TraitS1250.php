@@ -5,90 +5,6 @@ namespace NFePHP\eSocial\Factories\Traits;
 trait TraitS1250
 {
     /**
-     * builder for version 2.5.0
-     */
-    protected function toNode250()
-    {
-        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
-        //o idEvento pode variar de evento para evento
-        //então cada factory individualmente terá de construir o seu
-        $ideEvento = $this->dom->createElement("ideEvento");
-        $this->dom->addChild(
-            $ideEvento,
-            "indRetif",
-            $this->std->indretif,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "nrRecibo",
-            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
-            false
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "indApuracao",
-            $this->std->indapuracao,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "perApur",
-            $this->std->perapur,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "tpAmb",
-            $this->tpAmb,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "procEmi",
-            $this->procEmi,
-            true
-        );
-        $this->dom->addChild(
-            $ideEvento,
-            "verProc",
-            $this->verProc,
-            true
-        );
-        $this->node->insertBefore($ideEvento, $ideEmpregador);
-
-        $infoAquisProd = $this->dom->createElement("infoAquisProd");
-        $ideEstabAdquir = $this->dom->createElement("ideEstabAdquir");
-        $this->dom->addChild(
-            $ideEstabAdquir,
-            "tpInscAdq",
-            $this->std->ideestabadquir->tpinscadq,
-            true
-        );
-        $this->dom->addChild(
-            $ideEstabAdquir,
-            "nrInscAdq",
-            $this->std->ideestabadquir->nrinscadq,
-            true
-        );
-        if (isset($this->std->ideestabadquir->tpaquis)) {
-            if ($this->layoutStr !== 'v02_05_00') {
-                $this->tpAquis($ideEstabAdquir, $this->std->ideestabadquir->tpaquis);
-            } else {
-                $this->tpAquisV020500(
-                    $ideEstabAdquir,
-                    $this->std->ideestabadquir->tpaquis
-                );
-            }
-        }
-        $infoAquisProd->appendChild($ideEstabAdquir);
-        $this->node->appendChild($infoAquisProd);
-        $this->eSocial->appendChild($this->node);
-        //$this->xml = $this->dom->saveXML($this->eSocial);
-        $this->sign();
-    }
-
-    /**
      * Estrutura do tpAquin v2.4.2
      * @param DOMElement $ideEstabAdquir
      * @param stdClass $tpaquis
@@ -248,6 +164,14 @@ trait TraitS1250
     }
 
     /**
+     * builder for version S.1.2.0
+     */
+    protected function toNodeS120()
+    {
+        throw new \Exception("NÃO EXISTE EVENTO {$this->evtAlias} na versão S_1.2 !!");
+    }
+
+    /**
      * Grandes altereções de estrutura na tag tpAquis
      * @param DOMElement $ideEstabAdquir
      * @param stdClass $tpaquis
@@ -353,7 +277,6 @@ trait TraitS1250
             $ideEstabAdquir->appendChild($tpAquis);
         }
     }
-
 
     /**
      * builder for version S.1.0.0

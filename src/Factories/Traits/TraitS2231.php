@@ -5,14 +5,6 @@ namespace NFePHP\eSocial\Factories\Traits;
 trait TraitS2231
 {
     /**
-     * builder for version 2.5.0
-     */
-    protected function toNode250()
-    {
-        throw new \Exception("Este evento não existem na versão 2.5");
-    }
-
-    /**
      * builder for version S.1.0.0
      */
     protected function toNodeS100()
@@ -93,7 +85,7 @@ trait TraitS2231
             $fim = $this->dom->createElement("fimCessao");
             $this->dom->addChild(
                 $fim,
-                "dtTermCesssao",
+                "dtTermCessao",
                 $this->std->fimcessao->dttermcessao,
                 true
             );
@@ -109,6 +101,14 @@ trait TraitS2231
      * builder for version S.1.1.0
      */
     protected function toNodeS110()
+    {
+        return $this->toNodeS100();
+    }
+
+    /**
+     * builder for version S.1.2.0
+     */
+    protected function toNodeS120()
     {
         return $this->toNodeS100();
     }
