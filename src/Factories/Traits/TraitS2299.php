@@ -1241,11 +1241,10 @@ trait TraitS2299
                     true
                 );
 
-                //craiado por mim porem nao sei se vai dar certo
                 $this->dom->addChild(
                     $dmDev,
                     "indRRA",
-                    $dm->indrra,
+                    $dm->indrra ?? null,
                     false
                 );
 
