@@ -1245,7 +1245,7 @@ trait TraitS2299
                 $this->dom->addChild(
                     $dmDev,
                     "indRRA",
-                    $dm->indrra,
+                    $dm->indrra ?? null,
                     false
                 );
 
