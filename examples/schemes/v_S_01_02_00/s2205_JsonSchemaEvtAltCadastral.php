@@ -292,7 +292,7 @@ $jsonSchema = '{
                         "pattern": "^(S|N)$"
                     },
                     "descrdep": {
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 100
