@@ -190,7 +190,7 @@ $jsonSchema = '{
                             },
                             "indrra": {
                                 "required": false,
-                                "type": "string",
+                                "type": ["string","null"],
                                 "pattern": "^(S)$"
                             },
                             "infoperapur": {
