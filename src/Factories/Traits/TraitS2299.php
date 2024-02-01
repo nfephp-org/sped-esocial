@@ -1240,14 +1240,16 @@ trait TraitS2299
                     $dm->idedmdev,
                     true
                 );
-
-                $this->dom->addChild(
-                    $dmDev,
-                    "indRRA",
-                    $dm->indrra ?? null,
-                    false
-                );
-
+                
+                if (!empty($dm->indrra)) {
+                    $this->dom->addChild(
+                        $dmDev,
+                        "indRRA",
+                        $dm->indrra ?? null,
+                        false
+                    );
+                }
+                
                 if (!empty($dm->infoperapur)) {
                     $infoPerApur = $this->dom->createElement("infoPerApur");
                     foreach ($dm->infoperapur->ideestablot as $isl) {
