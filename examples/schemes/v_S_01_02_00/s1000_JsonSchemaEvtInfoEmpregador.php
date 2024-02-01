@@ -69,7 +69,7 @@ $jsonSchema = '{
                     "required": true,
                     "type": "integer",
                     "minimum": 0,
-                    "maximum": 1
+                    "maximum": 2
                 },
                 "indopccp": {
                     "required": false,
