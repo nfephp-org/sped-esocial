@@ -263,9 +263,9 @@ $jsonSchema = '{
                         "pattern": "^[0-9]{11}$"
                     },
                     "ideoc": {
-                        "required": true,
-                        "type": "integer",
-                        "minimum": 1,
+                        "required": false,
+                        "type": ["integer","null"],
+                        "minimum": 0,
                         "maximum": 9
                     },
                     "dscoc": {
@@ -274,8 +274,8 @@ $jsonSchema = '{
                         "pattern": "^.{1,20}$"
                     },
                     "nroc": {
-                        "required": true,
-                        "type": "string",
+                        "required": false,
+                        "type": ["string","null"],
                         "maxLength": 14
                     },
                     "ufoc": {
