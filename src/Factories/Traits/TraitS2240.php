@@ -276,14 +276,14 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "nrOC",
-                $r->nroc,
-                true
+                !empty($r->nroc) ? $r->nroc : null,
+                false
             );
             $this->dom->addChild(
                 $respReg,
                 "ufOC",
-                $r->ufoc,
-                true
+                !empty($r->ufoc) ? $r->ufoc : null,
+                false
             );
             $info->appendChild($respReg);
         }
@@ -572,14 +572,14 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "nrOC",
-                $r->nroc,
-                true
+                !empty($r->nroc) ? $r->nroc : null,
+                false
             );
             $this->dom->addChild(
                 $respReg,
                 "ufOC",
-                $r->ufoc,
-                true
+                !empty($r->ufoc) ? $r->ufoc : null,
+                false
             );
             $info->appendChild($respReg);
         }
@@ -874,14 +874,14 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "nrOC",
-                $r->nroc,
-                true
+                !empty($r->nroc) ? $r->nroc : null,
+                false
             );
             $this->dom->addChild(
                 $respReg,
                 "ufOC",
-                $r->ufoc,
-                true
+                !empty($r->ufoc) ? $r->ufoc : null,
+                false
             );
             $info->appendChild($respReg);
         }
