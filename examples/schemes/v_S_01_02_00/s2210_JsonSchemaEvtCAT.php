@@ -255,7 +255,7 @@ $jsonSchema = '{
                 "durtrat": {
                     "required": true,
                     "type": "integer",
-                    "minimum": 1,
+                    "minimum": 0,
                     "maximum": 9999
                 },
                 "indafast": {
@@ -389,7 +389,7 @@ $std->atestado = new \stdClass();
 $std->atestado->dtatendimento = '2017-02-01';
 $std->atestado->hratendimento = '0000';
 $std->atestado->indinternacao = 'S';
-$std->atestado->durtrat = 2;
+$std->atestado->durtrat = 0;
 $std->atestado->indafast = 'N';
 $std->atestado->dsclesao = '123456789';
 $std->atestado->dsccompLesao = 'lskjslkjslkjslksjlskjslkj';
