@@ -264,8 +264,8 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "ideOC",
-                $r->ideoc,
-                true
+                !empty($r->ideoc) ? $r->ideoc : null,
+                false
             );
             $this->dom->addChild(
                 $respReg,
@@ -560,8 +560,8 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "ideOC",
-                $r->ideoc,
-                true
+                !empty($r->ideoc) ? $r->ideoc : null,
+                false
             );
             $this->dom->addChild(
                 $respReg,
@@ -862,8 +862,8 @@ trait TraitS2240
             $this->dom->addChild(
                 $respReg,
                 "ideOC",
-                $r->ideoc,
-                true
+                !empty($r->ideoc) ? $r->ideoc : null,
+                false
             );
             $this->dom->addChild(
                 $respReg,
