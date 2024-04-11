@@ -83,8 +83,8 @@ trait TraitS2220
         $this->dom->addChild(
             $aso,
             "resAso",
-            $stdaso->resaso,
-            true
+            !empty($stdaso->resaso) ? $stdaso->resaso : null,
+            false
         );
 
         foreach ($this->std->exmedocup->aso->exame as $exa) {
