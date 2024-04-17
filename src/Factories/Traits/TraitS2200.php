@@ -508,20 +508,38 @@ trait TraitS2200
             }
             //aprendiz (opcional)
             if (isset($std->aprend)) {
-                $aprendiz = $this->dom->createElement("aprend");
+                $aprend = $this->dom->createElement("aprend");
                 $this->dom->addChild(
-                    $aprendiz,
+                    $aprend,
+                    "indAprend",
+                    $std->aprend->indaprend,
+                    true
+                );
+                $this->dom->addChild(
+                    $aprend,
+                    "cnpjEntQual",
+                    $std->aprend->cnpjentqual ?? null,
+                    false
+                );
+                $this->dom->addChild(
+                    $aprend,
                     "tpInsc",
-                    $std->aprend->tpinsc,
-                    true
+                    $std->aprend->tpinsc ?? null,
+                    false
                 );
                 $this->dom->addChild(
-                    $aprendiz,
+                    $aprend,
                     "nrInsc",
-                    $std->aprend->nrinsc,
-                    true
+                    $std->aprend->nrinsc ?? null,
+                    false
                 );
-                $celetista->appendChild($aprendiz);
+                $this->dom->addChild(
+                    $aprend,
+                    "cnpjPrat",
+                    $std->aprend->cnpjprat ?? null,
+                    false
+                );
+                $celetista->appendChild($aprend);
             }
             $infoRegimeTrab->appendChild($celetista);
         } elseif (isset($vin->infoestatutario)) {
