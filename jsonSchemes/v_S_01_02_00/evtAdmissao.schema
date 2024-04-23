@@ -462,7 +462,7 @@
                                 "tpinsc": {
                                     "required": false,
                                     "type": ["integer","null"],
-                                    "minimum": 1,
+                                    "minimum": 0,
                                     "maximum": 2
                                 },
                                 "nrinsc": {
