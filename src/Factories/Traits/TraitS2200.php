@@ -1529,14 +1529,14 @@ trait TraitS2200
                 $this->dom->addChild(
                     $aprendiz,
                     "tpInsc",
-                    $std->aprend->tpinsc,
-                    true
+                    $std->aprend->tpinsc ?? null,
+                    false
                 );
                 $this->dom->addChild(
                     $aprendiz,
                     "nrInsc",
-                    $std->aprend->nrinsc,
-                    true
+                    $std->aprend->nrinsc ?? null,
+                    false
                 );
                 $this->dom->addChild(
                     $aprendiz,
