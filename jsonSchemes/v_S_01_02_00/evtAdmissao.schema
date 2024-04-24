@@ -442,12 +442,6 @@
                             "required": false,
                             "type": ["object","null"],
                             "properties": {
-                                "tpinsc": {
-                                    "required": false,
-                                    "type": "integer",
-                                    "minimum": 1,
-                                    "maximum": 2
-                                },
                                 "indaprend": {
                                     "required": true,
                                     "type": "integer",
