@@ -461,7 +461,7 @@
                                 },
                                 "nrinsc": {
                                     "required": false,
-                                    "type": "string",
+                                    "type": ["string","null"],
                                     "pattern": "^([0-9]{11}|[0-9]{14})$"
                                 },
                                 "cnpjprat": {
