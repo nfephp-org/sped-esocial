@@ -114,10 +114,8 @@ trait TraitS2221
         );
         $this->node->appendChild($toxicologico);
 
-
         $this->eSocial->appendChild($this->node);
-        // var_dump($this->dom->saveXML($this->eSocial));
-        // die();
+
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
