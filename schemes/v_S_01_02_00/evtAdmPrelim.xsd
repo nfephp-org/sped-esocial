@@ -46,7 +46,7 @@
                                         <xs:element name="dtAdm" type="xs:date">
                                             <xs:annotation>
                                                 <xs:documentation>Preencher com a data de admissão do trabalhador (ou data de início, no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE).</xs:documentation>
-                                                <xs:documentation>Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser posterior à data de nascimento do trabalhador, igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador e igual ou anterior ao ano do óbito, se existente.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="matricula" type="TS_codigo_esocial">
@@ -85,7 +85,12 @@
                                                     </xs:element>
                                                     <xs:element name="vrSalFx" type="TS_vrSalFx" />
                                                     <xs:element name="undSalFixo" type="TS_undSalFixo" />
-                                                    <xs:element name="tpContr" type="TS_tpContr" />
+                                                    <xs:element name="tpContr" type="TS_tpContr">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Tipo de contrato de trabalho.</xs:documentation>
+                                                            <xs:documentation>Validação: Se {codCateg}(../codCateg) = [103] e {dtAdm}(../dtAdm) >= [2024-04-22], deve ser informado [2].</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
                                                     <xs:element name="dtTerm" minOccurs="0" type="xs:date">
                                                         <xs:annotation>
                                                             <xs:documentation>Data do término do contrato por prazo determinado.</xs:documentation>

@@ -273,7 +273,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Identificação dos advogados.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {tpInsc}, {nrInsc}</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {vlrDespAdvogados}(../despProcJud_vlrDespAdvogados) > 0); N (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:attribute name="tpInsc">
@@ -448,6 +448,7 @@
                                                                             <xs:element name="dedSusp" minOccurs="0" maxOccurs="25">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Detalhamento das deduções com exigibilidade suspensa.</xs:documentation>
+                                                                                    <xs:documentation>CHAVE_GRUPO: {indTpDeducao}</xs:documentation>
                                                                                     <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
@@ -620,9 +621,14 @@
                                                                     <xs:documentation>IRRF - Decisão da Justiça do Trabalho</xs:documentation>
                                                                 </xs:annotation>
                                                             </xs:enumeration>
+                                                            <xs:enumeration value="056152">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>IRRF - CCP/NINTER</xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:enumeration>
                                                             <xs:enumeration value="188951">
                                                                 <xs:annotation>
-                                                                    <xs:documentation>IRRF - RRA - Decisão da Justiça do Trabalho</xs:documentation>
+                                                                    <xs:documentation>IRRF - RRA</xs:documentation>
                                                                 </xs:annotation>
                                                             </xs:enumeration>
                                                         </xs:restriction>

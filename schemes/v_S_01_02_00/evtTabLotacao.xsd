@@ -109,7 +109,7 @@
             <xs:element name="tpInsc" minOccurs="0" type="TS_tpInsc_1_2_4">
                 <xs:annotation>
                     <xs:documentation>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.</xs:documentation>
-                    <xs:documentation>Validação: O campo não deve ser preenchido se {tpLotacao}(./tpLotacao) for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo {dadosLotacao/nrInsc}(./nrInsc), conforme Tabela 10.</xs:documentation>
+                    <xs:documentation>Validação: O campo não deve ser preenchido se {tpLotacao}(./tpLotacao) for igual a [01, 10, 21, 24, 90, 91, 92]. Nos demais casos, observar conteúdo exigido para o campo {dadosLotacao/nrInsc}(./nrInsc), conforme Tabela 10.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="nrInsc" minOccurs="0" type="TS_nrInsc_11_12_14">

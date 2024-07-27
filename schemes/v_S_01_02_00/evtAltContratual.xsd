@@ -174,8 +174,19 @@
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
-                                                                            <xs:element name="tpContr" type="TS_tpContr" />
-                                                                            <xs:element name="dtTerm" minOccurs="0" type="TS_dtTerm" />
+                                                                            <xs:element name="tpContr" type="TS_tpContr">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Tipo de contrato de trabalho.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Se {codCateg}(../codCateg) = [103] e {dtAlteracao}(2206_altContratual_dtAlteracao) >= [2024-04-22], deve ser informado [2].</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="dtTerm" minOccurs="0" type="TS_dtTerm">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Data do término do contrato por prazo determinado.</xs:documentation>
+                                                                                    <xs:documentation>Validação: O preenchimento é obrigatório se {tpContr}(./tpContr) = [2]. Não informar se {tpContr}(./tpContr) = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência ou mudança de CPF, igual ou posterior a {sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf), {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf) ou {dtAltCPF}(2200_vinculo_mudancaCPF_dtAltCPF) do evento S-2200, conforme o caso).</xs:documentation>
+                                                                                    <xs:documentation>Retornar alerta caso a data informada seja anterior a {dtAlteracao}(2206_altContratual_dtAlteracao).</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
                                                                             <xs:element name="objDet" minOccurs="0" type="TS_objDet" />
                                                                         </xs:sequence>
                                                                     </xs:complexType>
