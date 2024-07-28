@@ -175,6 +175,7 @@ class Event
         'evtAltContratual' => 'S-2206',
         'evtCAT' => 'S-2210',
         'evtMonit' => 'S-2220',
+        'evtToxic' => 'S-2221',
         'evtAfastTemp' => 'S-2230',
         'evtCessao' => 'S-2231',
         'evtExpRisco' => 'S-2240',

@@ -19,6 +19,7 @@
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_MESMO_PROCEMI</xs:documentation>
                         <xs:documentation>REGRA:REGRA_MUDANCA_CATEG_NAT_ATIV</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_RETIFICA_MESMO_VINCULO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_UNICIDADE_CONTRATUAL</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_MATRICULA</xs:documentation>
@@ -49,7 +50,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Identificação do contribuinte, caso tenha havido imposição de responsabilidade indireta.</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA: Informações de identificação do contribuinte (responsável direto), caso tenha havido imposição de responsabilidade indireta.</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: O (se houver algum {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) = [8]); OC (se não houver nenhum {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) = [8] e houver algum {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) = [6]); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -104,10 +105,10 @@
                                                                 <xs:sequence>
                                                                     <xs:element name="dtSent" type="xs:date">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Informar a data do(a):</xs:documentation>
-                                                                            <xs:documentation>a) Trânsito em julgado da decisão líquida proferida no processo trabalhista;</xs:documentation>
+                                                                            <xs:documentation>Informar a data da:</xs:documentation>
+                                                                            <xs:documentation>a) Determinação judicial para o cumprimento da decisão líquida transitada em julgado;</xs:documentation>
                                                                             <xs:documentation>b) Homologação de acordo judicial; ou</xs:documentation>
-                                                                            <xs:documentation>c) Trânsito em julgado da decisão homologatória dos cálculos de liquidação da sentença.</xs:documentation>
+                                                                            <xs:documentation>c) Decisão que determinar o cumprimento antecipado de obrigação.</xs:documentation>
                                                                             <xs:documentation>Validação: Deve ser igual ou anterior à data atual.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
@@ -139,7 +140,7 @@
                                                                 <xs:sequence>
                                                                     <xs:element name="dtCCP" type="xs:date">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Data da celebração do acordo celebrado perante CCP ou Ninter.</xs:documentation>
+                                                                            <xs:documentation>Data da celebração do acordo celebrado perante CCP ou NINTER.</xs:documentation>
                                                                             <xs:documentation>Validação: Deve ser igual ou anterior à data atual.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
@@ -214,7 +215,7 @@
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Tipo de contrato a que se refere o processo judicial ou a demanda submetida à CCP ou ao NINTER.</xs:documentation>
-                                                                <xs:documentation>Validação: Deve ser igual a [8] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado.</xs:documentation>
+                                                                <xs:documentation>Validação: Deve ser igual a [6, 8] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado.</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:byte">
                                                                 <xs:enumeration value="1">
@@ -234,7 +235,7 @@
                                                                 </xs:enumeration>
                                                                 <xs:enumeration value="4">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento</xs:documentation>
+                                                                        <xs:documentation>Trabalhador com vínculo formalizado, com alteração na data de admissão e inclusão ou alteração de data de desligamento</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:enumeration>
                                                                 <xs:enumeration value="5">
@@ -268,7 +269,7 @@
                                                     <xs:element name="indContr" type="TS_sim_nao">
                                                         <xs:annotation>
                                                                 <xs:documentation>Indicativo se o contrato possui informação no evento S-2190, S-2200 ou S-2300 no declarante.</xs:documentation>
-                                                                <xs:documentation>Validação: Deve ser igual a [N] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado.</xs:documentation>
+                                                                <xs:documentation>Validação: Deve ser igual a [N] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado. Além disso, somente pode haver um contrato com o valor igual a [N].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="dtAdmOrig" minOccurs="0" type="xs:date">
@@ -298,7 +299,7 @@
                                                                 <xs:documentation>Indicativo se houve reconhecimento de motivo de desligamento diferente do informado pelo declarante.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
-                                                    <xs:element name="matricula" minOccurs="0" type="TS_codigo_esocial">
+                                                    <xs:element name="matricula" minOccurs="0" type="TS_matricula">
                                                         <xs:annotation>
                                                             <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                                                             <xs:documentation>Se {indContr}(./indContr) = [N], deve ser criada uma matrícula para o trabalhador.</xs:documentation>
@@ -399,11 +400,11 @@
                                                                                     <xs:documentation>Tipo de regime previdenciário.</xs:documentation>
                                                                                     <xs:documentation>Validação: Se {infoContr/codCateg}(../../codCateg) = [104], deve ser preenchido com [1]. Se {infoContr/codCateg}(../../codCateg) = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2].</xs:documentation>
                                                                                 </xs:annotation>
-                                                                            </xs:element>                                                                            
+                                                                            </xs:element>
                                                                             <xs:element name="dtAdm" type="xs:date">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Preencher com a data de admissão do trabalhador.</xs:documentation>
-                                                                                    <xs:documentation>Validação: Deve ser posterior à data de nascimento do trabalhador.</xs:documentation>
+                                                                                    <xs:documentation>Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou anterior ao ano do óbito, se existente.</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
                                                                             <xs:element name="tmpParc" minOccurs="0" type="TS_tmpParc">
@@ -509,15 +510,16 @@
                                                                                                 </xs:restriction>
                                                                                             </xs:simpleType>
                                                                                         </xs:element>
-                                                                                        <xs:element name="matricAnt" minOccurs="0" type="TS_codigo_esocial">
+                                                                                        <xs:element name="matricAnt" minOccurs="0" type="TS_matricula">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Matrícula do trabalhador no empregador anterior.</xs:documentation>
+                                                                                                <xs:documentation>Validação: Se {sucessaoVinc/dtTransf}(./dtTransf) for igual ou posterior a [2024-04-22], a matrícula informada neste campo deve ser idêntica à matricula do trabalhador no empregador anterior.</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                         <xs:element name="dtTransf" type="xs:date">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Preencher com a data da transferência do empregado para o empregador declarante.</xs:documentation>
-                                                                                                <xs:documentation>Validação: Deve ser posterior à data de admissão do trabalhador.</xs:documentation>
+                                                                                                <xs:documentation>Validação: Deve ser posterior à data de admissão do trabalhador e igual ou anterior ao ano do óbito, se existente.</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                     </xs:sequence>
@@ -673,7 +675,7 @@
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
-                                                                <xs:element name="matUnic" minOccurs="0" type="TS_codigo_esocial">
+                                                                <xs:element name="matUnic" minOccurs="0" type="TS_matricula">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informar a matrícula incorporada (matrícula cujo vínculo/contrato passou a integrar período de unicidade contratual reconhecido judicialmente). O campo não deve ser informado somente no caso de TSVE cadastrado em versão do leiaute anterior a S-1.0.</xs:documentation>
                                                                         <xs:documentation>Validação: Deve corresponder a uma matrícula existente no RET para o respectivo trabalhador e diferente do vínculo/contrato informado em {infoContr}(2500_ideTrab_infoContr).</xs:documentation>
@@ -780,10 +782,16 @@
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
-                                                                                        <xs:element name="anoBase" type="TS_codTercs">
-                                                                                            <xs:annotation>
-                                                                                                <xs:documentation>Ano-base em que houve indenização substitutiva do abono salarial.</xs:documentation>
-                                                                                            </xs:annotation>
+                                                                                        <xs:element name="anoBase">
+                                                                                            <xs:simpleType>
+                                                                                                <xs:annotation>
+                                                                                                    <xs:documentation>Ano-base em que houve indenização substitutiva do abono salarial.</xs:documentation>
+                                                                                                </xs:annotation>
+                                                                                                <xs:restriction base="xs:integer">
+                                                                                                    <xs:pattern value="\d{4}" />
+                                                                                                    <xs:minInclusive value="1900" />
+                                                                                                </xs:restriction>
+                                                                                            </xs:simpleType>
                                                                                         </xs:element>
                                                                                     </xs:sequence>
                                                                                 </xs:complexType>

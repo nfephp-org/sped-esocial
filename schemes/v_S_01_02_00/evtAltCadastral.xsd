@@ -55,9 +55,9 @@
                                                     <xs:element name="racaCor" type="TS_racaCorTrab">
                                                         <xs:annotation>
                                                             <xs:documentation>Etnia e raça do trabalhador, conforme sua autoclassificação (art. 39, § 8º, da Lei 12.288/2010).</xs:documentation>
-                                                            <xs:documentation>Validação: Se {dtAlteracao}(../dtAlteracao) for igual ou posterior a [2023-07-01], retornar alerta caso seja informado o valor [6].</xs:documentation>
+                                                            <xs:documentation>Validação: Se {dtAlteracao}(../dtAlteracao) for igual ou posterior a [2024-04-22], não pode ser informado o valor [6].</xs:documentation>
                                                         </xs:annotation>
-                                                    </xs:element>                                                    
+                                                    </xs:element>
                                                     <xs:element name="estCiv" minOccurs="0" type="TS_estCivilTrab" />
                                                     <xs:element name="grauInstr" type="TS_grauInstr" />
                                                     <xs:element name="nmSoc" minOccurs="0" type="TS_nmSoc" />

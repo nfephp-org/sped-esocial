@@ -144,6 +144,19 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="T_ideEvento_trab_PJ_sem_simplificado">
+        <xs:annotation>
+            <xs:documentation>Informações de identificação do evento.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="indRetif" type="TS_indRetif" />
+            <xs:element name="nrRecibo" minOccurs="0" type="TS_nrRecibo" />
+            <xs:element name="tpAmb" type="TS_tpAmb" />
+            <xs:element name="procEmi" type="TS_procEmi_PJ_sem_simplificado" />
+            <xs:element name="verProc" type="TS_verProc" />
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="T_ideEvento_trab_indGuia">
         <xs:annotation>
             <xs:documentation>Informações de identificação do evento.</xs:documentation>
@@ -380,7 +393,7 @@
                 <xs:annotation>
                     <xs:documentation>Identificação dos advogados.</xs:documentation>
                     <xs:documentation>CHAVE_GRUPO: {tpInsc}, {nrInsc}</xs:documentation>
-                    <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                    <xs:documentation>CONDICAO_GRUPO: O (se {vlrDespAdvogados}(../despProcJud_vlrDespAdvogados) > 0); N (nos demais casos)</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
@@ -826,7 +839,7 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="cpfTrab" type="TS_cpfTrab" />
-            <xs:element name="matricula" type="TS_codigo_esocial">
+            <xs:element name="matricula" type="TS_matricula">
                 <xs:annotation>
                     <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                     <xs:documentation>Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</xs:documentation>
@@ -842,7 +855,7 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="cpfTrab" type="TS_cpfTrab" />
-            <xs:element name="matricula" minOccurs="0" type="TS_codigo_esocial">
+            <xs:element name="matricula" minOccurs="0" type="TS_matricula">
                 <xs:annotation>
                     <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                     <xs:documentation>Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2190, S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300.</xs:documentation>
@@ -865,7 +878,7 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="cpfTrab" type="TS_cpfTrab" />
-            <xs:element name="matricula" type="TS_codigo_esocial">
+            <xs:element name="matricula" type="TS_matricula">
                 <xs:annotation>
                     <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                     <xs:documentation>Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2190 ou S-2200 do respectivo vínculo trabalhista.</xs:documentation>
@@ -1155,7 +1168,7 @@
                     <xs:documentation>Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo {sucessaoVinc/tpInsc}(./tpInsc).</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="matricAnt" minOccurs="0" type="TS_codigo_esocial">
+            <xs:element name="matricAnt" minOccurs="0" type="TS_matricula">
                 <xs:annotation>
                     <xs:documentation>Matrícula do trabalhador no empregador anterior.</xs:documentation>
                 </xs:annotation>
@@ -1391,6 +1404,24 @@
             <xs:enumeration value="4">
                 <xs:annotation>
                     <xs:documentation>Aplicativo governamental - Simplificado Pessoa Jurídica</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="TS_procEmi_PJ_sem_simplificado">
+        <xs:annotation>
+            <xs:documentation>Processo de emissão do evento.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:byte">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Aplicativo do empregador</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Aplicativo governamental - Web Geral</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
@@ -2202,6 +2233,15 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!-- Campo {matricula} -->
+
+    <xs:simpleType name="TS_matricula">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="30" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Campo {indRRA} -->
 
     <xs:simpleType name="TS_indRRA">
@@ -2241,7 +2281,7 @@
         <xs:annotation>
             <xs:documentation>Matrícula do trabalhador no empregador anterior.</xs:documentation>
         </xs:annotation>
-        <xs:restriction base="TS_codigo_esocial" />
+        <xs:restriction base="TS_matricula" />
     </xs:simpleType>    
 
     <!-- Campo {sucessaoVinc/dtAdm} -->
@@ -2280,6 +2320,7 @@
             <xs:documentation>Dia do mês efetivamente trabalhado pelo empregado com contrato de trabalho intermitente.</xs:documentation>
             <xs:documentation>Caso não tenha havido trabalho no mês, informar 0 (zero).</xs:documentation>
             <xs:documentation>Validação: Deve ser um número entre 0 e 31, de acordo com o calendário anual.</xs:documentation>
+            <xs:documentation>Retornar alerta caso seja informado 0 (zero).</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:byte">
             <xs:minInclusive value="0" />
@@ -2381,6 +2422,11 @@
         <xs:annotation>
             <xs:documentation>Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.</xs:documentation>
             <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
+            <xs:documentation>Informação obrigatória se {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 igual a [9253]. Neste caso, deve ser informada com 12 posições, conforme o que segue:</xs:documentation>
+            <xs:documentation>1IIICCCCCC.CC</xs:documentation>
+            <xs:documentation>1 - Texto fixo "1";</xs:documentation>
+            <xs:documentation>III - Instituição financeira, conforme tabela do Banco Central;</xs:documentation>
+            <xs:documentation>CCCCCC.CC - Número do contrato eConsignado (preencher com zeros à esquerda caso o número não tenha 8 dígitos.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:decimal">
             <xs:totalDigits value="12" />
@@ -2514,6 +2560,11 @@
                     <xs:documentation>Sentença judicial (exceto reclamatória trabalhista)</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
+            <xs:enumeration value="J">
+                <xs:annotation>
+                    <xs:documentation>Parcelas complementares conhecidas após o fechamento da folha</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
@@ -2532,6 +2583,11 @@
             <xs:enumeration value="H">
                 <xs:annotation>
                     <xs:documentation>Declaração de base de cálculo de FGTS anterior ao início do FGTS Digital</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>Sentença judicial (exceto reclamatória trabalhista)</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
@@ -3111,7 +3167,7 @@
     <xs:simpleType name="TS_racaCorTrab">
         <xs:annotation>
             <xs:documentation>Etnia e raça do trabalhador, conforme sua autoclassificação (art. 39, § 8º, da Lei 12.288/2010).</xs:documentation>
-            <xs:documentation>Validação: Retornar alerta caso seja informado o valor [6].</xs:documentation>
+            <xs:documentation>Validação: Não pode ser informado o valor [6].</xs:documentation>
         </xs:annotation>
         <xs:restriction base="TS_racaCor" />
     </xs:simpleType>
@@ -3119,7 +3175,7 @@
     <xs:simpleType name="TS_racaCorBenef">
         <xs:annotation>
             <xs:documentation>Etnia e raça do beneficiário, conforme sua autoclassificação (art. 39, § 8º, da Lei 12.288/2010).</xs:documentation>
-            <xs:documentation>Validação: Retornar alerta caso seja informado o valor [6].</xs:documentation>
+            <xs:documentation>Validação: Não pode ser informado o valor [6].</xs:documentation>
         </xs:annotation>
         <xs:restriction base="TS_racaCor" />
     </xs:simpleType>
@@ -3566,7 +3622,7 @@
             </xs:enumeration>
             <xs:enumeration value="2">
                 <xs:annotation>
-                    <xs:documentation>Regime Próprio de Previdência Social - RPPS</xs:documentation>
+                    <xs:documentation>Regime Próprio de Previdência Social - RPPS, Regime dos Parlamentares e Sistema de Proteção dos Militares dos Estados/DF</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="3">
@@ -3594,7 +3650,7 @@
             </xs:enumeration>
             <xs:enumeration value="2">
                 <xs:annotation>
-                    <xs:documentation>Regime Próprio de Previdência Social - RPPS</xs:documentation>
+                    <xs:documentation>Regime Próprio de Previdência Social - RPPS, Regime dos Parlamentares e Sistema de Proteção dos Militares dos Estados/DF</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="3">
@@ -3811,6 +3867,14 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="TS_crm_10">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="10" />
+            <xs:pattern value=".*[^\s].*" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Campo {pensAlim} -->
 
     <xs:simpleType name="TS_pensAlim">
@@ -3954,15 +4018,6 @@
                     <xs:documentation>13° salário ({codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [12, 14, 16, 22, 26, 32, 92, 94, 96, 98])</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!-- Campo {matricula} (S-5001 e S-5003) -->
-
-    <xs:simpleType name="TS_matricula_retorno">
-        <xs:restriction base="xs:string">
-            <xs:minLength value="1" />
-            <xs:maxLength value="30" />
         </xs:restriction>
     </xs:simpleType>
 

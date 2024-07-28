@@ -122,6 +122,7 @@
                     <xs:annotation>
                         <xs:documentation>Informar o código de classificação da rubrica.</xs:documentation>
                         <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 03.</xs:documentation>
+                        <xs:documentation>Para utilização de código [9253], é necessário que {iniValid}(1010_infoRubrica_inclusao_ideRubrica_iniValid) seja igual ou posterior ao mês de início do eConsignado no eSocial.</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:integer">
                         <xs:pattern value="\d{4}" />
@@ -132,6 +133,7 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>Tipo de rubrica.</xs:documentation>
+                        <xs:documentation>Validação: Se {natRubr}(./natRubr) = [9253], deve ser preenchido com [2].</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:byte">
                         <xs:enumeration value="1">
@@ -312,7 +314,7 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS.</xs:documentation>
-                        <xs:documentation>Validação: Para utilização de código [91, 92, 93], é necessária a existência de grupo com informações relativas ao processo.</xs:documentation>
+                        <xs:documentation>Validação: Para utilização de código [91, 92, 93], é necessária a existência de grupo com informações relativas ao processo. Para utilização de código [31], é necessário que {natRubr}(./natRubr) seja igual a [9253].</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="00">
@@ -333,6 +335,11 @@
                         <xs:enumeration value="21">
                             <xs:annotation>
                                 <xs:documentation>Base de cálculo do FGTS aviso prévio indenizado</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="31">
+                            <xs:annotation>
+                                <xs:documentation>Desconto eConsignado</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="91">
