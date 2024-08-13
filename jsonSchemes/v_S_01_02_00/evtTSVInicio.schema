@@ -270,6 +270,12 @@
                         "required": true,
                         "type": "string",
                         "pattern": "^(S|N)$"
+                    },
+                    "descrdep": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "minLength": 1,
+                        "maxLength": 100
                     }
                 }
             }
