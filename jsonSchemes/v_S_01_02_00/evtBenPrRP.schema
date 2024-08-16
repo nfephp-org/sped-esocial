@@ -72,9 +72,12 @@
                                 "maximum": 2
                             },
                             "nrprocrra": {
-                                "required": true,
-                                "type": "string",
-                                "pattern": "^[0-9]{17}|[0-9]{20}|[0-9]{21}$"
+                                "required": false,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "pattern": "^([0-9]{17}|[0-9]{20}|[0-9]{21}|)$"
                             },
                             "descrra": {
                                 "required": true,
