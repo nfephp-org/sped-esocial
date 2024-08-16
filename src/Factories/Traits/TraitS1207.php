@@ -309,8 +309,8 @@ trait TraitS1207
                 $this->dom->addChild(
                     $rra,
                     "nrProcRRA",
-                    $irra->nrprocrra,
-                    true
+                    $irra->nrprocrra ?? null,
+                    false
                 );
                 $this->dom->addChild(
                     $rra,
