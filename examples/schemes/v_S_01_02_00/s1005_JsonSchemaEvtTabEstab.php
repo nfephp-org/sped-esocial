@@ -29,7 +29,7 @@ $jsonSchema = '{
             "required": true,
             "type": "integer",
             "minimum": 1,
-            "maximum": 3
+            "maximum": 4
         },
         "nrinsc": {
             "required": true,
