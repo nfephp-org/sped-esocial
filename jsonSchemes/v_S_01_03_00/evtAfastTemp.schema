@@ -1,0 +1,176 @@
+{
+    "title": "evtAfastTemp",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "idevinculo": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "cpftrab": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{11}$"
+                },
+                "matricula": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 30
+                },
+                "codcateg": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "maxLength": 3
+                }
+            }
+        },
+        "iniafastamento": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "dtiniafast": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "codmotafast": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 2
+                },
+                "infomesmomtv": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S|N)$"
+                },
+                "tpacidtransito": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minumum": 1,
+                    "maximum": 3
+                },
+                "observacao": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 255
+                },
+                "peraquis": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "dtinicio": {
+                            "required": true,
+                            "type": "string",
+                            "$ref": "#/definitions/data"
+                        },
+                        "dtfim": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "$ref": "#/definitions/data"
+                        }
+                    }
+                },
+                "infocessao": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "cnpjcess": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "infonus": {
+                            "required": true,
+                            "type": "integer",
+                            "minumum": 1,
+                            "maximum": 3
+                        }
+                    }
+                },
+                "infomandsind": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "cnpjsind": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "infonusremun": {
+                            "required": true,
+                            "type": "integer",
+                            "minumum": 1,
+                            "maximum": 3
+                        }
+                    }
+                },
+                "infomandelet": {
+                    "required": false,
+                    "type": "object",
+                    "properties": {
+                        "cnpjmandelet": {
+                            "required": true,
+                            "type": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "indremuncargo": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "pattern": "^(S|N)$"
+                        }
+                    }
+                }
+            }
+        },
+        "inforetif": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "origretif": {
+                    "required": true,
+                    "type": "integer",
+                    "minumum": 1,
+                    "maximum": 3
+                },
+                "tpproc": {
+                    "required": false,
+                    "type": ["integer","null"],
+                    "minumum": 1,
+                    "maximum": 3
+                },
+                "nrproc": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "maxLength": 21
+                }
+            }
+        },
+        "fimafastamento": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dttermafast": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                }
+            }
+        }
+    }
+}
