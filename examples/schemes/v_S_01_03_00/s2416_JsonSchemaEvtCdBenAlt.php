@@ -9,10 +9,10 @@ use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 //S-2416
-//versão S_1.00
+//versão S_1.3.0
 
 $evento  = 'evtCdBenAlt';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtCdBenAlt",
