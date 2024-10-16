@@ -3,7 +3,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
-use JsonSchema\Constraints\Constraint;
 use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
@@ -11,7 +10,7 @@ use JsonSchema\Validator;
 //S-2200
 
 $evento  = 'evtAdmissao';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtAdmissao",
@@ -300,6 +299,12 @@ $jsonSchema = '{
                         "required": true,
                         "type": "string",
                         "pattern": "^(S|N)$"
+                    },
+                    "descrdep": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "minLength": 1,
+                        "maxLength": 100
                     }
                 }
             }
@@ -477,7 +482,7 @@ $jsonSchema = '{
                                 "nrinsc": {
                                     "required": false,
                                     "type": ["string","null"],
-                                    "pattern": "^[0-9]{8,14}$"
+                                    "pattern": "^([0-9]{11}|[0-9]{14})$"
                                 },
                                 "cnpjprat": {
                                     "required": false,
@@ -983,6 +988,7 @@ $std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0]->cpftrabsubs
 $std->vinculo->infoceletista->aprend = new \stdClass(); //Opcional
 $std->vinculo->infoceletista->aprend->tpinsc = 1; //1 ou 2
 $std->vinculo->infoceletista->aprend->nrinsc = '12345678901';
+$std->vinculo->infoceletista->aprend->indaprend = 1;
 
 $std->vinculo->infoestatutario = new \stdClass(); //Opcional
 $std->vinculo->infoestatutario->tpprov = 99;

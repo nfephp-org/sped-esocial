@@ -867,5 +867,4 @@ trait TraitS1000
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
-
 }

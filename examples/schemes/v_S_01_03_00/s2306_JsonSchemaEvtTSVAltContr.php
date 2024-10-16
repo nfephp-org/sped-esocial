@@ -12,7 +12,7 @@ use JsonSchema\Validator;
 //S-2306
 
 $evento = 'evtTSVAltContr';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtTSVAltContr",

@@ -11,7 +11,7 @@ use JsonSchema\Validator;
 //S-2300
 
 $evento  = 'evtTSVInicio';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtTSVInicio",
@@ -285,6 +285,12 @@ $jsonSchema = '{
                         "required": true,
                         "type": "string",
                         "pattern": "^(S|N)$"
+                    },
+                    "descrdep": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "minLength": 1,
+                        "maxLength": 100
                     }
                 }
             }
