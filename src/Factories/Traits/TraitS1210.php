@@ -1041,8 +1041,8 @@ trait TraitS1210
             }
             $ideBenef->appendChild($infoPgto);
         }
-        if (count(($this->std->infoircomplem)) > 0) {
-            foreach($this->std->infoircomplem as $comp){
+        if (!empty($this->std->infoircomplem)) {
+            foreach($this->std->infoircomplem as $comp) {
                 $infocomp = $this->dom->createElement("infoIRComplem");
                 //$comp = $this->std->infoircomplem;
                 $this->dom->addChild(
