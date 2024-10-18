@@ -13,9 +13,9 @@ use NFePHP\eSocial\Tools;
 $config = [
     'tpAmb'          => 2,
     //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-    'verProc'        => 'S_1.2.0',
+    'verProc'        => 'S_1.3.0',
     //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-    'eventoVersion'  => 'S.1.2.0',
+    'eventoVersion'  => 'S.1.3.0',
     'serviceVersion' => '1.5.0', //versão do webservice
     'empregador'     => [
         'tpInsc'  => 1, //1-CNPJ, 2-CPF

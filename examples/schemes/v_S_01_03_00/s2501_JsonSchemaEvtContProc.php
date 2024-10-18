@@ -12,7 +12,7 @@ use JsonSchema\Validator;
 //S-2501
 
 $evento  = 'evtContProc';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtContProc",
@@ -571,5 +571,3 @@ if ($jsonValidator->isValid()) {
 }
 //salva se sucesso
 file_put_contents("../../../jsonSchemes/v_$version/$evento.schema", $jsonSchema);
-
-

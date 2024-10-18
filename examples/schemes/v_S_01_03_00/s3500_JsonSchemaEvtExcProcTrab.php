@@ -12,7 +12,7 @@ use JsonSchema\Validator;
 //S-3500
 
 $evento = 'evtExcProcTrab';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtExcProcTrab",
@@ -59,6 +59,11 @@ $jsonSchema = '{
                     "required": false,
                     "type": ["string","null"],
                     "$ref": "#/definitions/periodo"
+                },
+                "ideseqproc": {
+                    "required": false,
+                    "type": "string",
+                    "pattern": "^.{1,3}$"
                 }
             }
         }
@@ -70,14 +75,14 @@ $std = new \stdClass();
 $std->sequencial = 1;
 
 $std->infoexclusao = new \stdClass();
-$std->infoexclusao->tpevento = 'S-1200';
+$std->infoexclusao->tpevento = 'S-2500';
 $std->infoexclusao->nrrecevt = '1.9.1234567890123456789';
 
 $std->ideproctrab = new \stdClass();
 $std->ideproctrab->nrproctrab = '123456789012345';
 $std->ideproctrab->cpftrab = '11111111111';
 $std->ideproctrab->perapurpgto = '2023-01';
-
+$std->ideproctrab->ideseqproc = "654";
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);

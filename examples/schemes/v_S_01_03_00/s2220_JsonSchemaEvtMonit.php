@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 require_once '../../../bootstrap.php';
 
-use JsonSchema\Constraints\Constraint;
 use JsonSchema\Constraints\Factory;
 use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
@@ -12,7 +11,7 @@ use JsonSchema\Validator;
 //S-2220
 
 $evento = 'evtMonit';
-$version = 'S_01_02_00';
+$version = 'S_01_03_00';
 
 $jsonSchema = '{
     "title": "evtMonit",

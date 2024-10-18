@@ -87,4 +87,78 @@ trait TraitS3500
     {
         return $this->toNodeS110();
     }
+
+    /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
+    {
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+
+        $infoExclusao = $this->dom->createElement("infoExclusao");
+        $this->dom->addChild(
+            $infoExclusao,
+            "tpEvento",
+            $this->std->infoexclusao->tpevento,
+            true
+        );
+        $this->dom->addChild(
+            $infoExclusao,
+            "nrRecEvt",
+            $this->std->infoexclusao->nrrecevt,
+            true
+        );
+        $ideTrabalhador = $this->dom->createElement("ideProcTrab");
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "nrProcTrab",
+            $this->std->ideproctrab->nrproctrab,
+            true
+        );
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "cpfTrab",
+            $this->std->ideproctrab->cpftrab ?? null,
+            false
+        );
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "perApurPgto",
+            $this->std->ideproctrab->perapurpgto ?? null,
+            false
+        );
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "ideSeqProc",
+            $this->std->ideproctrab->ideseqproc ?? null,
+            false
+        );
+        $infoExclusao->appendChild($ideTrabalhador);
+        $this->node->appendChild($infoExclusao);
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
+    }
 }
