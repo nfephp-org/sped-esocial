@@ -363,8 +363,8 @@ trait TraitS1010
             $this->dom->addChild(
                 $dadosRubrica,
                 "codIncPisPasep",
-                $this->std->dadosrubrica->codincpispasep,
-                true
+                $this->std->dadosrubrica->codincpispasep ?? null,
+                false
             );
             $this->dom->addChild(
                 $dadosRubrica,

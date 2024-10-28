@@ -81,11 +81,10 @@ $std->infofech->transdctfweb = 'S'; //opcional
 // Não informar se perApur < [2021-10]. Preenchimento obrigatório se perApur >= [2021-10] e
 // (classTrib em S-1000 = [04] ou indGuia estiver informado).
 
-$std->infofech->naovalid = 'S'; //opcional
+$std->infofech->naovalid = 'N'; //opcional
 //Indicativo de não validação das regras de fechamento, para que os grandes contribuintes possam reduzir o tempo de processamento do evento.
-//O preenchimento deste campo implica a não execução da REGRA_VALIDA_FECHAMENTO_FOPAG.
-//Não informar se {procEmi}(1299_ideEvento_procEmi) for diferente de [1]
-
+//O não preenchimento deste campo ou seu preenchimento com [S] implica a não execução da REGRA_VALIDA_FECHAMENTO_FOPAG. 
+//Para executá-la, informar [N].
 
 try {
     //carrega a classe responsavel por lidar com os certificados
