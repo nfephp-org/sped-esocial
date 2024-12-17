@@ -1,0 +1,66 @@
+{
+    "title": "evtCessao",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "cpftrab": {
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+        },
+        "matricula": {
+            "required": false,
+            "type": ["string","null"],
+            "minLength": 1,
+            "maxLength": 30
+        },
+        "inicessao": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dtinicessao": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                },
+                "cnpjcess": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^[0-9]{14}$"
+                },
+                "respremun": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                }
+            }
+        },
+        "fimcessao": {
+            "required": false,
+            "type": "object",
+            "properties": {
+                "dttermcessao": {
+                    "required": true,
+                    "type": "string",
+                    "$ref": "#/definitions/data"
+                }
+            }
+        }
+    }
+}

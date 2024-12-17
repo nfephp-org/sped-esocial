@@ -48,12 +48,7 @@ $jsonSchema = '{
                     "required": true,
                     "type": "string",
                     "pattern": "^(S|N)$"
-                },
-                "evtremun": {
-                    "required": true,
-                    "type": "string",
-                    "pattern": "^(S|N)$"
-                },
+                },                
                 "evtpgtos": {
                     "required": true,
                     "type": "string",

@@ -84,6 +84,7 @@ class Event
         'evtbaixa' => Factories\EvtBaixa::class,
         'evtproctrab' => Factories\EvtProcTrab::class,
         'evtcontproc' => Factories\EvtContProc::class,
+        'evtconsolidcontproc' => Factories\EvtConsolidContProc::class,
     ];
 
     /**
@@ -152,6 +153,7 @@ class Event
         's2420' => 'evtcdbenterm',
         's2500' => 'evtproctrab',
         's2501' => 'evtcontproc',
+        's2555' => 'evtconsolidcontproc',
     ];
 
     public static $codes = [
@@ -192,6 +194,7 @@ class Event
         'evtCdBenTerm' => 'S-2420',
         'evtProcTrab' => 'S-2500',
         'evtContProc' => 'S-2501',
+        'evtConsolidContProc' => 'S-2555',
         'evtExclusao' => 'S-3000',
         'evtExcProcTrab' => 'S-3500',
         'evtAnotJud' => 'S-8200',

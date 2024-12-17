@@ -902,4 +902,12 @@ trait TraitS2240
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
     }
+
+    /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
+    {
+        return $this->toNodeS120();
+    }
 }

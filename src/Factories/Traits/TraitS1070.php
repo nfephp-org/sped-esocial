@@ -152,13 +152,13 @@ trait TraitS1070
             $newVal       = $this->std->novavalidade;
             $novaValidade = $this->dom->createElement("novaValidade");
             $this->dom->addChild(
-                $ideRubrica,
+                $novaValidade,
                 "iniValid",
                 $newVal->inivalid,
                 true
             );
             $this->dom->addChild(
-                $ideRubrica,
+                $novaValidade,
                 "fimValid",
                 ! empty($newVal->fimvalid) ? $newVal->fimvalid : null,
                 false
@@ -186,6 +186,14 @@ trait TraitS1070
      * builder for version S.1.2.0
      */
     protected function toNodeS120()
+    {
+        return $this->toNodeS100();
+    }
+
+    /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
     {
         return $this->toNodeS100();
     }
