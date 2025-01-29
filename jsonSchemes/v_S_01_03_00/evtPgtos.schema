@@ -1,0 +1,586 @@
+{
+    "title": "evtPgtos",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indretif": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "nrrecibo": {
+            "required": false,
+            "type": ["string","null"],
+            "$ref": "#/definitions/recibo"
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/periodo"
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
+        },
+        "cpfbenef": {
+            "required": true,
+            "type": "string",
+            "maxLength": 11,
+            "minLength": 11
+        },
+        "infopgto": {
+            "required": false,
+            "type": ["null","array"],
+            "minItems": 1,
+            "maxItems": 999,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "dtpgto": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/data"
+                    },
+                    "tppgto": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 5
+                    },
+                    "perref": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/periodo"
+                    },
+                    "idedmdev": {
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 30
+                    },
+                    "vrliq": {
+                        "required": true,
+                        "type": "number"
+                    },
+                    "paisresidext": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "pattern": "^[0-9]{3}"
+                    },
+                    "infopgtoext": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "indnif": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 3
+                            },
+                            "nifbenef": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "minLength": 1,
+                                "maxLength": 30
+                            },
+                            "frmtribut": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{2}$"
+                            },
+                            "endext": {
+                                "required": false,
+                                "type": ["object","null"],
+                                "properties": {
+                                    "enddsclograd": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "endnrlograd": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "minLength": 1,
+                                        "maxLength": 10
+                                    },
+                                    "endcomplem": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "minLength": 1,
+                                        "maxLength": 30
+                                    },
+                                    "endbairro": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "minLength": 1,
+                                        "maxLength": 60
+                                    },
+                                    "endcidade": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "minLength": 1,
+                                        "maxLength": 40
+                                    },
+                                    "endestado": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "minLength": 1,
+                                        "maxLength": 40
+                                    },
+                                    "endcodpostal": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^[0-9]{1,12}$"
+                                    },
+                                    "telef": {
+                                        "required": false,
+                                        "type": ["string","null"],
+                                        "pattern": "^[0-9]{8,15}$"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "infoircomplem": {
+            "required": false,
+            "type": ["array","null"],
+            "minItems": 0,
+            "maxItems": 13,
+            "items": {
+                "properties": {
+                    "dtlaudo": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "$ref": "#/definitions/data"
+                    },
+                    "perant": {
+                        "required": false,
+                        "type": ["object", "null"],
+                        "properties": {
+                            "perrefajuste": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/periodo"
+                            },
+                            "nrrec1210orig": {
+                                "required": true,
+                                "type": "string",
+                                "$recibo": "#/definitions/recibo"
+                            }
+                        }
+                    },
+                    "infodep": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 1,
+                        "maxItems": 999,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "cpfdep": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{11}$"
+                                },
+                                "dtnascto": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "$ref": "#/definitions/data"
+                                },
+                                "nome": {
+                                    "required": true,
+                                    "type": "string",
+                                    "minLength": 2,
+                                    "maxLength": 70
+                                },
+                                "depirrf": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^(S)$"
+                                },
+                                "tpdep": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{2}$"
+                                },
+                                "descrdep": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "minLength": 2,
+                                    "maxLength": 100
+                                }
+                            }
+                        }
+                    },
+                    "infoircr": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 1,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "tpcr": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{6}$"
+                                },
+                                "deddepen": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tprend": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^(11|12|13)$"
+                                            },
+                                            "cpfdep": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{11}$"
+                                            },
+                                            "vlrdeddep": {
+                                                "required": true,
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "penalim": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tprend": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^(11|12|13|14|18|79)$"
+                                            },
+                                            "cpfdep": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{11}$"
+                                            },
+                                            "vlrdedpenalim": {
+                                                "required": true,
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "previdcompl": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tpprev": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^(1|2|3)$"
+                                            },
+                                            "cnpjentidpc": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{14}$"
+                                            },
+                                            "vlrdedpc": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vlrdedpc13": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vlrpatrocfunp": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vlrpatrocfunp13": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            }
+                                        }
+                                    }
+                                },
+                                "infoprocret": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 50,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tpprocret": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^(1|2)$"
+                                            },
+                                            "nrprocret": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^([0-9]{17}|[0-9]{20}|[0-9]{21})$"
+                                            },
+                                            "codsusp": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{1,14}$"
+                                            },
+                                            "infovalores": {
+                                                "required": false,
+                                                "type": ["array","null"],
+                                                "minItems": 1,
+                                                "maxItems": 2,
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "indapuracao": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "pattern": "^(1|2)$"
+                                                        },
+                                                        "vlrnretido": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vlrdepjud": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vlrcmpanocal": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vlrrendsusp": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "dedsusp": {
+                                                            "required": false,
+                                                            "type": ["array","null"],
+                                                            "minItems": 1,
+                                                            "maxItems": 25,
+                                                            "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "indtpdeducao": {
+                                                                        "required": true,
+                                                                        "type": "string",
+                                                                        "pattern": "^[1-7]{1}$"
+                                                                    },
+                                                                    "vlrdedsusp": {
+                                                                        "required": false,
+                                                                        "type": ["number","null"]
+                                                                    },
+                                                                    "cnpjentidpc": {
+                                                                        "required": false,
+                                                                        "type": ["string","null"],
+                                                                        "pattern": "^[0-9]{14}$"
+                                                                    },
+                                                                    "vlrpatrocfunp": {
+                                                                        "required": false,
+                                                                        "type": ["number","null"]
+                                                                    },
+                                                                    "benefpen": {
+                                                                        "required": false,
+                                                                        "type": ["array","null"],
+                                                                        "minItems": 1,
+                                                                        "maxItems": 99,
+                                                                        "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "cpfdep": {
+                                                                                    "required": true,
+                                                                                    "type": "string",
+                                                                                    "pattern": "^[0-9]{11}$"
+                                                                                },
+                                                                                "vlrdepensusp": {
+                                                                                    "required": true,
+                                                                                    "type": "number"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "plansaude": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 1,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "cnpjoper": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{14}$"
+                                },
+                                "regans": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{6}$"
+                                },
+                                "vlrsaudetit": {
+                                    "required": true,
+                                    "type": "number"
+                                },
+                                "infodepsau": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "cpfdep": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{11}$"
+                                            },
+                                            "vlrsaudedep": {
+                                                "required": true,
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "inforeembmed": {
+                        "required": false,
+                        "type": ["array","null"],
+                        "minItems": 1,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "indorgreemb": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^(1|2)$"
+                                },
+                                "cnpjoper": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^[0-9]{14}$"
+                                },
+                                "regans": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{6}$"
+                                },
+                                "detreembtit": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tpinsc": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^(1|2)$"
+                                            },
+                                            "nrinsc": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{11,14}$"
+                                            },
+                                            "vlrreemb": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            },
+                                            "vlrreembant": {
+                                                "required": false,
+                                                "type": ["number","null"]
+                                            }
+                                        }
+                                    }
+                                },
+                                "inforeembdep": {
+                                    "required": false,
+                                    "type": ["array","null"],
+                                    "minItems": 1,
+                                    "maxItems": 99,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "cpfbenef": {
+                                                "required": true,
+                                                "type": "string",
+                                                "pattern": "^[0-9]{11}$"
+                                            },
+                                            "detreembdep": {
+                                                "required": false,
+                                                "type": ["array","null"],
+                                                "minItems": 1,
+                                                "maxItems": 99,
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "tpinsc": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "pattern": "^(1|2)$"
+                                                        },
+                                                        "nrinsc": {
+                                                            "required": true,
+                                                            "type": "string",
+                                                            "pattern": "^[0-9]{11,14}$"
+                                                        },
+                                                        "vlrreemb": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        },
+                                                        "vlrreembant": {
+                                                            "required": false,
+                                                            "type": ["number","null"]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

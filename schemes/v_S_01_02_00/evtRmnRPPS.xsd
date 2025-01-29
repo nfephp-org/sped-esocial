@@ -215,7 +215,7 @@
     </xs:element>
     <xs:complexType name="T_remunPer">
         <xs:sequence>
-            <xs:element name="matricula" minOccurs="0" type="TS_codigo_esocial">
+            <xs:element name="matricula" minOccurs="0" type="TS_matricula">
                 <xs:annotation>
                     <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                     <xs:documentation>Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300 ou, no caso de {remunPerAnt}(1202_dmDev_infoPerAnt_idePeriodo_ideEstab_remunPerAnt), se {remunOrgSuc}(1202_dmDev_infoPerAnt_remunOrgSuc) = [S].</xs:documentation>

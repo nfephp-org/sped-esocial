@@ -1,0 +1,69 @@
+{
+    "title": "evtFechaEvPer",
+    "type": "object",
+    "properties": {
+        "sequencial": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 99999
+        },
+        "indapuracao": {
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+        },
+        "perapur": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/periodo"
+        },
+        "indguia": {
+            "required": false,
+            "type": ["integer","null"],
+            "minimum": 1,
+            "maximum": 1
+        },
+        "infofech": {
+            "type": "object",
+            "properties": {
+                "evtremun": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },                
+                "evtpgtos": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },
+                "evtcontratavnp": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },
+                "evtinfocomplper": {
+                    "required": true,
+                    "type": "string",
+                    "pattern": "^(S|N)$"
+                },
+                "indexcapur1250": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
+                },
+                "transdctfweb": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S)$"
+                },
+                "naovalid": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "pattern": "^(S|N)$"
+                }
+            }
+        }
+    }
+}

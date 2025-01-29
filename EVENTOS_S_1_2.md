@@ -20,6 +20,7 @@
 - S-2206 - Alteração de Contrato de Trabalho/Relação Estatutária
 - S-2210 - Comunicação de Acidente de Trabalho
 - S-2220 - Monitoramento da Saúde do Trabalhador
+- S-2221 - Exame Toxicológico do Motorista Profissional Empregado
 - S-2230 - Afastamento Temporário
 - S-2231 - Cessão/Exercício em Outro Órgão
 - S-2240 - Condições Ambientais do Trabalho - Agentes Nocivos

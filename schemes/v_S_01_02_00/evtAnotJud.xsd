@@ -93,7 +93,7 @@
                                         <xs:element name="codCateg" type="TS_codCateg">
                                             <xs:annotation>
                                                 <xs:documentation>Preencher com o código da categoria do trabalhador.</xs:documentation>
-                                                <xs:documentation>Validação: Deve ser um código de categoria referente a "Empregado" ([1XX]) ou igual a [302, 303, 309].</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um código de categoria referente a "Empregado" ([1XX]).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="natAtividade" type="TS_natAtividade">
@@ -107,6 +107,19 @@
                                             <xs:annotation>
                                                 <xs:documentation>Data do término do contrato por prazo determinado.</xs:documentation>
                                                 <xs:documentation>Validação: O preenchimento é obrigatório se {tpContr}(./tpContr) = [2]. Não informar se {tpContr}(./tpContr) = [1]. Deve ser igual ou posterior à data de admissão.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="tpInscTrab" type="TS_tpInsc_1_3_4" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do estabelecimento relativo ao local de trabalho.</xs:documentation>
+                                                <xs:documentation>Validação: Não preencher se {codCateg}(./codCateg) = [104].</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="localTrabalho" type="TS_nrInsc_12_14" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Informar o número de inscrição do estabelecimento relativo ao local de trabalho.</xs:documentation>
+                                                <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpInscTrab}(./tpInscTrab) for informado.</xs:documentation>
+                                                <xs:documentation>Deve ser um identificador válido, constante das bases da RFB, conforme indicado em {tpInscTrab}(./tpInscTrab).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="cargo" maxOccurs="99">
@@ -162,18 +175,46 @@
                                         </xs:element>
                                         <xs:element name="incorporacao" minOccurs="0" maxOccurs="9">
                                             <xs:annotation>
-                                                <xs:documentation>Informação do(s) vínculo(s)/contrato(s) já declarado(s) no eSocial pelo empregador e incorporado(s) ao vínculo reconhecido judicialmente.</xs:documentation>
-                                                <xs:documentation>CHAVE_GRUPO: {matIncorp}</xs:documentation>
+                                                <xs:documentation>Informação do(s) vínculo(s)/contrato(s) já declarado(s) no eSocial e incorporado(s) ao vínculo ou sucedido(s) pelo vínculo reconhecido judicialmente.</xs:documentation>
+                                                <xs:documentation>CHAVE_GRUPO: {tpInsc}, {nrInsc}, {matIncorp}</xs:documentation>
                                                 <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="matIncorp" type="TS_codigo_esocial">
+                                                    <xs:element name="tpInsc" minOccurs="0" type="TS_tpInsc_1_2">
                                                         <xs:annotation>
-                                                            <xs:documentation>Informar a matrícula incorporada (matrícula cujo vínculo/contrato passou a integrar o vínculo reconhecido judicialmente).</xs:documentation>
-                                                            <xs:documentation>Validação: Deve corresponder a uma matrícula informada pelo empregador no evento S-2190, S-2200 ou S-2300, pertencente ao trabalhador preenchido em {cpfTrab}(../cpfTrab).</xs:documentation>
+                                                            <xs:documentation>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.</xs:documentation>
+                                                            <xs:documentation>Validação: Informação obrigatória e exclusiva se a data de transmissão do evento for igual ou posterior a [2024-04-22].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
+                                                    <xs:element name="nrInsc" minOccurs="0" type="TS_nrInsc_8_11_14">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informar o número de inscrição do empregador no qual consta a matrícula incorporada ou sucedida, de acordo com o tipo de inscrição indicado no campo {incorporacao/tpInsc}(./tpInsc).</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se o campo {incorporacao/tpInsc}(./tpInsc) for informado.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="matIncorp" type="TS_matricula">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informar a matrícula incorporada (matrícula cujo vínculo/contrato passou a integrar o vínculo reconhecido judicialmente) ou a matrícula no empregador anterior.</xs:documentation>
+                                                            <xs:documentation>Validação: Deve corresponder a uma matrícula informada pelo empregador no evento S-2190, S-2200 ou S-2300, pertencente ao trabalhador preenchido em {cpfTrab}(../cpfTrab), no empregador informado em {incorporacao/nrInsc}(./nrInsc).</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="sucessaoVinc" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Informações de sucessão do vínculo.</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="dtTransf" type="xs:date">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Preencher com a data da transferência do empregado para o empregador declarante.</xs:documentation>
+                                                                        <xs:documentation>Validação: Deve ser posterior à data de admissão do trabalhador.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>                                                    
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
@@ -187,7 +228,7 @@
                                                     <xs:element name="dtIniAfast" type="xs:date">
                                                         <xs:annotation>
                                                             <xs:documentation>Data de início do afastamento.</xs:documentation>
-                                                            <xs:documentation>Validação: Deve ser igual ou posterior à data de admissão do trabalhador e igual ou posterior a [2019-09-24].</xs:documentation>
+                                                            <xs:documentation>Validação: Deve ser igual ou posterior à data de admissão do trabalhador.</xs:documentation>
                                                             <xs:documentation>Não pode ser posterior à data atual.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
@@ -213,6 +254,7 @@
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a data de desligamento do vínculo (último dia trabalhado).</xs:documentation>
                                                             <xs:documentation>Validação: Deve ser igual ou posterior à data de admissão do trabalhador e igual ou posterior a [2019-09-24].</xs:documentation>
+                                                            <xs:documentation>Não pode ser posterior à data atual.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="dtProjFimAPI" type="TS_dtProjFimAPI" minOccurs="0" />

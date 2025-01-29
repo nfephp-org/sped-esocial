@@ -93,7 +93,7 @@
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="matricula" type="TS_matricula_retorno" minOccurs="0">
+                                        <xs:element name="matricula" type="TS_matricula" minOccurs="0">
                                             <xs:annotation>
                                                 <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                                                 <xs:documentation>Evento de origem: S-2500 ou S-3500.</xs:documentation>
@@ -148,10 +148,11 @@
                                                                         <xs:documentation>Origem: campo {ideEstab/nrInsc}(2500_ideTrab_infoContr_ideEstab_nrInsc) de S-2500.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="basePerRef" maxOccurs="unbounded">
+                                                                <xs:element name="basePerRef" minOccurs="0" maxOccurs="unbounded">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações sobre bases de cálculo e valores do FGTS por período de referência.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {perRef}, {tpValorProcTrab}</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {basePerRef/codCateg}(./codCateg) = [1XX, 2XX, 301, 302, 303, 304, 306, 307, 309, 310, 312, 4XX, 721]); N (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>

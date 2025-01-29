@@ -83,8 +83,8 @@ trait TraitS2220
         $this->dom->addChild(
             $aso,
             "resAso",
-            $stdaso->resaso,
-            true
+            !empty($stdaso->resaso) ? $stdaso->resaso : null,
+            false
         );
 
         foreach ($this->std->exmedocup->aso->exame as $exa) {
@@ -195,6 +195,14 @@ trait TraitS2220
      * builder for version S.1.2.0
      */
     protected function toNodeS120()
+    {
+        return $this->toNodeS100();
+    }
+
+    /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
     {
         return $this->toNodeS100();
     }

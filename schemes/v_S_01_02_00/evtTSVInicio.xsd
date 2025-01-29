@@ -47,7 +47,7 @@
                                         <xs:element name="racaCor" type="TS_racaCorTrab">
                                             <xs:annotation>
                                                 <xs:documentation>Etnia e raça do trabalhador, conforme sua autoclassificação (art. 39, § 8º, da Lei 12.288/2010).</xs:documentation>
-                                                <xs:documentation>Validação: Se {dtInicio}(2300_infoTSVInicio_dtInicio) for igual ou posterior a [2023-07-01], retornar alerta caso seja informado o valor [6].</xs:documentation>
+                                                <xs:documentation>Validação: Se {dtInicio}(2300_infoTSVInicio_dtInicio) for igual ou posterior a [2024-04-22], não pode ser informado o valor [6].</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="estCiv" minOccurs="0" type="TS_estCivilTrab" />
@@ -178,7 +178,7 @@
                                                 <xs:documentation>f) Para o servidor público exercente de cargo eletivo, a data de início do mandato;</xs:documentation>
                                                 <xs:documentation>g) Para os demais trabalhadores, a data de início das atividades.</xs:documentation>
                                                 <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador e não pode ser posterior a 30 (trinta) dias da data atual;</xs:documentation>
+                                                <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador, não pode ser posterior a 30 (trinta) dias da data atual e deve ser igual ou anterior ao ano do óbito, se existente;</xs:documentation>
                                                 <xs:documentation>b) Se {cadIni}(./cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial;</xs:documentation>
                                                 <xs:documentation>c) Se {cadIni}(./cadIni) = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</xs:documentation>
                                             </xs:annotation>
@@ -279,7 +279,7 @@
                                                                         <xs:documentation>Validação: O preenchimento é obrigatório se {infoDirigenteSindical/categOrig}(./categOrig) corresponder a "Empregado", "Agente Público", "Avulso" ou for igual a [721].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="matricOrig" minOccurs="0" type="TS_codigo_esocial">
+                                                                <xs:element name="matricOrig" minOccurs="0" type="TS_matricula">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Preencher com a matrícula do trabalhador na empresa de origem.</xs:documentation>
                                                                         <xs:documentation>Validação: Preenchimento obrigatório se {infoDirigenteSindical/categOrig}(./categOrig) corresponder a "Empregado" ou "Agente Público".</xs:documentation>
@@ -321,7 +321,7 @@
                                                                         <xs:documentation>REGRA:REGRA_VALIDA_CNPJ</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="matricCed" type="TS_codigo_esocial">
+                                                                <xs:element name="matricCed" type="TS_matricula">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Preencher com a matrícula do trabalhador no empregador/órgão público cedente/de origem.</xs:documentation>
                                                                     </xs:annotation>
@@ -330,7 +330,7 @@
                                                                     <xs:simpleType>
                                                                         <xs:annotation>
                                                                             <xs:documentation>Preencher com a data de admissão (ou de exercício) do trabalhador no empregador/órgão público cedente/de origem.</xs:documentation>
-                                                                            <xs:documentation>Validação: Deve ser uma data igual ou anterior a {dtInicio}(2300_infoTSVInicio_dtInicio) e igual ou posterior a 01/01/1890.</xs:documentation>
+                                                                            <xs:documentation>Validação: Deve ser uma data igual ou anterior a {dtInicio}(2300_infoTSVInicio_dtInicio) e posterior a {nascimento/dtNascto}(2300_trabalhador_nascimento_dtNascto).</xs:documentation>
                                                                         </xs:annotation>
                                                                         <xs:restriction base="xs:date">
                                                                             <xs:minInclusive value="1890-01-01" />
@@ -370,7 +370,7 @@
                                                                         <xs:documentation>REGRA:REGRA_VALIDA_CNPJ</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
-                                                                <xs:element name="matricOrig" type="TS_codigo_esocial">
+                                                                <xs:element name="matricOrig" type="TS_matricula">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Preencher com a matrícula do servidor no órgão público de origem.</xs:documentation>
                                                                     </xs:annotation>

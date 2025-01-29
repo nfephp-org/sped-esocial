@@ -661,6 +661,396 @@ trait TraitS1202
     }
 
     /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
+    {
+        $ideEmpregador = $this->node->getElementsByTagName('ideEmpregador')->item(0);
+        //o idEvento pode variar de evento para evento
+        //então cada factory individualmente terá de construir o seu
+        $ideEvento = $this->dom->createElement("ideEvento");
+        $this->dom->addChild(
+            $ideEvento,
+            "indRetif",
+            $this->std->indretif,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "nrRecibo",
+            !empty($this->std->nrrecibo) ? $this->std->nrrecibo : null,
+            false
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "indApuracao",
+            $this->std->indapuracao,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "perApur",
+            $this->std->perapur,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "tpAmb",
+            $this->tpAmb,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "procEmi",
+            $this->procEmi,
+            true
+        );
+        $this->dom->addChild(
+            $ideEvento,
+            "verProc",
+            $this->verProc,
+            true
+        );
+        $this->node->insertBefore($ideEvento, $ideEmpregador);
+
+        $ideTrabalhador = $this->dom->createElement("ideTrabalhador");
+        $this->dom->addChild(
+            $ideTrabalhador,
+            "cpfTrab",
+            $this->std->cpftrab,
+            true
+        );
+
+        if (!empty($this->std->infocomplem)) {
+            $info = $this->dom->createElement("infoComplem");
+            $this->dom->addChild(
+                $info,
+                "nmTrab",
+                $this->std->infocomplem->nmtrab,
+                true
+            );
+            $this->dom->addChild(
+                $info,
+                "dtNascto",
+                $this->std->infocomplem->dtnascto,
+                true
+            );
+            if (!empty($this->std->infocomplem->sucessaovinc)) {
+                $vin =  $this->std->infocomplem->sucessaovinc;
+                $succ = $this->dom->createElement("sucessaoVinc");
+                $this->dom->addChild(
+                    $succ,
+                    "cnpjOrgaoAnt",
+                    $vin->cnpjorgaoant,
+                    true
+                );
+                $this->dom->addChild(
+                    $succ,
+                    "matricAnt",
+                    !empty($vin->matricant) ? $vin->matricant : null,
+                    false
+                );
+                $this->dom->addChild(
+                    $succ,
+                    "dtExercicio",
+                    $vin->dtexercicio,
+                    true
+                );
+                $this->dom->addChild(
+                    $succ,
+                    "observacao",
+                    !empty($vin->observacao) ? $vin->observacao : null,
+                    false
+                );
+                $info->appendChild($succ);
+            }
+            $ideTrabalhador->appendChild($info);
+        }
+        $this->node->appendChild($ideTrabalhador);
+        foreach ($this->std->dmdev as $dm) {
+            $dmdev = $this->dom->createElement("dmDev");
+            $this->dom->addChild(
+                $dmdev,
+                "ideDmDev",
+                $dm->idedmdev,
+                true
+            );
+            $this->dom->addChild(
+                $dmdev,
+                "codCateg",
+                $dm->codcateg,
+                true
+            );
+            $indrra = ($dm->indrra ?? null) === 'S' ? 'S' : null;
+            $this->dom->addChild(
+                $dmdev,
+                "indRRA",
+                $indrra,
+                false
+            );
+            if (!empty($dm->inforra) && $indrra === 'S') {
+                $inf = $dm->inforra;
+                $ifrra = $this->dom->createElement("infoRRA");
+                $this->dom->addChild(
+                    $ifrra,
+                    "tpProcRRA",
+                    $inf->tpprocrra,
+                    true
+                );
+                $this->dom->addChild(
+                    $ifrra,
+                    "nrProcRRA",
+                    $inf->nrprocrra ?? null,
+                    false
+                );
+                $this->dom->addChild(
+                    $ifrra,
+                    "descRRA",
+                    $inf->descrra,
+                    true
+                );
+                $this->dom->addChild(
+                    $ifrra,
+                    "qtdMesesRRA",
+                    $inf->qtdmesesrra,
+                    true
+                );
+                if (!empty($inf->despprocjud)) {
+                    $dpj = $inf->despprocjud;
+                    $despProcJud = $this->dom->createElement("despProcJud");
+                    $this->dom->addChild(
+                        $despProcJud,
+                        "vlrDespCustas",
+                        $dpj->vlrdespcustas,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $despProcJud,
+                        "vlrDespAdvogados",
+                        $dpj->vlrdespadvogados,
+                        true
+                    );
+                    $ifrra->appendChild($despProcJud);
+                }
+                if (!empty($inf->ideadv)) {
+                    foreach ($inf->ideadv as $idadv) {
+                        $adv = $this->dom->createElement("ideAdv");
+                        $this->dom->addChild(
+                            $adv,
+                            "tpInsc",
+                            $idadv->tpinsc,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $adv,
+                            "nrInsc",
+                            $idadv->nrinsc,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $adv,
+                            "vlrAdv",
+                            $idadv->vlradv,
+                            true
+                        );
+                        $ifrra->appendChild($adv);
+                    }
+                }
+                $dmdev->appendChild($ifrra);
+            }
+            if (!empty($dm->infoperapur)) {
+                $perapur = $this->dom->createElement("infoPerApur");
+                foreach ($dm->infoperapur->ideestab as $est) {
+                    $ideestab = $this->dom->createElement("ideEstab");
+                    $this->dom->addChild(
+                        $ideestab,
+                        "tpInsc",
+                        $est->tpinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideestab,
+                        "nrInsc",
+                        $est->nrinsc,
+                        true
+                    );
+                    foreach ($est->remunperapur as $rem) {
+                        $remum = $this->dom->createElement("remunPerApur");
+                        $this->dom->addChild(
+                            $remum,
+                            "matricula",
+                            !empty($rem->matricula) ? $rem->matricula : null,
+                            false
+                        );
+                        foreach ($rem->itensremun as $item) {
+                            $itemremum = $this->dom->createElement("itensRemun");
+                            $this->dom->addChild(
+                                $itemremum,
+                                "codRubr",
+                                $item->codrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $itemremum,
+                                "ideTabRubr",
+                                $item->idetabrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $itemremum,
+                                "qtdRubr",
+                                !empty($item->qtdrubr) ? $item->qtdrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $itemremum,
+                                "fatorRubr",
+                                !empty($item->fatorrubr) ? $item->fatorrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $itemremum,
+                                "vrRubr",
+                                $item->vrrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $itemremum,
+                                "indApurIR",
+                                $item->indapurir,
+                                true
+                            );
+                            if(isset($item->descfolha)){
+                                $descFolha = $this->dom->createElement("descFolha");
+                                $this->dom->addChild(
+                                    $descFolha,
+                                    "tpDesc",
+                                    $item->descfolha->tpdesc,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $descFolha,
+                                    "instFinanc",
+                                    $item->descfolha->instfinanc,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $descFolha,
+                                    "nrDoc",
+                                    $item->descfolha->nrdoc,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $descFolha,
+                                    "observacao",
+                                    $item->descfolha->observacao,
+                                    false
+                                );
+                                $itemremum->appendChild($descFolha);
+                            }
+                            $remum->appendChild($itemremum);
+                        }
+                        $ideestab->appendChild($remum);
+                    }
+                    $perapur->appendChild($ideestab);
+                }
+                $dmdev->appendChild($perapur);
+            }
+            if (!empty($dm->infoperant)) {
+                $perant = $this->dom->createElement("infoPerAnt");
+                $this->dom->addChild(
+                    $perant,
+                    "remunOrgSuc",
+                    $dm->infoperant->remunorgsuc,
+                    true
+                );
+                foreach ($dm->infoperant->ideperiodo as $per) {
+                    $ide = $this->dom->createElement("idePeriodo");
+                    $this->dom->addChild(
+                        $ide,
+                        "perRef",
+                        $per->perref,
+                        true
+                    );
+                    foreach ($per->ideestab as $estab) {
+                        $iest = $this->dom->createElement("ideEstab");
+                        $this->dom->addChild(
+                            $iest,
+                            "tpInsc",
+                            $estab->tpinsc,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $iest,
+                            "nrInsc",
+                            $estab->nrinsc,
+                            true
+                        );
+                        foreach ($estab->remumperant as $rpa) {
+                            $rempa = $this->dom->createElement("remunPerAnt");
+                            $this->dom->addChild(
+                                $rempa,
+                                "matricula",
+                                !empty($rpa->matricula) ? $rpa->matricula : null,
+                                false
+                            );
+                            foreach ($rpa->itensremum as $item) {
+                                $itemrpa = $this->dom->createElement("itensRemun");
+                                $this->dom->addChild(
+                                    $itemrpa,
+                                    "codRubr",
+                                    $item->codrubr,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $itemrpa,
+                                    "ideTabRubr",
+                                    $item->idetabrubr,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $itemrpa,
+                                    "qtdRubr",
+                                    !empty($item->qtdrubr) ? $item->qtdrubr : null,
+                                    false
+                                );
+                                $this->dom->addChild(
+                                    $itemrpa,
+                                    "fatorRubr",
+                                    !empty($item->fatorrubr) ? $item->fatorrubr : null,
+                                    false
+                                );
+                                $this->dom->addChild(
+                                    $itemrpa,
+                                    "vrRubr",
+                                    $item->vrrubr,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $itemrpa,
+                                    "indApurIR",
+                                    $item->indapurir,
+                                    true
+                                );
+                                $rempa->appendChild($itemrpa);
+                            }
+                            $iest->appendChild($rempa);
+                        }
+                        $ide->appendChild($iest);
+                    }
+                    $perant->appendChild($ide);
+                }
+                $dmdev->appendChild($perant);
+            }
+            $this->node->appendChild($dmdev);
+        }
+        //finalização do xml
+        $this->eSocial->appendChild($this->node);
+        //$this->xml = $this->dom->saveXML($this->eSocial);
+        $this->sign();
+    }
+
+    /**
      * Add ProcJud to ideTrabalhador
      * @param \DOMElement $node
      * @param \stdClass $std

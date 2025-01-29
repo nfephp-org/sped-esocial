@@ -53,7 +53,7 @@
                                         <xs:element name="racaCor" type="TS_racaCorTrab">
                                             <xs:annotation>
                                                 <xs:documentation>Etnia e raça do trabalhador, conforme sua autoclassificação (art. 39, § 8º, da Lei 12.288/2010).</xs:documentation>
-                                                <xs:documentation>Validação: Se {dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm), {dtExercicio}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio), {sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf) ou {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf) (maior data entre elas) for igual ou posterior a [2023-07-01], retornar alerta caso seja informado o valor [6].</xs:documentation>
+                                                <xs:documentation>Validação: Se {dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm), {dtExercicio}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio), {sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf) ou {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf) (maior data entre elas) for igual ou posterior a [2024-04-22], não pode ser informado o valor [6].</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="estCiv" minOccurs="0" type="TS_estCivilTrab" />
@@ -173,7 +173,7 @@
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="matricula" type="TS_codigo_esocial">
+                                        <xs:element name="matricula" type="TS_matricula">
                                             <xs:annotation>
                                                 <xs:documentation>Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.</xs:documentation>
                                                 <xs:documentation>Validação: O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</xs:documentation>
@@ -225,7 +225,7 @@
                                                                             <xs:documentation>Preencher com a data de admissão do trabalhador.</xs:documentation>
                                                                             <xs:documentation>No caso de transferência do empregado ou de mudança de CPF, preencher com a data inicial do vínculo no primeiro empregador (data de início do vínculo).</xs:documentation>
                                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                                            <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador;</xs:documentation>
+                                                                            <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador e igual ou anterior ao ano do óbito, se existente;</xs:documentation>
                                                                             <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial;</xs:documentation>
                                                                             <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N] e {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [1], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</xs:documentation>
                                                                         </xs:annotation>
@@ -370,7 +370,9 @@
                                                                                             <xs:element name="nrInsc" type="TS_nrInsc_11_14">
                                                                                                 <xs:annotation>
                                                                                                     <xs:documentation>Informar o número de inscrição do contratante de serviços, de acordo com o tipo de inscrição informado em {ideEstabVinc/tpInsc}(./tpInsc).</xs:documentation>
-                                                                                                    <xs:documentation>Validação: Se {ideEstabVinc/tpInsc}(./tpInsc) for igual a [1], deve ser um CNPJ válido, com 14 (catorze) algarismos. Se {ideEstabVinc/tpInsc}(./tpInsc) for igual a [2], deve ser um CPF válido.</xs:documentation>
+                                                                                                    <xs:documentation>Validação: Deve ser um identificador válido. Se {dtAdm}(../../dtAdm) >= [2024-04-22] e:</xs:documentation>
+                                                                                                    <xs:documentation>a) Se {ideEstabVinc/tpInsc}(./tpInsc) = [1], deve ser informado com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de {ideEmpregador/nrInsc}(/ideEmpregador_nrInsc).</xs:documentation>
+                                                                                                    <xs:documentation>b) Se {ideEstabVinc/tpInsc}(./tpInsc) = [2], deve ser diferente do CPF do empregado. Se o empregador for pessoa física, também deve ser diferente do CPF do empregador.</xs:documentation>
                                                                                                 </xs:annotation>
                                                                                             </xs:element>
                                                                                         </xs:sequence>
@@ -416,7 +418,7 @@
                                                                         <xs:simpleType>
                                                                             <xs:annotation>
                                                                                 <xs:documentation>Preencher com o tipo de provimento.</xs:documentation>
-                                                                                <xs:documentation>Validação: Os valores [3, 5, 6, 7, 8, 9] só são permitidos se a natureza jurídica do declarante for Administração Pública (grupo [1]).</xs:documentation>
+                                                                                <xs:documentation>Validação: Os valores [3, 5, 6, 8, 9] só são permitidos se a natureza jurídica do declarante for Administração Pública (grupo [1]).</xs:documentation>
                                                                                 <xs:documentation>Se {codCateg}(2200_vinculo_infoContrato_codCateg) = [302], deve ser preenchido com [2, 5, 8, 10].</xs:documentation>
                                                                             </xs:annotation>
                                                                             <xs:restriction base="xs:byte">
@@ -570,7 +572,12 @@
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
-                                                                <xs:element name="tpContr" type="TS_tpContr" />
+                                                                <xs:element name="tpContr" type="TS_tpContr">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Tipo de contrato de trabalho.</xs:documentation>
+                                                                        <xs:documentation>Validação: Se {codCateg}(../codCateg) = [103] e {dtAdm}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm) >= [2024-04-22], deve ser informado [2].</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
                                                                 <xs:element name="dtTerm" minOccurs="0" type="TS_dtTerm" />
                                                                 <xs:element name="clauAssec" minOccurs="0" type="TS_sim_nao">
                                                                     <xs:annotation>
@@ -697,17 +704,17 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="matricAnt" minOccurs="0" type="TS_codigo_esocial">
+                                                    <xs:element name="matricAnt" minOccurs="0" type="TS_matricula">
                                                         <xs:annotation>
                                                             <xs:documentation>Matrícula do trabalhador no empregador anterior.</xs:documentation>
-                                                            <xs:documentation>Validação: O preenchimento é obrigatório se {cadIni}(2200_vinculo_cadIni) = [N].</xs:documentation>
+                                                            <xs:documentation>Validação: O preenchimento é obrigatório se {cadIni}(2200_vinculo_cadIni) = [N]. Se {sucessaoVinc/dtTransf}(./dtTransf) for igual ou posterior a [2024-04-22], a matrícula informada neste campo deve ser idêntica à matricula do trabalhador no empregador anterior.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="dtTransf" type="xs:date">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a data da transferência do empregado para o empregador declarante.</xs:documentation>
                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                            <xs:documentation>a) Deve ser posterior à data de admissão do trabalhador;</xs:documentation>
+                                                            <xs:documentation>a) Deve ser posterior à data de admissão do trabalhador e igual ou anterior ao ano do óbito, se existente;</xs:documentation>
                                                             <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;</xs:documentation>
                                                             <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</xs:documentation>
                                                         </xs:annotation>
@@ -754,7 +761,7 @@
                                                             <xs:documentation>Preencher com o número do CPF antigo do trabalhador.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
-                                                    <xs:element name="matricAnt" type="TS_codigo_esocial">
+                                                    <xs:element name="matricAnt" type="TS_matricula">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a matrícula anterior do trabalhador.</xs:documentation>
                                                         </xs:annotation>

@@ -124,7 +124,7 @@ $jsonSchema = '{
                         "tpinsc": {
                             "required": false,
                             "type": ["integer","null"],
-                            "minimum": 1,
+                            "minimum": 0,
                             "maximum": 2
                         },
                         "nrinsc": {
@@ -136,7 +136,7 @@ $jsonSchema = '{
                             "required": false,
                             "type": ["string","null"],
                             "pattern": "^[0-9]{14}$"
-                        },
+                        }
                     }
                 }
             }
@@ -148,8 +148,8 @@ $jsonSchema = '{
                 "tpplanrp": {
                     "required": true,
                     "type": "integer",
-                    "minimum": 1,
-                    "maximum": 2
+                    "minimum": 0,
+                    "maximum": 3
                 },
                 "indtetorgps": {
                     "required": true,

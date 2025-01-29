@@ -285,6 +285,12 @@
                         "required": true,
                         "type": "string",
                         "pattern": "^(S|N)$"
+                    },
+                    "descrdep": {
+                        "required": false,
+                        "type": ["string","null"],
+                        "minLength": 1,
+                        "maxLength": 100
                     }
                 }
             }
@@ -442,16 +448,32 @@
                             "required": false,
                             "type": ["object","null"],
                             "properties": {
-                                "tpinsc": {
+                                "indaprend": {
                                     "required": true,
                                     "type": "integer",
                                     "minimum": 1,
                                     "maximum": 2
                                 },
+                                "cnpjentqual": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{14}$"
+                                },
+                                "tpinsc": {
+                                    "required": false,
+                                    "type": ["integer","null"],
+                                    "minimum": 0,
+                                    "maximum": 2
+                                },
                                 "nrinsc": {
-                                    "required": true,
-                                    "type": "string",
+                                    "required": false,
+                                    "type": ["string","null"],
                                     "pattern": "^([0-9]{11}|[0-9]{14})$"
+                                },
+                                "cnpjprat": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{14}$"
                                 }
                             }
                         }

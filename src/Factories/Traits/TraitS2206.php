@@ -128,15 +128,33 @@ trait TraitS2206
                 $aprend = $this->dom->createElement("aprend");
                 $this->dom->addChild(
                     $aprend,
-                    "tpInsc",
-                    $ct->aprend->tpinsc,
+                    "indAprend",
+                    $ct->aprend->indaprend,
                     true
                 );
                 $this->dom->addChild(
                     $aprend,
+                    "cnpjEntQual",
+                    $ct->aprend->cnpjentqual ?? null,
+                    false
+                );
+                $this->dom->addChild(
+                    $aprend,
+                    "tpInsc",
+                    $ct->aprend->tpinsc ?? null,
+                    false
+                );
+                $this->dom->addChild(
+                    $aprend,
                     "nrInsc",
-                    $ct->aprend->nrinsc,
-                    true
+                    $ct->aprend->nrinsc ?? null,
+                    false
+                );
+                $this->dom->addChild(
+                    $aprend,
+                    "cnpjPrat",
+                    $ct->aprend->cnpjprat ?? null,
+                    false
                 );
                 $infoCeletista->appendChild($aprend);
             }
@@ -855,5 +873,13 @@ trait TraitS2206
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
+    {
+        return $this->toNodeS120();
     }
 }

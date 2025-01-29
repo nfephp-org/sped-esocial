@@ -1842,6 +1842,12 @@ trait TraitS2300
                     $dep->inctrab,
                     true
                 );
+                $this->dom->addChild(
+                    $dependente,
+                    "descrDep",
+                    $dep->descrdep ?? null,
+                    false
+                );
                 $trabalhador->appendChild($dependente);
             }
         }
@@ -2327,5 +2333,13 @@ trait TraitS2300
         $this->eSocial->appendChild($this->node);
         //$this->xml = $this->dom->saveXML($this->eSocial);
         $this->sign();
+    }
+
+    /**
+     * builder for version S.1.3.0
+     */
+    protected function toNodeS130()
+    {
+        return $this->toNodeS120();
     }
 }

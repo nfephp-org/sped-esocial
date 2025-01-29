@@ -457,16 +457,32 @@ $jsonSchema = '{
                             "required": false,
                             "type": ["object","null"],
                             "properties": {
-                                "tpinsc": {
+                                "indaprend": {
                                     "required": true,
                                     "type": "integer",
                                     "minimum": 1,
                                     "maximum": 2
                                 },
+                                "cnpjentqual": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{14}$"
+                                },
+                                "tpinsc": {
+                                    "required": false,
+                                    "type": ["integer","null"],
+                                    "minimum": 0,
+                                    "maximum": 2
+                                },
                                 "nrinsc": {
-                                    "required": true,
-                                    "type": "string",
-                                    "pattern": "^([0-9]{11}|[0-9]{14})$"
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{8,14}$"
+                                },
+                                "cnpjprat": {
+                                    "required": false,
+                                    "type": ["string","null"],
+                                    "pattern": "^[0-9]{14}$"
                                 }
                             }
                         }
@@ -965,7 +981,7 @@ $std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0] = new \stdCl
 $std->vinculo->infoceletista->trabtemporario->idetrabsubstituido[0]->cpftrabsubst = '12345678901';
 
 $std->vinculo->infoceletista->aprend = new \stdClass(); //Opcional
-$std->vinculo->infoceletista->aprend->tpinsc = 1; //1 pu 2
+$std->vinculo->infoceletista->aprend->tpinsc = 1; //1 ou 2
 $std->vinculo->infoceletista->aprend->nrinsc = '12345678901';
 
 $std->vinculo->infoestatutario = new \stdClass(); //Opcional
