@@ -1100,7 +1100,7 @@ trait TraitS1210
                             $dep->tpdep ?? null,
                             false
                         );
-                        if ($dep->tpdep === '99') {
+                        if (!empty($dep->tpdep) && $dep->tpdep === '99') {
                             $this->dom->addChild(
                                 $infodep,
                                 "descrDep",
