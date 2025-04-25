@@ -65,6 +65,10 @@ $std->dadosrubrica->ideprocessoirrf[0]->codsusp = '0929292882';
 $std->dadosrubrica->ideprocessofgts[0] = new \stdClass();
 $std->dadosrubrica->ideprocessofgts[0]->nrproc  = 'asdfghjkliuytrewqasd';
 
+//campo ARRAY opcional
+$std->dadosrubrica->ideprocessopispasep[0] = new \stdClass();
+$std->dadosrubrica->ideprocessopispasep[0]->nrproc  = 'asdfghjkliuytrewqasd';
+$std->dadosrubrica->ideprocessopispasep[0]->codsusp = '0929292882';
 
 //campos opcionais usar apenas em alterações
 $std->novavalidade = new \stdClass();

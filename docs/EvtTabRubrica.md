@@ -103,6 +103,14 @@ Diante disso, alertamos para a necessidade de um profissional qualificado para o
 |id|integer|id da tabela|
 |nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [8]|
 
+### Table: rubricasprocpispasep - tabela de processos judiciais relativos a contribuição para o PIS/PASEP
+
+|field|type|comment|
+|:---|:---:|:---|
+|id|integer|id da tabela|
+|nrProc|string|Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1].|
+|codSusp|string|Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070|
+
 ## Parâmetros
 O stdClass deve ser carregado com os seguintes parâmetros:
 
