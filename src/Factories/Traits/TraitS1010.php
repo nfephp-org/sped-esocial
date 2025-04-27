@@ -193,6 +193,24 @@ trait TraitS1010
                     $dadosRubrica->appendChild($ideProcessoFGTS);
                 }
             }
+            if (! empty($this->std->dadosrubrica->ideprocessopispasep)) {
+                foreach ($this->std->dadosrubrica->ideprocessopispasep as $pispasep) {
+                    $ideProcessoPisPasep = $this->dom->createElement("ideProcessoPisPasep");
+                    $this->dom->addChild(
+                        $ideProcessoPisPasep,
+                        "nrProc",
+                        $pispasep->nrproc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideProcessoPisPasep,
+                        "codSusp",
+                        $pispasep->codsusp,
+                        true
+                    );
+                    $dadosRubrica->appendChild($ideProcessoPisPasep);
+                }
+            }
             if (! empty($this->std->dadosrubrica->ideprocessosind)) {
                 foreach ($this->std->dadosrubrica->ideprocessosind as $sind) {
                     $ideProcessoSIND = $this->dom->createElement("ideProcessoSIND");
@@ -442,6 +460,24 @@ trait TraitS1010
                         true
                     );
                     $dadosRubrica->appendChild($ideProcessoFGTS);
+                }
+            }
+            if (! empty($this->std->dadosrubrica->ideprocessopispasep)) {
+                foreach ($this->std->dadosrubrica->ideprocessopispasep as $pispasep) {
+                    $ideProcessoPisPasep = $this->dom->createElement("ideProcessoPisPasep");
+                    $this->dom->addChild(
+                        $ideProcessoPisPasep,
+                        "nrProc",
+                        $pispasep->nrproc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideProcessoPisPasep,
+                        "codSusp",
+                        $pispasep->codsusp,
+                        true
+                    );
+                    $dadosRubrica->appendChild($ideProcessoPisPasep);
                 }
             }
             if (! empty($this->std->dadosrubrica->ideprocessosind)) {
