@@ -1336,144 +1336,144 @@ trait TraitS1210
                         }
                         $infocomp->appendChild($ircr);
                     }
-                    if (!empty($comp->plansaude)) {
-                        foreach ($comp->plansaude as $sau) {
-                            $psau = $this->dom->createElement("planSaude");
-                            $this->dom->addChild(
-                                $psau,
-                                "cnpjOper",
-                                $sau->cnpjoper,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $psau,
-                                "regANS",
-                                $sau->regans ?? null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $psau,
-                                "vlrSaudeTit",
-                                $sau->vlrsaudetit,
-                                true
-                            );
-                            if (!empty($sau->infodepsau)) {
-                                foreach ($sau->infodepsau as $dep) {
-                                    $idep = $this->dom->createElement("infoDepSau");
-                                    $this->dom->addChild(
-                                        $idep,
-                                        "cpfDep",
-                                        $dep->cpfdep,
-                                        true
-                                    );
-                                    $this->dom->addChild(
-                                        $idep,
-                                        "vlrSaudeDep",
-                                        $dep->vlrsaudedep,
-                                        true
-                                    );
-                                    $psau->appendChild($idep);
-                                }
+                }
+                if (!empty($comp->plansaude)) {
+                    foreach ($comp->plansaude as $sau) {
+                        $psau = $this->dom->createElement("planSaude");
+                        $this->dom->addChild(
+                            $psau,
+                            "cnpjOper",
+                            $sau->cnpjoper,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $psau,
+                            "regANS",
+                            $sau->regans ?? null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $psau,
+                            "vlrSaudeTit",
+                            $sau->vlrsaudetit,
+                            true
+                        );
+                        if (!empty($sau->infodepsau)) {
+                            foreach ($sau->infodepsau as $dep) {
+                                $idep = $this->dom->createElement("infoDepSau");
+                                $this->dom->addChild(
+                                    $idep,
+                                    "cpfDep",
+                                    $dep->cpfdep,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $idep,
+                                    "vlrSaudeDep",
+                                    $dep->vlrsaudedep,
+                                    true
+                                );
+                                $psau->appendChild($idep);
                             }
-                            $infocomp->appendChild($psau);
                         }
+                        $infocomp->appendChild($psau);
                     }
-                    if (!empty($comp->inforeembmed)) {
-                        foreach ($comp->inforeembmed as $ree) {
-                            $iree = $this->dom->createElement("infoReembMed");
-                            $this->dom->addChild(
-                                $iree,
-                                "indOrgReemb",
-                                $ree->indorgreemb,
-                                true
-                            );
-                            $this->dom->addChild(
-                                $iree,
-                                "cnpjOper",
-                                $ree->cnpjoper ?? null,
-                                false
-                            );
-                            $this->dom->addChild(
-                                $iree,
-                                "regANS",
-                                $ree->regans ?? null,
-                                false
-                            );
-                            if (!empty($ree->detreembtit)) {
-                                foreach ($ree->detreembtit as $tit) {
-                                    $rtit = $this->dom->createElement("detReembTit");
-                                    $this->dom->addChild(
-                                        $rtit,
-                                        "tpInsc",
-                                        $tit->tpinsc,
-                                        true
-                                    );
-                                    $this->dom->addChild(
-                                        $rtit,
-                                        "nrInsc",
-                                        $tit->nrinsc,
-                                        true
-                                    );
-                                    $this->dom->addChild(
-                                        $rtit,
-                                        "vlrReemb",
-                                        $tit->vlrreemb ?? null,
-                                        false
-                                    );
-                                    $this->dom->addChild(
-                                        $rtit,
-                                        "vlrReembAnt",
-                                        $tit->vlrreembant ?? null,
-                                        false
-                                    );
-                                    $iree->appendChild($rtit);
-                                }
+                }
+                if (!empty($comp->inforeembmed)) {
+                    foreach ($comp->inforeembmed as $ree) {
+                        $iree = $this->dom->createElement("infoReembMed");
+                        $this->dom->addChild(
+                            $iree,
+                            "indOrgReemb",
+                            $ree->indorgreemb,
+                            true
+                        );
+                        $this->dom->addChild(
+                            $iree,
+                            "cnpjOper",
+                            $ree->cnpjoper ?? null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $iree,
+                            "regANS",
+                            $ree->regans ?? null,
+                            false
+                        );
+                        if (!empty($ree->detreembtit)) {
+                            foreach ($ree->detreembtit as $tit) {
+                                $rtit = $this->dom->createElement("detReembTit");
+                                $this->dom->addChild(
+                                    $rtit,
+                                    "tpInsc",
+                                    $tit->tpinsc,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $rtit,
+                                    "nrInsc",
+                                    $tit->nrinsc,
+                                    true
+                                );
+                                $this->dom->addChild(
+                                    $rtit,
+                                    "vlrReemb",
+                                    $tit->vlrreemb ?? null,
+                                    false
+                                );
+                                $this->dom->addChild(
+                                    $rtit,
+                                    "vlrReembAnt",
+                                    $tit->vlrreembant ?? null,
+                                    false
+                                );
+                                $iree->appendChild($rtit);
                             }
-                            if (!empty($ree->inforeembdep)) {
-                                foreach ($ree->inforeembdep as $bdep) {
-                                    $rdep = $this->dom->createElement("infoReembDep");
-                                    $this->dom->addChild(
-                                        $rdep,
-                                        "cpfBenef",
-                                        $bdep->cpfbenef,
-                                        true
-                                    );
-                                    if (!empty($bdep->detreembdep)) {
-                                        foreach ($bdep->detreembdep as $drdep) {
-                                            $detree = $this->dom->createElement("detReembDep");
-                                            $this->dom->addChild(
-                                                $detree,
-                                                "tpInsc",
-                                                $drdep->tpinsc,
-                                                true
-                                            );
-                                            $this->dom->addChild(
-                                                $detree,
-                                                "nrInsc",
-                                                $drdep->nrinsc,
-                                                true
-                                            );
-                                            $this->dom->addChild(
-                                                $detree,
-                                                "vlrReemb",
-                                                $drdep->vlrreemb ?? null,
-                                                false
-                                            );
-                                            $this->dom->addChild(
-                                                $detree,
-                                                "vlrReembAnt",
-                                                $drdep->vlrreembant ?? null,
-                                                false
-                                            );
-                                            $rdep->appendChild($detree);
-                                        }
-                                    }
-                                    $iree->appendChild($rdep);
-                                }
-                            }
-
-                            $infocomp->appendChild($iree);
                         }
+                        if (!empty($ree->inforeembdep)) {
+                            foreach ($ree->inforeembdep as $bdep) {
+                                $rdep = $this->dom->createElement("infoReembDep");
+                                $this->dom->addChild(
+                                    $rdep,
+                                    "cpfBenef",
+                                    $bdep->cpfbenef,
+                                    true
+                                );
+                                if (!empty($bdep->detreembdep)) {
+                                    foreach ($bdep->detreembdep as $drdep) {
+                                        $detree = $this->dom->createElement("detReembDep");
+                                        $this->dom->addChild(
+                                            $detree,
+                                            "tpInsc",
+                                            $drdep->tpinsc,
+                                            true
+                                        );
+                                        $this->dom->addChild(
+                                            $detree,
+                                            "nrInsc",
+                                            $drdep->nrinsc,
+                                            true
+                                        );
+                                        $this->dom->addChild(
+                                            $detree,
+                                            "vlrReemb",
+                                            $drdep->vlrreemb ?? null,
+                                            false
+                                        );
+                                        $this->dom->addChild(
+                                            $detree,
+                                            "vlrReembAnt",
+                                            $drdep->vlrreembant ?? null,
+                                            false
+                                        );
+                                        $rdep->appendChild($detree);
+                                    }
+                                }
+                                $iree->appendChild($rdep);
+                            }
+                        }
+
+                        $infocomp->appendChild($iree);
                     }
                 }
                 $ideBenef->appendChild($infocomp);
