@@ -158,6 +158,27 @@
                             }
                         }
                     }
+                },
+                "ideprocessopispasep": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "nrproc": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/string20"
+                            },
+                            "codsusp": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{1,14}$"
+                            }
+                        }
+                    }
                 }
             }
         },

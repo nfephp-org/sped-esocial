@@ -174,6 +174,27 @@ $jsonSchema = '{
                             }
                         }
                     }
+                },
+                "ideprocessopispasep": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "nrproc": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/string20"
+                            },
+                            "codsusp": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{1,14}$"
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -233,6 +254,10 @@ $std->dadosrubrica->ideprocessoirrf[0]->codsusp = '0929292882';
 $std->dadosrubrica->ideprocessofgts[0] = new \stdClass();
 $std->dadosrubrica->ideprocessofgts[0]->nrproc  = 'asdfghjkliuytrewqasd';
 
+//campo ARRAY opcional
+$std->dadosrubrica->ideprocessopispasep[0] = new \stdClass();
+$std->dadosrubrica->ideprocessopispasep[0]->nrproc  = 'asdfghjkliuytrewqasd';
+$std->dadosrubrica->ideprocessopispasep[0]->codsusp = '0929292882';
 
 //campos opcionais usar apenas em alterações
 $std->novavalidade = new \stdClass();
