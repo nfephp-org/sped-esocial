@@ -1337,6 +1337,7 @@ trait TraitS1210
                         $infocomp->appendChild($ircr);
                     }
                 }
+                
                 if (!empty($comp->plansaude)) {
                     foreach ($comp->plansaude as $sau) {
                         $psau = $this->dom->createElement("planSaude");
