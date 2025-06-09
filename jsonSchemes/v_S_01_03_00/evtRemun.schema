@@ -570,8 +570,8 @@
                                                                 "nrdoc": { 
                                                                     "required": true,
                                                                     "type": "string",
-                                                                    "minLength": 8,
-                                                                    "maxLength": 12
+                                                                    "minLength": 1,
+                                                                    "maxLength": 15
                                                                 },
                                                                 "observacao": { 
                                                                     "required": false,
