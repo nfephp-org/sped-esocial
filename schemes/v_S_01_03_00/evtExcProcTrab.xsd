@@ -73,8 +73,10 @@
                                                     </xs:element>
                                                     <xs:element name="ideSeqProc" minOccurs="0">
                                                         <xs:annotation>
-                                                            <xs:documentation>Número sequencial atribuído pela empresa a cada conjunto de dados de tributos decorrentes de processo trabalhista, quando for necessário enviar o mesmo processo em múltiplos S-2501, para o mesmo {perApurPgto}.</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento exclusivo se {}(../tpEvento) = [S-2501]. Deve ser o mesmo identificador informado no evento S-2501 objeto da exclusão.</xs:documentation>
+                                                            <xs:documentation>Número sequencial atribuído pela empresa ao processo trabalhista, quando for necessário enviar o mesmo processo em múltiplos S-2500 ou S-2501.</xs:documentation>
+                                                            <xs:documentation>Validação: Se {}(../tpEvento) = [S-2500], deve ser o identificador informado em {}(2500_ideTrab_ideSeqTrab).</xs:documentation>
+                                                            <xs:documentation>Se {}(../tpEvento) = [S-2501], deve ser o identificador informado em {}(2501_ideProc_ideSeqProc).</xs:documentation>
+                                                            <xs:documentation>Se {}(../tpEvento) = [S-2555], não deve ser informado.</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:simpleType>
                                                             <xs:restriction base="xs:positiveInteger">

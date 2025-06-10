@@ -153,11 +153,11 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="vrCR" type="TS_valorMonetario_positivo">
+                                                    <xs:element name="vrCR" type="TS_valorMonetario">
                                                         <xs:annotation>
                                                             <xs:documentation>Valor correspondente ao Código de Receita - CR.</xs:documentation>
                                                             <xs:documentation>Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</xs:documentation>
-                                                            <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                                            <xs:documentation>Deve ser maior ou igual a 0 (zero).</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>

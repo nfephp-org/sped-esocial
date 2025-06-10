@@ -480,9 +480,49 @@
                                                                                                 <xs:documentation>Base de cálculo da contribuição previdenciária exclusiva do empregado - Categorias 107 e 108</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:enumeration>
+                                                                                        <xs:enumeration value="51">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Base de cálculo da contribuição previdenciária normal - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="52">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="53">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="54">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="71">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Incidência suspensa em decorrência de decisão judicial - Base de cálculo - BC da Contribuição Previdenciária - CP normal - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="72">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Incidência suspensa em decorrência de decisão judicial - BC CP aposentadoria especial aos 15 anos de trabalho - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="73">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Incidência suspensa em decorrência de decisão judicial - BC CP aposentadoria especial aos 20 anos de trabalho - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
+                                                                                        <xs:enumeration value="74">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Incidência suspensa em decorrência de decisão judicial - BC CP aposentadoria especial aos 25 anos de trabalho - 13º salário - Lei 14.973/2024</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:enumeration>
                                                                                         <xs:enumeration value="81">
                                                                                             <xs:annotation>
-                                                                                                <xs:documentation>Incidência suspensa em decorrência de decisão judicial - Base de cálculo - BC da Contribuição Previdenciária - CP normal - Categorias 107 e 108</xs:documentation>
+                                                                                                <xs:documentation>Incidência suspensa em decorrência de decisão judicial - BC CP normal - Categorias 107 e 108</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:enumeration>
                                                                                         <xs:enumeration value="82">
@@ -589,6 +629,14 @@
                                                                                     <xs:documentation>{tpValor}(./tpValor) = [47]**, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [13, 14] e {grauExp} em S-1200/S-2299 = [3], observado o limite para {codCateg}(../codCateg) = [107, 108];</xs:documentation>
                                                                                     <xs:documentation>{tpValor}(./tpValor) = [48]**, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [13, 14] e {grauExp} em S-1200/S-2299 = [4], observado o limite para {codCateg}(../codCateg) = [107, 108];</xs:documentation>
                                                                                     <xs:documentation>{tpValor}(./tpValor) = [49], {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [15, 16, 21, 22], observado o limite para {codCateg}(../codCateg) = [107, 108];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [51]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [12] e ({grauExp} em S-1200/S-2299 = [1] ou não informado), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [52]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [12] e ({grauExp} em S-1200/S-2299 = [2]), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [53]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [12] e ({grauExp} em S-1200/S-2299 = [3]), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [54]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [12] e ({grauExp} em S-1200/S-2299 = [4]), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [71]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [92] e ({grauExp} em S-1200/S-2299 = [1] ou não informado), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [72]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [92] e ({grauExp} em S-1200/S-2299 = [2]), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [73]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [92] e ({grauExp} em S-1200/S-2299 = [3]), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
+                                                                                    <xs:documentation>{tpValor}(./tpValor) = [74]****, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [92] e ({grauExp} em S-1200/S-2299 = [4]), se {indDesFolha}(1000_infoEmpregador_inclusao_infoCadastro_indDesFolha) em S-1000 = [1] para {perApur}(5001_ideEvento_perApur) entre [2025-01] e [2027-12];</xs:documentation>
                                                                                     <xs:documentation>{tpValor}(./tpValor) = [81]*, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [91, 92] e ({grauExp} em S-1200/S-2299 = [1] ou não informado), observado o limite para {codCateg}(../codCateg) = [107, 108];</xs:documentation>
                                                                                     <xs:documentation>{tpValor}(./tpValor) = [82]*, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [91, 92] e {grauExp} em S-1200/S-2299 = [2], observado o limite para {codCateg}(../codCateg) = [107, 108];</xs:documentation>
                                                                                     <xs:documentation>{tpValor}(./tpValor) = [83]*, {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 = [91, 92] e {grauExp} em S-1200/S-2299 = [3], observado o limite para {codCateg}(../codCateg) = [107, 108];</xs:documentation>
@@ -616,6 +664,7 @@
                                                                                     <xs:documentation>** Caso {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) da rubrica em S-1010 seja igual a [95, 96, 97, 98] e {indSusp}(1070_infoProcesso_inclusao_dadosProc_infoSusp_indSusp) do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deve ser computado na composição das bases do {tpValor}(./tpValor) = [15, 16, 17, 18, 45, 46, 47, 48].</xs:documentation>
                                                                                     <xs:documentation>Se {codCateg}(../codCateg) = [107, 108], caso {tpValor}(./tpValor) = [15] seja maior que o limite do salário-base para essas categorias, então {tpValor}(./tpValor) = [85] é igual a {tpValor}=[45] – ({tpValor}=[15] – {tpValor}=[95]). Se {tpValor}(./tpValor) = [85] resultar negativo, informar 0 (zero). O mesmo se aplica para {tpValor}(./tpValor) = [86, 87, 88].</xs:documentation>
                                                                                     <xs:documentation>*** Caso {indSusp}(1070_infoProcesso_inclusao_dadosProc_infoSusp_indSusp) do respectivo processo em S-1070 seja igual a [90] (decisão definitiva), o valor não deve ser computado.</xs:documentation>
+                                                                                    <xs:documentation>**** Caso {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) da rubrica em S-1010 seja igual a [92] e {indSusp}(1070_infoProcesso_inclusao_dadosProc_infoSusp_indSusp) do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor de {tpValor}(./tpValor) = [71, 72, 73, 74] também deve ser computado na composição das bases do {tpValor}(./tpValor) = [51, 52, 53, 54].</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -838,7 +887,7 @@
                                 <xs:annotation>
                                     <xs:documentation>Informações sobre bases de cálculo do PIS/PASEP.</xs:documentation>
                                     <xs:documentation>DESCRICAO_COMPLETA:Informações sobre bases de cálculo do PIS/PASEP informadas nos eventos S-1200, S-2299, S-2399 ou S-1202.</xs:documentation>
-                                    <xs:documentation>CONDICAO_GRUPO: OC (se {}(1000_infoEmpregador_inclusao_infoCadastro_indTribFolhaPisPasep) = [S] em S-1000, {}(5001_ideEvento_perApur) >= [2025-01] e {ideEmpregador/tpInsc}(5001_ideEmpregador_tpInsc) = [1]); N (nos demais casos)</xs:documentation>
+                                    <xs:documentation>CONDICAO_GRUPO: OC (se {}(1000_infoEmpregador_inclusao_infoCadastro_indTribFolhaPisPasep) em S-1000 = [S], {}(5001_ideEvento_perApur) >= [2025-01] e {ideEmpregador/tpInsc}(5001_ideEmpregador_tpInsc) = [1], exceto se {}(5001_infoCp_ideEstabLot_infoCategIncid_codCateg) = [5XX, 7XX, 9XX]); N (nos demais casos)</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>

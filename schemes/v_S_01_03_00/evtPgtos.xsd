@@ -336,7 +336,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informação dos beneficiários da pensão alimentícia.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {tpRend}, {cpfDep}</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) = [51, 52, 53, 54] com valor > 0 em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: O ((se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) em S-1010 = [51, 52, 53, 54] e {}(1010_infoRubrica_inclusao_dadosRubrica_tpRubr) em S-1010 = [2]) em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -355,7 +355,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações relativas a planos de previdência complementar.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {tpPrev}, {cnpjEntidPC}</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) = [46, 47, 48, 61, 62, 63, 64, 65, 66] com valor > 0 em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: O ((se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) em S-1010 = [46, 47, 48, 61, 62, 63, 64, 65, 66] e {}(1010_infoRubrica_inclusao_dadosRubrica_tpRubr) em S-1010 = [2]) em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -400,7 +400,7 @@
                                                                         <xs:documentation>Processos relacionados a não retenção de tributos</xs:documentation>
                                                                         <xs:documentation>DESCRICAO_COMPLETA: Informações de processos relacionados a não retenção de tributos ou a depósitos judiciais.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {tpProcRet}, {nrProcRet}, {codSusp}</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: N (se {tpCR}(../tpCR) = [188901]); O (se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) = [9XXX] (exceto [9067]) com valor > 0 em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: N (se {tpCR}(../tpCR) = [188901]); O (se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) em S-1010 = [9XXX] (exceto [9067]) com valor > 0 em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -490,7 +490,7 @@
                                                             <xs:documentation>DESCRICAO_COMPLETA: Plano de saúde coletivo.</xs:documentation>
                                                             <xs:documentation>Identificação da(s) operadora(s) de plano privado coletivo empresarial de assistência à saúde.</xs:documentation>
                                                             <xs:documentation>CHAVE_GRUPO: {cnpjOper}, {regANS}</xs:documentation>
-                                                            <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) = [67, 9067] ou {}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) = [9219] com valor > 0 em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: O (((se {}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) em S-1010 = [67, 9067] ou {}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 = [9219]) e {}(1010_infoRubrica_inclusao_dadosRubrica_tpRubr) em S-1010 = [2]) em qualquer rubrica em {infoPgto}(1210_ideBenef_infoPgto), inclusive aquelas referenciadas em {perAnt/nrRec1210Orig}(1210_ideBenef_infoIRComplem_perAnt_nrRec1210Orig)); OC (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -498,7 +498,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informar o número do CNPJ da operadora de plano privado coletivo empresarial de assistência à saúde.</xs:documentation>
                                                                         <xs:documentation>Validação: Deve ser um CNPJ válido no Cadastro CNPJ e não pode estar com situação cadastral "baixada" (situação = 8) em data anterior ao período de apuração indicado em {perApur}(1210_ideEvento_perApur) ou "nula" (situação = 1).</xs:documentation>
-                                                                        <xs:documentation>Não deve ser igual ao número de inscrição das pessoas jurídicas informadas nos grupos {}(1210_ideBenef_infoIRComplem_infoIRCR_previdCompl) e {ideAdv} do evento remuneratório.</xs:documentation>
+                                                                        <xs:documentation>Não deve ser igual ao número de inscrição das pessoas jurídicas informadas nos grupos {}(1210_ideBenef_infoIRComplem_infoIRCR_previdCompl) (para {}(1210_ideBenef_infoIRComplem_infoIRCR_previdCompl_tpPrev) = [2, 3]) e {ideAdv} do evento remuneratório.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="regANS" type="TS_regANS" minOccurs="0" />

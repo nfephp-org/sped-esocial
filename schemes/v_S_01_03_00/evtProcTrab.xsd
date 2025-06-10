@@ -200,7 +200,7 @@
                             <xs:element name="ideTrab">
                                 <xs:annotation>
                                     <xs:documentation>Informações do trabalhador.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}, {ideSeqTrab*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -216,6 +216,21 @@
                                                 <xs:documentation>Preencher com a data de nascimento.</xs:documentation>
                                                 <xs:documentation>Validação: Preenchimento obrigatório se não existir contrato com {indContr}(2500_ideTrab_infoContr_indContr) = [S]. Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual.</xs:documentation>
                                             </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ideSeqTrab" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Número sequencial atribuído pela empresa a cada conjunto de dados de processo trabalhista, quando for necessário enviar o mesmo processo em múltiplos S-2500, para o mesmo {}(./cpfTrab).</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um identificador único dentre os eventos S-2500 do empregador que tenham os mesmos {}(../infoProcesso_nrProcTrab) e {}(./cpfTrab).</xs:documentation>
+                                                <xs:documentation>Se for preenchido, não pode haver outro evento S-2500 com os mesmos {}(../infoProcesso_nrProcTrab) e {}(./cpfTrab), e sem o campo {}(./ideSeqTrab).</xs:documentation>
+                                                <xs:documentation>Se não for preenchido, não pode haver outro evento S-2500 com os mesmos {}(../infoProcesso_nrProcTrab) e {}(./cpfTrab).</xs:documentation>
+                                                <xs:documentation>O valor [0] é reservado para uso interno.</xs:documentation>
+                                                <xs:documentation>O campo não pode ser informado se todos os contratos do evento tiverem {}(2500_ideTrab_infoContr_indContr) = [S].</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:positiveInteger">
+                                                    <xs:pattern value="\d{1,3}" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="infoContr" maxOccurs="99">
                                             <xs:annotation>
@@ -928,7 +943,7 @@
                                                                                                 </xs:sequence>
                                                                                             </xs:complexType>
                                                                                         </xs:element>
-                                                                                        <xs:element name="infoInterm" minOccurs="0" maxOccurs="31" type="T_infoInterm">
+                                                                                        <xs:element name="infoInterm" minOccurs="0" maxOccurs="31" type="T_infoIntermProcTrab">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Informações relativas ao trabalho intermitente.</xs:documentation>
                                                                                                 <xs:documentation>CHAVE_GRUPO: {dia}</xs:documentation>
