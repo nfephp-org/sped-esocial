@@ -243,6 +243,34 @@
                                                                 "type": ["integer","null"],
                                                                 "minimum": 0,
                                                                 "maximum": 1
+                                                            },
+                                                            "descfolha": {
+                                                                "required": false,
+                                                                "type": ["object", "null"],
+                                                                "properties": {
+                                                                    "tpdesc": {
+                                                                        "required": true,
+                                                                        "type": "integer",
+                                                                        "minimum": 1,
+                                                                        "maximum": 1
+                                                                    },
+                                                                    "instfinanc": { 
+                                                                        "required": true,
+                                                                        "type": "string",
+                                                                        "pattern":  "^[0-9]{3}$"
+                                                                    },
+                                                                    "nrdoc": { 
+                                                                        "required": true,
+                                                                        "type": "string",
+                                                                        "minLength": 1,
+                                                                        "maxLength": 15
+                                                                    },
+                                                                    "observacao": { 
+                                                                        "required": false,
+                                                                        "type": ["string","null"],
+                                                                        "maxLength": 255
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
