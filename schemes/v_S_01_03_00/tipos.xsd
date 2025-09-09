@@ -334,6 +334,18 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="T_infoIntermProcTrab">
+        <xs:sequence>
+            <xs:element name="dia" type="TS_dia" />
+            <xs:element name="hrsTrab" minOccurs="0" type="TS_hora">
+                <xs:annotation>
+                    <xs:documentation>Horas trabalhadas no dia pelo empregado com contrato de trabalho intermitente, no formato HHMM.</xs:documentation>
+                    <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [22] em {}(2500_ideTrab_infoContr_ideEstab_infoVlr_idePeriodo_perRef).</xs:documentation>
+                    <xs:documentation>Se preenchida, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     <!-- Grupo {infoRRA} -->
 
     <xs:complexType name="T_infoRRA">
@@ -1209,10 +1221,11 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>Número do contrato referente ao empréstimo.</xs:documentation>
-                        <xs:documentation>Validação: Se {}(./tpDesc) = [1], deve ser informado com 8 (oito) algarismos.</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:pattern value="\d{8,12}" />
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="15" />
+                        <xs:pattern value="[A-Za-z0-9][-_A-Za-z0-9/.//]{0,13}[A-Za-z0-9]" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -4299,7 +4312,7 @@
     <xs:simpleType name="TS_periodo_mensal">
         <xs:restriction base="xs:string">
             <xs:length value="7" />
-            <xs:pattern value="([2]\d{3}|19[8-9]\d)-(1[0-2]|0[1-9])" />
+            <xs:pattern value="([2]\d{3}|19[6-9]\d)-(1[0-2]|0[1-9])" />
         </xs:restriction>
     </xs:simpleType>
 

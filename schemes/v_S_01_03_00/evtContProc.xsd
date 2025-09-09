@@ -132,7 +132,7 @@
                                                 <xs:attribute name="perRef" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
-                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) e igual ou posterior a [2008-12].</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) (observado o campo {}(2500_ideTrab_ideSeqTrab) de S-2500, se existente) e igual ou posterior a [2008-12].</xs:documentation>
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="TS_periodo_mensal" />

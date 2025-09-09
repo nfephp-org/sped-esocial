@@ -250,6 +250,21 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+            <xs:element name="indPertIRRF" minOccurs="0">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Indicador de pertencimento do IRRF.</xs:documentation>
+                        <xs:documentation>Validação: Preenchimento exclusivo para o empregador com natureza jurídica igual a [126-0, 127-9, 129-5, 130-9].</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="S">
+                            <xs:annotation>
+                                <xs:documentation>Sim</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="dadosIsencao" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Informações complementares - Empresas isentas - Dados da isenção.</xs:documentation>

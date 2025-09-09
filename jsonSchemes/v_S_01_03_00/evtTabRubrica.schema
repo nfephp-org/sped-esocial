@@ -67,7 +67,7 @@
                 "codincfgts": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^(00|11|12|21|91|92|93)$"
+                    "pattern": "^(00|11|12|21|31|91|92|93)$"
                 },
                 "codinccprp": {
                     "required": false,

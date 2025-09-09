@@ -183,7 +183,7 @@
                                                                             <xs:element name="categOrig" minOccurs="0" type="TS_codCateg">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido.</xs:documentation>
-                                                                                    <xs:documentation>Origem: campo {infoDirigenteSindical/categOrig}(2300_infoTSVInicio_infoComplementares_infoDirigenteSindical_categOrig) ou {infoTrabCedido/categOrig}(2300_infoTSVInicio_infoComplementares_infoTrabCedido_categOrig) de S-2300.</xs:documentation>
+                                                                                    <xs:documentation>Origem: campo {infoDirigenteSindical/categOrig}(2300_infoTSVInicio_infoComplementares_infoDirigenteSindical_categOrig), {infoTrabCedido/categOrig}(2300_infoTSVInicio_infoComplementares_infoTrabCedido_categOrig) ou {infoMandElet/categOrig}(2300_infoTSVInicio_infoComplementares_infoMandElet_categOrig) de S-2300.</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
                                                                             <xs:element name="tpRegTrab" minOccurs="0" type="TS_tpRegTrab">
@@ -541,7 +541,7 @@
                                                                                         <xs:element name="instFinanc">
                                                                                             <xs:simpleType>
                                                                                                 <xs:annotation>
-                                                                                                    <xs:documentation>Instituição financeira do empréstimo eConsignado</xs:documentation>
+                                                                                                    <xs:documentation>Instituição financeira do empréstimo eConsignado.</xs:documentation>
                                                                                                     <xs:documentation>Origem: campo {descFolha/instFinanc} dos eventos remuneratórios (S-1200, S-1202, S-1207, S-2299 e S-2399).</xs:documentation>
                                                                                                 </xs:annotation>
                                                                                                 <xs:restriction base="xs:string">
@@ -552,17 +552,19 @@
                                                                                         <xs:element name="nrContrato">
                                                                                             <xs:simpleType>
                                                                                                 <xs:annotation>
-                                                                                                    <xs:documentation>Número do contrato do empréstimo eConsignado</xs:documentation>
+                                                                                                    <xs:documentation>Número do contrato do empréstimo eConsignado.</xs:documentation>
                                                                                                     <xs:documentation>Origem: campo {descFolha/nrDoc} dos eventos remuneratórios (S-1200, S-1202, S-1207, S-2299 e S-2399).</xs:documentation>
                                                                                                 </xs:annotation>
                                                                                                 <xs:restriction base="xs:string">
-                                                                                                    <xs:pattern value="\d{8}" />
+                                                                                                    <xs:minLength value="1" />
+                                                                                                    <xs:maxLength value="15" />
+                                                                                                    <xs:pattern value="[A-Za-z0-9][-_A-Za-z0-9/.//]{0,13}[A-Za-z0-9]" />
                                                                                                 </xs:restriction>
                                                                                             </xs:simpleType>
                                                                                         </xs:element>
                                                                                         <xs:element name="vreConsignado" type="TS_valorMonetario_positivo">
                                                                                             <xs:annotation>
-                                                                                                <xs:documentation>Valor do desconto do empréstimo eConsignado</xs:documentation>
+                                                                                                <xs:documentation>Valor do desconto do empréstimo eConsignado.</xs:documentation>
                                                                                                 <xs:documentation>Origem: soma das rubricas com {codIncFGTS}(1010_infoRubrica_inclusao_dadosRubrica_codIncFGTS) em S-1010 igual a [31].</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
