@@ -98,7 +98,7 @@
                     },
                     "tpaval": {
                         "required": false,
-                        "type": "integer",
+                        "type": ["integer","null"],
                         "minimum": 1,
                         "maximum": 2
                     },
