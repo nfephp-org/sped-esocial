@@ -212,6 +212,104 @@ trait TraitS1200
                 $dm->codcateg,
                 true
             );
+            if (!empty($dm->infoperapur)) {
+                $infoPerApur = $this->dom->createElement("infoPerApur");
+                foreach ($dm->infoperapur->ideestablot as $idsl) {
+                    $ideEstabLot = $this->dom->createElement("ideEstabLot");
+                    $this->dom->addChild(
+                        $ideEstabLot,
+                        "tpInsc",
+                        $idsl->tpinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideEstabLot,
+                        "nrInsc",
+                        $idsl->nrinsc,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideEstabLot,
+                        "codLotacao",
+                        $idsl->codlotacao,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ideEstabLot,
+                        "qtdDiasAv",
+                        !empty($idsl->qtddiasav) ? $idsl->qtddiasav : null,
+                        false
+                    );
+                    foreach ($idsl->remunperapur as $rpa) {
+                        $remunPerApur = $this->dom->createElement("remunPerApur");
+                        $this->dom->addChild(
+                            $remunPerApur,
+                            "matricula",
+                            !empty($rpa->matricula) ? $rpa->matricula : null,
+                            false
+                        );
+                        $this->dom->addChild(
+                            $remunPerApur,
+                            "indSimples",
+                            !empty($rpa->indsimples) ? $rpa->indsimples : null,
+                            false
+                        );
+                        foreach ($rpa->itensremun as $itemr) {
+                            $itensRemun = $this->dom->createElement("itensRemun");
+                            $this->dom->addChild(
+                                $itensRemun,
+                                "codRubr",
+                                $itemr->codrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $itensRemun,
+                                "ideTabRubr",
+                                $itemr->idetabrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $itensRemun,
+                                "qtdRubr",
+                                !empty($itemr->qtdrubr) ? $itemr->qtdrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $itensRemun,
+                                "fatorRubr",
+                                !empty($itemr->fatorrubr) ? $itemr->fatorrubr : null,
+                                false
+                            );
+                            $this->dom->addChild(
+                                $itensRemun,
+                                "vrRubr",
+                                $itemr->vrrubr,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $itensRemun,
+                                "indApurIR",
+                                isset($itemr->indapurir) ? $itemr->indapurir : null,
+                                false
+                            );
+                            $remunPerApur->appendChild($itensRemun);
+                        }
+                        if (!empty($rpa->infoagnocivo)) {
+                            $infoAgNocivo = $this->dom->createElement("infoAgNocivo");
+                            $this->dom->addChild(
+                                $infoAgNocivo,
+                                "grauExp",
+                                $rpa->infoagnocivo->grauexp,
+                                true
+                            );
+                            $remunPerApur->appendChild($infoAgNocivo);
+                        }
+                        $ideEstabLot->appendChild($remunPerApur);
+                    }
+                    $infoPerApur->appendChild($ideEstabLot);
+                }
+                $dmdev->appendChild($infoPerApur);
+            }
             if (!empty($dm->ideestablot)) {
                 $infoPerApur = $this->dom->createElement("infoPerApur");
                 foreach ($dm->ideestablot as $idsl) {
