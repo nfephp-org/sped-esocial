@@ -1183,14 +1183,28 @@ trait TraitS1210
                                     $prev->cnpjentidpc,
                                     true
                                 );
+								if(isset($prev->vlrdedpc)){
+									$this->dom->addChild(
+										$pc,
+										"vlrDedPC",
+										$prev->vlrdedpc,
+										false
+									);
+								}
                                 if(isset($prev->vlrdedpc13)){
                                     $this->dom->addChild(
                                         $pc,
                                         "vlrDedPC13",
                                         $prev->vlrdedpc13,
-                                        true
+                                        false
                                     );
                                 }                                
+								$this->dom->addChild(
+									$pc,
+									"vlrPatrocFunp",
+									$prev->vlrpatrocfunp ?? null,
+									false
+								);
                                 if($prev->tpprev == 3){
                                     if(isset($prev->vlrpatrocfunp13)) {
                                         $this->dom->addChild(
