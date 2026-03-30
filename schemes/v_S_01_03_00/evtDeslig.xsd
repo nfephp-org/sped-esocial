@@ -434,7 +434,7 @@
                                                                 <xs:documentation>Número do contrato de empréstimo consignado existente na instituição consignatária.</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:string">
-                                                                <xs:pattern value="\d{1,40}" />
+                                                                <xs:pattern value="[A-Za-z0-9]{1,40}" />
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
