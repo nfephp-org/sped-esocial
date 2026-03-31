@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../../../bootstrap.php';
+require_once __DIR__ . '/../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
@@ -72,10 +72,14 @@ $std->infobentermino = new \stdClass();
 $std->infobentermino->dttermbeneficio = '2121-05-01';
 $std->infobentermino->mtvtermino = '11';
 
+//campo opcional
+$std->infohomolog = new \stdClass();
+$std->infohomolog->sithomolog = 1; //obrigatório
+$std->infohomolog->dthomolog = '2021-06-01'; //opcional
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
+    $content = file_get_contents(__DIR__ . '/expired_certificate.pfx');
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 

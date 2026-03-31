@@ -176,6 +176,23 @@
                     "pattern": "^0[1-8]{1}|11$"
                 }
             }
+        },
+        "infohomolog": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "sithomolog": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2
+                },
+                "dthomolog": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/data"
+                }
+            }
         }
     }
 }

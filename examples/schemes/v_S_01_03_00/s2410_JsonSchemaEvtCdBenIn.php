@@ -191,6 +191,23 @@ $jsonSchema = '{
                     "pattern": "^0[1-8]{1}|11$"
                 }
             }
+        },
+        "infohomolog": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "sithomolog": {
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2
+                },
+                "dthomolog": {
+                    "required": false,
+                    "type": ["string","null"],
+                    "$ref": "#/definitions/data"
+                }
+            }
         }
     }
 }';
@@ -239,7 +256,10 @@ $std->infobentermino = new \stdClass();
 $std->infobentermino->dttermbeneficio = '2121-05-01';
 $std->infobentermino->mtvtermino = '11';
 
-
+//campo opcional
+$std->infohomolog = new \stdClass();
+$std->infohomolog->sithomolog = 1; //obrigatório
+$std->infohomolog->dthomolog = '2021-06-01'; //opcional
 
 // Schema must be decoded before it can be used for validation
 $jsonSchemaObject = json_decode($jsonSchema);
