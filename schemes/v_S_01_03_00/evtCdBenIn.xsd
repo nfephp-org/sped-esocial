@@ -264,6 +264,33 @@
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
+                                        <xs:element name="infoHomolog" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Informações relativas à homologação do benefício.</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="sitHomolog">
+                                                        <xs:simpleType>
+                                                            <xs:annotation>
+                                                                <xs:documentation>Situação relativa à homologação do benefício.</xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:restriction base="xs:byte">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="2" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="dtHomolog" type="xs:date" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Data de homologação do benefício.</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
