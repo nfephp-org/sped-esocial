@@ -13,3 +13,4 @@ Caddyfile
 .php_cs.cache
 phpcbf.phar
 phpcs.phar
+vendor/
