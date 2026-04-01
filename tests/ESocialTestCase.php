@@ -13,16 +13,18 @@ class ESocialTestCase extends TestCase
 
     public $certificate;
 
-    public function __construct()
+    public function __construct(string $name)
     {
+        parent::__construct($name);
+
         $this->fixturesPath = __DIR__.'/fixtures/';
         $contentpfx         = file_get_contents($this->fixturesPath."certs/expired_certificate.pfx");
         $config             = [
             'tpAmb'          => 2,
             //tipo de ambiente 1 - Produção; 2 - Produção restrita - dados reais;3 - Produção restrita - dados fictícios.
-            'verProc'        => '2_5_0',
+            'verProc'        => 'S_1.3.0',
             //Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.
-            'eventoVersion'  => '2.5.0',
+            'eventoVersion'  => 'S.1.3.0',
             //versão do layout do evento
             'serviceVersion' => '1.5.0',
             //versão do webservice
