@@ -492,7 +492,7 @@ trait TraitS2410
                 !empty($this->std->infohomolog->dthomolog) ? $this->std->infohomolog->dthomolog : null,
                 false
             );
-            $infoBenInicio->appendChild($infoHomolog);
+            $dadosBeneficio->appendChild($infoHomolog);
         }
 
         $this->node->appendChild($infoBenInicio);
