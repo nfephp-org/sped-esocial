@@ -9,6 +9,23 @@ use NFePHP\eSocial\Tests\ESocialTestCase;
 class EvtAdmPrelimTest extends ESocialTestCase
 {
     /**
+     * Payload mínimo válido para layout S.1.3.0 (jsonSchemes/v_S_01_03_00/evtAdmPrelim.schema).
+     */
+    private function newStdEvtAdmPrelimS130(): \stdClass
+    {
+        $std = new \stdClass();
+        $std->sequencial = 1;
+        $std->indretif = 1;
+        $std->cpftrab = '00232133417';
+        $std->dtnascto = '1961-02-12';
+        $std->dtadm = '2017-04-12';
+        $std->matricula = '12345';
+        $std->codcateg = '101';
+
+        return $std;
+    }
+
+    /**
      * @covers Factory::__construct
      * @covers Factory::init
      * @covers Factory::strLayoutVer
@@ -17,11 +34,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
      */
     public function testInstanciate()
     {
-        $std = new \stdClass();
-        $std->sequencial = 1;
-        $std->cpfTrab = '00232133417';
-        $std->dtNascto = '1961-02-12';
-        $std->dtAdm = '2017-04-12';
+        $std = $this->newStdEvtAdmPrelimS130();
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
@@ -40,11 +53,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
      */
     public function testToXML()
     {
-        $std = new \stdClass();
-        $std->sequencial = 1;
-        $std->cpfTrab = '00232133417';
-        $std->dtNascto = '1961-02-12';
-        $std->dtAdm = '2017-04-12';
+        $std = $this->newStdEvtAdmPrelimS130();
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
@@ -69,11 +78,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
      */
     public function testToJson()
     {
-        $std = new \stdClass();
-        $std->sequencial = 1;
-        $std->cpfTrab = '00232133417';
-        $std->dtNascto = '1961-02-12';
-        $std->dtAdm = '2017-04-12';
+        $std = $this->newStdEvtAdmPrelimS130();
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
@@ -92,11 +97,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
      */
     public function testToArray()
     {
-        $std = new \stdClass();
-        $std->sequencial = 1;
-        $std->cpfTrab = '00232133417';
-        $std->dtNascto = '1961-02-12';
-        $std->dtAdm = '2017-04-12';
+        $std = $this->newStdEvtAdmPrelimS130();
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
@@ -114,11 +115,7 @@ class EvtAdmPrelimTest extends ESocialTestCase
      */
     public function testToStd()
     {
-        $std = new \stdClass();
-        $std->sequencial = 1;
-        $std->cpfTrab = '00232133417';
-        $std->dtNascto = '1961-02-12';
-        $std->dtAdm = '2017-04-12';
+        $std = $this->newStdEvtAdmPrelimS130();
         $evt = new EvtAdmPrelim(
             $this->configJson,
             $std,
