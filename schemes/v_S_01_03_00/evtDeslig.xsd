@@ -34,6 +34,7 @@
                         <xs:documentation>REGRA:REGRA_RETIFICA_MESMO_VINCULO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_RUBRICA_COMPATIVEL_CATEGORIA</xs:documentation>
                         <xs:documentation>REGRA:REGRA_RUBRICA_ECONSIGNADO</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_VALIDA_CODINCCP_EXC_SEGURADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_PERIODO_APURACAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VINCULO_ATIVO_NA_DTEVENTO</xs:documentation>
@@ -65,6 +66,9 @@
                                             <xs:annotation>
                                                 <xs:documentation>Preencher com a data de desligamento do vínculo (último dia trabalhado).</xs:documentation>
                                                 <xs:documentation>Validação: Deve ser uma data igual ou anterior à data atual acrescida de 10 (dez) dias. No caso de empregado reintegrado e quando não se tratar de retificação do desligamento anterior à reintegração, também deve ser uma data igual ou posterior a {dtEfetRetorno}(2298_infoReintegr_dtEfetRetorno) do evento S-2298.</xs:documentation>
+                                                <xs:documentation>Se {mtvDeslig}(./mtvDeslig) = [10]:</xs:documentation>
+                                                <xs:documentation>a) Caso a situação no cadastro do CPF na RFB seja diferente de "Titular Falecido", retornar erro até o 7º (sétimo) dia de {dtDeslig}(./dtDeslig) e retornar alerta a partir do 8º (oitavo) dia de {dtDeslig}(./dtDeslig);</xs:documentation>
+                                                <xs:documentation>b) Caso a situação no cadastro do CPF na RFB seja igual a "Titular Falecido", {dtDeslig}(./dtDeslig) deve ser igual à data de óbito no cadastro do CPF da RFB (se não for possível obter a data do óbito, o ano de {dtDeslig}(./dtDeslig) deve ser igual ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="dtAvPrv" minOccurs="0" type="xs:date">
@@ -139,7 +143,7 @@
                                                         <xs:annotation>
                                                             <xs:documentation>Informar o número de inscrição do empregador sucessor, de acordo com o tipo de inscrição indicado no campo {sucessaoVinc/tpInsc}(./tpInsc).</xs:documentation>
                                                             <xs:documentation>Validação: Deve ser um número de inscrição válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.</xs:documentation>
-                                                            <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(2299_ideEmpregador_nrInsc) tiver 14 (catorze) algarismos) e dos estabelecimentos informados através do evento S-1005.</xs:documentation>
+                                                            <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(2299_ideEmpregador_nrInsc) tiver 14 (catorze) algarismos). Também deve ser diferente dos estabelecimentos informados através do evento S-1005, exceto se a natureza jurídica do declarante for Administração Pública (grupo [1]).</xs:documentation>
                                                             <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [2], deve possuir 11 (onze) algarismos.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
@@ -215,6 +219,14 @@
                                                                         <xs:documentation>Somente preencher este campo se for um demonstrativo de RRA.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
+                                                                <xs:element name="notAFT" minOccurs="0" type="TS_notAFT">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Número da notificação de FGTS que deu origem à confissão.</xs:documentation>
+                                                                        <xs:documentation>Validação: Se o campo for preenchido:</xs:documentation>
+                                                                        <xs:documentation>a) O mês/ano de {}(2299_infoDeslig_dtDeslig) deve ser igual ou posterior ao início do FGTS Digital;</xs:documentation>
+                                                                        <xs:documentation>b) Devem ser informados apenas caracteres alfanuméricos, com 9 (nove) posições.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
                                                                 <xs:element name="infoRRA" minOccurs="0" type="T_infoRRA" />
                                                                 <xs:element name="infoPerApur" minOccurs="0">
                                                                     <xs:annotation>
@@ -237,7 +249,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações relativas a períodos anteriores</xs:documentation>
                                                                         <xs:documentation>DESCRICAO_COMPLETA:Remuneração relativa a períodos anteriores, devida em função de acordos coletivos, legislação específica, convenção coletiva de trabalho, dissídio ou conversão de licença saúde em acidente de trabalho.</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: O (se não existir o grupo {infoPerApur}(2299_infoDeslig_verbasResc_dmDev_infoPerApur)); OC (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: N (se {}(2299_infoDeslig_verbasResc_dmDev_notAFT) for informado); O (se não existir o grupo {infoPerApur}(2299_infoDeslig_verbasResc_dmDev_infoPerApur)); OC (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -434,7 +446,7 @@
                                                                 <xs:documentation>Número do contrato de empréstimo consignado existente na instituição consignatária.</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:string">
-                                                                <xs:pattern value="[A-Za-z0-9]{1,40}" />
+                                                                <xs:pattern value="\d{1,40}" />
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
@@ -469,7 +481,7 @@
             <xs:element name="codLotacao" type="TS_codLotacao" />
             <xs:element name="detVerbas" maxOccurs="200" type="T_detVerbas_descFolha" />
             <xs:element name="infoAgNocivo" minOccurs="0" type="T_infoAgNocivo" />
-            <xs:element name="infoSimples" minOccurs="0" type="T_infoSimples" />
+            <xs:element name="infoSimples" minOccurs="0" type="T_infoSimples_S-2299" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="T_ideEstabLot_infoPerAnt">
@@ -479,7 +491,7 @@
             <xs:element name="codLotacao" type="TS_codLotacao" />
             <xs:element name="detVerbas" maxOccurs="200" type="T_detVerbas" />
             <xs:element name="infoAgNocivo" minOccurs="0" type="T_infoAgNocivo" />
-            <xs:element name="infoSimples" minOccurs="0" type="T_infoSimples" />
+            <xs:element name="infoSimples" minOccurs="0" type="T_infoSimples_S-2299" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="T_detVerbas">
@@ -510,7 +522,29 @@
         <xs:complexContent>
             <xs:extension base="T_detVerbas">
                 <xs:sequence>
-                    <xs:element name="descFolha" minOccurs="0" type="T_descFolha" />
+                    <xs:element name="descFolha" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Informações de desconto do empréstimo em folha.</xs:documentation>
+                            <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 = [9253]); N (nos demais casos)</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="tpDesc" type="TS_tpDesc" />
+                                <xs:element name="instFinanc" type="TS_instFinanc">
+                                    <xs:annotation>
+                                        <xs:documentation>Código Bancário de Consignado concedente do empréstimo.</xs:documentation>
+                                        <xs:documentation>Validação: Deve ser um código válido, conforme Tabela  37 do eSocial Tabelas.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>    
+                                <xs:element name="nrDoc" type="TS_nrDoc" />
+                                <xs:element name="observacao" minOccurs="0" type="TS_observacao">
+                                    <xs:annotation>
+                                        <xs:documentation>Outras informações do desconto.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

@@ -125,7 +125,7 @@
                 "nrinsc": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{11}|[0-9]{14}$"
+                    "pattern": "^([0-9]{11}|[A-Z0-9]{12}[0-9]{2})$"
                 }
             }
         },
@@ -178,6 +178,11 @@
                                 "type": ["string","null"],
                                 "pattern": "^(S)$"
                             },
+                            "notaft": {
+                                "required": false,
+                                "type": ["string","null"],
+                                "pattern": "^([A-Za-z0-9]{9})?$"
+                            },
                             "infoperapur": {
                                 "required": false,
                                 "type": ["object","null"],
@@ -198,7 +203,7 @@
                                                 "nrinsc": {
                                                     "required": true,
                                                     "type": "string",
-                                                    "pattern": "^[0-9]{12}|[0-9]{14}$"
+                                                    "pattern": "^([0-9]{12}|[A-Z0-9]{12}[0-9]{2})$"
                                                 },
                                                 "codlotacao": {
                                                     "required": true,
@@ -360,7 +365,7 @@
                                                                         "nrinsc": {
                                                                             "required": true,
                                                                             "type": "string",
-                                                                            "pattern": "^[0-9]{8,14}"
+                                                                            "pattern": "^([A-Z0-9]{8}|[A-Z0-9]{12}[0-9]{2})"
                                                                         },
                                                                         "codlotacao": {
                                                                             "required": true,
@@ -498,7 +503,7 @@
                                     "nrinsc": {
                                         "required": true,
                                         "type": "string",
-                                        "pattern": "^[0-9]{8,14}$"
+                                        "pattern": "^([A-Z0-9]{8}|[A-Z0-9]{12}[0-9]{2})$"
                                     },
                                     "codcateg": {
                                         "required": true,
