@@ -27,6 +27,7 @@
                         <xs:documentation>REGRA:REGRA_RUBRICA_COMPATIVEL_CATEGORIA</xs:documentation>
                         <xs:documentation>REGRA:REGRA_RUBRICA_ECONSIGNADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_TSV_ATIVO_NA_DTEVENTO</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_VALIDA_CODINCCP_EXC_SEGURADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_PERIODO_APURACAO</xs:documentation>
                     </xs:annotation>
@@ -46,6 +47,9 @@
                                             <xs:annotation>
                                                 <xs:documentation>Data do término.</xs:documentation>
                                                 <xs:documentation>Validação: Deve ser uma data igual ou anterior à data atual acrescida de 10 (dez) dias.</xs:documentation>
+                                                <xs:documentation>Se {mtvDesligTSV}(./mtvDesligTSV) = [05]:</xs:documentation>
+                                                <xs:documentation>a) Caso a situação no cadastro do CPF na RFB seja diferente de "Titular Falecido", retornar erro até o 7º (sétimo) dia de {dtTerm}(./dtTerm) e retornar alerta a partir do 8º (oitavo) dia de {dtTerm}(./dtTerm);</xs:documentation>
+                                                <xs:documentation>b) Caso a situação no cadastro do CPF na RFB seja igual a "Titular Falecido", {dtTerm}(./dtTerm) deve ser igual à data de óbito no cadastro do CPF da RFB (se não for possível obter a data do óbito, o ano de {dtTerm}(./dtTerm) deve ser igual ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="mtvDesligTSV" minOccurs="0">
@@ -160,6 +164,14 @@
                                                                         <xs:documentation>Somente preencher este campo se for um demonstrativo de RRA.</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
+                                                                <xs:element name="notAFT" minOccurs="0" type="TS_notAFT">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Número da notificação de FGTS que deu origem à confissão.</xs:documentation>
+                                                                        <xs:documentation>Validação: Se o campo for preenchido:</xs:documentation>
+                                                                        <xs:documentation>a) O mês/ano de {}(2399_infoTSVTermino_dtTerm) deve ser igual ou posterior ao início do FGTS Digital;</xs:documentation>
+                                                                        <xs:documentation>b) Devem ser informados apenas caracteres alfanuméricos, com 9 (nove) posições.</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
                                                                 <xs:element name="infoRRA" minOccurs="0" type="T_infoRRA" />
                                                                 <xs:element name="ideEstabLot" maxOccurs="99">
                                                                     <xs:annotation>
@@ -202,11 +214,33 @@
                                                                                                 <xs:documentation>Validação: Informação obrigatória e exclusiva se mês/ano de {dtTerm}(2399_infoTSVTermino_dtTerm) >= [2021-07].</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
-                                                                                        <xs:element name="descFolha" minOccurs="0" type="T_descFolha" />
+                                                                                        <xs:element name="descFolha" minOccurs="0">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Informações de desconto do empréstimo em folha.</xs:documentation>
+                                                                                                <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 = [9253]); N (nos demais casos)</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element name="tpDesc" type="TS_tpDesc" />
+                                                                                                    <xs:element name="instFinanc" type="TS_instFinanc">
+                                                                                                        <xs:annotation>
+                                                                                                            <xs:documentation>Código Bancário de Consignado concedente do empréstimo.</xs:documentation>
+                                                                                                            <xs:documentation>Validação: Deve ser um código válido, conforme Tabela  37 do eSocial Tabelas.</xs:documentation>
+                                                                                                        </xs:annotation>
+                                                                                                    </xs:element>    
+                                                                                                    <xs:element name="nrDoc" type="TS_nrDoc" />
+                                                                                                    <xs:element name="observacao" minOccurs="0" type="TS_observacao">
+                                                                                                        <xs:annotation>
+                                                                                                            <xs:documentation>Outras informações do desconto.</xs:documentation>
+                                                                                                        </xs:annotation>
+                                                                                                    </xs:element>
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
                                                                                     </xs:sequence>
                                                                                 </xs:complexType>
                                                                             </xs:element>
-                                                                            <xs:element name="infoSimples" minOccurs="0" type="T_infoSimples" />
+                                                                            <xs:element name="infoSimples" minOccurs="0" type="T_infoSimples_S-2399" />
                                                                         </xs:sequence>
                                                                     </xs:complexType>
                                                                 </xs:element>
