@@ -276,16 +276,7 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="tpInsc" type="TS_tpInsc_1" />
-            <xs:element name="nrInsc">
-                <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {ideEmpregador/tpInsc}(./tpInsc) e conforme informado em S-1000.</xs:documentation>
-                    </xs:annotation>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="\d{8}|\d{14}" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+            <xs:element name="nrInsc" type="TS_nrInsc_8_14" />
         </xs:sequence>
     </xs:complexType>
 
@@ -346,6 +337,7 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
     <!-- Grupo {infoRRA} -->
 
     <xs:complexType name="T_infoRRA">
@@ -419,6 +411,25 @@
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Grupo {descFolha} (S-1200, S-1202 e S-1207) -->
+
+    <xs:complexType name="T_descFolha">
+        <xs:annotation>
+            <xs:documentation>Informações de desconto do empréstimo em folha.</xs:documentation>
+            <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 = [9253]); N (nos demais casos)</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="tpDesc" type="TS_tpDesc" />
+            <xs:element name="instFinanc" type="TS_instFinanc" />
+            <xs:element name="nrDoc" type="TS_nrDoc" />
+            <xs:element name="observacao" minOccurs="0" type="TS_observacao">
+                <xs:annotation>
+                    <xs:documentation>Outras informações do desconto.</xs:documentation>
+                </xs:annotation>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -513,7 +524,6 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-
 
     <!-- Grupo {nascimento} -->
 
@@ -916,9 +926,24 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Grupo {infoMV} -->
+    <!-- Grupo {infoSimples} -->
 
-    <xs:complexType name="T_infoSimples">
+    <xs:complexType name="T_infoSimples_S-2299">
+        <xs:annotation>
+            <xs:documentation>Informação relativa a empresas do Simples</xs:documentation>
+            <xs:documentation>DESCRICAO_COMPLETA:Informação relativa a empresas enquadradas no regime de tributação Simples Nacional.</xs:documentation>
+            <xs:documentation>CONDICAO_GRUPO: O (se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [03] no mês/ano de {dtDeslig}(2299_infoDeslig_dtDeslig)); N (nos demais casos)</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="indSimples" type="TS_indSimples">
+                <xs:annotation>
+                    <xs:documentation>Indicador de contribuição substituída.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="T_infoSimples_S-2399">
         <xs:annotation>
             <xs:documentation>Informação relativa a empresas do Simples</xs:documentation>
             <xs:documentation>DESCRICAO_COMPLETA:Informação relativa a empresas enquadradas no regime de tributação Simples Nacional.</xs:documentation>
@@ -1184,59 +1209,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Grupo {descFolha} (S-1200, S-1202, S-1207, S-2299 e S-2399) -->
-
-    <xs:complexType name="T_descFolha">
-        <xs:annotation>
-            <xs:documentation>Informações de desconto do empréstimo em folha.</xs:documentation>
-            <xs:documentation>CONDICAO_GRUPO: O (se {}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 = [9253]); N (nos demais casos)</xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="tpDesc">
-                <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>Indicativo do tipo de desconto.</xs:documentation>
-                    </xs:annotation>
-                    <xs:restriction base="xs:byte">
-                        <xs:enumeration value="1">
-                            <xs:annotation>
-                                <xs:documentation>eConsignado</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="instFinanc">
-                <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>Código da Instituição Financeira concedente do empréstimo.</xs:documentation>
-                        <xs:documentation>Validação: Deve ser um código válido, conforme tabela do Banco Central.</xs:documentation>
-                    </xs:annotation>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="\d{3}" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="nrDoc">
-                <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>Número do contrato referente ao empréstimo.</xs:documentation>
-                    </xs:annotation>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1" />
-                        <xs:maxLength value="15" />
-                        <xs:pattern value="[A-Za-z0-9][-_A-Za-z0-9/.//]{0,13}[A-Za-z0-9]" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="observacao" minOccurs="0" type="TS_observacao">
-                <xs:annotation>
-                    <xs:documentation>Outras informações do desconto.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
     <!-- Campo {Id} -->
 
     <xs:simpleType name="TS_Id">
@@ -1246,7 +1218,7 @@
         </xs:annotation>
         <xs:restriction base="xs:ID">
             <xs:length value="36" />
-            <xs:pattern value="ID\d{34}" />
+            <xs:pattern value="ID\d{1}[A-Z0-9]{12}\d{21}" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -1679,34 +1651,44 @@
 
     <xs:simpleType name="TS_nrInsc_8_11_14">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{8}|\d{11}|\d{14}" />
+            <xs:pattern value="[A-Z0-9]{8}|\d{11}|[A-Z0-9]{12}\d{2}" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="TS_nrInsc_12_14">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{12}|\d{14}" />
+            <xs:pattern value="\d{12}|[A-Z0-9]{12}\d{2}" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="TS_nrInsc_11_12_14">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{11}|\d{12}|\d{14}" />
+            <xs:pattern value="\d{11}|\d{12}|[A-Z0-9]{12}\d{2}" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="TS_nrInsc_11_14">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{11}|\d{14}" />
+            <xs:pattern value="\d{11}|[A-Z0-9]{12}\d{2}" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="TS_cnpj">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{14}" />
+            <xs:length value="14" />
+            <xs:pattern value="[A-Z0-9]{12}\d{2}" />
         </xs:restriction>
     </xs:simpleType>
-    
+
+    <xs:simpleType name="TS_nrInsc_8_14">
+        <xs:annotation>
+            <xs:documentation>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {ideEmpregador/tpInsc}(./tpInsc) e conforme informado em S-1000.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z0-9]{8}|[A-Z0-9]{12}\d{2}" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Campo {iniValid} -->
 
     <xs:simpleType name="TS_iniValid">
@@ -1967,6 +1949,18 @@
             <xs:minLength value="1" />
             <xs:maxLength value="8" />
             <xs:pattern value=".*[^\s].*" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Campo {natRubr} -->
+
+    <xs:simpleType name="TS_natRubr">
+        <xs:annotation>
+            <xs:documentation>Informar o código de classificação da rubrica.</xs:documentation>
+            <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 03.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="\d{4}" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -2397,6 +2391,21 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!-- Campo {notAFT} -->
+
+    <xs:simpleType name="TS_notAFT">
+        <xs:annotation>
+            <xs:documentation>Número da notificação de FGTS que deu origem à confissão.</xs:documentation>
+            <xs:documentation>Validação: Se o campo for preenchido:</xs:documentation>
+            <xs:documentation>a) {}(1200_ideEvento_perApur) deve ser igual ou posterior ao início do FGTS Digital;</xs:documentation>
+            <xs:documentation>b) Devem ser informados apenas caracteres alfanuméricos, com 9 (nove) posições.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:length value="9" />
+            <xs:pattern value="[A-Za-z0-9]{9}" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Campo {ideEstabLot/tpInsc} -->
 
     <xs:simpleType name="TS_tpInsc_EstabLot">
@@ -2451,7 +2460,7 @@
     <xs:simpleType name="TS_indSimples">
         <xs:annotation>
             <xs:documentation>Indicador de contribuição substituída.</xs:documentation>
-            <xs:documentation>Validação: O preenchimento do campo é obrigatório apenas no caso das empresas enquadradas no regime de tributação Simples Nacional, com tributação previdenciária substituída e não substituída ({classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [03]). Para os demais empregadores, não deve ser informado.</xs:documentation>
+            <xs:documentation>Validação: O preenchimento do campo é obrigatório apenas no caso das empresas enquadradas no regime de tributação Simples Nacional, com tributação previdenciária substituída e não substituída em {perApur}(1200_ideEvento_perApur) ({classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [03] em {perApur}(1200_ideEvento_perApur)). Para os demais empregadores, não deve ser informado.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:byte">
             <xs:enumeration value="1">
@@ -2526,6 +2535,49 @@
                     <xs:documentation>Situação especial de apuração de IR</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Campo {tpDesc} -->
+
+    <xs:simpleType name="TS_tpDesc">
+        <xs:annotation>
+            <xs:documentation>Indicativo do tipo de desconto.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:byte">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>eConsignado</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Campo {instFinanc} -->
+
+    <xs:simpleType name="TS_instFinanc">
+        <xs:annotation>
+            <xs:documentation>Código Bancário de Consignado concedente do empréstimo.</xs:documentation>
+            <xs:documentation>Validação: Deve ser um código válido, conforme Tabela  37 do eSocial Tabelas.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{3}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Campo {nrDoc} -->
+
+    <xs:simpleType name="TS_nrDoc">
+        <xs:annotation>
+            <xs:documentation>Número do contrato referente ao empréstimo.</xs:documentation>
+            <xs:documentation>Validação: Deve obedecer ao que segue:</xs:documentation>
+            <xs:documentation>a) Somente são permitidos números, letras e os caracteres ".", "/", "-" e "_";</xs:documentation>
+            <xs:documentation>b) Os caracteres ".", "/", "-" e "_" não podem ser informados na primeira e na última posições.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2" />
+            <xs:maxLength value="15" />
+            <xs:pattern value="[A-Za-z0-9][-_A-Za-z0-9/.//]{0,13}[A-Za-z0-9]" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -4044,6 +4096,117 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!-- Campo {tpDepInst} -->
+
+    <xs:simpleType name="TS_tpDepInst">
+        <xs:annotation>
+            <xs:documentation>Tipo de dependente do instituidor da pensão por morte.</xs:documentation>
+            <xs:documentation>Validação: Se o campo não for informado e {dtIniBeneficio}(2410_infoBenInicio_dtIniBeneficio) >= [2025-11-24], retornar alerta.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="01">
+                <xs:annotation>
+                    <xs:documentation>Cônjuge</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="02">
+                <xs:annotation>
+                    <xs:documentation>Companheiro(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="03">
+                <xs:annotation>
+                    <xs:documentation>Filho(a) até 21 anos</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="04">
+                <xs:annotation>
+                    <xs:documentation>Enteado(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="05">
+                <xs:annotation>
+                    <xs:documentation>Ex-companheiro(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="06">
+                <xs:annotation>
+                    <xs:documentation>Irmão(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="07">
+                <xs:annotation>
+                    <xs:documentation>Neto(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="08">
+                <xs:annotation>
+                    <xs:documentation>Filha maior solteira</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="09">
+                <xs:annotation>
+                    <xs:documentation>Pais</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="10">
+                <xs:annotation>
+                    <xs:documentation>Menor sob guarda ou tutela</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="11">
+                <xs:annotation>
+                    <xs:documentation>Filho(a) maior inválido ou com deficiência</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="12">
+                <xs:annotation>
+                    <xs:documentation>Ex-cônjuge</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="13">
+                <xs:annotation>
+                    <xs:documentation>Avós</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="14">
+                <xs:annotation>
+                    <xs:documentation>Bisavós</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="15">
+                <xs:annotation>
+                    <xs:documentation>Bisneto(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="16">
+                <xs:annotation>
+                    <xs:documentation>Curatelado(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="17">
+                <xs:annotation>
+                    <xs:documentation>Designado(a)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>            
+            <xs:enumeration value="99">
+                <xs:annotation>
+                    <xs:documentation>Agregados/Outros</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+     
+    <!-- Campo {descrDepInst} -->
+
+    <xs:simpleType name="TS_descrDepInst">
+        <xs:annotation>
+            <xs:documentation>Informar a descrição da dependência do instituidor da pensão por morte.</xs:documentation>
+            <xs:documentation>Validação: Informação obrigatória e exclusiva se {tpDepInst}(./tpDepInst) = [99].</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="TS_texto_100" />
+    </xs:simpleType>
+
     <!-- Campo {origem} -->
 
     <xs:simpleType name="TS_origem">
@@ -4053,12 +4216,17 @@
         <xs:restriction base="xs:byte">
             <xs:enumeration value="1">
                 <xs:annotation>
-                    <xs:documentation>Processo judicial</xs:documentation>
+                    <xs:documentation>Processo judicial trabalhista</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="2">
                 <xs:annotation>
                     <xs:documentation>Demanda submetida à CCP ou ao NINTER</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Processo da Justiça Comum</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
