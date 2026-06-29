@@ -38,6 +38,9 @@
                                             <xs:annotation>
                                                 <xs:documentation>Data de cessação do benefício.</xs:documentation>
                                                 <xs:documentation>Validação: Deve ser igual ou anterior à data atual. No caso de benefício reativado, também deve ser uma data igual ou posterior a {dtEfetReativ}(2418_infoReativ_dtEfetReativ) do evento S-2418.</xs:documentation>
+                                                <xs:documentation>Se {mtvTermino}(./mtvTermino) = [01]:</xs:documentation>
+                                                <xs:documentation>a) Caso a situação no cadastro do CPF na RFB seja diferente de "Titular Falecido", retornar erro até o 7º (sétimo) dia de {dtTermBeneficio}(./dtTermBeneficio) e retornar alerta a partir do 8º (oitavo) dia de {dtTermBeneficio}(./dtTermBeneficio);</xs:documentation>
+                                                <xs:documentation>b) Caso a situação no cadastro do CPF na RFB seja igual a "Titular Falecido", {dtTermBeneficio}(./dtTermBeneficio) deve ser igual à data de óbito no cadastro do CPF da RFB (se não for possível obter a data do óbito, o ano de {dtTermBeneficio}(./dtTermBeneficio) deve ser igual ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="mtvTermino">

@@ -912,6 +912,7 @@
                                                             <xs:documentation>Totalizador de rendimentos tributáveis e tributos com período de apuração diário.</xs:documentation>
                                                             <xs:documentation>CHAVE_GRUPO: {perApurDia}, {CRDia}, {frmTribut}, {paisResidExt}</xs:documentation>
                                                             <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
+                                                            <xs:documentation>Validação: Em uma mesma ocorrência deste grupo, se {perApur}(5002_ideEvento_perApur) for igual ou posterior ao início da DIRF, deve haver compatibilidade entre a forma de tributação e o tipo de rendimento (tributável ou isento/não tributável).</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>

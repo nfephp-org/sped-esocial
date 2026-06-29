@@ -233,6 +233,11 @@
                                                             <xs:documentation>CP descontada do contribuinte individual, alíquota de 20% - 13º salário</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:enumeration>
+                                                    <xs:enumeration value="160601">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Empréstimo Consignado do Trabalhador, Lei nº 10.820/2003 (aplicável apenas ao DAE dos módulos simplificados)</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:enumeration>
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
@@ -907,7 +912,7 @@
                                                     <xs:element name="nrInsc" type="TS_nrInsc_12_14">
                                                         <xs:annotation>
                                                             <xs:documentation>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {ideEstab/tpInsc}(./tpInsc).</xs:documentation>
-                                                            <xs:documentation>Evento de origem: S-1200, S-2299, S-2399 ou S-1202</xs:documentation>
+                                                            <xs:documentation>Evento de origem: S-1200, S-2299, S-2399 ou S-1202.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="infoCategPisPasep" maxOccurs="10">

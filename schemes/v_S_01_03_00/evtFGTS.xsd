@@ -109,7 +109,7 @@
                                                                                     <xs:documentation>Bases de cálculo e valores do FGTS, exceto se {tpAcConv} = [E, H, I]</xs:documentation>
                                                                                     <xs:documentation>DESCRICAO_COMPLETA:Informações consolidadas das bases de cálculo e valores do FGTS do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E, H, I].</xs:documentation>
                                                                                     <xs:documentation>Evento de origem: S-1270 ou S-5003.</xs:documentation>
-                                                                                    <xs:documentation>CHAVE_GRUPO: {tpValor}, {indIncid}</xs:documentation>
+                                                                                    <xs:documentation>CHAVE_GRUPO: {tpValor}, {indIncid}, {notAFT}, {natRubr}</xs:documentation>
                                                                                     <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
@@ -301,6 +301,18 @@
                                                                                                 <xs:documentation>Validação: Deve ser maior que 0 (zero).</xs:documentation>
                                                                                                 <xs:documentation>Se {tpValor}(./tpValor) for diferente de [19], deve corresponder ao somatório dos valores informados no campo {dpsFGTS}(5003_infoFGTS_ideEstab_ideLotacao_infoTrabFGTS_infoBaseFGTS_basePerApur_dpsFGTS) do evento S-5003, agrupados por {tpValor}(./tpValor).</xs:documentation>
                                                                                                 <xs:documentation>Se {tpValor}(./tpValor) = [19], deve corresponder ao somatório dos valores informados no campo {baseFGTS}(./baseFGTS), e aplicar a alíquota de 8%.</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:element>
+                                                                                        <xs:element name="notAFT" minOccurs="0" type="TS_notAFT">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Número da notificação de FGTS que deu origem à confissão.</xs:documentation>
+                                                                                                <xs:documentation>Evento de origem: S-5003.</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:element>
+                                                                                        <xs:element name="natRubr" minOccurs="0" type="TS_natRubr">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Informar o código de classificação da rubrica.</xs:documentation>
+                                                                                                <xs:documentation>Evento de origem: S-5003.</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                     </xs:sequence>

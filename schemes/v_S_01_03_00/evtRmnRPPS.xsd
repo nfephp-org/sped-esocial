@@ -28,6 +28,7 @@
                         <xs:documentation>REGRA:REGRA_REMUN_PERMITE_EXCLUSAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_REMUN_TRAB_EXISTENTE_RET</xs:documentation>
                         <xs:documentation>REGRA:REGRA_REMUN_VALIDA_INFO_COMPLEMENTAR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_RUBRICA_ECONSIGNADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_TSV_ATIVO_NA_DTEVENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_PERIODO_APURACAO</xs:documentation>

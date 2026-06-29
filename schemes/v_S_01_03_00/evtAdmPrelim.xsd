@@ -46,7 +46,7 @@
                                         <xs:element name="dtAdm" type="xs:date">
                                             <xs:annotation>
                                                 <xs:documentation>Preencher com a data de admissão do trabalhador (ou data de início, no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE).</xs:documentation>
-                                                <xs:documentation>Validação: Deve ser posterior à data de nascimento do trabalhador, igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador e igual ou anterior ao ano do óbito, se existente.</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser posterior à data de nascimento do trabalhador, igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador e igual ou anterior à data do óbito, se existente (se não for possível obter a data do óbito, deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="matricula" type="TS_codigo_esocial">
@@ -73,7 +73,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Informações referentes ao registro e à CTPS Digital</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA:Informações referentes ao registro eletrônico de empregados e à Carteira de Trabalho e Previdência Digital - CTPS Digital.</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: OC (se {codCateg}(2190_infoRegPrelim_codCateg) for relativo a "Empregado" ou "Agente Público"); N (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(2190_infoRegPrelim_codCateg) for relativo a "Empregado" ou "Agente Público" e se {dtAdm}(../dtAdm) >= [2026-01-02]); OC (se {codCateg}(2190_infoRegPrelim_codCateg) for relativo a "Empregado" ou "Agente Público" e se {dtAdm}(../dtAdm) &lt; [2026-01-02]); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>

@@ -22,6 +22,7 @@
                         <xs:documentation>REGRA:REGRA_REMUN_IND_RETIFICACAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_REMUN_PERMITE_EXCLUSAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_RUBRICA_COMPATIVEL_DECTERCEIRO</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_RUBRICA_ECONSIGNADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_PERIODO_APURACAO</xs:documentation>
                     </xs:annotation>
