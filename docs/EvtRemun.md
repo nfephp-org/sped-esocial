@@ -66,3 +66,16 @@ A classe pode retornar: string XML, string JSON ou array com os dados
 </eSocial>
 
 ```
+
+## Alterações v_S_01_03_00 (NT S-1.3 nº 06/2026)
+
+### Campo `notAFT` (novo)
+- **Localização:** `dmDev/notAFT`
+- **Tipo:** `TS_notAFT` — 9 caracteres alfanuméricos (`[A-Za-z0-9]{9}`)
+- **Obrigatoriedade:** Opcional
+- **Descrição:** Número da notificação do FGTS Digital que originou a confissão de débito. Só pode ser preenchido se o mês/ano de `perApur` for igual ou posterior ao início do FGTS Digital.
+
+### Campo `descFolha` em `itensRemun` (já suportado)
+- **Localização:** `dmDev/infoPerApur/ideEstabLot/remunPerApur/itensRemun/descFolha`
+- **Tipo:** `T_descFolha` — grupo eConsignado com `tpDesc`, `instFinanc`, `nrDoc`, `observacao?`
+- **Obrigatoriedade:** Opcional — exclusivo quando `tpDesc=1` (Desconto em folha por consignado)

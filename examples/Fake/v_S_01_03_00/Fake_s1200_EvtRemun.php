@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../../../bootstrap.php';
+require_once __DIR__ . '/../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
@@ -47,7 +47,8 @@ $std->infomv->indmv = 1; //Obrigatório
 //empregatício com outra(s) empresa(s)
 $std->infomv->remunoutrempr[0] = new \stdClass(); //Obrigatório
 $std->infomv->remunoutrempr[0]->tpinsc = 1; //Obrigatório
-$std->infomv->remunoutrempr[0]->nrinsc = '12345678901234'; //Obrigatório
+// $std->infomv->remunoutrempr[0]->nrinsc = '12345678901234'; //Obrigatório
+$std->infomv->remunoutrempr[0]->nrinsc = 'ABCDEFGH000100'; //Obrigatório
 $std->infomv->remunoutrempr[0]->codcateg = 901; //Obrigatório
 $std->infomv->remunoutrempr[0]->vlrremunoe = 2345.09; //Obrigatório
 
@@ -82,6 +83,7 @@ $std->infointerm[0]->dia = 10; //Obrigatório
 $std->dmdev[0] = new \stdClass(); //Obrigatório
 $std->dmdev[0]->idedmdev = 'kjdkjdkjdkdj'; //Obrigatório
 $std->dmdev[0]->codcateg = 101; //Obrigatório
+$std->dmdev[0]->notaft = 'A1B2C3D4E'; //Opcional - Notificação FGTS Digital (9 chars alfanum)
 
 $std->dmdev[0]->indrra = 'S';
 //Indicativo de Rendimentos Recebidos Acumuladamente - RRA.
@@ -225,7 +227,7 @@ $std->dmdev[0]->infocomplcont->qtddiastrab = 14; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
+    $content = file_get_contents(__DIR__ . '/expired_certificate.pfx');
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
