@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../../../bootstrap.php';
+require_once __DIR__ . '/../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
@@ -46,6 +46,8 @@ $std->infoprocjud->dtsent = '2022-12-03';
 $std->infoprocjud->ufvara = 'SP';
 $std->infoprocjud->codmunic = '3504808';
 $std->infoprocjud->idvara = '12';
+// infoPatPrec: obrigatório e exclusivo se origem = 3 (Justiça Comum)
+$std->infoprocjud->infopatprec = null; //Opcional (obrigatório se $std->origem = 3)
 
 $std->infocccp = new \stdClass();
 $std->infocccp->dtccp = '2022-12-03';
@@ -156,7 +158,7 @@ $std->infocontr[0]->ideestab->infovlr->ideperiodo[0]->basemudcateg->vrbccprev = 
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
+    $content = file_get_contents(__DIR__ . '/expired_certificate.pfx');
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
