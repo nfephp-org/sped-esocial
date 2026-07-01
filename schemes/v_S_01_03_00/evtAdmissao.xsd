@@ -225,7 +225,7 @@
                                                                             <xs:documentation>Preencher com a data de admissão do trabalhador.</xs:documentation>
                                                                             <xs:documentation>No caso de transferência do empregado ou de mudança de CPF, preencher com a data inicial do vínculo no primeiro empregador (data de início do vínculo).</xs:documentation>
                                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                                            <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador e igual ou anterior ao ano do óbito, se existente;</xs:documentation>
+                                                                            <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador e igual ou anterior à data do óbito, se existente (se não for possível obter a data do óbito, deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta);</xs:documentation>
                                                                             <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial;</xs:documentation>
                                                                             <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N] e {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [1], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</xs:documentation>
                                                                         </xs:annotation>
@@ -312,8 +312,8 @@
                                                                     <xs:element name="cnpjSindCategProf" type="TS_cnpjSindCategProf" />
                                                                     <xs:element name="matAnotJud" type="TS_codigo_esocial" minOccurs="0">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Matrícula informada no evento S-8200.</xs:documentation>
-                                                                            <xs:documentation>Validação: Deve corresponder à matrícula cadastrada no evento S-8200 para o CPF informado em {cpfTrab}(2200_trabalhador_cpfTrab).</xs:documentation>
+                                                                            <xs:documentation>Matrícula informada no evento S-2500 (com {indContr}(2500_ideTrab_infoContr_indContr) em S-2500 = [N]) ou S-8200.</xs:documentation>
+                                                                            <xs:documentation>Validação: Deve corresponder à matrícula cadastrada no evento S-2500 (com {indContr}(2500_ideTrab_infoContr_indContr) em S-2500 = [N]) ou S-8200 para o CPF informado em {cpfTrab}(2200_trabalhador_cpfTrab).</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
                                                                     <xs:element name="FGTS" minOccurs="0">
@@ -484,7 +484,7 @@
                                                                         <xs:annotation>
                                                                             <xs:documentation>Data da entrada em exercício pelo servidor.</xs:documentation>
                                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                                            <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador;</xs:documentation>
+                                                                            <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador e igual ou anterior à data do óbito, se existente (se não for possível obter a data do óbito, deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta);</xs:documentation>
                                                                             <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador/ente público no eSocial;</xs:documentation>
                                                                             <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N] e {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) for diferente de [5, 8, 10], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador/ente público no eSocial.</xs:documentation>
                                                                         </xs:annotation>
@@ -694,13 +694,13 @@
                                                             <xs:annotation>
                                                                 <xs:documentation>Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo {sucessaoVinc/tpInsc}(./tpInsc).</xs:documentation>
                                                                 <xs:documentation>Validação: Deve ser um número de inscrição válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.</xs:documentation>
-                                                                <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(2200_ideEmpregador_nrInsc) tiver 14 (catorze) algarismos) e dos estabelecimentos informados através do evento S-1005.</xs:documentation>
+                                                                <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador (exceto se {ideEmpregador/nrInsc}(2200_ideEmpregador_nrInsc) tiver 14 (catorze) algarismos). Também deve ser diferente dos estabelecimentos informados através do evento S-1005, exceto se a natureza jurídica do declarante for Administração Pública (grupo [1]).</xs:documentation>
                                                                 <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [2], deve possuir 11 (onze) algarismos.</xs:documentation>
                                                                 <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [5], deve possuir somente algarismos.</xs:documentation>
                                                                 <xs:documentation>Se {sucessaoVinc/tpInsc}(./tpInsc) = [6], deve possuir 12 (doze) algarismos.</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:string">
-                                                                <xs:pattern value="\d{8,14}" />
+                                                                <xs:pattern value="\d{8,14}|[A-Z0-9]{12}\d{2}" />
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
@@ -714,7 +714,7 @@
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a data da transferência do empregado para o empregador declarante.</xs:documentation>
                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                            <xs:documentation>a) Deve ser posterior à data de admissão do trabalhador e igual ou anterior ao ano do óbito, se existente;</xs:documentation>
+                                                            <xs:documentation>a) Deve ser posterior à data de admissão do trabalhador e igual ou anterior à data do óbito, se existente (se não for possível obter a data do óbito, deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta);</xs:documentation>
                                                             <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;</xs:documentation>
                                                             <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</xs:documentation>
                                                         </xs:annotation>
@@ -811,8 +811,9 @@
                                                             <xs:documentation>Preencher com a data de desligamento do vínculo (último dia trabalhado).</xs:documentation>
                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
                                                             <xs:documentation>a) Deve ser igual ou posterior à data de admissão/exercício do trabalhador;</xs:documentation>
-                                                            <xs:documentation>b) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;</xs:documentation>
-                                                            <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [N], deve ser anterior à data da transferência do empregado ({sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf) ou {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf)). Não informar se {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [1] ou se {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) for diferente de [5, 8].</xs:documentation>
+                                                            <xs:documentation>b) Caso a situação no cadastro do CPF na RFB seja igual a "Titular Falecido", {dtDeslig}(./dtDeslig) deve ser igual ou anterior à data de óbito no cadastro do CPF da RFB (se não for possível obter a data do óbito, o ano de {dtDeslig}(./dtDeslig) deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta);</xs:documentation>
+                                                            <xs:documentation>c) Se {cadIni}(2200_vinculo_cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;</xs:documentation>
+                                                            <xs:documentation>d) Se {cadIni}(2200_vinculo_cadIni) = [N], deve ser anterior à data da transferência do empregado ({sucessaoVinc/dtTransf}(2200_vinculo_sucessaoVinc_dtTransf) ou {transfDom/dtTransf}(2200_vinculo_transfDom_dtTransf)). Não informar se {tpAdmissao}(2200_vinculo_infoRegimeTrab_infoCeletista_tpAdmissao) = [1] ou se {tpProv}(2200_vinculo_infoRegimeTrab_infoEstatutario_tpProv) for diferente de [5, 8].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>

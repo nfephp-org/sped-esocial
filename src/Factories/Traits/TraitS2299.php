@@ -1785,6 +1785,14 @@ trait TraitS2299
                     false
                 );
 
+                $this->dom->addChild(
+                    $dmDev,
+                    "notAFT",
+                    $dm->notaft ?? null,
+                    false
+                );
+
+
                 if (!empty($dm->infoperapur)) {
                     $infoPerApur = $this->dom->createElement("infoPerApur");
                     foreach ($dm->infoperapur->ideestablot as $isl) {

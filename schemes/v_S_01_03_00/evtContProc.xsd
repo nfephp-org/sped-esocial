@@ -15,6 +15,7 @@
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXC_RET_2501</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_RETIFICA_IDENTIFICADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -50,7 +51,7 @@
                                         <xs:element name="nrProcTrab" type="TS_nrProcTrab">
                                             <xs:annotation>
                                                 <xs:documentation>Número do processo trabalhista, da ata ou número de identificação da conciliação.</xs:documentation>
-                                                <xs:documentation>Validação: Deve ser um número de processo válido e declarado no evento S-2500 para o(s) trabalhador(es) informado(s) em {cpfTrab}(2501_ideTrab_cpfTrab).</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um número de processo válido e declarado no evento S-2500 para o(s) trabalhador(es) informado(s) em {cpfTrab}(2501_ideTrab_cpfTrab), com {origem}(2500_infoProcesso_origem) em S-2500 diferente de [3].</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="perApurPgto" type="TS_periodo_mensal">
@@ -132,7 +133,7 @@
                                                 <xs:attribute name="perRef" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
-                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) (observado o campo {}(2500_ideTrab_ideSeqTrab) de S-2500, se existente) e igual ou posterior a [2008-12].</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) (observado o campo {}(2500_ideTrab_ideSeqTrab) de S-2500, se existente), igual ou posterior a [2008-12] e igual ou anterior a {perApurPgto}(2501_ideProc_perApurPgto).</xs:documentation>
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="TS_periodo_mensal" />

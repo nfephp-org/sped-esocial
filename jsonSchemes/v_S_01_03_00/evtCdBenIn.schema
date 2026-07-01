@@ -32,7 +32,7 @@
         "cnpjorigem": {
             "required": false,
             "type": ["string","null"],
-            "pattern": "^[0-9]{14}$"
+            "pattern": "^[A-Z0-9]{12}[0-9]{2}$"
         },
         "cadini": {
             "required": true,
@@ -104,6 +104,16 @@
                             "required": true,
                             "type": "string",
                             "$ref": "#/definitions/data"
+                        },
+                        "tpdepinst": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 2
+                        },
+                        "descrdepinst": {
+                            "required": false,
+                            "type": ["string","null"],
+                            "maxLength": 100
                         }
                     }
                 }
@@ -116,7 +126,7 @@
                 "cnpjorgaoant": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{14}$"
+                    "pattern": "^[A-Z0-9]{12}[0-9]{2}$"
                 },
                 "nrbeneficioant": {
                     "required": true,

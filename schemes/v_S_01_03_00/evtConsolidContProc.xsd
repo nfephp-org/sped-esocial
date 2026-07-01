@@ -19,7 +19,7 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="ideEvento" type="T_ideEvento_exclusao" />
+                            <xs:element name="ideEvento" type="T_ideEvento_exclusao_proc_trab" />
                             <xs:element name="ideEmpregador">
                                 <xs:annotation>
                                     <xs:documentation>Informações de identificação do empregador ou do contribuinte que está prestando a informação.</xs:documentation>

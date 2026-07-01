@@ -69,3 +69,16 @@ A classe pode retornar: string XML, string JSON ou array com os dados
 </eSocial>
 
 ```
+
+## Alterações v_S_01_03_00 (NT S-1.3 nº 06/2026)
+
+### Campo `notAFT` (novo)
+- **Localização:** `infoDeslig/verbasResc/dmDev/notAFT`
+- **Tipo:** `TS_notAFT` — 9 caracteres alfanuméricos (`[A-Za-z0-9]{9}`)
+- **Obrigatoriedade:** Opcional
+- **Descrição:** Número da notificação do FGTS Digital que originou a confissão. Se informado, `infoPerAnt` não pode ser preenchido.
+
+### Campo `descFolha` em `detVerbas` (já suportado)
+- **Localização:** `infoDeslig/verbasResc/dmDev/infoPerApur/ideEstabLot/detVerbas/descFolha`
+- **Tipo:** `T_descFolha` — grupo eConsignado
+- **Obrigatoriedade:** Opcional

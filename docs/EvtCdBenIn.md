@@ -163,3 +163,8 @@ try {
 - O nó `infoHomolog` é **exclusivo do layout v_S_01_03_00** (versão 1.3). Em versões anteriores o campo é ignorado.
 - Dentro do grupo `infoHomolog`, o campo `sitHomolog` é obrigatório. O campo `dtHomolog` é opcional.
 - Valores válidos para `sitHomolog`: `0`, `1`, `2`.
+
+### Campos `tpDepInst` e `descrDepInst` em `instPenMorte` (novos no S130)
+- **Localização:** `infoBenInicio/dadosBeneficio/infoPenMorte/instPenMorte/tpDepInst` e `descrDepInst`
+- **`tpDepInst`:** Opcional (`TS_tpDepInst`) — Tipo de dependente do instituidor da pensão por morte.
+- **`descrDepInst`:** Opcional (`TS_descrDepInst`) — Descrição complementar do tipo de dependente.

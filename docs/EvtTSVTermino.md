@@ -64,3 +64,14 @@ A classe pode retornar: string XML, string JSON ou array com os dados
 </eSocial>
 
 ```
+
+## Alterações v_S_01_03_00 (NT S-1.3 nº 06/2026)
+
+### Campo `notAFT` (novo)
+- **Localização:** `infoTSVTermino/verbasResc/dmDev/notAFT`
+- **Tipo:** `TS_notAFT` — 9 caracteres alfanuméricos (`[A-Za-z0-9]{9}`)
+- **Obrigatoriedade:** Opcional
+- **Descrição:** Número da notificação do FGTS Digital. Só aplicável se mês/ano de `dtTerm` for igual ou posterior ao início do FGTS Digital.
+
+### Campos `indRRA` e `infoRRA` (adicionados ao `toNodeS130`)
+- A versão S130 do layout passa a suportar explicitamente `indRRA` e `infoRRA` dentro de `dmDev`, alinhando com a versão S1.2.0 do schema `evtTSVTermino.xsd`.

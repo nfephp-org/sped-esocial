@@ -52,6 +52,8 @@ $std->infopenmorte->tppenmorte = 1; //obrigatório
 $std->infopenmorte->instpenmorte = new \stdClass();
 $std->infopenmorte->instpenmorte->cpfinst = '12345678901'; //obrigatório
 $std->infopenmorte->instpenmorte->dtinst = '2020-12-12'; //obrigatório
+$std->infopenmorte->instpenmorte->tpdepinst = '01'; //opcional - Tipo de dependente do instituidor
+$std->infopenmorte->instpenmorte->descrdepinst = null; //opcional - Descrição do dependente
 
 //campo opcional
 $std->sucessaobenef = new \stdClass();

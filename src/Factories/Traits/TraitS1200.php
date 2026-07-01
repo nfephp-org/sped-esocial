@@ -1863,6 +1863,12 @@ trait TraitS1200
                 $indrra,
                 false
             );
+            $this->dom->addChild(
+                $dmdev,
+                "notAFT",
+                $dm->notaft ?? null,
+                false
+            );
             if (!empty($dm->inforra) && $indrra === 'S') {
                 $inf = $dm->inforra;
                 $ifrra = $this->dom->createElement("infoRRA");

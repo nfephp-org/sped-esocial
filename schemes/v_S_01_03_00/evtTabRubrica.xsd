@@ -20,6 +20,7 @@
                         <xs:documentation>REGRA:REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE</xs:documentation>
                         <xs:documentation>REGRA:REGRA_TABRUBR_INCLUSAO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_TAB_PERMITE_EXCLUSAO</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_VALIDA_CODINCCP_EXC_SEGURADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_DT_FUTURA</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -117,18 +118,7 @@
                     <xs:documentation>Informar a descrição (nome) da rubrica no sistema de folha de pagamento da empresa.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="natRubr">
-                <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>Informar o código de classificação da rubrica.</xs:documentation>
-                        <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 03.</xs:documentation>
-                        <xs:documentation>Para utilização de código [9253], é necessário que {iniValid}(1010_infoRubrica_inclusao_ideRubrica_iniValid) seja igual ou posterior ao mês de início do eConsignado no eSocial.</xs:documentation>
-                    </xs:annotation>
-                    <xs:restriction base="xs:integer">
-                        <xs:pattern value="\d{4}" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+            <xs:element name="natRubr" type="TS_natRubr" />
             <xs:element name="tpRubr">
                 <xs:simpleType>
                     <xs:annotation>

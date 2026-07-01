@@ -395,6 +395,18 @@ trait TraitS2410
                     $this->std->infopenmorte->instpenmorte->dtinst,
                     true
                 );
+                $this->dom->addChild(
+                    $instPenMorte,
+                    "tpDepInst",
+                    $this->std->infopenmorte->instpenmorte->tpdepinst ?? null,
+                    false
+                );
+                $this->dom->addChild(
+                    $instPenMorte,
+                    "descrDepInst",
+                    $this->std->infopenmorte->instpenmorte->descrdepinst ?? null,
+                    false
+                );
                 $infoPenMorte->appendChild($instPenMorte);
             }
             $dadosBeneficio->appendChild($infoPenMorte);

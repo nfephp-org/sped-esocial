@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../../../bootstrap.php';
+require_once __DIR__ . '/../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
@@ -76,6 +76,7 @@ $std->verbasresc = new \stdClass(); //Opcional
 //Identificação de cada um dos demonstrativos de valores devidos ao trabalhador
 $std->verbasresc->dmdev[1] = new \stdClass();  //Obrigatório
 $std->verbasresc->dmdev[1]->idedmdev = 'akakakak737477382828282828282';  //Obrigatório
+$std->verbasresc->dmdev[1]->notaft = 'X1Y2Z3W4Q'; //Opcional - Notificação FGTS Digital (9 chars alfanum)
 
 //Verbas rescisórias relativas ao mês/ano da data do desligamento.
 $std->verbasresc->dmdev[1]->infoperapur = new \stdClass(); //Opcional
@@ -184,7 +185,7 @@ $std->consigfgts[0]->nrcontr = '123456789012345'; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
+    $content = file_get_contents(__DIR__ . '/expired_certificate.pfx');
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 

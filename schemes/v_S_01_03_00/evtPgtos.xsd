@@ -145,7 +145,12 @@
                                                                     <xs:simpleType>
                                                                         <xs:annotation>
                                                                             <xs:documentation>Forma de tributação, conforme opções disponíveis na Tabela 30.</xs:documentation>
-                                                                            <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 30. Para os códigos [1X, 30], deve existir informação relativa ao imposto retido na fonte; para os códigos [4X, 50] não é permitida a informação do imposto retido na fonte.</xs:documentation>
+                                                                            <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 30.</xs:documentation>
+                                                                            <xs:documentation>Para os códigos [1X, 3X], deve existir informação relativa ao imposto retido na fonte.</xs:documentation>
+                                                                            <xs:documentation>Para os códigos [4X, 5X]:</xs:documentation>
+                                                                            <xs:documentation>a) Não é permitida a informação do imposto retido na fonte;</xs:documentation>
+                                                                            <xs:documentation>b) Se {perApur}(1210_ideEvento_perApur) >= [2025-01], não pode existir informação relativa a rendimento tributável ({codIncIRRF}(1010_infoRubrica_inclusao_dadosRubrica_codIncIRRF) em S-1010 = [11, 12, 13, 14] e {indApurIR} do evento remuneratório = [0]).</xs:documentation>
+                                                                            <xs:documentation>Referente à validação da alínea "b", retornar alerta se {perApur}(1210_ideEvento_perApur) &lt;= [2025-12] e retornar erro se {perApur}(1210_ideEvento_perApur) >= [2026-01].</xs:documentation>
                                                                         </xs:annotation>
                                                                         <xs:restriction base="xs:string">
                                                                             <xs:pattern value="\d{2}" />

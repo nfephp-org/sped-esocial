@@ -48,7 +48,7 @@
                 "cnpjlab": {
                     "required": true,
                     "type": ["string"],
-                    "pattern": "^[0-9]{14}$"
+                    "pattern": "^[A-Z0-9]{12}[0-9]{2}$"
                 },
                 "codseqexame": {
                     "required": true,

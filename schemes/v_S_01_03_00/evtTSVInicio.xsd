@@ -178,7 +178,7 @@
                                                 <xs:documentation>f) Para o servidor público exercente de cargo eletivo, a data de início do mandato;</xs:documentation>
                                                 <xs:documentation>g) Para os demais trabalhadores, a data de início das atividades.</xs:documentation>
                                                 <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
-                                                <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador, não pode ser posterior a 30 (trinta) dias da data atual e deve ser igual ou anterior ao ano do óbito, se existente;</xs:documentation>
+                                                <xs:documentation>a) Deve ser posterior à data de nascimento do trabalhador, não pode ser posterior a 30 (trinta) dias da data atual e deve ser igual ou anterior à data do óbito, se existente (se não for possível obter a data do óbito, deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta);</xs:documentation>
                                                 <xs:documentation>b) Se {cadIni}(./cadIni) = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial;</xs:documentation>
                                                 <xs:documentation>c) Se {cadIni}(./cadIni) = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</xs:documentation>
                                             </xs:annotation>
@@ -483,7 +483,8 @@
                                                             <xs:documentation>Preencher com a data do término.</xs:documentation>
                                                             <xs:documentation>Validação: Devem ser observadas as seguintes regras:</xs:documentation>
                                                             <xs:documentation>a) Deve ser igual ou posterior à data de início do TSVE;</xs:documentation>
-                                                            <xs:documentation>b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</xs:documentation>
+                                                            <xs:documentation>b) Caso a situação no cadastro do CPF na RFB seja igual a "Titular Falecido", {dtTerm}(./dtTerm) deve ser igual ou anterior à data de óbito no cadastro do CPF da RFB (se não for possível obter a data do óbito, o ano de {dtTerm}(./dtTerm) deve ser igual ou anterior ao ano do óbito; se não for possível obter a data e o ano do óbito, o evento deve ser recebido mediante alerta);</xs:documentation>
+                                                            <xs:documentation>c) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>

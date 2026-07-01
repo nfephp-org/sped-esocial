@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-require_once '../../../bootstrap.php';
+require_once __DIR__ . '/../../../bootstrap.php';
 
 use NFePHP\Common\Certificate;
 use NFePHP\eSocial\Event;
@@ -48,6 +48,7 @@ $std->novocpf = "12345678901";
 $std->verbasresc = new \stdClass();
 $std->verbasresc->dmdev[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->idedmdev = 'ksksksksksksksk';
+$std->verbasresc->dmdev[1]->notaft = 'B3C5D7E9F'; //Opcional - Notificação FGTS Digital (9 chars alfanum)
 
 $std->verbasresc->dmdev[1]->ideestablot[1] = new \stdClass();
 $std->verbasresc->dmdev[1]->ideestablot[1]->tpinsc = 1;
@@ -92,7 +93,7 @@ $std->remunaposterm->dtfimremun = '2023-01-22'; //Obrigatório
 
 try {
     //carrega a classe responsavel por lidar com os certificados
-    $content = file_get_contents('expired_certificate.pfx');
+    $content = file_get_contents(__DIR__ . '/expired_certificate.pfx');
     $password = 'associacao';
     $certificate = Certificate::readPfx($content, $password);
 
