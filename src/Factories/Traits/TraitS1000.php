@@ -176,7 +176,7 @@ trait TraitS1000
             $this->dom->addChild(
                 $novavalidade,
                 "fimValid",
-                !empty($sh->fimValid) ? $sh->fimValid : null,
+                !empty($sh->fimvalid) ? $sh->fimvalid : null,
                 false
             );
         }
@@ -395,7 +395,7 @@ trait TraitS1000
             $this->dom->addChild(
                 $novavalidade,
                 "fimValid",
-                !empty($sh->fimValid) ? $sh->fimValid : null,
+                !empty($sh->fimvalid) ? $sh->fimvalid : null,
                 false
             );
         }
@@ -614,7 +614,7 @@ trait TraitS1000
             $this->dom->addChild(
                 $novavalidade,
                 "fimValid",
-                !empty($sh->fimValid) ? $sh->fimValid : null,
+                !empty($sh->fimvalid) ? $sh->fimvalid : null,
                 false
             );
         }
@@ -833,7 +833,7 @@ trait TraitS1000
             $this->dom->addChild(
                 $novavalidade,
                 "fimValid",
-                !empty($sh->fimValid) ? $sh->fimValid : null,
+                !empty($sh->fimvalid) ? $sh->fimvalid : null,
                 false
             );
         }
