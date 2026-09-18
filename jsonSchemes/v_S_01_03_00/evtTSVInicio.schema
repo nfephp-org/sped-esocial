@@ -528,7 +528,7 @@
                     "pattern": "^(O|N)$"
                 },
                 "nivestagio": {
-                    "required": true,
+                    "required": false,
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 9

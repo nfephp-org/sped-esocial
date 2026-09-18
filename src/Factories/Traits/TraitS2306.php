@@ -508,8 +508,8 @@ trait TraitS2306
             $this->dom->addChild(
                 $infoEstagiario,
                 "nivEstagio",
-                $estag->nivestagio,
-                true
+                $estag->nivestagio ?? null,
+                false
             );
             $this->dom->addChild(
                 $infoEstagiario,

@@ -2143,8 +2143,8 @@ trait TraitS2300
             $this->dom->addChild(
                 $infoEstagiario,
                 "nivEstagio",
-                $est->nivestagio,
-                true
+                $est->nivestagio ?? null,
+                false
             );
             $this->dom->addChild(
                 $infoEstagiario,
