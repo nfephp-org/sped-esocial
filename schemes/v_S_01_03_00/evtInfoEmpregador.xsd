@@ -202,10 +202,11 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="indOptRegEletron">
+            <xs:element name="indOptRegEletron" minOccurs="0">
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>Indica se houve opção pelo registro eletrônico de empregados. Caso o declarante seja órgão público sem empregados regidos pela CLT, informar [0].</xs:documentation>
+                        <xs:documentation>Validação: Não preencher se {iniValid}(1000_infoEmpregador_inclusao_idePeriodo_iniValid) for igual ou posterior a [2026-02].</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:byte">
                         <xs:enumeration value="0">
